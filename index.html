@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Umarti Origen · Productos y destinos con origen</title>
+  <meta name="description" content="Umarti Origen: tienda y marketplace con cupones, comercio exterior y viajes. Productos y lugares que se venden por su origen, empezando por Argentina.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf6ef;
+      --surface: #ffffff;
+      --ink: #1f1a14;
+      --muted: #6b6155;
+      --line: #e6ddcf;
+      --terra: #b4532a;
+      --terra-dark: #8f3f1d;
+      --olive: #4f6b3a;
+      --sky: #2f6f8f;
+      --sand: #efe4d2;
+      --radius: 18px;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+    h1, h2, h3 { font-family: "Fraunces", Georgia, serif; line-height: 1.15; font-weight: 600; }
+
+    /* Encabezado */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(250, 246, 239, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+    .logo { font-family: "Fraunces", serif; font-size: 1.4rem; font-weight: 700; text-decoration: none; letter-spacing: -0.01em; }
+    .logo span { color: var(--terra); }
+    .nav ul { display: flex; gap: 28px; list-style: none; }
+    .nav ul a { text-decoration: none; font-size: 0.95rem; color: var(--muted); font-weight: 500; }
+    .nav ul a:hover { color: var(--ink); }
+    .btn {
+      display: inline-block; text-decoration: none; font-weight: 600; font-size: 0.95rem;
+      padding: 12px 22px; border-radius: 999px; border: 1.5px solid transparent;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .btn-primary { background: var(--terra); color: #fff; }
+    .btn-primary:hover { background: var(--terra-dark); }
+    .btn-ghost { border-color: var(--ink); color: var(--ink); }
+    .btn-ghost:hover { background: var(--ink); color: var(--bg); }
+    .nav .btn { padding: 9px 18px; }
+
+    /* Portada */
+    .hero { padding: 88px 0 72px; }
+    .eyebrow {
+      display: inline-block; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--terra); margin-bottom: 18px;
+    }
+    .hero h1 { font-size: clamp(2.4rem, 6vw, 4.4rem); max-width: 14ch; letter-spacing: -0.02em; }
+    .hero h1 em { font-style: italic; color: var(--terra); }
+    .hero p.lead { font-size: 1.15rem; color: var(--muted); max-width: 56ch; margin: 24px 0 36px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .trio-strip {
+      margin-top: 64px; display: grid; grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    }
+    .trio-strip div { padding: 22px 20px; border-right: 1px solid var(--line); }
+    .trio-strip div:last-child { border-right: 0; }
+    .trio-strip strong { display: block; font-family: "Fraunces", serif; font-size: 1.2rem; }
+    .trio-strip small { color: var(--muted); font-size: 0.9rem; }
+
+    /* Secciones */
+    section { padding: 88px 0; }
+    .section-head { max-width: 640px; margin-bottom: 48px; }
+    .section-head h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); letter-spacing: -0.015em; }
+    .section-head p { color: var(--muted); margin-top: 14px; font-size: 1.05rem; }
+
+    .units { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .unit {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 32px 28px; display: flex; flex-direction: column; gap: 16px;
+    }
+    .unit .tag {
+      align-self: flex-start; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 5px 12px; border-radius: 999px;
+    }
+    .unit.shop .tag { background: #f6e3d8; color: var(--terra-dark); }
+    .unit.trade .tag { background: #dfe9f0; color: var(--sky); }
+    .unit.travel .tag { background: #e3ead9; color: var(--olive); }
+    .unit h3 { font-size: 1.55rem; }
+    .unit p { color: var(--muted); }
+    .unit ul { list-style: none; display: grid; gap: 8px; margin-top: 4px; }
+    .unit li { padding-left: 22px; position: relative; font-size: 0.95rem; }
+    .unit li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 10px; height: 2px; background: currentColor; opacity: .5; }
+    .unit .more { margin-top: auto; padding-top: 12px; font-weight: 600; text-decoration: none; font-size: 0.95rem; }
+    .unit.shop .more { color: var(--terra); }
+    .unit.trade .more { color: var(--sky); }
+    .unit.travel .more { color: var(--olive); }
+
+    /* Concepto */
+    .concept { background: var(--ink); color: var(--bg); }
+    .concept .section-head p { color: #c9bfb1; }
+    .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: paso; }
+    .step { border-top: 2px solid var(--terra); padding-top: 20px; counter-increment: paso; }
+    .step::before { content: "0" counter(paso); font-family: "Fraunces", serif; font-size: 0.95rem; color: var(--terra); }
+    .step h3 { font-size: 1.25rem; margin: 8px 0 8px; }
+    .step p { color: #c9bfb1; font-size: 0.95rem; }
+    .concept-note {
+      margin-top: 56px; padding: 28px 32px; border-radius: var(--radius);
+      background: #2b241c; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px;
+    }
+    .concept-note p { font-family: "Fraunces", serif; font-size: 1.35rem; max-width: 34ch; }
+    .concept-note .btn-ghost { border-color: var(--bg); color: var(--bg); }
+    .concept-note .btn-ghost:hover { background: var(--bg); color: var(--ink); }
+
+    /* Comercio exterior */
+    .trade-band { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+    .trade-list { display: grid; gap: 14px; }
+    .trade-item { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; }
+    .trade-item strong { display: block; margin-bottom: 4px; }
+    .trade-item span { color: var(--muted); font-size: 0.95rem; }
+
+    /* Próximamente */
+    .soon { background: var(--sand); border-radius: var(--radius); padding: 48px 40px; text-align: center; }
+    .soon h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); }
+    .soon p { color: var(--muted); max-width: 54ch; margin: 14px auto 28px; }
+
+    /* Pie */
+    footer { border-top: 1px solid var(--line); padding: 48px 0 40px; font-size: 0.92rem; color: var(--muted); }
+    .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; }
+    .foot .logo { color: var(--ink); }
+    .eco { display: flex; gap: 20px; flex-wrap: wrap; list-style: none; }
+    .eco li strong { color: var(--ink); font-weight: 600; }
+
+    @media (max-width: 860px) {
+      .nav ul { display: none; }
+      .units, .trade-band { grid-template-columns: 1fr; }
+      .flow { grid-template-columns: 1fr 1fr; }
+      .trio-strip { grid-template-columns: 1fr; }
+      .trio-strip div { border-right: 0; border-bottom: 1px solid var(--line); }
+      .trio-strip div:last-child { border-bottom: 0; }
+      section { padding: 64px 0; }
+      .hero { padding: 56px 0 48px; }
+    }
+    @media (max-width: 520px) {
+      .flow { grid-template-columns: 1fr; }
+      .soon { padding: 36px 22px; }
+      .concept-note { padding: 24px 22px; }
+      .nav .btn { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap nav">
+      <a href="#" class="logo">Umarti <span>Origen</span></a>
+      <ul>
+        <li><a href="#tienda">Tienda</a></li>
+        <li><a href="#comercio-exterior">Comercio Exterior</a></li>
+        <li><a href="#viajes">Viajes</a></li>
+        <li><a href="#concepto">El concepto</a></li>
+      </ul>
+      <a href="#novedades" class="btn btn-primary">Quiero enterarme</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Portada -->
+    <section class="hero">
+      <div class="wrap">
+        <span class="eyebrow">Productos y destinos con origen</span>
+        <h1>Lo que se hace en un lugar, <em>y el lugar mismo</em>.</h1>
+        <p class="lead">Umarti Origen reúne una tienda con productos propios y de otras marcas, un espacio de comercio exterior para vender a otros mercados y una sección de viajes para conocer de dónde viene cada cosa. Empezamos por Argentina, y sumaremos México y otros países.</p>
+        <div class="hero-actions">
+          <a href="#tienda" class="btn btn-primary">Conocer la tienda</a>
+          <a href="#comercio-exterior" class="btn btn-ghost">Oportunidades de comercio exterior</a>
+        </div>
+
+        <div class="trio-strip">
+          <div><strong>Tienda y marketplace</strong><small>Productos propios, de otras marcas y cupones de descuento</small></div>
+          <div><strong>Comercio Exterior</strong><small>Oportunidades comerciales para vender a otros países</small></div>
+          <div><strong>Viajes</strong><small>Los destinos detrás de cada producto</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Unidades -->
+    <section id="tienda">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Tres formas de llegar al origen</h2>
+          <p>Cada sección funciona por su cuenta, pero todas comparten la misma idea: un producto vale más cuando conocés de dónde viene.</p>
+        </div>
+
+        <div class="units">
+          <article class="unit shop">
+            <span class="tag">Ecommerce</span>
+            <h3>Tienda y marketplace</h3>
+            <p>Una tienda con selección propia y un marketplace donde otras marcas y comercios publican sus productos.</p>
+            <ul>
+              <li>Productos propios, empezando por café, té y mate</li>
+              <li>Productos de otras marcas y comercios</li>
+              <li>Cupones de descuento en productos y servicios</li>
+            </ul>
+            <a href="#novedades" class="more">Próximamente →</a>
+          </article>
+
+          <article class="unit trade" id="comercio-exterior">
+            <span class="tag">Mercados globales</span>
+            <h3>Comercio Exterior</h3>
+            <p>Un punto de encuentro para empresas que quieren vender afuera y compradores que buscan productos de otros países.</p>
+            <ul>
+              <li>Centro de Oportunidades comerciales</li>
+              <li>Productos argentinos para el exterior, y luego de México y otros países</li>
+              <li>Proveedores de logística y exportación</li>
+            </ul>
+            <a href="https://claude.ai/artifact/8uEBocZQURjPjobrSYE2eU" class="more" target="_blank" rel="noopener">Ver oportunidades →</a>
+          </article>
+
+          <article class="unit travel" id="viajes">
+            <span class="tag">Turismo</span>
+            <h3>Viajes</h3>
+            <p>Si vendemos el mate, el vino o la yerba de un lugar, también podemos invitarte a conocerlo.</p>
+            <ul>
+              <li>Destinos de Argentina para empezar</li>
+              <li>Guías y contenido sobre cada región</li>
+              <li>Nuevos destinos a medida que sumemos países</li>
+            </ul>
+            <a href="#novedades" class="more">Próximamente →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Concepto -->
+    <section class="concept" id="concepto">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Por qué productos y viajes, juntos</h2>
+          <p>El hilo común es el origen. Cada país que sumamos aporta sus productos, sus oportunidades de negocio y sus lugares.</p>
+        </div>
+
+        <div class="flow">
+          <div class="step">
+            <h3>Un país</h3>
+            <p>Arrancamos por Argentina. Después vienen México y otros mercados.</p>
+          </div>
+          <div class="step">
+            <h3>Sus productos</h3>
+            <p>Una selección de lo que se produce ahí, en la tienda y en el marketplace.</p>
+          </div>
+          <div class="step">
+            <h3>Sus oportunidades</h3>
+            <p>Empresas de ese país que quieren exportar, y compradores de afuera que las buscan.</p>
+          </div>
+          <div class="step">
+            <h3>Sus destinos</h3>
+            <p>Los lugares donde nace cada producto, para visitarlos.</p>
+          </div>
+        </div>
+
+        <div class="concept-note">
+          <p>Umarti Siempre Argentina: el primer país de este recorrido.</p>
+          <a href="#novedades" class="btn btn-ghost">Seguir el lanzamiento</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comercio exterior en detalle -->
+    <section>
+      <div class="wrap trade-band">
+        <div class="section-head" style="margin-bottom:0">
+          <span class="eyebrow">Ya disponible</span>
+          <h2>Centro de Oportunidades</h2>
+          <p>Publicá lo que querés vender o comprar en otro país, o encontrá oportunidades de otras empresas. Es la primera parte de Umarti Origen que ya está funcionando.</p>
+          <div class="hero-actions" style="margin-top:28px">
+            <a href="https://claude.ai/artifact/8uEBocZQURjPjobrSYE2eU" class="btn btn-primary" target="_blank" rel="noopener">Ver y publicar oportunidades</a>
+          </div>
+        </div>
+        <div class="trade-list">
+          <div class="trade-item"><strong>Oportunidades de venta</strong><span>Empresas que buscan compradores en otros mercados.</span></div>
+          <div class="trade-item"><strong>Búsquedas de compra</strong><span>Compradores que necesitan un producto de otro país.</span></div>
+          <div class="trade-item"><strong>Proveedores de comercio exterior</strong><span>Despachantes, transporte y logística para concretar la operación.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Próximamente -->
+    <section id="novedades" style="padding-top:0">
+      <div class="wrap">
+        <div class="soon">
+          <h2>Estamos armando el resto</h2>
+          <p>La tienda, el marketplace con cupones y la sección de viajes se van sumando por etapas. Si querés vender tus productos, publicar en el marketplace o recibir novedades, escribinos.</p>
+          <!-- Pendiente: reemplazar por el correo de contacto del sitio -->
+          <a href="mailto:?subject=Umarti%20Origen" class="btn btn-primary">Escribinos</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <a href="#" class="logo">Umarti <span style="color:var(--terra)">Origen</span></a>
+        <p style="margin-top:8px">Tienda, comercio exterior y viajes.</p>
+      </div>
+      <ul class="eco">
+        <li><strong>Umarti Origen</strong></li>
+        <li>Umarti Movilidad</li>
+        <li>Umarti Digital</li>
+      </ul>
+      <p>© 2026 Umarti</p>
+    </div>
+  </footer>
+
+</body>
+</html>
