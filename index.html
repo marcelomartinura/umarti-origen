@@ -76,6 +76,8 @@
     .trade-item { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; }
     .trade-item strong { display: block; margin-bottom: 4px; }
     .trade-item span { color: var(--muted); font-size: 0.95rem; }
+    a.trade-item { display: block; text-decoration: none; transition: border-color .2s; }
+    a.trade-item:hover { border-color: var(--sky); }
 
     /* Próximamente */
     .soon { background: var(--sand); border-radius: var(--radius); padding: 48px 40px; text-align: center; }
@@ -173,7 +175,8 @@
             <div class="dropdown">
               <a class="item" href="#novedades"><strong>Vender mis productos</strong><span>Publicá tu catálogo en el marketplace</span></a>
               <a class="item" href="#novedades"><strong>Ofrecer un descuento</strong><span>Sumá cupones de tu comercio o marca</span></a>
-              <a class="item" href="hub-de-oportunidades/#mesa"><strong>Publicar una oportunidad</strong><span>Productos o servicios para otros mercados</span></a>
+              <a class="item" href="productos-de-exportacion/#publicar"><strong>Publicar un producto de exportación</strong><span>Llegá a compradores de otros países</span></a>
+              <a class="item" href="servicios-de-comercio-exterior/#publicar"><strong>Ofrecer servicios de comercio exterior</strong><span>Aduana, logística, seguros o asesoría</span></a>
             </div>
           </li>
         </ul>
@@ -188,10 +191,9 @@
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
             </button>
             <div class="dropdown">
-              <a class="item" href="hub-de-oportunidades/"><strong>Mesa de negociación</strong><span>Todas las ofertas de venta y búsquedas de compra</span></a>
-              <a class="item" href="hub-de-oportunidades/?ver=venta"><strong>Productos del mundo</strong><span>Empresas que buscan compradores en otros países</span></a>
-              <a class="item" href="hub-de-oportunidades/?sector=Servicios"><strong>Servicios del mundo</strong><span>Logística, despachantes y servicios para exportar</span></a>
-              <a class="item" href="hub-de-oportunidades/?sector=Agroindustria"><strong>Agro y commodities</strong><span>Granos, carnes, frutas y otros insumos</span></a>
+              <a class="item" href="mesa-de-negociacion/"><strong>Mesa de negociación</strong><span>Búsqueda de productos o servicios</span></a>
+              <a class="item" href="productos-de-exportacion/"><strong>Productos de exportación</strong><span>Productos listos para vender a otros países</span></a>
+              <a class="item" href="servicios-de-comercio-exterior/"><strong>Servicios de Comercio Exterior</strong><span>Aduana, logística, seguros y asesoría</span></a>
             </div>
           </li>
         </ul>
@@ -255,11 +257,11 @@
             <h3>Mercados Globales</h3>
             <p>Un punto de encuentro para empresas que quieren vender afuera y compradores que buscan productos de otros países.</p>
             <ul>
-              <li>Hub de Oportunidades: productos y servicios del mundo</li>
-              <li>Productos argentinos para el exterior, y luego de México y otros países</li>
-              <li>Proveedores de logística y exportación</li>
+              <li>Mesa de negociación: pedí lo que buscás y te conectamos</li>
+              <li>Productos de exportación de Argentina, México y otros países</li>
+              <li>Servicios de comercio exterior: aduana, logística y seguros</li>
             </ul>
-            <a href="hub-de-oportunidades/" class="more">Ir al Hub de Oportunidades →</a>
+            <a href="mesa-de-negociacion/" class="more">Ir a la Mesa de negociación →</a>
           </article>
 
           <article class="unit travel" id="viajes">
@@ -316,16 +318,16 @@
       <div class="wrap trade-band">
         <div class="section-head" style="margin-bottom:0">
           <span class="eyebrow">Primera sección en marcha</span>
-          <h2>Hub de Oportunidades</h2>
-          <p>Una mesa de negociación donde se encuentran quienes venden y quienes compran entre países. Publicá lo que querés vender o lo que estás buscando, y te conectamos con la otra parte.</p>
+          <h2>Mesa de negociación</h2>
+          <p>Ingresá el producto o servicio que estás buscando. Si ya está publicado, te vinculamos con esa oferta. Si no, nuestro equipo lo busca y te responde en 5 días hábiles.</p>
           <div class="hero-actions" style="margin-top:28px">
-            <a href="hub-de-oportunidades/" class="btn btn-primary">Ir a la mesa de negociación</a>
+            <a href="mesa-de-negociacion/" class="btn btn-primary">Buscar un producto o servicio</a>
           </div>
         </div>
         <div class="trade-list">
-          <div class="trade-item"><strong>Oportunidades de venta</strong><span>Empresas que buscan compradores en otros mercados.</span></div>
-          <div class="trade-item"><strong>Búsquedas de compra</strong><span>Compradores que necesitan un producto de otro país.</span></div>
-          <div class="trade-item"><strong>Proveedores de comercio exterior</strong><span>Despachantes, transporte y logística para concretar la operación.</span></div>
+          <a class="trade-item" href="mesa-de-negociacion/"><strong>Mesa de negociación</strong><span>Búsqueda de productos o servicios, con respuesta en 5 días hábiles si no está publicado.</span></a>
+          <a class="trade-item" href="productos-de-exportacion/"><strong>Productos de exportación</strong><span>Productos de Argentina, México y otros países listos para vender afuera.</span></a>
+          <a class="trade-item" href="servicios-de-comercio-exterior/"><strong>Servicios de Comercio Exterior</strong><span>Despachantes, transporte, seguros y asesoría para concretar la operación.</span></a>
         </div>
       </div>
     </section>

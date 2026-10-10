@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mesa de negociación: búsqueda de productos y servicios de comercio exterior | Umarti Origen</title>
+  <meta name="description" content="Publicá el producto o servicio que buscás. Lo cruzamos con productos de exportación y servicios de comercio exterior y, si no está, nuestro equipo lo busca y te responde en 5 días hábiles.">
+  <!-- Prototipo con datos de ejemplo: quitar esta línea cuando haya publicaciones reales -->
+  <meta name="robots" content="noindex">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mesa de negociación | Umarti Origen">
+  <meta property="og:description" content="Publicá el producto o servicio que buscás. Lo cruzamos con productos de exportación y servicios de comercio exterior y, si no está, nuestro equipo lo busca y te responde en 5 días hábiles.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/umarti.css">
+  <link rel="stylesheet" href="../assets/css/hub.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cómo funciona la Mesa de negociación?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ingresás el producto o servicio que estás buscando. El sistema lo cruza con lo publicado en Productos de exportación y en Servicios de Comercio Exterior. Si hay coincidencia, te vinculamos con esa oferta para empezar a negociar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa si lo que busco no está publicado?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nuestro equipo sale a buscarlo entre productores y proveedores, y te responde en un plazo de 5 días hábiles con lo que encontró. Mientras tanto, tu búsqueda queda visible en la mesa para que otros vendedores puedan ofrecerte su producto."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué es la posición arancelaria y por qué conviene indicarla?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es el código del Sistema Armonizado que identifica cada producto en el comercio internacional, igual en todos los países. Con ella, la mesa encuentra coincidencias aunque cada parte describa el producto con palabras distintas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Quién ve mis datos de contacto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nadie, mientras no decidas avanzar. En la mesa se publican el producto, el destino, el volumen y la vigencia; los datos de tu empresa se comparten solo cuando ambas partes aceptan negociar."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="pg-mesa">
+
+  <header class="site-header" id="site-header">
+    <!-- Fila superior -->
+    <div class="wrap-wide topbar">
+      <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menú">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <a href="../" class="logo">Umarti <span>Origen</span></a>
+      <form class="search" role="search" onsubmit="return false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" placeholder="Buscar productos, oportunidades o destinos" aria-label="Buscar">
+      </form>
+      <div class="user-actions">
+        <a href="../" class="icon-link" aria-label="Mi cuenta">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+          <span>Mi cuenta</span>
+        </a>
+        <a href="../" class="icon-link" aria-label="Carrito">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2"/><circle cx="10" cy="20.5" r="1.2"/><circle cx="17" cy="20.5" r="1.2"/></svg>
+          <span>Carrito</span>
+          <b class="badge">0</b>
+        </a>
+      </div>
+    </div>
+
+    <!-- Módulos de navegación -->
+    <nav class="wrap-wide modules" id="main-nav" aria-label="Principal">
+
+      <!-- Módulo 1: Tienda -->
+      <div class="module m-shop">
+        <p class="module-label">Tienda</p>
+        <ul class="module-items">
+          <li class="has-menu mega">
+            <button class="nav-btn" aria-expanded="false">Productos
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="dropdown mega-panel">
+              <div class="mega-grid">
+                <div><a class="cat" href="../">Café, Té y Mate</a>
+                  <ul><li><a href="../">Mates y bombillas</a></li><li><a href="../">Café</a></li><li><a href="../">Té</a></li><li><a href="../">Chocolate</a></li></ul></div>
+                <div><a class="cat" href="../">Regalos y Kits</a>
+                  <ul><li><a href="../">Kits de mate y café</a></li><li><a href="../">Regalos corporativos</a></li><li><a href="../">Personalizados</a></li></ul></div>
+                <div><a class="cat" href="../">Bebidas</a>
+                  <ul><li><a href="../">Vinos</a></li><li><a href="../">Cervezas y destilados</a></li><li><a href="../">Sin alcohol</a></li></ul></div>
+                <div><a class="cat" href="../">Alimentos</a>
+                  <ul><li><a href="../">Snacks</a></li><li><a href="../">Golosinas</a></li><li><a href="../">Alimentos diet</a></li><li><a href="../">Congelados</a></li></ul></div>
+                <div><a class="cat" href="../">Salud y Bienestar</a>
+                  <ul><li><a href="../">Odontología</a></li><li><a href="../">Cuidado personal</a></li><li><a href="../">Dispositivos médicos</a></li></ul></div>
+                <div><a class="cat" href="../">Moda</a>
+                  <ul><li><a href="../">Ropa de dama</a></li><li><a href="../">Ropa de caballero</a></li><li><a href="../">Zapatos</a></li><li><a href="../">Carteras</a></li></ul></div>
+                <div><a class="cat" href="../">Tecnología</a>
+                  <ul><li><a href="../">Accesorios</a></li><li><a href="../">Audio</a></li><li><a href="../">Hogar inteligente</a></li></ul></div>
+                <div><a class="cat" href="../">Hogar y Cocina</a>
+                  <ul><li><a href="../">Bazar y cocina</a></li><li><a href="../">Organización</a></li><li><a href="../">Deco</a></li></ul></div>
+                <div><a class="cat" href="../">Herramientas y Jardín</a>
+                  <ul><li><a href="../">Herramientas</a></li><li><a href="../">Jardín</a></li><li><a href="../">Construcción</a></li></ul></div>
+                <div><a class="cat" href="../">Limpieza e Higiene</a>
+                  <ul><li><a href="../">Limpieza</a></li><li><a href="../">Higiene personal</a></li></ul></div>
+              </div>
+              <div class="mega-foot">
+                <span>Productos propios y de otras marcas, con origen en Argentina para empezar.</span>
+                <a href="../#tienda">Ver todos los productos →</a>
+              </div>
+            </div>
+          </li>
+          <li><a class="nav-btn" href="../#tienda">International Shop</a></li>
+          <li><a class="nav-btn" href="../#tienda">Descuentos</a></li>
+          <li class="has-menu">
+            <button class="nav-btn publish" aria-expanded="false">Quiero publicar
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="dropdown">
+              <a class="item" href="../#novedades"><strong>Vender mis productos</strong><span>Publicá tu catálogo en el marketplace</span></a>
+              <a class="item" href="../#novedades"><strong>Ofrecer un descuento</strong><span>Sumá cupones de tu comercio o marca</span></a>
+              <a class="item" href="../productos-de-exportacion/#publicar"><strong>Publicar un producto de exportación</strong><span>Llegá a compradores de otros países</span></a>
+              <a class="item" href="../servicios-de-comercio-exterior/#publicar"><strong>Ofrecer servicios de comercio exterior</strong><span>Aduana, logística, seguros o asesoría</span></a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Módulo 2: Mercados Globales -->
+      <div class="module m-world">
+        <p class="module-label">Mercados Globales</p>
+        <ul class="module-items">
+          <li class="has-menu">
+            <button class="nav-btn" aria-expanded="false">Hub de Oportunidades
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="dropdown">
+              <a class="item" href="../mesa-de-negociacion/"><strong>Mesa de negociación</strong><span>Búsqueda de productos o servicios</span></a>
+              <a class="item" href="../productos-de-exportacion/"><strong>Productos de exportación</strong><span>Productos listos para vender a otros países</span></a>
+              <a class="item" href="../servicios-de-comercio-exterior/"><strong>Servicios de Comercio Exterior</strong><span>Aduana, logística, seguros y asesoría</span></a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Módulo 3: Herramientas -->
+      <div class="module m-tools">
+        <p class="module-label">Herramientas</p>
+        <ul class="module-items">
+          <li><a class="nav-btn" href="../#novedades">Blog</a></li>
+          <li><a class="nav-btn" href="../#viajes">Viajes</a></li>
+          <li><a class="nav-btn" href="../#novedades">Recursos digitales</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Ubicación">
+        <ol>
+          <li><a href="../">Inicio</a></li>
+          <li>Hub de Oportunidades</li>
+          <li aria-current="page">Mesa de negociación</li>
+        </ol>
+      </nav>
+
+      <div class="page-head">
+        <div>
+          <span class="eyebrow">Hub de Oportunidades</span>
+          <h1>Mesa de negociación</h1>
+          <p>Contanos qué producto o servicio estás buscando. El sistema lo cruza con lo publicado en Productos de exportación y Servicios de Comercio Exterior y, si todavía no está, nuestro equipo sale a buscarlo por vos.</p>
+        </div>
+        <div class="stats" aria-label="Resumen">
+          <div class="stat"><strong id="stat-b">10</strong><span>búsquedas activas</span></div>
+          <div class="stat ok"><strong id="stat-m">–</strong><span>con coincidencia</span></div>
+          <div class="stat plain"><strong id="stat-o">17</strong><span>ofertas publicadas</span></div>
+        </div>
+      </div>
+
+      <section class="mesa-grid" id="buscar" aria-label="Búsqueda de productos o servicios">
+        <div class="flow">
+          <span class="eyebrow">Cómo funciona</span>
+          <h2>Así trabaja la mesa</h2>
+          <div class="flow-step">
+            <span class="flow-num">1</span>
+            <div><h3>Ingresás lo que buscás</h3><p>Un producto o un servicio, con el volumen y el país de destino.</p></div>
+          </div>
+          <div class="flow-step">
+            <span class="flow-num">2</span>
+            <div><h3>El sistema busca coincidencias</h3><p>Cruza tu búsqueda con los Productos de exportación y los Servicios de Comercio Exterior publicados.</p></div>
+          </div>
+          <div class="flow-split">
+            <div class="flow-out yes">
+              <strong><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Hay coincidencia</strong>
+              <p>Te vinculamos con esa oferta y empieza la negociación.</p>
+            </div>
+            <div class="flow-out no">
+              <strong><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>No hay coincidencia</strong>
+              <p>Nuestro equipo realiza la búsqueda y te responde.</p>
+              <span class="days">5<small>días hábiles</small></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="search-card">
+          <form id="search-form" autocomplete="on">
+            <h2>Búsqueda de productos o servicios</h2>
+            <p class="lead">Completá lo que necesitás y te mostramos al instante si ya hay una oferta que coincide.</p>
+            <div class="kind-toggle" role="radiogroup" aria-label="Qué estás buscando">
+              <label><input type="radio" name="tipo" value="producto" checked><span>Un producto</span></label>
+              <label><input type="radio" name="tipo" value="servicio"><span>Un servicio</span></label>
+            </div>
+            <div class="form-grid">
+              <div class="field full big-input">
+                <label for="s-nombre"><span data-lbl>¿Qué producto estás buscando?</span> <span class="req">*</span></label>
+                <input id="s-nombre" name="nombre" required maxlength="120">
+                <p class="live-hint" id="live-hint" aria-live="polite"></p>
+              </div>
+              <div class="field" data-solo="producto">
+                <label for="s-hs">Posición arancelaria</label>
+                <input id="s-hs" name="hs" inputmode="numeric" maxlength="12" placeholder="Ej.: 1509.20">
+                <p class="hint">Opcional. Si no la sabés, te ayudamos.</p>
+              </div>
+              <div class="field" data-solo="producto">
+                <label for="s-sector">Sector <span class="req">*</span></label>
+                <select id="s-sector" name="sector" required><option value="">Elegí un sector</option><option value="Alimentos y bebidas">Alimentos y bebidas</option><option value="Agroindustria">Agroindustria</option><option value="Manufacturas">Manufacturas</option><option value="Minería y energía">Minería y energía</option><option value="Moda y textil">Moda y textil</option><option value="Salud">Salud</option><option value="Tecnología">Tecnología</option></select>
+              </div>
+              <div class="field full" data-solo="servicio" hidden>
+                <label for="s-cat">Tipo de servicio <span class="req">*</span></label>
+                <select id="s-cat" name="categoria" required disabled><option value="">Elegí un tipo de servicio</option><option value="Despachantes de aduana">Despachantes de aduana</option><option value="Transporte y logística">Transporte y logística</option><option value="Seguros de carga">Seguros de carga</option><option value="Certificaciones">Certificaciones</option><option value="Consultoría en comercio exterior">Consultoría en comercio exterior</option><option value="Servicios digitales">Servicios digitales</option></select>
+              </div>
+              <div class="field">
+                <label for="s-pais">País de destino <span class="req">*</span></label>
+                <input id="s-pais" name="pais" required list="paises" placeholder="Ej.: México">
+              </div>
+              <div class="field">
+                <label for="s-origen">Origen preferido</label>
+                <input id="s-origen" name="origen" maxlength="80" placeholder="Ej.: Argentina o sin preferencia">
+              </div>
+              <div class="field">
+                <label for="s-vol">Volumen requerido</label>
+                <input id="s-vol" name="vol" maxlength="80" placeholder="Ej.: 2 contenedores por mes">
+              </div>
+              <div class="field">
+                <label for="s-vence">Vigente hasta <span class="req">*</span></label>
+                <input id="s-vence" name="vence" type="date" required>
+              </div>
+              <p class="form-sep">Datos de contacto (no se publican)</p>
+              <div class="field"><label for="s-emp">Empresa <span class="req">*</span></label><input id="s-emp" name="empresa" required maxlength="80" autocomplete="organization"></div>
+              <div class="field"><label for="s-mail">Correo <span class="req">*</span></label><input id="s-mail" name="mail" type="email" required autocomplete="email"></div>
+            </div>
+            <div class="form-foot">
+              <small>Si no hay coincidencia, te respondemos en 5 días hábiles al correo que indiques.</small>
+              <button class="btn-submit" type="submit"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg> Buscar en la mesa</button>
+            </div>
+          </form>
+          <div id="search-result" hidden aria-live="polite"></div>
+        </div>
+      </section>
+
+      <div class="block-head" id="busquedas">
+        <div>
+          <h2>Búsquedas publicadas</h2>
+          <p>Lo que empresas de distintos países están buscando ahora. Si tenés alguno de estos productos o servicios, ofrecelo.</p>
+        </div>
+      </div>
+      <form class="filters" role="search" onsubmit="return false" style="grid-template-columns: 2.2fr 1fr 1.2fr">
+        <div class="field search-field">
+          <label for="f-q">Buscar</label>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="f-q" type="search" data-filter="texto" placeholder="Producto, posición arancelaria o código" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="f-tipo">Tipo</label>
+          <select id="f-tipo" data-filter="tipo"><option value="">Todos</option><option value="producto">Productos</option><option value="servicio">Servicios</option></select>
+        </div>
+        <div class="field">
+          <label for="f-pais">País de destino</label>
+          <select id="f-pais" data-filter="pais" data-auto><option value="">Todos</option></select>
+        </div>
+        <div class="filters-row2">
+          <div class="chips-filter" data-filter-chips="estado" role="group" aria-label="Estado">
+            <button type="button" data-value="" aria-pressed="true">Todas</button>
+            <button type="button" data-value="match" aria-pressed="false">Con coincidencia</button>
+            <button type="button" data-value="buscando" aria-pressed="false">Nuestro equipo la busca</button>
+          </div>
+          <div class="row2-right">
+            <span class="result-count" id="result-count" data-uno="búsqueda" data-varios="búsquedas" aria-live="polite"></span>
+            <button type="button" class="link-btn" id="f-clear">Limpiar filtros</button>
+          </div>
+        </div>
+      </form>
+      <p class="proto-note">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="flex:none;margin-top:3px"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+        <span><b>Prototipo.</b> Las búsquedas y ofertas de estas páginas son ejemplos para mostrar cómo funciona la mesa. Lo que publiques ahora se ve solo en tu pantalla y no se envía.</span>
+      </p>
+
+      <div class="cards" id="list">
+        <article class="op op--busqueda" id="uo-b-0001" data-kind="busqueda" data-codigo="UO-B-0001" data-tipo="producto" data-pais="Alemania" data-vence="2027-07-13" data-info="UO-B-0001 · SA 2204.21 · Destino: Alemania" data-texto="vino tinto embotellado 220421 2204.21 uo-b-0001 alimentos y bebidas alemania argentina o chile">
+          <div class="op-top">
+            <span class="op-code">UO-B-0001</span>
+            <span class="op-chips"><span class="chip chip-kind">Producto</span><span class="chip chip-hs" title="Posición arancelaria (Sistema Armonizado)">SA 2204.21</span></span>
+          </div>
+          <h3 class="op-title">Vino tinto embotellado</h3>
+          <p class="op-sector">Alimentos y bebidas</p>
+          <dl class="op-meta">
+            <div><dt>Destino</dt><dd><span class="cc">DE</span>Alemania</dd></div>
+            <div><dt>Volumen</dt><dd>1 contenedor por trimestre</dd></div>
+            <div class="wide"><dt>Origen preferido</dt><dd>Argentina o Chile</dd></div>
+          </dl>
+          <div class="op-bottom">
+            <span class="op-vence">Vigente hasta <time datetime="2027-07-13">13/07/2027</time></span>
+            <button class="op-cta" type="button" data-negociar>Tengo este producto</button>
+          </div>
+        </article>
+        <article class="op op--busqueda" id="uo-b-0002" data-kind="busqueda" data-codigo="UO-B-0002" data-tipo="producto" data-pais="China" data-vence="2027-08-06" data-info="UO-B-0002 · SA 1202.42 · Destino: China" data-texto="maní sin cáscara 120242 1202.42 uo-b-0002 agroindustria china sin preferencia">
+          <div class="op-top">
+            <span class="op-code">UO-B-0002</span>
+            <span class="op-chips"><span class="chip chip-kind">Producto</span><span class="chip chip-hs" title="Posición arancelaria (Sistema Armonizado)">SA 1202.42</span></span>
+          </div>
+          <h3 class="op-title">Maní sin cáscara</h3>
+          <p class="op-sector">Agroindustria</p>
+          <dl class="op-meta">
+            <div><dt>Destino</dt><dd><span class="cc">CN</span>China</dd></div>
+            <div><dt>Volumen</dt><dd>1.000 toneladas</dd></div>
+            <div class="wide"><dt>Origen preferido</dt><dd>Sin preferencia</dd></div>
+          </dl>
+          <div class="op-bottom">
+            <span class="op-vence">Vigente hasta <time datetime="2027-08-06">06/08/2027</time></span>
+            <button class="op-cta" type="button" data-negociar>Tengo este producto</button>
+          </div>
+        </article>
+        <article class="op op--busqueda" id="uo-b-0003" data-kind="busqueda" data-codigo="UO-B-0003" data-tipo="producto" data-pais="China" data-vence="2027-03-15" data-info="UO-B-0003 · SA 0202.30 · Destino: China" data-texto="carne bovina deshuesada, congelada 020230 0202.30 uo-b-0003 agroindustria china argentina, uruguay o brasil">
+          <div class="op-top">
+            <span class="op-code">UO-B-0003</span>
+            <span class="op-chips"><span class="chip chip-kind">Producto</span><span class="chip chip-hs" title="Posición arancelaria (Sistema Armonizado)">SA 0202.30</span></span>
+          </div>
+          <h3 class="op-title">Carne bovina deshuesada, congelada</h3>
+          <p class="op-sector">Agroindustria</p>
+          <dl class="op-meta">
+            <div><dt>Destino</dt><dd><span class="cc">CN</span>China</dd></div>
+            <div><dt>Volumen</dt><dd>500 toneladas por mes</dd></div>
+            <div class="wide"><dt>Origen preferido</dt><dd>Argentina, Uruguay o Brasil</dd></div>
+          </dl>
+          <div class="op-bottom">
+            <span class="op-vence">Vigente hasta <time datetime="2027-03-15">15/03/2027</time></span>
+            <button class="op-cta" type="button" data-negociar>Tengo este producto</button>
+          </div>
+        </article>
+        <article class="op op--busqueda" id="uo-b-0004" data-kind="busqueda" data-codigo="UO-B-0004" data-tipo="servicio" data-pais="México" data-vence="2026-11-30" data-info="UO-B-0004 · Destino: México" data-texto="despachante de aduana para importar alimentos a méxico uo-b-0004 despachantes de aduana méxico con experiencia en alimentos">
+          <div class="op-top">
+            <span class="op-code">UO-B-0004</span>
+            <span class="op-chips"><span class="chip chip-kind">Servicio</span></span>
+          </div>
+          <h3 class="op-title">Despachante de aduana para importar alimentos a México</h3>
+          <p class="op-sector">Despachantes de aduana</p>
+          <dl class="op-meta">
+            <div><dt>Destino</dt><dd><span class="cc">MX</span>México</dd></div>
+            <div><dt>Volumen</dt><dd>Operaciones mensuales</dd></div>
+            <div class="wide"><dt>Origen preferido</dt><dd>Con experiencia en alimentos</dd></div>
+          </dl>
+          <div class="op-bottom">
+            <span class="op-vence">Vigente hasta <time datetime="2026-11-30">30/11/2026</time></span>
+            <button class="op-cta" type="button" data-negociar>Ofrezco este servicio</button>
+          </div>
+        </article>
+        <article class="op op--busqueda" id="uo-b-0005" data-kind="busqueda" data-codigo="UO-B-0005" data-tipo="producto" data-pais="Alemania" data-vence="2026-11-05" data-info="UO-B-0005 · SA 0409.00 · Destino: Alemania" data-texto="miel orgánica certificada 040900 0409.00 uo-b-0005 agroindustria alemania sudamérica">
+          <div class="op-top">
+            <span class="op-code">UO-B-0005</span>
+            <span class="op-chips"><span class="chip chip-kind">Producto</span><span class="chip chip-hs" title="Posición arancelaria (Sistema Armonizado)">SA 0409.00</span></span>
+          </div>
+          <h3 class="op-title">Miel orgánica certificada</h3>
+          <p class="op-sector">Agroindustria</p>
+          <dl class="op-meta">
+            <div><dt>Destino</dt><dd><span class="cc">DE</span>Alemania</dd></div>
+            <div><dt>Volumen</dt><dd>40 toneladas</dd></div>
+            <div class="wide"><dt>Origen preferido</dt><dd>Sudamérica</dd></div>
+          </dl>
+          <div class="op-bottom">
+            <span class="op-vence">Vigente hasta <time datetime="2026-11-05">05/11/2026</time></span>
+            <button class="op-cta" type="button" data-negociar>Tengo este producto</button>
+          </div>
+        </article>
+        <article class="op op--busqueda" id="uo-b-0006" data-kind="busqueda" data-codigo="UO-B-0006" data-tipo="producto" data-pais="México" data-vence="2027-04-30" data-info="UO-B-0006 · SA 1509.20 · Destino: México" data-texto="aceite de oliva extra virgen 150920 1509.20 uo-b-0006 alimentos y bebidas méxico argentina o españa">
+          <div class="op-top">
+            <span class="op-code">UO-B-0006</span>
+            <span class="op-chips"><span class="chip chip-kind">Producto</span><span class="chip chip-hs" title="Posición arancelaria (Sistema Armonizado)">SA 1509.20</span></span>
+          </div>
+          <h3 class="op-title">Aceite de oliva extra virgen</h3>
+          <p class="op-sector">Alimentos y bebidas</p>
+          <dl class="op-meta">
+            <div><dt>Destino</dt><dd><span class="cc">MX</span>México</dd></div>
+            <div><dt>Volumen</dt><dd>3 contenedores por año</dd></div>
+            <div class="wide"><dt>Origen preferido</dt><dd>Argentina o España</dd></div>
+          </dl>
+          <div class="op-bottom">
+            <span class="op-vence">Vigente hasta <time datetime="2027-04-30">30/04/2027</time></span>
+            <button class="op-cta" type="button" data-negociar>Tengo este producto</button>
+          </div>
+        </article>
+        <article class="op op--busqueda" id="uo-b-0007" data-kind="busqueda" data-codigo="UO-B-0007" data-tipo="producto" data-pais="España" data-vence="2027-02-28" data-info="UO-B-0007 · SA 0903.00 · Destino: España" data-texto="yerba mate 090300 0903.00 uo-b-0007 alimentos y bebidas españa argentina">
+          <div class="op-top">
+            <span class="op-code">UO-B-0007</span>
+            <span class="op-chips"><span class="chip chip-kind">Producto</span><span class="chip chip-hs" title="Posición arancelaria (Sistema Armonizado)">SA 0903.00</span></span>
+          </div>
+          <h3 class="op-title">Yerba mate</h3>
+          <p class="op-sector">Alimentos y bebidas</p>
+          <dl class="op-meta">
+            <div><dt>Destino</dt><dd><span class="cc">ES</span>España</dd></div>
+            <div><dt>Volumen</dt><dd>5 toneladas por mes</dd></div>
+            <div class="wide"><dt>Origen preferido</dt><dd>Argentina</dd></div>
+          </dl>
+          <div class="op-bottom">
+            <span class="op-vence">Vigente hasta <time datetime="2027-02-28">28/02/2027</time></span>
+            <button class="op-cta" type="button" data-negociar>Tengo este producto</button>
+          </div>
+        </article>
+        <article class="op op--busqueda" id="uo-b-0008" data-kind="busqueda" data-codigo="UO-B-0008" data-tipo="servicio" data-pais="México" data-vence="2027-01-31" data-info="UO-B-0008 · Destino: México" data-texto="transporte refrigerado de argentina a méxico uo-b-0008 transporte y logística méxico salida desde buenos aires">
+          <div class="op-top">
+            <span class="op-code">UO-B-0008</span>
+            <span class="op-chips"><span class="chip chip-kind">Servicio</span></span>
+          </div>
+          <h3 class="op-title">Transporte refrigerado de Argentina a México</h3>
+          <p class="op-sector">Transporte y logística</p>
+          <dl class="op-meta">
+            <div><dt>Destino</dt><dd><span class="cc">MX</span>México</dd></div>
+            <div><dt>Volumen</dt><dd>2 contenedores por mes</dd></div>
+            <div class="wide"><dt>Origen preferido</dt><dd>Salida desde Buenos Aires</dd></div>
+          </dl>
+          <div class="op-bottom">
+            <span class="op-vence">Vigente hasta <time datetime="2027-01-31">31/01/2027</time></span>
+            <button class="op-cta" type="button" data-negociar>Ofrezco este servicio</button>
+          </div>
+        </article>
+        <article class="op op--busqueda" id="uo-b-0009" data-kind="busqueda" data-codigo="UO-B-0009" data-tipo="producto" data-pais="Emiratos Árabes Unidos" data-vence="2027-01-15" data-info="UO-B-0009 · SA 0804.40 · Destino: Emiratos Árabes Unidos" data-texto="aguacate fresco 080440 0804.40 uo-b-0009 agroindustria emiratos árabes unidos sin preferencia">
+          <div class="op-top">
+            <span class="op-code">UO-B-0009</span>
+            <span class="op-chips"><span class="chip chip-kind">Producto</span><span class="chip chip-hs" title="Posición arancelaria (Sistema Armonizado)">SA 0804.40</span></span>
+          </div>
+          <h3 class="op-title">Aguacate fresco</h3>
+          <p class="op-sector">Agroindustria</p>
+          <dl class="op-meta">
+            <div><dt>Destino</dt><dd><span class="cc">AE</span>Emiratos Árabes Unidos</dd></div>
+            <div><dt>Volumen</dt><dd>2 contenedores por mes</dd></div>
+            <div class="wide"><dt>Origen preferido</dt><dd>Sin preferencia</dd></div>
+          </dl>
+          <div class="op-bottom">
+            <span class="op-vence">Vigente hasta <time datetime="2027-01-15">15/01/2027</time></span>
+            <button class="op-cta" type="button" data-negociar>Tengo este producto</button>
+          </div>
+        </article>
+        <article class="op op--busqueda" id="uo-b-0010" data-kind="busqueda" data-codigo="UO-B-0010" data-tipo="producto" data-pais="Etiopía" data-vence="2027-10-30" data-info="UO-B-0010 · SA 1001.19 · Destino: Etiopía" data-texto="trigo duro 100119 1001.19 uo-b-0010 agroindustria etiopía sin preferencia">
+          <div class="op-top">
+            <span class="op-code">UO-B-0010</span>
+            <span class="op-chips"><span class="chip chip-kind">Producto</span><span class="chip chip-hs" title="Posición arancelaria (Sistema Armonizado)">SA 1001.19</span></span>
+          </div>
+          <h3 class="op-title">Trigo duro</h3>
+          <p class="op-sector">Agroindustria</p>
+          <dl class="op-meta">
+            <div><dt>Destino</dt><dd><span class="cc">ET</span>Etiopía</dd></div>
+            <div><dt>Volumen</dt><dd>10.000 toneladas</dd></div>
+            <div class="wide"><dt>Origen preferido</dt><dd>Sin preferencia</dd></div>
+          </dl>
+          <div class="op-bottom">
+            <span class="op-vence">Vigente hasta <time datetime="2027-10-30">30/10/2027</time></span>
+            <button class="op-cta" type="button" data-negociar>Tengo este producto</button>
+          </div>
+        </article>
+        <div class="empty" id="empty"><p>No hay búsquedas con estos filtros.</p><a class="text-link" href="#buscar">Publicá la tuya</a></div>
+      </div>
+    </div>
+
+    <section class="faq">
+      <div class="wrap faq-grid">
+        <div>
+          <span class="eyebrow">Preguntas frecuentes</span>
+          <h2>Lo que conviene saber antes de buscar</h2>
+        </div>
+        <div>
+          <details>
+            <summary>¿Cómo funciona la Mesa de negociación?</summary>
+            <p>Ingresás el producto o servicio que estás buscando. El sistema lo cruza con lo publicado en Productos de exportación y en Servicios de Comercio Exterior. Si hay coincidencia, te vinculamos con esa oferta para empezar a negociar.</p>
+          </details>
+          <details>
+            <summary>¿Qué pasa si lo que busco no está publicado?</summary>
+            <p>Nuestro equipo sale a buscarlo entre productores y proveedores, y te responde en un plazo de 5 días hábiles con lo que encontró. Mientras tanto, tu búsqueda queda visible en la mesa para que otros vendedores puedan ofrecerte su producto.</p>
+          </details>
+          <details>
+            <summary>¿Qué es la posición arancelaria y por qué conviene indicarla?</summary>
+            <p>Es el código del Sistema Armonizado que identifica cada producto en el comercio internacional, igual en todos los países. Con ella, la mesa encuentra coincidencias aunque cada parte describa el producto con palabras distintas.</p>
+          </details>
+          <details>
+            <summary>¿Quién ve mis datos de contacto?</summary>
+            <p>Nadie, mientras no decidas avanzar. En la mesa se publican el producto, el destino, el volumen y la vigencia; los datos de tu empresa se comparten solo cuando ambas partes aceptan negociar.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <a href="../" class="logo">Umarti <span style="color:var(--terra)">Origen</span></a>
+        <p style="margin-top:8px">Tienda, comercio exterior y viajes.</p>
+      </div>
+      <ul class="eco">
+        <li><strong>Umarti Origen</strong></li>
+        <li>Umarti Movilidad</li>
+        <li>Umarti Digital</li>
+      </ul>
+      <p>© 2026 Umarti</p>
+    </div>
+  </footer>
+
+
+  <dialog id="dlg-neg" class="k-producto" aria-labelledby="neg-title">
+    <div class="dlg-head">
+      <div>
+        <h2 id="neg-title">Negociar</h2>
+        <p id="neg-sub"></p>
+      </div>
+      <button class="dlg-close" type="button" data-close aria-label="Cerrar">×</button>
+    </div>
+    <div class="dlg-body">
+      <div id="neg-step-form">
+        <div class="neg-summary" id="neg-summary"></div>
+        <form id="neg-form">
+          <div class="form-grid">
+            <div class="field"><label for="n-nom">Nombre <span class="req">*</span></label><input id="n-nom" required maxlength="80" autocomplete="name"></div>
+            <div class="field"><label for="n-emp">Empresa <span class="req">*</span></label><input id="n-emp" required maxlength="80" autocomplete="organization"></div>
+            <div class="field"><label for="n-pais">País</label><input id="n-pais" list="paises" maxlength="60"></div>
+            <div class="field"><label for="n-mail">Correo <span class="req">*</span></label><input id="n-mail" type="email" required autocomplete="email"></div>
+            <div class="field full"><label for="n-msg">Tu propuesta</label><textarea id="n-msg" maxlength="800" placeholder="Volumen, precio de referencia, condiciones de entrega o lo que quieras plantear."></textarea></div>
+          </div>
+          <div class="form-foot">
+            <small>Umarti revisa tu propuesta y pone en contacto a las partes.</small>
+            <button class="btn-submit" type="submit">Enviar a la mesa</button>
+          </div>
+        </form>
+      </div>
+      <div class="success" id="neg-step-ok" hidden>
+        <div class="tick"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></div>
+        <h3>Tu propuesta quedó en la mesa</h3>
+        <p>En la versión final, acá recibís la confirmación y Umarti te contacta para coordinar la negociación. En este prototipo no se envía nada.</p>
+        <button class="btn-submit" type="button" data-close>Volver</button>
+      </div>
+    </div>
+  </dialog>
+
+  <datalist id="paises"><option value="Alemania"><option value="Argentina"><option value="Bolivia"><option value="Brasil"><option value="Canadá"><option value="Chile"><option value="China"><option value="Colombia"><option value="Corea del Sur"><option value="Ecuador"><option value="Emiratos Árabes Unidos"><option value="España"><option value="Estados Unidos"><option value="Etiopía"><option value="Francia"><option value="India"><option value="Italia"><option value="Japón"><option value="México"><option value="Países Bajos"><option value="Paraguay"><option value="Perú"><option value="Portugal"><option value="Reino Unido"><option value="Uruguay"></datalist>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="../assets/js/header.js"></script>
+  <script src="../assets/data/hub-datos.js"></script>
+  <script src="../assets/js/hub-comun.js"></script>
+  <script src="mesa.js"></script>
+</body>
+</html>
