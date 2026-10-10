@@ -11,6 +11,7 @@ import html, json, os, re, sys
 AQUI = os.path.dirname(os.path.abspath(__file__))
 RAIZ = os.path.dirname(AQUI)
 sys.path.insert(0, AQUI)
+import comun  # noqa: E402
 from datos import SECTORES, CATEGORIAS_SERVICIO, PRODUCTOS, SERVICIOS, BUSQUEDAS, PAISES, CC  # noqa: E402
 
 esc = html.escape
@@ -105,17 +106,7 @@ def card_busqueda(b):
 
 # ---------- piezas comunes ----------
 def header():
-    s = open(os.path.join(RAIZ, "index.html"), encoding="utf-8").read()
-    h = re.search(r'  <header class="site-header".*?</header>', s, re.S).group(0)
-
-    def fix(m):
-        v = m.group(1)
-        if v.startswith(("http", "mailto:", "../")):
-            return m.group(0)
-        if v.startswith("#"):
-            return f'href="../{v}"' if len(v) > 1 else 'href="../"'
-        return f'href="../{v}"'
-    return re.sub(r'href="([^"]*)"', fix, h)
+    return comun.header("../")
 
 
 def opts(items, values=None):
