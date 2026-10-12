@@ -59,6 +59,17 @@ COLORES = {
 NOTAS_DIR = os.path.join(AQUI, "blog", "notas")
 
 
+def destinos_de_nota(slug_nota):
+    """Destinos de Viajes que enlazan esta nota (para mostrar 'Conocé el origen')."""
+    sys.path.insert(0, os.path.join(AQUI, "viajes"))
+    from destinos import DESTINOS, PAISES
+    out = []
+    for x in DESTINOS:
+        if any(o.get("nota") == slug_nota for o in x["origen"]):
+            out.append((x, PAISES[x["pais"]]["nombre"]))
+    return out
+
+
 # ---------- lectura de notas ----------
 def leer_nota(ruta):
     txt = open(ruta, encoding="utf-8").read()
@@ -198,7 +209,7 @@ def crumbs(depth, items):
 def tabs(depth, actual):
     items = [("Todo", "blog/", "todo"), ("Productos", "blog/productos/", "productos"), ("Negocios", "blog/negocios/", "negocios")]
     out = [f'<a href="{rel(depth, p)}"{" aria-current=\"page\"" if k == actual else ""}>{t}</a>' for t, p, k in items]
-    out.append(f'<a class="ghost" href="{rel(depth, "#viajes")}">Guías de viaje, en Viajes →</a>')
+    out.append(f'<a class="ghost" href="{rel(depth, "viajes/")}">Guías de viaje, en Viajes →</a>')
     return '        <nav class="tabs" aria-label="Secciones del blog">' + "".join(out) + "</nav>"
 
 
@@ -323,7 +334,7 @@ def portada_blog(notas):
           <h2>¿Buscás guías de viaje?</h2>
           <p>Las notas sobre destinos viven en la sección Viajes, conectadas con estas: la guía de Misiones te lleva a la yerba mate, y la nota de yerba te lleva a Misiones.</p>
         </div>
-        <a href="{rel(d, '#viajes')}">Ir a Viajes</a>
+        <a href="{rel(d, 'viajes/')}">Ir a Viajes</a>
       </div>
     </div>'''
     return page(d, "Blog de Umarti Origen: guías de productos y notas de negocios",
@@ -396,6 +407,11 @@ def pagina_nota(n, notas):
         mas = '<div class="box"><h2>Más de Negocios</h2><ul class="mini-list">' + "".join(f'<li><a href="{rel(d, p_nota(o))}">{esc(o["titulo"])}</a></li>' for o in mismas[:5]) + f'</ul><a class="all" href="{rel(d, "blog/negocios/")}">Todas las notas de Negocios</a></div>'
 
     tags = "".join(f'<a class="tag" href="{rel(d, p_tag(t))}">{esc(t)}</a>' for t in n["tags"])
+    dests = destinos_de_nota(n["slug"])
+    origen = ""
+    if dests:
+        origen = '<div class="box" style="background:#e3f1ea;border-color:#cfe5d9"><h2>Conocé el origen</h2><ul class="mini-list">' + "".join(
+            f'<li><a href="{rel(d, f"viajes/{x['pais']}/{x['slug']}/")}">{esc(x["nombre"])}, {esc(pn)}</a></li>' for x, pn in dests) + '</ul><a class="all" style="color:#1f5a3f" href="' + rel(d, "viajes/") + '">Todas las guías de viaje</a></div>'
     main = f'''    <div class="wrap">
 {crumbs(d, cr)}
       <header class="post-head">
@@ -415,6 +431,7 @@ def pagina_nota(n, notas):
           {toc}
           {box}
           {mas}
+          {origen}
           </div>
         </aside>
       </div>
