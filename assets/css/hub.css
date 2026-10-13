@@ -98,6 +98,7 @@ body.pg-servicios { --accent: var(--mustard); --accent-dark: var(--mustard-dark)
   background: var(--op-accent); text-decoration: none;
 }
 .op-cta:hover { background: var(--op-dark); }
+.op-link { display: inline-block; margin-top: 12px; font-size: 0.88rem; font-weight: 600; color: var(--op-dark); text-underline-offset: 3px; }
 
 /* Estado de coincidencia */
 .op-status { margin-top: 14px; border-radius: 12px; padding: 11px 14px; font-size: 0.88rem; display: flex; gap: 10px; align-items: flex-start; }

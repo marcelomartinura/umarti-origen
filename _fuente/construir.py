@@ -14,6 +14,14 @@ sys.path.insert(0, AQUI)
 import comun  # noqa: E402
 from datos import SECTORES, CATEGORIAS_SERVICIO, PRODUCTOS, SERVICIOS, BUSQUEDAS, PAISES, CC  # noqa: E402
 
+# Los productos de la Tienda marcados "Hub de Oportunidades: Sí" en el Catálogo se suman a Productos de exportación
+sys.path.insert(0, os.path.join(AQUI, "tienda"))
+try:
+    from construir_tienda import productos_para_hub  # noqa: E402
+    PRODUCTOS = productos_para_hub() + list(PRODUCTOS)
+except FileNotFoundError:
+    pass
+
 esc = html.escape
 URL = {"producto": "../productos-de-exportacion/", "servicio": "../servicios-de-comercio-exterior/", "busqueda": "../mesa-de-negociacion/"}
 
@@ -49,7 +57,7 @@ def card_producto(o):
     return f'''        <article class="op op--producto" id="{o['cod'].lower()}" data-kind="producto" data-codigo="{o['cod']}" data-sector="{esc(o['sector'])}" data-pais="{esc(o['pais'])}" data-vence="{o['vence']}" data-info="{esc(info)}" data-texto="{texto(o['nombre'], o['hs'], hsfmt(o['hs']), o['cod'], o['sector'], o['pais'], o['region'], o['destinos'], o['claves'])}">
           <div class="op-top">
             <span class="op-code">{o['cod']}</span>
-            <span class="op-chips"><span class="chip chip-hs" title="Posición arancelaria (Sistema Armonizado)">SA {hsfmt(o['hs'])}</span></span>
+            <span class="op-chips">{'<span class="chip chip-review">Umarti</span>' if o.get('tienda_url') else ''}<span class="chip chip-hs" title="Posición arancelaria (Sistema Armonizado)">{('SA ' + hsfmt(o['hs'])) if o['hs'] else 'Posición a definir'}</span></span>
           </div>
           <h3 class="op-title">{esc(o['nombre'])}</h3>
           <p class="op-sector">{esc(o['sector'])}</p>
@@ -59,7 +67,7 @@ def card_producto(o):
           <div class="op-bottom">
             <span class="op-vence">Vigente hasta <time datetime="{o['vence']}">{fecha(o['vence'])}</time></span>
             <button class="op-cta" type="button" data-negociar>Negociar</button>
-          </div>
+          </div>{f'{chr(10)}          <a class="op-link" href="../{o["tienda_url"]}">Comprar por unidad en la Tienda →</a>' if o.get('tienda_url') else ''}
         </article>'''
 
 

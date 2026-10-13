@@ -1,0 +1,150 @@
+{
+ "productos": [
+  {
+   "codigo": "UM-0001",
+   "nombre": "Mate de calabaza forrado en cuero",
+   "descripcion": "Calabaza curada a mano, forrada en cuero con virola de alpaca.",
+   "categoria": "Café, Té y Mate",
+   "subcategoria": "Mates y bombillas",
+   "temas": [
+    "mate"
+   ],
+   "pais": "Argentina",
+   "region": "Buenos Aires",
+   "destino": "buenos-aires",
+   "precio_ars": 28000,
+   "precio_mxn": 650,
+   "precio_usd": 35,
+   "tienda_ar": true,
+   "tienda_mx": true,
+   "international": true,
+   "paises_envio": [
+    "Estados Unidos",
+    "España",
+    "Chile"
+   ],
+   "hub": true,
+   "hs": "",
+   "volumen": "500 unidades por mes",
+   "vigencia_hub": "2027-12-31",
+   "link_pago": "",
+   "foto": "",
+   "estado": "Ejemplo",
+   "slug": "mate-de-calabaza-forrado-en-cuero"
+  },
+  {
+   "codigo": "UM-0002",
+   "nombre": "Bombilla de acero inoxidable con resorte",
+   "descripcion": "Filtro de resorte desmontable, fácil de limpiar y apta para hervir.",
+   "categoria": "Café, Té y Mate",
+   "subcategoria": "Mates y bombillas",
+   "temas": [
+    "mate"
+   ],
+   "pais": "Argentina",
+   "region": "Buenos Aires",
+   "destino": "",
+   "precio_ars": 9000,
+   "precio_mxn": 220,
+   "precio_usd": 12,
+   "tienda_ar": true,
+   "tienda_mx": true,
+   "international": true,
+   "paises_envio": [
+    "Estados Unidos",
+    "España",
+    "Chile"
+   ],
+   "hub": false,
+   "hs": "",
+   "volumen": "",
+   "vigencia_hub": "",
+   "link_pago": "",
+   "foto": "",
+   "estado": "Ejemplo",
+   "slug": "bombilla-de-acero-inoxidable-con-resorte"
+  },
+  {
+   "codigo": "UM-0003",
+   "nombre": "Yerba mate elaborada con palo, 1 kg",
+   "descripcion": "Yerba misionera de estacionamiento natural, sabor equilibrado.",
+   "categoria": "Café, Té y Mate",
+   "subcategoria": "Mates y bombillas",
+   "temas": [
+    "mate"
+   ],
+   "pais": "Argentina",
+   "region": "Misiones",
+   "destino": "cataratas-del-iguazu",
+   "precio_ars": 6500,
+   "precio_mxn": 260,
+   "precio_usd": 15,
+   "tienda_ar": true,
+   "tienda_mx": true,
+   "international": true,
+   "paises_envio": [
+    "Estados Unidos",
+    "España",
+    "Chile"
+   ],
+   "hub": true,
+   "hs": "090300",
+   "volumen": "20 toneladas por mes",
+   "vigencia_hub": "2027-12-31",
+   "link_pago": "",
+   "foto": "",
+   "estado": "Ejemplo",
+   "slug": "yerba-mate-elaborada-con-palo-1-kg"
+  },
+  {
+   "codigo": "UM-0004",
+   "nombre": "Kit matero de regalo",
+   "descripcion": "Mate, bombilla, yerba y un bolso de lona para llevar todo.",
+   "categoria": "Regalos y Kits",
+   "subcategoria": "Kits de mate y café",
+   "temas": [
+    "mate"
+   ],
+   "pais": "Argentina",
+   "region": "Buenos Aires",
+   "destino": "",
+   "precio_ars": 45000,
+   "precio_mxn": 1100,
+   "precio_usd": 60,
+   "tienda_ar": true,
+   "tienda_mx": true,
+   "international": true,
+   "paises_envio": [
+    "Estados Unidos",
+    "España"
+   ],
+   "hub": false,
+   "hs": "",
+   "volumen": "",
+   "vigencia_hub": "",
+   "link_pago": "",
+   "foto": "",
+   "estado": "Ejemplo",
+   "slug": "kit-matero-de-regalo"
+  }
+ ],
+ "temas": [
+  {
+   "clave": "mate",
+   "nombre": "Mate",
+   "bajada": "Del yerbatal a tu ronda: cómo elegir, preparar y cuidar tu mate, dónde nace la yerba y dónde comprarla, en tu país o en el exterior.",
+   "etiquetas": [
+    "mate",
+    "yerba mate",
+    "bombilla",
+    "curado"
+   ],
+   "destinos": [
+    "cataratas-del-iguazu",
+    "buenos-aires",
+    "ciudad-de-mexico"
+   ],
+   "estado": "Publicado"
+  }
+ ]
+}

@@ -2,6 +2,36 @@
 window.HUB_DATOS = {
  "productos": [
   {
+   "cod": "UM-0001",
+   "nombre": "Mate de calabaza forrado en cuero",
+   "hs": "",
+   "sector": "Alimentos y bebidas",
+   "pais": "Argentina",
+   "region": "Buenos Aires",
+   "destinos": "Estados Unidos, España, Chile",
+   "vol": "500 unidades por mes",
+   "vence": "2027-12-31",
+   "claves": "mate Mates y bombillas Calabaza curada a mano, forrada en cuero con virola de alpaca.",
+   "tienda_url": "tienda/mate-de-calabaza-forrado-en-cuero/",
+   "kind": "producto",
+   "url": "../productos-de-exportacion/#um-0001"
+  },
+  {
+   "cod": "UM-0003",
+   "nombre": "Yerba mate elaborada con palo, 1 kg",
+   "hs": "090300",
+   "sector": "Alimentos y bebidas",
+   "pais": "Argentina",
+   "region": "Misiones",
+   "destinos": "Estados Unidos, España, Chile",
+   "vol": "20 toneladas por mes",
+   "vence": "2027-12-31",
+   "claves": "mate Mates y bombillas Yerba misionera de estacionamiento natural, sabor equilibrado.",
+   "tienda_url": "tienda/yerba-mate-elaborada-con-palo-1-kg/",
+   "kind": "producto",
+   "url": "../productos-de-exportacion/#um-0003"
+  },
+  {
    "cod": "UO-P-0001",
    "nombre": "Vino Malbec embotellado, 750 ml",
    "hs": "220421",
