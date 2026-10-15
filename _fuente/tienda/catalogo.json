@@ -28,8 +28,9 @@
    "volumen": "500 unidades por mes",
    "vigencia_hub": "2027-12-31",
    "link_pago": "",
-   "foto": "",
+   "fotos": [],
    "estado": "Ejemplo",
+   "vendedor": "Umarti Origen",
    "slug": "mate-de-calabaza-forrado-en-cuero"
   },
   {
@@ -60,8 +61,9 @@
    "volumen": "",
    "vigencia_hub": "",
    "link_pago": "",
-   "foto": "",
+   "fotos": [],
    "estado": "Ejemplo",
+   "vendedor": "Umarti Origen",
    "slug": "bombilla-de-acero-inoxidable-con-resorte"
   },
   {
@@ -92,8 +94,9 @@
    "volumen": "20 toneladas por mes",
    "vigencia_hub": "2027-12-31",
    "link_pago": "",
-   "foto": "",
+   "fotos": [],
    "estado": "Ejemplo",
+   "vendedor": "Umarti Origen",
    "slug": "yerba-mate-elaborada-con-palo-1-kg"
   },
   {
@@ -123,8 +126,9 @@
    "volumen": "",
    "vigencia_hub": "",
    "link_pago": "",
-   "foto": "",
+   "fotos": [],
    "estado": "Ejemplo",
+   "vendedor": "Umarti Origen",
    "slug": "kit-matero-de-regalo"
   }
  ],
@@ -145,6 +149,41 @@
     "ciudad-de-mexico"
    ],
    "estado": "Publicado"
+  }
+ ],
+ "envios": [
+  {
+   "zona": "Argentina",
+   "plazo": "A confirmar",
+   "costo": "A confirmar",
+   "transportista": "A confirmar",
+   "seguimiento": "A confirmar",
+   "devoluciones": "A confirmar",
+   "impuestos": "No aplica",
+   "estado": "Borrador",
+   "slug": "argentina"
+  },
+  {
+   "zona": "México",
+   "plazo": "A confirmar",
+   "costo": "A confirmar",
+   "transportista": "A confirmar",
+   "seguimiento": "A confirmar",
+   "devoluciones": "A confirmar",
+   "impuestos": "No aplica",
+   "estado": "Borrador",
+   "slug": "mexico"
+  },
+  {
+   "zona": "Internacional",
+   "plazo": "A confirmar",
+   "costo": "A confirmar",
+   "transportista": "A confirmar",
+   "seguimiento": "A confirmar",
+   "devoluciones": "A confirmar",
+   "impuestos": "A confirmar",
+   "estado": "Borrador",
+   "slug": "internacional"
   }
  ]
 }

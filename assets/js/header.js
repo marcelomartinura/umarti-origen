@@ -49,3 +49,18 @@
     if (e.key === 'Escape') closeAll();
   });
 })();
+
+/* Contador de favoritos en el encabezado (se guardan en este navegador) */
+(function () {
+  var badge = document.getElementById('fav-count');
+  if (!badge) return;
+  function update() {
+    var n = 0;
+    try { n = JSON.parse(localStorage.getItem('umarti-favoritos') || '[]').length; } catch (e) { n = 0; }
+    badge.textContent = n;
+    badge.hidden = n === 0;
+  }
+  document.addEventListener('umarti:favoritos', update);
+  window.addEventListener('storage', update);
+  update();
+})();

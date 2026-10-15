@@ -1,0 +1,59 @@
+/* Generado por _fuente/construir_tienda.py. Lo usa la página de Favoritos. */
+window.TIENDA_INDICE = [
+ {
+  "codigo": "UM-0001",
+  "nombre": "Mate de calabaza forrado en cuero",
+  "url": "tienda/mate-de-calabaza-forrado-en-cuero/",
+  "precio": "$ 28.000",
+  "moneda": "ARS",
+  "subcategoria": "Mates y bombillas",
+  "foto": "",
+  "c1": "#5b7a43",
+  "c2": "#33472a",
+  "glifo": "M",
+  "envio": "Argentina · México · Internacional",
+  "ejemplo": true
+ },
+ {
+  "codigo": "UM-0002",
+  "nombre": "Bombilla de acero inoxidable con resorte",
+  "url": "tienda/bombilla-de-acero-inoxidable-con-resorte/",
+  "precio": "$ 9.000",
+  "moneda": "ARS",
+  "subcategoria": "Mates y bombillas",
+  "foto": "",
+  "c1": "#5b7a43",
+  "c2": "#33472a",
+  "glifo": "B",
+  "envio": "Argentina · México · Internacional",
+  "ejemplo": true
+ },
+ {
+  "codigo": "UM-0003",
+  "nombre": "Yerba mate elaborada con palo, 1 kg",
+  "url": "tienda/yerba-mate-elaborada-con-palo-1-kg/",
+  "precio": "$ 6.500",
+  "moneda": "ARS",
+  "subcategoria": "Mates y bombillas",
+  "foto": "",
+  "c1": "#5b7a43",
+  "c2": "#33472a",
+  "glifo": "Y",
+  "envio": "Argentina · México · Internacional",
+  "ejemplo": true
+ },
+ {
+  "codigo": "UM-0004",
+  "nombre": "Kit matero de regalo",
+  "url": "tienda/kit-matero-de-regalo/",
+  "precio": "$ 45.000",
+  "moneda": "ARS",
+  "subcategoria": "Kits de mate y café",
+  "foto": "",
+  "c1": "#c8922a",
+  "c2": "#8a5e0c",
+  "glifo": "K",
+  "envio": "Argentina · México · Internacional",
+  "ejemplo": true
+ }
+];
