@@ -53,7 +53,7 @@ def footer(prefijo):
         <li>Umarti Movilidad</li>
         <li>Umarti Digital</li>
       </ul>
-      <p>© 2026 Umarti</p>
+      <p>© 2026 Umarti · <a href="{prefijo}publicidad/">Anunciá en Umarti</a></p>
     </div>
   </footer>'''
 

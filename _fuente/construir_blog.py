@@ -23,13 +23,15 @@ listas con "- " o "1. ", tablas con |, "> " para un recuadro de consejo, y fotos
 (dos o más fotos seguidas se muestran una al lado de la otra).
 Foto principal (opcional): imagen: assets/img/blog/foto.jpg  e  imagen_alt: descripción
 """
-import glob, html, json, os, re, sys
+import glob, html, json, os, re, sys, urllib.parse
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, AQUI)
 import comun  # noqa: E402
 sys.path.insert(0, os.path.join(AQUI, "blog"))
 from autores import AUTORES, TEMAS_OPINION  # noqa: E402
+from publicidad import ANUNCIOS  # noqa: E402
+import datetime  # noqa: E402
 from comun import slug, fecha_larga, escribir, SITIO  # noqa: E402
 
 esc = html.escape
@@ -278,8 +280,8 @@ def chips_filtro(valores, conteo):
 def store_band(depth, nombre, cat):
     texto = TIENDA_TEXTO.get(cat, f"Productos de {cat}.")
     return f'''      <div class="store-band">
-        <p>{esc(nombre)} en la Tienda<small>{esc(texto)} La tienda abre pronto.</small></p>
-        <a class="btn btn-primary" href="{rel(depth, '#tienda')}">Ver la Tienda</a>
+        <p>{esc(nombre)} en la Tienda<small>{esc(texto)}</small></p>
+        <a class="btn btn-primary" href="{rel(depth, 'tienda/?cat=' + urllib.parse.quote(cat))}">Ver en la Tienda</a>
       </div>'''
 
 
@@ -341,6 +343,75 @@ def columna_band(depth, opin, clave="marcelo-uranga", h="h2"):
 {cuerpo}
         </div>
       </div>'''
+
+
+# ---------- publicidad ----------
+def anuncio(n, formato, depth):
+    """Aviso para un espacio de la nota; si no hay ninguno vigente, la invitación a anunciar."""
+    hoy = datetime.date.today().isoformat()
+    clave = n.get("categoria") or n.get("tema") or ""
+    for a in ANUNCIOS:
+        if not a.get("activo", True) or formato not in a.get("formatos", []):
+            continue
+        if a.get("categorias") and clave not in a["categorias"]:
+            continue
+        if (a.get("desde") and hoy < a["desde"]) or (a.get("hasta") and hoy > a["hasta"]):
+            continue
+        link = a["link"] if re.match(r"https?:", a["link"]) else rel(depth, a["link"])
+        img = f'<img src="{rel(depth, a["imagen"])}" alt="" loading="lazy">' if a.get("imagen") else ""
+        return f'''<aside class="ad ad-{formato}" aria-label="Publicidad">
+            <span class="ad-label">Publicidad · {esc(a["anunciante"])}</span>
+            <a class="ad-body" href="{esc(link)}" rel="sponsored noopener" target="_blank">{img}<span class="ad-txt"><strong>{esc(a["titulo"])}</strong><span>{esc(a["texto"])}</span><b>{esc(a.get("cta", "Ver más"))} →</b></span></a>
+          </aside>'''
+    return f'''<aside class="ad ad-{formato} ad-house" aria-label="Espacio publicitario">
+            <span class="ad-label">Publicidad</span>
+            <a class="ad-body" href="{rel(depth, 'publicidad/')}"><span class="ad-txt"><strong>Tu marca, acá</strong><span>Llegá a quienes leen sobre {esc(clave.lower() or "productos con origen")}. Este espacio está disponible.</span><b>Anunciá en Umarti →</b></span></a>
+          </aside>'''
+
+
+def con_anuncio(html_nota, aviso):
+    """Inserta el aviso antes del segundo título de la nota (o al final si es corta)."""
+    partes = html_nota.split("<h2 ", 2)
+    if len(partes) == 3:
+        return partes[0] + "<h2 " + partes[1] + aviso + "\n<h2 " + partes[2]
+    return html_nota + aviso
+
+
+# ---------- productos de la Tienda en las notas ----------
+def productos_de_nota(n, depth, maximo=3):
+    import construir_tienda as ct
+    productos, _ = ct.cargar()
+    def score(p):
+        s = 0
+        if p["subcategoria"] == n.get("subcategoria"): s += 3
+        if p["categoria"] == n.get("categoria"): s += 1
+        s += len(set(p["temas"]) & set(n["tags"]))
+        return s
+    elegidos = [p for p in sorted(productos, key=score, reverse=True) if score(p) > 0][:maximo]
+    if not elegidos:
+        return ""
+    items = []
+    for p in elegidos:
+        pr, mon = ct.precio_principal(p)
+        c1, c2 = COLORES.get(p["categoria"], COLORES["Alimentos"])
+        if p.get("fotos"):
+            media = f'<img src="{esc(p["fotos"][0])}" alt="" loading="lazy">'
+        else:
+            media = f'<span class="cover" data-glyph="{esc(p["nombre"][0])}" style="--c1:{c1};--c2:{c2}"></span>'
+        ej = '<span class="np-ej">Ejemplo</span>' if p["estado"] == "Ejemplo" else ""
+        items.append(f'''<a class="np-item" href="{rel(depth, ct.p_prod(p))}">
+              <span class="np-media">{media}{ej}</span>
+              <span class="np-info"><small>{esc(p["subcategoria"])}</small><strong>{esc(p["nombre"])}</strong><span class="np-price">{pr} <small>{mon}</small></span></span>
+            </a>''')
+    sub = n.get("subcategoria") or n.get("categoria")
+    url_sub = "tienda/?sub=" + urllib.parse.quote(sub)
+    titulo = "Para tu mate, en la Tienda" if "mate" in n["tags"] else f"{sub} en la Tienda"
+    return f'''<section class="note-prods" aria-labelledby="np-h">
+            <div class="np-head"><h2 id="np-h">{esc(titulo)}</h2><a href="{rel(depth, url_sub)}">Ver todo en {esc(sub)} →</a></div>
+            <div class="np-grid">
+            {"".join(items)}
+            </div>
+          </section>'''
 
 
 # ---------- páginas ----------
@@ -487,10 +558,9 @@ def pagina_nota(n, notas):
         cat, sub = n["categoria"], n["subcategoria"]
         mismas = [o for o in notas if o is not n and o.get("categoria") == cat]
         box = f'''<div class="box store">
-            <span class="soon">La tienda abre pronto</span>
             <strong>{esc(sub)} en la Tienda</strong>
             <p>{esc(TIENDA_TEXTO.get(cat, f"Productos de {cat}."))}</p>
-            <a class="btn-line" href="{rel(d, '#tienda')}">Ver la Tienda →</a>
+            <a class="btn-line" href="{rel(d, 'tienda/?sub=' + urllib.parse.quote(sub))}">Ver productos →</a>
           </div>'''
         mas = ""
         if mismas:
@@ -537,6 +607,11 @@ def pagina_nota(n, notas):
     aviso = ""
     if n["borrador"]:
         aviso = '      <div class="draft-banner"><strong>Borrador.</strong> Esta nota no aparece en el blog ni en Google hasta que le quites la línea <code>borrador: si</code>.</div>\n'
+    cuerpo = n["html"].replace("{{RAIZ}}", rel(d))
+    if not n["borrador"]:
+        cuerpo = con_anuncio(cuerpo, anuncio(n, "en-nota", d))
+    tienda = productos_de_nota(n, d) if es_prod else ""
+    lateral = anuncio(n, "lateral", d) if not n["borrador"] else ""
     main = f'''    <div class="wrap">
 {crumbs(d, cr)}
 {aviso}      <header class="post-head{' op' if es_op else ''}{' has-photo' if foto else ''}">
@@ -550,7 +625,8 @@ def pagina_nota(n, notas):
       {portada}
       <div class="post-layout">
         <article class="prose">
-{n['html'].replace("{{RAIZ}}", rel(d))}
+{cuerpo}
+          {tienda}
           <div class="post-tags" aria-label="Etiquetas">{tags}</div>
           {firma}
         </article>
@@ -560,6 +636,7 @@ def pagina_nota(n, notas):
           {box}
           {mas}
           {origen}
+          {lateral}
           </div>
         </aside>
       </div>
@@ -582,6 +659,41 @@ def pagina_nota(n, notas):
     if n.get("imagen") and SITIO:
         ld["image"] = f"{SITIO}/{n['imagen']}"
     return page(d, f"{n['titulo']} | Blog Umarti Origen", n["resumen"], main, ld, noindex=n["borrador"], imagen=n.get("imagen", ""))
+
+
+def pagina_publicidad():
+    d = 1
+    main = f'''    <div class="wrap">
+{crumbs(d, [("Anunciá en Umarti", None)])}
+      <div class="blog-head">
+        <span class="eyebrow">Publicidad</span>
+        <h1>Anunciá en Umarti</h1>
+        <p>Mostrá tu marca a personas que leen sobre los productos que vendés: mate, café, vinos, alimentos regionales, comercio exterior y viajes.</p>
+      </div>
+      <div class="ad-formats">
+        <div class="adf"><b>En la nota</b><p>Un aviso horizontal en medio del texto, donde más se lee. Ideal para presentar un producto o una promoción.</p></div>
+        <div class="adf"><b>Lateral</b><p>Un aviso en la columna de la derecha, que acompaña al lector mientras recorre la nota.</p></div>
+        <div class="adf"><b>Por categoría</b><p>Elegí en qué notas aparecés: solo en las de mate, en las de vinos, en las de comercio exterior o en todo el blog.</p></div>
+      </div>
+      <form class="ad-form" id="ad-form">
+        <h2>Contanos qué querés anunciar</h2>
+        <div class="ad-grid">
+          <label>Nombre<input name="nombre" required></label>
+          <label>Empresa o marca<input name="empresa" required></label>
+          <label>Correo<input name="correo" type="email" required></label>
+          <label>Teléfono o WhatsApp<input name="tel"></label>
+          <label class="full">¿En qué notas te gustaría aparecer?<input name="categorias" placeholder="Por ejemplo: mate, café, comercio exterior"></label>
+          <label class="full">Mensaje<textarea name="mensaje" rows="4"></textarea></label>
+        </div>
+        <button class="btn btn-primary" type="submit">Enviar consulta</button>
+        <p class="ad-ok" hidden>¡Gracias! Te vamos a escribir para contarte formatos y precios. (Prototipo: el formulario todavía no envía datos.)</p>
+      </form>
+    </div>
+    <script>
+      document.getElementById('ad-form').addEventListener('submit', function (e) {{ e.preventDefault(); this.querySelector('.ad-ok').hidden = false; this.querySelector('button').disabled = true; }});
+    </script>'''
+    return page(d, "Anunciá en Umarti: publicidad en el blog | Umarti Origen",
+                "Publicá tu marca en el blog de Umarti Origen, en las notas de mate, café, vinos, alimentos regionales, comercio exterior y viajes.", main)
 
 
 def pagina_opinion(opin):
@@ -716,6 +828,7 @@ def main():
             f"Todas las notas con la etiqueta {esc(t)}.", None, [n for n in notas if t in n["tags"]]))
 
     escribir(P_OPINION + "index.html", pagina_opinion(opin))
+    escribir("publicidad/index.html", pagina_publicidad())
     for k in AUTORES:
         escribir(p_autor(k) + "index.html", pagina_autor(k, opin))
 

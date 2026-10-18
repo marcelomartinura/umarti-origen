@@ -7,6 +7,8 @@ subcategoria: Mates y bombillas
 tags: mate, yerba mate, historia
 fecha: 2026-10-18
 destacada: si
+imagen: assets/img/blog/mate-con-agaves.jpg
+imagen_alt: Mate de madera con bombilla en primer plano y un campo de agaves de fondo
 ---
 El mate es una infusión que se prepara con hojas secas y molidas de yerba mate (*Ilex paraguariensis*), una planta originaria de la cuenca de los ríos Paraná y Paraguay, en América del Sur. Se toma sobre todo en Argentina, Uruguay, Paraguay, el sur de Brasil y algunas zonas de Chile, y cada vez se ve más en otros países.
 
@@ -39,6 +41,8 @@ Estas son algunas de las características que más se destacan de la yerba mate:
 > **Ojo:** por la cafeína, conviene moderarlo si sos sensible a ella, y consultar a tu médico si tenés alguna condición de salud. El mate es una bebida, no un tratamiento.
 
 ## Qué necesitás para prepararlo
+
+![Mate de madera con bombilla apoyado sobre un poste, frente a una pared de piedra](assets/img/blog/mate-de-madera-galeria-piedra.jpg "El mate, la bombilla, la yerba y el agua caliente: no hace falta nada más.")
 
 - **El mate:** el recipiente, que puede ser de calabaza, madera, vidrio, cerámica, metal u otros materiales.
 - **La bombilla:** un tubo, generalmente de metal, con un filtro en la punta.
