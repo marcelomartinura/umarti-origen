@@ -67,4 +67,4 @@ Otra forma de darle variedad es usar **yerba saborizada**: yerba mezclada con hi
 
 Si preferís hacerlo en casa, podés secar cáscaras de naranja, limón u otro cítrico, u hojas de menta, manzanilla o boldo, y sumarlas a tu yerba de siempre.
 
-¿Tenés un mate nuevo? Antes de estrenarlo hay que curarlo: te explicamos cómo hacerlo con uno [de calabaza](../como-curar-un-mate-de-calabaza/) y con uno [de palo santo](../como-curar-un-mate-de-palo-santo/).
+¿Tenés un mate nuevo? Antes de estrenarlo hay que curarlo: te explicamos cómo hacerlo con uno [de calabaza o de madera](../como-curar-un-mate/) y con uno [de palo santo](../como-curar-un-mate-de-palo-santo/).

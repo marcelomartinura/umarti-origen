@@ -17,8 +17,11 @@ fecha: 2026-10-08
 destacada: si                 (opcional)
 borrador: si                  (opcional: se genera la página pero no aparece en el blog ni en Google)
 ---
-y después el texto. Formato: ## título, ### subtítulo, **negrita**, [enlace](url),
-listas con "- " o "1. ", tablas con |, y "> " para un recuadro de consejo.
+y después el texto. Formato: ## título, ### subtítulo, **negrita**, *cursiva*, [enlace](url),
+listas con "- " o "1. ", tablas con |, "> " para un recuadro de consejo, y fotos con
+![descripción](assets/img/blog/foto.jpg "Epígrafe opcional") en una línea sola
+(dos o más fotos seguidas se muestran una al lado de la otra).
+Foto principal (opcional): imagen: assets/img/blog/foto.jpg  e  imagen_alt: descripción
 """
 import glob, html, json, os, re, sys
 
@@ -125,6 +128,9 @@ def inline(t):
     return t
 
 
+IMG_RE = re.compile(r'^!\[([^\]]*)\]\((\S+?)(?:\s+"([^"]*)")?\)\s*$')
+
+
 def markdown(src):
     out, toc = [], []
     lines = src.strip("\n").split("\n")
@@ -137,6 +143,14 @@ def markdown(src):
             title = ln[3:].strip(); hid = slug(title)
             toc.append((hid, title))
             out.append(f'<h2 id="{hid}">{inline(title)}</h2>'); i += 1; continue
+        if IMG_RE.match(ln):
+            figs = []
+            while i < len(lines) and IMG_RE.match(lines[i]):
+                alt, src, pie = IMG_RE.match(lines[i]).groups(); i += 1
+                cap = f"<figcaption>{inline(pie)}</figcaption>" if pie else ""
+                figs.append(f'<figure><img src="{{{{RAIZ}}}}{esc(src)}" alt="{esc(alt)}" loading="lazy">{cap}</figure>')
+            cls = "post-figs" + (" duo" if len(figs) > 1 else "")
+            out.append(f'<div class="{cls}">' + "".join(figs) + "</div>"); continue
         if ln.startswith("### "):
             out.append(f"<h3>{inline(ln[4:].strip())}</h3>"); i += 1; continue
         if ln.startswith("> "):
@@ -163,7 +177,7 @@ def markdown(src):
                 items.append(re.sub(r"^\d+\. ", "", lines[i])); i += 1
             out.append("<ol>" + "".join(f"<li>{inline(x)}</li>" for x in items) + "</ol>"); continue
         buf = []
-        while i < len(lines) and lines[i].strip() and not re.match(r"(#{2,3} |> |\||- |\d+\. )", lines[i]):
+        while i < len(lines) and lines[i].strip() and not re.match(r"(#{2,3} |> |\||- |\d+\. |!\[)", lines[i]):
             buf.append(lines[i].strip()); i += 1
         out.append(f"<p>{inline(' '.join(buf))}</p>")
     return "\n".join(out), toc
@@ -184,8 +198,10 @@ P_OPINION = "blog/opinion/"
 
 
 # ---------- piezas ----------
-def cover(n, cls=""):
+def cover(n, cls="", depth=None):
     c1, c2 = n["colores"]
+    if n.get("imagen") and depth is not None:
+        return f'<div class="cover has-photo {cls}" style="--c1:{c1};--c2:{c2}"><img src="{rel(depth, n["imagen"])}" alt="" loading="lazy"><span>{esc(n["etiqueta"])}</span></div>'
     return f'<div class="cover {cls}" data-glyph="{esc(n["glifo"])}" style="--c1:{c1};--c2:{c2}" aria-hidden="true"><span>{esc(n["etiqueta"])}</span></div>'
 
 
@@ -209,7 +225,7 @@ def card(n, depth):
     neg = {"negocios": " neg", "opinion": " op"}.get(n["seccion"], "")
     texto = esc(" ".join([n["titulo"], n["resumen"], n.get("categoria", ""), n.get("subcategoria", ""), n.get("tema", "")] + n["tags"]).lower())
     return f'''        <a class="post-card{neg}" href="{rel(depth, p_nota(n))}" data-texto="{texto}" data-sub="{esc(n.get('subcategoria') or n.get('tema'))}">
-          {cover(n)}
+          {cover(n, "", depth)}
           {kicker(n)}
           <h3>{esc(n['titulo'])}</h3>
           <p>{esc(n['resumen'])}</p>
@@ -267,9 +283,11 @@ def store_band(depth, nombre, cat):
       </div>'''
 
 
-def page(depth, title, desc, main, jsonld=None, scripts="", noindex=False):
+def page(depth, title, desc, main, jsonld=None, scripts="", noindex=False, imagen=""):
     pre = rel(depth) if depth else ""
     canon = '\n  <meta name="robots" content="noindex">' if noindex else ""
+    if imagen and SITIO:
+        canon += f'\n  <meta property="og:image" content="{SITIO}/{imagen}">'
     ld = f'\n  <script type="application/ld+json">\n{json.dumps(jsonld, ensure_ascii=False, indent=2)}\n  </script>' if jsonld else ""
     return f'''<!doctype html>
 <html lang="es">
@@ -334,7 +352,7 @@ def portada_blog(notas):
     dest = next((n for n in prods if n["destacada"]), prods[0])
     ultimas = [n for n in notas if n is not dest][:4]
     side = "\n".join(f'''          <a class="side-item" href="{rel(d, p_nota(n))}">
-            {cover(n)}
+            {cover(n, "", d)}
             <div><h3>{esc(n['titulo'])}</h3><small>{SECCION_NOMBRE[n['seccion']]} · {n['min']} min</small></div>
           </a>''' for n in ultimas)
     cats = [c for c in CATEGORIAS if any(n.get("categoria") == c for n in prods)]
@@ -510,23 +528,29 @@ def pagina_nota(n, notas):
           <p class="op-disclaimer">Las columnas de opinión expresan la mirada personal de su autor.</p>'''
     else:
         byline = f'<p class="post-meta">{fecha_html}<span>Equipo Umarti Origen</span></p>'
-        portada = cover(n, "post-cover")
+        portada = "" if n.get("imagen") else cover(n, "post-cover")
         firma = ""
+    foto = ""
+    if n.get("imagen"):
+        foto = f'''
+        <figure class="post-hero"><img src="{rel(d, n["imagen"])}" alt="{esc(n.get("imagen_alt", n["titulo"]))}"></figure>'''
     aviso = ""
     if n["borrador"]:
         aviso = '      <div class="draft-banner"><strong>Borrador.</strong> Esta nota no aparece en el blog ni en Google hasta que le quites la línea <code>borrador: si</code>.</div>\n'
     main = f'''    <div class="wrap">
 {crumbs(d, cr)}
-{aviso}      <header class="post-head{' op' if es_op else ''}">
+{aviso}      <header class="post-head{' op' if es_op else ''}{' has-photo' if foto else ''}">
+        <div class="post-head-text">
         {kick}
         <h1>{esc(n['titulo'])}</h1>
         <p class="lead">{esc(n['resumen'])}</p>
         {byline}
+        </div>{foto}
       </header>
       {portada}
       <div class="post-layout">
         <article class="prose">
-{n['html']}
+{n['html'].replace("{{RAIZ}}", rel(d))}
           <div class="post-tags" aria-label="Etiquetas">{tags}</div>
           {firma}
         </article>
@@ -555,7 +579,9 @@ def pagina_nota(n, notas):
         ld["mainEntityOfPage"] = f"{SITIO}/{p_nota(n)}"
     if es_op:
         ld["articleSection"] = "Opinión"
-    return page(d, f"{n['titulo']} | Blog Umarti Origen", n["resumen"], main, ld, noindex=n["borrador"])
+    if n.get("imagen") and SITIO:
+        ld["image"] = f"{SITIO}/{n['imagen']}"
+    return page(d, f"{n['titulo']} | Blog Umarti Origen", n["resumen"], main, ld, noindex=n["borrador"], imagen=n.get("imagen", ""))
 
 
 def pagina_opinion(opin):

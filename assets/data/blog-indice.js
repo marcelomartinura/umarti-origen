@@ -17,6 +17,22 @@ window.BLOG_INDICE = [
   "url": "blog/que-es-el-mate/"
  },
  {
+  "slug": "como-curar-un-mate",
+  "titulo": "Cómo curar un mate de calabaza o de madera antes de estrenarlo",
+  "resumen": "Curar el mate sella sus poros, mejora el sabor y evita hongos y grietas. Qué mates hay que curar, el método con yerba usada paso a paso y otras dos técnicas tradicionales.",
+  "seccion": "productos",
+  "categoria": "Café, Té y Mate",
+  "subcategoria": "Mates y bombillas",
+  "tema": "",
+  "fecha": "2026-10-18",
+  "tags": [
+   "mate",
+   "curado",
+   "calabaza"
+  ],
+  "url": "blog/como-curar-un-mate/"
+ },
+ {
   "slug": "como-curar-un-mate-de-palo-santo",
   "titulo": "Cómo curar un mate de palo santo sin que se agriete",
   "resumen": "El palo santo da uno de los mates más ricos y aromáticos, pero su madera no perdona los cambios bruscos de temperatura. Cómo curarlo paso a paso y cómo cuidarlo para que dure.",
@@ -111,22 +127,6 @@ window.BLOG_INDICE = [
    "exportar"
   ],
   "url": "blog/que-es-la-posicion-arancelaria/"
- },
- {
-  "slug": "como-curar-un-mate-de-calabaza",
-  "titulo": "Cómo curar un mate de calabaza antes de estrenarlo",
-  "resumen": "Curar el mate sella la calabaza, le quita el gusto amargo y evita hongos. Te contamos cómo hacerlo en tres días y cómo cuidarlo después.",
-  "seccion": "productos",
-  "categoria": "Café, Té y Mate",
-  "subcategoria": "Mates y bombillas",
-  "tema": "",
-  "fecha": "2026-10-05",
-  "tags": [
-   "mate",
-   "curado",
-   "calabaza"
-  ],
-  "url": "blog/como-curar-un-mate-de-calabaza/"
  },
  {
   "slug": "primeros-pasos-para-exportar-de-argentina-a-mexico",

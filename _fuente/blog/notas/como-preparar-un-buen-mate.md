@@ -39,4 +39,4 @@ Preparar un mate parece simple, y lo es. Pero hay tres o cuatro detalles que sep
 
 Cuando el mate ya no tiene espuma y el sabor es aguado, está lavado. Podés correr la yerba usada hacia un costado y sumar yerba nueva del otro lado, o empezar de cero.
 
-Si estrenaste un mate de calabaza, antes de todo esto tenés que curarlo. Te lo explicamos en [cómo curar un mate de calabaza](../como-curar-un-mate-de-calabaza/).
+Si estrenaste un mate de calabaza, antes de todo esto tenés que curarlo. Te lo explicamos en [cómo curar un mate](../como-curar-un-mate/).
