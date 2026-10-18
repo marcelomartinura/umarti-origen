@@ -11,7 +11,7 @@ Un mate de calabaza nuevo no está listo para usar. La calabaza es porosa y tien
 
 ## ¿Qué mates hay que curar?
 
-- **Sí:** los de calabaza y los de madera.
+- **Sí:** los de calabaza y los de madera. Si el tuyo es de palo santo, seguí [esta guía para mates de palo santo](../como-curar-un-mate-de-palo-santo/), porque esa madera necesita otro cuidado.
 - **No hace falta:** los de vidrio, cerámica, acero inoxidable o silicona. Con lavarlos antes del primer uso alcanza.
 
 ## Paso a paso

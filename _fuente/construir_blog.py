@@ -7,13 +7,15 @@ Cada nota es un archivo .md con un encabezado así:
 ---
 titulo: Cómo preparar un buen mate, paso a paso
 resumen: Una o dos oraciones que aparecen en las tarjetas y en Google.
-seccion: productos            (productos o negocios)
+seccion: productos            (productos, negocios u opinion)
 categoria: Café, Té y Mate    (solo productos: una categoría de la Tienda)
 subcategoria: Mates y bombillas
-tema: Comercio exterior       (solo negocios)
+tema: Comercio exterior       (negocios; en opinion: Negocios o Experiencias)
+autor: marcelo-uranga         (solo opinion: una clave de autores.py)
 tags: mate, yerba mate, preparación   (dos o tres)
 fecha: 2026-10-08
 destacada: si                 (opcional)
+borrador: si                  (opcional: se genera la página pero no aparece en el blog ni en Google)
 ---
 y después el texto. Formato: ## título, ### subtítulo, **negrita**, [enlace](url),
 listas con "- " o "1. ", tablas con |, y "> " para un recuadro de consejo.
@@ -23,6 +25,8 @@ import glob, html, json, os, re, sys
 AQUI = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, AQUI)
 import comun  # noqa: E402
+sys.path.insert(0, os.path.join(AQUI, "blog"))
+from autores import AUTORES, TEMAS_OPINION  # noqa: E402
 from comun import slug, fecha_larga, escribir, SITIO  # noqa: E402
 
 esc = html.escape
@@ -54,7 +58,9 @@ COLORES = {
     "Tecnología": ("#4b5d78", "#2b3648"), "Hogar y Cocina": ("#a8703f", "#6e4421"),
     "Herramientas y Jardín": ("#6b7a3a", "#424c22"), "Limpieza e Higiene": ("#4a8aa8", "#2a5a72"),
     "negocios": ("#3d87ab", "#225670"),
+    "opinion": ("#7a4a8c", "#4a2a5a"),
 }
+SECCION_NOMBRE = {"productos": "Productos", "negocios": "Negocios", "opinion": "Opinión"}
 
 NOTAS_DIR = os.path.join(AQUI, "blog", "notas")
 
@@ -85,6 +91,7 @@ def leer_nota(ruta):
     n["slug"] = os.path.splitext(os.path.basename(ruta))[0]
     n["tags"] = [t.strip() for t in meta.get("tags", "").split(",") if t.strip()]
     n["destacada"] = meta.get("destacada", "").lower() in ("si", "sí", "true")
+    n["borrador"] = meta.get("borrador", "").lower() in ("si", "sí", "true")
     n["html"], n["toc"] = markdown(m.group(2))
     palabras = len(re.findall(r"\w+", m.group(2)))
     n["min"] = max(2, -(-palabras // 200))
@@ -93,6 +100,15 @@ def leer_nota(ruta):
         if cat not in CATEGORIAS or sub not in CATEGORIAS[cat]:
             raise SystemExit(f"{n['slug']}: categoría o subcategoría que no existe en la Tienda: {cat} / {sub}")
         n["etiqueta"], n["colores"] = sub, COLORES.get(cat, COLORES["Alimentos"])
+    elif n["seccion"] == "opinion":
+        if n.get("autor") not in AUTORES:
+            raise SystemExit(f"{n['slug']}: autor desconocido {n.get('autor')}. Opciones: {list(AUTORES)}")
+        if n.get("tema") not in TEMAS_OPINION:
+            raise SystemExit(f"{n['slug']}: tema de opinión desconocido {n.get('tema')}. Opciones: {TEMAS_OPINION}")
+        a = AUTORES[n["autor"]]
+        n["etiqueta"], n["colores"] = a["columna"], COLORES["opinion"]
+        n["glifo"] = a["iniciales"][0]
+        return n
     else:
         if n.get("tema") not in TEMAS:
             raise SystemExit(f"{n['slug']}: tema desconocido {n.get('tema')}. Opciones: {TEMAS}")
@@ -104,6 +120,7 @@ def leer_nota(ruta):
 def inline(t):
     t = esc(t, quote=False)
     t = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
+    t = re.sub(r"(?<![\w*])\*([^*\s][^*]*?)\*(?![\w*])", r"<em>\1</em>", t)
     t = re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)", lambda m: f'<a href="{m.group(2)}">{m.group(1)}</a>', t)
     return t
 
@@ -162,6 +179,8 @@ def p_cat(cat): return f"blog/productos/{slug(cat)}/"
 def p_sub(cat, sub): return f"blog/productos/{slug(cat)}/{slug(sub)}/"
 def p_tema(t): return f"blog/negocios/{slug(t)}/"
 def p_tag(t): return f"blog/etiqueta/{slug(t)}/"
+def p_autor(a): return f"blog/autor/{a}/"
+P_OPINION = "blog/opinion/"
 
 
 # ---------- piezas ----------
@@ -171,19 +190,30 @@ def cover(n, cls=""):
 
 
 def kicker(n):
-    sec = "Productos" if n["seccion"] == "productos" else "Negocios"
+    sec = SECCION_NOMBRE[n["seccion"]]
     return f'<p class="post-kicker"><b>{sec}</b> · {esc(n.get("categoria") or n.get("tema"))}</p>'
 
 
+def avatar(a, depth, cls="avatar"):
+    if a["foto"]:
+        return f'<img class="{cls}" src="{rel(depth, a["foto"])}" alt="{esc(a["nombre"])}" width="48" height="48">'
+    return f'<span class="{cls}" aria-hidden="true">{esc(a["iniciales"])}</span>'
+
+
+def meta_linea(n):
+    autor = f'Por {AUTORES[n["autor"]]["nombre"]} · ' if n["seccion"] == "opinion" else ""
+    return f'{autor}{fecha_larga(n["fecha"])} · {n["min"]} min de lectura'
+
+
 def card(n, depth):
-    neg = " neg" if n["seccion"] == "negocios" else ""
+    neg = {"negocios": " neg", "opinion": " op"}.get(n["seccion"], "")
     texto = esc(" ".join([n["titulo"], n["resumen"], n.get("categoria", ""), n.get("subcategoria", ""), n.get("tema", "")] + n["tags"]).lower())
     return f'''        <a class="post-card{neg}" href="{rel(depth, p_nota(n))}" data-texto="{texto}" data-sub="{esc(n.get('subcategoria') or n.get('tema'))}">
           {cover(n)}
           {kicker(n)}
           <h3>{esc(n['titulo'])}</h3>
           <p>{esc(n['resumen'])}</p>
-          <span class="post-meta">{fecha_larga(n['fecha'])} · {n['min']} min de lectura</span>
+          <span class="post-meta">{esc(meta_linea(n))}</span>
         </a>'''
 
 
@@ -207,7 +237,7 @@ def crumbs(depth, items):
 
 
 def tabs(depth, actual):
-    items = [("Todo", "blog/", "todo"), ("Productos", "blog/productos/", "productos"), ("Negocios", "blog/negocios/", "negocios")]
+    items = [("Todo", "blog/", "todo"), ("Productos", "blog/productos/", "productos"), ("Negocios", "blog/negocios/", "negocios"), ("Opinión", P_OPINION, "opinion")]
     out = [f'<a href="{rel(depth, p)}"{" aria-current=\"page\"" if k == actual else ""}>{t}</a>' for t, p, k in items]
     out.append(f'<a class="ghost" href="{rel(depth, "viajes/")}">Guías de viaje, en Viajes →</a>')
     return '        <nav class="tabs" aria-label="Secciones del blog">' + "".join(out) + "</nav>"
@@ -237,9 +267,9 @@ def store_band(depth, nombre, cat):
       </div>'''
 
 
-def page(depth, title, desc, main, jsonld=None, scripts=""):
+def page(depth, title, desc, main, jsonld=None, scripts="", noindex=False):
     pre = rel(depth) if depth else ""
-    canon = ""
+    canon = '\n  <meta name="robots" content="noindex">' if noindex else ""
     ld = f'\n  <script type="application/ld+json">\n{json.dumps(jsonld, ensure_ascii=False, indent=2)}\n  </script>' if jsonld else ""
     return f'''<!doctype html>
 <html lang="es">
@@ -271,16 +301,41 @@ def page(depth, title, desc, main, jsonld=None, scripts=""):
 '''
 
 
+def columna_band(depth, opin, clave="marcelo-uranga", h="h2"):
+    a = AUTORES[clave]
+    suyas = [n for n in opin if n["autor"] == clave]
+    if suyas:
+        cuerpo = grid(suyas[:3], depth)
+    else:
+        cuerpo = f'''      <div class="col-empty">
+        <strong>La primera columna llega pronto.</strong>
+        <p>{esc(a["columna_bajada"])}</p>
+      </div>'''
+    return f'''      <div class="col-band">
+        <a class="col-author" href="{rel(depth, p_autor(clave))}">
+          {avatar(a, depth, "avatar xl")}
+          <span class="col-name"><small>La columna de</small>{esc(a["nombre"])}</span>
+          <span class="col-title">{esc(a["columna"])}</span>
+          <span class="col-sub">{esc(a["columna_bajada"])}</span>
+          <span class="col-more">Conocé al autor →</span>
+        </a>
+        <div class="col-list">
+{cuerpo}
+        </div>
+      </div>'''
+
+
 # ---------- páginas ----------
 def portada_blog(notas):
     d = 1
     prods = [n for n in notas if n["seccion"] == "productos"]
     negs = [n for n in notas if n["seccion"] == "negocios"]
+    opin = [n for n in notas if n["seccion"] == "opinion"]
     dest = next((n for n in prods if n["destacada"]), prods[0])
     ultimas = [n for n in notas if n is not dest][:4]
     side = "\n".join(f'''          <a class="side-item" href="{rel(d, p_nota(n))}">
             {cover(n)}
-            <div><h3>{esc(n['titulo'])}</h3><small>{'Productos' if n['seccion'] == 'productos' else 'Negocios'} · {n['min']} min</small></div>
+            <div><h3>{esc(n['titulo'])}</h3><small>{SECCION_NOMBRE[n['seccion']]} · {n['min']} min</small></div>
           </a>''' for n in ultimas)
     cats = [c for c in CATEGORIAS if any(n.get("categoria") == c for n in prods)]
     chips = "".join(f'<a href="{rel(d, p_cat(c))}" style="--c1:{COLORES[c][0]}"><span class="dot"></span>{esc(c)} <small>{sum(1 for n in prods if n.get("categoria") == c)}</small></a>' for c in cats)
@@ -291,7 +346,7 @@ def portada_blog(notas):
       <div class="blog-head">
         <span class="eyebrow">Herramientas</span>
         <h1>Blog</h1>
-        <p>Guías, recetas y consejos sobre los productos de la Tienda, y notas para hacer negocios entre países.</p>
+        <p>Guías, recetas y consejos sobre los productos de la Tienda, notas para hacer negocios entre países y columnas de opinión.</p>
 {tabs(d, "todo")}
       </div>
 
@@ -324,6 +379,14 @@ def portada_blog(notas):
     </section>
 
     <div class="wrap">
+      <section class="blk" aria-labelledby="h-op">
+        <div class="blk-head">
+          <div><h2 id="h-op">Opinión</h2><p>Columnas con nombre y apellido: miradas personales sobre negocios, emprender entre países y lo que pasa en el camino.</p></div>
+          <a class="op-link" href="{rel(d, P_OPINION)}">Ver todas las columnas →</a>
+        </div>
+{columna_band(d, opin)}
+      </section>
+
       <section class="blk" aria-labelledby="h-tags">
         <div class="blk-head"><div><h2 id="h-tags">Explorá por etiqueta</h2></div></div>
         <div class="tag-cloud">{cloud}</div>
@@ -364,7 +427,12 @@ def listado(depth, title, desc, crumbs_items, eyebrow, h1, lead, tab, notas, ext
 def pagina_nota(n, notas):
     d = 2
     es_prod = n["seccion"] == "productos"
-    if es_prod:
+    es_op = n["seccion"] == "opinion"
+    a = AUTORES.get(n.get("autor"))
+    if es_op:
+        cr = [("Blog", "blog/"), ("Opinión", P_OPINION), (n["titulo"], None)]
+        kick = f'<p class="post-kicker"><b style="color:var(--plum)">Opinión</b><a href="{rel(d, P_OPINION)}">{esc(a["columna"])}</a><span>·</span><span>{esc(n["tema"])}</span></p>'
+    elif es_prod:
         cr = [("Blog", "blog/"), ("Productos", "blog/productos/"), (n["categoria"], p_cat(n["categoria"])), (n["subcategoria"], p_sub(n["categoria"], n["subcategoria"])), (n["titulo"], None)]
         kick = f'<p class="post-kicker"><b>Productos</b><a href="{rel(d, p_cat(n["categoria"]))}">{esc(n["categoria"])}</a><span>›</span><a href="{rel(d, p_sub(n["categoria"], n["subcategoria"]))}">{esc(n["subcategoria"])}</a></p>'
     else:
@@ -376,16 +444,28 @@ def pagina_nota(n, notas):
         if es_prod and o.get("subcategoria") == n.get("subcategoria"): s += 3
         if es_prod and o.get("categoria") == n.get("categoria"): s += 2
         if not es_prod and o.get("tema") == n.get("tema"): s += 2
+        if es_op and o.get("autor") == n.get("autor"): s += 3
         s += len(set(o["tags"]) & set(n["tags"]))
         if o["seccion"] == n["seccion"]: s += 1
         return s
-    otras = sorted([o for o in notas if o is not n], key=lambda o: (score(o), o["fecha"]), reverse=True)
+    otras = sorted([o for o in notas if o is not n and not o["borrador"]], key=lambda o: (score(o), o["fecha"]), reverse=True)
     relacionadas = otras[:3]
 
     toc = ""
     if len(n["toc"]) >= 2:
         toc = '<div class="box toc"><h2>En esta nota</h2><ol>' + "".join(f'<li><a href="#{h}">{esc(t)}</a></li>' for h, t in n["toc"]) + "</ol></div>"
-    if es_prod:
+    if es_op:
+        redes = "".join(f'<a href="{esc(u)}" rel="noopener" target="_blank">{esc(r)}</a>' for r, u in a["redes"])
+        box = f'''<div class="box author-mini">
+            {avatar(a, d)}
+            <div><small>La columna de</small><strong>{esc(a["nombre"])}</strong><span>{esc(a["rol"])}</span></div>
+            <a class="btn-line" href="{rel(d, p_autor(n["autor"]))}">Conocé al autor →</a>
+          </div>'''
+        mismas = [o for o in notas if o is not n and o["seccion"] == "opinion" and not o["borrador"]]
+        mas = ""
+        if mismas:
+            mas = '<div class="box"><h2>Más columnas</h2><ul class="mini-list">' + "".join(f'<li><a href="{rel(d, p_nota(o))}">{esc(o["titulo"])}</a></li>' for o in mismas[:5]) + f'</ul><a class="all" href="{rel(d, P_OPINION)}">Todas las columnas</a></div>'
+    elif es_prod:
         cat, sub = n["categoria"], n["subcategoria"]
         mismas = [o for o in notas if o is not n and o.get("categoria") == cat]
         box = f'''<div class="box store">
@@ -406,25 +486,49 @@ def pagina_nota(n, notas):
         mismas = [o for o in notas if o is not n and o["seccion"] == "negocios"]
         mas = '<div class="box"><h2>Más de Negocios</h2><ul class="mini-list">' + "".join(f'<li><a href="{rel(d, p_nota(o))}">{esc(o["titulo"])}</a></li>' for o in mismas[:5]) + f'</ul><a class="all" href="{rel(d, "blog/negocios/")}">Todas las notas de Negocios</a></div>'
 
-    tags = "".join(f'<a class="tag" href="{rel(d, p_tag(t))}">{esc(t)}</a>' for t in n["tags"])
+    if n["borrador"]:
+        tags = "".join(f'<span class="tag">{esc(t)}</span>' for t in n["tags"])
+    else:
+        tags = "".join(f'<a class="tag" href="{rel(d, p_tag(t))}">{esc(t)}</a>' for t in n["tags"])
     dests = destinos_de_nota(n["slug"])
     origen = ""
     if dests:
         origen = '<div class="box" style="background:#e3f1ea;border-color:#cfe5d9"><h2>Conocé el origen</h2><ul class="mini-list">' + "".join(
             f'<li><a href="{rel(d, f"viajes/{x['pais']}/{x['slug']}/")}">{esc(x["nombre"])}, {esc(pn)}</a></li>' for x, pn in dests) + '</ul><a class="all" style="color:#1f5a3f" href="' + rel(d, "viajes/") + '">Todas las guías de viaje</a></div>'
+    fecha_html = f'<span><time datetime="{n["fecha"]}">{fecha_larga(n["fecha"])}</time></span><span>{n["min"]} min de lectura</span>'
+    if es_op:
+        byline = f'''<div class="byline">{avatar(a, d)}<p><a href="{rel(d, p_autor(n["autor"]))}">{esc(a["nombre"])}</a><span class="post-meta">{fecha_html}</span></p></div>'''
+        portada = ""
+        firma = f'''<div class="author-box">
+            {avatar(a, d, "avatar xl")}
+            <div>
+              <small>Sobre el autor</small>
+              <h2><a href="{rel(d, p_autor(n["autor"]))}">{esc(a["nombre"])}</a></h2>
+              <p>{esc(a["bio"][0])}</p>
+            </div>
+          </div>
+          <p class="op-disclaimer">Las columnas de opinión expresan la mirada personal de su autor.</p>'''
+    else:
+        byline = f'<p class="post-meta">{fecha_html}<span>Equipo Umarti Origen</span></p>'
+        portada = cover(n, "post-cover")
+        firma = ""
+    aviso = ""
+    if n["borrador"]:
+        aviso = '      <div class="draft-banner"><strong>Borrador.</strong> Esta nota no aparece en el blog ni en Google hasta que le quites la línea <code>borrador: si</code>.</div>\n'
     main = f'''    <div class="wrap">
 {crumbs(d, cr)}
-      <header class="post-head">
+{aviso}      <header class="post-head{' op' if es_op else ''}">
         {kick}
         <h1>{esc(n['titulo'])}</h1>
         <p class="lead">{esc(n['resumen'])}</p>
-        <p class="post-meta"><span><time datetime="{n['fecha']}">{fecha_larga(n['fecha'])}</time></span><span>{n['min']} min de lectura</span><span>Equipo Umarti Origen</span></p>
+        {byline}
       </header>
-      {cover(n, "post-cover")}
+      {portada}
       <div class="post-layout">
         <article class="prose">
 {n['html']}
           <div class="post-tags" aria-label="Etiquetas">{tags}</div>
+          {firma}
         </article>
         <aside class="post-aside">
           <div class="aside-sticky">
@@ -445,11 +549,81 @@ def pagina_nota(n, notas):
     ld = {"@context": "https://schema.org", "@type": "Article", "headline": n["titulo"], "description": n["resumen"],
           "datePublished": n["fecha"], "inLanguage": "es", "articleSection": n.get("categoria") or n.get("tema"),
           "keywords": ", ".join(n["tags"]),
-          "author": {"@type": "Organization", "name": "Umarti Origen"},
+          "author": ({"@type": "Person", "name": a["nombre"], "jobTitle": a["rol"]} | ({"url": f"{SITIO}/{p_autor(n['autor'])}"} if SITIO else {})) if es_op else {"@type": "Organization", "name": "Umarti Origen"},
           "publisher": {"@type": "Organization", "name": "Umarti Origen"}}
     if SITIO:
         ld["mainEntityOfPage"] = f"{SITIO}/{p_nota(n)}"
-    return page(d, f"{n['titulo']} | Blog Umarti Origen", n["resumen"], main, ld)
+    if es_op:
+        ld["articleSection"] = "Opinión"
+    return page(d, f"{n['titulo']} | Blog Umarti Origen", n["resumen"], main, ld, noindex=n["borrador"])
+
+
+def pagina_opinion(opin):
+    d = 2
+    cols = "\n".join(columna_band(d, opin, k) for k in AUTORES)
+    temas_con = [t for t in TEMAS_OPINION if any(n["tema"] == t for n in opin)]
+    lista = ""
+    if opin:
+        conteo = {t: sum(1 for n in opin if n["tema"] == t) for t in temas_con}
+        chips = chips_filtro(temas_con, conteo) if len(temas_con) > 1 else ""
+        lista = f'''
+      <h2 class="sec-title">Todas las columnas</h2>
+{chips}
+{list_tools()}
+      <div class="list-wrap">
+{grid(opin, d, "b-grid")}
+      </div>'''
+    main = f'''    <div class="wrap">
+{crumbs(d, [("Blog", "blog/"), ("Opinión", None)])}
+      <div class="blog-head">
+        <span class="eyebrow">Blog</span>
+        <h1>Opinión</h1>
+        <p>Columnas con nombre y apellido. Miradas personales sobre negocios, emprender entre países y las experiencias que hay detrás de Umarti.</p>
+{tabs(d, "opinion")}
+      </div>
+{cols}
+{lista}
+    </div>'''
+    return page(d, "Opinión: columnas sobre negocios y experiencias | Blog Umarti Origen",
+                "Columnas de opinión sobre negocios, comercio entre Argentina y México, emprendimiento y experiencias personales.",
+                main, scripts=f'\n  <script src="{rel(d)}assets/js/blog.js"></script>' if opin else "")
+
+
+def pagina_autor(clave, opin):
+    d = 3
+    a = AUTORES[clave]
+    suyas = [n for n in opin if n["autor"] == clave]
+    bio = "".join(f"<p>{esc(x)}</p>" for x in a["bio"])
+    redes = "".join(f'<a href="{esc(u)}" rel="noopener me" target="_blank">{esc(r)}</a>' for r, u in a["redes"])
+    redes = f'<div class="author-links">{redes}</div>' if redes else ""
+    if suyas:
+        notas_html = f'''<h2 class="sec-title">Sus columnas</h2>
+{grid(suyas, d)}'''
+    else:
+        notas_html = f'''<div class="col-empty"><strong>La primera columna de {esc(a["nombre"].split()[0])} llega pronto.</strong><p>Mientras tanto, podés recorrer las <a href="{rel(d, "blog/")}">notas del blog</a>.</p></div>'''
+    main = f'''    <div class="wrap">
+{crumbs(d, [("Blog", "blog/"), ("Opinión", P_OPINION), (a["nombre"], None)])}
+      <section class="author-hero">
+        {avatar(a, d, "avatar xxl")}
+        <div>
+          <span class="eyebrow">{esc(a["rol"])}</span>
+          <h1>{esc(a["nombre"])}</h1>
+          <p class="col-line">Columna <b>{esc(a["columna"])}</b> · {esc(a["columna_bajada"])}</p>
+          <div class="author-bio">{bio}</div>
+          {redes}
+        </div>
+      </section>
+      <div class="list-wrap">
+      {notas_html}
+      </div>
+    </div>'''
+    persona = {"@type": "Person", "name": a["nombre"], "jobTitle": a["rol"], "description": " ".join(a["bio"]),
+               "worksFor": {"@type": "Organization", "name": "Umarti"}}
+    if a["redes"]:
+        persona["sameAs"] = [u for _, u in a["redes"]]
+    ld = {"@context": "https://schema.org", "@type": "ProfilePage", "mainEntity": persona}
+    return page(d, f"{a['nombre']}: columna {a['columna']} | Blog Umarti Origen",
+                f"{a['rol']}. {a['columna_bajada']} Todas sus columnas de opinión en el blog de Umarti Origen.", main, ld)
 
 
 def indice_js(notas):
@@ -461,8 +635,10 @@ def indice_js(notas):
 
 
 def main():
-    notas = [leer_nota(r) for r in glob.glob(os.path.join(NOTAS_DIR, "*.md"))]
-    notas.sort(key=lambda n: n["fecha"], reverse=True)
+    todas = [leer_nota(r) for r in glob.glob(os.path.join(NOTAS_DIR, "*.md"))]
+    todas.sort(key=lambda n: n["fecha"], reverse=True)
+    notas = [n for n in todas if not n["borrador"]]
+    opin = [n for n in notas if n["seccion"] == "opinion"]
     prods = [n for n in notas if n["seccion"] == "productos"]
     negs = [n for n in notas if n["seccion"] == "negocios"]
 
@@ -513,7 +689,11 @@ def main():
             [("Blog", "blog/"), ("#" + t, None)], "Etiqueta", "#" + t,
             f"Todas las notas con la etiqueta {esc(t)}.", None, [n for n in notas if t in n["tags"]]))
 
-    for n in notas:
+    escribir(P_OPINION + "index.html", pagina_opinion(opin))
+    for k in AUTORES:
+        escribir(p_autor(k) + "index.html", pagina_autor(k, opin))
+
+    for n in todas:
         escribir(p_nota(n) + "index.html", pagina_nota(n, notas))
 
     escribir("assets/data/blog-indice.js", indice_js(notas))

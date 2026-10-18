@@ -3,7 +3,7 @@
   var grid = document.getElementById('b-grid');
   if (!grid) return;
   var q = document.getElementById('b-q');
-  var chips = document.querySelectorAll('[data-sub]');
+  var chips = document.querySelectorAll('button[data-sub]');
   var count = document.getElementById('b-count');
   var empty = document.getElementById('b-empty');
   var sub = '';

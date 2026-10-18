@@ -1,6 +1,38 @@
 /* Generado por _fuente/construir_blog.py. Lo usa la Tienda para mostrar las notas de cada categoría. */
 window.BLOG_INDICE = [
  {
+  "slug": "que-es-el-mate",
+  "titulo": "Qué es el mate: origen, tradición y cómo se toma",
+  "resumen": "Una infusión de origen guaraní que se volvió símbolo de amistad en el sur de América. De dónde viene, qué tiene, cómo se comparte la ronda y las formas de tomarlo, dulce, amargo o saborizado.",
+  "seccion": "productos",
+  "categoria": "Café, Té y Mate",
+  "subcategoria": "Mates y bombillas",
+  "tema": "",
+  "fecha": "2026-10-18",
+  "tags": [
+   "mate",
+   "yerba mate",
+   "historia"
+  ],
+  "url": "blog/que-es-el-mate/"
+ },
+ {
+  "slug": "como-curar-un-mate-de-palo-santo",
+  "titulo": "Cómo curar un mate de palo santo sin que se agriete",
+  "resumen": "El palo santo da uno de los mates más ricos y aromáticos, pero su madera no perdona los cambios bruscos de temperatura. Cómo curarlo paso a paso y cómo cuidarlo para que dure.",
+  "seccion": "productos",
+  "categoria": "Café, Té y Mate",
+  "subcategoria": "Mates y bombillas",
+  "tema": "",
+  "fecha": "2026-10-17",
+  "tags": [
+   "mate",
+   "curado",
+   "palo santo"
+  ],
+  "url": "blog/como-curar-un-mate-de-palo-santo/"
+ },
+ {
   "slug": "como-usar-la-mesa-de-negociacion",
   "titulo": "Cómo usar la Mesa de negociación para encontrar lo que buscás",
   "resumen": "Publicás qué producto o servicio necesitás, el sistema lo cruza con lo publicado y, si no está, nuestro equipo lo busca por vos. Paso a paso.",
