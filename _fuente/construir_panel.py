@@ -24,7 +24,7 @@ DATOS = {
     "temas": [{"clave": t["clave"], "nombre": t["nombre"]} for t in cat.get("temas", [])],
     "destinos": [{"slug": d["slug"], "nombre": d["nombre"], "pais": PAISES[d["pais"]]["nombre"]} for d in DESTINOS],
     "paises": ["Argentina", "México", "Uruguay", "Paraguay", "Chile", "Brasil", "Otro"],
-    "paises_envio": ["Estados Unidos", "España", "Chile", "Uruguay", "Colombia", "Perú", "Canadá", "Brasil", "Italia", "Alemania"],
+    "paises_envio": ["México", "Estados Unidos", "España", "Chile", "Uruguay", "Colombia", "Perú", "Canadá", "Brasil", "Italia", "Alemania"],
 }
 
 MODULOS = [("productos", "Productos", True), ("publicidad", "Publicidad", False), ("cupones", "Cupones", False),
@@ -129,32 +129,36 @@ html = f'''<!doctype html>
           </fieldset>
 
           <fieldset class="card">
-            <legend>Precios y dónde se vende</legend>
-            <div class="venta">
-              <label class="sw"><input type="checkbox" name="tienda_ar"><span></span>Tienda Argentina</label>
+            <legend>Dónde se vende</legend>
+            <div class="mercado" id="m-local">
+              <div class="m-head">
+                <label class="sw"><input type="checkbox" name="tienda_ar"><span></span><b>Mercado local</b></label>
+                <small class="m-sub">Tienda Argentina · se vende y se envía dentro del país</small>
+              </div>
               <label class="precio">Precio en pesos argentinos<span class="money"><i>$</i><input name="precio_ars" type="number" min="0" step="1" inputmode="decimal"><i>ARS</i></span></label>
+              <p class="m-aviso" id="m-local-aviso" hidden></p>
             </div>
-            <div class="venta">
-              <label class="sw"><input type="checkbox" name="tienda_mx"><span></span>Tienda México</label>
-              <label class="precio">Precio en pesos mexicanos<span class="money"><i>$</i><input name="precio_mxn" type="number" min="0" step="1" inputmode="decimal"><i>MXN</i></span></label>
-            </div>
-            <div class="venta">
-              <label class="sw"><input type="checkbox" name="international"><span></span>International Shop</label>
+            <div class="mercado" id="m-intl">
+              <div class="m-head">
+                <label class="sw"><input type="checkbox" name="international"><span></span><b>Mercado internacional</b></label>
+                <small class="m-sub">International Shop · envíos al exterior, incluido México</small>
+              </div>
               <label class="precio">Precio en dólares<span class="money"><i>US$</i><input name="precio_usd" type="number" min="0" step="0.01" inputmode="decimal"><i>USD</i></span></label>
+              <div class="full envio-intl"><span class="lbl">Países a los que enviás</span><div class="tags" id="e-paises"></div>
+                <div class="tag-add"><input id="e-pais-nuevo" list="l-paises" placeholder="Agregar país"><datalist id="l-paises"></datalist><button type="button" class="btn sm" id="e-pais-add">Agregar</button></div></div>
             </div>
-            <div class="full envio-intl"><span class="lbl">Países a los que enviás desde International Shop</span><div class="tags" id="e-paises"></div>
-              <div class="tag-add"><input id="e-pais-nuevo" list="l-paises" placeholder="Agregar país"><datalist id="l-paises"></datalist><button type="button" class="btn sm" id="e-pais-add">Agregar</button></div></div>
+            <div class="mercado" id="m-hub">
+              <div class="m-head">
+                <label class="sw"><input type="checkbox" name="hub"><span></span><b>HUB</b></label>
+                <small class="m-sub">Hub de Oportunidades · venta por volumen para exportar</small>
+              </div>
+              <div class="hub-campos">
+                <label>Posición arancelaria<input name="hs" placeholder="Por ejemplo: 090300" inputmode="numeric"></label>
+                <label>Volumen disponible<input name="volumen" placeholder="Por ejemplo: 20 toneladas por mes"></label>
+                <label>Vigencia de la oferta<input name="vigencia_hub" type="date"></label>
+              </div>
+            </div>
             <label class="full">Link de pago (opcional)<input name="link_pago" type="url" placeholder="https://… (Mercado Pago, Stripe, etc.)"><small class="muted">Mientras no haya carrito, el botón Comprar lleva a este link.</small></label>
-          </fieldset>
-
-          <fieldset class="card">
-            <legend>Hub de Oportunidades</legend>
-            <label class="sw full"><input type="checkbox" name="hub"><span></span>Ofrecer también para exportación, en Productos de exportación</label>
-            <div class="hub-campos">
-              <label>Posición arancelaria<input name="hs" placeholder="Por ejemplo: 090300" inputmode="numeric"></label>
-              <label>Volumen disponible<input name="volumen" placeholder="Por ejemplo: 20 toneladas por mes"></label>
-              <label>Vigencia de la oferta<input name="vigencia_hub" type="date"></label>
-            </div>
           </fieldset>
         </div>
 

@@ -42,6 +42,9 @@
   function ok(r) { if (r.error) throw r.error; return r.data; }
   function rutaDeUrl(u) { var m = String(u).match(/\/object\/public\/productos\/(.+)$/); return m ? decodeURIComponent(m[1]) : null; }
 
+  /* Mercados locales abiertos: por ahora solo la Tienda Argentina */
+  function localAbierto() { return document.querySelector('#f-prod [name=pais]').value === 'Argentina'; }
+
   /* ---------- utilidades ---------- */
   var toastEl = $('#toast'), tt;
   function toast(m, err) { toastEl.textContent = m; toastEl.className = 'toast show' + (err ? ' err' : ''); clearTimeout(tt); tt = setTimeout(function () { toastEl.className = 'toast'; }, 3800); }
@@ -54,9 +57,7 @@
   function precioPrincipal(p) {
     var mon = { 'Argentina': 'ARS', 'México': 'MXN' }[p.pais];
     if (mon === 'ARS' && p.tienda_ar && p.precio_ars != null) return [plata(p.precio_ars), 'ARS'];
-    if (mon === 'MXN' && p.tienda_mx && p.precio_mxn != null) return [plata(p.precio_mxn), 'MXN'];
     if (p.tienda_ar && p.precio_ars != null) return [plata(p.precio_ars), 'ARS'];
-    if (p.tienda_mx && p.precio_mxn != null) return [plata(p.precio_mxn), 'MXN'];
     if (p.precio_usd != null) return [plata(p.precio_usd, 'USD'), 'USD'];
     return ['Sin precio', ''];
   }
@@ -137,7 +138,7 @@
     $('#l-tabla').innerHTML = '<div class="row head"><span></span><span>Producto</span><span>Categoría</span><span>Precio</span><span>Dónde se vende</span><span>Estado</span></div>' +
       lista.map(function (p) {
         var pr = precioPrincipal(p);
-        var donde = [p.tienda_ar && 'AR', p.tienda_mx && 'MX', p.international && 'Intl', p.hub && 'Hub'].filter(Boolean).map(function (x) { return '<i>' + x + '</i>'; }).join('') || '<span class="muted">—</span>';
+        var donde = [p.tienda_ar && 'Local', p.international && 'Internacional', p.hub && 'HUB'].filter(Boolean).map(function (x) { return '<i>' + x + '</i>'; }).join('') || '<span class="muted">—</span>';
         var th = p.fotos && p.fotos[0] ? '<img src="' + esc(p.fotos[0]) + '" alt="" loading="lazy">' : '<span class="ph">' + esc((p.nombre || '?')[0]) + '</span>';
         return '<button type="button" class="row" data-id="' + p.id + '"><span class="th">' + th + '</span><span class="nm"><b>' + esc(p.nombre) + '</b><small>' + esc(p.codigo) + (p.region ? ' · ' + esc(p.region) : '') + '</small></span>' +
           '<span class="ct">' + esc(p.categoria) + '<small>' + esc(p.subcategoria) + '</small></span><span class="pr">' + esc(pr[0]) + ' <small>' + pr[1] + '</small></span><span class="dn">' + donde + '</span>' +
@@ -159,7 +160,7 @@
 
   function vacio() {
     return { id: (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())), nombre: '', descripcion: '', categoria: Object.keys(P.categorias)[0], subcategoria: '', temas: [], pais: 'Argentina', region: '', destino: '',
-      precio_ars: null, precio_mxn: null, precio_usd: null, tienda_ar: true, tienda_mx: false, international: false, paises_envio: [], hub: false, hs: '', volumen: '', vigencia_hub: null,
+      precio_ars: null, precio_usd: null, tienda_ar: true, international: false, paises_envio: ['México'], hub: false, hs: '', volumen: '', vigencia_hub: null,
       link_pago: '', fotos: [], estado: 'Borrador', vendedor: 'Umarti Origen', slug: '' };
   }
   function abrirEditor(p, copia) {
@@ -169,8 +170,8 @@
     actual._nuevo = nuevo;
     fotos = (actual.fotos || []).slice(); aBorrar = []; paisesEnvio = (actual.paises_envio || []).slice(); slugManual = !nuevo;
     ['nombre', 'descripcion', 'region', 'hs', 'volumen', 'link_pago', 'vendedor', 'slug'].forEach(function (k) { f[k].value = actual[k] || ''; });
-    ['precio_ars', 'precio_mxn', 'precio_usd'].forEach(function (k) { f[k].value = actual[k] == null ? '' : actual[k]; });
-    ['tienda_ar', 'tienda_mx', 'international', 'hub'].forEach(function (k) { f[k].checked = !!actual[k]; });
+    ['precio_ars', 'precio_usd'].forEach(function (k) { f[k].value = actual[k] == null ? '' : actual[k]; });
+    ['tienda_ar', 'international', 'hub'].forEach(function (k) { f[k].checked = !!actual[k]; });
     selCatE.value = actual.categoria; llenarSubs(actual.subcategoria);
     f.pais.value = P.paises.indexOf(actual.pais) > -1 ? actual.pais : 'Otro';
     f.destino.value = actual.destino || ''; f.estado.value = actual.estado; f.vigencia_hub.value = actual.vigencia_hub || '';
@@ -205,8 +206,8 @@
     return {
       id: actual.id, nombre: f.nombre.value.trim(), descripcion: f.descripcion.value.trim(), categoria: selCatE.value, subcategoria: selSub.value,
       temas: $$('#e-temas input:checked').map(function (c) { return c.value; }), pais: f.pais.value, region: f.region.value.trim(), destino: f.destino.value,
-      precio_ars: num('precio_ars'), precio_mxn: num('precio_mxn'), precio_usd: num('precio_usd'),
-      tienda_ar: f.tienda_ar.checked, tienda_mx: f.tienda_mx.checked, international: f.international.checked, paises_envio: paisesEnvio.slice(),
+      precio_ars: num('precio_ars'), precio_usd: num('precio_usd'),
+      tienda_ar: f.tienda_ar.checked && localAbierto(), international: f.international.checked, paises_envio: paisesEnvio.slice(),
       hub: f.hub.checked, hs: f.hs.value.replace(/\D/g, ''), volumen: f.volumen.value.trim(), vigencia_hub: f.vigencia_hub.value || null,
       link_pago: f.link_pago.value.trim(), fotos: fotos.slice(), estado: f.estado.value, vendedor: f.vendedor.value.trim() || 'Umarti Origen', slug: slugify(f.slug.value)
     };
@@ -216,11 +217,11 @@
     if (!p.nombre) out.push(['err', 'Falta el nombre.']);
     if (!p.slug) out.push(['err', 'Falta la dirección en el sitio.']);
     else if (productos.some(function (o) { return o.slug === p.slug && o.id !== p.id; })) out.push(['err', 'Ya hay otro producto con la dirección "' + p.slug + '".']);
-    if (!p.tienda_ar && !p.tienda_mx && !p.international) out.push(['warn', 'No está marcado en ninguna tienda: no se va a poder comprar.']);
-    if (p.tienda_ar && p.precio_ars == null) out.push(['err', 'Marcaste Tienda Argentina pero falta el precio en ARS.']);
-    if (p.tienda_mx && p.precio_mxn == null) out.push(['err', 'Marcaste Tienda México pero falta el precio en MXN.']);
-    if (p.international && p.precio_usd == null) out.push(['err', 'Marcaste International Shop pero falta el precio en USD.']);
-    if (p.international && !p.paises_envio.length) out.push(['warn', 'International Shop sin países de envío.']);
+    if (!p.tienda_ar && !p.international && !p.hub) out.push(['warn', 'No está marcado en ningún mercado: no se va a ver en ningún lado.']);
+    else if (!p.tienda_ar && !p.international) out.push(['warn', 'Solo está en el HUB: no se va a poder comprar por unidad.']);
+    if (p.tienda_ar && p.precio_ars == null) out.push(['err', 'Marcaste Mercado local pero falta el precio en ARS.']);
+    if (p.international && p.precio_usd == null) out.push(['err', 'Marcaste Mercado internacional pero falta el precio en USD.']);
+    if (p.international && !p.paises_envio.length) out.push(['warn', 'Mercado internacional sin países de envío.']);
     if (!p.fotos.length) out.push(['warn', 'Sin fotos: se va a mostrar un dibujo de color.']);
     if (!p.descripcion) out.push(['warn', 'Sin descripción.']);
     if (p.hub && !p.hs) out.push(['warn', 'En el Hub conviene cargar la posición arancelaria: mejora las coincidencias.']);
@@ -228,13 +229,15 @@
   }
   function actualizar() {
     var p = leer();
-    $$('.venta').forEach(function (v) { var on = v.querySelector('.sw input').checked; v.classList.toggle('off', !on); });
-    $('.envio-intl').classList.toggle('off', !f.international.checked);
-    $('.hub-campos').classList.toggle('off', !f.hub.checked);
+    var abierto = localAbierto();
+    f.tienda_ar.disabled = !abierto;
+    $('#m-local-aviso').hidden = abierto;
+    $('#m-local-aviso').textContent = abierto ? '' : 'La tienda local de ' + f.pais.value + ' todavía no está abierta. Por ahora vendelo por el Mercado internacional.';
+    $$('.mercado').forEach(function (m) { var c = m.querySelector('.sw input'); m.classList.toggle('off', !c.checked || c.disabled); });
     $$('.count').forEach(function (c) { var el = f[c.dataset.for]; c.textContent = el.value.length + ' / ' + el.maxLength; });
     var pr = precioPrincipal(p);
     var media = p.fotos[0] ? '<img src="' + esc(p.fotos[0]) + '" alt="">' : '<span class="pv-ph">' + esc((p.nombre || '?')[0]) + '</span>';
-    var zonas = [p.tienda_ar && 'Argentina', p.tienda_mx && 'México', p.international && 'Internacional'].filter(Boolean).join(' · ');
+    var zonas = [p.tienda_ar && 'Argentina', p.international && 'Internacional'].filter(Boolean).join(' · ');
     $('#e-preview').innerHTML = '<div class="pv-media">' + media + (p.estado === 'Ejemplo' ? '<em>Ejemplo</em>' : '') + '</div><div class="pv-info"><small>' + esc(p.subcategoria) + '</small><b>' + esc(p.nombre || 'Nombre del producto') + '</b>' +
       '<span class="pv-pr">' + esc(pr[0]) + ' <small>' + pr[1] + '</small></span>' + (zonas ? '<span class="pv-env">Envío disponible <b>' + esc(zonas) + '</b></span>' : '') + '</div>';
     var pb = problemas(p);

@@ -91,7 +91,7 @@ textarea { resize: vertical; }
 .pn-form { display: grid; gap: 18px; }
 fieldset.card { border: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 legend { font-size: 1.3rem; padding: 0 6px; margin-left: -6px; }
-fieldset .full, fieldset .venta, fieldset .fotos, fieldset .drop, fieldset .hub-campos { grid-column: 1 / -1; }
+fieldset .full, fieldset .mercado, fieldset .fotos, fieldset .drop, fieldset .hub-campos { grid-column: 1 / -1; }
 .lbl { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
 .count { align-self: flex-end; font-weight: 400; color: var(--muted); font-size: 0.75rem; }
 .checks { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
@@ -108,8 +108,15 @@ fieldset .full, fieldset .venta, fieldset .fotos, fieldset .drop, fieldset .hub-
 .sw input:checked + span { background: var(--olive); }
 .sw input:checked + span::after { transform: translateX(16px); }
 .sw input:focus-visible + span { box-shadow: 0 0 0 3px rgba(79, 107, 58, .3); }
-.venta { display: grid; grid-template-columns: 220px 1fr; gap: 16px; align-items: center; padding: 12px 14px; border-radius: 14px; background: #faf6ef; }
-.venta.off .precio, .envio-intl.off, .hub-campos.off { opacity: .45; }
+.mercado { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 18px; align-items: end; padding: 16px; border-radius: 14px; background: #faf6ef; border: 1px solid transparent; }
+.mercado:not(.off) { border-color: #dfe8d6; background: #f5f8f1; }
+.m-head { display: flex; flex-direction: column; gap: 4px; }
+.m-head b { font-size: 1.02rem; }
+.m-sub { color: var(--muted); font-size: 0.82rem; padding-left: 50px; }
+.mercado .full, .mercado .hub-campos, .m-aviso { grid-column: 1 / -1; }
+.m-aviso { font-size: 0.85rem; color: var(--warn); }
+.mercado.off .precio, .mercado.off .envio-intl, .mercado.off .hub-campos { opacity: .45; }
+.sw input:disabled + span { opacity: .5; }
 .money { display: flex; align-items: center; border: 1px solid var(--line); border-radius: 12px; background: #fff; overflow: hidden; max-width: 260px; }
 .money i { font-style: normal; color: var(--muted); padding: 0 10px; font-weight: 600; font-size: 0.85rem; }
 .money input { border: 0 !important; box-shadow: none !important; padding-left: 0 !important; }
@@ -175,7 +182,7 @@ fieldset .full, fieldset .venta, fieldset .fotos, fieldset .drop, fieldset .hub-
   .pn-top { padding: 10px 16px; }
   .pn-main { padding: 20px 16px 60px; }
   fieldset.card { grid-template-columns: 1fr; }
-  .venta { grid-template-columns: 1fr; }
+  .mercado { grid-template-columns: 1fr; }
   .hub-campos { grid-template-columns: 1fr; }
   .pn-user span { display: none; }
 }

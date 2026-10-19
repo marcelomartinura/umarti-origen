@@ -11,7 +11,7 @@ window.TIENDA_INDICE = [
   "c1": "#5b7a43",
   "c2": "#33472a",
   "glifo": "M",
-  "envio": "Argentina · México · Internacional",
+  "envio": "Argentina · Internacional",
   "ejemplo": true
  },
  {
@@ -25,7 +25,7 @@ window.TIENDA_INDICE = [
   "c1": "#5b7a43",
   "c2": "#33472a",
   "glifo": "B",
-  "envio": "Argentina · México · Internacional",
+  "envio": "Argentina · Internacional",
   "ejemplo": true
  },
  {
@@ -39,7 +39,7 @@ window.TIENDA_INDICE = [
   "c1": "#5b7a43",
   "c2": "#33472a",
   "glifo": "Y",
-  "envio": "Argentina · México · Internacional",
+  "envio": "Argentina · Internacional",
   "ejemplo": true
  },
  {
@@ -53,7 +53,7 @@ window.TIENDA_INDICE = [
   "c1": "#c8922a",
   "c2": "#8a5e0c",
   "glifo": "K",
-  "envio": "Argentina · México · Internacional",
+  "envio": "Argentina · Internacional",
   "ejemplo": true
  }
 ];

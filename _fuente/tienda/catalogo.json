@@ -16,9 +16,10 @@
    "precio_mxn": 650,
    "precio_usd": 35,
    "tienda_ar": true,
-   "tienda_mx": true,
+   "tienda_mx": false,
    "international": true,
    "paises_envio": [
+    "México",
     "Estados Unidos",
     "España",
     "Chile"
@@ -49,9 +50,10 @@
    "precio_mxn": 220,
    "precio_usd": 12,
    "tienda_ar": true,
-   "tienda_mx": true,
+   "tienda_mx": false,
    "international": true,
    "paises_envio": [
+    "México",
     "Estados Unidos",
     "España",
     "Chile"
@@ -82,9 +84,10 @@
    "precio_mxn": 260,
    "precio_usd": 15,
    "tienda_ar": true,
-   "tienda_mx": true,
+   "tienda_mx": false,
    "international": true,
    "paises_envio": [
+    "México",
     "Estados Unidos",
     "España",
     "Chile"
@@ -115,9 +118,10 @@
    "precio_mxn": 1100,
    "precio_usd": 60,
    "tienda_ar": true,
-   "tienda_mx": true,
+   "tienda_mx": false,
    "international": true,
    "paises_envio": [
+    "México",
     "Estados Unidos",
     "España"
    ],
@@ -162,17 +166,6 @@
    "impuestos": "No aplica",
    "estado": "Borrador",
    "slug": "argentina"
-  },
-  {
-   "zona": "México",
-   "plazo": "A confirmar",
-   "costo": "A confirmar",
-   "transportista": "A confirmar",
-   "seguimiento": "A confirmar",
-   "devoluciones": "A confirmar",
-   "impuestos": "No aplica",
-   "estado": "Borrador",
-   "slug": "mexico"
   },
   {
    "zona": "Internacional",

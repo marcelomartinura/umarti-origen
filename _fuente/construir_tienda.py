@@ -20,6 +20,14 @@ SECTOR_HUB = {"Café, Té y Mate": "Alimentos y bebidas", "Bebidas": "Alimentos 
               "Regalos y Kits": "Manufacturas", "Moda": "Moda y textil", "Tecnología": "Tecnología", "Salud y Bienestar": "Salud",
               "Hogar y Cocina": "Manufacturas", "Herramientas y Jardín": "Manufacturas", "Limpieza e Higiene": "Manufacturas"}
 MONEDA_PAIS = {"Argentina": "ars", "México": "mxn"}
+# Mercados locales abiertos: país -> (campo que lo activa, campo de precio, moneda).
+# México todavía no tiene tienda local: sus compradores usan International Shop.
+# Cuando abra, se agrega ("México": ("tienda_mx", "precio_mxn", "mxn")) y listo.
+TIENDAS_LOCALES = {"Argentina": ("tienda_ar", "precio_ars", "ars")}
+
+
+def en_tienda_local(p):
+    return any(p.get(flag) for flag, _, _ in TIENDAS_LOCALES.values())
 
 
 def cargar():
@@ -65,16 +73,16 @@ def precio_principal(p):
     m = MONEDA_PAIS.get(p["pais"])
     if m and p.get(f"precio_{m}") is not None and p.get(f"tienda_{m[:2]}"):
         return precio(p[f"precio_{m}"], m), m.upper()
-    for m in ("ars", "mxn"):
-        if p.get(f"tienda_{m[:2]}") and p.get(f"precio_{m}") is not None:
-            return precio(p[f"precio_{m}"], m), m.upper()
+    for flag, campo, m in TIENDAS_LOCALES.values():
+        if p.get(flag) and p.get(campo) is not None:
+            return precio(p[campo], m), m.upper()
     return precio(p["precio_usd"], "usd"), "USD"
 
 
 def zonas(p):
     """Zonas con envío disponible, empezando por el país de origen."""
     z = []
-    nacionales = [("Argentina", "tienda_ar", "precio_ars", "ars"), ("México", "tienda_mx", "precio_mxn", "mxn")]
+    nacionales = [(pais, flag, campo, mon) for pais, (flag, campo, mon) in TIENDAS_LOCALES.items()]
     nacionales.sort(key=lambda x: x[0] != p["pais"])
     for nombre, flag, campo, mon in nacionales:
         if p.get(flag):
@@ -229,7 +237,7 @@ DIALOGOS = '''  <dialog id="dlg-cant" aria-labelledby="cant-title">
 # ---------- páginas ----------
 def listado(productos, cb, cv):
     d = 1
-    locales = [p for p in productos if p["tienda_ar"] or p["tienda_mx"]]
+    locales = [p for p in productos if en_tienda_local(p)]
     cats = []
     for p in locales:
         for v in (p["categoria"], p["subcategoria"]):
@@ -242,7 +250,7 @@ def listado(productos, cb, cv):
       <div class="blog-head">
         <span class="eyebrow" style="color:var(--terra)">Tienda</span>
         <h1>Productos con origen</h1>
-        <p>Productos seleccionados de Argentina y otros países. En cada uno vas a ver a dónde se envía: dentro del país, a México o al resto del mundo.</p>
+        <p>Productos seleccionados de Argentina y otros países. En cada uno vas a ver a dónde se envía: dentro de su país de origen o al resto del mundo, incluido México.</p>
       </div>
       <div class="shop-tools">{chips}<span class="v-count" id="shop-count"></span></div>
       <div class="prod-grid" id="shop-grid">
@@ -252,8 +260,8 @@ def listado(productos, cb, cv):
       <p class="shop-note">¿Comprás desde otro país? Mirá <a href="{rel(d, 'international-shop/')}">International Shop</a>. · <a href="{rel(d, 'envios/')}">Condiciones de envío</a></p>
       <div style="height:88px"></div>
     </div>'''
-    return page(d, "Tienda Umarti Origen: productos con origen, con envío en Argentina, México e internacional",
-                "Mates, bombillas, yerba y productos seleccionados de Argentina, con envío en Argentina, México y al exterior.", main, ["blog", "viajes", "tienda"])
+    return page(d, "Tienda Umarti Origen: productos con origen, con envío en Argentina e internacional",
+                "Mates, bombillas, yerba y productos seleccionados de Argentina, con envío en Argentina y al exterior, incluido México.", main, ["blog", "viajes", "tienda"])
 
 
 def international(productos, cb, cv):
@@ -370,7 +378,6 @@ def pagina_producto(p, productos, temas, notas, cb, cv):
     if p["estado"] == "Publicado":
         offers = []
         if p["tienda_ar"] and p["precio_ars"]: offers.append({"@type": "Offer", "price": p["precio_ars"], "priceCurrency": "ARS", "availability": "https://schema.org/InStock"})
-        if p["tienda_mx"] and p["precio_mxn"]: offers.append({"@type": "Offer", "price": p["precio_mxn"], "priceCurrency": "MXN", "availability": "https://schema.org/InStock"})
         if p["international"] and p["precio_usd"]: offers.append({"@type": "Offer", "price": p["precio_usd"], "priceCurrency": "USD", "availability": "https://schema.org/InStock"})
         ld = {"@context": "https://schema.org", "@type": "Product", "name": p["nombre"], "description": p["descripcion"], "sku": p["codigo"],
               "category": f'{p["categoria"]} > {p["subcategoria"]}', "countryOfOrigin": p["pais"], "offers": offers,
@@ -384,7 +391,7 @@ def pagina_producto(p, productos, temas, notas, cb, cv):
 def pagina_tema(t, productos, notas, cb, cv):
     d = 1
     prods = [p for p in productos if t["clave"] in p["temas"]]
-    locales = [p for p in prods if p["tienda_ar"] or p["tienda_mx"]]
+    locales = [p for p in prods if en_tienda_local(p)]
     intl = [p for p in prods if p["international"]]
     hub = [p for p in prods if p["hub"]]
     paises = sorted({c for p in intl for c in p["paises_envio"]}, key=slug)
@@ -496,7 +503,7 @@ def indice_envios(envios):
       <div class="link-cards" style="max-width:560px">{cards}</div>
       <div style="height:88px"></div>
     </div>'''
-    return page(d, "Envíos | Umarti Origen", "Condiciones de envío de Umarti Origen para Argentina, México e internacional.", main, ["blog", "viajes", "tienda"],
+    return page(d, "Envíos | Umarti Origen", "Condiciones de envío de Umarti Origen para Argentina e internacional.", main, ["blog", "viajes", "tienda"],
                 noindex=all(e.get("estado") != "Publicado" for e in envios))
 
 
