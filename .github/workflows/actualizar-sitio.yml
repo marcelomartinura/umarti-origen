@@ -1,0 +1,46 @@
+name: Actualizar sitio desde el Panel
+
+# Cada 30 minutos (y cuando se pide a mano desde la pestaña Actions) trae los productos
+# del Panel, reconstruye las páginas y guarda los cambios en main.
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: actualizar-sitio
+  cancel-in-progress: false
+
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Traer productos del Panel
+        run: python3 _fuente/tienda/importar_supabase.py
+      - name: Reconstruir el sitio
+        run: |
+          python3 _fuente/construir_tienda.py > /dev/null
+          python3 _fuente/construir.py > /dev/null
+          python3 _fuente/construir_blog.py > /dev/null
+          python3 _fuente/construir_viajes.py > /dev/null
+          python3 _fuente/construir_cupones.py > /dev/null
+          python3 _fuente/construir_panel.py > /dev/null
+          python3 _fuente/versionar_assets.py
+      - name: Guardar cambios
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "Umarti Panel"
+            git config user.email "panel@umarti.com"
+            git add -A
+            git commit -m "Actualización automática desde el Panel"
+            git push
+          else
+            echo "Sin cambios"
+          fi
