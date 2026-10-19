@@ -269,5 +269,41 @@ window.CUPONES = [
   "tema": "",
   "ejemplo": true,
   "online": true
+ },
+ {
+  "codigo": "CU-0016",
+  "titulo": "20% en tu primer masaje descontracturante",
+  "comercio": "Spa Agua Termal",
+  "iniciales": "SA",
+  "lugar": "Querétaro, México",
+  "descripcion": "Masaje de 60 minutos con aceites esenciales y acceso al circuito de aguas.",
+  "tipo": "Código",
+  "cupon": "SPA20",
+  "condiciones": "Con reserva previa. De lunes a jueves.",
+  "vence_txt": "31/01/2027",
+  "link": "",
+  "destino_url": "viajes/mexico/queretaro/",
+  "destino_nombre": "Querétaro",
+  "tema": "",
+  "ejemplo": true,
+  "online": false
+ },
+ {
+  "codigo": "CU-0017",
+  "titulo": "2x1 en manicura y pedicura",
+  "comercio": "Estudio Bella Mano",
+  "iniciales": "EB",
+  "lugar": "Buenos Aires, Argentina",
+  "descripcion": "Manicura y pedicura semipermanente para dos personas.",
+  "tipo": "Oferta",
+  "cupon": "",
+  "condiciones": "Válido los martes y miércoles. Mostrá el cupón en el local.",
+  "vence_txt": "20/12/2026",
+  "link": "",
+  "destino_url": "viajes/argentina/buenos-aires/",
+  "destino_nombre": "Buenos Aires",
+  "tema": "",
+  "ejemplo": true,
+  "online": false
  }
 ];

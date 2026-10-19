@@ -9,6 +9,7 @@ fecha: 2026-10-18
 destacada: si
 imagen: assets/img/blog/mate-con-agaves.jpg
 imagen_alt: Mate de madera con bombilla en primer plano y un campo de agaves de fondo
+imagen_pos: center 58%
 ---
 El mate es una infusión que se prepara con hojas secas y molidas de yerba mate (*Ilex paraguariensis*), una planta originaria de la cuenca de los ríos Paraná y Paraguay, en América del Sur. Se toma sobre todo en Argentina, Uruguay, Paraguay, el sur de Brasil y algunas zonas de Chile, y cada vez se ve más en otros países.
 

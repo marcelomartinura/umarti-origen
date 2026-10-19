@@ -22,6 +22,7 @@ listas con "- " o "1. ", tablas con |, "> " para un recuadro de consejo, y fotos
 ![descripción](assets/img/blog/foto.jpg "Epígrafe opcional") en una línea sola
 (dos o más fotos seguidas se muestran una al lado de la otra).
 Foto principal (opcional): imagen: assets/img/blog/foto.jpg  e  imagen_alt: descripción
+  imagen_pos: center 70%   (opcional: qué parte de la foto se ve en las tarjetas; 0% arriba, 100% abajo)
 """
 import glob, html, json, os, re, sys, urllib.parse
 
@@ -203,7 +204,8 @@ P_OPINION = "blog/opinion/"
 def cover(n, cls="", depth=None):
     c1, c2 = n["colores"]
     if n.get("imagen") and depth is not None:
-        return f'<div class="cover has-photo {cls}" style="--c1:{c1};--c2:{c2}"><img src="{rel(depth, n["imagen"])}" alt="" loading="lazy"><span>{esc(n["etiqueta"])}</span></div>'
+        pos = f' style="object-position:{esc(n["imagen_pos"])}"' if n.get("imagen_pos") else ""
+        return f'<div class="cover has-photo {cls}" style="--c1:{c1};--c2:{c2}"><img src="{rel(depth, n["imagen"])}" alt="" loading="lazy"{pos}><span>{esc(n["etiqueta"])}</span></div>'
     return f'<div class="cover {cls}" data-glyph="{esc(n["glifo"])}" style="--c1:{c1};--c2:{c2}" aria-hidden="true"><span>{esc(n["etiqueta"])}</span></div>'
 
 
