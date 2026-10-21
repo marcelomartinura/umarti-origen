@@ -227,20 +227,7 @@ def page(body_class, kind, title, desc, og_title, main, faqs, faq_title, dialogs
 {faq_block(faqs, faq_title)}
   </main>
 
-  <footer>
-    <div class="wrap foot">
-      <div>
-        <a href="../" class="logo logo-foot" aria-label="Umarti Origen, ir al inicio"><img class="logo-ico" src="../assets/img/marca/icono.png" alt="" width="259" height="236"><span class="logo-txt"><b>Umarti</b><b>Origen</b></span></a>
-        <p style="margin-top:8px">Tienda, comercio exterior y viajes.</p>
-      </div>
-      <ul class="eco">
-        <li><strong>Umarti Origen</strong></li>
-        <li>Umarti Movilidad</li>
-        <li>Umarti Digital</li>
-      </ul>
-      <p>© 2026 Umarti</p>
-    </div>
-  </footer>
+{comun.footer("../")}
 
 {dialogs}
 {NEG_DIALOG}

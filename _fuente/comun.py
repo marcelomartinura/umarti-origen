@@ -42,6 +42,9 @@ def header(prefijo):
     return re.sub(r'href="([^"]*)"', fix, h)
 
 
+DEFENSA_CONSUMIDOR = "https://www.argentina.gob.ar/produccion/defensadelconsumidor/formulario"
+
+
 def footer(prefijo):
     return f'''  <footer>
     <div class="wrap foot">
@@ -55,6 +58,18 @@ def footer(prefijo):
         <li>Umarti Digital</li>
       </ul>
       <p>© 2026 Umarti · <a href="{prefijo}publicidad/">Anunciá en Umarti</a></p>
+    </div>
+    <div class="wrap foot-legal">
+      <nav aria-label="Información legal">
+        <a href="{prefijo}legal/terminos/">Términos y condiciones</a>
+        <a href="{prefijo}legal/privacidad/">Privacidad</a>
+        <a href="{prefijo}legal/cookies/">Cookies</a>
+        <a href="{prefijo}envios/">Envíos</a>
+      </nav>
+      <div class="foot-consumo">
+        <a class="btn-arrep" href="{prefijo}legal/arrepentimiento/">Botón de arrepentimiento</a>
+        <a class="def-cons" href="{DEFENSA_CONSUMIDOR}" target="_blank" rel="noopener">Defensa de las y los Consumidores. Para reclamos <b>ingrese aquí</b></a>
+      </div>
     </div>
   </footer>'''
 

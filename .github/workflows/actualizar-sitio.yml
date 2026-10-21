@@ -33,6 +33,7 @@ jobs:
           python3 _fuente/construir_cupones.py > /dev/null
           python3 _fuente/construir_panel.py > /dev/null
           python3 _fuente/construir_recursos.py > /dev/null
+          python3 _fuente/construir_legal.py > /dev/null
           python3 _fuente/versionar_assets.py
       - name: Guardar cambios
         run: |

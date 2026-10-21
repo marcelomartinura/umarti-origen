@@ -1,0 +1,25 @@
+/* Páginas legales */
+.lg-head { padding: 24px 0 8px; max-width: 760px; }
+.lg-head h1 { font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.02em; line-height: 1.1; }
+.lg-head .eyebrow { color: var(--olive); margin-bottom: 10px; }
+.lg-head .muted { color: var(--muted); margin-top: 8px; font-size: 0.92rem; }
+.lg-layout { display: grid; grid-template-columns: minmax(0, 720px) 280px; gap: 56px; padding: 28px 0 80px; justify-content: space-between; }
+.lg-prose { font-size: 1.02rem; }
+.lg-prose h2 { font-size: 1.45rem; margin-top: 1.7em; }
+.lg-prose h2:first-child { margin-top: 0; }
+.lg-side { display: grid; gap: 18px; align-content: start; position: sticky; top: 190px; }
+.lg-side .mini-list a[aria-current] { font-weight: 700; color: var(--terra-dark); }
+mark.falta { background: #fff1c2; color: #6b5310; padding: 1px 6px; border-radius: 6px; font-weight: 600; font-size: 0.92em; }
+.draft-banner { background: #fff4d6; border: 1px solid #f0d58a; color: #6b5310; border-radius: 14px; padding: 12px 18px; margin-top: 18px; font-size: 0.95rem; }
+.lead-lg { font-size: 1.15rem; }
+.arr-form { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 24px; margin: 1.4em 0 0.6em; }
+.arr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+.arr-grid label { display: flex; flex-direction: column; gap: 6px; font-size: 0.88rem; font-weight: 600; }
+.arr-grid .full { grid-column: 1 / -1; }
+.arr-grid input, .arr-grid textarea { font: inherit; font-weight: 400; border: 1px solid var(--line); border-radius: 12px; padding: 10px 13px; background: #fdfbf7; }
+.arr-grid input:focus, .arr-grid textarea:focus { outline: none; border-color: var(--terra); box-shadow: 0 0 0 3px rgba(180, 83, 42, .14); }
+.arr-ok { margin-top: 18px; background: #e9f2e2; border-radius: 14px; padding: 16px 18px; }
+.arr-ok strong { color: var(--olive); }
+.small { font-size: 0.85rem; }
+@media (max-width: 960px) { .lg-layout { grid-template-columns: 1fr; gap: 28px; } .lg-side { position: static; } }
+@media (max-width: 600px) { .arr-grid { grid-template-columns: 1fr; } }
