@@ -319,3 +319,16 @@ dialog::backdrop { background: rgba(31, 26, 20, 0.55); }
   .ts-nav { flex-wrap: nowrap; overflow-x: auto; margin: 0 -8px; scrollbar-width: none; }
   .ts-nav a { padding: 6px 10px; font-size: 0.9rem; white-space: nowrap; }
 }
+
+/* ---------- International Shop: portada con globo ---------- */
+.is-hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 32px; align-items: center; padding: 20px 0 10px;
+ }
+.is-txt h1 { font-size: clamp(2.4rem, 5.5vw, 3.8rem); letter-spacing: -0.02em; line-height: 1.05; }
+.is-txt p { color: var(--muted); font-size: 1.12rem; margin: 14px 0 18px; max-width: 52ch; }
+.is-art svg { width: 100%; max-width: 440px; height: auto; display: block; margin-left: auto; }
+.is-pasos { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0 40px; }
+.is-pasos li { display: flex; gap: 12px; align-items: center; background: var(--intl-soft); border-radius: 16px; padding: 14px 16px; }
+.is-pasos li > span { width: 34px; height: 34px; border-radius: 50%; background: #fff; color: var(--intl); font-family: "Fraunces", serif; font-weight: 700; display: grid; place-items: center; flex: none; }
+.is-pasos b { display: block; font-size: 0.97rem; }
+.is-pasos small { color: var(--muted); font-size: 0.84rem; }
+@media (max-width: 860px) { .is-hero { grid-template-columns: 1fr; } .is-art svg { max-width: 340px; margin: 0 auto; } .is-pasos { grid-template-columns: 1fr; } }

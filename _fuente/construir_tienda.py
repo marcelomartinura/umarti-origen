@@ -264,7 +264,7 @@ def listado(productos, cb, cv):
       <div class="blog-head">
         <span class="eyebrow" style="color:var(--terra)">Tienda Argentina</span>
         <h1>Productos con origen</h1>
-        <p>Productos seleccionados de Argentina, con envío a todo el país. Si comprás desde el exterior, incluido México, los encontrás en International Shop.</p>
+        <p>Productos seleccionados de Argentina, con envío a todo el país. Si comprás desde el exterior, los encontrás en <a href="{rel(d, 'international-shop/')}">International Shop</a>.</p>
       </div>
       <div class="shop-tools">{chips}<span class="v-count" id="shop-count"></span></div>
       <div class="prod-grid" id="shop-grid">
@@ -279,22 +279,60 @@ def listado(productos, cb, cv):
                 "Mates, bombillas, yerba y productos seleccionados de Argentina, con envío en Argentina y al exterior, incluido México.", main, ["blog", "viajes", "tienda"])
 
 
+ILUSTRACION_INTL = '''<svg viewBox="0 0 440 330" role="img" aria-label="Un paquete viaja desde Argentina, sobre el globo, hacia otros países">
+  <defs>
+    <radialGradient id="is-mar" cx="40%" cy="35%" r="75%"><stop offset="0" stop-color="#eef6fc"/><stop offset="1" stop-color="#c9e0f2"/></radialGradient>
+    <clipPath id="is-globo"><circle cx="205" cy="185" r="118"/></clipPath>
+  </defs>
+  <circle cx="205" cy="180" r="140" fill="#74acdf" opacity=".10"/>
+  <circle cx="205" cy="185" r="118" fill="url(#is-mar)" stroke="#2f6f8f" stroke-width="2.5"/>
+  <g clip-path="url(#is-globo)" fill="#e7dcc6" stroke="#b9a98d" stroke-width="1.2">
+    <path d="M150 150c14-8 34-6 42 6 8 12 4 26 10 38 6 14 2 30-6 44-6 10-8 24-14 34-4 8-12 6-12-2 0-14-6-26-12-38-8-16-20-26-20-44 0-16 2-30 12-38z"/>
+    <path d="M118 78c18-10 46-14 66-6 14 6 10 20-2 24-14 4-22 14-36 14-14 0-26-8-34-16-6-6-4-12 6-16z"/>
+    <path d="M250 96c16-10 40-8 58 4 16 10 26 28 18 40-8 12-26 8-38 16-12 8-10 26-24 30-14 4-24-10-26-24-2-12 4-22 0-34-4-14 0-24 12-32z"/>
+  </g>
+  <g clip-path="url(#is-globo)" fill="none" stroke="#2f6f8f" stroke-width="1.2" opacity=".35">
+    <ellipse cx="205" cy="185" rx="48" ry="118"/><ellipse cx="205" cy="185" rx="92" ry="118"/>
+    <path d="M87 145h236M87 185h236M87 225h236"/>
+  </g>
+  <path d="M182 262c-96-40-74-196 70-214 54-7 98 10 126 30" fill="none" stroke="#b4532a" stroke-width="2.5" stroke-dasharray="7 8" stroke-linecap="round"/>
+  <g transform="translate(250 48) rotate(8)">
+    <path d="M-14 0h22l10-9h6l-5 9h9l4-4h4l-3 6 3 6h-4l-4-4h-9l5 9h-6L8 4h-22z" fill="#1f1a14"/>
+  </g>
+  <g transform="translate(176 230)">
+    <path d="M0 0v42" stroke="#5a3d27" stroke-width="2.5" stroke-linecap="round"/>
+    <rect x="1" y="0" width="36" height="24" rx="2" fill="#74acdf"/><rect x="1" y="8" width="36" height="8" fill="#fff"/>
+    <circle cx="19" cy="12" r="3" fill="#f6b40e" stroke="#85340a" stroke-width=".6"/>
+    <circle cx="0" cy="44" r="4" fill="#b4532a"/>
+  </g>
+  <g transform="translate(366 58)">
+    <path d="M0 14 26 0l26 14v30L26 58 0 44z" fill="#c9965d"/>
+    <path d="M0 14l26 14 26-14M26 28v30" fill="none" stroke="#8c6236" stroke-width="1.5"/>
+    <path d="M13 7l26 14v10" fill="none" stroke="#f3e2c3" stroke-width="5"/>
+  </g>
+</svg>'''
+
+
 def international(productos, cb, cv):
     d = 1
     intl = [p for p in productos if p["international"]]
     paises = sorted({c for p in intl for c in p["paises_envio"]}, key=slug)
     main = f'''    <div class="wrap">
 {crumbs(d, [("International Shop", None)])}
-      <div class="blog-head">
-        <span class="eyebrow" style="color:var(--intl)">International Shop</span>
-        <h1>De Argentina al mundo</h1>
-        <p>Productos argentinos con envío internacional. Precios en dólares estadounidenses; el costo del envío y los impuestos de importación dependen del país de destino.</p>
-      </div>
-      <div class="intl-band" style="margin-bottom:28px">
-        <strong>Enviamos a</strong>
-        <div class="countries">{"".join(f"<span>{esc(c)}</span>" for c in paises)}</div>
-        <a class="text-link" href="{rel(d, p_envio('internacional'))}">Ver las condiciones de envío internacional</a>
-      </div>
+      <section class="is-hero">
+        <div class="is-txt">
+          <span class="eyebrow" style="color:var(--intl)">International Shop</span>
+          <h1>De Argentina al mundo</h1>
+          <p>Productos argentinos con envío internacional. Precios en dólares; el costo del envío y los impuestos de importación dependen del país de destino.</p>
+          <a class="text-link" href="{rel(d, p_envio('internacional'))}">Ver las condiciones de envío internacional</a>
+        </div>
+        <div class="is-art">{ILUSTRACION_INTL}</div>
+      </section>
+      <ol class="is-pasos" aria-label="Cómo funciona">
+        <li><span>1</span><div><b>Elegís desde tu país</b><small>Productos con origen, elegidos en Argentina.</small></div></li>
+        <li><span>2</span><div><b>Pagás en dólares</b><small>Con medios de pago internacionales.</small></div></li>
+        <li><span>3</span><div><b>Te llega a tu casa</b><small>Envío internacional con seguimiento.</small></div></li>
+      </ol>
       <div class="prod-grid">
 {chr(10).join(card(p, d, cb, cv, "intl") for p in intl)}
       </div>
@@ -585,7 +623,7 @@ def portada_pais(productos, temas, cb, cv, pais="Argentina"):
 {chr(10).join(card(p, d, cb, cv) for p in locales[:4])}
         </div>
       </section>
-      <p class="shop-note">¿Comprás desde otro país, incluido México? Entrá a <a href="{rel(d, 'international-shop/')}">International Shop</a>.</p>
+      <p class="shop-note">¿Comprás desde otro país? Entrá a <a href="{rel(d, 'international-shop/')}">International Shop</a>.</p>
       <div style="height:72px"></div>
     </div>'''
     return page(d, f"Tienda {pais} | Umarti Origen: mates, yerba y kits de regalo", f"Comprá mates, yerba y kits de regalo de {pais}, con envío a todo el país y compra segura.", main, ["blog", "viajes", "tienda"])

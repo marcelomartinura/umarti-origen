@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="../assets/css/umarti.css?v=47dc9f4f">
   <link rel="stylesheet" href="../assets/css/blog.css?v=ac03fa53">
   <link rel="stylesheet" href="../assets/css/viajes.css?v=7c8efec9">
-  <link rel="stylesheet" href="../assets/css/tienda.css?v=fd3f3492">
+  <link rel="stylesheet" href="../assets/css/tienda.css?v=f6181868">
 </head>
 <body>
 
@@ -140,16 +140,51 @@
       <nav class="crumbs" aria-label="Ubicación">
         <ol><li><a href="../">Inicio</a></li><li aria-current="page">International Shop</li></ol>
       </nav>
-      <div class="blog-head">
-        <span class="eyebrow" style="color:var(--intl)">International Shop</span>
-        <h1>De Argentina al mundo</h1>
-        <p>Productos argentinos con envío internacional. Precios en dólares estadounidenses; el costo del envío y los impuestos de importación dependen del país de destino.</p>
-      </div>
-      <div class="intl-band" style="margin-bottom:28px">
-        <strong>Enviamos a</strong>
-        <div class="countries"><span>Chile</span><span>España</span><span>Estados Unidos</span><span>México</span></div>
-        <a class="text-link" href="../international-shop/envios/">Ver las condiciones de envío internacional</a>
-      </div>
+      <section class="is-hero">
+        <div class="is-txt">
+          <span class="eyebrow" style="color:var(--intl)">International Shop</span>
+          <h1>De Argentina al mundo</h1>
+          <p>Productos argentinos con envío internacional. Precios en dólares; el costo del envío y los impuestos de importación dependen del país de destino.</p>
+          <a class="text-link" href="../international-shop/envios/">Ver las condiciones de envío internacional</a>
+        </div>
+        <div class="is-art"><svg viewBox="0 0 440 330" role="img" aria-label="Un paquete viaja desde Argentina, sobre el globo, hacia otros países">
+  <defs>
+    <radialGradient id="is-mar" cx="40%" cy="35%" r="75%"><stop offset="0" stop-color="#eef6fc"/><stop offset="1" stop-color="#c9e0f2"/></radialGradient>
+    <clipPath id="is-globo"><circle cx="205" cy="185" r="118"/></clipPath>
+  </defs>
+  <circle cx="205" cy="180" r="140" fill="#74acdf" opacity=".10"/>
+  <circle cx="205" cy="185" r="118" fill="url(#is-mar)" stroke="#2f6f8f" stroke-width="2.5"/>
+  <g clip-path="url(#is-globo)" fill="#e7dcc6" stroke="#b9a98d" stroke-width="1.2">
+    <path d="M150 150c14-8 34-6 42 6 8 12 4 26 10 38 6 14 2 30-6 44-6 10-8 24-14 34-4 8-12 6-12-2 0-14-6-26-12-38-8-16-20-26-20-44 0-16 2-30 12-38z"/>
+    <path d="M118 78c18-10 46-14 66-6 14 6 10 20-2 24-14 4-22 14-36 14-14 0-26-8-34-16-6-6-4-12 6-16z"/>
+    <path d="M250 96c16-10 40-8 58 4 16 10 26 28 18 40-8 12-26 8-38 16-12 8-10 26-24 30-14 4-24-10-26-24-2-12 4-22 0-34-4-14 0-24 12-32z"/>
+  </g>
+  <g clip-path="url(#is-globo)" fill="none" stroke="#2f6f8f" stroke-width="1.2" opacity=".35">
+    <ellipse cx="205" cy="185" rx="48" ry="118"/><ellipse cx="205" cy="185" rx="92" ry="118"/>
+    <path d="M87 145h236M87 185h236M87 225h236"/>
+  </g>
+  <path d="M182 262c-96-40-74-196 70-214 54-7 98 10 126 30" fill="none" stroke="#b4532a" stroke-width="2.5" stroke-dasharray="7 8" stroke-linecap="round"/>
+  <g transform="translate(250 48) rotate(8)">
+    <path d="M-14 0h22l10-9h6l-5 9h9l4-4h4l-3 6 3 6h-4l-4-4h-9l5 9h-6L8 4h-22z" fill="#1f1a14"/>
+  </g>
+  <g transform="translate(176 230)">
+    <path d="M0 0v42" stroke="#5a3d27" stroke-width="2.5" stroke-linecap="round"/>
+    <rect x="1" y="0" width="36" height="24" rx="2" fill="#74acdf"/><rect x="1" y="8" width="36" height="8" fill="#fff"/>
+    <circle cx="19" cy="12" r="3" fill="#f6b40e" stroke="#85340a" stroke-width=".6"/>
+    <circle cx="0" cy="44" r="4" fill="#b4532a"/>
+  </g>
+  <g transform="translate(366 58)">
+    <path d="M0 14 26 0l26 14v30L26 58 0 44z" fill="#c9965d"/>
+    <path d="M0 14l26 14 26-14M26 28v30" fill="none" stroke="#8c6236" stroke-width="1.5"/>
+    <path d="M13 7l26 14v10" fill="none" stroke="#f3e2c3" stroke-width="5"/>
+  </g>
+</svg></div>
+      </section>
+      <ol class="is-pasos" aria-label="Cómo funciona">
+        <li><span>1</span><div><b>Elegís desde tu país</b><small>Productos con origen, elegidos en Argentina.</small></div></li>
+        <li><span>2</span><div><b>Pagás en dólares</b><small>Con medios de pago internacionales.</small></div></li>
+        <li><span>3</span><div><b>Te llega a tu casa</b><small>Envío internacional con seguimiento.</small></div></li>
+      </ol>
       <div class="prod-grid">
         <article class="prod-card" data-cat="Café, Té y Mate" data-sub="Mates y bombillas">
           <div class="prod-media"><span class="badge-ej">Ejemplo</span><button class="fav" type="button" data-fav="UM-0001" aria-pressed="false" aria-label="Guardar en favoritos"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button><div class="carousel" data-carousel tabindex="0" aria-label="Fotos de Mate de calabaza forrado en cuero"><div class="car-track"><div class="car-slide"><a href="../argentina/tienda/mate-de-calabaza-forrado-en-cuero/" tabindex="-1"><div class="cover" data-glyph="M" style="--c1:#5b7a43;--c2:#33472a"><span>Mates y bombillas</span></div></a></div><div class="car-slide"><a href="../argentina/tienda/mate-de-calabaza-forrado-en-cuero/" tabindex="-1"><div class="vcover" style="--c1:#4f79a8;--c2:#26405f"><span class="sun"></span><svg class="land" viewBox="0 0 400 160" preserveAspectRatio="none" aria-hidden="true"><path d="M0 160V112h22V92h16v20h14V66h22v46h16V98h14V52h10V36h6v16h10v60h18V82h26v30h16V70h20v42h22V90h18v22h14V76h26v36h16V96h14v64Z" opacity=".16"/><path d="M0 160V134h40v-12h30v12h50v-8h40v8h60v-14h40v14h60v-6h40v6h40v26Z" opacity=".24"/></svg><b>Origen: Buenos Aires</b><small>Argentina</small></div></a></div><div class="car-slide"><a href="../argentina/tienda/mate-de-calabaza-forrado-en-cuero/" tabindex="-1"><div class="slide-soon"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Pronto, las fotos reales de este producto</span></div></a></div></div><button class="car-btn prev" type="button" aria-label="Foto anterior">‹</button><button class="car-btn next" type="button" aria-label="Foto siguiente">›</button><div class="car-dots"><span class="car-dot on"></span><span class="car-dot"></span><span class="car-dot"></span></div></div></div>
