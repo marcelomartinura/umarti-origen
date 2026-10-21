@@ -186,7 +186,7 @@ window.CUPONES = [
   "destino_url": "",
   "destino_nombre": "",
   "tema": "mate",
-  "tema_url": "argentina/mate/",
+  "tema_url": "mate/",
   "ejemplo": true,
   "online": false
  },
@@ -205,7 +205,7 @@ window.CUPONES = [
   "destino_url": "",
   "destino_nombre": "",
   "tema": "mate",
-  "tema_url": "argentina/mate/",
+  "tema_url": "mate/",
   "ejemplo": true,
   "online": false
  },

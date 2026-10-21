@@ -6,11 +6,11 @@ El catálogo sale de las pestañas Catálogo, Temas y Envíos de la hoja 'Plan E
 Genera, por país de origen (hoy solo Argentina):
   argentina/                     portada del país
   argentina/tienda/              tienda local, y argentina/tienda/<producto>/
-  argentina/<tema>/              páginas de tema, por ejemplo argentina/mate/
   argentina/envios/              envíos dentro del país
-y además, para todos los países: international-shop/, international-shop/envios/, envios/ (índice) y favoritos/.
+y además, para todos los países: <tema>/ (por ejemplo mate/), international-shop/, international-shop/envios/, envios/ (índice) y favoritos/.
 Los productos con "Hub de Oportunidades: Sí" también aparecen en Productos de exportación (lo hace construir.py).
 """
+from urllib.parse import quote
 import glob, html, json, os, re, sys
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
@@ -50,7 +50,7 @@ PAIS_SLUG = {"Argentina": "argentina", "México": "mexico"}
 def p_pais(pais="Argentina"): return PAIS_SLUG.get(pais, "argentina") + "/"
 def p_tienda(pais="Argentina"): return p_pais(pais) + "tienda/"
 def p_prod(p): return f"{p_tienda(p['pais'])}{p['slug']}/"
-def p_tema(t): return f"{p_pais(t.get('pais', 'Argentina'))}{t['clave']}/"
+def p_tema(t): return f"{t['clave']}/"   # los temas son contenido global
 def p_envio(slug_zona):
     """Envíos internacionales viven en International Shop; los locales, en la carpeta del país."""
     return "international-shop/envios/" if slug_zona == "internacional" else f"{slug_zona}/envios/"
@@ -274,6 +274,7 @@ def listado(productos, cb, cv):
       <p class="shop-note">¿Comprás desde otro país? Mirá <a href="{rel(d, 'international-shop/')}">International Shop</a>. · <a href="{rel(d, p_envio('argentina'))}">Condiciones de envío</a></p>
       <div style="height:88px"></div>
     </div>'''
+    main = barra_tienda(d, "tienda") + main
     return page(d, "Tienda Argentina | Umarti Origen: mates, yerba y productos con origen",
                 "Mates, bombillas, yerba y productos seleccionados de Argentina, con envío en Argentina y al exterior, incluido México.", main, ["blog", "viajes", "tienda"])
 
@@ -331,6 +332,7 @@ def pagina_producto(p, productos, temas, notas, cb, cv):
         comprar = f'<a class="btn-buy" href="{esc(p["link_pago"])}" rel="noopener">Comprar</a>'
     else:
         comprar = '<a class="btn-buy" href="#" aria-disabled="true">Disponible muy pronto</a><p class="buy-hint">Estamos preparando la venta en línea de este producto.</p>'
+    comprar += f'<a class="buy-seguro" href="{rel(d, "legal/arrepentimiento/")}">{ICON_LOCK}<span><b>Comprá seguro:</b> pago protegido y 10 días para arrepentirte.</span></a>'
     links = []
     if dest:
         links.append(f'<a class="link-card origen" href="{rel(d, f"viajes/{dest["pais"]}/{dest["slug"]}/")}"><span class="ic">{ICON["pin"]}</span><span><strong>Origen: {esc(p["region"])}, {esc(p["pais"])}</strong><small>Conocé el lugar en la guía de viaje de {esc(dest["nombre"])}</small></span></a>')
@@ -398,12 +400,14 @@ def pagina_producto(p, productos, temas, notas, cb, cv):
               "brand": {"@type": "Brand", "name": p["vendedor"]}}
         if p.get("fotos"): ld["image"] = p["fotos"]
         if SITIO: ld["url"] = f"{SITIO}/{p_prod(p)}"
+    if en_tienda_local(p):
+        main = barra_tienda(d, "tienda", p["pais"]) + main
     return page(d, f"{p['nombre']} | Tienda Umarti Origen", p["descripcion"], main, ["blog", "viajes", "tienda"], ld,
                 noindex=p["estado"] != "Publicado", extra=DIALOGOS)
 
 
 def pagina_tema(t, productos, notas, cb, cv):
-    d = 2
+    d = 1
     prods = [p for p in productos if t["clave"] in p["temas"]]
     locales = [p for p in prods if en_tienda_local(p)]
     intl = [p for p in prods if p["international"]]
@@ -420,7 +424,7 @@ def pagina_tema(t, productos, notas, cb, cv):
     hub_items += "".join(f'<a class="hub-item" href="{rel(d, "mesa-de-negociacion/")}#{b["cod"].lower()}"><small>Búsqueda en la Mesa · {esc(b["pais"])}</small><strong>{esc(b["nombre"])}</strong><span>{esc(b["vol"])}</span></a>' for b in busq)
     c1, c2 = cb.COLORES.get("Café, Té y Mate")
     main = f'''    <div class="wrap">
-{crumbs(d, [("Argentina", p_tema(t).split("/")[0] + "/"), (t["nombre"], None)])}
+{crumbs(d, [(t["nombre"], None)])}
       <section class="tema-hero" data-glyph="{esc(t['nombre'][0])}" style="--c1:{c1};--c2:{c2}">
         <span class="eyebrow">Todo sobre el {esc(t['nombre'].lower())}</span>
         <h1>{esc(t['nombre'])}</h1>
@@ -504,40 +508,87 @@ def pagina_envio(e, envios, productos):
       <p class="muted" style="margin-top:28px">Otras zonas: <span class="zonas-inline">{otras}</span></p>
       <div style="height:88px"></div>
     </div>'''
+    if e["slug"] != "internacional":
+        main = barra_tienda(d, "envios", e["zona"]) + main
     return page(d, f"{titulo}: condiciones | Umarti Origen", f"Plazos, costos, seguimiento y cambios de los {titulo.lower()} de Umarti Origen.",
                 main, ["blog", "viajes", "tienda"], noindex=borrador)
+
+
+BANDERA = {
+    "Argentina": '<svg class="bandera" viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#74acdf"/><rect y="6.67" width="30" height="6.66" fill="#fff"/><circle cx="15" cy="10" r="2.3" fill="#f6b40e" stroke="#85340a" stroke-width=".4"/></svg>',
+}
+ICON_LOCK = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>'
+
+
+def barra_tienda(d, actual, pais="Argentina"):
+    """Barra propia de la tienda del país: Tienda, Envíos, Cupones y Guía de viajes."""
+    items = [("tienda", "Tienda", p_tienda(pais)), ("envios", "Envíos", p_envio(slug(pais))),
+             ("cupones", "Cupones", "cupones/"), ("viajes", "Guía de viajes", f"viajes/{slug(pais)}/")]
+    links = "".join(f'<a href="{rel(d, u)}"{" aria-current=\"page\"" if k == actual else ""}>{t}</a>' for k, t, u in items)
+    return f'''    <div class="ts-bar">
+      <div class="wrap-wide">
+        <a class="ts-marca" href="{rel(d, p_pais(pais))}">{BANDERA.get(pais, "")}<span><b>Tienda {esc(pais)}</b><small>Umarti Origen</small></span></a>
+        <nav class="ts-nav" aria-label="Tienda {esc(pais)}">{links}</nav>
+        <a class="ts-seguro" href="{rel(d, 'legal/arrepentimiento/')}">{ICON_LOCK}Comprá seguro</a>
+      </div>
+    </div>
+'''
 
 
 def portada_pais(productos, temas, cb, cv, pais="Argentina"):
     d = 1
     locales = [p for p in productos if p["pais"] == pais and en_tienda_local(p)]
-    temas_p = [t for t in temas if t.get("pais", "Argentina") == pais]
-    tarjetas = [
-        (p_tienda(pais), "tienda", f"Tienda {pais}", f"{len(locales)} productos con envío a todo el país"),
-        *[(p_tema(t), "tema", f"Todo sobre el {t['nombre'].lower()}", "Guías, productos, destinos y más en un solo lugar") for t in temas_p],
-        (p_envio(slug(pais)), "envio", "Envíos en " + pais, "Plazos, costos, seguimiento y cambios"),
-        ("cupones/", "cupon", "Cupones", "Descuentos en comercios, viajes y productos"),
-        (f"viajes/{slug(pais)}/", "viaje", "Guías de viaje de " + pais, "Los lugares de donde vienen los productos"),
-    ]
-    ic = {"tienda": ICON["box"], "tema": ICON["tema"], "envio": ICON_TRUCK, "cupon": ICON["msg"], "viaje": ICON["pin"]}
-    cards = "".join(f'<a class="link-card tema" href="{rel(d, u)}"><span class="ic">{ic[k]}</span><span><strong>{esc(t)}</strong><small>{esc(b)}</small></span></a>' for u, k, t, b in tarjetas)
-    main = f'''    <div class="wrap">
-{crumbs(d, [(pais, None)])}
-      <div class="blog-head">
-        <span class="eyebrow" style="color:var(--terra)">Umarti Origen {esc(pais)}</span>
-        <h1>Productos de {esc(pais)}, para comprar en {esc(pais)}</h1>
-        <p>La tienda local, las guías de cada producto y las condiciones de envío dentro del país. ¿Comprás desde otro país? Entrá a <a href="{rel(d, 'international-shop/')}">International Shop</a>.</p>
+    def tile(p):
+        c1, c2 = cb.COLORES.get(p["categoria"], cb.COLORES["Alimentos"])
+        media = (f'<img src="{esc(p["fotos"][0])}" alt="" loading="lazy">' if p.get("fotos")
+                 else f'<span class="cover" data-glyph="{esc(p["nombre"][0])}" style="--c1:{c1};--c2:{c2}"></span>')
+        pr, mon = precio_principal(p)
+        return f'<a class="vt-item" href="{rel(d, p_prod(p))}"><span class="vt-media">{media}</span><span class="vt-tag"><b>{esc(p["nombre"])}</b><small>{pr} {mon}</small></span></a>'
+    vidriera = "".join(tile(p) for p in locales[:3])
+    pasillos = []
+    for p in locales:
+        if p["subcategoria"] not in [x[0] for x in pasillos]:
+            pasillos.append((p["subcategoria"], p["categoria"]))
+    pas_html = "".join(f'<a class="pasillo" href="{rel(d, p_tienda(pais) + "?sub=" + quote(sub))}"><small>Pasillo</small><b>{esc(sub)}</b><span>{(lambda n: f"{n} producto" + ("" if n == 1 else "s"))(sum(1 for p in locales if p["subcategoria"] == sub))}</span></a>' for sub, _ in pasillos)
+    main = barra_tienda(d, "", pais) + f'''    <section class="ts-hero">
+      <div class="ts-toldo" aria-hidden="true"></div>
+      <div class="wrap ts-fachada">
+        <div class="ts-txt">
+          <span class="ts-cartel" aria-hidden="true">Abierto</span>
+          <span class="eyebrow">{BANDERA.get(pais, "")} Umarti Origen</span>
+          <h1>Tienda {esc(pais)}</h1>
+          <p>Mates, yerba y kits de regalo con historia, elegidos uno por uno y enviados a todo el país.</p>
+          <div class="ts-ctas">
+            <a class="btn btn-primary" href="{rel(d, p_tienda(pais))}">Entrá a la tienda</a>
+            <a class="text-link" href="{rel(d, p_envio(slug(pais)))}">Cómo llegan los envíos</a>
+          </div>
+        </div>
+        <div class="ts-vidriera" aria-label="En la vidriera">
+          <span class="vt-label">En la vidriera</span>
+          <div class="vt-items">{vidriera}</div>
+        </div>
       </div>
-      <div class="link-cards pais-cards">{cards}</div>
+    </section>
+    <div class="wrap">
+      <ul class="ts-confianza" aria-label="Comprá seguro">
+        <li>{ICON_LOCK}<span><b>Pago protegido</b> con plataformas seguras</span></li>
+        <li>{ICON_TRUCK}<span><b>Envío a todo el país</b> con seguimiento</span></li>
+        <li>{ICON["box"]}<span><b>10 días para arrepentirte</b>, sin costo</span></li>
+      </ul>
+      <section class="ts-pasillos" aria-labelledby="h-pas">
+        <div class="blk-head"><div><h2 id="h-pas">Recorré la tienda</h2><p>Elegí un pasillo o mirá todo el catálogo.</p></div><a class="text-link" href="{rel(d, p_tienda(pais))}">Ver todos los productos →</a></div>
+        <div class="pasillos">{pas_html}</div>
+      </section>
       <section class="pais-dest" aria-labelledby="h-dest">
-        <div class="blk-head"><div><h2 id="h-dest">Destacados de la tienda</h2></div><a class="text-link" href="{rel(d, p_tienda(pais))}">Ver toda la tienda →</a></div>
+        <div class="blk-head"><div><h2 id="h-dest">Destacados</h2></div></div>
         <div class="prod-grid">
 {chr(10).join(card(p, d, cb, cv) for p in locales[:4])}
         </div>
       </section>
-      <div style="height:88px"></div>
+      <p class="shop-note">¿Comprás desde otro país, incluido México? Entrá a <a href="{rel(d, 'international-shop/')}">International Shop</a>.</p>
+      <div style="height:72px"></div>
     </div>'''
-    return page(d, f"Umarti Origen {pais}: tienda, guías y envíos", f"Comprá productos de {pais} con envío a todo el país: mates, yerba, kits de regalo y más.", main, ["blog", "viajes", "tienda"])
+    return page(d, f"Tienda {pais} | Umarti Origen: mates, yerba y kits de regalo", f"Comprá mates, yerba y kits de regalo de {pais}, con envío a todo el país y compra segura.", main, ["blog", "viajes", "tienda"])
 
 
 def indice_envios(envios):
