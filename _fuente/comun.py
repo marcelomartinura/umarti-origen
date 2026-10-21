@@ -38,6 +38,7 @@ def header(prefijo):
         if v == "#":
             return f'href="{prefijo or "./"}"'
         return f'href="{prefijo}{v}"'
+    h = re.sub(r'src="(assets/[^"]*)"', lambda m: f'src="{prefijo}{m.group(1)}"', h)
     return re.sub(r'href="([^"]*)"', fix, h)
 
 
@@ -45,7 +46,7 @@ def footer(prefijo):
     return f'''  <footer>
     <div class="wrap foot">
       <div>
-        <a href="{prefijo or './'}" class="logo">Umarti <span style="color:var(--terra)">Origen</span></a>
+        <a href="{prefijo or './'}" class="logo logo-foot" aria-label="Umarti Origen, ir al inicio"><img class="logo-ico" src="{prefijo}assets/img/marca/icono.png" alt="" width="259" height="236"><span class="logo-txt"><b>Umarti</b><b>Origen</b></span></a>
         <p style="margin-top:8px">Tienda, comercio exterior y viajes.</p>
       </div>
       <ul class="eco">

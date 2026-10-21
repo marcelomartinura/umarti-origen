@@ -34,8 +34,13 @@ h1, h2, h3 { font-family: "Fraunces", Georgia, serif; line-height: 1.15; font-we
   background: var(--bg);
   border-bottom: 1px solid var(--line);
 }
-.logo { font-family: "Fraunces", serif; font-size: 1.45rem; font-weight: 700; text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
-.logo span { color: var(--terra); }
+.logo { display: inline-flex; align-items: center; gap: 9px; font-family: "Fraunces", serif; font-weight: 700; text-decoration: none; letter-spacing: -0.015em; white-space: nowrap; color: var(--ink); flex: none; }
+.logo-ico { height: 46px; width: auto; display: block; }
+.logo-txt { display: flex; flex-direction: column; line-height: 0.95; font-size: 1.32rem; }
+.logo-txt b { font-weight: 700; }
+.logo-txt b + b { color: var(--terra); }
+.logo-foot .logo-ico { height: 58px; }
+.logo-foot .logo-txt { font-size: 1.6rem; }
 
 /* Fila superior: logo, buscador, cuenta y carrito */
 .topbar { display: flex; align-items: center; gap: 24px; height: 68px; }

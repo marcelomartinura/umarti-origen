@@ -14,8 +14,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* Barra superior y botonera */
 .pn-top { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding: 12px 24px; background: var(--ink); color: #f4efe6; }
-.pn-logo { font-family: "Fraunces", serif; font-weight: 700; font-size: 1.25rem; text-decoration: none; color: #fff; display: flex; align-items: baseline; gap: 6px; }
-.pn-logo span { color: #e8a36f; }
+.pn-logo { font-family: "Fraunces", serif; font-weight: 700; font-size: 1.25rem; text-decoration: none; color: #fff; display: flex; align-items: center; gap: 8px; }
+.pn-logo img { height: 34px; width: auto; }
+.pn-logo > span > span { color: #e8a36f; }
 .pn-logo small { font-family: "Inter", sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; background: #e3a23b; color: var(--ink); padding: 3px 8px; border-radius: 6px; margin-left: 4px; }
 .pn-mods { display: flex; flex-wrap: wrap; gap: 4px; flex: 1; }
 .mod { border: 0; background: transparent; color: #cfc6b8; font-weight: 600; font-size: 0.92rem; padding: 8px 14px; border-radius: 999px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }

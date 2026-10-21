@@ -46,7 +46,7 @@ html = f'''<!doctype html>
 </head>
 <body>
   <header class="pn-top">
-    <a class="pn-logo" href="../">Umarti <span>Origen</span><small>Panel</small></a>
+    <a class="pn-logo" href="../"><img src="../assets/img/marca/icono-blanco.png" alt="" width="259" height="236"><span>Umarti <span>Origen</span></span><small>Panel</small></a>
     <nav class="pn-mods" aria-label="Módulos">{botonera}</nav>
     <div class="pn-user" id="pn-user" hidden>
       <span id="pn-email"></span>

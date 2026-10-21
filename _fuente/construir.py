@@ -230,7 +230,7 @@ def page(body_class, kind, title, desc, og_title, main, faqs, faq_title, dialogs
   <footer>
     <div class="wrap foot">
       <div>
-        <a href="../" class="logo">Umarti <span style="color:var(--terra)">Origen</span></a>
+        <a href="../" class="logo logo-foot" aria-label="Umarti Origen, ir al inicio"><img class="logo-ico" src="../assets/img/marca/icono.png" alt="" width="259" height="236"><span class="logo-txt"><b>Umarti</b><b>Origen</b></span></a>
         <p style="margin-top:8px">Tienda, comercio exterior y viajes.</p>
       </div>
       <ul class="eco">
