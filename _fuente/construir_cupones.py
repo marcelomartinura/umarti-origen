@@ -296,7 +296,7 @@ def datos_js(cupones, cv):
                         lugar=lugar(c), descripcion=c["descripcion"], tipo=c["tipo"], cupon=c.get("cupon", ""),
                         condiciones=c.get("condiciones", ""), vence_txt=fecha(c["vence"]), link=c.get("link", ""),
                         destino_url=f'viajes/{dest["pais"]}/{dest["slug"]}/' if dest else "", destino_nombre=dest["nombre"] if dest else "",
-                        tema=c.get("tema", ""), ejemplo=c["estado"] == "Ejemplo", online=c["pais"] == "En línea"))
+                        tema=c.get("tema", ""), tema_url=(("mexico/" if c["pais"] == "México" else "argentina/") + c["tema"] + "/") if c.get("tema") else "", ejemplo=c["estado"] == "Ejemplo", online=c["pais"] == "En línea"))
     return ("/* Generado por _fuente/construir_cupones.py a partir de la pestaña Cupones. */\n"
             "window.CUPONES = " + json.dumps(out, ensure_ascii=False, indent=1) + ";\n")
 

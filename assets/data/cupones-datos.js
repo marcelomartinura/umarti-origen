@@ -15,6 +15,7 @@ window.CUPONES = [
   "destino_url": "viajes/argentina/mendoza/",
   "destino_nombre": "Mendoza",
   "tema": "",
+  "tema_url": "",
   "ejemplo": true,
   "online": false
  },
@@ -33,6 +34,7 @@ window.CUPONES = [
   "destino_url": "viajes/argentina/bariloche/",
   "destino_nombre": "San Carlos de Bariloche",
   "tema": "",
+  "tema_url": "",
   "ejemplo": true,
   "online": false
  },
@@ -51,6 +53,7 @@ window.CUPONES = [
   "destino_url": "viajes/mexico/queretaro/",
   "destino_nombre": "Querétaro",
   "tema": "",
+  "tema_url": "",
   "ejemplo": true,
   "online": false
  },
@@ -69,6 +72,7 @@ window.CUPONES = [
   "destino_url": "viajes/argentina/buenos-aires/",
   "destino_nombre": "Buenos Aires",
   "tema": "",
+  "tema_url": "",
   "ejemplo": true,
   "online": false
  },
@@ -87,6 +91,7 @@ window.CUPONES = [
   "destino_url": "viajes/mexico/ciudad-de-mexico/",
   "destino_nombre": "Ciudad de México",
   "tema": "",
+  "tema_url": "",
   "ejemplo": true,
   "online": false
  },
@@ -105,6 +110,7 @@ window.CUPONES = [
   "destino_url": "",
   "destino_nombre": "",
   "tema": "",
+  "tema_url": "",
   "ejemplo": true,
   "online": false
  },
@@ -123,6 +129,7 @@ window.CUPONES = [
   "destino_url": "",
   "destino_nombre": "",
   "tema": "",
+  "tema_url": "",
   "ejemplo": true,
   "online": true
  },
@@ -141,6 +148,7 @@ window.CUPONES = [
   "destino_url": "",
   "destino_nombre": "",
   "tema": "",
+  "tema_url": "",
   "ejemplo": true,
   "online": true
  },
@@ -159,6 +167,7 @@ window.CUPONES = [
   "destino_url": "viajes/argentina/buenos-aires/",
   "destino_nombre": "Buenos Aires",
   "tema": "",
+  "tema_url": "",
   "ejemplo": true,
   "online": false
  },
@@ -173,10 +182,11 @@ window.CUPONES = [
   "cupon": "MATE10",
   "condiciones": "Una vez por cliente.",
   "vence_txt": "31/12/2026",
-  "link": "tienda/kit-matero-de-regalo/",
+  "link": "argentina/tienda/kit-matero-de-regalo/",
   "destino_url": "",
   "destino_nombre": "",
   "tema": "mate",
+  "tema_url": "argentina/mate/",
   "ejemplo": true,
   "online": false
  },
@@ -191,10 +201,11 @@ window.CUPONES = [
   "cupon": "",
   "condiciones": "Comprando dos paquetes o más.",
   "vence_txt": "30/11/2026",
-  "link": "tienda/yerba-mate-elaborada-con-palo-1-kg/",
+  "link": "argentina/tienda/yerba-mate-elaborada-con-palo-1-kg/",
   "destino_url": "",
   "destino_nombre": "",
   "tema": "mate",
+  "tema_url": "argentina/mate/",
   "ejemplo": true,
   "online": false
  },
@@ -213,6 +224,7 @@ window.CUPONES = [
   "destino_url": "",
   "destino_nombre": "",
   "tema": "",
+  "tema_url": "",
   "ejemplo": true,
   "online": false
  },
@@ -231,6 +243,7 @@ window.CUPONES = [
   "destino_url": "",
   "destino_nombre": "",
   "tema": "",
+  "tema_url": "",
   "ejemplo": true,
   "online": true
  },
@@ -249,6 +262,7 @@ window.CUPONES = [
   "destino_url": "",
   "destino_nombre": "",
   "tema": "",
+  "tema_url": "",
   "ejemplo": true,
   "online": true
  },
@@ -267,6 +281,7 @@ window.CUPONES = [
   "destino_url": "",
   "destino_nombre": "",
   "tema": "",
+  "tema_url": "",
   "ejemplo": true,
   "online": true
  },
@@ -285,6 +300,7 @@ window.CUPONES = [
   "destino_url": "viajes/mexico/queretaro/",
   "destino_nombre": "Querétaro",
   "tema": "",
+  "tema_url": "",
   "ejemplo": true,
   "online": false
  },
@@ -303,6 +319,7 @@ window.CUPONES = [
   "destino_url": "viajes/argentina/buenos-aires/",
   "destino_nombre": "Buenos Aires",
   "tema": "",
+  "tema_url": "",
   "ejemplo": true,
   "online": false
  }

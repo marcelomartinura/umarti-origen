@@ -3,7 +3,12 @@
 
 Uso:  python3 _fuente/construir_tienda.py
 El catálogo sale de las pestañas Catálogo, Temas y Envíos de la hoja 'Plan Ecommerce' (ver tienda/importar_hoja.py).
-Genera: tienda/, tienda/<producto>/, international-shop/, /<tema>/ (por ejemplo /mate/), envios/<zona>/ y favoritos/.
+Genera, por país de origen (hoy solo Argentina):
+  argentina/                     portada del país
+  argentina/tienda/              tienda local, y argentina/tienda/<producto>/
+  argentina/<tema>/              páginas de tema, por ejemplo argentina/mate/
+  argentina/envios/              envíos dentro del país
+y además, para todos los países: international-shop/, international-shop/envios/, envios/ (índice) y favoritos/.
 Los productos con "Hub de Oportunidades: Sí" también aparecen en Productos de exportación (lo hace construir.py).
 """
 import glob, html, json, os, re, sys
@@ -39,7 +44,16 @@ def cargar_envios():
     return json.load(open(CATALOGO, encoding="utf-8")).get("envios", [])
 
 
-def p_prod(p): return f"tienda/{p['slug']}/"
+PAIS_SLUG = {"Argentina": "argentina", "México": "mexico"}
+
+
+def p_pais(pais="Argentina"): return PAIS_SLUG.get(pais, "argentina") + "/"
+def p_tienda(pais="Argentina"): return p_pais(pais) + "tienda/"
+def p_prod(p): return f"{p_tienda(p['pais'])}{p['slug']}/"
+def p_tema(t): return f"{p_pais(t.get('pais', 'Argentina'))}{t['clave']}/"
+def p_envio(slug_zona):
+    """Envíos internacionales viven en International Shop; los locales, en la carpeta del país."""
+    return "international-shop/envios/" if slug_zona == "internacional" else f"{slug_zona}/envios/"
 
 
 def productos_para_hub():
@@ -236,7 +250,7 @@ DIALOGOS = '''  <dialog id="dlg-cant" aria-labelledby="cant-title">
 
 # ---------- páginas ----------
 def listado(productos, cb, cv):
-    d = 1
+    d = 2
     locales = [p for p in productos if en_tienda_local(p)]
     cats = []
     for p in locales:
@@ -246,21 +260,21 @@ def listado(productos, cb, cv):
     chips = '<div class="chip-row" role="group" aria-label="Filtrar"><button type="button" data-filtro="" aria-pressed="true">Todo</button>' + "".join(
         f'<button type="button" data-filtro="{esc(c)}" aria-pressed="false">{esc(c)}</button>' for c in cats) + "</div>"
     main = f'''    <div class="wrap">
-{crumbs(d, [("Tienda", None)])}
+{crumbs(d, [("Argentina", p_pais()), ("Tienda", None)])}
       <div class="blog-head">
-        <span class="eyebrow" style="color:var(--terra)">Tienda</span>
+        <span class="eyebrow" style="color:var(--terra)">Tienda Argentina</span>
         <h1>Productos con origen</h1>
-        <p>Productos seleccionados de Argentina y otros países. En cada uno vas a ver a dónde se envía: dentro de su país de origen o al resto del mundo, incluido México.</p>
+        <p>Productos seleccionados de Argentina, con envío a todo el país. Si comprás desde el exterior, incluido México, los encontrás en International Shop.</p>
       </div>
       <div class="shop-tools">{chips}<span class="v-count" id="shop-count"></span></div>
       <div class="prod-grid" id="shop-grid">
 {chr(10).join(card(p, d, cb, cv) for p in locales)}
         <p class="shop-empty" id="shop-empty">Todavía no hay productos en esta categoría.</p>
       </div>
-      <p class="shop-note">¿Comprás desde otro país? Mirá <a href="{rel(d, 'international-shop/')}">International Shop</a>. · <a href="{rel(d, 'envios/')}">Condiciones de envío</a></p>
+      <p class="shop-note">¿Comprás desde otro país? Mirá <a href="{rel(d, 'international-shop/')}">International Shop</a>. · <a href="{rel(d, p_envio('argentina'))}">Condiciones de envío</a></p>
       <div style="height:88px"></div>
     </div>'''
-    return page(d, "Tienda Umarti Origen: productos con origen, con envío en Argentina e internacional",
+    return page(d, "Tienda Argentina | Umarti Origen: mates, yerba y productos con origen",
                 "Mates, bombillas, yerba y productos seleccionados de Argentina, con envío en Argentina y al exterior, incluido México.", main, ["blog", "viajes", "tienda"])
 
 
@@ -278,7 +292,7 @@ def international(productos, cb, cv):
       <div class="intl-band" style="margin-bottom:28px">
         <strong>Enviamos a</strong>
         <div class="countries">{"".join(f"<span>{esc(c)}</span>" for c in paises)}</div>
-        <a class="text-link" href="{rel(d, 'envios/internacional/')}">Ver las condiciones de envío internacional</a>
+        <a class="text-link" href="{rel(d, p_envio('internacional'))}">Ver las condiciones de envío internacional</a>
       </div>
       <div class="prod-grid">
 {chr(10).join(card(p, d, cb, cv, "intl") for p in intl)}
@@ -304,13 +318,13 @@ def notas_relacionadas(p_or_tema, notas, etiquetas=None):
 
 
 def pagina_producto(p, productos, temas, notas, cb, cv):
-    d = 2
+    d = 3
     dest = next((x for x in cv.DESTINOS if x["slug"] == p.get("destino")), None)
     pr, mon = precio_principal(p)
     galeria = carousel(p, cb, cv, grande=True)
     def fila(z):
         det = f'<small class="zd">{esc(z["detalle"])}</small>' if z["detalle"] else ""
-        return (f'<li><a class="zona" href="{rel(d, "envios/" + z["slug"] + "/")}">{esc(z["nombre"])}</a>'
+        return (f'<li><a class="zona" href="{rel(d, p_envio(z["slug"]))}">{esc(z["nombre"])}</a>'
                 f'<span class="zp">{z["precio"]} <small>{z["moneda"]}</small></span>{det}</li>')
     filas = "".join(fila(z) for z in zonas(p))
     if p.get("link_pago"):
@@ -324,14 +338,14 @@ def pagina_producto(p, productos, temas, notas, cb, cv):
         links.append(f'<div class="link-card origen"><span class="ic">{ICON["pin"]}</span><span><strong>Origen: {esc(p["region"])}, {esc(p["pais"])}</strong><small>Producto elaborado en {esc(p["pais"])}</small></span></div>')
     for t in temas:
         if t["clave"] in p["temas"]:
-            links.append(f'<a class="link-card tema" href="{rel(d, t["clave"] + "/")}"><span class="ic">{ICON["tema"]}</span><span><strong>Todo sobre el {esc(t["nombre"].lower())}</strong><small>Guías, productos, destinos y más en un solo lugar</small></span></a>')
+            links.append(f'<a class="link-card tema" href="{rel(d, p_tema(t))}"><span class="ic">{ICON["tema"]}</span><span><strong>Todo sobre el {esc(t["nombre"].lower())}</strong><small>Guías, productos, destinos y más en un solo lugar</small></span></a>')
     if p["hub"]:
         links.append(f'<a class="link-card hub" href="{rel(d, "productos-de-exportacion/")}#{p["codigo"].lower()}"><span class="ic">{ICON["hub"]}</span><span><strong>¿Comprás para revender o exportar?</strong><small>Este producto está en Productos de exportación del Hub de Oportunidades</small></span></a>')
     rel_notas = notas_relacionadas(p, notas)[:3]
     otros = [o for o in productos if o is not p and set(o["temas"]) & set(p["temas"])][:4]
     ej = '<span class="badge-ej" style="position:static;display:inline-block;margin-bottom:6px">Producto de ejemplo</span>' if p["estado"] == "Ejemplo" else ""
     main = f'''    <div class="wrap">
-{crumbs(d, [("Tienda", "tienda/"), (p["categoria"], None), (p["subcategoria"], None), (p["nombre"], None)])}
+{crumbs(d, [("Argentina", p_pais(p["pais"])), ("Tienda", p_tienda(p["pais"])), (p["categoria"], None), (p["subcategoria"], None), (p["nombre"], None)])}
       <section class="pdp">
         <div class="pdp-photo">
           <div class="prod-media">{fav(p)}{galeria[0]}</div>
@@ -389,7 +403,7 @@ def pagina_producto(p, productos, temas, notas, cb, cv):
 
 
 def pagina_tema(t, productos, notas, cb, cv):
-    d = 1
+    d = 2
     prods = [p for p in productos if t["clave"] in p["temas"]]
     locales = [p for p in prods if en_tienda_local(p)]
     intl = [p for p in prods if p["international"]]
@@ -406,7 +420,7 @@ def pagina_tema(t, productos, notas, cb, cv):
     hub_items += "".join(f'<a class="hub-item" href="{rel(d, "mesa-de-negociacion/")}#{b["cod"].lower()}"><small>Búsqueda en la Mesa · {esc(b["pais"])}</small><strong>{esc(b["nombre"])}</strong><span>{esc(b["vol"])}</span></a>' for b in busq)
     c1, c2 = cb.COLORES.get("Café, Té y Mate")
     main = f'''    <div class="wrap">
-{crumbs(d, [(t["nombre"], None)])}
+{crumbs(d, [("Argentina", p_tema(t).split("/")[0] + "/"), (t["nombre"], None)])}
       <section class="tema-hero" data-glyph="{esc(t['nombre'][0])}" style="--c1:{c1};--c2:{c2}">
         <span class="eyebrow">Todo sobre el {esc(t['nombre'].lower())}</span>
         <h1>{esc(t['nombre'])}</h1>
@@ -415,7 +429,7 @@ def pagina_tema(t, productos, notas, cb, cv):
       <nav class="tema-nav" aria-label="Secciones">{"".join(f'<a href="#{a}">{n}</a>' for a, n in nav)}</nav>
 
       <section class="tema-sec" id="comprar" aria-labelledby="h-c">
-        <div class="v-head"><div><span class="tag-n">Tienda</span><h2 id="h-c">Comprá</h2><p>Cada producto muestra a dónde se envía.</p></div><a class="text-link" href="{rel(d, 'envios/')}">Condiciones de envío</a></div>
+        <div class="v-head"><div><span class="tag-n">Tienda</span><h2 id="h-c">Comprá</h2><p>Cada producto muestra a dónde se envía.</p></div><a class="text-link" href="{rel(d, p_envio('argentina'))}">Condiciones de envío</a></div>
         <div class="prod-grid">
 {chr(10).join(card(p, d, cb, cv) for p in locales)}
         </div>
@@ -476,9 +490,9 @@ def pagina_envio(e, envios, productos):
     if e["slug"] == "internacional":
         paises = sorted({c for p in productos if p["international"] for c in p["paises_envio"]}, key=slug)
         extra = f'<h2>Países a los que enviamos</h2><div class="countries">{"".join(f"<span>{esc(c)}</span>" for c in paises)}</div><p class="muted">Cada producto indica a qué países se envía. Los impuestos de importación los define el país de destino.</p>'
-    otras = "".join(f'<a class="zona" href="{rel(d, "envios/" + o["slug"] + "/")}">{esc(o["zona"])}</a>' for o in envios if o is not e)
+    otras = "".join(f'<a class="zona" href="{rel(d, p_envio(o["slug"]))}">{esc(o["zona"])}</a>' for o in envios if o is not e)
     main = f'''    <div class="wrap envio-page">
-{crumbs(d, [("Envíos", "envios/"), (e["zona"], None)])}
+{crumbs(d, [("International Shop", "international-shop/"), ("Envíos", None)] if e["slug"] == "internacional" else [(e["zona"], p_pais(e["zona"])), ("Envíos", None)])}
       <div class="blog-head">
         <span class="eyebrow" style="color:var(--terra)">Condiciones de envío</span>
         <h1>{esc(titulo)}</h1>
@@ -494,9 +508,41 @@ def pagina_envio(e, envios, productos):
                 main, ["blog", "viajes", "tienda"], noindex=borrador)
 
 
+def portada_pais(productos, temas, cb, cv, pais="Argentina"):
+    d = 1
+    locales = [p for p in productos if p["pais"] == pais and en_tienda_local(p)]
+    temas_p = [t for t in temas if t.get("pais", "Argentina") == pais]
+    tarjetas = [
+        (p_tienda(pais), "tienda", f"Tienda {pais}", f"{len(locales)} productos con envío a todo el país"),
+        *[(p_tema(t), "tema", f"Todo sobre el {t['nombre'].lower()}", "Guías, productos, destinos y más en un solo lugar") for t in temas_p],
+        (p_envio(slug(pais)), "envio", "Envíos en " + pais, "Plazos, costos, seguimiento y cambios"),
+        ("cupones/", "cupon", "Cupones", "Descuentos en comercios, viajes y productos"),
+        (f"viajes/{slug(pais)}/", "viaje", "Guías de viaje de " + pais, "Los lugares de donde vienen los productos"),
+    ]
+    ic = {"tienda": ICON["box"], "tema": ICON["tema"], "envio": ICON_TRUCK, "cupon": ICON["msg"], "viaje": ICON["pin"]}
+    cards = "".join(f'<a class="link-card tema" href="{rel(d, u)}"><span class="ic">{ic[k]}</span><span><strong>{esc(t)}</strong><small>{esc(b)}</small></span></a>' for u, k, t, b in tarjetas)
+    main = f'''    <div class="wrap">
+{crumbs(d, [(pais, None)])}
+      <div class="blog-head">
+        <span class="eyebrow" style="color:var(--terra)">Umarti Origen {esc(pais)}</span>
+        <h1>Productos de {esc(pais)}, para comprar en {esc(pais)}</h1>
+        <p>La tienda local, las guías de cada producto y las condiciones de envío dentro del país. ¿Comprás desde otro país? Entrá a <a href="{rel(d, 'international-shop/')}">International Shop</a>.</p>
+      </div>
+      <div class="link-cards pais-cards">{cards}</div>
+      <section class="pais-dest" aria-labelledby="h-dest">
+        <div class="blk-head"><div><h2 id="h-dest">Destacados de la tienda</h2></div><a class="text-link" href="{rel(d, p_tienda(pais))}">Ver toda la tienda →</a></div>
+        <div class="prod-grid">
+{chr(10).join(card(p, d, cb, cv) for p in locales[:4])}
+        </div>
+      </section>
+      <div style="height:88px"></div>
+    </div>'''
+    return page(d, f"Umarti Origen {pais}: tienda, guías y envíos", f"Comprá productos de {pais} con envío a todo el país: mates, yerba, kits de regalo y más.", main, ["blog", "viajes", "tienda"])
+
+
 def indice_envios(envios):
     d = 1
-    cards = "".join(f'<a class="link-card tema" href="{rel(d, "envios/" + e["slug"] + "/")}"><span class="ic">{ICON_TRUCK}</span><span><strong>{esc("Envíos internacionales" if e["slug"] == "internacional" else "Envíos a " + e["zona"])}</strong><small>Plazos, costos, seguimiento y cambios</small></span></a>' for e in envios)
+    cards = "".join(f'<a class="link-card tema" href="{rel(d, p_envio(e["slug"]))}"><span class="ic">{ICON_TRUCK}</span><span><strong>{esc("Envíos internacionales" if e["slug"] == "internacional" else "Envíos a " + e["zona"])}</strong><small>Plazos, costos, seguimiento y cambios</small></span></a>' for e in envios)
     main = f'''    <div class="wrap envio-page">
 {crumbs(d, [("Envíos", None)])}
       <div class="blog-head"><span class="eyebrow" style="color:var(--terra)">Condiciones de envío</span><h1>Envíos</h1><p>Elegí la zona para ver cómo llegan tus compras.</p></div>
@@ -513,7 +559,7 @@ def pagina_favoritos():
 {crumbs(d, [("Favoritos", None)])}
       <div class="blog-head"><span class="eyebrow" style="color:var(--terra)">Tu lista</span><h1>Favoritos</h1><p>Los productos que guardaste con el corazón. Se guardan en este navegador.</p></div>
       <div class="prod-grid" id="fav-grid" data-prefix="{rel(d)}"></div>
-      <p class="shop-empty" id="fav-empty">Todavía no guardaste productos. Tocá el corazón de cualquier producto para sumarlo acá. <a href="{rel(d, 'tienda/')}">Ir a la Tienda</a></p>
+      <p class="shop-empty" id="fav-empty">Todavía no guardaste productos. Tocá el corazón de cualquier producto para sumarlo acá. <a href="{rel(d, p_tienda())}">Ir a la Tienda</a></p>
       <div style="height:88px"></div>
     </div>'''
     return page(d, "Mis favoritos | Umarti Origen", "Productos guardados en favoritos.", main, ["blog", "viajes", "tienda"], noindex=True)
@@ -541,15 +587,16 @@ def main():
         if p.get("destino") and not any(x["slug"] == p["destino"] for x in cv.DESTINOS):
             raise SystemExit(f"{p['codigo']}: el destino '{p['destino']}' no existe en Viajes")
     escribir("assets/data/tienda-indice.js", indice_js(productos, cb))
-    escribir("tienda/index.html", listado(productos, cb, cv))
+    escribir(p_tienda() + "index.html", listado(productos, cb, cv))
+    escribir(p_pais() + "index.html", portada_pais(productos, temas, cb, cv))
     escribir("international-shop/index.html", international(productos, cb, cv))
     for p in productos:
         escribir(p_prod(p) + "index.html", pagina_producto(p, productos, temas, notas, cb, cv))
     for t in temas:
-        escribir(t["clave"] + "/index.html", pagina_tema(t, productos, notas, cb, cv))
+        escribir(p_tema(t) + "index.html", pagina_tema(t, productos, notas, cb, cv))
     escribir("envios/index.html", indice_envios(envios))
     for e in envios:
-        escribir(f"envios/{e['slug']}/index.html", pagina_envio(e, envios, productos))
+        escribir(p_envio(e["slug"]) + "index.html", pagina_envio(e, envios, productos))
     escribir("favoritos/index.html", pagina_favoritos())
 
 

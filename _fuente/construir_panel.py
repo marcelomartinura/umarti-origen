@@ -108,7 +108,7 @@ html = f'''<!doctype html>
             <label><span>Subcategoría <em>*</em></span><select name="subcategoria" required></select></label>
             <div class="full"><span class="lbl">Temas</span><div class="checks" id="e-temas"></div><small class="muted">El producto aparece también en la página de cada tema que marques.</small></div>
             <label>Vendedor<input name="vendedor" placeholder="Umarti Origen"></label>
-            <label>Dirección en el sitio<span class="slug-wrap"><span>tienda/</span><input name="slug" required pattern="[a-z0-9-]+"><span>/</span></span></label>
+            <label>Dirección en el sitio<span class="slug-wrap"><span>argentina/tienda/</span><input name="slug" required pattern="[a-z0-9-]+"><span>/</span></span></label>
           </fieldset>
 
           <fieldset class="card">

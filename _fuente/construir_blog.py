@@ -283,7 +283,7 @@ def store_band(depth, nombre, cat):
     texto = TIENDA_TEXTO.get(cat, f"Productos de {cat}.")
     return f'''      <div class="store-band">
         <p>{esc(nombre)} en la Tienda<small>{esc(texto)}</small></p>
-        <a class="btn btn-primary" href="{rel(depth, 'tienda/?cat=' + urllib.parse.quote(cat))}">Ver en la Tienda</a>
+        <a class="btn btn-primary" href="{rel(depth, 'argentina/tienda/?cat=' + urllib.parse.quote(cat))}">Ver en la Tienda</a>
       </div>'''
 
 
@@ -406,7 +406,7 @@ def productos_de_nota(n, depth, maximo=3):
               <span class="np-info"><small>{esc(p["subcategoria"])}</small><strong>{esc(p["nombre"])}</strong><span class="np-price">{pr} <small>{mon}</small></span></span>
             </a>''')
     sub = n.get("subcategoria") or n.get("categoria")
-    url_sub = "tienda/?sub=" + urllib.parse.quote(sub)
+    url_sub = "argentina/tienda/?sub=" + urllib.parse.quote(sub)
     titulo = "Para tu mate, en la Tienda" if "mate" in n["tags"] else f"{sub} en la Tienda"
     return f'''<section class="note-prods" aria-labelledby="np-h">
             <div class="np-head"><h2 id="np-h">{esc(titulo)}</h2><a href="{rel(depth, url_sub)}">Ver todo en {esc(sub)} →</a></div>
@@ -562,7 +562,7 @@ def pagina_nota(n, notas):
         box = f'''<div class="box store">
             <strong>{esc(sub)} en la Tienda</strong>
             <p>{esc(TIENDA_TEXTO.get(cat, f"Productos de {cat}."))}</p>
-            <a class="btn-line" href="{rel(d, 'tienda/?sub=' + urllib.parse.quote(sub))}">Ver productos →</a>
+            <a class="btn-line" href="{rel(d, 'argentina/tienda/?sub=' + urllib.parse.quote(sub))}">Ver productos →</a>
           </div>'''
         mas = ""
         if mismas:

@@ -87,7 +87,7 @@
     var acts = el('div', 'acts');
     if (c.link) { var l = el('a', 'pri', 'Ir al sitio'); l.href = /^https?:/.test(c.link) ? c.link : pre + c.link; if (/^https?:/.test(c.link)) { l.target = '_blank'; l.rel = 'noopener'; } acts.appendChild(l); }
     if (c.destino_url) { var dl = el('a', 'sec', 'Guía de viaje de ' + c.destino_nombre); dl.href = pre + c.destino_url; acts.appendChild(dl); }
-    if (c.tema) { var tl = el('a', 'sec', 'Todo sobre el ' + c.tema); tl.href = pre + c.tema + '/'; acts.appendChild(tl); }
+    if (c.tema) { var tl = el('a', 'sec', 'Todo sobre el ' + c.tema); tl.href = pre + (c.tema_url || c.tema + '/'); acts.appendChild(tl); }
     if (acts.children.length) inn.appendChild(acts);
     box.appendChild(inn);
     dlg.showModal();

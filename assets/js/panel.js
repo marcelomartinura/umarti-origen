@@ -178,7 +178,7 @@
     $$('#e-temas input').forEach(function (c) { c.checked = (actual.temas || []).indexOf(c.value) > -1; });
     $('#e-titulo').textContent = nuevo ? (copia ? 'Copia de producto' : 'Nuevo producto') : actual.nombre;
     $('#e-sub').textContent = nuevo ? 'Completá los datos y guardá. Podés dejarlo en Borrador hasta que esté listo.' : actual.codigo + ' · última edición ' + new Date(actual.actualizado).toLocaleString('es-AR', { dateStyle: 'medium', timeStyle: 'short' });
-    $('#e-ver').hidden = nuevo || !(actual.estado === 'Publicado' || actual.estado === 'Ejemplo'); $('#e-ver').href = '../tienda/' + actual.slug + '/';
+    $('#e-ver').hidden = nuevo || !(actual.estado === 'Publicado' || actual.estado === 'Ejemplo'); $('#e-ver').href = '../' + ({ 'México': 'mexico' }[actual.pais] || 'argentina') + '/tienda/' + actual.slug + '/';
     $('#e-duplicar').hidden = nuevo; $('#e-borrar').hidden = nuevo;
     $('#e-msg').textContent = '';
     pintarFotos(); pintarPaises(); actualizar(); sucio = false;

@@ -3,7 +3,7 @@ window.TIENDA_INDICE = [
  {
   "codigo": "UM-0001",
   "nombre": "Mate de calabaza forrado en cuero",
-  "url": "tienda/mate-de-calabaza-forrado-en-cuero/",
+  "url": "argentina/tienda/mate-de-calabaza-forrado-en-cuero/",
   "precio": "$ 28.000",
   "moneda": "ARS",
   "subcategoria": "Mates y bombillas",
@@ -17,7 +17,7 @@ window.TIENDA_INDICE = [
  {
   "codigo": "UM-0002",
   "nombre": "Bombilla de acero inoxidable con resorte",
-  "url": "tienda/bombilla-de-acero-inoxidable-con-resorte/",
+  "url": "argentina/tienda/bombilla-de-acero-inoxidable-con-resorte/",
   "precio": "$ 9.000",
   "moneda": "ARS",
   "subcategoria": "Mates y bombillas",
@@ -31,7 +31,7 @@ window.TIENDA_INDICE = [
  {
   "codigo": "UM-0003",
   "nombre": "Yerba mate elaborada con palo, 1 kg",
-  "url": "tienda/yerba-mate-elaborada-con-palo-1-kg/",
+  "url": "argentina/tienda/yerba-mate-elaborada-con-palo-1-kg/",
   "precio": "$ 6.500",
   "moneda": "ARS",
   "subcategoria": "Mates y bombillas",
@@ -45,7 +45,7 @@ window.TIENDA_INDICE = [
  {
   "codigo": "UM-0004",
   "nombre": "Kit matero de regalo",
-  "url": "tienda/kit-matero-de-regalo/",
+  "url": "argentina/tienda/kit-matero-de-regalo/",
   "precio": "$ 45.000",
   "moneda": "ARS",
   "subcategoria": "Kits de mate y café",
