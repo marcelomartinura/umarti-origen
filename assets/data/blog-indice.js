@@ -69,8 +69,8 @@ window.BLOG_INDICE = [
   "titulo": "Guía de talles: cómo medirte para acertar en tu compra",
   "resumen": "Los talles cambian según el país y la marca. Lo que no cambia son tus medidas. Cómo tomarlas bien, cómo leer la tabla de cada producto y qué hacer si estás entre dos talles.",
   "seccion": "productos",
-  "categoria": "Moda",
-  "subcategoria": "Ropa de dama",
+  "categoria": "Hogar, Moda y más",
+  "subcategoria": "Moda",
   "tema": "",
   "fecha": "2026-10-09",
   "tags": [
@@ -150,7 +150,7 @@ window.BLOG_INDICE = [
   "resumen": "El mismo café puede salir amargo o aguado solo por el grosor de la molienda. Una tabla simple para acertar con espresso, moka, filtro o prensa francesa.",
   "seccion": "productos",
   "categoria": "Café, Té y Mate",
-  "subcategoria": "Café",
+  "subcategoria": "Café y té",
   "tema": "",
   "fecha": "2026-10-03",
   "tags": [
@@ -181,8 +181,8 @@ window.BLOG_INDICE = [
   "titulo": "Con qué acompañar un Malbec: maridajes simples",
   "resumen": "Del asado a las empanadas, pasando por pastas y quesos. Qué combina con un Malbec joven y qué con uno de guarda, y a qué temperatura servirlo.",
   "seccion": "productos",
-  "categoria": "Bebidas",
-  "subcategoria": "Vinos",
+  "categoria": "Alimentos y Bebidas",
+  "subcategoria": "Vinos y destilados",
   "tema": "",
   "fecha": "2026-10-01",
   "tags": [

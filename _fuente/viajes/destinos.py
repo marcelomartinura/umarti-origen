@@ -36,7 +36,7 @@ DESTINOS = [
               "Antes de viajar, revisá cómo conviene pagar: con tarjeta, en efectivo o con billeteras virtuales.",
               "Se cena tarde: muchos restaurantes se llenan después de las 21 h."],
     origen=[dict(producto="Mate y yerba", texto="En Buenos Aires el mate se toma en la casa, en la oficina y en las plazas.", nota="como-preparar-un-buen-mate", categoria="Café, Té y Mate"),
-            dict(producto="Dulce de leche y alfajores", texto="El sabor más porteño para llevarte de regalo.", nota="", categoria="Alimentos")],
+            dict(producto="Dulce de leche y alfajores", texto="El sabor más porteño para llevarte de regalo.", nota="", categoria="Alimentos y Bebidas")],
   ),
   dict(
     slug="mendoza", nombre="Mendoza", pais="argentina", region="Mendoza",
@@ -59,8 +59,8 @@ DESTINOS = [
     consejos=["Reservá las visitas a bodegas con anticipación: muchas solo atienden con turno.",
               "Si vas a manejar, elegí un conductor que no tome en las degustaciones.",
               "El sol de altura es fuerte: protector solar y agua, también en invierno."],
-    origen=[dict(producto="Malbec", texto="La cepa emblema de Argentina, que en Mendoza encontró su mejor expresión.", nota="con-que-acompanar-un-malbec", categoria="Bebidas"),
-            dict(producto="Aceite de oliva", texto="Los olivares mendocinos producen aceites reconocidos.", nota="", categoria="Alimentos")],
+    origen=[dict(producto="Malbec", texto="La cepa emblema de Argentina, que en Mendoza encontró su mejor expresión.", nota="con-que-acompanar-un-malbec", categoria="Alimentos y Bebidas"),
+            dict(producto="Aceite de oliva", texto="Los olivares mendocinos producen aceites reconocidos.", nota="", categoria="Alimentos y Bebidas")],
   ),
   dict(
     slug="bariloche", nombre="San Carlos de Bariloche", pais="argentina", region="Río Negro",
@@ -84,7 +84,7 @@ DESTINOS = [
               "El clima cambia rápido en la montaña: llevá abrigo aunque sea verano.",
               "Para los refugios, informate en el club andino local sobre el estado de los senderos."],
     origen=[dict(producto="Chocolate", texto="Bariloche es la capital del chocolate artesanal en Argentina.", nota="", categoria="Café, Té y Mate"),
-            dict(producto="Cerveza artesanal", texto="La Patagonia andina tiene una de las escenas cerveceras más activas del país.", nota="", categoria="Bebidas")],
+            dict(producto="Cerveza artesanal", texto="La Patagonia andina tiene una de las escenas cerveceras más activas del país.", nota="", categoria="Alimentos y Bebidas")],
   ),
   dict(
     slug="ushuaia", nombre="Ushuaia", pais="argentina", region="Tierra del Fuego",
@@ -107,7 +107,7 @@ DESTINOS = [
     consejos=["Vestite en capas: el clima cambia varias veces en el mismo día.",
               "Si querés ir a la Antártida, los cruceros salen entre noviembre y marzo y conviene reservar con meses de anticipación.",
               "Reservá las navegaciones con un día de margen por si el viento obliga a reprogramar."],
-    origen=[dict(producto="Sabores del sur", texto="Mermeladas de frutos rojos, chocolates y productos regionales patagónicos.", nota="", categoria="Alimentos")],
+    origen=[dict(producto="Sabores del sur", texto="Mermeladas de frutos rojos, chocolates y productos regionales patagónicos.", nota="", categoria="Alimentos y Bebidas")],
   ),
   dict(
     slug="salta", nombre="Salta", pais="argentina", region="Salta",
@@ -130,7 +130,7 @@ DESTINOS = [
     consejos=["Hacia la Puna se superan los 3.000 metros: subí despacio y tomá mucha agua.",
               "En los valles, las distancias son largas y los caminos de ripio: calculá bien los tiempos.",
               "Las peñas arrancan tarde; reservá mesa si vas en fin de semana."],
-    origen=[dict(producto="Torrontés", texto="El blanco aromático de los valles altos, con Cafayate como capital.", nota="", categoria="Bebidas")],
+    origen=[dict(producto="Torrontés", texto="El blanco aromático de los valles altos, con Cafayate como capital.", nota="", categoria="Alimentos y Bebidas")],
   ),
   dict(
     slug="cataratas-del-iguazu", nombre="Cataratas del Iguazú", pais="argentina", region="Misiones",
@@ -177,7 +177,7 @@ DESTINOS = [
     consejos=["La altura se siente los primeros días: caminá despacio y tomá agua.",
               "Reservá con anticipación el Museo Frida Kahlo, que suele agotar entradas.",
               "Si sos argentino o argentina y extrañás sabores de casa, en la Tienda vas a encontrar yerba, mates y dulce de leche."],
-    origen=[dict(producto="Tequila y mezcal", texto="Los destilados de agave, protagonistas de cualquier mesa mexicana.", nota="", categoria="Bebidas"),
+    origen=[dict(producto="Tequila y mezcal", texto="Los destilados de agave, protagonistas de cualquier mesa mexicana.", nota="", categoria="Alimentos y Bebidas"),
             dict(producto="Sabores de Argentina en México", texto="Mate, yerba y alfajores para la comunidad argentina en México.", nota="como-preparar-un-buen-mate", categoria="Café, Té y Mate")],
   ),
   dict(
@@ -201,6 +201,6 @@ DESTINOS = [
     consejos=["Los fines de semana la Ruta del Arte, Queso y Vino se llena: si podés, andá entre semana.",
               "Para subir a la Peña de Bernal, empezá temprano y llevá calzado de montaña.",
               "Combiná Querétaro con San Miguel de Allende, a poco más de una hora."],
-    origen=[dict(producto="Vinos y espumosos", texto="El Bajío mexicano es una región de vino en pleno crecimiento.", nota="", categoria="Bebidas")],
+    origen=[dict(producto="Vinos y espumosos", texto="El Bajío mexicano es una región de vino en pleno crecimiento.", nota="", categoria="Alimentos y Bebidas")],
   ),
 ]

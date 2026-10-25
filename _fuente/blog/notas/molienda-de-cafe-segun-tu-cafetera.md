@@ -3,7 +3,7 @@ titulo: Qué molienda de café usar según tu cafetera
 resumen: El mismo café puede salir amargo o aguado solo por el grosor de la molienda. Una tabla simple para acertar con espresso, moka, filtro o prensa francesa.
 seccion: productos
 categoria: Café, Té y Mate
-subcategoria: Café
+subcategoria: Café y té
 tags: café, molienda, preparación
 fecha: 2026-10-03
 ---

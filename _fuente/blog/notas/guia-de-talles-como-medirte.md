@@ -2,8 +2,8 @@
 titulo: Guía de talles: cómo medirte para acertar en tu compra
 resumen: Los talles cambian según el país y la marca. Lo que no cambia son tus medidas. Cómo tomarlas bien, cómo leer la tabla de cada producto y qué hacer si estás entre dos talles.
 seccion: productos
-categoria: Moda
-subcategoria: Ropa de dama
+categoria: Hogar, Moda y más
+subcategoria: Moda
 tags: talles, moda, calzado
 fecha: 2026-10-09
 ---

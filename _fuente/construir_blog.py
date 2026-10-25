@@ -39,33 +39,25 @@ esc = html.escape
 
 # ---------- taxonomía: mismas categorías y subcategorías que la Tienda ----------
 CATEGORIAS = {
-    "Café, Té y Mate": ["Mates y bombillas", "Café", "Té", "Chocolate"],
+    "Café, Té y Mate": ["Mates y bombillas", "Yerba", "Café y té"],
     "Regalos y Kits": ["Kits de mate y café", "Regalos corporativos", "Personalizados"],
-    "Artículos regionales": ["Marroquinería", "Bolsos materos", "Riñoneras", "Llaveros", "Juegos de asado", "Portatermos"],
-    "Bebidas": ["Vinos", "Cervezas y destilados", "Sin alcohol"],
-    "Alimentos": ["Snacks", "Golosinas", "Alimentos diet", "Congelados"],
-    "Salud y Bienestar": ["Odontología", "Cuidado personal", "Dispositivos médicos"],
-    "Moda": ["Ropa de dama", "Ropa de caballero", "Zapatos", "Carteras"],
-    "Tecnología": ["Accesorios", "Audio", "Hogar inteligente"],
-    "Hogar y Cocina": ["Bazar y cocina", "Organización", "Deco"],
-    "Herramientas y Jardín": ["Herramientas", "Jardín", "Construcción"],
-    "Limpieza e Higiene": ["Limpieza", "Higiene personal"],
+    "Artículos regionales": ["Bolsos materos", "Marroquinería y riñoneras", "Juegos de asado", "Portatermos y llaveros"],
+    "Alimentos y Bebidas": ["Vinos y destilados", "Dulces y snacks", "Otros alimentos"],
+    "Hogar, Moda y más": ["Moda", "Hogar y cocina", "Salud y bienestar", "Tecnología"],
 }
 TIENDA_TEXTO = {
     "Café, Té y Mate": "Mates, bombillas, yerbas, cafés y tés seleccionados.",
     "Regalos y Kits": "Kits armados y regalos para empresas.",
-    "Artículos regionales": "Marroquinería, bolsos materos, juegos de asado y artículos con identidad argentina.",
-    "Bebidas": "Vinos, cervezas, destilados y bebidas sin alcohol.",
-    "Moda": "Ropa, calzado y carteras.",
+    "Artículos regionales": "Bolsos materos, marroquinería, juegos de asado y artículos con identidad argentina.",
+    "Alimentos y Bebidas": "Vinos, destilados, dulces y alimentos con origen.",
+    "Hogar, Moda y más": "Moda, hogar, bienestar y tecnología.",
 }
 TEMAS = ["Comercio exterior", "Mercados", "Ecommerce y ventas", "Cómo usar Umarti"]
 COLORES = {
     "Café, Té y Mate": ("#5b7a43", "#33472a"), "Regalos y Kits": ("#c8922a", "#8a5e0c"),
-    "Artículos regionales": ("#8a5a3c", "#55341f"),
-    "Bebidas": ("#9a3445", "#5c1c27"), "Alimentos": ("#c8693e", "#8f3f1d"),
-    "Salud y Bienestar": ("#4c8a86", "#2c5b58"), "Moda": ("#8a5878", "#4f2c45"),
-    "Tecnología": ("#4b5d78", "#2b3648"), "Hogar y Cocina": ("#a8703f", "#6e4421"),
-    "Herramientas y Jardín": ("#6b7a3a", "#424c22"), "Limpieza e Higiene": ("#4a8aa8", "#2a5a72"),
+    "Artículos regionales": ("#8a5a3c", "#55341f"), "Alimentos y Bebidas": ("#9a3445", "#5c1c27"),
+    "Hogar, Moda y más": ("#4b5d78", "#2b3648"),
+    "Alimentos": ("#c8693e", "#8f3f1d"),  # color por defecto
     "negocios": ("#3d87ab", "#225670"),
     "opinion": ("#7a4a8c", "#4a2a5a"),
 }

@@ -2,8 +2,8 @@
 titulo: Con qué acompañar un Malbec: maridajes simples
 resumen: Del asado a las empanadas, pasando por pastas y quesos. Qué combina con un Malbec joven y qué con uno de guarda, y a qué temperatura servirlo.
 seccion: productos
-categoria: Bebidas
-subcategoria: Vinos
+categoria: Alimentos y Bebidas
+subcategoria: Vinos y destilados
 tags: vino, malbec, maridaje
 fecha: 2026-10-01
 ---

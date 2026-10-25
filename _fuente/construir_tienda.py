@@ -21,9 +21,8 @@ from comun import escribir, slug, SITIO  # noqa: E402
 esc = html.escape
 CATALOGO = os.path.join(AQUI, "tienda", "catalogo.json")
 
-SECTOR_HUB = {"Café, Té y Mate": "Alimentos y bebidas", "Bebidas": "Alimentos y bebidas", "Alimentos": "Alimentos y bebidas",
-              "Regalos y Kits": "Manufacturas", "Artículos regionales": "Manufacturas", "Moda": "Moda y textil", "Tecnología": "Tecnología", "Salud y Bienestar": "Salud",
-              "Hogar y Cocina": "Manufacturas", "Herramientas y Jardín": "Manufacturas", "Limpieza e Higiene": "Manufacturas"}
+SECTOR_HUB = {"Café, Té y Mate": "Alimentos y bebidas", "Alimentos y Bebidas": "Alimentos y bebidas", "Regalos y Kits": "Manufacturas",
+              "Artículos regionales": "Manufacturas", "Hogar, Moda y más": "Manufacturas"}
 MONEDA_PAIS = {"Argentina": "ars", "México": "mxn"}
 # Mercados locales abiertos: país -> (campo que lo activa, campo de precio, moneda).
 # México todavía no tiene tienda local: sus compradores usan International Shop.
