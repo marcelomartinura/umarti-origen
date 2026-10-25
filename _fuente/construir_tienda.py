@@ -22,7 +22,7 @@ esc = html.escape
 CATALOGO = os.path.join(AQUI, "tienda", "catalogo.json")
 
 SECTOR_HUB = {"Café, Té y Mate": "Alimentos y bebidas", "Bebidas": "Alimentos y bebidas", "Alimentos": "Alimentos y bebidas",
-              "Regalos y Kits": "Manufacturas", "Moda": "Moda y textil", "Tecnología": "Tecnología", "Salud y Bienestar": "Salud",
+              "Regalos y Kits": "Manufacturas", "Artículos regionales": "Manufacturas", "Moda": "Moda y textil", "Tecnología": "Tecnología", "Salud y Bienestar": "Salud",
               "Hogar y Cocina": "Manufacturas", "Herramientas y Jardín": "Manufacturas", "Limpieza e Higiene": "Manufacturas"}
 MONEDA_PAIS = {"Argentina": "ars", "México": "mxn"}
 # Mercados locales abiertos: país -> (campo que lo activa, campo de precio, moneda).
@@ -445,74 +445,44 @@ def pagina_producto(p, productos, temas, notas, cb, cv):
 
 
 def pagina_tema(t, productos, notas, cb, cv):
+    """Página de tema: solo contenido (notas del blog y viajes al origen), sin venta."""
     d = 1
-    prods = [p for p in productos if t["clave"] in p["temas"]]
-    locales = [p for p in prods if en_tienda_local(p)]
-    intl = [p for p in prods if p["international"]]
-    hub = [p for p in prods if p["hub"]]
-    paises = sorted({c for p in intl for c in p["paises_envio"]}, key=slug)
     rel_notas = notas_relacionadas({"temas": [slug(e) for e in t["etiquetas"]]}, notas, etiquetas=set(t["etiquetas"]) | {slug(e) for e in t["etiquetas"]})
     dests = [x for s in t["destinos"] for x in cv.DESTINOS if x["slug"] == s]
-    from datos import BUSQUEDAS
-    claves = {slug(w)[:5] for p in prods for w in re.findall(r"\w{4,}", p["nombre"])} | {slug(t["nombre"])[:5]}
-    hs4 = {p["hs"][:4] for p in prods if p["hs"]}
-    busq = [b for b in BUSQUEDAS if b["tipo"] == "producto" and ((b["hs"] and b["hs"][:4] in hs4) or ({slug(w)[:5] for w in re.findall(r"\w{4,}", b["nombre"])} & claves))]
-    nav = [("comprar", "Comprar"), ("international", "International Shop"), ("aprender", "Aprender"), ("viajar", "Viajar al origen"), ("empresas", "Para empresas")]
-    hub_items = "".join(f'<a class="hub-item" href="{rel(d, "productos-de-exportacion/")}#{p["codigo"].lower()}"><small>Producto de exportación</small><strong>{esc(p["nombre"])}</strong><span>{esc(p["volumen"] or "Volumen a convenir")}</span></a>' for p in hub)
-    hub_items += "".join(f'<a class="hub-item" href="{rel(d, "mesa-de-negociacion/")}#{b["cod"].lower()}"><small>Búsqueda en la Mesa · {esc(b["pais"])}</small><strong>{esc(b["nombre"])}</strong><span>{esc(b["vol"])}</span></a>' for b in busq)
     c1, c2 = cb.COLORES.get("Café, Té y Mate")
-    main = f'''    <div class="wrap">
-{crumbs(d, [(t["nombre"], None)])}
-      <section class="tema-hero" data-glyph="{esc(t['nombre'][0])}" style="--c1:{c1};--c2:{c2}">
-        <span class="eyebrow">Todo sobre el {esc(t['nombre'].lower())}</span>
-        <h1>{esc(t['nombre'])}</h1>
-        <p>{esc(t['bajada'])}</p>
-      </section>
-      <nav class="tema-nav" aria-label="Secciones">{"".join(f'<a href="#{a}">{n}</a>' for a, n in nav)}</nav>
-
-      <section class="tema-sec" id="comprar" aria-labelledby="h-c">
-        <div class="v-head"><div><span class="tag-n">Tienda</span><h2 id="h-c">Comprá</h2><p>Cada producto muestra a dónde se envía.</p></div><a class="text-link" href="{rel(d, p_envio('argentina'))}">Condiciones de envío</a></div>
-        <div class="prod-grid">
-{chr(10).join(card(p, d, cb, cv) for p in locales)}
-        </div>
-      </section>
-
-      <section class="tema-sec" id="international" aria-labelledby="h-i">
-        <div class="intl-band">
-          <div class="v-head"><div><span class="tag-n">International Shop</span><h2 id="h-i">Desde Argentina al mundo</h2><p>Precios en dólares, con envío a:</p></div></div>
-          <div class="countries">{"".join(f"<span>{esc(c)}</span>" for c in paises)}</div>
-          <div class="prod-grid">
-{chr(10).join(card(p, d, cb, cv, "intl") for p in intl)}
-          </div>
-        </div>
-      </section>
-
-      <section class="tema-sec" id="aprender" aria-labelledby="h-a">
-        <div class="v-head"><div><span class="tag-n">Blog</span><h2 id="h-a">Aprendé</h2><p>Cómo preparar, cuidar y elegir.</p></div><a class="text-link" href="{rel(d, 'blog/etiqueta/' + slug(t['etiquetas'][0]) + '/')}">Ver todas las notas</a></div>
-{cb.grid(rel_notas[:6], d)}
-      </section>
-
+    foto = ""
+    if t.get("imagen"):
+        pos = f' style="object-position:{esc(t["imagen_pos"])}"' if t.get("imagen_pos") else ""
+        foto = f'<img class="th-foto" src="{rel(d, t["imagen"])}" alt=""{pos}>'
+    viajes = ""
+    if dests:
+        viajes = f'''
       <section class="tema-sec" id="viajar" aria-labelledby="h-v">
-        <div class="v-head"><div><span class="tag-n">Viajes</span><h2 id="h-v">Viajá al origen</h2><p>Los lugares donde el {esc(t['nombre'].lower())} es parte de todos los días.</p></div></div>
+        <div class="v-head"><div><span class="tag-n">Viajes</span><h2 id="h-v">Viajá al origen</h2><p>Los lugares donde el {esc(t['nombre'].lower())} es parte de todos los días.</p></div><a class="text-link" href="{rel(d, 'viajes/')}">Todas las guías de viaje</a></div>
         <div class="dest-grid">
 {chr(10).join(cv.dest_card(x, d) for x in dests)}
         </div>
-      </section>
-
-      <section class="tema-sec" id="empresas" aria-labelledby="h-e">
-        <div class="hub-band">
-          <div>
-            <span class="eyebrow" style="color:#e3a33b">Hub de Oportunidades</span>
-            <h2 id="h-e">Para empresas e importadores</h2>
-            <p>Si comprás por volumen para revender o distribuir, estos productos están disponibles para exportación. Y si buscás algo que no está, publicalo en la Mesa de negociación: si nadie lo ofrece, nuestro equipo lo busca y te responde en 5 días hábiles.</p>
-            <div class="acts"><a class="pri" href="{rel(d, 'productos-de-exportacion/')}">Ver productos de exportación</a><a class="sec" href="{rel(d, 'mesa-de-negociacion/')}#buscar">Publicar una búsqueda</a></div>
-          </div>
-          <div class="hub-list">{hub_items}</div>
+      </section>'''
+    main = f'''    <div class="wrap">
+{crumbs(d, [(t["nombre"], None)])}
+      <section class="tema-hero{' has-photo' if foto else ''}" data-glyph="{esc(t['nombre'][0])}" style="--c1:{c1};--c2:{c2}">
+        {foto}
+        <div class="th-txt">
+          <span class="eyebrow">Todo sobre el {esc(t['nombre'].lower())}</span>
+          <h1>{esc(t['nombre'])}</h1>
+          <p>{esc(t['bajada'])}</p>
         </div>
       </section>
+
+      <section class="tema-sec" id="notas" aria-labelledby="h-a">
+        <div class="v-head"><div><span class="tag-n">Notas</span><h2 id="h-a">Guías y notas</h2><p>Para preparar, cuidar y disfrutar cada mate.</p></div><a class="text-link" href="{rel(d, 'blog/etiqueta/' + slug(t['etiquetas'][0]) + '/')}">Ver todas en el blog</a></div>
+{cb.grid(rel_notas, d)}
+      </section>
+{viajes}
+      <div style="height:40px"></div>
     </div>'''
     ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": f"Todo sobre el {t['nombre'].lower()}", "description": t["bajada"]}
-    return page(d, f"Todo sobre el {t['nombre'].lower()}: comprar, aprender y viajar al origen | Umarti Origen",
+    return page(d, f"Todo sobre el {t['nombre'].lower()}: guías, notas y viajes | Umarti Origen",
                 t["bajada"], main, ["blog", "viajes", "tienda"], ld)
 
 

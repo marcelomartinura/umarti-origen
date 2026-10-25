@@ -134,13 +134,46 @@
    "estado": "Ejemplo",
    "vendedor": "Umarti Origen",
    "slug": "kit-matero-de-regalo"
+  },
+  {
+   "codigo": "UM-0005",
+   "nombre": "Mate de vidrio forrado de simil cuero con Guarda Pampa",
+   "descripcion": "",
+   "categoria": "Café, Té y Mate",
+   "subcategoria": "Mates y bombillas",
+   "temas": [
+    "mate"
+   ],
+   "pais": "Argentina",
+   "region": "",
+   "destino": "",
+   "precio_ars": 18000,
+   "precio_mxn": null,
+   "precio_usd": 12,
+   "tienda_ar": true,
+   "tienda_mx": false,
+   "international": true,
+   "paises_envio": [
+    "México"
+   ],
+   "hub": false,
+   "hs": "",
+   "volumen": "",
+   "vigencia_hub": "",
+   "link_pago": "",
+   "fotos": [
+    "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/productos/mate-de-vidrio-df959538/1792891295667-0.jpg"
+   ],
+   "estado": "Publicado",
+   "vendedor": "Umarti Origen",
+   "slug": "mate-de-vidrio-forrado-de-simil-cuero-con-guarda-pampa"
   }
  ],
  "temas": [
   {
    "clave": "mate",
    "nombre": "Mate",
-   "bajada": "Del yerbatal a tu ronda: cómo elegir, preparar y cuidar tu mate, dónde nace la yerba y dónde comprarla, en tu país o en el exterior.",
+   "bajada": "Cómo elegir, preparar y cuidar tu mate, y mucho más.",
    "etiquetas": [
     "mate",
     "yerba mate",
@@ -152,7 +185,9 @@
     "buenos-aires",
     "ciudad-de-mexico"
    ],
-   "estado": "Publicado"
+   "estado": "Publicado",
+   "imagen": "assets/img/temas/mate.jpg",
+   "imagen_pos": "center 64%"
   }
  ],
  "envios": [

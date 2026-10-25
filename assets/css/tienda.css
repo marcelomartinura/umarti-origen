@@ -332,3 +332,15 @@ dialog::backdrop { background: rgba(31, 26, 20, 0.55); }
 .is-pasos b { display: block; font-size: 0.97rem; }
 .is-pasos small { color: var(--muted); font-size: 0.84rem; }
 @media (max-width: 860px) { .is-hero { grid-template-columns: 1fr; } .is-art svg { max-width: 340px; margin: 0 auto; } .is-pasos { grid-template-columns: 1fr; } }
+
+/* ---------- Tema con foto de fondo (por ejemplo /mate/) ---------- */
+.tema-hero.has-photo { min-height: 420px; display: flex; align-items: center; padding: 56px 48px; }
+.tema-hero.has-photo::before { display: none; }
+.th-foto { position: absolute; top: 0; right: 0; width: 58%; height: 100%; object-fit: cover; object-position: center 64%;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 38%); mask-image: linear-gradient(90deg, transparent 0, #000 38%); }
+.th-txt { position: relative; z-index: 1; max-width: 520px; }
+@media (max-width: 760px) {
+  .tema-hero.has-photo { min-height: 0; flex-direction: column; align-items: stretch; padding: 0 0 28px; }
+  .th-foto { position: relative; width: 100%; height: 300px; -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent); mask-image: linear-gradient(180deg, #000 60%, transparent); }
+  .th-txt { padding: 0 24px; margin-top: -40px; }
+}

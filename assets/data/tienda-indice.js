@@ -55,5 +55,19 @@ window.TIENDA_INDICE = [
   "glifo": "K",
   "envio": "Argentina · Internacional",
   "ejemplo": true
+ },
+ {
+  "codigo": "UM-0005",
+  "nombre": "Mate de vidrio forrado de simil cuero con Guarda Pampa",
+  "url": "argentina/tienda/mate-de-vidrio-forrado-de-simil-cuero-con-guarda-pampa/",
+  "precio": "$ 18.000",
+  "moneda": "ARS",
+  "subcategoria": "Mates y bombillas",
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/productos/mate-de-vidrio-df959538/1792891295667-0.jpg",
+  "c1": "#5b7a43",
+  "c2": "#33472a",
+  "glifo": "M",
+  "envio": "Argentina · Internacional",
+  "ejemplo": false
  }
 ];
