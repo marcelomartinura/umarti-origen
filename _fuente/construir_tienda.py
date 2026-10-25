@@ -598,6 +598,60 @@ def portada_pais(productos, temas, cb, cv, pais="Argentina"):
     return page(d, f"Tienda {pais} | Umarti Origen: mates, yerba y kits de regalo", f"Comprá mates, yerba y kits de regalo de {pais}, con envío a todo el país y compra segura.", main, ["blog", "viajes", "tienda"])
 
 
+# Detalle de cada subcategoría para la página "Todas las categorías"
+DETALLE = {
+    "Mates y bombillas": ["Mates de madera", "Mates de vidrio", "Mates de calabaza", "Acero y otros", "Bombillas"],
+    "Yerba": ["Con palo", "Sin palo", "Saborizadas", "Orgánicas"],
+    "Café y té": ["Café en grano y molido", "Tés e infusiones", "Chocolate"],
+    "Kits de mate y café": ["Sets materos", "Kits de regalo"],
+    "Regalos corporativos": ["Fin de año", "Eventos y clientes"],
+    "Personalizados": ["Grabados", "Con logo"],
+    "Bolsos materos": ["Bolsos", "Canastas materas"],
+    "Marroquinería y riñoneras": ["Billeteras", "Carteras y morrales", "Cinturones", "Riñoneras"],
+    "Juegos de asado": ["Cuchillos", "Tablas", "Sets parrilleros"],
+    "Portatermos y llaveros": ["Portatermos", "Llaveros", "Souvenirs"],
+    "Vinos y destilados": ["Malbec", "Torrontés", "Espumantes", "Cervezas y licores"],
+    "Dulces y snacks": ["Alfajores", "Dulce de leche", "Golosinas", "Snacks"],
+    "Otros alimentos": ["Aceite de oliva", "Conservas", "Alimentos diet", "Congelados"],
+    "Moda": ["Ropa de dama", "Ropa de caballero", "Zapatos", "Carteras"],
+    "Hogar y cocina": ["Bazar y cocina", "Organización", "Deco", "Herramientas y jardín", "Limpieza"],
+    "Salud y bienestar": ["Cuidado personal", "Odontología", "Dispositivos médicos"],
+    "Tecnología": ["Accesorios", "Audio", "Hogar inteligente"],
+}
+
+
+def pagina_categorias(productos, cb, pais="Argentina"):
+    d = 2
+    locales = [p for p in productos if p["pais"] == pais and en_tienda_local(p)]
+    def n_prod(**k):
+        n = sum(1 for p in locales if all(p[a] == b for a, b in k.items()))
+        return "Pronto" if n == 0 else (f"{n} producto" + ("" if n == 1 else "s"))
+    bloques = []
+    for cat, subs in cb.CATEGORIAS.items():
+        c1, c2 = cb.COLORES.get(cat, cb.COLORES["Alimentos"])
+        items = "".join(
+            f'''<a class="cg-sub" href="{rel(d, p_tienda(pais) + "?sub=" + quote(sub))}"><b>{esc(sub)}</b><small>{esc(" · ".join(DETALLE.get(sub, [])))}</small><span>{n_prod(subcategoria=sub)}</span></a>'''
+            for sub in subs)
+        bloques.append(f'''      <section class="cg-cat" style="--c1:{c1};--c2:{c2}">
+        <a class="cg-head" href="{rel(d, p_tienda(pais) + "?cat=" + quote(cat))}"><h2>{esc(cat)}</h2><span>{n_prod(categoria=cat)} · Ver todo →</span></a>
+        <p class="cg-txt">{esc(cb.TIENDA_TEXTO.get(cat, ""))}</p>
+        <div class="cg-subs">{items}</div>
+      </section>''')
+    main = barra_tienda(d, "tienda", pais) + f'''    <div class="wrap">
+{crumbs(d, [(pais, p_pais(pais)), ("Todas las categorías", None)])}
+      <div class="blog-head">
+        <span class="eyebrow" style="color:var(--terra)">Tienda {esc(pais)}</span>
+        <h1>Todas las categorías</h1>
+        <p>Recorré la tienda completa, categoría por categoría. Si preferís ver todo junto, entrá al <a href="{rel(d, p_tienda(pais))}">catálogo completo</a>.</p>
+      </div>
+      <div class="cg-grid">
+{chr(10).join(bloques)}
+      </div>
+      <div style="height:72px"></div>
+    </div>'''
+    return page(d, f"Todas las categorías | Tienda {pais} Umarti Origen", f"Mates, yerba, regalos, artículos regionales, alimentos, bebidas y más: todas las categorías de la Tienda {pais}.", main, ["blog", "viajes", "tienda"])
+
+
 def indice_envios(envios):
     d = 1
     cards = "".join(f'<a class="link-card tema" href="{rel(d, p_envio(e["slug"]))}"><span class="ic">{ICON_TRUCK}</span><span><strong>{esc("Envíos internacionales" if e["slug"] == "internacional" else "Envíos a " + e["zona"])}</strong><small>Plazos, costos, seguimiento y cambios</small></span></a>' for e in envios)
@@ -647,6 +701,7 @@ def main():
     escribir("assets/data/tienda-indice.js", indice_js(productos, cb))
     escribir(p_tienda() + "index.html", listado(productos, cb, cv))
     escribir(p_pais() + "index.html", portada_pais(productos, temas, cb, cv))
+    escribir(p_pais() + "categorias/index.html", pagina_categorias(productos, cb))
     escribir("international-shop/index.html", international(productos, cb, cv))
     for p in productos:
         escribir(p_prod(p) + "index.html", pagina_producto(p, productos, temas, notas, cb, cv))

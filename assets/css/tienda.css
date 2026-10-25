@@ -334,13 +334,29 @@ dialog::backdrop { background: rgba(31, 26, 20, 0.55); }
 @media (max-width: 860px) { .is-hero { grid-template-columns: 1fr; } .is-art svg { max-width: 340px; margin: 0 auto; } .is-pasos { grid-template-columns: 1fr; } }
 
 /* ---------- Tema con foto de fondo (por ejemplo /mate/) ---------- */
-.tema-hero.has-photo { min-height: 420px; display: flex; align-items: center; padding: 56px 48px; }
+.tema-hero.has-photo { min-height: 290px; display: flex; align-items: center; padding: 40px 48px; }
 .tema-hero.has-photo::before { display: none; }
-.th-foto { position: absolute; top: 0; right: 0; width: 58%; height: 100%; object-fit: cover; object-position: center 64%;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 38%); mask-image: linear-gradient(90deg, transparent 0, #000 38%); }
+.th-foto { position: absolute; top: 0; right: 0; width: 66%; height: 100%; object-fit: cover; object-position: center 64%;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, rgba(0,0,0,.55) 45%, #000 70%); mask-image: linear-gradient(90deg, transparent 0, rgba(0,0,0,.55) 45%, #000 70%); }
 .th-txt { position: relative; z-index: 1; max-width: 520px; }
 @media (max-width: 760px) {
   .tema-hero.has-photo { min-height: 0; flex-direction: column; align-items: stretch; padding: 0 0 28px; }
-  .th-foto { position: relative; width: 100%; height: 300px; -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent); mask-image: linear-gradient(180deg, #000 60%, transparent); }
+  .th-foto { position: relative; width: 100%; height: 220px; -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent); mask-image: linear-gradient(180deg, #000 60%, transparent); }
   .th-txt { padding: 0 24px; margin-top: -40px; }
 }
+
+/* ---------- Todas las categorías ---------- */
+.cg-grid { display: grid; gap: 22px; }
+.cg-cat { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 22px 24px 24px; position: relative; overflow: hidden; }
+.cg-cat::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: linear-gradient(180deg, var(--c1), var(--c2)); }
+.cg-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; text-decoration: none; color: var(--ink); }
+.cg-head h2 { font-size: 1.6rem; }
+.cg-head span { font-size: 0.88rem; font-weight: 700; color: var(--c1); }
+.cg-head:hover h2 { text-decoration: underline; text-underline-offset: 4px; }
+.cg-txt { color: var(--muted); margin: 4px 0 16px; font-size: 0.95rem; }
+.cg-subs { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+.cg-sub { display: flex; flex-direction: column; gap: 4px; text-decoration: none; color: var(--ink); background: #faf6ef; border-radius: 14px; padding: 14px 16px; border: 1px solid transparent; transition: border-color .2s, background .2s; }
+.cg-sub:hover { border-color: var(--c1); background: #fff; }
+.cg-sub b { font-size: 1.02rem; }
+.cg-sub small { color: var(--muted); font-size: 0.84rem; line-height: 1.4; }
+.cg-sub span { margin-top: auto; padding-top: 6px; font-size: 0.78rem; font-weight: 700; color: var(--c1); }
