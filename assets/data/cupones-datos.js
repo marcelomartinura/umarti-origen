@@ -248,25 +248,6 @@ window.CUPONES = [
   "online": true
  },
  {
-  "codigo": "CU-0014",
-  "titulo": "20% en eSIM para viajar por Sudamérica",
-  "comercio": "Conecta Viaje",
-  "iniciales": "CV",
-  "lugar": "En línea",
-  "descripcion": "Datos móviles en 10 países sin cambiar de chip.",
-  "tipo": "Código",
-  "cupon": "ESIM20",
-  "condiciones": "Válido en planes de 7 días o más.",
-  "vence_txt": "25/10/2026",
-  "link": "",
-  "destino_url": "",
-  "destino_nombre": "",
-  "tema": "",
-  "tema_url": "",
-  "ejemplo": true,
-  "online": true
- },
- {
   "codigo": "CU-0015",
   "titulo": "50% en el primer mes de tu tienda en línea",
   "comercio": "Tiendas Express",
