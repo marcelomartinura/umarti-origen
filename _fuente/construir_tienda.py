@@ -49,6 +49,9 @@ PAIS_SLUG = {"Argentina": "argentina", "México": "mexico"}
 def p_pais(pais="Argentina"): return PAIS_SLUG.get(pais, "argentina") + "/"
 def p_tienda(pais="Argentina"): return p_pais(pais) + "tienda/"
 def p_prod(p): return f"{p_tienda(p['pais'])}{p['slug']}/"
+def p_cat(cat, pais="Argentina", sub=None):
+    """Página propia de cada categoría; con sub, abre filtrada en esa subcategoría."""
+    return f"{p_tienda(pais)}{slug(cat)}/" + (f"?sub={quote(sub)}" if sub else "")
 def p_tema(t): return f"{t['clave']}/"   # los temas son contenido global
 def p_envio(slug_zona):
     """Envíos internacionales viven en International Shop; los locales, en la carpeta del país."""
@@ -447,21 +450,12 @@ def pagina_tema(t, productos, notas, cb, cv):
     """Página de tema: solo contenido (notas del blog y viajes al origen), sin venta."""
     d = 1
     rel_notas = notas_relacionadas({"temas": [slug(e) for e in t["etiquetas"]]}, notas, etiquetas=set(t["etiquetas"]) | {slug(e) for e in t["etiquetas"]})
-    dests = [x for s in t["destinos"] for x in cv.DESTINOS if x["slug"] == s]
     c1, c2 = cb.COLORES.get("Café, Té y Mate")
     foto = ""
     if t.get("imagen"):
         pos = f' style="object-position:{esc(t["imagen_pos"])}"' if t.get("imagen_pos") else ""
         foto = f'<img class="th-foto" src="{rel(d, t["imagen"])}" alt=""{pos}>'
-    viajes = ""
-    if dests:
-        viajes = f'''
-      <section class="tema-sec" id="viajar" aria-labelledby="h-v">
-        <div class="v-head"><div><span class="tag-n">Viajes</span><h2 id="h-v">Viajá al origen</h2><p>Los lugares donde el {esc(t['nombre'].lower())} es parte de todos los días.</p></div><a class="text-link" href="{rel(d, 'viajes/')}">Todas las guías de viaje</a></div>
-        <div class="dest-grid">
-{chr(10).join(cv.dest_card(x, d) for x in dests)}
-        </div>
-      </section>'''
+    viajes = ""  # "Viajá al origen" quitado a pedido; acá pueden ir los tutoriales
     main = f'''    <div class="wrap">
 {crumbs(d, [(t["nombre"], None)])}
       <section class="tema-hero{' has-photo' if foto else ''}" data-glyph="{esc(t['nombre'][0])}" style="--c1:{c1};--c2:{c2}">
@@ -556,7 +550,8 @@ def portada_pais(productos, temas, cb, cv, pais="Argentina"):
     for p in locales:
         if p["subcategoria"] not in [x[0] for x in pasillos]:
             pasillos.append((p["subcategoria"], p["categoria"]))
-    pas_html = "".join(f'<a class="pasillo" href="{rel(d, p_tienda(pais) + "?sub=" + quote(sub))}"><small>Pasillo</small><b>{esc(sub)}</b><span>{(lambda n: f"{n} producto" + ("" if n == 1 else "s"))(sum(1 for p in locales if p["subcategoria"] == sub))}</span></a>' for sub, _ in pasillos)
+    cat_de_sub = {p["subcategoria"]: p["categoria"] for p in locales}
+    pas_html = "".join(f'<a class="pasillo" href="{rel(d, p_cat(cat_de_sub[sub], pais, sub))}"><small>Pasillo</small><b>{esc(sub)}</b><span>{(lambda n: f"{n} producto" + ("" if n == 1 else "s"))(sum(1 for p in locales if p["subcategoria"] == sub))}</span></a>' for sub, _ in pasillos)
     main = barra_tienda(d, "", pais) + f'''    <section class="ts-hero">
       <div class="ts-toldo" aria-hidden="true"></div>
       <div class="wrap ts-fachada">
@@ -630,10 +625,10 @@ def pagina_categorias(productos, cb, pais="Argentina"):
     for cat, subs in cb.CATEGORIAS.items():
         c1, c2 = cb.COLORES.get(cat, cb.COLORES["Alimentos"])
         items = "".join(
-            f'''<a class="cg-sub" href="{rel(d, p_tienda(pais) + "?sub=" + quote(sub))}"><b>{esc(sub)}</b><small>{esc(" · ".join(DETALLE.get(sub, [])))}</small><span>{n_prod(subcategoria=sub)}</span></a>'''
+            f'''<a class="cg-sub" href="{rel(d, p_cat(cat, pais, sub))}"><b>{esc(sub)}</b><small>{esc(" · ".join(DETALLE.get(sub, [])))}</small><span>{n_prod(subcategoria=sub)}</span></a>'''
             for sub in subs)
         bloques.append(f'''      <section class="cg-cat" style="--c1:{c1};--c2:{c2}">
-        <a class="cg-head" href="{rel(d, p_tienda(pais) + "?cat=" + quote(cat))}"><h2>{esc(cat)}</h2><span>{n_prod(categoria=cat)} · Ver todo →</span></a>
+        <a class="cg-head" href="{rel(d, p_cat(cat, pais))}"><h2>{esc(cat)}</h2><span>{n_prod(categoria=cat)} · Ver todo →</span></a>
         <p class="cg-txt">{esc(cb.TIENDA_TEXTO.get(cat, ""))}</p>
         <div class="cg-subs">{items}</div>
       </section>''')
@@ -650,6 +645,66 @@ def pagina_categorias(productos, cb, pais="Argentina"):
       <div style="height:72px"></div>
     </div>'''
     return page(d, f"Todas las categorías | Tienda {pais} Umarti Origen", f"Mates, yerba, regalos, artículos regionales, alimentos, bebidas y más: todas las categorías de la Tienda {pais}.", main, ["blog", "viajes", "tienda"])
+
+
+def pagina_categoria(cat, productos, notas, cb, cv, pais="Argentina"):
+    """Página de una categoría: productos arriba, notas debajo y, más chico, International Shop, cupones y recursos."""
+    import construir_recursos as cr
+    d = 3
+    conf = json.load(open(os.path.join(AQUI, "tienda", "categorias.json"), encoding="utf-8")).get(cat, {})
+    subs = cb.CATEGORIAS[cat]
+    prods = [p for p in productos if p["pais"] == pais and en_tienda_local(p) and p["categoria"] == cat]
+    intl = [p for p in productos if p["international"] and p["categoria"] == cat]
+    chips = '<div class="chip-row" role="group" aria-label="Filtrar"><button type="button" data-filtro="" aria-pressed="true">Todo</button>' + "".join(
+        f'<button type="button" data-filtro="{esc(s)}" aria-pressed="false">{esc(s)}</button>' for s in subs) + "</div>"
+    vacio = "Todavía no hay productos en esta categoría. Muy pronto vas a encontrarlos acá." if not prods else "Todavía no hay productos en esta subcategoría."
+    notas_cat = [n for n in notas if n.get("categoria") == cat]
+    bloque_notas = ""
+    if notas_cat:
+        bloque_notas = f'''
+      <section class="tema-sec" aria-labelledby="h-n">
+        <div class="v-head"><div><span class="tag-n">Notas</span><h2 id="h-n">Guías y notas</h2><p>Para elegir, usar y cuidar lo que comprás.</p></div><a class="text-link" href="{rel(d, 'blog/productos/' + slug(cat) + '/')}">Ver todas en el blog</a></div>
+{cb.grid(notas_cat[:6], d)}
+      </section>'''
+    # más para esta categoría: International Shop, cupones y recursos marcados
+    extras = []
+    if intl:
+        extras.append((rel(d, "international-shop/"), ICON["pin"], "International Shop", f"{len(intl)} producto{'' if len(intl) == 1 else 's'} con envío al exterior"))
+    cupones = json.load(open(os.path.join(AQUI, "cupones", "cupones.json"), encoding="utf-8"))
+    temas_cat = set(conf.get("temas", []))
+    cup = [c for c in cupones if c.get("tema") in temas_cat or any(c.get("link", "").endswith(p_prod(p)) for p in prods)]
+    if cup:
+        extras.append((rel(d, "cupones/#" + cup[0]["codigo"].lower()) if len(cup) == 1 else rel(d, "cupones/productos/"), ICON["msg"], "Cupones", f"{len(cup)} descuento{'' if len(cup) == 1 else 's'} para esta categoría"))
+    herramientas = {h[0]: h for h in cr.HERRAMIENTAS if h[5]}
+    for k in conf.get("recursos", []):
+        if k in herramientas:
+            h = herramientas[k]
+            extras.append((rel(d, f"recursos/{k}/"), cr.icono(h[4], 20), h[1], h[2]))
+    bloque_extras = ""
+    if extras:
+        bloque_extras = '''
+      <section class="cat-extras" aria-labelledby="h-x">
+        <h2 id="h-x">Más para esta categoría</h2>
+        <div class="cx-grid">''' + "".join(f'<a class="cx" href="{u}"><span class="ic">{ic}</span><span><b>{esc(t)}</b><small>{esc(b)}</small></span></a>' for u, ic, t, b in extras) + '''</div>
+      </section>'''
+    titulo = conf.get("titulo", cat)
+    main = barra_tienda(d, "tienda", pais) + f'''    <div class="wrap">
+{crumbs(d, [(pais, p_pais(pais)), ("Tienda", p_tienda(pais)), (cat, None)])}
+      <div class="blog-head">
+        <span class="eyebrow" style="color:var(--terra)">Tienda {esc(pais)}</span>
+        <h1>{esc(titulo[0].upper() + titulo[1:])}</h1>
+        <p>{esc(conf.get("bajada", cb.TIENDA_TEXTO.get(cat, "")))}</p>
+      </div>
+      <div class="shop-tools">{chips}<span class="v-count" id="shop-count"></span></div>
+      <div class="prod-grid" id="shop-grid">
+{chr(10).join(card(p, d, cb, cv) for p in prods)}
+        <p class="shop-empty{' show' if not prods else ''}" id="shop-empty">{vacio}</p>
+      </div>
+{bloque_notas}
+{bloque_extras}
+      <div style="height:72px"></div>
+    </div>'''
+    return page(d, f"{cat} | Tienda {pais} Umarti Origen", conf.get("bajada", cb.TIENDA_TEXTO.get(cat, "")), main, ["blog", "viajes", "tienda"])
 
 
 def indice_envios(envios):
@@ -702,6 +757,11 @@ def main():
     escribir(p_tienda() + "index.html", listado(productos, cb, cv))
     escribir(p_pais() + "index.html", portada_pais(productos, temas, cb, cv))
     escribir(p_pais() + "categorias/index.html", pagina_categorias(productos, cb))
+    slugs_prod = {p["slug"] for p in productos}
+    for cat in cb.CATEGORIAS:
+        if slug(cat) in slugs_prod:
+            raise SystemExit(f"Hay un producto con la misma dirección que la categoría {cat}: cambiale la dirección en el panel")
+        escribir(p_cat(cat) + "index.html", pagina_categoria(cat, productos, notas, cb, cv))
     escribir("international-shop/index.html", international(productos, cb, cv))
     for p in productos:
         escribir(p_prod(p) + "index.html", pagina_producto(p, productos, temas, notas, cb, cv))

@@ -26,7 +26,7 @@ window.HUB_DATOS = {
    "destinos": "México, Estados Unidos, España, Chile",
    "vol": "20 toneladas por mes",
    "vence": "2027-12-31",
-   "claves": "mate Mates y bombillas Yerba misionera de estacionamiento natural, sabor equilibrado.",
+   "claves": "mate Yerba Yerba misionera de estacionamiento natural, sabor equilibrado.",
    "tienda_url": "argentina/tienda/yerba-mate-elaborada-con-palo-1-kg/",
    "kind": "producto",
    "url": "../productos-de-exportacion/#um-0003"

@@ -34,7 +34,7 @@ window.TIENDA_INDICE = [
   "url": "argentina/tienda/yerba-mate-elaborada-con-palo-1-kg/",
   "precio": "$ 6.500",
   "moneda": "ARS",
-  "subcategoria": "Mates y bombillas",
+  "subcategoria": "Yerba",
   "foto": "",
   "c1": "#5b7a43",
   "c2": "#33472a",

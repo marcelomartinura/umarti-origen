@@ -360,3 +360,14 @@ dialog::backdrop { background: rgba(31, 26, 20, 0.55); }
 .cg-sub b { font-size: 1.02rem; }
 .cg-sub small { color: var(--muted); font-size: 0.84rem; line-height: 1.4; }
 .cg-sub span { margin-top: auto; padding-top: 6px; font-size: 0.78rem; font-weight: 700; color: var(--c1); }
+
+/* ---------- Página de categoría: "Más para esta categoría" (compacto) ---------- */
+.cat-extras { margin-top: 8px; padding-top: 24px; border-top: 1px solid var(--line); }
+.cat-extras h2 { font-family: "Inter", sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.cx-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; }
+.cx { display: flex; gap: 12px; align-items: center; text-decoration: none; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; }
+.cx:hover { border-color: #d9c9b2; }
+.cx .ic { width: 38px; height: 38px; border-radius: 10px; background: #f8ebe2; color: var(--terra-dark); display: grid; place-items: center; flex: none; }
+.cx b { display: block; font-size: 0.93rem; }
+.cx small { display: block; color: var(--muted); font-size: 0.8rem; line-height: 1.35; }
+#shop-grid + .tema-sec, #shop-grid + .cat-extras { margin-top: 64px; }

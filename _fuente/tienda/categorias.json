@@ -1,0 +1,29 @@
+{
+ "_ayuda": "Qué se muestra en la página de cada categoría de la Tienda. 'recursos' son claves de Recursos digitales (ver _fuente/construir_recursos.py); 'temas' sirve para encontrar cupones relacionados.",
+ "Café, Té y Mate": {
+  "titulo": "Café, té y mate",
+  "bajada": "Mates, bombillas, yerbas, cafés y tés seleccionados, con envío a todo el país.",
+  "temas": ["mate"],
+  "recursos": ["conversor-de-monedas"]
+ },
+ "Regalos y Kits": {
+  "bajada": "Kits armados, sets materos y regalos para empresas.",
+  "temas": ["mate"],
+  "recursos": ["calculadora-de-precio-y-margen"]
+ },
+ "Artículos regionales": {
+  "bajada": "Bolsos materos, marroquinería, juegos de asado y artículos con identidad argentina.",
+  "temas": [],
+  "recursos": ["tabla-de-talles"]
+ },
+ "Alimentos y Bebidas": {
+  "bajada": "Vinos, destilados, dulces y alimentos con origen.",
+  "temas": [],
+  "recursos": ["conversor-de-monedas"]
+ },
+ "Hogar, Moda y más": {
+  "bajada": "Moda, hogar, bienestar y tecnología.",
+  "temas": [],
+  "recursos": ["tabla-de-talles"]
+ }
+}

@@ -291,7 +291,7 @@ def pagina_destino(x):
         links = ""
         if o.get("nota") and o["nota"] in NOTAS:
             links += f'<a href="{rel(d, "blog/" + o["nota"] + "/")}">Leer: {esc(NOTAS[o["nota"]]["titulo"])}</a>'
-        links += f'<a href="{rel(d, "argentina/tienda/?cat=" + quote(o["categoria"]))}">Ver {esc(o["categoria"])} en la Tienda</a>'
+        links += f'<a href="{rel(d, "argentina/tienda/" + slug(o["categoria"]) + "/")}">Ver {esc(o["categoria"])} en la Tienda</a>'
         items.append(f'<div class="origin-item"><strong>{esc(o["producto"])}</strong><p>{esc(o["texto"])}</p>{links}</div>')
     origen_box = f'<div class="box origin-box"><h2>De {esc(x["nombre"])} a tu mesa</h2>{"".join(items)}</div>'
     plan_box = f'''<div class="box plan-box"><strong>Armá tu viaje a {esc(x['nombre'])}</strong><p>Te enviamos una propuesta con recorrido, alojamiento y experiencias.</p><a class="btn-green" href="{rel(d, 'viajes/')}?destino={quote(x['nombre'])}#planificar">Pedir propuesta</a></div>'''
