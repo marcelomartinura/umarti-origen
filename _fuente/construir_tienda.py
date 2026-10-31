@@ -21,8 +21,7 @@ from comun import escribir, slug, SITIO  # noqa: E402
 esc = html.escape
 CATALOGO = os.path.join(AQUI, "tienda", "catalogo.json")
 
-SECTOR_HUB = {"Café, Té y Mate": "Alimentos y bebidas", "Alimentos y Bebidas": "Alimentos y bebidas", "Regalos y Kits": "Manufacturas",
-              "Artículos regionales": "Manufacturas", "Hogar, Moda y más": "Manufacturas"}
+SECTOR_HUB = {"Café, Té y Mate": "Alimentos y bebidas", "Bebidas": "Alimentos y bebidas", "Alimentos": "Alimentos y bebidas"}  # el resto: Manufacturas
 MONEDA_PAIS = {"Argentina": "ars", "México": "mxn"}
 # Mercados locales abiertos: país -> (campo que lo activa, campo de precio, moneda).
 # México todavía no tiene tienda local: sus compradores usan International Shop.
@@ -595,9 +594,10 @@ def portada_pais(productos, temas, cb, cv, pais="Argentina"):
 
 # Detalle de cada subcategoría para la página "Todas las categorías"
 DETALLE = {
-    "Mates y bombillas": ["Mates de madera", "Mates de vidrio", "Mates de calabaza", "Acero y otros", "Bombillas"],
-    "Yerba": ["Con palo", "Sin palo", "Saborizadas", "Orgánicas"],
-    "Café y té": ["Café en grano y molido", "Tés e infusiones", "Chocolate"],
+    "Mates y bombillas": ["Mates de madera", "Mates de vidrio", "Mates de calabaza", "Acero y otros", "Bombillas", "Yerba"],
+    "Café": ["En grano", "Molido", "Cápsulas"],
+    "Té": ["Tés en hebras", "En saquitos", "Infusiones"],
+    "Chocolate": ["Tabletas", "Bombones", "Chocolate en rama"],
     "Kits de mate y café": ["Sets materos", "Kits de regalo"],
     "Regalos corporativos": ["Fin de año", "Eventos y clientes"],
     "Personalizados": ["Grabados", "Con logo"],
@@ -605,13 +605,13 @@ DETALLE = {
     "Marroquinería y riñoneras": ["Billeteras", "Carteras y morrales", "Cinturones", "Riñoneras"],
     "Juegos de asado": ["Cuchillos", "Tablas", "Sets parrilleros"],
     "Portatermos y llaveros": ["Portatermos", "Llaveros", "Souvenirs"],
-    "Vinos y destilados": ["Malbec", "Torrontés", "Espumantes", "Cervezas y licores"],
-    "Dulces y snacks": ["Alfajores", "Dulce de leche", "Golosinas", "Snacks"],
-    "Otros alimentos": ["Aceite de oliva", "Conservas", "Alimentos diet", "Congelados"],
-    "Moda": ["Ropa de dama", "Ropa de caballero", "Zapatos", "Carteras"],
-    "Hogar y cocina": ["Bazar y cocina", "Organización", "Deco", "Herramientas y jardín", "Limpieza"],
-    "Salud y bienestar": ["Cuidado personal", "Odontología", "Dispositivos médicos"],
-    "Tecnología": ["Accesorios", "Audio", "Hogar inteligente"],
+    "Vinos": ["Malbec", "Torrontés", "Espumantes"],
+    "Cervezas y destilados": ["Cervezas artesanales", "Licores", "Destilados"],
+    "Sin alcohol": ["Jugos", "Gaseosas", "Aguas saborizadas"],
+    "Alimentos congelados": ["Empanadas", "Pastas", "Listos para calentar"],
+    "Alimentos diet": ["Sin azúcar", "Sin TACC", "Light"],
+    "Golosinas": ["Alfajores", "Dulce de leche", "Caramelos"],
+    "Snacks": ["Frutos secos", "Galletitas", "Salados"],
 }
 
 
@@ -755,9 +755,32 @@ def indice_js(productos, cb):
             "window.TIENDA_INDICE = " + json.dumps(data, ensure_ascii=False, indent=1) + ";\n")
 
 
+def menu_productos(cb, pais="Argentina"):
+    """Reescribe el menú Productos del encabezado (index.html) a partir de las categorías del blog/tienda:
+    las principales con sus subcategorías y, debajo, el resto de las categorías."""
+    import re as _re
+    from urllib.parse import quote as _q
+    cats = list(cb.CATEGORIAS.items())
+    princ, resto = cats[:cb.PRINCIPALES], cats[cb.PRINCIPALES:]
+    cols = "\n".join(
+        f'                <div><a class="cat" href="{p_cat(c, pais)}">{esc(c)}</a>\n                  <ul>'
+        + "".join(f'<li><a href="{p_cat(c, pais)}?sub={_q(sub)}">{esc(sub)}</a></li>' for sub in subs) + "</ul></div>"
+        for c, subs in princ)
+    mas = "".join(f'<a href="{p_cat(c, pais)}">{esc(c)}</a>' for c, _ in resto)
+    bloque = ('<div class="mega-grid">\n' + cols + '\n              </div>\n'
+              f'              <div class="mega-more"><span>Más categorías</span>{mas}</div>\n'
+              '              <div class="mega-foot">')
+    ruta = os.path.join(comun.RAIZ, "index.html")
+    html_ = open(ruta, encoding="utf-8").read()
+    nuevo = _re.sub(r'<div class="mega-grid">.*?<div class="mega-foot">', lambda m: bloque, html_, count=1, flags=_re.S)
+    if nuevo != html_:
+        open(ruta, "w", encoding="utf-8").write(nuevo)
+
+
 def main():
     import construir_blog as cb
     import construir_viajes as cv
+    menu_productos(cb)
     productos, temas = cargar()
     envios = cargar_envios()
     notas = sorted([cb.leer_nota(r) for r in glob.glob(os.path.join(AQUI, "blog", "notas", "*.md"))], key=lambda n: n["fecha"], reverse=True)

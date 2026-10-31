@@ -39,25 +39,41 @@ esc = html.escape
 
 # ---------- taxonomía: mismas categorías y subcategorías que la Tienda ----------
 CATEGORIAS = {
-    "Café, Té y Mate": ["Mates y bombillas", "Yerba", "Café y té"],
+    # Las 5 primeras son las principales: se muestran con sus subcategorías en el menú Productos.
+    "Café, Té y Mate": ["Mates y bombillas", "Café", "Té", "Chocolate"],
     "Regalos y Kits": ["Kits de mate y café", "Regalos corporativos", "Personalizados"],
-    "Artículos regionales": ["Bolsos materos", "Marroquinería y riñoneras", "Juegos de asado", "Portatermos y llaveros"],
-    "Alimentos y Bebidas": ["Vinos y destilados", "Dulces y snacks", "Otros alimentos"],
-    "Hogar, Moda y más": ["Moda", "Hogar y cocina", "Salud y bienestar", "Tecnología"],
+    "Artículos Regionales": ["Bolsos materos", "Marroquinería y riñoneras", "Juegos de asado", "Portatermos y llaveros"],
+    "Bebidas": ["Vinos", "Cervezas y destilados", "Sin alcohol"],
+    "Alimentos": ["Alimentos congelados", "Alimentos diet", "Golosinas", "Snacks"],
+    "Salud y Bienestar": ["Odontología", "Cuidado personal", "Dispositivos médicos"],
+    "Moda": ["Ropa de dama", "Zapatos", "Carteras", "Ropa de caballero"],
+    "Tecnología": ["Accesorios", "Audio", "Hogar inteligente"],
+    "Herramientas y Jardín": ["Herramientas", "Jardín", "Construcción"],
+    "Hogar y Cocina": ["Bazar y cocina", "Organización", "Deco"],
+    "Limpieza e Higiene": ["Productos de limpieza", "Productos de higiene personal"],
 }
+PRINCIPALES = 5  # cuántas categorías se muestran con subcategorías en el menú
 TIENDA_TEXTO = {
-    "Café, Té y Mate": "Mates, bombillas, yerbas, cafés y tés seleccionados.",
-    "Regalos y Kits": "Kits armados y regalos para empresas.",
-    "Artículos regionales": "Bolsos materos, marroquinería, juegos de asado y artículos con identidad argentina.",
-    "Alimentos y Bebidas": "Vinos, destilados, dulces y alimentos con origen.",
-    "Hogar, Moda y más": "Moda, hogar, bienestar y tecnología.",
+    "Café, Té y Mate": "Mates, bombillas, cafés, tés y chocolates seleccionados.",
+    "Regalos y Kits": "Kits armados, regalos personalizados y para empresas.",
+    "Artículos Regionales": "Bolsos materos, marroquinería, juegos de asado y artículos con identidad argentina.",
+    "Bebidas": "Vinos, cervezas, destilados y bebidas sin alcohol.",
+    "Alimentos": "Golosinas, snacks, alimentos diet y congelados.",
+    "Salud y Bienestar": "Odontología, cuidado personal y dispositivos médicos.",
+    "Moda": "Ropa de dama y de caballero, zapatos y carteras.",
+    "Tecnología": "Accesorios, audio y hogar inteligente.",
+    "Herramientas y Jardín": "Herramientas, jardín y construcción.",
+    "Hogar y Cocina": "Bazar, cocina, organización y deco.",
+    "Limpieza e Higiene": "Productos de limpieza y de higiene personal.",
 }
 TEMAS = ["Comercio exterior", "Mercados", "Ecommerce y ventas", "Cómo usar Umarti"]
 COLORES = {
     "Café, Té y Mate": ("#5b7a43", "#33472a"), "Regalos y Kits": ("#c8922a", "#8a5e0c"),
-    "Artículos regionales": ("#8a5a3c", "#55341f"), "Alimentos y Bebidas": ("#9a3445", "#5c1c27"),
-    "Hogar, Moda y más": ("#4b5d78", "#2b3648"),
-    "Alimentos": ("#c8693e", "#8f3f1d"),  # color por defecto
+    "Artículos Regionales": ("#8a5a3c", "#55341f"), "Bebidas": ("#9a3445", "#5c1c27"),
+    "Salud y Bienestar": ("#2f8a8a", "#1b5555"), "Moda": ("#a24f7a", "#66304c"),
+    "Tecnología": ("#4b5d78", "#2b3648"), "Herramientas y Jardín": ("#6b7f3a", "#414e22"),
+    "Hogar y Cocina": ("#b0703a", "#734520"), "Limpieza e Higiene": ("#3d87ab", "#225670"),
+"Alimentos": ("#c8693e", "#8f3f1d"),  # color por defecto
     "negocios": ("#3d87ab", "#225670"),
     "opinion": ("#7a4a8c", "#4a2a5a"),
 }

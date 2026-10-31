@@ -227,3 +227,8 @@ a.eco-item:hover { background: rgba(255,255,255,.08); }
 .eco-av { width: 46px; height: 46px; }
 .eco-chip img { height: 26px; }
 .eco-txt small { font-size: 0.74rem; }
+.mega-more { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--line); }
+.mega-more span { font-size: 0.72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-right: 6px; }
+.mega-more a { text-decoration: none; color: var(--ink); font-size: 0.88rem; font-weight: 600; background: var(--sand); padding: 6px 12px; border-radius: 999px; }
+.mega-more a:hover { background: #e6d6bd; color: var(--terra-dark); }
+.mega-more + .mega-foot { margin-top: 16px; }

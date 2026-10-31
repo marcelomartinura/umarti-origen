@@ -2,7 +2,7 @@
   "_ayuda": "Qué se muestra en la página de cada categoría de la Tienda. 'recursos' son claves de Recursos digitales (ver _fuente/construir_recursos.py); 'temas' sirve para encontrar cupones relacionados. 'imagen' (opcional) es la foto de la franja de presentación, y 'imagen_pos' qué parte se ve.",
   "Café, Té y Mate": {
     "titulo": "Café, té y mate",
-    "bajada": "Mates, bombillas, yerbas, cafés y tés seleccionados, con envío a todo el país.",
+    "bajada": "Mates, bombillas, cafés, tés y chocolates seleccionados, con envío a todo el país.",
     "temas": [
       "mate"
     ],
@@ -21,26 +21,67 @@
       "calculadora-de-precio-y-margen"
     ]
   },
-  "Artículos regionales": {
+  "Artículos Regionales": {
     "bajada": "Bolsos materos, marroquinería, juegos de asado y artículos con identidad argentina.",
     "temas": [],
     "recursos": [
       "tabla-de-talles"
     ]
   },
-  "Alimentos y Bebidas": {
-    "bajada": "Vinos, destilados, dulces y alimentos con origen.",
+  "Bebidas": {
+    "bajada": "Vinos, cervezas, destilados y bebidas sin alcohol.",
     "temas": [],
     "recursos": [
       "conversor-de-monedas"
     ]
   },
-  "Hogar, Moda y más": {
-    "bajada": "Moda, hogar, bienestar y tecnología.",
+  "Alimentos": {
+    "bajada": "Golosinas, snacks, alimentos diet y congelados.",
     "temas": [],
     "recursos": [
-      "tabla-de-talles",
+      "conversor-de-monedas"
+    ]
+  },
+  "Salud y Bienestar": {
+    "bajada": "Odontología, cuidado personal y dispositivos médicos.",
+    "temas": [],
+    "recursos": [
       "conversor-de-nomenclatura-dental"
+    ]
+  },
+  "Moda": {
+    "bajada": "Ropa de dama y de caballero, zapatos y carteras.",
+    "temas": [],
+    "recursos": [
+      "tabla-de-talles"
+    ]
+  },
+  "Tecnología": {
+    "bajada": "Accesorios, audio y hogar inteligente.",
+    "temas": [],
+    "recursos": [
+      "conversor-de-monedas"
+    ]
+  },
+  "Herramientas y Jardín": {
+    "bajada": "Herramientas, jardín y construcción.",
+    "temas": [],
+    "recursos": [
+      "calculadora-de-carga"
+    ]
+  },
+  "Hogar y Cocina": {
+    "bajada": "Bazar, cocina, organización y deco.",
+    "temas": [],
+    "recursos": [
+      "calculadora-de-precio-y-margen"
+    ]
+  },
+  "Limpieza e Higiene": {
+    "bajada": "Productos de limpieza y de higiene personal.",
+    "temas": [],
+    "recursos": [
+      "calculadora-de-precio-y-margen"
     ]
   }
 }

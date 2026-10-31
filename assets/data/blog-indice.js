@@ -1,22 +1,6 @@
 /* Generado por _fuente/construir_blog.py. Lo usa la Tienda para mostrar las notas de cada categoría. */
 window.BLOG_INDICE = [
  {
-  "slug": "como-curar-un-mate",
-  "titulo": "Cómo curar un mate de calabaza o de madera antes de estrenarlo",
-  "resumen": "Curar el mate sella sus poros, mejora el sabor y evita hongos y grietas. Qué mates hay que curar, el método con yerba usada paso a paso y otras dos técnicas tradicionales.",
-  "seccion": "productos",
-  "categoria": "Café, Té y Mate",
-  "subcategoria": "Mates y bombillas",
-  "tema": "",
-  "fecha": "2026-10-18",
-  "tags": [
-   "mate",
-   "curado",
-   "calabaza"
-  ],
-  "url": "blog/como-curar-un-mate/"
- },
- {
   "slug": "que-es-el-mate",
   "titulo": "Qué es el mate: origen, tradición y cómo se toma",
   "resumen": "Una infusión de origen guaraní que se volvió símbolo de amistad en el sur de América. De dónde viene, qué tiene, cómo se comparte la ronda y las formas de tomarlo, dulce, amargo o saborizado.",
@@ -31,6 +15,22 @@ window.BLOG_INDICE = [
    "historia"
   ],
   "url": "blog/que-es-el-mate/"
+ },
+ {
+  "slug": "como-curar-un-mate",
+  "titulo": "Cómo curar un mate de calabaza o de madera antes de estrenarlo",
+  "resumen": "Curar el mate sella sus poros, mejora el sabor y evita hongos y grietas. Qué mates hay que curar, el método con yerba usada paso a paso y otras dos técnicas tradicionales.",
+  "seccion": "productos",
+  "categoria": "Café, Té y Mate",
+  "subcategoria": "Mates y bombillas",
+  "tema": "",
+  "fecha": "2026-10-18",
+  "tags": [
+   "mate",
+   "curado",
+   "calabaza"
+  ],
+  "url": "blog/como-curar-un-mate/"
  },
  {
   "slug": "como-curar-un-mate-de-palo-santo",
@@ -69,8 +69,8 @@ window.BLOG_INDICE = [
   "titulo": "Guía de talles: cómo medirte para acertar en tu compra",
   "resumen": "Los talles cambian según el país y la marca. Lo que no cambia son tus medidas. Cómo tomarlas bien, cómo leer la tabla de cada producto y qué hacer si estás entre dos talles.",
   "seccion": "productos",
-  "categoria": "Hogar, Moda y más",
-  "subcategoria": "Moda",
+  "categoria": "Moda",
+  "subcategoria": "Ropa de dama",
   "tema": "",
   "fecha": "2026-10-09",
   "tags": [
@@ -150,7 +150,7 @@ window.BLOG_INDICE = [
   "resumen": "El mismo café puede salir amargo o aguado solo por el grosor de la molienda. Una tabla simple para acertar con espresso, moka, filtro o prensa francesa.",
   "seccion": "productos",
   "categoria": "Café, Té y Mate",
-  "subcategoria": "Café y té",
+  "subcategoria": "Café",
   "tema": "",
   "fecha": "2026-10-03",
   "tags": [
@@ -181,8 +181,8 @@ window.BLOG_INDICE = [
   "titulo": "Con qué acompañar un Malbec: maridajes simples",
   "resumen": "Del asado a las empanadas, pasando por pastas y quesos. Qué combina con un Malbec joven y qué con uno de guarda, y a qué temperatura servirlo.",
   "seccion": "productos",
-  "categoria": "Alimentos y Bebidas",
-  "subcategoria": "Vinos y destilados",
+  "categoria": "Bebidas",
+  "subcategoria": "Vinos",
   "tema": "",
   "fecha": "2026-10-01",
   "tags": [
