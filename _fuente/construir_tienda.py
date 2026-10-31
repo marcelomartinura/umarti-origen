@@ -340,6 +340,7 @@ def international(productos, cb, cv):
       <p class="shop-note">¿Comprás por volumen para revender o distribuir? Mirá los <a href="{rel(d, 'productos-de-exportacion/')}">Productos de exportación</a> del Hub de Oportunidades.</p>
       <div style="height:88px"></div>
     </div>'''
+    main = barra_tienda(d, "intl") + main
     return page(d, "International Shop: productos argentinos con envío internacional | Umarti Origen",
                 f"Mate, yerba y productos argentinos con envío a {', '.join(paises)}.", main, ["blog", "viajes", "tienda"])
 
@@ -508,8 +509,7 @@ def pagina_envio(e, envios, productos):
       <p class="muted" style="margin-top:28px">Otras zonas: <span class="zonas-inline">{otras}</span></p>
       <div style="height:88px"></div>
     </div>'''
-    if e["slug"] != "internacional":
-        main = barra_tienda(d, "envios", e["zona"]) + main
+    main = barra_tienda(d, "envios", "Argentina" if e["slug"] == "internacional" else e["zona"]) + main
     return page(d, f"{titulo}: condiciones | Umarti Origen", f"Plazos, costos, seguimiento y cambios de los {titulo.lower()} de Umarti Origen.",
                 main, ["blog", "viajes", "tienda"], noindex=borrador)
 
@@ -521,8 +521,8 @@ ICON_LOCK = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke=
 
 
 def barra_tienda(d, actual, pais="Argentina"):
-    """Barra propia de la tienda del país: Tienda, Envíos, Cupones y Guía de viajes."""
-    items = [("tienda", "Tienda", p_tienda(pais)), ("envios", "Envíos", p_envio(slug(pais))),
+    """Barra propia de la tienda del país: Tienda, International Shop, Envíos, Cupones y Guía de viajes."""
+    items = [("tienda", "Tienda", p_tienda(pais)), ("intl", "International Shop", "international-shop/"), ("envios", "Envíos", p_envio(slug(pais))),
              ("cupones", "Cupones", "cupones/"), ("viajes", "Guía de viajes", f"viajes/{slug(pais)}/")]
     links = "".join(f'<a href="{rel(d, u)}"{" aria-current=\"page\"" if k == actual else ""}>{t}</a>' for k, t, u in items)
     return f'''    <div class="ts-bar">
@@ -727,6 +727,7 @@ def indice_envios(envios):
       <div class="link-cards" style="max-width:560px">{cards}</div>
       <div style="height:88px"></div>
     </div>'''
+    main = barra_tienda(d, "envios") + main
     return page(d, "Envíos | Umarti Origen", "Condiciones de envío de Umarti Origen para Argentina e internacional.", main, ["blog", "viajes", "tienda"],
                 noindex=all(e.get("estado") != "Publicado" for e in envios))
 

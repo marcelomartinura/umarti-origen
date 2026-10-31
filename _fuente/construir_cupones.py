@@ -10,6 +10,8 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, AQUI)
 import comun  # noqa: E402
 from comun import escribir, slug  # noqa: E402
+sys.path.insert(0, os.path.join(AQUI, "tienda"))
+from construir_tienda import barra_tienda  # noqa: E402
 
 esc = html.escape
 HOY = datetime.date.today()
@@ -204,6 +206,7 @@ def page(depth, title, desc, actual, main):
 <body data-prefix="{pre}">
 
 {comun.header(pre)}
+{barra_tienda(depth, "cupones")}
 {barra(depth, actual)}
 
   <main>
