@@ -170,3 +170,36 @@
   .v-search { flex-direction: column; border-radius: 20px; }
   .v-search label { padding: 10px 8px; }
 }
+
+/* ---------- Portada de Viajes: franja con foto y continentes ---------- */
+.v-hero.v-hero-foto { position: relative; overflow: hidden; display: flex; align-items: center; min-height: 380px; padding: 44px 48px; margin: 18px 0 40px;
+  border-radius: 28px; background: #f6efe4; }
+.vh-foto { position: absolute; top: 0; right: 0; width: 64%; height: 100%; object-fit: cover; object-position: center 62%;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, rgba(0,0,0,.4) 22%, rgba(0,0,0,.9) 48%, #000 66%);
+  mask-image: linear-gradient(90deg, transparent 0, rgba(0,0,0,.4) 22%, rgba(0,0,0,.9) 48%, #000 66%); }
+.v-hero-foto::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(246,239,228,.96) 0, rgba(246,239,228,.6) 36%, rgba(246,239,228,0) 60%); }
+.vh-txt { position: relative; z-index: 1; max-width: 560px; }
+.v-hero-foto h1 { font-size: clamp(2.3rem, 5vw, 3.6rem); }
+.v-hero-foto p.lead { color: #4a4036; margin: 14px 0 22px; }
+.cont-grid { display: grid; grid-template-columns: 1.8fr repeat(4, 1fr); gap: 14px; }
+.cont-card { background: transparent; border: 1.5px dashed var(--line); border-radius: 20px; padding: 18px; display: flex; flex-direction: column; gap: 8px; }
+.cont-card.on { background: var(--surface); border: 1px solid var(--line); }
+.cc-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.cc-top h3 { font-size: 1.35rem; }
+.cc-top span { font-size: 0.78rem; font-weight: 700; color: var(--muted); white-space: nowrap; }
+.cont-card.on .cc-top span { color: var(--green); }
+.cont-card p { color: var(--muted); font-size: 0.88rem; }
+.cc-paises { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 6px; }
+.cc-paises a { display: flex; flex-direction: column; text-decoration: none; color: var(--ink); background: #eef5ef; border-radius: 12px; padding: 8px 14px; }
+.cc-paises a:hover { background: #dfeee3; }
+.cc-paises b { font-size: 0.95rem; }
+.cc-paises small { font-size: 0.76rem; color: var(--muted); }
+@media (max-width: 1000px) { .cont-grid { grid-template-columns: repeat(2, 1fr); } .cont-card.on { grid-column: span 2; } }
+@media (max-width: 760px) {
+  .v-hero.v-hero-foto { flex-direction: column; align-items: stretch; padding: 0 0 24px; min-height: 0; }
+  .vh-foto { position: relative; width: 100%; height: 230px; object-position: center 70%; -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent); mask-image: linear-gradient(180deg, #000 60%, transparent); }
+  .v-hero-foto::after { display: none; }
+  .vh-txt { padding: 0 22px; margin-top: -30px; }
+  .cont-grid { grid-template-columns: 1fr; } .cont-card.on { grid-column: auto; }
+}

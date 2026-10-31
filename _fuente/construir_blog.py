@@ -429,10 +429,15 @@ def portada_blog(notas):
     cloud = "".join(f'<a class="tag" href="{rel(d, p_tag(t))}">{esc(t)}</a>' for t in tags)
     main = f'''    <div class="wrap">
 {crumbs(d, [("Blog", None)])}
-      <div class="blog-head">
-        <span class="eyebrow">Herramientas</span>
-        <h1>Blog</h1>
-        <p>Guías, recetas y consejos sobre los productos de la Tienda, notas para hacer negocios entre países y columnas de opinión.</p>
+      <div class="pres-banner" style="--pb-bg:#efe4d2">
+        <img src="{rel(d, 'assets/img/banners/blog.svg')}" alt="">
+        <div class="pb-txt">
+          <span class="eyebrow">Umarti Blog</span>
+          <h1>Historias con origen</h1>
+          <p>Guías, recetas y consejos sobre los productos de la Tienda, notas para hacer negocios entre países y columnas de opinión.</p>
+        </div>
+      </div>
+      <div class="blog-head" style="padding-top:0">
 {tabs(d, "todo")}
       </div>
 

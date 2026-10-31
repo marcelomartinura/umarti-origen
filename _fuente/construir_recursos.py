@@ -162,10 +162,13 @@ def portada():
       </section>''')
     main = f'''    <div class="wrap">
 {crumbs(d, [("Recursos digitales", None)])}
-      <div class="blog-head">
-        <span class="eyebrow">Herramientas</span>
-        <h1>Recursos digitales</h1>
-        <p>Calculadoras y tablas gratuitas para vender en línea, exportar e importar. Funcionan en tu navegador, sin registrarte.</p>
+      <div class="pres-banner" style="--pb-bg:#e7efe9">
+        <img src="{rel(d, 'assets/img/banners/recursos.svg')}" alt="">
+        <div class="pb-txt">
+          <span class="eyebrow">Herramientas gratuitas</span>
+          <h1>Recursos digitales</h1>
+          <p>Calculadoras y tablas gratuitas para vender en línea, exportar e importar. Funcionan en tu navegador, sin registrarte.</p>
+        </div>
       </div>
 {chr(10).join(bloques)}
       <div class="viajes-note" style="margin-top:8px">

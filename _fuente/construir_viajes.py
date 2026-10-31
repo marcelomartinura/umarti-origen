@@ -12,7 +12,7 @@ sys.path.insert(0, AQUI)
 sys.path.insert(0, os.path.join(AQUI, "viajes"))
 import comun  # noqa: E402
 from comun import escribir, slug, SITIO  # noqa: E402
-from destinos import PAISES, DESTINOS  # noqa: E402
+from destinos import PAISES, DESTINOS, CONTINENTES  # noqa: E402
 import construir_blog  # noqa: E402
 
 esc = html.escape
@@ -174,7 +174,15 @@ SERVICIOS = [
 def portada():
     d = 1
     paises = [(k, v, [x for x in DESTINOS if x["pais"] == k]) for k, v in PAISES.items()]
-    country_cards = "\n".join(f'''          <a class="country-card" href="{rel(d, p_pais(k))}">{vcover(v['colores'], 'montana' if k == 'argentina' else 'cerros', v['nombre'], f"{len(ds)} destinos")}</a>''' for k, v, ds in paises)
+    cont_cards = []
+    for ck, cn, cb in CONTINENTES:
+        ps = [(k, v, ds) for k, v, ds in paises if v.get("continente") == ck and ds]
+        if ps:
+            links = "".join(f'<a href="{rel(d, p_pais(k))}"><b>{esc(v["nombre"])}</b><small>{len(ds)} destino{"" if len(ds) == 1 else "s"}</small></a>' for k, v, ds in ps)
+            n = sum(len(ds) for _, _, ds in ps)
+            cont_cards.append(f'''<div class="cont-card on"><div class="cc-top"><h3>{cn}</h3><span>{n} destino{"" if n == 1 else "s"}</span></div><p>{esc(cb)}</p><div class="cc-paises">{links}</div></div>''')
+        else:
+            cont_cards.append(f'''<div class="cont-card"><div class="cc-top"><h3>{cn}</h3><span>Próximamente</span></div><p>{esc(cb)}</p></div>''')
     tipos_pres = {t for x in DESTINOS for t in x["tipos"]}
     origenes = []
     for x in DESTINOS:
@@ -183,19 +191,22 @@ def portada():
     servicios = "".join(f'<div class="service"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">{ic}</svg><strong>{n}</strong><small>Próximamente</small></div>' for n, ic in SERVICIOS)
     main = f'''    <div class="wrap">
 {crumbs(d, [("Viajes", None)])}
-      <section class="v-hero">
-        <div>
+      <section class="v-hero v-hero-foto">
+        <img class="vh-foto" src="{rel(d, 'assets/img/viajes/playa-mate-atardecer.jpg')}" alt="">
+        <div class="vh-txt">
           <span class="eyebrow">Umarti Viajes</span>
-          <h1>Los lugares detrás de <em>cada producto</em></h1>
-          <p class="lead">Guías de destinos de Argentina y México para planificar tu próximo viaje: cuándo ir, qué hacer, qué probar y cómo llevarte sus sabores a casa.</p>
+          <h1>El mundo, <em>con buen sabor</em></h1>
+          <p class="lead">Guías de destinos para planificar tu próximo viaje: cuándo ir, cómo llegar, qué hacer, qué probar y qué traerte de recuerdo.</p>
           <form class="v-search" role="search" onsubmit="document.getElementById('destinos').scrollIntoView({{behavior:'smooth'}});return false">
             <label><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="v-q" type="search" placeholder="¿Adónde querés ir?" aria-label="Buscar destino"></label>
             <button type="submit">Explorar destinos</button>
           </form>
         </div>
-        <div class="country-stack">
-{country_cards}
-        </div>
+      </section>
+
+      <section class="v-section" aria-labelledby="h-cont">
+        <div class="v-head"><div><h2 id="h-cont">Elegí tu continente</h2><p>Empezamos por América y vamos sumando destinos de todo el mundo.</p></div></div>
+        <div class="cont-grid">{"".join(cont_cards)}</div>
       </section>
 
       <section class="v-section" id="destinos" aria-labelledby="h-dest">
@@ -225,8 +236,8 @@ def portada():
 {planner()}
       </section>
     </div>'''
-    return page(d, "Viajes por Argentina y México: guías de destinos | Umarti Origen",
-                "Guías de viaje de Buenos Aires, Mendoza, Bariloche, Ushuaia, Salta, Iguazú, Ciudad de México y Querétaro: cuándo ir, cómo llegar, qué hacer y qué probar.", main)
+    return page(d, "Viajes: guías de destinos para planificar tu viaje | Umarti Origen",
+                "Guías de viaje por continente y país: cuándo ir, cómo llegar, qué hacer, qué probar y qué traerte de recuerdo.", main)
 
 
 def pagina_pais(k):

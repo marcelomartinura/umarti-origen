@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" preserveAspectRatio="xMidYMid slice">
+  <rect width="900" height="400" fill="#efe4d2"/>
+  <circle cx="700" cy="70" r="150" fill="#f6d9b8" opacity=".55"/>
+  <rect x="0" y="300" width="900" height="100" fill="#c9a77f"/>
+  <rect x="0" y="300" width="900" height="8" fill="#b08b62"/>
+  <!-- planta -->
+  <rect x="790" y="230" width="60" height="72" rx="8" fill="#b4532a"/>
+  <path d="M820 232 C800 190 770 180 760 150 C790 160 815 185 820 232Z" fill="#4f6b3a"/>
+  <path d="M822 232 C830 180 860 160 880 140 C875 180 850 205 822 232Z" fill="#6c8a4f"/>
+  <path d="M818 232 C815 195 820 160 812 120 C835 150 832 200 818 232Z" fill="#5c7a43"/>
+  <!-- cuaderno abierto -->
+  <g transform="rotate(-6 450 300)">
+    <path d="M300 300 L450 288 L450 172 L300 182Z" fill="#fffaf2" stroke="#d9cbb5" stroke-width="2"/>
+    <path d="M450 288 L600 300 L600 182 L450 172Z" fill="#ffffff" stroke="#d9cbb5" stroke-width="2"/>
+    <g stroke="#cdbfa8" stroke-width="3" stroke-linecap="round">
+      <line x1="320" y1="205" x2="430" y2="198"/><line x1="320" y1="225" x2="430" y2="218"/>
+      <line x1="320" y1="245" x2="410" y2="239"/><line x1="320" y1="265" x2="425" y2="258"/>
+      <line x1="470" y1="198" x2="580" y2="205"/><line x1="470" y1="218" x2="560" y2="224"/>
+    </g>
+    <rect x="474" y="236" width="70" height="40" rx="6" fill="#2f6f8f" opacity=".25"/>
+    <line x1="450" y1="172" x2="450" y2="288" stroke="#cdbfa8" stroke-width="2"/>
+  </g>
+  <!-- lapicera -->
+  <g transform="rotate(-28 640 290)"><rect x="560" y="284" width="130" height="10" rx="5" fill="#1f1a14"/><path d="M690 284 L708 289 L690 294Z" fill="#b4532a"/></g>
+  <!-- mate -->
+  <path d="M175 300 C130 300 120 250 135 215 C145 192 205 192 215 215 C230 250 220 300 175 300Z" fill="#8f3f1d"/>
+  <ellipse cx="175" cy="210" rx="40" ry="10" fill="#5e2a13"/>
+  <ellipse cx="175" cy="210" rx="30" ry="6" fill="#4f6b3a"/>
+  <path d="M140 240 C160 248 190 248 210 240" stroke="#d8b07a" stroke-width="5" fill="none"/>
+  <line x1="185" y1="210" x2="225" y2="120" stroke="#c9c2b6" stroke-width="7" stroke-linecap="round"/>
+  <!-- taza de café -->
+  <path d="M235 258 L295 258 L290 300 L240 300Z" fill="#ffffff" stroke="#d9cbb5" stroke-width="2"/>
+  <path d="M294 268 C312 268 312 290 292 290" stroke="#d9cbb5" stroke-width="5" fill="none"/>
+  <ellipse cx="265" cy="258" rx="30" ry="6" fill="#6b3b1e"/>
+  <path d="M255 245 C250 235 262 230 256 218 M272 245 C267 235 279 230 273 218" stroke="#b9a991" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/>
+</svg>

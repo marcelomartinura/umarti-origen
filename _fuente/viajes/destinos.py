@@ -6,10 +6,20 @@
 # origen: productos de ese lugar que se conectan con la Tienda y el Blog.
 #   nota = nombre del archivo de una nota del blog (sin .md), si existe.
 
+# Continentes en los que se agrupan los países. Para sumar un país de otro continente,
+# agregalo a PAISES con continente="Europa" (o el que corresponda).
+CONTINENTES = [
+    ("america", "América", "De la Patagonia al Caribe, pasando por ciudades, selvas, montañas y viñedos."),
+    ("europa", "Europa", "Capitales históricas, pueblos con encanto y rutas de vino y café."),
+    ("asia", "Asia", "Templos, mercados, ciudades enormes y cocinas para descubrir."),
+    ("africa", "África", "Desiertos, safaris y costas para viajes inolvidables."),
+    ("oceania", "Oceanía", "Islas, playas y naturaleza en el otro extremo del mundo."),
+]
+
 PAISES = {
-    "argentina": dict(nombre="Argentina", lead="De los glaciares de la Patagonia a la selva misionera, pasando por los viñedos de Mendoza y los cerros de colores del norte. Un país enorme para recorrer por regiones.",
+    "argentina": dict(nombre="Argentina", continente="america", lead="De los glaciares de la Patagonia a la selva misionera, pasando por los viñedos de Mendoza y los cerros de colores del norte. Un país enorme para recorrer por regiones.",
                       colores=("#4a86b4", "#264d6e"), moneda="Peso argentino (ARS)", idioma="Español"),
-    "mexico": dict(nombre="México", lead="Ciudades coloniales, una capital inmensa, cocina reconocida en todo el mundo y regiones de vino y queso a pocas horas de la Ciudad de México.",
+    "mexico": dict(nombre="México", continente="america", lead="Ciudades coloniales, una capital inmensa, cocina reconocida en todo el mundo y regiones de vino y queso a pocas horas de la Ciudad de México.",
                    colores=("#3f8f6b", "#1f5a41"), moneda="Peso mexicano (MXN)", idioma="Español"),
 }
 
