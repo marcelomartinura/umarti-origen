@@ -679,7 +679,7 @@ def pagina_categoria(cat, productos, notas, cb, cv, pais="Argentina"):
     for k in conf.get("recursos", []):
         if k in herramientas:
             h = herramientas[k]
-            extras.append((rel(d, f"recursos/{k}/"), cr.icono(h[4], 20), h[1], h[2]))
+            extras.append((cr.url_herramienta(h, d), cr.icono(h[4], 20), h[1], h[2]))
     bloque_extras = ""
     if extras:
         bloque_extras = '''

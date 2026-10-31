@@ -234,4 +234,82 @@
     }
     on(['tl-cm'], calc); calc();
   })();
+
+  /* ---------- 6. Nomenclatura dental ---------- */
+  if ($('[data-tool="dental"]')) (function () {
+    var NOM_P = ['', 'Incisivo central', 'Incisivo lateral', 'Canino', 'Primer premolar', 'Segundo premolar', 'Primer molar', 'Segundo molar', 'Tercer molar'];
+    var NOM_T = ['', 'Incisivo central', 'Incisivo lateral', 'Canino', 'Primer molar', 'Segundo molar'];
+    var LADO = { 1: ['superior', 'derecho'], 2: ['superior', 'izquierdo'], 3: ['inferior', 'izquierdo'], 4: ['inferior', 'derecho'] };
+    var PAL = { 1: function (x) { return x + '┘'; }, 2: function (x) { return '└' + x; }, 3: function (x) { return '┌' + x; }, 4: function (x) { return x + '┐'; } };
+    var LET = 'ABCDEFGHIJKLMNOPQRST';
+    function info(fdi) {
+      var q = Math.floor(fdi / 10), n = fdi % 10, temp = q > 4, qb = temp ? q - 4 : q;
+      var max = temp ? 5 : 8, uni;
+      var idx = qb === 1 ? max - n : qb === 2 ? max + n - 1 : qb === 3 ? 3 * max - n : 3 * max + n - 1;
+      uni = temp ? LET[idx] : String(idx + 1);
+      var nom = (temp ? NOM_T : NOM_P)[n] + ' ' + LADO[qb][0] + ' ' + LADO[qb][1];
+      return { fdi: String(fdi), uni: uni, pal: PAL[qb](temp ? 'ABCDE'[n - 1] : n), nom: nom, temp: temp, q: q, arc: LADO[qb][0], lado: LADO[qb][1] };
+    }
+    function lista(temp) {
+      var max = temp ? 5 : 8, b = temp ? 4 : 0, sup = [], inf = [];
+      for (var i = max; i >= 1; i--) sup.push((1 + b) * 10 + i);
+      for (i = 1; i <= max; i++) sup.push((2 + b) * 10 + i);
+      for (i = max; i >= 1; i--) inf.push((4 + b) * 10 + i);
+      for (i = 1; i <= max; i++) inf.push((3 + b) * 10 + i);
+      return [sup, inf];
+    }
+    var dent = 'p', sel = null, od = $('#dn-odonto'), out = $('#dn-out');
+    function tipo(n) { n = n % 10; return dent === 't' ? (n <= 2 ? 'inc' : n === 3 ? 'can' : 'mol') : (n <= 2 ? 'inc' : n === 3 ? 'can' : n <= 5 ? 'pre' : 'mol'); }
+    function dibujar() {
+      var f = lista(dent === 't');
+      od.innerHTML = f.map(function (fila, k) {
+        return '<div class="od-fila ' + (k ? 'inf' : 'sup') + '"><span class="od-lbl">' + (k ? 'Inferior' : 'Superior') + '</span><div class="od-dientes">' + fila.map(function (x, i) {
+          return (i === fila.length / 2 ? '<span class="od-medio"></span>' : '') + '<button type="button" class="od-d ' + tipo(x) + (x === sel ? ' on' : '') + '" data-fdi="' + x + '" title="' + esc(info(x).nom) + '"><i></i><span>' + x + '</span></button>';
+        }).join('') + '</div></div>';
+      }).join('') + '<div class="od-lados"><span>Derecha del paciente</span><span>Izquierda del paciente</span></div>';
+    }
+    function mostrar() {
+      if (!sel) { out.innerHTML = '<p class="res-note">Elegí un diente para ver sus equivalencias.</p>'; return; }
+      var d = info(sel);
+      out.innerHTML = '<div class="res-hero"><small>' + (d.temp ? 'Diente temporal' : 'Diente permanente') + '</small><b style="font-size:1.6rem">' + esc(d.nom) + '</b></div>' +
+        '<div class="dn-cods"><div><small>FDI</small><b>' + d.fdi + '</b></div><div><small>Universal</small><b>' + d.uni + '</b></div><div><small>Palmer</small><b>' + d.pal + '</b></div></div>' +
+        kv([['Arcada', d.arc], ['Lado del paciente', d.lado], ['Cuadrante FDI', String(d.q)]]);
+    }
+    function elegir(fdi) { sel = fdi; dibujar(); mostrar(); }
+    od.addEventListener('click', function (e) { var b = e.target.closest('[data-fdi]'); if (b) elegir(+b.dataset.fdi); });
+    $$('[data-dent]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        dent = b.dataset.dent; sel = null;
+        $$('[data-dent]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+        dibujar(); mostrar();
+      });
+    });
+    $('#dn-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = ($('#dn-in').value || '').trim().toUpperCase(), sis = $('#dn-sis').value, fdi = null;
+      var todos = lista(false)[0].concat(lista(false)[1], lista(true)[0], lista(true)[1]);
+      todos.forEach(function (x) { var d = info(x); if ((sis === 'fdi' && d.fdi === v) || (sis === 'uni' && d.uni === v)) fdi = x; });
+      if (!fdi) { out.innerHTML = '<div class="res-alert">No encontramos "' + esc(v) + '" en el sistema ' + (sis === 'fdi' ? 'FDI' : 'Universal') + '. Probá con un número válido: FDI 11 a 48 o 51 a 85; Universal 1 a 32 o A a T.</div>'; return; }
+      var temp = info(fdi).temp;
+      if ((dent === 't') !== temp) { dent = temp ? 't' : 'p'; $$('[data-dent]').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.dent === dent)); }); }
+      elegir(fdi);
+    });
+    function tabla(temp) {
+      var f = lista(temp), xs = f[0].slice(0, f[0].length / 2).concat(f[0].slice(f[0].length / 2), f[1].slice(f[1].length / 2), f[1].slice(0, f[1].length / 2));
+      xs.sort(function (a, b) { return a - b; });
+      return '<table class="tbl"><thead><tr><th>Diente</th><th>FDI</th><th>Universal</th><th>Palmer</th></tr></thead><tbody>' + xs.map(function (x) { var d = info(x); return '<tr><td>' + esc(d.nom) + '</td><td>' + d.fdi + '</td><td>' + d.uni + '</td><td>' + d.pal + '</td></tr>'; }).join('') + '</tbody></table>';
+    }
+    $('#dn-tp').innerHTML = tabla(false); $('#dn-tt').innerHTML = tabla(true);
+    dibujar(); mostrar();
+  })();
+
+  /* ---------- filtro de la portada ---------- */
+  var fb = $$('.rc-filtros [data-grupo]');
+  fb.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var g = b.dataset.grupo;
+      fb.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      $$('section.rc-grupo').forEach(function (s) { s.hidden = !!g && s.dataset.grupo !== g; });
+    });
+  });
 })();

@@ -17,6 +17,8 @@ esc = html.escape
 
 # ---------- catálogo de herramientas ----------
 # (clave, nombre, bajada, grupo, ícono, lista)
+# lista: True = herramienta publicada, False = próximamente, "https://..." = servicio externo
+UMARTI_DIGITAL = "https://www.umartidigital.com"
 HERRAMIENTAS = [
     ("conversor-de-monedas", "Conversor de monedas", "Pesos argentinos, mexicanos, dólares y más, con el dólar oficial, MEP y blue en vivo.", "Comercio exterior", "moneda", True),
     ("calculadora-de-exportacion", "Calculadora financiera de exportación", "Factoraje, precio de exportación EXW, FOB y CIF, y precio puesto en destino.", "Comercio exterior", "export", True),
@@ -29,10 +31,16 @@ HERRAMIENTAS = [
     ("cotizacion-proforma", "Cotización y factura proforma", "Completá los datos y descargá un PDF listo para enviar.", "Vender en línea", "doc", False),
     ("conversor-de-unidades", "Conversor de unidades", "Kilos y libras, centímetros y pulgadas, litros y galones.", "Vender en línea", "regla", False),
     ("enlace-de-whatsapp", "Enlace de WhatsApp y QR", "Para que tus clientes te escriban con un toque.", "Vender en línea", "chat", False),
+    ("conversor-de-nomenclatura-dental", "Conversor de nomenclatura dental", "Odontograma interactivo: FDI, Universal y Palmer, en dientes permanentes y temporales.", "Salud", "diente", True),
+    ("calculadora-de-imc", "Calculadora de IMC", "Índice de masa corporal y rango de referencia.", "Salud", "pulso", False),
+    ("marketing-digital", "Servicio de marketing digital", "Redes, anuncios y contenido para atraer clientes a tu negocio.", "Servicios para tu negocio", "mega", UMARTI_DIGITAL),
+    ("agente-conversacional-ia", "Agente conversacional con IA", "Un asistente que responde a tus clientes por WhatsApp o en tu web, las 24 horas.", "Servicios para tu negocio", "bot", UMARTI_DIGITAL),
 ]
 GRUPOS = [("Comercio exterior", "Para exportar, importar y negociar con otros países."),
           ("Vender en línea", "Para poner precios, cobrar y atender a tus clientes."),
-          ("Moda", "Para comprar y vender ropa y calzado sin errores de talle.")]
+          ("Moda", "Para comprar y vender ropa y calzado sin errores de talle."),
+          ("Salud", "Herramientas para profesionales de la salud y sus pacientes."),
+          ("Servicios para tu negocio", "Servicios de Umarti Digital para vender más y atender mejor.")]
 
 ICONOS = {
     "moneda": '<circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.6-1-1.7-1.5-3-1.5-1.7 0-3 .9-3 2.2 0 3 6 1.6 6 4.6 0 1.3-1.3 2.2-3 2.2-1.4 0-2.6-.6-3.2-1.6M12 6v2M12 16v2"/>',
@@ -45,7 +53,16 @@ ICONOS = {
     "doc": '<path d="M6 3h9l4 4v14H6zM14 3v5h5M9 13h6M9 17h6"/>',
     "regla": '<path d="M3 17 17 3l4 4L7 21zM7 13l2 2M10 10l2 2M13 7l2 2"/>',
     "chat": '<path d="M4 19l1.5-4A8 8 0 1 1 9 18.5z"/>',
+    "diente": '<path d="M7 3c-2.5 0-4 2-4 4.5 0 2.5 1.5 4 2 6.5.5 3 1 7 2.8 7 1.6 0 1.7-5 3.2-5s1.6 5 3.2 5c1.8 0 2.3-4 2.8-7 .5-2.5 2-4 2-6.5C21 5 19.5 3 17 3c-2 0-3 1-5 1S9 3 7 3z"/>',
+    "pulso": '<path d="M3 12h4l2-5 4 10 2-5h6"/>',
+    "mega": '<path d="M3 11v2a1 1 0 0 0 1 1h3l6 4V6L7 10H4a1 1 0 0 0-1 1zM16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"/>',
+    "bot": '<rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9 16h6"/>',
 }
+
+
+def url_herramienta(h, depth):
+    """Link de una herramienta: externa si es un servicio, local si es una herramienta del sitio."""
+    return h[5] if isinstance(h[5], str) else rel(depth, f"recursos/{h[0]}/")
 
 
 def icono(k, size=26):
@@ -114,7 +131,8 @@ def pagina_herramienta(clave, cuerpo, faqs, relacionadas, aviso):
     h = next(x for x in HERRAMIENTAS if x[0] == clave)
     d = 2
     rels = "".join(f'<li><a href="{rel(d, url)}">{esc(t)}</a></li>' for t, url in relacionadas)
-    otras = [x for x in HERRAMIENTAS if x[5] and x[0] != clave][:4]
+    otras = [x for x in HERRAMIENTAS if x[5] is True and x[0] != clave and x[3] == h[3]]
+    otras = (otras + [x for x in HERRAMIENTAS if x[5] is True and x[0] != clave and x not in otras])[:4]
     otras_html = "".join(f'<a class="rc-mini" href="{rel(d, "recursos/" + x[0] + "/")}"><span class="rc-ico">{icono(x[4], 20)}</span><span><b>{esc(x[1])}</b><small>{esc(x[2])}</small></span></a>' for x in otras)
     faq_html = "".join(f'<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q, a in faqs)
     main = f'''    <div class="wrap">
@@ -146,40 +164,47 @@ def pagina_herramienta(clave, cuerpo, faqs, relacionadas, aviso):
 # ---------- portada ----------
 def portada():
     d = 1
-    bloques = []
+    bloques, filtros = [], []
     for g, bajada in GRUPOS:
         cards = []
-        for k, n, b, gr, ic, lista in HERRAMIENTAS:
+        for h in HERRAMIENTAS:
+            k, n, b, gr, ic, lista = h
             if gr != g:
                 continue
-            if lista:
-                cards.append(f'<a class="rc-card" href="{k}/"><span class="rc-ico">{icono(ic)}</span><h3>{esc(n)}</h3><p>{esc(b)}</p><span class="rc-go">Abrir →</span></a>')
+            inner = f'<span class="rc-ico">{icono(ic, 20)}</span><span class="rc-t"><b>{esc(n)}</b><small>{esc(b)}</small></span>'
+            if isinstance(lista, str):
+                cards.append(f'<a class="rc-card ext" href="{esc(lista)}" target="_blank" rel="noopener">{inner}<span class="rc-go">Ver servicio ↗</span></a>')
+            elif lista:
+                cards.append(f'<a class="rc-card" href="{k}/">{inner}<span class="rc-go">Abrir →</span></a>')
             else:
-                cards.append(f'<div class="rc-card soon"><span class="rc-ico">{icono(ic)}</span><h3>{esc(n)}</h3><p>{esc(b)}</p><span class="rc-go">Próximamente</span></div>')
-        bloques.append(f'''      <section class="rc-grupo" aria-labelledby="g-{comun.slug(g)}">
-        <div class="blk-head"><div><h2 id="g-{comun.slug(g)}">{esc(g)}</h2><p>{esc(bajada)}</p></div></div>
+                cards.append(f'<div class="rc-card soon">{inner}<span class="rc-go">Próximamente</span></div>')
+        sg = comun.slug(g)
+        filtros.append(f'<button type="button" data-grupo="{sg}" aria-pressed="false">{esc(g)} <small>{len(cards)}</small></button>')
+        bloques.append(f'''      <section class="rc-grupo" data-grupo="{sg}" aria-labelledby="g-{sg}">
+        <div class="rc-ghead"><h2 id="g-{sg}">{esc(g)}</h2><p>{esc(bajada)}</p></div>
         <div class="rc-grid">{"".join(cards)}</div>
       </section>''')
     main = f'''    <div class="wrap">
 {crumbs(d, [("Recursos digitales", None)])}
-      <div class="pres-banner" style="--pb-bg:#e7efe9">
+      <div class="pres-banner pb-sm" style="--pb-bg:#e7efe9">
         <img src="{rel(d, 'assets/img/banners/recursos.svg')}" alt="">
         <div class="pb-txt">
           <span class="eyebrow">Herramientas gratuitas</span>
           <h1>Recursos digitales</h1>
-          <p>Calculadoras y tablas gratuitas para vender en línea, exportar e importar. Funcionan en tu navegador, sin registrarte.</p>
+          <p>Calculadoras, tablas y servicios para vender, exportar y trabajar mejor. Las herramientas funcionan en tu navegador, sin registrarte.</p>
         </div>
       </div>
+      <div class="rc-filtros" role="group" aria-label="Filtrar por categoría"><button type="button" data-grupo="" aria-pressed="true">Todas</button>{"".join(filtros)}</div>
 {chr(10).join(bloques)}
       <div class="viajes-note" style="margin-top:8px">
-        <div><h2>¿Qué herramienta te falta?</h2><p>Si hay un cálculo que hacés todas las semanas para vender o exportar, contanos. Lo sumamos a la lista.</p></div>
+        <div><h2>¿Qué herramienta te falta?</h2><p>Si hay un cálculo que hacés todas las semanas para vender, exportar o trabajar, contanos. Lo sumamos a la lista.</p></div>
         <a href="{rel(d, 'mesa-de-negociacion/')}">Escribinos en la Mesa</a>
       </div>
     </div>'''
     itemlist = {"@context": "https://schema.org", "@type": "ItemList", "name": "Recursos digitales de Umarti Origen",
-                "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": x[1]} for i, x in enumerate(h for h in HERRAMIENTAS if h[5])]}
+                "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": x[1]} for i, x in enumerate(h for h in HERRAMIENTAS if h[5] is True)]}
     return page(d, "Recursos digitales: calculadoras para vender y exportar | Umarti Origen",
-                "Conversor de monedas con dólar oficial, MEP y blue, calculadora de exportación, de carga, de precio y margen, y tabla de talles. Gratis.",
+                "Conversor de monedas con dólar oficial, MEP y blue, calculadoras de exportación, carga y margen, tabla de talles, conversor de nomenclatura dental y más. Gratis.",
                 main, itemlist)
 
 
@@ -449,6 +474,42 @@ def talles():
                               "Equivalencias orientativas. Las medidas pueden variar según la marca y el modelo.")
 
 
+# ---------- 6. Conversor de nomenclatura dental ----------
+def dental():
+    cuerpo = '''      <section class="tool" data-tool="dental">
+        <div class="dn-top">
+          <div class="seg" role="radiogroup" aria-label="Dentición">
+            <button type="button" data-dent="p" aria-pressed="true">Permanente (adultos)</button>
+            <button type="button" data-dent="t" aria-pressed="false">Temporal (de leche)</button>
+          </div>
+          <form class="dn-buscar" id="dn-form">
+            <label class="fld">Sistema<select id="dn-sis"><option value="fdi">FDI (ISO 3950)</option><option value="uni">Universal (ADA)</option></select></label>
+            <label class="fld">Número o letra<input id="dn-in" maxlength="3" placeholder="Ej.: 36, 19 o K" autocomplete="off"></label>
+            <button class="dn-go" type="submit">Convertir</button>
+          </form>
+        </div>
+        <p class="tool-intro" style="margin:14px 0 6px">Tocá un diente del odontograma o escribí su número. Vista de frente al paciente: su derecha queda a tu izquierda.</p>
+        <div class="dn-wrap">
+          <div class="odonto" id="dn-odonto" aria-label="Odontograma"></div>
+          <div class="results" id="dn-out" aria-live="polite"></div>
+        </div>
+      </section>
+      <div class="tabs-tool" role="tablist" aria-label="Tablas">
+        <button type="button" role="tab" aria-selected="true" data-tab="tp">Tabla permanente</button>
+        <button type="button" role="tab" aria-selected="false" data-tab="tt">Tabla temporal</button>
+      </div>
+      <section class="tool" data-panel="tp"><div class="tbl-wrap" id="dn-tp"></div></section>
+      <section class="tool" data-panel="tt" hidden><div class="tbl-wrap" id="dn-tt"></div></section>'''
+    faqs = [
+        ("¿Qué es el sistema FDI?", "Es el sistema de dos dígitos de la Federación Dental Internacional (norma ISO 3950), el más usado en Argentina, México y casi todo el mundo. El primer dígito indica el cuadrante (1 a 4 en dientes permanentes, 5 a 8 en temporales) y el segundo, el diente contando desde la línea media."),
+        ("¿Qué es el sistema Universal?", "Es el sistema de la Asociación Dental Americana, usado sobre todo en Estados Unidos. Numera los dientes permanentes del 1 al 32, empezando por el tercer molar superior derecho, y los temporales con letras de la A a la T."),
+        ("¿Cómo se escribe la notación de Palmer?", "Palmer usa un número del 1 al 8 (o una letra de la A a la E en dientes temporales) dentro de una escuadra que marca el cuadrante. Acá la mostramos con los símbolos ┘ └ ┐ ┌, que representan esa escuadra."),
+        ("¿El 36 FDI qué diente es?", "Es el primer molar inferior izquierdo. En el sistema Universal es el 19 y en Palmer, ┌6."),
+    ]
+    return pagina_herramienta("conversor-de-nomenclatura-dental", cuerpo, faqs, [],
+                              "Herramienta de referencia. Verificá siempre la notación que usa cada historia clínica o laboratorio.")
+
+
 def main():
     escribir("recursos/index.html", portada())
     escribir("recursos/conversor-de-monedas/index.html", conversor())
@@ -456,6 +517,7 @@ def main():
     escribir("recursos/calculadora-de-carga/index.html", carga())
     escribir("recursos/calculadora-de-precio-y-margen/index.html", margen())
     escribir("recursos/tabla-de-talles/index.html", talles())
+    escribir("recursos/conversor-de-nomenclatura-dental/index.html", dental())
 
 
 if __name__ == "__main__":

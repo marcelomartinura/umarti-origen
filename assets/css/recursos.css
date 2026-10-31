@@ -144,3 +144,61 @@ a.rc-card:hover { transform: translateY(-3px); box-shadow: 0 16px 34px -24px rgb
   .sizes { grid-template-columns: 1fr 1fr; }
   .rc-head { flex-direction: column; gap: 12px; }
 }
+
+/* ---------- Portada compacta ---------- */
+.pres-banner.pb-sm { min-height: 190px; }
+.pres-banner.pb-sm .pb-txt h1 { font-size: clamp(2rem, 4vw, 2.8rem); }
+.rc-filtros { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 26px; }
+.rc-filtros button { font: inherit; font-weight: 600; font-size: 0.88rem; padding: 8px 15px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.rc-filtros button small { color: var(--muted); font-weight: 600; margin-left: 2px; }
+.rc-filtros button[aria-pressed=true] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.rc-filtros button[aria-pressed=true] small { color: #cfc4b3; }
+.rc-grupo { margin-bottom: 30px; }
+.rc-ghead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.rc-ghead h2 { font-size: 1.35rem; }
+.rc-ghead p { color: var(--muted); font-size: 0.88rem; }
+.rc-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.rc-card { display: grid; grid-template-columns: auto 1fr; grid-template-rows: 1fr auto; gap: 4px 12px; padding: 13px 14px; border-radius: 14px; align-items: start; }
+.rc-card .rc-ico { width: 38px; height: 38px; border-radius: 11px; grid-row: span 2; }
+.rc-t b { display: block; font-size: 0.95rem; line-height: 1.25; }
+.rc-t small { display: block; color: var(--muted); font-size: 0.8rem; line-height: 1.35; margin-top: 3px; }
+.rc-card .rc-go { font-size: 0.8rem; grid-column: 2; }
+a.rc-card:hover { transform: translateY(-2px); }
+.rc-card.ext .rc-ico { background: #dff2f1; color: #0f6e6a; }
+.rc-card.ext .rc-go { color: #0f6e6a; }
+@media (max-width: 1000px) { .rc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .rc-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Nomenclatura dental ---------- */
+.dn-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 14px; }
+.dn-buscar { display: flex; gap: 10px; align-items: end; flex-wrap: wrap; }
+.dn-buscar .fld { width: 170px; }
+.dn-go { font: inherit; font-weight: 700; border: 0; background: var(--terra); color: #fff; border-radius: 12px; padding: 12px 18px; cursor: pointer; }
+.dn-wrap { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 22px; align-items: start; margin-top: 10px; }
+.odonto { background: #fdfbf7; border: 1px solid var(--line); border-radius: 18px; padding: 16px 14px 10px; display: grid; gap: 10px; }
+.od-fila { display: flex; flex-direction: column; gap: 4px; }
+.od-lbl { font-size: 0.7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.od-dientes { display: flex; justify-content: center; gap: 3px; }
+.od-medio { width: 2px; background: #d8ccb9; margin: 0 6px; border-radius: 2px; }
+.od-d { flex: 1; max-width: 40px; display: flex; flex-direction: column; align-items: center; gap: 3px; border: 1px solid transparent; background: transparent; border-radius: 10px; padding: 4px 1px; cursor: pointer; font: inherit; }
+.od-fila.inf .od-d { flex-direction: column-reverse; }
+.od-d i { display: block; width: 78%; background: #fff; border: 2px solid #cdbfa8; border-radius: 40% 40% 30% 30%; }
+.od-d.inc i { height: 30px; width: 58%; border-radius: 30% 30% 45% 45%; }
+.od-d.can i { height: 34px; width: 62%; border-radius: 50% 50% 40% 40%; }
+.od-d.pre i { height: 28px; }
+.od-d.mol i { height: 26px; width: 92%; border-radius: 35%; }
+.od-d span { font-size: 0.72rem; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+.od-d:hover i { border-color: var(--terra); }
+.od-d.on { background: #f8ebe2; border-color: #ecd1c0; }
+.od-d.on i { border-color: var(--terra); background: #fbe3d6; }
+.od-d.on span { color: var(--terra-dark); }
+.od-lados { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--muted); padding: 0 4px; }
+.dn-cods { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.dn-cods div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px; text-align: center; }
+.dn-cods small { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.dn-cods b { font-family: "Fraunces", serif; font-size: 1.6rem; color: var(--olive); }
+@media (max-width: 860px) { .dn-wrap { grid-template-columns: 1fr; } .od-dientes { gap: 1px; } .od-medio { margin: 0 2px; } .od-d span { font-size: 0.62rem; } }
+.od-d { height: 58px; justify-content: space-between; }
+.od-fila.sup .od-d i { margin-top: auto; }
+.od-fila.sup .od-d span { order: 2; }
+.od-fila.inf .od-d i { margin-bottom: auto; }
