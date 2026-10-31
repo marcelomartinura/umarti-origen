@@ -289,3 +289,11 @@
   mask-image: linear-gradient(90deg, transparent 0, rgba(0,0,0,.8) 30%, #000 70%, transparent 100%); }
 .pais-hero::after { background: linear-gradient(90deg, rgba(238,243,246,.97) 0, rgba(238,243,246,.82) 36%, rgba(238,243,246,0) 50%); }
 @media (max-width: 860px) { .pais-hero .facts-row { flex-wrap: wrap; } }
+.pais-hero { min-height: 0; }
+.ph-txt { padding: 28px 40px; max-width: 560px; }
+.pais-hero h1 { font-size: clamp(2.1rem, 4.4vw, 3rem); }
+.pais-hero p { font-size: 0.98rem; margin-top: 6px; }
+.pais-hero .facts-row { margin-top: 14px; }
+.ph-foto-2 { width: 56%; object-position: center 52%;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, rgba(0,0,0,.6) 18%, #000 38%); mask-image: linear-gradient(90deg, transparent 0, rgba(0,0,0,.6) 18%, #000 38%); }
+.pais-hero::after { background: linear-gradient(90deg, rgba(238,243,246,.97) 0, rgba(238,243,246,.8) 38%, rgba(238,243,246,0) 52%); }

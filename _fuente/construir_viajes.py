@@ -336,9 +336,9 @@ def portada():
 
 
 def pais_fotos(d, v):
-    """Fotos de la presentación del país (opcionales): una al fondo, esfumada, y otra al frente, más nítida."""
+    """Foto de la presentación del país (opcional), esfumada hacia el texto."""
     fs = v.get("fotos") or []
-    return "".join(f'        <img class="ph-foto ph-foto-{i + 1}" src="{rel(d, src)}" alt="{esc(alt)}">\n' for i, (src, alt) in enumerate(fs[:2]))
+    return "".join(f'        <img class="ph-foto ph-foto-2" src="{rel(d, src)}" alt="{esc(alt)}">\n' for src, alt in fs[:1])
 
 
 def pagina_pais(k):
