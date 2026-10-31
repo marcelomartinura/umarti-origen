@@ -54,38 +54,35 @@ def ecosistema(prefijo):
         ("https://profesionales.umartidigital.com/", f'<img class="eco-av" src="{img}ecosistema/avatar-digital.jpg" alt="" width="56" height="56">',
          "<b>Umarti Digital</b><b>Profesionales</b>", "Red de profesionales", ""),
         (None, f'<img class="eco-av" src="{img}ecosistema/avatar-motors.jpg" alt="" width="56" height="56">',
-         "<b>Umarti Motors</b>", "Marketplace de movilidad", "Próximamente"),
-        (None, f'<span class="eco-av eco-av-ico"><img src="{img}marca/icono.png" alt="" width="40" height="36"></span>',
-         "<b>Umarti Origen</b>", "Tienda y Mercados Globales", "Próximamente"),
+         f'<span class="eco-chip"><img src="{img}ecosistema/logo-motors.png" alt="Umarti Motors" width="96" height="37"></span>', "Marketplace de movilidad", "Próximamente"),
+        (None, f'<img class="eco-av eco-av-origen" src="{img}ecosistema/avatar-origen.jpg" alt="" width="56" height="56">',
+         f'<span class="eco-chip eco-chip-origen"><img src="{img}marca/icono.png" alt="" width="26" height="24"><span><b>Umarti</b><b>Origen</b></span></span>', "Tienda y Mercados Globales", "Próximamente"),
     ]
     out = []
     for link, av, nombre, txt, pronto in items:
         cuerpo = f'{av}<span class="eco-txt"><span class="eco-name">{nombre}</span><small>{txt}</small>{f"<em>{pronto}</em>" if pronto else ""}</span>'
         out.append(f'<a class="eco-item" href="{link}" target="_blank" rel="noopener">{cuerpo}</a>' if link else f'<div class="eco-item">{cuerpo}</div>')
-    return f'''    <div class="wrap">
-      <div class="eco-band" aria-label="Ecosistema Umarti">
-        <span class="eco-tit">Ecosistema<br><b>Umarti</b></span>
+    return f'''      <div class="eco-band" aria-label="Ecosistema Umarti">
+        <span class="eco-tit">Ecosistema <b>Umarti</b></span>
         <div class="eco-items">{"".join(out)}</div>
-      </div>
-    </div>'''
+      </div>'''
 
 
 def footer(prefijo):
     return f'''  <footer>
-{ecosistema(prefijo)}
-    <div class="wrap foot">
-      <div>
+    <div class="wrap foot foot-top">
+      <div class="foot-marca">
         <a href="{prefijo or './'}" class="logo logo-foot" aria-label="Umarti Origen, ir al inicio"><img class="logo-ico" src="{prefijo}assets/img/marca/icono.png" alt="" width="259" height="236"><span class="logo-txt"><b>Umarti</b><b>Origen</b></span></a>
-        <p style="margin-top:8px">Tienda, comercio exterior y viajes.</p>
+        <p>Tienda &amp; Mercados Globales</p>
       </div>
-      <p>© 2026 Umarti · <a href="{prefijo}publicidad/">Anunciá en Umarti</a></p>
+{ecosistema(prefijo)}
     </div>
     <div class="wrap foot-legal">
       <nav aria-label="Información legal">
-        <a href="{prefijo}legal/terminos/">Términos y condiciones</a>
-        <a href="{prefijo}legal/privacidad/">Privacidad</a>
+        <a href="{prefijo}legal/terminos/">Términos y Privacidad</a>
         <a href="{prefijo}legal/cookies/">Cookies</a>
         <a href="{prefijo}envios/">Envíos</a>
+        <span class="foot-copy">© 2026 Umarti · <a href="{prefijo}publicidad/">Anunciá en Umarti</a></span>
       </nav>
       <div class="foot-consumo">
         <a class="btn-arrep" href="{prefijo}legal/arrepentimiento/">Botón de arrepentimiento</a>

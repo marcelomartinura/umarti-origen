@@ -189,7 +189,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 40px; font-size: 0.9
 }
 
 /* ---------- Ecosistema Umarti (pie) ---------- */
-.eco-band { display: flex; align-items: center; gap: 22px; background: #0d1f30; color: #fff; border-radius: 22px; padding: 16px 22px; margin-bottom: 30px; }
+.eco-band { display: flex; align-items: center; gap: 18px; background: #0d1f30; color: #fff; border-radius: 22px; padding: 14px 18px; flex: 1; min-width: 0; }
 .eco-tit { font-size: 0.72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #8fd9d6; line-height: 1.4; flex: none; }
 .eco-tit b { color: #fff; font-size: 0.95rem; letter-spacing: .06em; }
 .eco-items { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; flex: 1; }
@@ -205,3 +205,25 @@ a.eco-item:hover { background: rgba(255,255,255,.08); }
 .eco-txt em { font-style: normal; align-self: flex-start; font-size: 0.68rem; font-weight: 700; color: #0d1f30; background: #e3a33b; padding: 2px 8px; border-radius: 999px; margin-top: 5px; }
 @media (max-width: 1000px) { .eco-band { flex-direction: column; align-items: flex-start; } .eco-items { grid-template-columns: repeat(2, 1fr); width: 100%; } .eco-tit br { display: none; } }
 @media (max-width: 520px) { .eco-items { grid-template-columns: 1fr; } }
+.foot-top { align-items: center; flex-wrap: nowrap; gap: 32px; }
+.foot-marca { flex: none; }
+.foot-marca p { margin-top: 8px; color: var(--muted); font-weight: 600; font-size: 0.92rem; }
+.foot-copy { color: var(--muted); }
+.foot-copy a { color: var(--muted); }
+.eco-items { gap: 6px; }
+.eco-chip { display: inline-flex; align-items: center; gap: 6px; background: #fff; border-radius: 8px; padding: 3px 7px; align-self: flex-start; }
+.eco-chip img { height: 24px; width: auto; display: block; }
+.eco-chip-origen { background: #faf6ef; }
+.eco-chip-origen img { height: 22px; }
+.eco-chip-origen span { display: flex; flex-direction: column; font-family: "Fraunces", Georgia, serif; line-height: .95; font-size: 0.74rem; }
+.eco-chip-origen b:first-child { color: var(--ink); }
+.eco-chip-origen b:last-child { color: var(--terra); }
+.eco-av-origen { border-color: #e3a33b; object-position: center top; }
+@media (max-width: 1100px) { .foot-top { flex-direction: column; align-items: stretch; } }
+.eco-band { flex-direction: column; align-items: stretch; gap: 8px; padding: 14px 18px 12px; }
+.eco-tit br { display: none; }
+.eco-tit b { font-size: 0.72rem; letter-spacing: .14em; }
+.eco-item { padding: 6px 8px; gap: 10px; }
+.eco-av { width: 46px; height: 46px; }
+.eco-chip img { height: 26px; }
+.eco-txt small { font-size: 0.74rem; }
