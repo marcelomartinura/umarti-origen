@@ -234,7 +234,7 @@ def tienda_viajeros(d):
         <h2 id="h-tv">Tienda para viajeros</h2>
         <p>Estamos armando una selección de productos para tu próxima aventura.</p>
         <div class="tv-items">{its}</div>
-        <a class="tv-cta" href="{rel(d, 'mesa-de-negociacion/')}">¿Tenés productos para viajeros? Escribinos →</a>
+        <a class="tv-cta" href="{rel(d, 'oportunidades-globales/buscar/')}">¿Tenés productos para viajeros? Escribinos →</a>
       </section>'''
 
 

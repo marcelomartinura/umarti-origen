@@ -200,7 +200,7 @@ def portada():
 {chr(10).join(bloques)}
       <div class="viajes-note" style="margin-top:8px">
         <div><h2>¿Qué herramienta te falta?</h2><p>Si hay un cálculo que hacés todas las semanas para vender, exportar o trabajar, contanos. Lo sumamos a la lista.</p></div>
-        <a href="{rel(d, 'mesa-de-negociacion/')}">Escribinos en la Mesa</a>
+        <a href="{rel(d, 'oportunidades-globales/buscar/')}">Contanos</a>
       </div>
     </div>'''
     itemlist = {"@context": "https://schema.org", "@type": "ItemList", "name": "Recursos digitales de Umarti Origen",
@@ -401,7 +401,7 @@ def margen():
         ("¿Qué comisión cobra cada marketplace?", "Cambia según la plataforma, la categoría y el plan. Revisá la tabla vigente de la tuya y cargala en el campo de comisión."),
     ]
     return pagina_herramienta("calculadora-de-precio-y-margen", cuerpo, faqs,
-                              [("Cómo usar la Mesa de negociación", "blog/como-usar-la-mesa-de-negociacion/")],
+                              [("Cómo usar Oportunidades Globales", "blog/como-usar-la-mesa-de-negociacion/")],
                               "Cálculo simplificado de referencia. Para tu situación impositiva, consultá a tu contador.")
 
 

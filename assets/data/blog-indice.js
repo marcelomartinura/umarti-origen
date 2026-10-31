@@ -50,7 +50,7 @@ window.BLOG_INDICE = [
  },
  {
   "slug": "como-usar-la-mesa-de-negociacion",
-  "titulo": "Cómo usar la Mesa de negociación para encontrar lo que buscás",
+  "titulo": "Cómo usar Oportunidades Globales para encontrar lo que buscás",
   "resumen": "Publicás qué producto o servicio necesitás, el sistema lo cruza con lo publicado y, si no está, nuestro equipo lo busca por vos. Paso a paso.",
   "seccion": "negocios",
   "categoria": "",
@@ -58,7 +58,7 @@ window.BLOG_INDICE = [
   "tema": "Cómo usar Umarti",
   "fecha": "2026-10-10",
   "tags": [
-   "mesa de negociación",
+   "oportunidades globales",
    "comercio exterior",
    "proveedores"
   ],

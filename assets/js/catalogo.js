@@ -12,10 +12,10 @@
     var m = H.matchOferta(card.dataset.codigo);
     if (!m.length) return 0;
     var a = el('a', 'op-status st-match');
-    a.href = '../mesa-de-negociacion/#' + m[0].cod.toLowerCase();
+    a.href = '../oportunidades-globales/#' + m[0].cod.toLowerCase();
     a.insertAdjacentHTML('afterbegin', ICON);
     var t = el('div');
-    t.appendChild(el('b', null, H.plural(m.length, 'búsqueda', 'búsquedas') + ' en la Mesa de negociación'));
+    t.appendChild(el('b', null, H.plural(m.length, 'búsqueda', 'búsquedas') + ' en Oportunidades Globales'));
     t.appendChild(el('span', null, 'Desde ' + m.map(function (b) { return b.pais; }).filter(function (v, i, arr) { return arr.indexOf(v) === i; }).join(', ') + '. Ver búsqueda'));
     a.appendChild(t);
     card.appendChild(a);
@@ -106,7 +106,7 @@
     filters.clear(); filters.refresh(); updateStats();
     card.scrollIntoView({ behavior: 'smooth', block: 'center' });
     H.toast(n
-      ? '¡Coincide con ' + H.plural(n, 'búsqueda', 'búsquedas') + ' de la Mesa! Quedó publicado como ' + o.cod + ', en revisión.'
+      ? '¡Coincide con ' + H.plural(n, 'búsqueda', 'búsquedas') + ' de Oportunidades Globales! Quedó publicado como ' + o.cod + ', en revisión.'
       : 'Quedó publicado como ' + o.cod + ', en revisión.');
   });
 })();

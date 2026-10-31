@@ -1,8 +1,9 @@
-/* Mesa de negociación: búsqueda de productos o servicios con coincidencias automáticas (prototipo, sin servidor) */
+/* Oportunidades Globales: búsquedas publicadas y formulario de búsqueda con coincidencias automáticas (prototipo, sin servidor) */
 (function () {
   var H = window.Hub, el = H.el;
   var PLAZO = 5; // días hábiles para que el equipo responda
   var list = document.getElementById('list');
+  var PRE = document.body.dataset.pre || '';
   var ICON_OK = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>';
   var ICON_CLOCK = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
 
@@ -24,7 +25,7 @@
     if (m.length) {
       txt.appendChild(el('b', null, 'Coincide con ' + H.plural(m.length, b.tipo === 'servicio' ? 'servicio publicado' : 'producto publicado', b.tipo === 'servicio' ? 'servicios publicados' : 'productos publicados')));
       var ul = el('ul');
-      m.forEach(function (o) { var li = el('li'); var a = el('a', null, o.nombre); a.href = o.url; li.appendChild(a); ul.appendChild(li); });
+      m.forEach(function (o) { var li = el('li'); var a = el('a', null, o.nombre); a.href = PRE + o.url; li.appendChild(a); ul.appendChild(li); });
       txt.appendChild(ul);
     } else {
       var limite = H.addBusinessDays(b.publicada, PLAZO);
@@ -41,13 +42,17 @@
   }
 
   /* Tarjetas iniciales */
-  Array.prototype.slice.call(list.querySelectorAll('.op')).forEach(function (c) {
-    H.updateVigencia(c);
-    var b = busquedaDeCard(c); if (b) renderStatus(c, b);
-  });
-  var filters = H.setupFilters({ list: list });
+  var filters = null;
+  if (list) {
+    Array.prototype.slice.call(list.querySelectorAll('.op')).forEach(function (c) {
+      H.updateVigencia(c);
+      var b = busquedaDeCard(c); if (b) renderStatus(c, b);
+    });
+    filters = H.setupFilters({ list: list });
+  }
 
   function updateStats() {
+    if (!document.getElementById('stat-b')) return;
     var act = H.D.busquedas.filter(function (b) { return H.daysLeft(b.vence) >= 0; });
     document.getElementById('stat-b').textContent = act.length;
     document.getElementById('stat-m').textContent = act.filter(function (b) { return H.matchBusqueda(b).length; }).length;
@@ -57,6 +62,7 @@
 
   /* ---------- formulario de búsqueda ---------- */
   var form = document.getElementById('search-form');
+  if (!form) return;
   var result = document.getElementById('search-result');
   var nombre = document.getElementById('s-nombre');
   var hs = document.getElementById('s-hs');
@@ -169,7 +175,7 @@
         info.appendChild(el('small', null, offerInfo(o)));
         it.appendChild(info);
         var acts = el('div', 'acts');
-        var link = el('a', null, 'Ver oferta'); link.href = o.url; acts.appendChild(link);
+        var link = el('a', null, 'Ver oferta'); link.href = PRE + o.url; acts.appendChild(link);
         var neg = el('button', 'btn-submit', 'Iniciar negociación'); neg.type = 'button';
         neg.style.padding = '10px 18px'; neg.style.fontSize = '0.9rem';
         neg.addEventListener('click', function () { H.openNeg({ kind: o.kind, titulo: o.nombre, info: offerInfo(o) }); });
@@ -189,7 +195,7 @@
       wrap.appendChild(dl);
     }
     var note = el('p');
-    note.appendChild(document.createTextNode('Tu búsqueda quedó publicada en la mesa como '));
+    note.appendChild(document.createTextNode('Tu búsqueda quedó publicada en Oportunidades Globales como '));
     note.appendChild(el('span', 'code', b.cod));
     note.appendChild(document.createTextNode(', así otros vendedores también pueden verla.'));
     note.style.color = 'var(--muted)'; note.style.fontSize = '0.92rem'; note.style.marginBottom = '18px';
@@ -197,7 +203,7 @@
     var foot = el('div', 'result-foot');
     var again = el('button', 'link-btn', 'Hacer otra búsqueda'); again.type = 'button';
     again.addEventListener('click', resetForm);
-    var see = el('a', 'text-link', 'Ver mi búsqueda en la mesa'); see.href = '#' + b.cod.toLowerCase();
+    var see = el('a', 'text-link', 'Ver las búsquedas publicadas'); see.href = '../#busquedas';
     foot.appendChild(see); foot.appendChild(again);
     wrap.appendChild(foot);
     result.appendChild(wrap);
@@ -216,13 +222,15 @@
     };
     H.D.busquedas.unshift(b);
     var m = H.matchBusqueda(b);
-    var card = buildCard(b);
-    list.insertBefore(card, list.firstChild);
-    renderStatus(card, b);
-    filters.clear(); filters.refresh();
+    if (list) {
+      var card = buildCard(b);
+      list.insertBefore(card, list.firstChild);
+      renderStatus(card, b);
+      filters.clear(); filters.refresh();
+    }
     updateStats();
     showResult(b, m, fd.get('mail'));
-    document.getElementById('buscar').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    (document.getElementById('buscar') || form).scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
   resetForm();

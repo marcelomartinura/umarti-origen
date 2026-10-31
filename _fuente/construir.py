@@ -2,7 +2,8 @@
 """Genera las páginas del Hub de Oportunidades a partir de _fuente/datos.py.
 
 Uso:  python3 _fuente/construir.py
-Genera: mesa-de-negociacion/index.html, productos-de-exportacion/index.html,
+Genera: oportunidades-globales/ (búsquedas, cómo funciona y buscar), mesa-de-negociacion/ (vista previa),
+        productos-de-exportacion/index.html,
         servicios-de-comercio-exterior/index.html y assets/data/hub-datos.js
 El encabezado se copia de index.html (la portada), así que cualquier cambio del menú se hace ahí.
 """
@@ -23,7 +24,7 @@ except FileNotFoundError:
     pass
 
 esc = html.escape
-URL = {"producto": "../productos-de-exportacion/", "servicio": "../servicios-de-comercio-exterior/", "busqueda": "../mesa-de-negociacion/"}
+URL = {"producto": "../productos-de-exportacion/", "servicio": "../servicios-de-comercio-exterior/", "busqueda": "../oportunidades-globales/"}
 
 
 def fecha(d):
@@ -109,12 +110,13 @@ def card_busqueda(b):
             <span class="op-vence">Vigente hasta <time datetime="{b['vence']}">{fecha(b['vence'])}</time></span>
             <button class="op-cta" type="button" data-negociar>{cta}</button>
           </div>
+          <a class="op-mesa" href="../mesa-de-negociacion/?b={b['cod']}">Abrir en la Mesa de negociación <span>Pronto</span></a>
         </article>'''
 
 
 # ---------- piezas comunes ----------
-def header():
-    return comun.header("../")
+def header(pre="../"):
+    return comun.header(pre)
 
 
 def opts(items, values=None):
@@ -156,7 +158,7 @@ NEG_DIALOG = '''  <dialog id="dlg-neg" class="k-producto" aria-labelledby="neg-t
       </div>
       <div class="success" id="neg-step-ok" hidden>
         <div class="tick"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></div>
-        <h3>Tu propuesta quedó en la mesa</h3>
+        <h3>Tu propuesta quedó registrada</h3>
         <p>En la versión final, acá recibís la confirmación y Umarti te contacta para coordinar la negociación. En este prototipo no se envía nada.</p>
         <button class="btn-submit" type="button" data-close>Volver</button>
       </div>
@@ -185,17 +187,18 @@ def faq_jsonld(faqs):
         ensure_ascii=False, indent=2)
 
 
-def crumbs(actual):
+def crumbs(actual, pre="../", medio=None):
+    m = f'\n          <li><a href="{pre}{medio[1]}">{medio[0]}</a></li>' if medio else ""
     return f'''      <nav class="crumbs" aria-label="Ubicación">
         <ol>
-          <li><a href="../">Inicio</a></li>
-          <li>Hub de Oportunidades</li>
+          <li><a href="{pre}">Inicio</a></li>
+          <li>Hub de Oportunidades</li>{m}
           <li aria-current="page">{actual}</li>
         </ol>
       </nav>'''
 
 
-def page(body_class, kind, title, desc, og_title, main, faqs, faq_title, dialogs, scripts):
+def page(body_class, kind, title, desc, og_title, main, faqs, faq_title, dialogs, scripts, pre="../"):
     return f'''<!doctype html>
 <html lang="es">
 <head>
@@ -211,23 +214,23 @@ def page(body_class, kind, title, desc, og_title, main, faqs, faq_title, dialogs
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/umarti.css">
-  <link rel="stylesheet" href="../assets/css/hub.css">
+  <link rel="stylesheet" href="{pre}assets/css/umarti.css">
+  <link rel="stylesheet" href="{pre}assets/css/hub.css">
   <script type="application/ld+json">
 {faq_jsonld(faqs)}
   </script>
 </head>
-<body class="{body_class}"{f' data-kind="{kind}"' if kind else ''}>
+<body class="{body_class}"{f' data-kind="{kind}"' if kind else ''} data-pre="{'' if pre == '../' else pre[3:]}">
 
-{header()}
+{header(pre)}
 
   <main>
 {main}
 
-{faq_block(faqs, faq_title)}
+{faq_block(faqs, faq_title) if faqs else ''}
   </main>
 
-{comun.footer("../")}
+{comun.footer(pre)}
 
 {dialogs}
 {NEG_DIALOG}
@@ -235,48 +238,120 @@ def page(body_class, kind, title, desc, og_title, main, faqs, faq_title, dialogs
   <datalist id="paises">{"".join(f'<option value="{p}">' for p in PAISES)}</datalist>
   <div class="toast" id="toast" role="status"></div>
 
-  <script src="../assets/js/header.js"></script>
-  <script src="../assets/data/hub-datos.js"></script>
-  <script src="../assets/js/hub-comun.js"></script>
+  <script src="{pre}assets/js/header.js"></script>
+  <script src="{pre}assets/data/hub-datos.js"></script>
+  <script src="{pre}assets/js/hub-comun.js"></script>
 {scripts}
 </body>
 </html>
 '''
 
 
-# ---------- Mesa de negociación ----------
-def mesa():
-    faqs = [
-        ("¿Cómo funciona la Mesa de negociación?",
+# ---------- Oportunidades Globales ----------
+def _faqs_og():
+    return [
+        ("¿Cómo funciona Oportunidades Globales?",
          "Ingresás el producto o servicio que estás buscando. El sistema lo cruza con lo publicado en Productos de exportación y en Servicios de Comercio Exterior. Si hay coincidencia, te vinculamos con esa oferta para empezar a negociar."),
         ("¿Qué pasa si lo que busco no está publicado?",
-         "Nuestro equipo sale a buscarlo entre productores y proveedores, y te responde en un plazo de 5 días hábiles con lo que encontró. Mientras tanto, tu búsqueda queda visible en la mesa para que otros vendedores puedan ofrecerte su producto."),
+         "Nuestro equipo sale a buscarlo entre productores y proveedores, y te responde en un plazo de 5 días hábiles con lo que encontró. Mientras tanto, tu búsqueda queda publicada para que otros vendedores puedan ofrecerte su producto."),
         ("¿Qué es la posición arancelaria y por qué conviene indicarla?",
          "Es el código del Sistema Armonizado que identifica cada producto en el comercio internacional, igual en todos los países. Con ella, la mesa encuentra coincidencias aunque cada parte describa el producto con palabras distintas."),
         ("¿Quién ve mis datos de contacto?",
          "Nadie, mientras no decidas avanzar. En la mesa se publican el producto, el destino, el volumen y la vigencia; los datos de tu empresa se comparten solo cuando ambas partes aceptan negociar."),
     ]
+
+
+def hero_og(pre, titulo="Oportunidades Globales", lead=None, botones=True):
+    lead = lead or "Empresas de distintos países publican lo que están buscando. Si lo tenés, ofrecelo; si buscás algo, publicalo y lo cruzamos con lo que ofrecen productores y proveedores."
+    btns = f'''
+          <div class="og-btns">
+            <a class="og-btn ghost" href="{pre}oportunidades-globales/como-funciona/">Cómo funciona</a>
+            <a class="og-btn" href="{pre}oportunidades-globales/buscar/">{ICON_SEARCH} Buscar un producto</a>
+          </div>''' if botones else ""
+    return f'''      <div class="pres-banner og-banner" style="--pb-bg:#eef0f4;--pb-pos:center 60%">
+        <img src="{pre}assets/img/hub-avion.jpg" alt="">
+        <div class="pb-txt">
+          <span class="eyebrow">Hub de Oportunidades</span>
+          <h1>{titulo}</h1>
+          <p>{lead}</p>{btns}
+        </div>
+      </div>'''
+
+
+MESA_BAND = '''      <a class="mesa-band-og" href="{pre}mesa-de-negociacion/">
+        <span class="mb-tag">Próximamente</span>
+        <span class="mb-txt"><b>Mesa de negociación digital</b><small>Ofertas, contraofertas y acuerdos con reglas claras, identidad verificada y depósito en garantía.</small></span>
+        <span class="mb-go">Ver cómo va a ser →</span>
+      </a>'''
+
+
+def oportunidades():
     activos = len(BUSQUEDAS)
     main = f'''    <div class="wrap">
-{crumbs("Mesa de negociación")}
-
-      <div class="page-head">
-        <div>
-          <span class="eyebrow">Hub de Oportunidades</span>
-          <h1>Mesa de negociación</h1>
-          <p>Contanos qué producto o servicio estás buscando. El sistema lo cruza con lo publicado en Productos de exportación y Servicios de Comercio Exterior y, si todavía no está, nuestro equipo sale a buscarlo por vos.</p>
-        </div>
-        <div class="stats" aria-label="Resumen">
-          <div class="stat"><strong id="stat-b">{activos}</strong><span>búsquedas activas</span></div>
-          <div class="stat ok"><strong id="stat-m">–</strong><span>con coincidencia</span></div>
-          <div class="stat plain"><strong id="stat-o">{len(PRODUCTOS) + len(SERVICIOS)}</strong><span>ofertas publicadas</span></div>
-        </div>
+{crumbs("Oportunidades Globales")}
+{hero_og("../")}
+      <div class="stats og-stats" aria-label="Resumen">
+        <div class="stat"><strong id="stat-b">{activos}</strong><span>búsquedas activas</span></div>
+        <div class="stat ok"><strong id="stat-m">–</strong><span>con coincidencia</span></div>
+        <div class="stat plain"><strong id="stat-o">{len(PRODUCTOS) + len(SERVICIOS)}</strong><span>ofertas publicadas</span></div>
       </div>
 
-      <section class="mesa-grid" id="buscar" aria-label="Búsqueda de productos o servicios">
+      <div class="block-head" id="busquedas">
+        <div>
+          <h2>Búsquedas publicadas</h2>
+          <p>Lo que empresas de distintos países están buscando ahora. Si tenés alguno de estos productos o servicios, ofrecelo.</p>
+        </div>
+      </div>
+      <form class="filters" role="search" onsubmit="return false" style="grid-template-columns: 2.2fr 1fr 1.2fr">
+        <div class="field search-field">
+          <label for="f-q">Buscar</label>
+          {ICON_SEARCH}
+          <input id="f-q" type="search" data-filter="texto" placeholder="Producto, posición arancelaria o código" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="f-tipo">Tipo</label>
+          <select id="f-tipo" data-filter="tipo"><option value="">Todos</option><option value="producto">Productos</option><option value="servicio">Servicios</option></select>
+        </div>
+        <div class="field">
+          <label for="f-pais">País de destino</label>
+          <select id="f-pais" data-filter="pais" data-auto><option value="">Todos</option></select>
+        </div>
+        <div class="filters-row2">
+          <div class="chips-filter" data-filter-chips="estado" role="group" aria-label="Estado">
+            <button type="button" data-value="" aria-pressed="true">Todas</button>
+            <button type="button" data-value="match" aria-pressed="false">Con coincidencia</button>
+            <button type="button" data-value="buscando" aria-pressed="false">Nuestro equipo la busca</button>
+          </div>
+          <div class="row2-right">
+            <span class="result-count" id="result-count" data-uno="búsqueda" data-varios="búsquedas" aria-live="polite"></span>
+            <button type="button" class="link-btn" id="f-clear">Limpiar filtros</button>
+          </div>
+        </div>
+      </form>
+{PROTO.format(txt="Las búsquedas y ofertas de estas páginas son ejemplos para mostrar cómo funciona. Lo que publiques ahora se ve solo en tu pantalla y no se envía.")}
+
+      <div class="cards" id="list">
+{chr(10).join(card_busqueda(b) for b in BUSQUEDAS)}
+        <div class="empty" id="empty"><p>No hay búsquedas con estos filtros.</p><a class="text-link" href="buscar/">Publicá la tuya</a></div>
+      </div>
+{MESA_BAND.format(pre="../")}
+    </div>'''
+    return page("pg-mesa", None,
+                "Oportunidades Globales: búsquedas de productos y servicios de comercio exterior | Umarti Origen",
+                "Búsquedas de productos y servicios publicadas por empresas de distintos países. Si tenés lo que buscan, ofrecelo; si buscás algo, publicalo y lo cruzamos con productores y proveedores.",
+                "Oportunidades Globales | Umarti Origen", main, _faqs_og(), "Lo que conviene saber", "",
+                '  <script src="../assets/js/oportunidades.js"></script>')
+
+
+def como_funciona():
+    pre = "../../"
+    main = f'''    <div class="wrap">
+{crumbs("Cómo funciona", pre, ("Oportunidades Globales", "oportunidades-globales/"))}
+{hero_og(pre, "Cómo funciona", "Publicás lo que buscás, el sistema lo cruza con lo que ofrecen productores y proveedores y, si todavía no está, nuestro equipo sale a buscarlo por vos.", False)}
+      <section class="og-flow-wrap">
         <div class="flow">
           <span class="eyebrow">Cómo funciona</span>
-          <h2>Así trabaja la mesa</h2>
+          <h2>Así funciona</h2>
           <div class="flow-step">
             <span class="flow-num">1</span>
             <div><h3>Ingresás lo que buscás</h3><p>Un producto o un servicio, con el volumen y el país de destino.</p></div>
@@ -288,7 +363,7 @@ def mesa():
           <div class="flow-split">
             <div class="flow-out yes">
               <strong><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Hay coincidencia</strong>
-              <p>Te vinculamos con esa oferta y empieza la negociación.</p>
+              <p>Te vinculamos con esa oferta para empezar a negociar.</p>
             </div>
             <div class="flow-out no">
               <strong><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>No hay coincidencia</strong>
@@ -298,6 +373,25 @@ def mesa():
           </div>
         </div>
 
+        <div class="og-side">
+          <h2>¿Listo para empezar?</h2>
+          <p>Publicá tu búsqueda en dos minutos. Tus datos de contacto no se publican.</p>
+          <a class="og-btn" href="../buscar/">{ICON_SEARCH} Buscar un producto</a>
+          <a class="text-link" href="../">Ver las búsquedas publicadas →</a>
+        </div>
+      </section>
+{MESA_BAND.format(pre=pre)}
+    </div>'''
+    return page("pg-mesa", None, "Cómo funciona Oportunidades Globales | Umarti Origen",
+                "Publicá el producto o servicio que buscás: lo cruzamos con productos de exportación y servicios de comercio exterior y, si no está, nuestro equipo lo busca y te responde en 5 días hábiles.",
+                "Cómo funciona Oportunidades Globales | Umarti Origen", main, _faqs_og(), "Lo que conviene saber", "", "", pre)
+
+
+def buscar():
+    pre = "../../"
+    main = f'''    <div class="wrap">
+{crumbs("Buscar un producto o servicio", pre, ("Oportunidades Globales", "oportunidades-globales/"))}
+      <section class="og-buscar" id="buscar" aria-label="Búsqueda de productos o servicios">
         <div class="search-card">
           <form id="search-form" autocomplete="on">
             <h2>Búsqueda de productos o servicios</h2>
@@ -347,57 +441,88 @@ def mesa():
             </div>
             <div class="form-foot">
               <small>Si no hay coincidencia, te respondemos en 5 días hábiles al correo que indiques.</small>
-              <button class="btn-submit" type="submit">{ICON_SEARCH} Buscar en la mesa</button>
+              <button class="btn-submit" type="submit">{ICON_SEARCH} Publicar búsqueda</button>
             </div>
           </form>
           <div id="search-result" hidden aria-live="polite"></div>
         </div>
       </section>
-
-      <div class="block-head" id="busquedas">
-        <div>
-          <h2>Búsquedas publicadas</h2>
-          <p>Lo que empresas de distintos países están buscando ahora. Si tenés alguno de estos productos o servicios, ofrecelo.</p>
-        </div>
-      </div>
-      <form class="filters" role="search" onsubmit="return false" style="grid-template-columns: 2.2fr 1fr 1.2fr">
-        <div class="field search-field">
-          <label for="f-q">Buscar</label>
-          {ICON_SEARCH}
-          <input id="f-q" type="search" data-filter="texto" placeholder="Producto, posición arancelaria o código" autocomplete="off">
-        </div>
-        <div class="field">
-          <label for="f-tipo">Tipo</label>
-          <select id="f-tipo" data-filter="tipo"><option value="">Todos</option><option value="producto">Productos</option><option value="servicio">Servicios</option></select>
-        </div>
-        <div class="field">
-          <label for="f-pais">País de destino</label>
-          <select id="f-pais" data-filter="pais" data-auto><option value="">Todos</option></select>
-        </div>
-        <div class="filters-row2">
-          <div class="chips-filter" data-filter-chips="estado" role="group" aria-label="Estado">
-            <button type="button" data-value="" aria-pressed="true">Todas</button>
-            <button type="button" data-value="match" aria-pressed="false">Con coincidencia</button>
-            <button type="button" data-value="buscando" aria-pressed="false">Nuestro equipo la busca</button>
-          </div>
-          <div class="row2-right">
-            <span class="result-count" id="result-count" data-uno="búsqueda" data-varios="búsquedas" aria-live="polite"></span>
-            <button type="button" class="link-btn" id="f-clear">Limpiar filtros</button>
-          </div>
-        </div>
-      </form>
-{PROTO.format(txt="Las búsquedas y ofertas de estas páginas son ejemplos para mostrar cómo funciona la mesa. Lo que publiques ahora se ve solo en tu pantalla y no se envía.")}
-
-      <div class="cards" id="list">
-{chr(10).join(card_busqueda(b) for b in BUSQUEDAS)}
-        <div class="empty" id="empty"><p>No hay búsquedas con estos filtros.</p><a class="text-link" href="#buscar">Publicá la tuya</a></div>
-      </div>
+{PROTO.format(txt="Lo que publiques ahora se ve solo en tu pantalla y no se envía.")}
     </div>'''
-    return page("pg-mesa", None,
-                "Mesa de negociación: búsqueda de productos y servicios de comercio exterior | Umarti Origen",
-                "Publicá el producto o servicio que buscás. Lo cruzamos con productos de exportación y servicios de comercio exterior y, si no está, nuestro equipo lo busca y te responde en 5 días hábiles.",
-                "Mesa de negociación | Umarti Origen", main, faqs, "Lo que conviene saber antes de buscar", "",
-                '  <script src="mesa.js"></script>')
+    return page("pg-mesa", None, "Buscar un producto o servicio | Oportunidades Globales | Umarti Origen",
+                "Publicá el producto o servicio que estás buscando y te mostramos al instante si ya hay una oferta que coincide.",
+                "Buscar un producto o servicio | Umarti Origen", main, [], "", "",
+                f'  <script src="{pre}assets/js/oportunidades.js"></script>', pre)
+
+
+# ---------- Mesa de negociación (vista previa, próximamente) ----------
+def mesa_digital():
+    faqs = [
+        ("¿Cuándo va a estar disponible la Mesa de negociación?", "Estamos construyéndola. Mientras tanto, podés publicar tu búsqueda en Oportunidades Globales y nuestro equipo pone en contacto a las partes."),
+        ("¿Por qué hay que verificar la identidad?", "Para negociar operaciones de valor, las dos partes validan su identidad con su documento (DNI, INE o pasaporte). Así se evitan perfiles falsos y ofertas poco serias."),
+        ("¿Qué es el depósito en garantía?", "Es un monto chico que el comprador deja en la plataforma para que su oferta sea vinculante. Si el vendedor acepta, queda congelado como reserva hasta el cierre."),
+        ("¿Qué pasa cuando las dos partes aceptan?", "La mesa se cierra para nuevas ofertas y se genera la hoja de condiciones con todo lo acordado: precio, cantidad, forma de pago, entrega y quién paga cada gasto."),
+    ]
+    etapas = ["Negociación", "Acuerdo", "Depósito", "Cierre"]
+    prog = "".join(f'<li data-etapa="{i}"><span>{i + 1}</span>{e}</li>' for i, e in enumerate(etapas))
+    pasos = [("Oferta inicial", "El comprador abre la mesa con una propuesta formal: precio, cantidad, forma de pago y entrega."),
+             ("Conversación y ajustes", "Se abre la sala. Las partes conversan, pero todo gira en torno a la ficha del trato, donde se modifican las condiciones."),
+             ("Contraoferta", "El vendedor acepta, rechaza o contraoferta con un clic. Cada contraoferta congela los términos anteriores."),
+             ("Pre-acuerdo", "Cuando los dos aceptan los términos, la mesa se cierra para nuevas ofertas y se genera la hoja de condiciones.")]
+    pasos_html = "".join(f'<div class="md-paso"><span>{i + 1}</span><h3>{t}</h3><p>{d}</p></div>' for i, (t, d) in enumerate(pasos))
+    conf = [("Identidad verificada", "Las dos partes validan su identidad con DNI, INE o pasaporte y biometría antes de negociar operaciones de valor.", '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/>'),
+            ("Depósito en garantía", "El comprador puede dejar un depósito para que su oferta sea vinculante. Si el vendedor acepta, queda como reserva.", '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M12 12v3"/>'),
+            ("Documentos verificados", "El vendedor sube certificados, habilitaciones y análisis; el sistema los revisa y le da la insignia de documentos verificados.", '<path d="M6 3h9l4 4v14H6zM14 3v5h5"/><path d="m9 14 2 2 4-4"/>')]
+    conf_html = "".join(f'<div class="md-conf"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">{ic}</svg><h3>{t}</h3><p>{d}</p></div>' for t, d, ic in conf)
+    busq = json.dumps({b["cod"]: {"nombre": b["nombre"], "pais": b["pais"], "vol": b["vol"]} for b in BUSQUEDAS}, ensure_ascii=False)
+    main = f'''    <div class="wrap">
+{crumbs("Mesa de negociación", "../", ("Oportunidades Globales", "oportunidades-globales/"))}
+      <div class="md-head">
+        <span class="md-pronto">Próximamente · Vista previa</span>
+        <h1>Mesa de negociación</h1>
+        <p>Negociar no debería ser un chat desordenado. En la mesa, cada oferta tiene sus condiciones a la vista, cada paso queda registrado y las dos partes saben siempre en qué etapa están.</p>
+      </div>
+
+      <section class="md-demo" aria-label="Vista previa de la mesa">
+        <ol class="md-prog" id="md-prog">{prog}</ol>
+        <div class="md-sala">
+          <div class="md-chat">
+            <div class="md-chat-head"><b id="md-titulo">Yerba mate elaborada</b><small id="md-sub">Comprador en México · Vendedor en Argentina</small></div>
+            <div class="md-msgs" id="md-msgs" aria-live="polite"></div>
+            <div class="md-sug" id="md-sug"></div>
+            <form class="md-input" id="md-form"><input id="md-txt" placeholder="Escribí un mensaje…" autocomplete="off"><button type="submit">Enviar</button></form>
+          </div>
+          <aside class="md-ficha">
+            <div class="md-ficha-h"><b>Ficha del trato</b><span class="md-estado" id="md-estado">Oferta del comprador</span></div>
+            <dl class="md-cond" id="md-cond"></dl>
+            <div class="md-gastos"><b>Gastos estimados y quién los paga</b><dl id="md-gastos"></dl></div>
+            <div class="md-acc" id="md-acc"></div>
+            <details class="md-hist"><summary>Ofertas anteriores (<span id="md-nhist">0</span>)</summary><ol id="md-hist"></ol></details>
+          </aside>
+        </div>
+        <p class="md-nota">Vista previa con datos de ejemplo: probá contraofertar y aceptar los términos. No se envía nada.</p>
+      </section>
+
+      <section class="md-sec">
+        <h2>Cómo va a funcionar</h2>
+        <div class="md-pasos">{pasos_html}</div>
+      </section>
+
+      <section class="md-sec">
+        <h2>Confianza y seguridad</h2>
+        <div class="md-confs">{conf_html}</div>
+      </section>
+
+      <div class="viajes-note md-cta">
+        <div><h2>Mientras tanto, publicá lo que buscás</h2><p>Nuestro equipo pone en contacto a las partes y acompaña la negociación.</p></div>
+        <a href="../oportunidades-globales/buscar/">Buscar un producto</a>
+      </div>
+    </div>
+    <script>window.MESA_BUSQUEDAS = {busq};</script>'''
+    return page("pg-mesa", None, "Mesa de negociación (próximamente) | Umarti Origen",
+                "Así va a ser la Mesa de negociación de Umarti: ofertas y contraofertas con condiciones claras, identidad verificada, depósito en garantía y hoja de condiciones.",
+                "Mesa de negociación | Umarti Origen", main, faqs, "Sobre la Mesa de negociación", "",
+                '  <script src="../assets/js/mesa-digital.js"></script>')
 
 
 # ---------- Productos de exportación ----------
@@ -405,8 +530,8 @@ def productos():
     faqs = [
         ("¿Cómo publico un producto de exportación?",
          "Con el botón Publicar un producto. Indicá qué vendés, la posición arancelaria si la sabés, el origen, el volumen disponible y hasta cuándo está vigente. Revisamos cada publicación antes de mostrarla."),
-        ("¿Qué significa que un producto tiene búsquedas en la Mesa?",
-         "Que hay empresas de otros países que publicaron en la Mesa de negociación que buscan ese producto. Es la forma más directa de llegar a un comprador que ya está interesado."),
+        ("¿Qué significa que un producto tiene búsquedas en Oportunidades Globales?",
+         "Que hay empresas de otros países que publicaron en Oportunidades Globales que buscan ese producto. Es la forma más directa de llegar a un comprador que ya está interesado."),
         ("¿Quién ve mis datos de contacto?",
          "Nadie, mientras no decidas avanzar. Se publican el producto, el origen y el volumen; los datos de tu empresa se comparten solo cuando ambas partes aceptan negociar."),
     ]
@@ -418,10 +543,10 @@ def productos():
         <div>
           <span class="eyebrow">Hub de Oportunidades</span>
           <h1>Productos de exportación</h1>
-          <p>Productos de Argentina, México y otros países, listos para venderse a otros mercados. Cada uno muestra si ya hay empresas buscándolo en la Mesa de negociación.</p>
+          <p>Productos de Argentina, México y otros países, listos para venderse a otros mercados. Cada uno muestra si ya hay empresas buscándolo en Oportunidades Globales.</p>
           <div class="head-actions">
             <button class="btn-accent" type="button" data-publicar>{ICON_PLUS} Publicar un producto</button>
-            <a class="text-link" href="../mesa-de-negociacion/#buscar">¿Buscás algo que no está? Pedilo en la Mesa →</a>
+            <a class="text-link" href="../oportunidades-globales/buscar/">¿Buscás algo que no está? Publicá tu búsqueda →</a>
           </div>
         </div>
         <div class="stats" aria-label="Resumen">
@@ -460,15 +585,15 @@ def productos():
 
       <div class="cards" id="list">
 {chr(10).join(card_producto(o) for o in PRODUCTOS)}
-        <div class="empty" id="empty"><p>No hay productos con estos filtros.</p><a class="text-link" href="../mesa-de-negociacion/#buscar">Pedilo en la Mesa de negociación</a></div>
+        <div class="empty" id="empty"><p>No hay productos con estos filtros.</p><a class="text-link" href="../oportunidades-globales/buscar/">Publicá tu búsqueda</a></div>
       </div>
 
       <div class="cross">
         <div>
           <h2>¿No encontrás el producto que buscás?</h2>
-          <p>Publicalo en la Mesa de negociación. Si nadie lo ofrece, nuestro equipo lo busca y te responde en 5 días hábiles.</p>
+          <p>Publicalo en Oportunidades Globales. Si nadie lo ofrece, nuestro equipo lo busca y te responde en 5 días hábiles.</p>
         </div>
-        <a href="../mesa-de-negociacion/#buscar">Ir a la Mesa de negociación</a>
+        <a href="../oportunidades-globales/buscar/">Publicar una búsqueda</a>
       </div>
     </div>'''
     dialog = f'''  <dialog id="dlg-pub" class="k-producto" aria-labelledby="pub-title">
@@ -492,7 +617,7 @@ def productos():
           <div class="field"><label for="p-mail">Correo <span class="req">*</span></label><input id="p-mail" name="mail" type="email" required autocomplete="email"></div>
         </div>
         <div class="form-foot">
-          <small>Revisamos cada publicación antes de mostrarla. Si coincide con una búsqueda de la Mesa, te avisamos.</small>
+          <small>Revisamos cada publicación antes de mostrarla. Si coincide con una búsqueda de Oportunidades Globales, te avisamos.</small>
           <button class="btn-submit" type="submit">Publicar producto</button>
         </div>
       </form>
@@ -513,7 +638,7 @@ def servicios():
         ("¿Cómo pido una cotización?",
          "Con el botón Solicitar cotización de cada servicio. Contás qué necesitás y Umarti te pone en contacto con el proveedor."),
         ("Soy proveedor, ¿cómo ofrezco mis servicios?",
-         "Con el botón Ofrecer mis servicios. Si tu servicio coincide con una búsqueda publicada en la Mesa de negociación, te avisamos."),
+         "Con el botón Ofrecer mis servicios. Si tu servicio coincide con una búsqueda publicada en Oportunidades Globales, te avisamos."),
     ]
     paises = sorted({s["pais"] for s in SERVICIOS})
     chips = "\n".join(f'            <button type="button" data-value="{esc(c)}" aria-pressed="false">{esc(c)}</button>' for c in CATEGORIAS_SERVICIO)
@@ -527,13 +652,13 @@ def servicios():
           <p>Despachantes de aduana, transporte y logística, seguros, certificaciones y asesoría para comprar y vender entre países.</p>
           <div class="head-actions">
             <button class="btn-accent" type="button" data-publicar>{ICON_PLUS} Ofrecer mis servicios</button>
-            <a class="text-link" href="../mesa-de-negociacion/#buscar">¿Necesitás un servicio que no está? Pedilo en la Mesa →</a>
+            <a class="text-link" href="../oportunidades-globales/buscar/">¿Necesitás un servicio que no está? Publicá tu búsqueda →</a>
           </div>
         </div>
         <div class="stats" aria-label="Resumen">
           <div class="stat"><strong id="stat-n">{len(SERVICIOS)}</strong><span>servicios</span></div>
           <div class="stat plain"><strong id="stat-p">{len(paises)}</strong><span>países</span></div>
-          <div class="stat ok"><strong id="stat-d">–</strong><span>pedidos en la Mesa</span></div>
+          <div class="stat ok"><strong id="stat-d">–</strong><span>búsquedas publicadas</span></div>
         </div>
       </div>
 
@@ -562,15 +687,15 @@ def servicios():
 
       <div class="cards" id="list">
 {chr(10).join(card_servicio(s) for s in SERVICIOS)}
-        <div class="empty" id="empty"><p>No hay servicios con estos filtros.</p><a class="text-link" href="../mesa-de-negociacion/#buscar">Pedilo en la Mesa de negociación</a></div>
+        <div class="empty" id="empty"><p>No hay servicios con estos filtros.</p><a class="text-link" href="../oportunidades-globales/buscar/">Publicá tu búsqueda</a></div>
       </div>
 
       <div class="cross">
         <div>
           <h2>¿No encontrás el servicio que necesitás?</h2>
-          <p>Publicalo en la Mesa de negociación. Si nadie lo ofrece, nuestro equipo lo busca y te responde en 5 días hábiles.</p>
+          <p>Publicalo en Oportunidades Globales. Si nadie lo ofrece, nuestro equipo lo busca y te responde en 5 días hábiles.</p>
         </div>
-        <a href="../mesa-de-negociacion/#buscar">Ir a la Mesa de negociación</a>
+        <a href="../oportunidades-globales/buscar/">Publicar una búsqueda</a>
       </div>
     </div>'''
     dialog = f'''  <dialog id="dlg-pub" class="k-servicio" aria-labelledby="pub-title">
@@ -592,7 +717,7 @@ def servicios():
           <div class="field"><label for="p-mail">Correo <span class="req">*</span></label><input id="p-mail" name="mail" type="email" required autocomplete="email"></div>
         </div>
         <div class="form-foot">
-          <small>Revisamos cada publicación antes de mostrarla. Si coincide con una búsqueda de la Mesa, te avisamos.</small>
+          <small>Revisamos cada publicación antes de mostrarla. Si coincide con una búsqueda de Oportunidades Globales, te avisamos.</small>
           <button class="btn-submit" type="submit">Publicar servicio</button>
         </div>
       </form>
@@ -626,6 +751,9 @@ def escribir(ruta, contenido):
 
 if __name__ == "__main__":
     escribir("assets/data/hub-datos.js", datos_js())
-    escribir("mesa-de-negociacion/index.html", mesa())
+    escribir("oportunidades-globales/index.html", oportunidades())
+    escribir("oportunidades-globales/como-funciona/index.html", como_funciona())
+    escribir("oportunidades-globales/buscar/index.html", buscar())
+    escribir("mesa-de-negociacion/index.html", mesa_digital())
     escribir("productos-de-exportacion/index.html", productos())
     escribir("servicios-de-comercio-exterior/index.html", servicios())

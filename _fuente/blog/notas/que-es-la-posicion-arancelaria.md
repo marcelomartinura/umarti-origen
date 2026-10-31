@@ -7,7 +7,7 @@ tags: comercio exterior, posición arancelaria, exportar
 fecha: 2026-10-06
 destacada: si
 ---
-Si vas a exportar o importar, hay un número que te va a acompañar en cada trámite: la posición arancelaria. Define qué impuestos paga tu producto, qué permisos necesita y si tiene beneficios por acuerdos entre países. También es lo que usa la [Mesa de negociación](../../mesa-de-negociacion/) para cruzar lo que buscan los compradores con lo que ofrecen los vendedores.
+Si vas a exportar o importar, hay un número que te va a acompañar en cada trámite: la posición arancelaria. Define qué impuestos paga tu producto, qué permisos necesita y si tiene beneficios por acuerdos entre países. También es lo que usa [Oportunidades Globales](../../oportunidades-globales/) para cruzar lo que buscan los compradores con lo que ofrecen los vendedores.
 
 ## El Sistema Armonizado: un idioma común
 
@@ -34,4 +34,4 @@ Es decir: los primeros 6 dígitos coinciden, y lo que sigue cambia según el pa�
 2. **Buscá en el nomenclador oficial de cada país:** en Argentina, en los sistemas de consulta de ARCA; en México, en el Sistema de Información Arancelaria Vía Internet (SIAVI) de la Secretaría de Economía.
 3. **Confirmalo con un despachante o agente aduanal.** Una clasificación equivocada puede significar pagar de más, demoras o multas.
 
-> **En la Mesa de negociación,** la posición arancelaria es opcional. Si no la sabés, publicá igual: nuestro equipo te ayuda a encontrarla.
+> **En Oportunidades Globales,** la posición arancelaria es opcional. Si no la sabés, publicá igual: nuestro equipo te ayuda a encontrarla.

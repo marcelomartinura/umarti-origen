@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/umarti.css?v=096f8b7f">
-  <link rel="stylesheet" href="../assets/css/hub.css?v=ffcfbf11">
+  <link rel="stylesheet" href="../assets/css/hub.css?v=b05b2728">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -44,14 +44,14 @@
       "name": "Soy proveedor, ¿cómo ofrezco mis servicios?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Con el botón Ofrecer mis servicios. Si tu servicio coincide con una búsqueda publicada en la Mesa de negociación, te avisamos."
+        "text": "Con el botón Ofrecer mis servicios. Si tu servicio coincide con una búsqueda publicada en Oportunidades Globales, te avisamos."
       }
     }
   ]
 }
   </script>
 </head>
-<body class="pg-servicios" data-kind="servicio">
+<body class="pg-servicios" data-kind="servicio" data-pre="">
 
   <header class="site-header" id="site-header">
     <!-- Fila superior -->
@@ -138,7 +138,7 @@
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
             </button>
             <div class="dropdown">
-              <a class="item" href="../mesa-de-negociacion/"><strong>Mesa de negociación</strong><span>Búsqueda de productos o servicios</span></a>
+              <a class="item" href="../oportunidades-globales/"><strong>Oportunidades Globales</strong><span>Búsquedas de productos y servicios</span></a>
               <a class="item" href="../productos-de-exportacion/"><strong>Productos de exportación</strong><span>Productos listos para vender a otros países</span></a>
               <a class="item" href="../servicios-de-comercio-exterior/"><strong>Servicios de Comercio Exterior</strong><span>Aduana, logística, seguros y asesoría</span></a>
             </div>
@@ -175,13 +175,13 @@
           <p>Despachantes de aduana, transporte y logística, seguros, certificaciones y asesoría para comprar y vender entre países.</p>
           <div class="head-actions">
             <button class="btn-accent" type="button" data-publicar><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg> Ofrecer mis servicios</button>
-            <a class="text-link" href="../mesa-de-negociacion/#buscar">¿Necesitás un servicio que no está? Pedilo en la Mesa →</a>
+            <a class="text-link" href="../oportunidades-globales/buscar/">¿Necesitás un servicio que no está? Publicá tu búsqueda →</a>
           </div>
         </div>
         <div class="stats" aria-label="Resumen">
           <div class="stat"><strong id="stat-n">9</strong><span>servicios</span></div>
           <div class="stat plain"><strong id="stat-p">2</strong><span>países</span></div>
-          <div class="stat ok"><strong id="stat-d">–</strong><span>pedidos en la Mesa</span></div>
+          <div class="stat ok"><strong id="stat-d">–</strong><span>búsquedas publicadas</span></div>
         </div>
       </div>
 
@@ -361,15 +361,15 @@
             <button class="op-cta" type="button" data-negociar>Solicitar cotización</button>
           </div>
         </article>
-        <div class="empty" id="empty"><p>No hay servicios con estos filtros.</p><a class="text-link" href="../mesa-de-negociacion/#buscar">Pedilo en la Mesa de negociación</a></div>
+        <div class="empty" id="empty"><p>No hay servicios con estos filtros.</p><a class="text-link" href="../oportunidades-globales/buscar/">Publicá tu búsqueda</a></div>
       </div>
 
       <div class="cross">
         <div>
           <h2>¿No encontrás el servicio que necesitás?</h2>
-          <p>Publicalo en la Mesa de negociación. Si nadie lo ofrece, nuestro equipo lo busca y te responde en 5 días hábiles.</p>
+          <p>Publicalo en Oportunidades Globales. Si nadie lo ofrece, nuestro equipo lo busca y te responde en 5 días hábiles.</p>
         </div>
-        <a href="../mesa-de-negociacion/#buscar">Ir a la Mesa de negociación</a>
+        <a href="../oportunidades-globales/buscar/">Publicar una búsqueda</a>
       </div>
     </div>
 
@@ -390,7 +390,7 @@
           </details>
           <details>
             <summary>Soy proveedor, ¿cómo ofrezco mis servicios?</summary>
-            <p>Con el botón Ofrecer mis servicios. Si tu servicio coincide con una búsqueda publicada en la Mesa de negociación, te avisamos.</p>
+            <p>Con el botón Ofrecer mis servicios. Si tu servicio coincide con una búsqueda publicada en Oportunidades Globales, te avisamos.</p>
           </details>
         </div>
       </div>
@@ -441,7 +441,7 @@
           <div class="field"><label for="p-mail">Correo <span class="req">*</span></label><input id="p-mail" name="mail" type="email" required autocomplete="email"></div>
         </div>
         <div class="form-foot">
-          <small>Revisamos cada publicación antes de mostrarla. Si coincide con una búsqueda de la Mesa, te avisamos.</small>
+          <small>Revisamos cada publicación antes de mostrarla. Si coincide con una búsqueda de Oportunidades Globales, te avisamos.</small>
           <button class="btn-submit" type="submit">Publicar servicio</button>
         </div>
       </form>
@@ -474,7 +474,7 @@
       </div>
       <div class="success" id="neg-step-ok" hidden>
         <div class="tick"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></div>
-        <h3>Tu propuesta quedó en la mesa</h3>
+        <h3>Tu propuesta quedó registrada</h3>
         <p>En la versión final, acá recibís la confirmación y Umarti te contacta para coordinar la negociación. En este prototipo no se envía nada.</p>
         <button class="btn-submit" type="button" data-close>Volver</button>
       </div>
@@ -487,6 +487,6 @@
   <script src="../assets/js/header.js?v=aeeac190"></script>
   <script src="../assets/data/hub-datos.js?v=cd24e0f2"></script>
   <script src="../assets/js/hub-comun.js?v=384ed416"></script>
-  <script src="../assets/js/catalogo.js?v=746bb312"></script>
+  <script src="../assets/js/catalogo.js?v=bdd07dc4"></script>
 </body>
 </html>

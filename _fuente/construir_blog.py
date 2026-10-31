@@ -587,7 +587,7 @@ def pagina_nota(n, notas):
         box = f'''<div class="box hub">
             <strong>Mesa de negociación</strong>
             <p>Decinos qué producto o servicio buscás. Si no está publicado, nuestro equipo lo busca y te responde en 5 días hábiles.</p>
-            <a class="btn-line" href="{rel(d, 'mesa-de-negociacion/')}">Buscar en la Mesa →</a>
+            <a class="btn-line" href="{rel(d, 'oportunidades-globales/buscar/')}">Publicar una búsqueda →</a>
           </div>'''
         mismas = [o for o in notas if o is not n and o["seccion"] == "negocios"]
         mas = '<div class="box"><h2>Más de Negocios</h2><ul class="mini-list">' + "".join(f'<li><a href="{rel(d, p_nota(o))}">{esc(o["titulo"])}</a></li>' for o in mismas[:5]) + f'</ul><a class="all" href="{rel(d, "blog/negocios/")}">Todas las notas de Negocios</a></div>'
