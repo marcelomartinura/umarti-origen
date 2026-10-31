@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="luz" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe2a8"/><stop offset="1" stop-color="#f6b866"/></linearGradient>
+    <radialGradient id="halo" cx=".5" cy=".7" r=".6"><stop offset="0" stop-color="#ffd58a" stop-opacity=".55"/><stop offset="1" stop-color="#ffd58a" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="900" height="400" fill="#efe2cf"/>
+  <!-- pared con ladrillos suaves -->
+  <g stroke="#e2d2bb" stroke-width="2">
+    <line x1="300" y1="140" x2="900" y2="140"/><line x1="300" y1="190" x2="900" y2="190"/><line x1="300" y1="240" x2="900" y2="240"/><line x1="300" y1="290" x2="900" y2="290"/>
+  </g>
+  <!-- toldo -->
+  <g>
+    <rect x="300" y="40" width="600" height="18" fill="#8f3f1d"/>
+    <g>
+      <path d="M300 58h60v40a30 18 0 0 1-60 0z" fill="#b4532a"/>
+      <path d="M360 58h60v40a30 18 0 0 1-60 0z" fill="#faf3e7"/>
+      <path d="M420 58h60v40a30 18 0 0 1-60 0z" fill="#b4532a"/>
+      <path d="M480 58h60v40a30 18 0 0 1-60 0z" fill="#faf3e7"/>
+      <path d="M540 58h60v40a30 18 0 0 1-60 0z" fill="#b4532a"/>
+      <path d="M600 58h60v40a30 18 0 0 1-60 0z" fill="#faf3e7"/>
+      <path d="M660 58h60v40a30 18 0 0 1-60 0z" fill="#b4532a"/>
+      <path d="M720 58h60v40a30 18 0 0 1-60 0z" fill="#faf3e7"/>
+      <path d="M780 58h60v40a30 18 0 0 1-60 0z" fill="#b4532a"/>
+      <path d="M840 58h60v40a30 18 0 0 1-60 0z" fill="#faf3e7"/>
+    </g>
+  </g>
+  <!-- vidriera izquierda -->
+  <rect x="345" y="150" width="170" height="160" rx="6" fill="#5e2a13"/>
+  <rect x="355" y="160" width="150" height="140" rx="3" fill="#fbe7c4"/>
+  <rect x="355" y="245" width="150" height="6" fill="#d9b48a"/>
+  <path d="M378 245c-10 0-14-14-10-24 3-7 21-7 24 0 4 10 0 24-14 24z" fill="#8f3f1d"/><line x1="383" y1="221" x2="396" y2="196" stroke="#b9b2a6" stroke-width="3" stroke-linecap="round"/>
+  <rect x="410" y="214" width="22" height="31" rx="4" fill="#4f6b3a"/><rect x="414" y="206" width="14" height="8" rx="2" fill="#33472a"/>
+  <rect x="442" y="222" width="40" height="23" rx="4" fill="#c8922a"/><path d="M442 230h40" stroke="#8a5e0c" stroke-width="2"/>
+  <rect x="368" y="270" width="30" height="24" rx="3" fill="#9a3445"/><rect x="408" y="276" width="40" height="18" rx="3" fill="#d9a83d"/><rect x="456" y="266" width="30" height="28" rx="3" fill="#5b7a43"/>
+  <!-- puerta -->
+  <rect x="560" y="120" width="190" height="230" rx="8" fill="#5e2a13"/>
+  <rect x="574" y="134" width="162" height="216" fill="url(#luz)"/>
+  <!-- interior: estantes -->
+  <g opacity=".55">
+    <rect x="590" y="170" width="130" height="5" fill="#b07a3e"/><rect x="590" y="220" width="130" height="5" fill="#b07a3e"/>
+    <rect x="600" y="150" width="16" height="20" rx="3" fill="#8f3f1d"/><rect x="624" y="146" width="14" height="24" rx="3" fill="#4f6b3a"/><rect x="646" y="154" width="22" height="16" rx="3" fill="#c8922a"/><rect x="678" y="148" width="16" height="22" rx="3" fill="#9a3445"/>
+    <rect x="604" y="200" width="20" height="20" rx="3" fill="#c8922a"/><rect x="632" y="196" width="16" height="24" rx="3" fill="#8f3f1d"/><rect x="658" y="202" width="24" height="18" rx="3" fill="#5b7a43"/>
+  </g>
+  <!-- hoja de la puerta abierta -->
+  <path d="M736 134 L800 112 L800 372 L736 350 Z" fill="#7a3a18"/>
+  <path d="M746 150 L790 136 L790 228 L746 238 Z" fill="#fbe7c4" opacity=".85"/>
+  <circle cx="752" cy="262" r="5" fill="#e3a33b"/>
+  <!-- cartel ABIERTO -->
+  <line x1="770" y1="140" x2="778" y2="160" stroke="#3a2a1c" stroke-width="2"/>
+  <rect x="760" y="160" width="58" height="22" rx="4" fill="#4f6b3a" transform="rotate(-8 789 171)"/>
+  <text x="789" y="176" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#fff" text-anchor="middle" transform="rotate(-8 789 171)">ABIERTO</text>
+  <!-- luz que sale -->
+  <path d="M574 350 L736 350 L790 400 L520 400 Z" fill="url(#halo)"/>
+  <rect x="540" y="350" width="230" height="10" fill="#c9a77f"/>
+  <!-- alfombra -->
+  <path d="M590 372 L720 372 L740 392 L570 392 Z" fill="#b4532a"/>
+  <text x="655" y="387" font-family="Georgia, serif" font-size="11" fill="#fbe7c4" text-anchor="middle">BIENVENIDOS</text>
+  <!-- maceta -->
+  <path d="M820 300 h44 l-6 52 h-32 z" fill="#b4532a"/>
+  <path d="M842 300 C826 270 812 262 806 240 C826 250 838 268 842 300Z" fill="#4f6b3a"/>
+  <path d="M842 300 C850 266 868 252 882 236 C878 266 862 284 842 300Z" fill="#6c8a4f"/>
+  <path d="M842 300 C840 270 846 246 840 220 C856 244 854 276 842 300Z" fill="#5c7a43"/>
+  <!-- vereda -->
+  <rect x="0" y="360" width="900" height="40" fill="#d8c4a6" opacity=".6"/>
+</svg>

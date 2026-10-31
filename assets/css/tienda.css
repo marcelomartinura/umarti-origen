@@ -389,3 +389,6 @@ dialog::backdrop { background: rgba(31, 26, 20, 0.55); }
   .cat-banner::after { display: none; }
   .cb-txt { padding: 0 22px 22px; margin-top: -24px; }
 }
+.tienda-banner { min-height: 270px; }
+.tienda-banner > img { width: 66%; object-position: right center; }
+.envio-banner > img { width: 64%; --pb-pos: center 45%; object-position: center 45%; }
