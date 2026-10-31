@@ -187,3 +187,21 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 40px; font-size: 0.9
   .pres-banner > img { position: relative; width: 100%; height: 160px; -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent); mask-image: linear-gradient(180deg, #000 55%, transparent); }
   .pres-banner .pb-txt { padding: 0 22px 22px; margin-top: -20px; }
 }
+
+/* ---------- Ecosistema Umarti (pie) ---------- */
+.eco-band { display: flex; align-items: center; gap: 22px; background: #0d1f30; color: #fff; border-radius: 22px; padding: 16px 22px; margin-bottom: 30px; }
+.eco-tit { font-size: 0.72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #8fd9d6; line-height: 1.4; flex: none; }
+.eco-tit b { color: #fff; font-size: 0.95rem; letter-spacing: .06em; }
+.eco-items { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; flex: 1; }
+.eco-item { display: flex; align-items: center; gap: 12px; padding: 8px 10px; border-radius: 14px; color: #fff; text-decoration: none; transition: background .2s; }
+a.eco-item:hover { background: rgba(255,255,255,.08); }
+.eco-av { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; flex: none; border: 2px solid #1fb5b0; }
+.eco-av-ico { display: grid; place-items: center; background: #faf6ef; border-color: #e3a33b; }
+.eco-av-ico img { width: 34px; height: auto; }
+.eco-txt { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
+.eco-name b { display: block; font-size: 0.92rem; }
+.eco-logo { height: 30px; width: auto; display: block; }
+.eco-txt small { color: #a9bccb; font-size: 0.76rem; margin-top: 3px; }
+.eco-txt em { font-style: normal; align-self: flex-start; font-size: 0.68rem; font-weight: 700; color: #0d1f30; background: #e3a33b; padding: 2px 8px; border-radius: 999px; margin-top: 5px; }
+@media (max-width: 1000px) { .eco-band { flex-direction: column; align-items: flex-start; } .eco-items { grid-template-columns: repeat(2, 1fr); width: 100%; } .eco-tit br { display: none; } }
+@media (max-width: 520px) { .eco-items { grid-template-columns: 1fr; } }
