@@ -486,9 +486,16 @@ CAMPOS_ENVIO = [("plazo", "Plazo de entrega"), ("costo", "Costo de envío"), ("t
                 ("seguimiento", "Seguimiento del pedido"), ("devoluciones", "Cambios y devoluciones"), ("impuestos", "Impuestos y aduana")]
 
 
+def botones_envio(d, actual):
+    """Botones para pasar entre envíos nacionales e internacionales."""
+    bs = [("argentina", "Envíos nacionales"), ("internacional", "Envíos internacionales")]
+    return '          <div class="env-btns">' + "".join(
+        f'<a href="{rel(d, p_envio(k))}"{" aria-current=\"page\"" if k == actual else ""}>{t}</a>' for k, t in bs) + "</div>"
+
+
 def pagina_envio(e, envios, productos):
     d = 2
-    titulo = "Envíos internacionales" if e["slug"] == "internacional" else f"Envíos a {e['zona']}"
+    titulo = "Envíos internacionales" if e["slug"] == "internacional" else "Envíos nacionales"
     borrador = e.get("estado") != "Publicado"
     aviso = '<div class="draft-note">Estamos terminando de definir estas condiciones. Lo que figura como <b>A confirmar</b> se actualiza pronto.</div>' if borrador else ""
     items = "".join(
@@ -507,6 +514,7 @@ def pagina_envio(e, envios, productos):
           <span class="eyebrow" style="color:var(--terra)">Condiciones de envío</span>
           <h1>{esc(titulo)}</h1>
           <p>Cómo llegan tus compras{"" if e["slug"] == "internacional" else " dentro de " + esc(e["zona"])}: plazos, costos, seguimiento y cambios.</p>
+{botones_envio(d, e["slug"])}
         </div>
       </div>
       {aviso}
@@ -529,7 +537,7 @@ ICON_LOCK = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke=
 def barra_tienda(d, actual, pais="Argentina"):
     """Barra propia de la tienda del país: Tienda, International Shop, Envíos, Cupones y Guía de viajes."""
     items = [("tienda", "Tienda", p_tienda(pais)), ("intl", "International Shop", "international-shop/"), ("envios", "Envíos", p_envio(slug(pais))),
-             ("cupones", "Cupones", "cupones/"), ("viajes", "Guía de viajes", f"viajes/{slug(pais)}/")]
+             ("cupones", "Cupones", "cupones/"), ("viajes", "Guía de viajes", "viajes/")]
     links = "".join(f'<a href="{rel(d, u)}"{" aria-current=\"page\"" if k == actual else ""}>{t}</a>' for k, t, u in items)
     return f'''    <div class="ts-bar">
       <div class="wrap-wide">
@@ -726,12 +734,13 @@ def pagina_categoria(cat, productos, notas, cb, cv, pais="Argentina"):
 
 def indice_envios(envios):
     d = 1
-    cards = "".join(f'<a class="link-card tema" href="{rel(d, p_envio(e["slug"]))}"><span class="ic">{ICON_TRUCK}</span><span><strong>{esc("Envíos internacionales" if e["slug"] == "internacional" else "Envíos a " + e["zona"])}</strong><small>Plazos, costos, seguimiento y cambios</small></span></a>' for e in envios)
+    cards = "".join(f'<a class="link-card tema" href="{rel(d, p_envio(e["slug"]))}"><span class="ic">{ICON_TRUCK}</span><span><strong>{esc("Envíos internacionales" if e["slug"] == "internacional" else "Envíos nacionales")}</strong><small>Plazos, costos, seguimiento y cambios</small></span></a>' for e in envios)
     main = f'''    <div class="wrap envio-page">
 {crumbs(d, [("Envíos", None)])}
       <div class="pres-banner envio-banner" style="--pb-bg:#efe3d6">
         <img src="{rel(d, 'assets/img/envios-avion-atardecer.jpg')}" alt="">
-        <div class="pb-txt"><span class="eyebrow" style="color:var(--terra)">Condiciones de envío</span><h1>Envíos</h1><p>Elegí la zona para ver cómo llegan tus compras.</p></div>
+        <div class="pb-txt"><span class="eyebrow" style="color:var(--terra)">Condiciones de envío</span><h1>Envíos</h1><p>Elegí la zona para ver cómo llegan tus compras.</p>
+{botones_envio(d, "")}</div>
       </div>
       <div class="link-cards" style="max-width:560px">{cards}</div>
       <div style="height:88px"></div>
