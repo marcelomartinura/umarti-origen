@@ -33,6 +33,7 @@ HERRAMIENTAS = [
     ("enlace-de-whatsapp", "Enlace de WhatsApp y QR", "Para que tus clientes te escriban con un toque.", "Vender en línea", "chat", False),
     ("conversor-de-nomenclatura-dental", "Conversor de nomenclatura dental", "Odontograma interactivo: FDI, Universal y Palmer, en dientes permanentes y temporales.", "Salud", "diente", True),
     ("calculadora-de-imc", "Calculadora de IMC", "Índice de masa corporal y rango de referencia.", "Salud", "pulso", False),
+    ("presencia-en-internet", "Presencia en internet", "Tu sitio web, Google Maps y redes sociales listos para que te encuentren.", "Servicios para tu negocio", "web", "https://www.umartidigital.com/presencia-digital/"),
     ("marketing-digital", "Servicio de marketing digital", "Redes, anuncios y contenido para atraer clientes a tu negocio.", "Servicios para tu negocio", "mega", UMARTI_DIGITAL),
     ("agente-conversacional-ia", "Agente conversacional con IA", "Un asistente que responde a tus clientes por WhatsApp o en tu web, las 24 horas.", "Servicios para tu negocio", "bot", UMARTI_DIGITAL),
 ]
@@ -56,6 +57,7 @@ ICONOS = {
     "diente": '<path d="M7 3c-2.5 0-4 2-4 4.5 0 2.5 1.5 4 2 6.5.5 3 1 7 2.8 7 1.6 0 1.7-5 3.2-5s1.6 5 3.2 5c1.8 0 2.3-4 2.8-7 .5-2.5 2-4 2-6.5C21 5 19.5 3 17 3c-2 0-3 1-5 1S9 3 7 3z"/>',
     "pulso": '<path d="M3 12h4l2-5 4 10 2-5h6"/>',
     "mega": '<path d="M3 11v2a1 1 0 0 0 1 1h3l6 4V6L7 10H4a1 1 0 0 0-1 1zM16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"/>',
+    "web": '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
     "bot": '<rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9 16h6"/>',
 }
 
