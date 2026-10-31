@@ -338,7 +338,7 @@ def portada():
 def pais_fotos(d, v):
     """Foto de la presentación del país (opcional), esfumada hacia el texto."""
     fs = v.get("fotos") or []
-    return "".join(f'        <img class="ph-foto ph-foto-2" src="{rel(d, src)}" alt="{esc(alt)}">\n' for src, alt in fs[:1])
+    return "".join(f'        <img class="ph-foto ph-foto-2" src="{rel(d, f[0])}" alt="{esc(f[1])}"' + (f' style="object-position:{f[2]}"' if len(f) > 2 else "") + '>\n' for f in fs[:1])
 
 
 def pagina_pais(k):
@@ -359,6 +359,10 @@ def pagina_pais(k):
           <div class="fact"><small>Destinos</small><b>{len(ds)} guías</b></div>
           <div class="fact"><small>Moneda</small><b>{esc(v['moneda'])}</b></div>
           <div class="fact"><small>Idioma</small><b>{esc(v['idioma'])}</b></div>
+        </div>
+        <div class="ph-salida">
+          <a class="ph-volver" href="{rel(d, 'viajes/')}">← Ver otros destinos</a>
+          {"".join(f'<a class="ph-pais" href="{rel(d, p_pais(o))}">Ir a {esc(PAISES[o]["nombre"])}</a>' for o in PAISES if o != k)}
         </div>
         </div>
       </div>

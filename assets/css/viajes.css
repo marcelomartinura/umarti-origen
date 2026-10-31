@@ -297,3 +297,9 @@
 .ph-foto-2 { width: 56%; object-position: center 52%;
   -webkit-mask-image: linear-gradient(90deg, transparent 0, rgba(0,0,0,.6) 18%, #000 38%); mask-image: linear-gradient(90deg, transparent 0, rgba(0,0,0,.6) 18%, #000 38%); }
 .pais-hero::after { background: linear-gradient(90deg, rgba(238,243,246,.97) 0, rgba(238,243,246,.8) 38%, rgba(238,243,246,0) 52%); }
+.ph-salida { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.ph-salida a { text-decoration: none; font-weight: 600; font-size: 0.88rem; padding: 8px 16px; border-radius: 999px; }
+.ph-volver { background: var(--green); color: #fff; }
+.ph-volver:hover { background: var(--green-dark); }
+.ph-pais { background: rgba(255,255,255,.88); color: var(--green-dark); border: 1px solid var(--line); }
+.ph-pais:hover { border-color: var(--green); }

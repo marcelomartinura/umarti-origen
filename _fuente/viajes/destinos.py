@@ -21,7 +21,8 @@ PAISES = {
                       # foto de la presentación del país (opcional)
                       fotos=[("assets/img/viajes/argentina-glaciar-perito-moreno.jpg", "El glaciar Perito Moreno, en Santa Cruz")], lead="De los glaciares de la Patagonia a la selva misionera, pasando por los viñedos de Mendoza y los cerros de colores del norte. Un país enorme para recorrer por regiones.",
                       colores=("#4a86b4", "#264d6e"), moneda="Peso argentino (ARS)", idioma="Español"),
-    "mexico": dict(nombre="México", continente="america", lead="Ciudades coloniales, una capital inmensa, cocina reconocida en todo el mundo y regiones de vino y queso a pocas horas de la Ciudad de México.",
+    "mexico": dict(nombre="México", continente="america",
+                   fotos=[("assets/img/viajes/mexico-atardecer-en-la-playa.jpg", "Atardecer en una playa del Pacífico mexicano", "center 18%")], lead="Ciudades coloniales, una capital inmensa, cocina reconocida en todo el mundo y regiones de vino y queso a pocas horas de la Ciudad de México.",
                    colores=("#3f8f6b", "#1f5a41"), moneda="Peso mexicano (MXN)", idioma="Español"),
 }
 
