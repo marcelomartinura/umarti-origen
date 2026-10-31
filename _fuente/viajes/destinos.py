@@ -17,7 +17,10 @@ CONTINENTES = [
 ]
 
 PAISES = {
-    "argentina": dict(nombre="Argentina", continente="america", lead="De los glaciares de la Patagonia a la selva misionera, pasando por los viñedos de Mendoza y los cerros de colores del norte. Un país enorme para recorrer por regiones.",
+    "argentina": dict(nombre="Argentina", continente="america",
+                      # fotos de la presentación: la primera va al fondo, la segunda al frente (más nítida)
+                      fotos=[("assets/img/viajes/argentina-cordillera-desde-el-avion.jpg", "La cordillera de los Andes desde el avión"),
+                             ("assets/img/viajes/argentina-glaciar-perito-moreno.jpg", "El glaciar Perito Moreno, en Santa Cruz")], lead="De los glaciares de la Patagonia a la selva misionera, pasando por los viñedos de Mendoza y los cerros de colores del norte. Un país enorme para recorrer por regiones.",
                       colores=("#4a86b4", "#264d6e"), moneda="Peso argentino (ARS)", idioma="Español"),
     "mexico": dict(nombre="México", continente="america", lead="Ciudades coloniales, una capital inmensa, cocina reconocida en todo el mundo y regiones de vino y queso a pocas horas de la Ciudad de México.",
                    colores=("#3f8f6b", "#1f5a41"), moneda="Peso mexicano (MXN)", idioma="Español"),

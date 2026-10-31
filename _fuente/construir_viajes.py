@@ -335,6 +335,12 @@ def portada():
                 "Guías de viaje por continente y país: cuándo ir, cómo llegar, qué hacer, qué probar y qué traerte de recuerdo.", main)
 
 
+def pais_fotos(d, v):
+    """Fotos de la presentación del país (opcionales): una al fondo, esfumada, y otra al frente, más nítida."""
+    fs = v.get("fotos") or []
+    return "".join(f'        <img class="ph-foto ph-foto-{i + 1}" src="{rel(d, src)}" alt="{esc(alt)}">\n' for i, (src, alt) in enumerate(fs[:2]))
+
+
 def pagina_pais(k):
     d = 2
     v = PAISES[k]
@@ -343,7 +349,9 @@ def pagina_pais(k):
     filas = "".join(f'<tr><td><a href="{rel(d, p_dest(x))}">{esc(x["nombre"])}</a></td><td>{esc(x["mejor_epoca"])}</td><td>{esc(x["clima"])}</td><td>{esc(x["dias"])}</td></tr>' for x in ds)
     main = f'''    <div class="wrap">
 {crumbs(d, [("Viajes", "viajes/"), (v['nombre'], None)])}
-      <div class="blog-head">
+      <div class="{'pais-hero' if v.get('fotos') else 'blog-head'}">
+{pais_fotos(d, v)}
+        <div class="ph-txt">
         <span class="eyebrow" style="color:var(--green)">Destinos</span>
         <h1>Viajar por {esc(v['nombre'])}</h1>
         <p>{esc(v['lead'])}</p>
@@ -351,6 +359,7 @@ def pagina_pais(k):
           <div class="fact"><small>Destinos</small><b>{len(ds)} guías</b></div>
           <div class="fact"><small>Moneda</small><b>{esc(v['moneda'])}</b></div>
           <div class="fact"><small>Idioma</small><b>{esc(v['idioma'])}</b></div>
+        </div>
         </div>
       </div>
 
