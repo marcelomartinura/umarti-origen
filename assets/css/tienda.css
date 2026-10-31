@@ -371,3 +371,21 @@ dialog::backdrop { background: rgba(31, 26, 20, 0.55); }
 .cx b { display: block; font-size: 0.93rem; }
 .cx small { display: block; color: var(--muted); font-size: 0.8rem; line-height: 1.35; }
 #shop-grid + .tema-sec, #shop-grid + .cat-extras { margin-top: 64px; }
+
+/* ---------- Franja de presentación de la categoría ---------- */
+.cat-banner { position: relative; overflow: hidden; border-radius: 26px; margin: 18px 0 26px; min-height: 220px; display: flex; align-items: center; background: #f3ebdf; }
+.cat-banner img { position: absolute; top: 0; right: 0; width: 72%; height: 100%; object-fit: cover;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, rgba(0,0,0,.35) 22%, rgba(0,0,0,.85) 48%, #000 70%);
+  mask-image: linear-gradient(90deg, transparent 0, rgba(0,0,0,.35) 22%, rgba(0,0,0,.85) 48%, #000 70%); }
+.cat-banner::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(243,235,223,.95) 0, rgba(243,235,223,.55) 34%, rgba(243,235,223,0) 58%); }
+.cb-txt { position: relative; z-index: 1; padding: 30px 40px; max-width: 470px; }
+.cb-txt .eyebrow { margin-bottom: 8px; }
+.cb-txt h1 { font-size: clamp(2.2rem, 4.6vw, 3.2rem); letter-spacing: -0.02em; line-height: 1.05; }
+.cb-txt p { color: #4a4036; font-size: 1.02rem; margin-top: 10px; }
+@media (max-width: 760px) {
+  .cat-banner { min-height: 0; flex-direction: column; align-items: stretch; border-radius: 20px; }
+  .cat-banner img { position: relative; width: 100%; height: 160px; -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent); mask-image: linear-gradient(180deg, #000 55%, transparent); }
+  .cat-banner::after { display: none; }
+  .cb-txt { padding: 0 22px 22px; margin-top: -24px; }
+}

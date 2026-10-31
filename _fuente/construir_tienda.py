@@ -688,13 +688,24 @@ def pagina_categoria(cat, productos, notas, cb, cv, pais="Argentina"):
         <div class="cx-grid">''' + "".join(f'<a class="cx" href="{u}"><span class="ic">{ic}</span><span><b>{esc(t)}</b><small>{esc(b)}</small></span></a>' for u, ic, t, b in extras) + '''</div>
       </section>'''
     titulo = conf.get("titulo", cat)
+    texto_cab = f'''<span class="eyebrow" style="color:var(--terra)">Tienda {esc(pais)}</span>
+        <h1>{esc(titulo[0].upper() + titulo[1:])}</h1>
+        <p>{esc(conf.get("bajada", cb.TIENDA_TEXTO.get(cat, "")))}</p>'''
+    if conf.get("imagen"):
+        pos = f' style="object-position:{esc(conf["imagen_pos"])}"' if conf.get("imagen_pos") else ""
+        cabecera = f'''      <section class="cat-banner">
+        <img src="{rel(d, conf["imagen"])}" alt=""{pos}>
+        <div class="cb-txt">
+        {texto_cab}
+        </div>
+      </section>'''
+    else:
+        cabecera = f'''      <div class="blog-head">
+        {texto_cab}
+      </div>'''
     main = barra_tienda(d, "tienda", pais) + f'''    <div class="wrap">
 {crumbs(d, [(pais, p_pais(pais)), ("Tienda", p_tienda(pais)), (cat, None)])}
-      <div class="blog-head">
-        <span class="eyebrow" style="color:var(--terra)">Tienda {esc(pais)}</span>
-        <h1>{esc(titulo[0].upper() + titulo[1:])}</h1>
-        <p>{esc(conf.get("bajada", cb.TIENDA_TEXTO.get(cat, "")))}</p>
-      </div>
+{cabecera}
       <div class="shop-tools">{chips}<span class="v-count" id="shop-count"></span></div>
       <div class="prod-grid" id="shop-grid">
 {chr(10).join(card(p, d, cb, cv) for p in prods)}

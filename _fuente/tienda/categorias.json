@@ -1,29 +1,45 @@
 {
- "_ayuda": "Qué se muestra en la página de cada categoría de la Tienda. 'recursos' son claves de Recursos digitales (ver _fuente/construir_recursos.py); 'temas' sirve para encontrar cupones relacionados.",
+ "_ayuda": "Qué se muestra en la página de cada categoría de la Tienda. 'recursos' son claves de Recursos digitales (ver _fuente/construir_recursos.py); 'temas' sirve para encontrar cupones relacionados. 'imagen' (opcional) es la foto de la franja de presentación, y 'imagen_pos' qué parte se ve.",
  "Café, Té y Mate": {
   "titulo": "Café, té y mate",
   "bajada": "Mates, bombillas, yerbas, cafés y tés seleccionados, con envío a todo el país.",
-  "temas": ["mate"],
-  "recursos": ["conversor-de-monedas"]
+  "temas": [
+   "mate"
+  ],
+  "recursos": [
+   "conversor-de-monedas"
+  ],
+  "imagen": "assets/img/categorias/cafe-te-y-mate.jpg",
+  "imagen_pos": "center 68%"
  },
  "Regalos y Kits": {
   "bajada": "Kits armados, sets materos y regalos para empresas.",
-  "temas": ["mate"],
-  "recursos": ["calculadora-de-precio-y-margen"]
+  "temas": [
+   "mate"
+  ],
+  "recursos": [
+   "calculadora-de-precio-y-margen"
+  ]
  },
  "Artículos regionales": {
   "bajada": "Bolsos materos, marroquinería, juegos de asado y artículos con identidad argentina.",
   "temas": [],
-  "recursos": ["tabla-de-talles"]
+  "recursos": [
+   "tabla-de-talles"
+  ]
  },
  "Alimentos y Bebidas": {
   "bajada": "Vinos, destilados, dulces y alimentos con origen.",
   "temas": [],
-  "recursos": ["conversor-de-monedas"]
+  "recursos": [
+   "conversor-de-monedas"
+  ]
  },
  "Hogar, Moda y más": {
   "bajada": "Moda, hogar, bienestar y tecnología.",
   "temas": [],
-  "recursos": ["tabla-de-talles"]
+  "recursos": [
+   "tabla-de-talles"
+  ]
  }
 }
