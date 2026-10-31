@@ -12,7 +12,7 @@ sys.path.insert(0, AQUI)
 sys.path.insert(0, os.path.join(AQUI, "viajes"))
 import comun  # noqa: E402
 from comun import escribir, slug, SITIO  # noqa: E402
-from destinos import PAISES, DESTINOS, CONTINENTES  # noqa: E402
+from destinos import PAISES, DESTINOS, CONTINENTES, DESTACADOS, DESPEGAR_URL  # noqa: E402
 import construir_blog  # noqa: E402
 
 esc = html.escape
@@ -168,7 +168,100 @@ SERVICIOS = [
     ("Autos", '<path d="M5 17h14M5 17a2 2 0 1 1 0 .01M19 17a2 2 0 1 1 0 .01M3 13l2-6h14l2 6v4H3z"/>'),
     ("Excursiones", '<circle cx="12" cy="12" r="9"/><path d="m15 9-2 6-4 0 2-6z"/>'),
     ("Paquetes", '<path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/>'),
+    ("Traslados y transporte", '<rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 11h16M8 21l1.5-4M16 21l-1.5-4M8 14h.01M16 14h.01"/>'),
 ]
+
+
+def aviso(depth):
+    """Espacio publicitario de Viajes (usa los anuncios de _fuente/publicidad.py con categoría "Viajes")."""
+    return construir_blog.anuncio({"categoria": "Viajes"}, "en-nota", depth).replace('class="ad ', 'class="ad v-ad ', 1)
+
+
+def organiza(d):
+    servicios = "".join(f'<div class="service"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">{ic}</svg><strong>{n}</strong><small>Próximamente</small></div>' for n, ic in SERVICIOS)
+    return f'''      <section class="v-section" id="organiza" aria-labelledby="h-org">
+        <div class="v-head"><div><h2 id="h-org">Organizá tu viaje</h2><p>Reservá con nuestros aliados y resolvé tus dudas antes de salir.</p></div></div>
+        <div class="services">{servicios}</div>
+        <div class="org-cols">
+          <div class="org-card org-reserva">
+            <span class="eyebrow">Reservá</span>
+            <h3>Vuelos, hoteles y paquetes</h3>
+            <p>Buscá y compará vuelos, alojamiento, autos y paquetes en Despegar, nuestro aliado para reservar tu viaje.</p>
+            <ul>
+              <li>{ICON_CHECK}<span>Vuelos y hoteles en todo el mundo.</span></li>
+              <li>{ICON_CHECK}<span>Paquetes con vuelo y alojamiento.</span></li>
+              <li>{ICON_CHECK}<span>Autos, traslados y asistencia al viajero.</span></li>
+            </ul>
+            <a class="btn-green" href="{esc(DESPEGAR_URL)}" target="_blank" rel="sponsored noopener">Buscar en Despegar</a>
+          </div>
+          <div class="org-card org-asist">
+            <img src="{rel(d, 'assets/img/viajes/avatar-umarti.jpg')}" alt="Asistente de viajes de Umarti">
+            <div>
+              <span class="eyebrow">Asistencia</span>
+              <h3>Tu asistente de viaje</h3>
+              <p>Muy pronto vas a poder consultarnos lo que necesites: qué ver, cómo moverte, qué llevar y qué probar en cada destino.</p>
+              <span class="org-pronto">Próximamente</span>
+            </div>
+          </div>
+        </div>
+      </section>'''
+
+
+def recomendaciones(d):
+    notas = [n for n in NOTAS.values() if not n.get("borrador") and ("Viajes" in n.get("tags", []) or n.get("seccion") == "viajes")]
+    cards = []
+    for n in notas[:3]:
+        cards.append(f'<a class="reco" href="{rel(d, "blog/" + n["slug"] + "/")}"><span class="reco-tag">Nota</span><h3>{esc(n["titulo"])}</h3><p>{esc(n.get("resumen", ""))}</p><b>Leer más →</b></a>')
+    for tag, t, txt in [("Experiencia", "Historias de viaje", "Lo que viví en cada lugar: recorridos, encuentros y sabores."),
+                        ("Tip", "Consejos prácticos", "Qué llevar, cómo moverte, cuándo ir y cómo ahorrar."),
+                        ("Reseña", "Lugares que recomiendo", "Hoteles, restaurantes y experiencias que valen la pena.")][:3 - len(cards)]:
+        cards.append(f'<div class="reco reco-pronto"><span class="reco-tag">{tag}</span><h3>{t}</h3><p>{txt}</p><b>Próximamente</b></div>')
+    return f'''      <section class="v-section" aria-labelledby="h-reco">
+        <div class="v-head"><div><h2 id="h-reco">Mis recomendaciones y tips</h2><p>Experiencias, consejos y lugares que recomiendo para inspirar tu próximo destino.</p></div>
+          <a class="v-more" href="{rel(d, 'blog/opinion/')}">Ver columnas →</a></div>
+        <div class="reco-grid">{"".join(cards)}</div>
+      </section>'''
+
+
+def tienda_viajeros(d):
+    items = [("Mochilas y bolsos", '<path d="M7 8V6a5 5 0 0 1 10 0v2"/><rect x="5" y="8" width="14" height="13" rx="3"/><path d="M9 13h6"/>'),
+             ("Organizadores de equipaje", '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V4h8v3M3 13h18"/>'),
+             ("Adaptadores y tecnología", '<path d="M9 2v6M15 2v6M6 8h12v4a6 6 0 0 1-12 0zM12 18v4"/>'),
+             ("Accesorios de viaje", '<circle cx="12" cy="12" r="9"/><path d="m15 9-2 6-4 0 2-6z"/>')]
+    its = "".join(f'<div class="tv-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">{ic}</svg><span>{n}</span></div>' for n, ic in items)
+    return f'''      <section class="v-section tienda-viajeros" aria-labelledby="h-tv">
+        <span class="tv-badge">En construcción</span>
+        <h2 id="h-tv">Tienda para viajeros</h2>
+        <p>Estamos armando una selección de productos para tu próxima aventura.</p>
+        <div class="tv-items">{its}</div>
+        <a class="tv-cta" href="{rel(d, 'mesa-de-negociacion/')}">¿Tenés productos para viajeros? Escribinos →</a>
+      </section>'''
+
+
+def destacados():
+    if DESTACADOS:
+        por_slug = {x["slug"]: x for x in DESTINOS}
+        return [por_slug[s] for s in DESTACADOS if s in por_slug][:8]
+    return DESTINOS[:8]
+
+
+def pagina_todos():
+    d = 2
+    tipos_pres = {t for x in DESTINOS for t in x["tipos"]}
+    main = f'''    <div class="wrap">
+{crumbs(d, [("Viajes", "viajes/"), ("Todos los destinos", None)])}
+      <section class="v-section" id="destinos" aria-labelledby="h-dest" style="margin-top:18px">
+        <div class="v-head"><div><h1 id="h-dest" style="font-size:clamp(2rem,4.4vw,2.9rem)">Todos los destinos</h1><p>Buscá por nombre o filtrá por tipo de viaje.</p></div></div>
+        <form class="v-search v-search-sm" role="search" onsubmit="return false">
+          <label><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="v-q" type="search" placeholder="¿Adónde querés ir?" aria-label="Buscar destino"></label>
+        </form>
+        <div class="v-tools">{chips(tipos_pres)}<span class="v-count" id="v-count"></span></div>
+        <div class="dest-grid dest-grid-4" id="dest-grid">
+{chr(10).join(dest_card(x, d) for x in DESTINOS)}
+        </div>
+      </section>
+    </div>'''
+    return page(d, "Todos los destinos | Umarti Viajes", "Todas las guías de destinos de Umarti Viajes: buscá por nombre o filtrá por tipo de viaje.", main)
 
 
 def portada():
@@ -188,7 +281,6 @@ def portada():
     for x in DESTINOS:
         for o in x["origen"][:1]:
             origenes.append(f'<a class="origin" href="{rel(d, p_dest(x))}"><small>{esc(x["nombre"])}</small><strong>{esc(o["producto"])}</strong><span>{esc(o["texto"])}</span></a>')
-    servicios = "".join(f'<div class="service"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">{ic}</svg><strong>{n}</strong><small>Próximamente</small></div>' for n, ic in SERVICIOS)
     main = f'''    <div class="wrap">
 {crumbs(d, [("Viajes", None)])}
       <section class="v-hero v-hero-foto">
@@ -197,8 +289,8 @@ def portada():
           <span class="eyebrow">Umarti Viajes</span>
           <h1>El mundo, <em>con buen sabor</em></h1>
           <p class="lead">Guías de destinos para planificar tu próximo viaje: cuándo ir, cómo llegar, qué hacer, qué probar y qué traerte de recuerdo.</p>
-          <form class="v-search" role="search" onsubmit="document.getElementById('destinos').scrollIntoView({{behavior:'smooth'}});return false">
-            <label><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="v-q" type="search" placeholder="¿Adónde querés ir?" aria-label="Buscar destino"></label>
+          <form class="v-search" role="search" action="{rel(d, 'viajes/destinos/')}" method="get">
+            <label><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input name="q" type="search" placeholder="¿Adónde querés ir?" aria-label="Buscar destino"></label>
             <button type="submit">Explorar destinos</button>
           </form>
         </div>
@@ -211,13 +303,16 @@ def portada():
 
       <section class="v-section" id="destinos" aria-labelledby="h-dest">
         <div class="v-head">
-          <div><h2 id="h-dest">Explorá destinos</h2><p>Cada guía reúne lo esencial para planificar: la mejor época, cómo llegar, los imperdibles y los sabores del lugar.</p></div>
+          <div><h2 id="h-dest">Destinos destacados</h2><p>Cada guía reúne lo esencial para planificar: la mejor época, cómo llegar, los imperdibles y los sabores del lugar.</p></div>
+          <a class="v-more" href="{rel(d, 'viajes/destinos/')}">Ver todos los destinos →</a>
         </div>
-        <div class="v-tools">{chips(tipos_pres)}<span class="v-count" id="v-count"></span></div>
-        <div class="dest-grid" id="dest-grid">
-{chr(10).join(dest_card(x, d) for x in DESTINOS)}
+        <div class="v-tools">{chips({t for x in destacados() for t in x["tipos"]})}<span class="v-count" id="v-count"></span></div>
+        <div class="dest-grid dest-grid-4" id="dest-grid">
+{chr(10).join(dest_card(x, d) for x in destacados())}
         </div>
+        <div class="v-more-row"><a class="v-more-btn" href="{rel(d, 'viajes/destinos/')}">Ver todos los destinos</a></div>
       </section>
+{aviso(d)}
     </div>
 
     <section class="mesa-band" aria-labelledby="h-mesa">
@@ -230,11 +325,11 @@ def portada():
     </section>
 
     <div class="wrap">
-      <section class="v-section" aria-labelledby="h-org">
-        <div class="v-head"><div><h2 id="h-org">Organizá todo tu viaje</h2><p>Muy pronto vas a poder reservar con nuestros aliados. Mientras tanto, pedinos una propuesta a medida.</p></div></div>
-        <div class="services">{servicios}</div>
-{planner()}
-      </section>
+{organiza(d)}
+{aviso(d)}
+{recomendaciones(d)}
+{tienda_viajeros(d)}
+{aviso(d)}
     </div>'''
     return page(d, "Viajes: guías de destinos para planificar tu viaje | Umarti Origen",
                 "Guías de viaje por continente y país: cuándo ir, cómo llegar, qué hacer, qué probar y qué traerte de recuerdo.", main)
@@ -273,8 +368,8 @@ def pagina_pais(k):
       </section>
 
       <div class="cta-band">
-        <div><h2>¿Querés que te armemos el recorrido?</h2><p>Contanos qué te gusta y te enviamos una propuesta a medida por {esc(v['nombre'])}.</p></div>
-        <a class="btn-green" href="{rel(d, 'viajes/')}#planificar">Armar mi viaje</a>
+        <div><h2>¿Listo para viajar a {esc(v['nombre'])}?</h2><p>Reservá vuelos, hoteles, autos y paquetes con nuestros aliados.</p></div>
+        <a class="btn-green" href="{rel(d, 'viajes/')}#organiza">Organizá tu viaje</a>
       </div>
     </div>'''
     ld = {"@context": "https://schema.org", "@type": "Country", "name": v["nombre"], "description": v["lead"]}
@@ -305,7 +400,7 @@ def pagina_destino(x):
         links += f'<a href="{rel(d, "argentina/tienda/" + slug(o["categoria"]) + "/")}">Ver {esc(o["categoria"])} en la Tienda</a>'
         items.append(f'<div class="origin-item"><strong>{esc(o["producto"])}</strong><p>{esc(o["texto"])}</p>{links}</div>')
     origen_box = f'<div class="box origin-box"><h2>De {esc(x["nombre"])} a tu mesa</h2>{"".join(items)}</div>'
-    plan_box = f'''<div class="box plan-box"><strong>Armá tu viaje a {esc(x['nombre'])}</strong><p>Te enviamos una propuesta con recorrido, alojamiento y experiencias.</p><a class="btn-green" href="{rel(d, 'viajes/')}?destino={quote(x['nombre'])}#planificar">Pedir propuesta</a></div>'''
+    plan_box = f'''<div class="box plan-box"><strong>Organizá tu viaje a {esc(x['nombre'])}</strong><p>Vuelos, hoteles, autos y paquetes con nuestros aliados.</p><a class="btn-green" href="{rel(d, 'viajes/')}#organiza">Ver opciones</a></div>'''
     musts = "".join(f'<div class="must"><strong>{esc(n)}</strong><span>{esc(t)}</span></div>' for n, t in x["imperdibles"])
     sabores = "".join(f"<li>{esc(s)}</li>" for s in x["sabores"])
     consejos = "".join(f"<li>{esc(c)}</li>" for c in x["consejos"])
@@ -398,6 +493,7 @@ def main():
             if o.get("nota") and o["nota"] not in NOTAS:
                 raise SystemExit(f"{x['slug']}: la nota '{o['nota']}' no existe en el blog")
     escribir("viajes/index.html", portada())
+    escribir("viajes/destinos/index.html", pagina_todos())
     for k in PAISES:
         escribir(f"viajes/{k}/index.html", pagina_pais(k))
     for x in DESTINOS:

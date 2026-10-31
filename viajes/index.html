@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/umarti.css?v=fcaead90">
   <link rel="stylesheet" href="../assets/css/blog.css?v=ac03fa53">
-  <link rel="stylesheet" href="../assets/css/viajes.css?v=98704aeb">
+  <link rel="stylesheet" href="../assets/css/viajes.css?v=2b8a2716">
 </head>
 <body>
 
@@ -135,8 +135,8 @@
           <span class="eyebrow">Umarti Viajes</span>
           <h1>El mundo, <em>con buen sabor</em></h1>
           <p class="lead">Guías de destinos para planificar tu próximo viaje: cuándo ir, cómo llegar, qué hacer, qué probar y qué traerte de recuerdo.</p>
-          <form class="v-search" role="search" onsubmit="document.getElementById('destinos').scrollIntoView({behavior:'smooth'});return false">
-            <label><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="v-q" type="search" placeholder="¿Adónde querés ir?" aria-label="Buscar destino"></label>
+          <form class="v-search" role="search" action="../viajes/destinos/" method="get">
+            <label><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input name="q" type="search" placeholder="¿Adónde querés ir?" aria-label="Buscar destino"></label>
             <button type="submit">Explorar destinos</button>
           </form>
         </div>
@@ -149,10 +149,11 @@
 
       <section class="v-section" id="destinos" aria-labelledby="h-dest">
         <div class="v-head">
-          <div><h2 id="h-dest">Explorá destinos</h2><p>Cada guía reúne lo esencial para planificar: la mejor época, cómo llegar, los imperdibles y los sabores del lugar.</p></div>
+          <div><h2 id="h-dest">Destinos destacados</h2><p>Cada guía reúne lo esencial para planificar: la mejor época, cómo llegar, los imperdibles y los sabores del lugar.</p></div>
+          <a class="v-more" href="../viajes/destinos/">Ver todos los destinos →</a>
         </div>
         <div class="v-tools"><div class="chip-row" role="group" aria-label="Filtrar por tipo de viaje"><span>Filtrar por:</span><button type="button" data-tipo="" aria-pressed="true">Todos</button><button type="button" data-tipo="Aventura" aria-pressed="false">Aventura</button><button type="button" data-tipo="Cultura" aria-pressed="false">Cultura</button><button type="button" data-tipo="Gastronomía" aria-pressed="false">Gastronomía</button><button type="button" data-tipo="Montaña" aria-pressed="false">Montaña</button><button type="button" data-tipo="Naturaleza" aria-pressed="false">Naturaleza</button><button type="button" data-tipo="Nieve" aria-pressed="false">Nieve</button><button type="button" data-tipo="Urbano" aria-pressed="false">Urbano</button><button type="button" data-tipo="Vino" aria-pressed="false">Vino</button></div><span class="v-count" id="v-count"></span></div>
-        <div class="dest-grid" id="dest-grid">
+        <div class="dest-grid dest-grid-4" id="dest-grid">
         <a class="dest-card" href="../viajes/argentina/buenos-aires/" data-tipos="Cultura|Gastronomía|Urbano" data-texto="buenos aires ciudad autónoma de buenos aires argentina barrios con identidad propia, cafés notables, tango y una de las escenas gastronómicas más intensas del continente. cultura gastronomía urbano">
           <div class="vcover" style="--c1:#4f79a8;--c2:#26405f"><span class="sun"></span><svg class="land" viewBox="0 0 400 160" preserveAspectRatio="none" aria-hidden="true"><path d="M0 160V112h22V92h16v20h14V66h22v46h16V98h14V52h10V36h6v16h10v60h18V82h26v30h16V70h20v42h22V90h18v22h14V76h26v36h16V96h14v64Z" opacity=".16"/><path d="M0 160V134h40v-12h30v12h50v-8h40v8h60v-14h40v14h60v-6h40v6h40v26Z" opacity=".24"/></svg><b>Buenos Aires</b><small>Ciudad Autónoma de Buenos Aires, Argentina</small></div>
           <div class="body">
@@ -218,7 +219,12 @@
           </div>
         </a>
         </div>
+        <div class="v-more-row"><a class="v-more-btn" href="../viajes/destinos/">Ver todos los destinos</a></div>
       </section>
+<aside class="ad v-ad ad-en-nota ad-house" aria-label="Espacio publicitario">
+            <span class="ad-label">Publicidad</span>
+            <a class="ad-body" href="../publicidad/"><span class="ad-txt"><strong>Tu marca, acá</strong><span>Llegá a quienes leen sobre viajes. Este espacio está disponible.</span><b>Anunciá en Umarti →</b></span></a>
+          </aside>
     </div>
 
     <section class="mesa-band" aria-labelledby="h-mesa">
@@ -231,49 +237,52 @@
     </section>
 
     <div class="wrap">
-      <section class="v-section" aria-labelledby="h-org">
-        <div class="v-head"><div><h2 id="h-org">Organizá todo tu viaje</h2><p>Muy pronto vas a poder reservar con nuestros aliados. Mientras tanto, pedinos una propuesta a medida.</p></div></div>
-        <div class="services"><div class="service"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V7l8-4 8 4v14"/><path d="M9 21v-6h6v6M9 10h.01M15 10h.01"/></svg><strong>Alojamiento</strong><small>Próximamente</small></div><div class="service"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16l20-8-3-2-7 3-6-4-2 1 4 5-4 2-2-1-1 1z"/></svg><strong>Vuelos</strong><small>Próximamente</small></div><div class="service"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><strong>Seguro de viaje</strong><small>Próximamente</small></div><div class="service"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M5 17a2 2 0 1 1 0 .01M19 17a2 2 0 1 1 0 .01M3 13l2-6h14l2 6v4H3z"/></svg><strong>Autos</strong><small>Próximamente</small></div><div class="service"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15 9-2 6-4 0 2-6z"/></svg><strong>Excursiones</strong><small>Próximamente</small></div><div class="service"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg><strong>Paquetes</strong><small>Próximamente</small></div></div>
-      <section class="planner" id="planificar" aria-labelledby="h-plan">
-        <div class="planner-info">
-          <span class="eyebrow">Planificá tu viaje</span>
-          <h2 id="h-plan">Armá tu viaje a medida</h2>
-          <p>Contanos adónde querés ir y cómo te gusta viajar. Te enviamos una propuesta con recorrido, alojamiento y experiencias.</p>
-          <ul>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg><span>Itinerario por días, pensado para tus intereses.</span></li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg><span>Sugerencias de alojamiento según tu presupuesto.</span></li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg><span>Los sabores y productos de cada lugar, para disfrutar allá y llevarte a casa.</span></li>
-          </ul>
-        </div>
-        <div class="planner-card">
-          <div id="plan-step-form">
-            <form id="plan-form">
-              <div class="form-grid">
-                <div class="field"><label for="pl-dest">Destino soñado <span class="req">*</span></label><input id="pl-dest" required list="destinos-dl" placeholder="Ej.: Mendoza o Bariloche"></div>
-                <div class="field"><label for="pl-mes">¿Cuándo?</label><input id="pl-mes" type="month"></div>
-                <div class="field"><label for="pl-dias">Días de viaje</label><input id="pl-dias" type="number" min="1" max="60" placeholder="Ej.: 7"></div>
-                <div class="field"><label for="pl-quien">¿Con quién viajás?</label><select id="pl-quien"><option>Solo o sola</option><option>En pareja</option><option>En familia</option><option>Con amigos</option><option>Viaje de trabajo</option></select></div>
-                <div class="field full"><label for="pl-pres">Presupuesto por persona (USD)</label><select id="pl-pres"><option>Hasta 500</option><option>500 a 1.000</option><option selected>1.000 a 2.500</option><option>2.500 a 5.000</option><option>Más de 5.000</option></select></div>
-                <div class="field full"><span class="label" style="display:block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Lo que más te interesa</span><div class="interest-chips"><label><input type="checkbox" name="intereses" value="Aventura"><span>Aventura</span></label><label><input type="checkbox" name="intereses" value="Cultura"><span>Cultura</span></label><label><input type="checkbox" name="intereses" value="Gastronomía"><span>Gastronomía</span></label><label><input type="checkbox" name="intereses" value="Montaña"><span>Montaña</span></label><label><input type="checkbox" name="intereses" value="Naturaleza"><span>Naturaleza</span></label><label><input type="checkbox" name="intereses" value="Nieve"><span>Nieve</span></label><label><input type="checkbox" name="intereses" value="Urbano"><span>Urbano</span></label><label><input type="checkbox" name="intereses" value="Vino"><span>Vino</span></label></div></div>
-                <div class="field"><label for="pl-nombre">Nombre <span class="req">*</span></label><input id="pl-nombre" required maxlength="80" autocomplete="name"></div>
-                <div class="field"><label for="pl-mail">Correo <span class="req">*</span></label><input id="pl-mail" type="email" required autocomplete="email"></div>
-              </div>
-              <div class="form-foot">
-                <small>Prototipo: por ahora el formulario no envía datos.</small>
-                <button class="btn-green" type="submit">Pedir mi propuesta</button>
-              </div>
-            </form>
-            <datalist id="destinos-dl"><option value="Buenos Aires"><option value="Mendoza"><option value="San Carlos de Bariloche"><option value="Ushuaia"><option value="Salta"><option value="Cataratas del Iguazú"><option value="Ciudad de México"><option value="Querétaro"></datalist>
+      <section class="v-section" id="organiza" aria-labelledby="h-org">
+        <div class="v-head"><div><h2 id="h-org">Organizá tu viaje</h2><p>Reservá con nuestros aliados y resolvé tus dudas antes de salir.</p></div></div>
+        <div class="services"><div class="service"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V7l8-4 8 4v14"/><path d="M9 21v-6h6v6M9 10h.01M15 10h.01"/></svg><strong>Alojamiento</strong><small>Próximamente</small></div><div class="service"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16l20-8-3-2-7 3-6-4-2 1 4 5-4 2-2-1-1 1z"/></svg><strong>Vuelos</strong><small>Próximamente</small></div><div class="service"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><strong>Seguro de viaje</strong><small>Próximamente</small></div><div class="service"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M5 17a2 2 0 1 1 0 .01M19 17a2 2 0 1 1 0 .01M3 13l2-6h14l2 6v4H3z"/></svg><strong>Autos</strong><small>Próximamente</small></div><div class="service"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15 9-2 6-4 0 2-6z"/></svg><strong>Excursiones</strong><small>Próximamente</small></div><div class="service"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg><strong>Paquetes</strong><small>Próximamente</small></div><div class="service"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 11h16M8 21l1.5-4M16 21l-1.5-4M8 14h.01M16 14h.01"/></svg><strong>Traslados y transporte</strong><small>Próximamente</small></div></div>
+        <div class="org-cols">
+          <div class="org-card org-reserva">
+            <span class="eyebrow">Reservá</span>
+            <h3>Vuelos, hoteles y paquetes</h3>
+            <p>Buscá y compará vuelos, alojamiento, autos y paquetes en Despegar, nuestro aliado para reservar tu viaje.</p>
+            <ul>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg><span>Vuelos y hoteles en todo el mundo.</span></li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg><span>Paquetes con vuelo y alojamiento.</span></li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg><span>Autos, traslados y asistencia al viajero.</span></li>
+            </ul>
+            <a class="btn-green" href="https://www.despegar.com/" target="_blank" rel="sponsored noopener">Buscar en Despegar</a>
           </div>
-          <div class="planner-ok" id="plan-step-ok" hidden>
-            <div class="tick"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></div>
-            <h3>¡Gracias!</h3>
-            <p>En la versión final, acá queda registrado tu pedido y te escribimos con una propuesta a medida. En este prototipo no se envía nada.</p>
-            <button class="btn-green" type="button" id="plan-again">Armar otro viaje</button>
+          <div class="org-card org-asist">
+            <img src="../assets/img/viajes/avatar-umarti.jpg" alt="Asistente de viajes de Umarti">
+            <div>
+              <span class="eyebrow">Asistencia</span>
+              <h3>Tu asistente de viaje</h3>
+              <p>Muy pronto vas a poder consultarnos lo que necesites: qué ver, cómo moverte, qué llevar y qué probar en cada destino.</p>
+              <span class="org-pronto">Próximamente</span>
+            </div>
           </div>
         </div>
       </section>
+<aside class="ad v-ad ad-en-nota ad-house" aria-label="Espacio publicitario">
+            <span class="ad-label">Publicidad</span>
+            <a class="ad-body" href="../publicidad/"><span class="ad-txt"><strong>Tu marca, acá</strong><span>Llegá a quienes leen sobre viajes. Este espacio está disponible.</span><b>Anunciá en Umarti →</b></span></a>
+          </aside>
+      <section class="v-section" aria-labelledby="h-reco">
+        <div class="v-head"><div><h2 id="h-reco">Mis recomendaciones y tips</h2><p>Experiencias, consejos y lugares que recomiendo para inspirar tu próximo destino.</p></div>
+          <a class="v-more" href="../blog/opinion/">Ver columnas →</a></div>
+        <div class="reco-grid"><div class="reco reco-pronto"><span class="reco-tag">Experiencia</span><h3>Historias de viaje</h3><p>Lo que viví en cada lugar: recorridos, encuentros y sabores.</p><b>Próximamente</b></div><div class="reco reco-pronto"><span class="reco-tag">Tip</span><h3>Consejos prácticos</h3><p>Qué llevar, cómo moverte, cuándo ir y cómo ahorrar.</p><b>Próximamente</b></div><div class="reco reco-pronto"><span class="reco-tag">Reseña</span><h3>Lugares que recomiendo</h3><p>Hoteles, restaurantes y experiencias que valen la pena.</p><b>Próximamente</b></div></div>
       </section>
+      <section class="v-section tienda-viajeros" aria-labelledby="h-tv">
+        <span class="tv-badge">En construcción</span>
+        <h2 id="h-tv">Tienda para viajeros</h2>
+        <p>Estamos armando una selección de productos para tu próxima aventura.</p>
+        <div class="tv-items"><div class="tv-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8V6a5 5 0 0 1 10 0v2"/><rect x="5" y="8" width="14" height="13" rx="3"/><path d="M9 13h6"/></svg><span>Mochilas y bolsos</span></div><div class="tv-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V4h8v3M3 13h18"/></svg><span>Organizadores de equipaje</span></div><div class="tv-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6M15 2v6M6 8h12v4a6 6 0 0 1-12 0zM12 18v4"/></svg><span>Adaptadores y tecnología</span></div><div class="tv-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15 9-2 6-4 0 2-6z"/></svg><span>Accesorios de viaje</span></div></div>
+        <a class="tv-cta" href="../mesa-de-negociacion/">¿Tenés productos para viajeros? Escribinos →</a>
+      </section>
+<aside class="ad v-ad ad-en-nota ad-house" aria-label="Espacio publicitario">
+            <span class="ad-label">Publicidad</span>
+            <a class="ad-body" href="../publicidad/"><span class="ad-txt"><strong>Tu marca, acá</strong><span>Llegá a quienes leen sobre viajes. Este espacio está disponible.</span><b>Anunciá en Umarti →</b></span></a>
+          </aside>
     </div>
   </main>
 

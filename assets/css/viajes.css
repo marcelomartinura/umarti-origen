@@ -203,3 +203,59 @@
   .vh-txt { padding: 0 22px; margin-top: -30px; }
   .cont-grid { grid-template-columns: 1fr; } .cont-card.on { grid-column: auto; }
 }
+
+/* ---------- Destacados, organizá, recomendaciones, tienda, avisos ---------- */
+.dest-grid-4 { grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.dest-grid-4 .dest-card .vcover { min-height: 160px; }
+.dest-grid-4 .dest-card .vcover b { font-size: 1.45rem; }
+.dest-grid-4 .dest-card .body { padding: 14px 16px 16px; }
+.dest-grid-4 .dest-card p { font-size: 0.9rem; }
+.dest-grid-4 .dest-card .facts { flex-direction: column; gap: 4px; }
+.v-more { font-weight: 700; color: var(--green-dark); text-decoration: none; white-space: nowrap; }
+.v-more:hover { text-decoration: underline; }
+.v-more-row { text-align: center; margin-top: 26px; }
+.v-more-btn { display: inline-block; text-decoration: none; font-weight: 700; color: var(--green-dark); border: 2px solid var(--green); border-radius: 999px; padding: 11px 26px; }
+.v-more-btn:hover { background: var(--green-soft); }
+.v-search-sm { max-width: 520px; margin-bottom: 16px; }
+.services { grid-template-columns: repeat(7, 1fr); }
+.org-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.org-card { border-radius: 26px; padding: 30px; }
+.org-card h3 { font-size: clamp(1.5rem, 2.8vw, 1.9rem); margin: 6px 0 8px; }
+.org-card p { color: var(--muted); }
+.org-reserva { background: var(--green-soft); }
+.org-reserva .eyebrow, .org-asist .eyebrow { color: var(--green); }
+.org-reserva ul { list-style: none; margin: 16px 0 22px; display: grid; gap: 8px; }
+.org-reserva li { display: flex; gap: 10px; align-items: flex-start; }
+.org-reserva li svg { color: var(--green); flex: none; margin-top: 3px; }
+.org-asist { background: var(--surface); border: 1px solid var(--line); display: grid; grid-template-columns: 190px 1fr; gap: 24px; align-items: center; }
+.org-asist img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 20px; }
+.org-pronto { display: inline-block; margin-top: 16px; font-size: 0.8rem; font-weight: 700; color: var(--green-dark); background: var(--green-soft); padding: 6px 14px; border-radius: 999px; }
+.reco-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.reco { display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 22px; }
+.reco h3 { font-size: 1.3rem; }
+.reco p { color: var(--muted); font-size: 0.93rem; flex: 1; }
+.reco b { color: var(--green-dark); font-size: 0.9rem; }
+.reco-tag { align-self: flex-start; font-size: 0.74rem; font-weight: 700; background: var(--green-soft); color: var(--green-dark); padding: 3px 10px; border-radius: 999px; }
+.reco-pronto { border-style: dashed; background: transparent; }
+.reco-pronto b { color: var(--muted); }
+.tienda-viajeros { margin-bottom: 84px; text-align: center; border: 2px dashed var(--line); border-radius: 28px; padding: 40px 24px; background: repeating-linear-gradient(135deg, #fbf8f3 0 16px, #f7f1e7 16px 32px); }
+.tv-badge { display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #8a5a10; background: #f6d98f; padding: 6px 14px; border-radius: 999px; }
+.tienda-viajeros h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); margin-top: 12px; }
+.tienda-viajeros > p { color: var(--muted); margin-top: 6px; }
+.tv-items { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 24px 0 20px; }
+.tv-item { display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 10px 16px; font-weight: 600; font-size: 0.92rem; color: var(--muted); }
+.tv-item svg { color: var(--green); }
+.tv-cta { font-weight: 700; color: var(--green-dark); text-decoration: none; }
+.tv-cta:hover { text-decoration: underline; }
+.v-ad { margin: -20px 0 64px; }
+@media (max-width: 1000px) {
+  .dest-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .services { grid-template-columns: repeat(4, 1fr); }
+  .org-cols, .reco-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .dest-grid-4 { grid-template-columns: 1fr; }
+  .services { grid-template-columns: repeat(2, 1fr); }
+  .org-asist { grid-template-columns: 1fr; }
+  .org-asist img { max-width: 220px; }
+}

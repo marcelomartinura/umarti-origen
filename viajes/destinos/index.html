@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="../../assets/img/marca/favicon-32.png">
+  <link rel="apple-touch-icon" href="../../assets/img/marca/apple-touch-icon.png">
+  <title>Todos los destinos | Umarti Viajes</title>
+  <meta name="description" content="Todas las guías de destinos de Umarti Viajes: buscá por nombre o filtrá por tipo de viaje.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Todos los destinos | Umarti Viajes">
+  <meta property="og:description" content="Todas las guías de destinos de Umarti Viajes: buscá por nombre o filtrá por tipo de viaje.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/umarti.css?v=fcaead90">
+  <link rel="stylesheet" href="../../assets/css/blog.css?v=ac03fa53">
+  <link rel="stylesheet" href="../../assets/css/viajes.css?v=2b8a2716">
+</head>
+<body>
+
+  <header class="site-header" id="site-header">
+    <!-- Fila superior -->
+    <div class="wrap-wide topbar">
+      <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menú">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <a href="../../" class="logo" aria-label="Umarti Origen, ir al inicio"><img class="logo-ico" src="../../assets/img/marca/icono.png" alt="" width="259" height="236"><span class="logo-txt"><b>Umarti</b><b>Origen</b></span></a>
+      <form class="search" role="search" onsubmit="return false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" placeholder="Buscar productos, oportunidades o destinos" aria-label="Buscar">
+      </form>
+      <div class="user-actions">
+        <a href="../../" class="icon-link" aria-label="Mi cuenta">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+          <span>Mi cuenta</span>
+        </a>
+        <a href="../../favoritos/" class="icon-link" aria-label="Favoritos">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>
+          <span>Favoritos</span>
+          <b class="badge" id="fav-count" hidden>0</b>
+        </a>
+        <a href="../../" class="icon-link" aria-label="Carrito">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2"/><circle cx="10" cy="20.5" r="1.2"/><circle cx="17" cy="20.5" r="1.2"/></svg>
+          <span>Carrito</span>
+          <b class="badge">0</b>
+        </a>
+      </div>
+    </div>
+
+    <!-- Módulos de navegación -->
+    <nav class="wrap-wide modules" id="main-nav" aria-label="Principal">
+
+      <!-- Módulo 1: Tienda -->
+      <div class="module m-shop">
+        <p class="module-label">Tienda</p>
+        <ul class="module-items">
+          <li class="has-menu mega">
+            <button class="nav-btn" aria-expanded="false">Productos
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="dropdown mega-panel">
+              <div class="mega-grid">
+                <div><a class="cat" href="../../argentina/tienda/cafe-te-y-mate/">Café, Té y Mate</a>
+                  <ul><li><a href="../../argentina/tienda/cafe-te-y-mate/?sub=Mates%20y%20bombillas">Mates y bombillas</a></li><li><a href="../../argentina/tienda/cafe-te-y-mate/?sub=Yerba">Yerba</a></li><li><a href="../../argentina/tienda/cafe-te-y-mate/?sub=Caf%C3%A9%20y%20t%C3%A9">Café y té</a></li></ul></div>
+                <div><a class="cat" href="../../argentina/tienda/regalos-y-kits/">Regalos y Kits</a>
+                  <ul><li><a href="../../argentina/tienda/regalos-y-kits/?sub=Kits%20de%20mate%20y%20caf%C3%A9">Kits de mate y café</a></li><li><a href="../../argentina/tienda/regalos-y-kits/?sub=Regalos%20corporativos">Regalos corporativos</a></li><li><a href="../../argentina/tienda/regalos-y-kits/?sub=Personalizados">Personalizados</a></li></ul></div>
+                <div><a class="cat" href="../../argentina/tienda/articulos-regionales/">Artículos regionales</a>
+                  <ul><li><a href="../../argentina/tienda/articulos-regionales/?sub=Bolsos%20materos">Bolsos materos</a></li><li><a href="../../argentina/tienda/articulos-regionales/?sub=Marroquiner%C3%ADa%20y%20ri%C3%B1oneras">Marroquinería y riñoneras</a></li><li><a href="../../argentina/tienda/articulos-regionales/?sub=Juegos%20de%20asado">Juegos de asado</a></li><li><a href="../../argentina/tienda/articulos-regionales/?sub=Portatermos%20y%20llaveros">Portatermos y llaveros</a></li></ul></div>
+                <div><a class="cat" href="../../argentina/tienda/alimentos-y-bebidas/">Alimentos y Bebidas</a>
+                  <ul><li><a href="../../argentina/tienda/alimentos-y-bebidas/?sub=Vinos%20y%20destilados">Vinos y destilados</a></li><li><a href="../../argentina/tienda/alimentos-y-bebidas/?sub=Dulces%20y%20snacks">Dulces y snacks</a></li><li><a href="../../argentina/tienda/alimentos-y-bebidas/?sub=Otros%20alimentos">Otros alimentos</a></li></ul></div>
+                <div><a class="cat" href="../../argentina/tienda/hogar-moda-y-mas/">Hogar, Moda y más</a>
+                  <ul><li><a href="../../argentina/tienda/hogar-moda-y-mas/?sub=Moda">Moda</a></li><li><a href="../../argentina/tienda/hogar-moda-y-mas/?sub=Hogar%20y%20cocina">Hogar y cocina</a></li><li><a href="../../argentina/tienda/hogar-moda-y-mas/?sub=Salud%20y%20bienestar">Salud y bienestar</a></li><li><a href="../../argentina/tienda/hogar-moda-y-mas/?sub=Tecnolog%C3%ADa">Tecnología</a></li></ul></div>
+              </div>
+              <div class="mega-foot">
+                <span>Productos con origen, elegidos en Argentina.</span>
+                <span><a href="../../argentina/categorias/">Ver todos los productos →</a></span>
+              </div>
+            </div>
+          </li>
+          <li><a class="nav-btn" href="../../international-shop/">International Shop</a></li>
+          <li><a class="nav-btn" href="../../cupones/">Cupones</a></li>
+          <li class="has-menu">
+            <button class="nav-btn publish" aria-expanded="false">Quiero publicar
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="dropdown">
+              <a class="item" href="../../#novedades"><strong>Vender mis productos</strong><span>Publicá tu catálogo en el marketplace</span></a>
+              <a class="item" href="../../cupones/#publicar"><strong>Publicar un cupón</strong><span>Sumá el descuento de tu comercio a la Cuponera</span></a>
+              <a class="item" href="../../productos-de-exportacion/#publicar"><strong>Publicar un producto de exportación</strong><span>Llegá a compradores de otros países</span></a>
+              <a class="item" href="../../servicios-de-comercio-exterior/#publicar"><strong>Ofrecer servicios de comercio exterior</strong><span>Aduana, logística, seguros o asesoría</span></a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Módulo 2: Mercados Globales -->
+      <div class="module m-world">
+        <p class="module-label">Mercados Globales</p>
+        <ul class="module-items">
+          <li class="has-menu">
+            <button class="nav-btn" aria-expanded="false">Hub de Oportunidades
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="dropdown">
+              <a class="item" href="../../mesa-de-negociacion/"><strong>Mesa de negociación</strong><span>Búsqueda de productos o servicios</span></a>
+              <a class="item" href="../../productos-de-exportacion/"><strong>Productos de exportación</strong><span>Productos listos para vender a otros países</span></a>
+              <a class="item" href="../../servicios-de-comercio-exterior/"><strong>Servicios de Comercio Exterior</strong><span>Aduana, logística, seguros y asesoría</span></a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Módulo 3: Herramientas -->
+      <div class="module m-tools">
+        <p class="module-label">Herramientas</p>
+        <ul class="module-items">
+          <li><a class="nav-btn" href="../../blog/">Blog</a></li>
+          <li><a class="nav-btn" href="../../viajes/">Viajes</a></li>
+          <li><a class="nav-btn" href="../../recursos/">Recursos digitales</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Ubicación">
+        <ol><li><a href="../../">Inicio</a></li><li><a href="../../viajes/">Viajes</a></li><li aria-current="page">Todos los destinos</li></ol>
+      </nav>
+      <section class="v-section" id="destinos" aria-labelledby="h-dest" style="margin-top:18px">
+        <div class="v-head"><div><h1 id="h-dest" style="font-size:clamp(2rem,4.4vw,2.9rem)">Todos los destinos</h1><p>Buscá por nombre o filtrá por tipo de viaje.</p></div></div>
+        <form class="v-search v-search-sm" role="search" onsubmit="return false">
+          <label><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="v-q" type="search" placeholder="¿Adónde querés ir?" aria-label="Buscar destino"></label>
+        </form>
+        <div class="v-tools"><div class="chip-row" role="group" aria-label="Filtrar por tipo de viaje"><span>Filtrar por:</span><button type="button" data-tipo="" aria-pressed="true">Todos</button><button type="button" data-tipo="Aventura" aria-pressed="false">Aventura</button><button type="button" data-tipo="Cultura" aria-pressed="false">Cultura</button><button type="button" data-tipo="Gastronomía" aria-pressed="false">Gastronomía</button><button type="button" data-tipo="Montaña" aria-pressed="false">Montaña</button><button type="button" data-tipo="Naturaleza" aria-pressed="false">Naturaleza</button><button type="button" data-tipo="Nieve" aria-pressed="false">Nieve</button><button type="button" data-tipo="Urbano" aria-pressed="false">Urbano</button><button type="button" data-tipo="Vino" aria-pressed="false">Vino</button></div><span class="v-count" id="v-count"></span></div>
+        <div class="dest-grid dest-grid-4" id="dest-grid">
+        <a class="dest-card" href="../../viajes/argentina/buenos-aires/" data-tipos="Cultura|Gastronomía|Urbano" data-texto="buenos aires ciudad autónoma de buenos aires argentina barrios con identidad propia, cafés notables, tango y una de las escenas gastronómicas más intensas del continente. cultura gastronomía urbano">
+          <div class="vcover" style="--c1:#4f79a8;--c2:#26405f"><span class="sun"></span><svg class="land" viewBox="0 0 400 160" preserveAspectRatio="none" aria-hidden="true"><path d="M0 160V112h22V92h16v20h14V66h22v46h16V98h14V52h10V36h6v16h10v60h18V82h26v30h16V70h20v42h22V90h18v22h14V76h26v36h16V96h14v64Z" opacity=".16"/><path d="M0 160V134h40v-12h30v12h50v-8h40v8h60v-14h40v14h60v-6h40v6h40v26Z" opacity=".24"/></svg><b>Buenos Aires</b><small>Ciudad Autónoma de Buenos Aires, Argentina</small></div>
+          <div class="body">
+            <div class="tipos"><span class="tipo">Cultura</span><span class="tipo">Gastronomía</span><span class="tipo">Urbano</span></div>
+            <p>Barrios con identidad propia, cafés notables, tango y una de las escenas gastronómicas más intensas del continente.</p>
+            <div class="facts"><span><b>Ideal:</b> 3 a 4 días</span><span><b>Presupuesto:</b> Medio</span></div>
+          </div>
+        </a>
+        <a class="dest-card" href="../../viajes/argentina/mendoza/" data-tipos="Vino|Montaña|Gastronomía|Aventura" data-texto="mendoza mendoza argentina la capital del malbec: bodegas al pie de la cordillera de los andes, vendimia, aventura de montaña y el aconcagua. vino montaña gastronomía aventura">
+          <div class="vcover" style="--c1:#9a3f52;--c2:#5c1f2d"><span class="sun"></span><svg class="land" viewBox="0 0 400 160" preserveAspectRatio="none" aria-hidden="true"><path d="M0 160 L0 104 L48 70 L80 92 L132 34 L178 86 L214 60 L262 108 L312 52 L360 96 L400 76 L400 160Z" opacity=".16"/><path d="M0 160 L0 130 L70 100 L120 124 L190 92 L250 128 L320 104 L400 126 L400 160Z" opacity=".24"/></svg><b>Mendoza</b><small>Argentina</small></div>
+          <div class="body">
+            <div class="tipos"><span class="tipo">Vino</span><span class="tipo">Montaña</span><span class="tipo">Gastronomía</span><span class="tipo">Aventura</span></div>
+            <p>La capital del Malbec: bodegas al pie de la Cordillera de los Andes, vendimia, aventura de montaña y el Aconcagua.</p>
+            <div class="facts"><span><b>Ideal:</b> 4 a 5 días</span><span><b>Presupuesto:</b> Medio</span></div>
+          </div>
+        </a>
+        <a class="dest-card" href="../../viajes/argentina/bariloche/" data-tipos="Naturaleza|Nieve|Montaña|Aventura" data-texto="san carlos de bariloche río negro argentina lagos, bosques y montañas en el corazón de la patagonia andina. esquí en invierno, trekking en verano y chocolate todo el año. naturaleza nieve montaña aventura">
+          <div class="vcover" style="--c1:#3f7c8f;--c2:#1f4c5a"><span class="sun"></span><svg class="land" viewBox="0 0 400 160" preserveAspectRatio="none" aria-hidden="true"><path d="M0 160 L0 104 L48 70 L80 92 L132 34 L178 86 L214 60 L262 108 L312 52 L360 96 L400 76 L400 160Z" opacity=".16"/><path d="M0 160 L0 130 L70 100 L120 124 L190 92 L250 128 L320 104 L400 126 L400 160Z" opacity=".24"/></svg><b>San Carlos de Bariloche</b><small>Río Negro, Argentina</small></div>
+          <div class="body">
+            <div class="tipos"><span class="tipo">Naturaleza</span><span class="tipo">Nieve</span><span class="tipo">Montaña</span><span class="tipo">Aventura</span></div>
+            <p>Lagos, bosques y montañas en el corazón de la Patagonia andina. Esquí en invierno, trekking en verano y chocolate todo el año.</p>
+            <div class="facts"><span><b>Ideal:</b> 4 a 6 días</span><span><b>Presupuesto:</b> Medio a alto</span></div>
+          </div>
+        </a>
+        <a class="dest-card" href="../../viajes/argentina/ushuaia/" data-tipos="Naturaleza|Aventura|Nieve" data-texto="ushuaia tierra del fuego argentina la ciudad del fin del mundo: navegación por el canal beagle, el parque nacional tierra del fuego y la puerta de entrada a la antártida. naturaleza aventura nieve">
+          <div class="vcover" style="--c1:#4a7790;--c2:#233f50"><span class="sun"></span><svg class="land" viewBox="0 0 400 160" preserveAspectRatio="none" aria-hidden="true"><path d="M0 112 Q50 92 100 112 T200 112 T300 112 T400 112 V160 H0Z" opacity=".16"/><path d="M0 132 Q50 116 100 132 T200 132 T300 132 T400 132 V160 H0Z" opacity=".24"/></svg><b>Ushuaia</b><small>Tierra del Fuego, Argentina</small></div>
+          <div class="body">
+            <div class="tipos"><span class="tipo">Naturaleza</span><span class="tipo">Aventura</span><span class="tipo">Nieve</span></div>
+            <p>La ciudad del fin del mundo: navegación por el Canal Beagle, el Parque Nacional Tierra del Fuego y la puerta de entrada a la Antártida.</p>
+            <div class="facts"><span><b>Ideal:</b> 3 a 4 días</span><span><b>Presupuesto:</b> Alto</span></div>
+          </div>
+        </a>
+        <a class="dest-card" href="../../viajes/argentina/salta/" data-tipos="Cultura|Gastronomía|Vino|Naturaleza" data-texto="salta salta argentina la linda: arquitectura colonial, peñas folclóricas, empanadas salteñas y paisajes de cerros de colores rumbo a los valles. cultura gastronomía vino naturaleza">
+          <div class="vcover" style="--c1:#b8643a;--c2:#7a3b1c"><span class="sun"></span><svg class="land" viewBox="0 0 400 160" preserveAspectRatio="none" aria-hidden="true"><path d="M0 160 L0 114 Q60 64 120 104 Q170 52 232 100 Q292 70 340 106 Q372 90 400 110 V160Z" opacity=".16"/><path d="M0 160 L0 134 Q80 110 150 130 Q220 108 290 132 Q350 118 400 134 V160Z" opacity=".24"/></svg><b>Salta</b><small>Argentina</small></div>
+          <div class="body">
+            <div class="tipos"><span class="tipo">Cultura</span><span class="tipo">Gastronomía</span><span class="tipo">Vino</span><span class="tipo">Naturaleza</span></div>
+            <p>La Linda: arquitectura colonial, peñas folclóricas, empanadas salteñas y paisajes de cerros de colores rumbo a los valles.</p>
+            <div class="facts"><span><b>Ideal:</b> 4 a 6 días</span><span><b>Presupuesto:</b> Bajo a medio</span></div>
+          </div>
+        </a>
+        <a class="dest-card" href="../../viajes/argentina/cataratas-del-iguazu/" data-tipos="Naturaleza|Aventura" data-texto="cataratas del iguazú misiones argentina una de las maravillas naturales del mundo, en plena selva misionera, y la tierra de la yerba mate. naturaleza aventura">
+          <div class="vcover" style="--c1:#3f8a5c;--c2:#1f5636"><span class="sun"></span><svg class="land" viewBox="0 0 400 160" preserveAspectRatio="none" aria-hidden="true"><path d="M0 112 Q50 92 100 112 T200 112 T300 112 T400 112 V160 H0Z" opacity=".16"/><path d="M0 132 Q50 116 100 132 T200 132 T300 132 T400 132 V160 H0Z" opacity=".24"/></svg><b>Cataratas del Iguazú</b><small>Misiones, Argentina</small></div>
+          <div class="body">
+            <div class="tipos"><span class="tipo">Naturaleza</span><span class="tipo">Aventura</span></div>
+            <p>Una de las maravillas naturales del mundo, en plena selva misionera, y la tierra de la yerba mate.</p>
+            <div class="facts"><span><b>Ideal:</b> 2 a 3 días</span><span><b>Presupuesto:</b> Medio</span></div>
+          </div>
+        </a>
+        <a class="dest-card" href="../../viajes/mexico/ciudad-de-mexico/" data-tipos="Cultura|Gastronomía|Urbano" data-texto="ciudad de méxico ciudad de méxico méxico una de las ciudades más grandes del mundo: centro histórico, museos de primer nivel, barrios con encanto y una cocina que no se termina nunca. cultura gastronomía urbano">
+          <div class="vcover" style="--c1:#c0564a;--c2:#7d2c24"><span class="sun"></span><svg class="land" viewBox="0 0 400 160" preserveAspectRatio="none" aria-hidden="true"><path d="M0 160V112h22V92h16v20h14V66h22v46h16V98h14V52h10V36h6v16h10v60h18V82h26v30h16V70h20v42h22V90h18v22h14V76h26v36h16V96h14v64Z" opacity=".16"/><path d="M0 160V134h40v-12h30v12h50v-8h40v8h60v-14h40v14h60v-6h40v6h40v26Z" opacity=".24"/></svg><b>Ciudad de México</b><small>México</small></div>
+          <div class="body">
+            <div class="tipos"><span class="tipo">Cultura</span><span class="tipo">Gastronomía</span><span class="tipo">Urbano</span></div>
+            <p>Una de las ciudades más grandes del mundo: centro histórico, museos de primer nivel, barrios con encanto y una cocina que no se termina nunca.</p>
+            <div class="facts"><span><b>Ideal:</b> 4 a 5 días</span><span><b>Presupuesto:</b> Medio</span></div>
+          </div>
+        </a>
+        <a class="dest-card" href="../../viajes/mexico/queretaro/" data-tipos="Cultura|Vino|Gastronomía" data-texto="querétaro querétaro méxico un centro histórico patrimonio de la humanidad, la ruta del arte, queso y vino y la peña de bernal, a pocas horas de la ciudad de méxico. cultura vino gastronomía">
+          <div class="vcover" style="--c1:#9a7a3a;--c2:#5e4718"><span class="sun"></span><svg class="land" viewBox="0 0 400 160" preserveAspectRatio="none" aria-hidden="true"><path d="M0 160 L0 114 Q60 64 120 104 Q170 52 232 100 Q292 70 340 106 Q372 90 400 110 V160Z" opacity=".16"/><path d="M0 160 L0 134 Q80 110 150 130 Q220 108 290 132 Q350 118 400 134 V160Z" opacity=".24"/></svg><b>Querétaro</b><small>México</small></div>
+          <div class="body">
+            <div class="tipos"><span class="tipo">Cultura</span><span class="tipo">Vino</span><span class="tipo">Gastronomía</span></div>
+            <p>Un centro histórico Patrimonio de la Humanidad, la Ruta del Arte, Queso y Vino y la Peña de Bernal, a pocas horas de la Ciudad de México.</p>
+            <div class="facts"><span><b>Ideal:</b> 3 a 4 días</span><span><b>Presupuesto:</b> Medio</span></div>
+          </div>
+        </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <a href="../../" class="logo logo-foot" aria-label="Umarti Origen, ir al inicio"><img class="logo-ico" src="../../assets/img/marca/icono.png" alt="" width="259" height="236"><span class="logo-txt"><b>Umarti</b><b>Origen</b></span></a>
+        <p style="margin-top:8px">Tienda, comercio exterior y viajes.</p>
+      </div>
+      <ul class="eco">
+        <li><strong>Umarti Origen</strong></li>
+        <li>Umarti Movilidad</li>
+        <li>Umarti Digital</li>
+      </ul>
+      <p>© 2026 Umarti · <a href="../../publicidad/">Anunciá en Umarti</a></p>
+    </div>
+    <div class="wrap foot-legal">
+      <nav aria-label="Información legal">
+        <a href="../../legal/terminos/">Términos y condiciones</a>
+        <a href="../../legal/privacidad/">Privacidad</a>
+        <a href="../../legal/cookies/">Cookies</a>
+        <a href="../../envios/">Envíos</a>
+      </nav>
+      <div class="foot-consumo">
+        <a class="btn-arrep" href="../../legal/arrepentimiento/">Botón de arrepentimiento</a>
+        <a class="def-cons" href="https://www.argentina.gob.ar/produccion/defensadelconsumidor/formulario" target="_blank" rel="noopener">Defensa de las y los Consumidores. Para reclamos <b>ingrese aquí</b></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/header.js?v=aeeac190"></script>
+  <script src="../../assets/js/viajes.js?v=b4b51bed"></script>
+</body>
+</html>

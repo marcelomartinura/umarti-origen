@@ -214,3 +214,10 @@ DESTINOS = [
     origen=[dict(producto="Vinos y espumosos", texto="El Bajío mexicano es una región de vino en pleno crecimiento.", nota="", categoria="Alimentos y Bebidas")],
   ),
 ]
+
+# Destinos destacados de la portada de Viajes (hasta 8, por slug, en este orden).
+# Si queda vacío, se muestran los primeros 8 de DESTINOS.
+DESTACADOS = []
+
+# Link de afiliado de Despegar. Cuando tengas el tuyo, reemplazalo acá.
+DESPEGAR_URL = "https://www.despegar.com/"
