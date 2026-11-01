@@ -153,25 +153,6 @@ window.CUPONES = [
   "online": true
  },
  {
-  "codigo": "CU-0009",
-  "titulo": "25% en sesiones de fotos de viaje",
-  "comercio": "Fotos en Ruta",
-  "iniciales": "FE",
-  "lugar": "Buenos Aires, Argentina",
-  "descripcion": "Una hora de fotos por los barrios más lindos de la ciudad.",
-  "tipo": "Código",
-  "cupon": "FOTO25",
-  "condiciones": "Reserva con 48 horas de anticipación.",
-  "vence_txt": "31/10/2026",
-  "link": "",
-  "destino_url": "viajes/argentina/buenos-aires/",
-  "destino_nombre": "Buenos Aires",
-  "tema": "",
-  "tema_url": "",
-  "ejemplo": true,
-  "online": false
- },
- {
   "codigo": "CU-0010",
   "titulo": "10% en tu primer kit matero",
   "comercio": "Umarti Origen",
