@@ -156,3 +156,4 @@ dialog.cu-dlg::backdrop { background: rgba(31, 26, 20, 0.6); }
   .cu-dlg form .form-grid { grid-template-columns: 1fr; }
   .merchant-band { padding: 24px; }
 }
+.cu-pub-nota { display: block; margin-top: 8px; font-size: 0.82rem; color: var(--muted); }

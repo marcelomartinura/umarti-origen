@@ -545,7 +545,7 @@ def productos():
           <h1>Productos de exportación</h1>
           <p>Productos de Argentina, México y otros países, listos para venderse a otros mercados. Cada uno muestra si ya hay empresas buscándolo en Oportunidades Globales.</p>
           <div class="head-actions">
-            <button class="btn-accent" type="button" data-publicar>{ICON_PLUS} Publicar un producto</button>
+            <a class="btn-accent" href="../mi-empresa/?publicar=producto">{ICON_PLUS} Publicar un producto</a>
             <a class="text-link" href="../oportunidades-globales/buscar/">¿Buscás algo que no está? Publicá tu búsqueda →</a>
           </div>
         </div>
@@ -638,7 +638,7 @@ def servicios():
         ("¿Cómo pido una cotización?",
          "Con el botón Solicitar cotización de cada servicio. Contás qué necesitás y Umarti te pone en contacto con el proveedor."),
         ("Soy proveedor, ¿cómo ofrezco mis servicios?",
-         "Con el botón Ofrecer mis servicios. Si tu servicio coincide con una búsqueda publicada en Oportunidades Globales, te avisamos."),
+         "Con el botón Ofrecer mis servicios: creás la cuenta de tu empresa, validás tu identidad y publicás. Si tu servicio coincide con una búsqueda publicada en Oportunidades Globales, te avisamos."),
     ]
     paises = sorted({s["pais"] for s in SERVICIOS})
     chips = "\n".join(f'            <button type="button" data-value="{esc(c)}" aria-pressed="false">{esc(c)}</button>' for c in CATEGORIAS_SERVICIO)
@@ -651,7 +651,7 @@ def servicios():
           <h1>Servicios de Comercio Exterior</h1>
           <p>Despachantes de aduana, transporte y logística, seguros, certificaciones y asesoría para comprar y vender entre países.</p>
           <div class="head-actions">
-            <button class="btn-accent" type="button" data-publicar>{ICON_PLUS} Ofrecer mis servicios</button>
+            <a class="btn-accent" href="../mi-empresa/?publicar=servicio">{ICON_PLUS} Ofrecer mis servicios</a>
             <a class="text-link" href="../oportunidades-globales/buscar/">¿Necesitás un servicio que no está? Publicá tu búsqueda →</a>
           </div>
         </div>

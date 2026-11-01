@@ -128,7 +128,7 @@ def barra(depth, actual):
       <div class="wrap-wide">
         <a class="cu-brand" href="{rel(depth, 'cupones/')}"><span class="tk">%</span><span>Cuponera<small>Umarti Origen</small></span></a>
         <nav class="cu-nav" aria-label="Categorías de cupones">{"".join(links)}</nav>
-        <button class="cu-pub" type="button" data-publicar>Publicá tu cupón</button>
+        <a class="cu-pub" href="{rel(depth, 'mi-tienda/')}?publicar=cupon">Publicá tu cupón</a>
       </div>
     </div>'''
 
@@ -144,13 +144,14 @@ def tools(cats_presentes, conteo=True):
       </div>'''
 
 
-def merchant_band():
-    return '''      <section class="merchant-band" aria-labelledby="h-merch">
+def merchant_band(depth):
+    return f'''      <section class="merchant-band" aria-labelledby="h-merch">
         <div>
           <span class="eyebrow" style="color:var(--cu)">Para comercios</span>
           <h2 id="h-merch">¿Tenés un comercio? Publicá tu cupón</h2>
           <p>Restaurantes, spas, alojamientos, tiendas, servicios o apps: sumá tu descuento a la Cuponera y llegá a viajeros y compradores de Argentina, México y el mundo.</p>
-          <button class="cu-pub" type="button" data-publicar>Publicá tu cupón</button>
+          <a class="cu-pub" href="{rel(depth, 'mi-tienda/')}?publicar=cupon">Publicá tu cupón</a>
+          <small class="cu-pub-nota">Para publicar, creá tu cuenta y validá tu identidad.</small>
         </div>
         <ul>
           <li>Aparecés en la categoría y en la ciudad de tu comercio.</li>
@@ -260,7 +261,7 @@ def portada(cupones, cv):
         <h2 id="h-cat">Explorá por categoría</h2>
         {cat_tiles(d, cupones)}
       </section>
-{merchant_band()}
+{merchant_band(d)}
     </div>'''
     return page(d, "Cuponera Umarti: cupones de descuento en viajes, restaurantes, servicios y productos",
                 "Cupones y códigos de descuento en viajes, restaurantes, servicios, productos y suscripciones digitales en Argentina, México y en línea.", "", main)
@@ -281,7 +282,7 @@ def pagina_cat(nombre, s, colores, sub, cupones, cv):
         <h2 id="h-otras">Otras categorías</h2>
         {cat_tiles(d, cupones)}
       </section>
-{merchant_band()}
+{merchant_band(d)}
     </div>'''
     return page(d, f"Cupones de descuento en {nombre.lower()} | Cuponera Umarti", f"Cupones y códigos de descuento en {nombre.lower()}: {sub.lower()}.", s, main)
 

@@ -71,7 +71,7 @@ h1, h2, h3 { font-family: "Fraunces", Georgia, serif; line-height: 1.15; font-we
   font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
   padding: 0 6px 6px; margin-bottom: 6px; border-bottom: 2px solid currentColor;
 }
-.m-shop  { background: #f8ebe2; color: var(--terra-dark); flex: 2 1 auto; }
+.m-shop  { background: #f8ebe2; color: var(--terra-dark); flex: 1 1 auto; }
 .m-world { background: #e4eef4; color: var(--sky); flex: 1 1 auto; }
 .m-tools { background: #e8eedf; color: var(--olive); flex: 1 1 auto; }
 .module-items { display: flex; flex-wrap: nowrap; gap: 2px; list-style: none; }
@@ -89,7 +89,6 @@ h1, h2, h3 { font-family: "Fraunces", Georgia, serif; line-height: 1.15; font-we
 }
 .nav-btn.publish:hover, .has-menu.open > .nav-btn.publish { background: #d18f22; }
 .m-shop .module-items { align-items: center; }
-.m-shop .module-items > li:last-child { margin-left: auto; }
 
 /* Desplegables */
 .has-menu { position: relative; }
@@ -232,3 +231,11 @@ a.eco-item:hover { background: rgba(255,255,255,.08); }
 .mega-more a { text-decoration: none; color: var(--ink); font-size: 0.88rem; font-weight: 600; background: var(--sand); padding: 6px 12px; border-radius: 999px; }
 .mega-more a:hover { background: #e6d6bd; color: var(--terra-dark); }
 .mega-more + .mega-foot { margin-top: 16px; }
+
+/* Accesos Mi tienda / Mi empresa en la etiqueta del módulo */
+.module-label { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.mi-link { display: inline-flex; align-items: center; gap: 5px; text-decoration: none; color: inherit; font-weight: 700; letter-spacing: 0.12em; padding: 0 6px; margin: 0 -6px 0 0; line-height: inherit; border-radius: 999px; }
+.mi-link::before { content: ""; width: 11px; height: 11px; background: currentColor; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6'/%3E%3C/svg%3E") center/contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6'/%3E%3C/svg%3E") center/contain no-repeat; }
+.mi-link:hover { background: rgba(255,255,255,.8); }
+.mi-link[aria-current="page"] { background: #fff; }
+.module-label { align-items: center; min-height: 26px; }
