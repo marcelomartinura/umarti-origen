@@ -11,6 +11,7 @@ import html, json, os, sys
 AQUI = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, AQUI)
 import comun  # noqa: E402
+import avisos  # noqa: E402
 from comun import escribir, SITIO  # noqa: E402
 
 esc = html.escape
@@ -149,6 +150,7 @@ def pagina_herramienta(clave, cuerpo, faqs, relacionadas, aviso):
       </header>
 {cuerpo}
       <p class="rc-aviso">{aviso}</p>
+      <div class="ad-fila">{avisos.espacio("herramienta-1", d, "herramientas para vender y exportar")}</div>
       <div class="rc-bottom">
         <section class="rc-faq" aria-labelledby="faq-h">
           <h2 id="faq-h">Preguntas frecuentes</h2>
@@ -156,6 +158,7 @@ def pagina_herramienta(clave, cuerpo, faqs, relacionadas, aviso):
         </section>
         <aside class="rc-side">
           {f'<div class="box"><h2>Para leer</h2><ul class="mini-list">{rels}</ul></div>' if rels else ''}
+          {avisos.espacio("herramienta-2", d, "herramientas para vender y exportar")}
           <div class="box"><h2>Otras herramientas</h2><div class="rc-minis">{otras_html}</div><a class="all" href="{rel(d, 'recursos/')}">Todos los recursos</a></div>
         </aside>
       </div>
@@ -197,7 +200,9 @@ def portada():
         </div>
       </div>
       <div class="rc-filtros" role="group" aria-label="Filtrar por categoría"><button type="button" data-grupo="" aria-pressed="true">Todas</button>{"".join(filtros)}</div>
-{chr(10).join(bloques)}
+{chr(10).join(bloques[:1])}
+      <div class="ad-fila">{avisos.espacio("recursos-portada", d, "herramientas para vender y exportar")}</div>
+{chr(10).join(bloques[1:])}
       <div class="viajes-note" style="margin-top:8px">
         <div><h2>¿Qué herramienta te falta?</h2><p>Si hay un cálculo que hacés todas las semanas para vender, exportar o trabajar, contanos. Lo sumamos a la lista.</p></div>
         <a href="{rel(d, 'oportunidades-globales/buscar/')}">Contanos</a>

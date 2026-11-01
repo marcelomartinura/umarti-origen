@@ -172,9 +172,10 @@ SERVICIOS = [
 ]
 
 
-def aviso(depth):
-    """Espacio publicitario de Viajes (usa los anuncios de _fuente/publicidad.py con categoría "Viajes")."""
-    return construir_blog.anuncio({"categoria": "Viajes"}, "en-nota", depth).replace('class="ad ', 'class="ad v-ad ', 1)
+def aviso(depth, n):
+    """Espacio publicitario de Viajes: viajes-1, viajes-2 o viajes-3 (ver _fuente/publicidad.py)."""
+    import avisos
+    return avisos.espacio(f"viajes-{n}", depth, "viajes", "Viajes").replace('class="ad ', 'class="ad v-ad ', 1)
 
 
 def organiza(d):
@@ -312,7 +313,7 @@ def portada():
         </div>
         <div class="v-more-row"><a class="v-more-btn" href="{rel(d, 'viajes/destinos/')}">Ver todos los destinos</a></div>
       </section>
-{aviso(d)}
+{aviso(d, 1)}
     </div>
 
     <section class="mesa-band" aria-labelledby="h-mesa">
@@ -326,10 +327,10 @@ def portada():
 
     <div class="wrap">
 {organiza(d)}
-{aviso(d)}
+{aviso(d, 2)}
 {recomendaciones(d)}
 {tienda_viajeros(d)}
-{aviso(d)}
+{aviso(d, 3)}
     </div>'''
     return page(d, "Viajes: guías de destinos para planificar tu viaje | Umarti Origen",
                 "Guías de viaje por continente y país: cuándo ir, cómo llegar, qué hacer, qué probar y qué traerte de recuerdo.", main)

@@ -31,7 +31,7 @@ sys.path.insert(0, AQUI)
 import comun  # noqa: E402
 sys.path.insert(0, os.path.join(AQUI, "blog"))
 from autores import AUTORES, TEMAS_OPINION  # noqa: E402
-from publicidad import ANUNCIOS  # noqa: E402
+import avisos  # noqa: E402
 import datetime  # noqa: E402
 from comun import slug, fecha_larga, escribir, SITIO  # noqa: E402
 
@@ -360,26 +360,12 @@ def columna_band(depth, opin, clave="marcelo-uranga", h="h2"):
 
 # ---------- publicidad ----------
 def anuncio(n, formato, depth):
-    """Aviso para un espacio de la nota; si no hay ninguno vigente, la invitación a anunciar."""
-    hoy = datetime.date.today().isoformat()
+    """Espacios de la nota: "en-nota" (en medio del texto) y "lateral"."""
     clave = n.get("categoria") or n.get("tema") or ""
-    for a in ANUNCIOS:
-        if not a.get("activo", True) or formato not in a.get("formatos", []):
-            continue
-        if a.get("categorias") and clave not in a["categorias"]:
-            continue
-        if (a.get("desde") and hoy < a["desde"]) or (a.get("hasta") and hoy > a["hasta"]):
-            continue
-        link = a["link"] if re.match(r"https?:", a["link"]) else rel(depth, a["link"])
-        img = f'<img src="{rel(depth, a["imagen"])}" alt="" loading="lazy">' if a.get("imagen") else ""
-        return f'''<aside class="ad ad-{formato}" aria-label="Publicidad">
-            <span class="ad-label">Publicidad · {esc(a["anunciante"])}</span>
-            <a class="ad-body" href="{esc(link)}" rel="sponsored noopener" target="_blank">{img}<span class="ad-txt"><strong>{esc(a["titulo"])}</strong><span>{esc(a["texto"])}</span><b>{esc(a.get("cta", "Ver más"))} →</b></span></a>
-          </aside>'''
-    return f'''<aside class="ad ad-{formato} ad-house" aria-label="Espacio publicitario">
-            <span class="ad-label">Publicidad</span>
-            <a class="ad-body" href="{rel(depth, 'publicidad/')}"><span class="ad-txt"><strong>Tu marca, acá</strong><span>Llegá a quienes leen sobre {esc(clave.lower() or "productos con origen")}. Este espacio está disponible.</span><b>Anunciá en Umarti →</b></span></a>
-          </aside>'''
+    return avisos.espacio(VIEJO_A_ESPACIO.get(formato, formato), depth, clave, clave)
+
+
+VIEJO_A_ESPACIO = {"en-nota": "nota-medio", "lateral": "nota-lateral"}
 
 
 def con_anuncio(html_nota, aviso):
@@ -464,6 +450,7 @@ def portada_blog(notas):
 {side}
         </div>
       </section>
+      <div class="ad-fila">{avisos.espacio("blog-portada-1", d, "productos con origen y negocios entre países")}</div>
 
       <section class="blk" aria-labelledby="h-prod">
         <div class="blk-head">
@@ -486,6 +473,7 @@ def portada_blog(notas):
     </section>
 
     <div class="wrap">
+      <div class="ad-fila">{avisos.espacio("blog-portada-2", d, "productos con origen y negocios entre países")}</div>
       <section class="blk" aria-labelledby="h-op">
         <div class="blk-head">
           <div><h2 id="h-op">Opinión</h2><p>Columnas con nombre y apellido: miradas personales sobre negocios, emprender entre países y lo que pasa en el camino.</p></div>
@@ -641,6 +629,7 @@ def pagina_nota(n, notas):
         </div>{foto}
       </header>
       {portada}
+      {"" if n["borrador"] else '<div class="ad-cabecera">' + avisos.espacio("nota-cabecera", d, n.get("categoria") or n.get("tema") or "", n.get("categoria") or n.get("tema") or "") + "</div>"}
       <div class="post-layout">
         <article class="prose">
 {cuerpo}
