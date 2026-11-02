@@ -303,3 +303,7 @@
 .ph-volver:hover { background: var(--green-dark); }
 .ph-pais { background: rgba(255,255,255,.88); color: var(--green-dark); border: 1px solid var(--line); }
 .ph-pais:hover { border-color: var(--green); }
+.mesa-pronto { display: inline-block; margin-left: 10px; font-size: 0.7rem; letter-spacing: .08em; background: #e3a33b; color: #1f1a14; padding: 3px 10px; border-radius: 999px; vertical-align: middle; }
+div.origin { opacity: .78; }
+div.origin:hover { background: #2b241c; }
+.origin em { display: table; margin-top: 10px; font-style: normal; font-size: 0.72rem; font-weight: 700; color: #e3a33b; border: 1px solid #5a4214; padding: 2px 9px; border-radius: 999px; }

@@ -193,7 +193,7 @@ def organiza(d):
               <li>{ICON_CHECK}<span>Paquetes con vuelo y alojamiento.</span></li>
               <li>{ICON_CHECK}<span>Autos, traslados y asistencia al viajero.</span></li>
             </ul>
-            <a class="btn-green" href="{esc(DESPEGAR_URL)}" target="_blank" rel="sponsored noopener">Buscar en Despegar</a>
+            <a class="btn-green" href="{esc(DESPEGAR_URL)}" target="_blank" rel="sponsored noopener">Buscar</a>
           </div>
           <div class="org-card org-asist">
             <img src="{rel(d, 'assets/img/viajes/avatar-umarti.jpg')}" alt="Asistente de viajes de Umarti">
@@ -281,7 +281,7 @@ def portada():
     origenes = []
     for x in DESTINOS:
         for o in x["origen"][:1]:
-            origenes.append(f'<a class="origin" href="{rel(d, p_dest(x))}"><small>{esc(x["nombre"])}</small><strong>{esc(o["producto"])}</strong><span>{esc(o["texto"])}</span></a>')
+            origenes.append(f'<div class="origin"><small>{esc(x["nombre"])}</small><strong>{esc(o["producto"])}</strong><span>{esc(o["texto"])}</span><em>Próximamente</em></div>')
     main = f'''    <div class="wrap">
 {crumbs(d, [("Viajes", None)])}
       <section class="v-hero v-hero-foto">
@@ -318,7 +318,7 @@ def portada():
 
     <section class="mesa-band" aria-labelledby="h-mesa">
       <div class="wrap">
-        <span class="eyebrow">Del destino a tu mesa</span>
+        <span class="eyebrow">Del destino a tu mesa <span class="mesa-pronto">Próximamente</span></span>
         <h2 id="h-mesa">Cada lugar tiene un sabor para llevarte</h2>
         <p>Viajar a Mendoza es conocer el Malbec; recorrer Misiones es entender la yerba mate. Por eso cada guía se conecta con los productos de ese lugar en la Tienda y con las notas del Blog.</p>
         <div class="origin-grid">{"".join(origenes)}</div>
