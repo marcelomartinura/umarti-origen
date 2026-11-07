@@ -104,7 +104,7 @@
   function editar(d) {
     nuevo = !d;
     actual = d ? JSON.parse(JSON.stringify(d)) : { id: demo ? 'n' + Date.now() : null, pais: 'Argentina', estado: 'Borrador', tags: [], faqs: [], detalle: [], notas: [], productos: [], categorias_tienda: [], foto_pos: 'center' };
-    ['pais', 'ciudad', 'region', 'slug', 'resumen', 'dias', 'presupuesto', 'mejor_epoca', 'clima', 'foto_pos', 'estado'].concat(CAMPOS.map(function (c) { return c[0]; })).forEach(function (k) { if (f[k]) f[k].value = actual[k] || (k === 'foto_pos' ? 'center' : ''); });
+    ['pais', 'ciudad', 'region', 'slug', 'resumen', 'dias', 'presupuesto', 'mejor_epoca', 'clima', 'requisitos', 'requisitos_fuente', 'foto_pos', 'estado'].concat(CAMPOS.map(function (c) { return c[0]; })).forEach(function (k) { if (f[k]) f[k].value = actual[k] || (k === 'foto_pos' ? 'center' : ''); });
     marcar('#ve-tags', actual.tags); marcar('#ve-cats', actual.categorias_tienda); marcar('#ve-notas', actual.notas);
     foto = actual.foto || ''; faqs = (actual.faqs || []).slice(); bloques = (actual.detalle || []).slice();
     slugManual = !!actual.slug; sucio = false;
@@ -136,7 +136,8 @@
   function indice() {
     var items = [['Por qué ir', 'por_que'], ['Cuándo ir', 'cuando_ir'], ['Qué comer', 'que_comer'], ['Dónde alojarse', 'donde_alojarse'], ['Cómo llegar', 'como_llegar'], ['Cómo moverse', 'como_moverse'], ['Qué hacer', 'que_hacer'], ['Consejos', 'consejos']]
       .map(function (x) { return [x[0], !!f[x[1]].value.trim()]; });
-    items.push(['En detalle', bloques.length > 0]);
+    items.splice(2, 0, ['Requisitos para viajar', !!f.requisitos.value.trim()]);
+    items.push(['En detalle (página aparte)', bloques.length > 0]);
     items.push(['En la Tienda', marcados('#ve-cats').length + marcados('#ve-prods').length > 0]);
     items.push(['Preguntas frecuentes', faqs.some(function (q) { return q.q; })]);
     $('#ve-indice').innerHTML = items.map(function (x) { return '<li class="' + (x[1] ? 'ok' : '') + '">' + x[0] + '</li>'; }).join('');
@@ -215,7 +216,7 @@
   /* guardar */
   function leer() {
     var d = Object.assign({}, actual);
-    ['pais', 'ciudad', 'region', 'slug', 'resumen', 'dias', 'presupuesto', 'mejor_epoca', 'clima', 'foto_pos', 'estado'].concat(CAMPOS.map(function (c) { return c[0]; })).forEach(function (k) { d[k] = f[k].value.trim(); });
+    ['pais', 'ciudad', 'region', 'slug', 'resumen', 'dias', 'presupuesto', 'mejor_epoca', 'clima', 'requisitos', 'requisitos_fuente', 'foto_pos', 'estado'].concat(CAMPOS.map(function (c) { return c[0]; })).forEach(function (k) { d[k] = f[k].value.trim(); });
     d.slug = C.slugify(d.slug || d.ciudad);
     d.tags = marcados('#ve-tags'); d.categorias_tienda = marcados('#ve-cats'); d.notas = marcados('#ve-notas'); d.productos = marcados('#ve-prods');
     d.foto = foto;
@@ -249,7 +250,7 @@
   });
 
   /* ================= Organizá tu viaje ================= */
-  var SERVS = [['alojamiento', 'Alojamiento'], ['vuelos', 'Vuelos'], ['seguro', 'Seguro de viaje'], ['autos', 'Autos'], ['excursiones', 'Excursiones'], ['paquetes', 'Paquetes'], ['traslados', 'Traslados y transporte']];
+  var SERVS = [['alojamiento', 'Alojamiento'], ['vuelos', 'Vuelos'], ['seguro', 'Seguro médico'], ['autos', 'Autos'], ['excursiones', 'Excursiones'], ['paquetes', 'Paquetes'], ['traslados', 'Traslados y transporte'], ['gastronomia', 'Dónde comer']];
   var apiO = demo ? (function () {
     var serv = SERVS.map(function (x) { return { clave: x[0], bajada: '', contenido: '', activo: false }; });
     var ofs = [{ id: 'o1', servicio: 'vuelos', tipo: 'aliado', nombre: 'Despegar', etiqueta: 'Vuelos', descripcion: 'Buscá y compará vuelos.', link: 'https://www.despegar.com/vuelos/', destinos: [], estado: 'Publicado', orden: 0 },

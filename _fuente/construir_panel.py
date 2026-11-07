@@ -249,6 +249,14 @@ html = f'''<!doctype html>
           </fieldset>
 
           <fieldset class="card">
+            <legend>Requisitos para viajar</legend>
+            <div class="full"><div class="ve-campo-h"><span class="muted">Documentos, visas, seguro médico obligatorio, vacunas. Se muestra después de "Cuándo ir".</span>
+              <span class="ve-tools" data-for="requisitos"><button type="button" data-fmt="b"><b>B</b></button><button type="button" data-fmt="ul">• Lista</button><button type="button" data-fmt="a">Link</button></span></div>
+              <textarea name="requisitos" rows="5" placeholder="- **Seguro médico:** obligatorio para turistas extranjeros…"></textarea></div>
+            <label class="full">Fuente<input name="requisitos_fuente" placeholder="https://www.argentina.gob.ar/interior/migraciones o el nombre de la norma"></label>
+          </fieldset>
+
+          <fieldset class="card">
             <legend>Preguntas frecuentes</legend>
             <div class="full" id="ve-faqs"></div>
             <button type="button" class="btn sm" id="ve-faq-add">+ Agregar pregunta</button>
@@ -369,7 +377,7 @@ html = f'''<!doctype html>
             <div class="side-acts"><button type="button" class="link danger" id="vf-borrar" hidden>Eliminar</button></div>
           </div>
           <div class="card vo-ayuda"><span class="lbl">Programas de afiliados sugeridos</span>
-            <ul><li><b>Alojamiento:</b> Booking.com, Despegar</li><li><b>Vuelos:</b> Despegar · chip eSIM: Holafly</li><li><b>Autos y paquetes:</b> Despegar</li><li><b>Excursiones:</b> Civitatis</li><li><b>Seguro:</b> Assist Card, Universal Assistance</li><li><b>Traslados:</b> Civitatis, Welcome Pickups</li></ul></div>
+            <ul><li><b>Alojamiento:</b> Booking.com, Despegar</li><li><b>Vuelos:</b> Despegar · chip eSIM: Holafly</li><li><b>Autos y paquetes:</b> Despegar</li><li><b>Excursiones:</b> Civitatis</li><li><b>Seguro médico:</b> Assist Card, Universal Assistance</li><li><b>Dónde comer:</b> TheFork, o restaurantes con cupón propio</li><li><b>Traslados:</b> Civitatis, Welcome Pickups</li></ul></div>
         </aside>
       </form>
     </section>

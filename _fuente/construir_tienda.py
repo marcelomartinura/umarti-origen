@@ -535,9 +535,9 @@ ICON_LOCK = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke=
 
 
 def barra_tienda(d, actual, pais="Argentina"):
-    """Barra propia de la tienda del país: Tienda, International Shop, Envíos, Cupones y Guía de viajes."""
+    """Barra propia de la tienda del país: Tienda, International Shop, Envíos y Guía de viajes."""
     items = [("tienda", "Tienda", p_tienda(pais)), ("intl", "International Shop", "international-shop/"), ("envios", "Envíos", p_envio(slug(pais))),
-             ("cupones", "Cupones", "cupones/"), ("viajes", "Guía de viajes", "viajes/")]
+             ("viajes", "Guía de viajes", "viajes/")]
     links = "".join(f'<a href="{rel(d, u)}"{" aria-current=\"page\"" if k == actual else ""}>{t}</a>' for k, t, u in items)
     return f'''    <div class="ts-bar">
       <div class="wrap-wide">

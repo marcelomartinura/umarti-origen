@@ -164,7 +164,7 @@ def planner():
 SERVICIOS = [
     ("Alojamiento", '<path d="M4 21V7l8-4 8 4v14"/><path d="M9 21v-6h6v6M9 10h.01M15 10h.01"/>'),
     ("Vuelos", '<path d="M2 16l20-8-3-2-7 3-6-4-2 1 4 5-4 2-2-1-1 1z"/>'),
-    ("Seguro de viaje", '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/>'),
+    ("Seguro médico", '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/>'),
     ("Autos", '<path d="M5 17h14M5 17a2 2 0 1 1 0 .01M19 17a2 2 0 1 1 0 .01M3 13l2-6h14l2 6v4H3z"/>'),
     ("Excursiones", '<circle cx="12" cy="12" r="9"/><path d="m15 9-2 6-4 0 2-6z"/>'),
     ("Paquetes", '<path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/>'),
@@ -189,6 +189,7 @@ def organiza(d):
     return f'''      <section class="v-section" id="organiza" aria-labelledby="h-org">
         <div class="v-head"><div><h2 id="h-org">Organizá tu viaje</h2><p>Reservá con nuestros aliados y resolvé tus dudas antes de salir.</p></div></div>
         <div class="services">{servicios}</div>
+        <a class="hz-link" href="{rel(d, 'recursos/diferencia-horaria/')}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>Diferencia horaria:</b> ¿qué hora es en tu destino?</span><em>Calcular →</em></a>
         <div class="org-cols">
           <div class="org-card org-reserva">
             <span class="eyebrow">Reservá</span>
@@ -599,19 +600,30 @@ def pagina_destino_panel(x):
                  ("que-hacer", f"Qué hacer en {n}", "Qué hacer", "que_hacer", md_lugares),
                  ("consejos", "Consejos para tu viaje", "Consejos", "consejos", md)]
     cuerpo, toc = [], []
+    base = rel(d, p_dest(x))
+    enlaces = {"por_que": (f"{base}en-detalle/", f"Conocé {n} en detalle: fotos, videos e historias"),
+               "que_comer": (f"{base}donde-comer/", f"Dónde comer en {n}: restaurantes y cupones"),
+               "donde_alojarse": (f"{base}donde-alojarse/", f"Dónde alojarse en {n}: hoteles, cabañas y cupones")}
     for ancla, titulo, corto, campo, fn in secciones:
         extra = clima_html(f.get("clima"), n) if campo == "cuando_ir" else ""
+        if campo in enlaces:
+            u, t = enlaces[campo]
+            extra += f'<a class="d-mas" href="{u}">{esc(t)} →</a>'
         if (f.get(campo) or "").strip() or extra:
             cuerpo.append(f'<h2 id="{ancla}">{esc(titulo)}</h2>\n{fn(f.get(campo) or "")}{extra}')
             toc.append((ancla, corto))
+        if campo == "cuando_ir" and (f.get("requisitos") or "").strip():
+            fuente = (f.get("requisitos_fuente") or "").strip()
+            fh = ""
+            if fuente:
+                fh = (f'<p class="d-fuente">Fuente: <a href="{esc(fuente)}" target="_blank" rel="noopener">{esc(fuente.split("//")[-1].split("/")[0])}</a>. Verificá siempre antes de viajar: los requisitos pueden cambiar.</p>'
+                      if fuente.startswith("http") else f'<p class="d-fuente">Fuente: {esc(fuente)}. Verificá siempre antes de viajar: los requisitos pueden cambiar.</p>')
+            cuerpo.append(f'<section class="d-requisitos" id="requisitos"><h2>Requisitos para viajar a {esc(n)}</h2>{md(f["requisitos"])}{fh}</section>')
+            toc.append(("requisitos", "Requisitos para viajar"))
     org = organiza_destino(x, d)
     if org:
         cuerpo.append(org)
         toc.append(("organiza", "Organizá tu viaje"))
-    det = detalle_html(f.get("detalle"))
-    if det:
-        cuerpo.append(f'<section class="d-detalle" id="en-detalle"><h2>Conocé {esc(n)} en detalle</h2>\n{det}</section>')
-        toc.append(("en-detalle", "En detalle"))
     prods = [p for p in _catalogo() if p.get("codigo") in (f.get("productos") or [])]
     cats = f.get("categorias_tienda") or []
     if prods or cats:
@@ -658,7 +670,7 @@ def pagina_destino_panel(x):
         '      <section class="d-hero">',
         f'        <div><a class="chip-pais" href="{rel(d, p_pais(x["pais"]))}">{region}</a>',
         f'          <h1>{esc(n)}</h1><p class="lead">{esc(x["resumen"])}</p>',
-        f'          <div class="tipos">{tipos}</div><div class="d-facts">{facts}</div></div>',
+        f'          <div class="tipos">{tipos}</div></div>',
         f'        {portada}',
         '      </section>',
         '      <div class="post-layout">',
@@ -684,12 +696,12 @@ def pagina_destino_panel(x):
 
 
 # ---------- Organizá tu viaje (servicios y ofertas cargados desde el Panel) ----------
-CLAVES_SERV = {"Alojamiento": "alojamiento", "Vuelos": "vuelos", "Seguro de viaje": "seguro", "Autos": "autos",
+CLAVES_SERV = {"Alojamiento": "alojamiento", "Vuelos": "vuelos", "Seguro médico": "seguro", "Autos": "autos",
                "Excursiones": "excursiones", "Paquetes": "paquetes", "Traslados y transporte": "traslados"}
 INTRO_SERV = {
     "alojamiento": ("Dónde dormir", "Hoteles, cabañas y departamentos. Reservá con nuestros aliados o directo con alojamientos de cada destino."),
     "vuelos": ("Volar", "Buscá tu vuelo, conocé lo que conviene saber antes de volar y llegá conectado."),
-    "seguro": ("Viajar tranquilo", "Asistencia al viajero para cubrir imprevistos de salud, equipaje y más."),
+    "seguro": ("Viajar tranquilo", "Seguro médico y asistencia al viajero para cubrir imprevistos de salud, equipaje y más. En algunos países, como Argentina, es obligatorio."),
     "autos": ("Moverte a tu ritmo", "Alquilá un auto con nuestros aliados o con empresas locales de cada destino."),
     "excursiones": ("Qué hacer", "Excursiones, visitas guiadas y actividades en cada destino."),
     "paquetes": ("Todo en uno", "Paquetes con vuelo y alojamiento para resolver el viaje de una vez."),
@@ -816,13 +828,11 @@ def organiza_destino(x, d):
     for n, ic in SERVICIOS:
         k = CLAVES_SERV[n]
         xs = ofertas_de(k, x["slug"])
-        if not xs:
-            continue
         loc = sum(1 for o in xs if o.get("tipo") != "aliado")
-        sub = f"{loc} opción{'' if loc == 1 else 'es'} local{'' if loc == 1 else 'es'}" if loc else "Con nuestros aliados"
-        items.append(f'<a class="od-item" href="{rel(d, p_serv(k))}?destino={x["slug"]}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">{ic}</svg><span><b>{n}</b><small>{sub}</small></span></a>')
-    if not items:
-        return ""
+        sub = (f"{loc} opción{'' if loc == 1 else 'es'} local{'' if loc == 1 else 'es'}" if loc else "Con nuestros aliados") if xs else "Próximamente"
+        items.append(f'<a class="od-item{"" if xs else " pronto"}" href="{rel(d, p_serv(k))}?destino={x["slug"]}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">{ic}</svg><span><b>{n}</b><small>{sub}</small></span></a>')
+    tz = PAISES.get(x["pais"], {}).get("tz")
+    items.append(f'<a class="od-item" href="{rel(d, "recursos/diferencia-horaria/")}{"?a=" + quote(tz) + "&n=" + quote(x["nombre"]) if tz else ""}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>Diferencia horaria</b><small>¿Qué hora es en {esc(x["nombre"])}?</small></span></a>')
     return f'<section class="d-organiza" id="organiza"><h2>Organizá tu viaje a {esc(x["nombre"])}</h2><div class="od-grid">{"".join(items)}</div></section>'
 
 
@@ -840,6 +850,75 @@ def clima_html(codigo, nombre):
         cuerpo = (f'<iframe src="https://www.yr.no/en/content/{lid}/card.html" title="Pronóstico del tiempo en {esc(nombre)}" loading="lazy"></iframe>'
                   f'<a class="clima-mas" href="https://www.yr.no/en/forecast/daily-table/{lid}" target="_blank" rel="noopener">Pronóstico de 9 días en yr.no ↗</a>')
     return f'<div class="clima" id="clima"><span class="lbl-clima">El clima hoy en {esc(nombre)}</span>{cuerpo}</div>'
+
+
+# ---------- Páginas de cada destino: en detalle, dónde comer, dónde alojarse ----------
+SUBPAGINAS = [("en-detalle", "En detalle"), ("donde-comer", "Dónde comer"), ("donde-alojarse", "Dónde alojarse")]
+
+
+def _cupones_destino(x, cats):
+    try:
+        cs = json.load(open(os.path.join(AQUI, "cupones", "cupones.json"), encoding="utf-8"))
+    except FileNotFoundError:
+        return []
+    return [c for c in cs if c.get("categoria") in cats and c.get("estado", "Publicado") in ("Publicado", "Ejemplo")
+            and (c.get("destino") == x["slug"] or (c.get("ciudad") or "").lower() == x["nombre"].lower())]
+
+
+def pagina_sub(x, clave):
+    d = 4
+    v = PAISES[x["pais"]]
+    f = x.get("panel") or {}
+    n = x["nombre"]
+    titulo = {"en-detalle": f"Conocé {n} en detalle", "donde-comer": f"Dónde comer en {n}", "donde-alojarse": f"Dónde alojarse en {n}"}[clave]
+    bajada = {"en-detalle": f"Fotos, videos e historias para conocer {n} antes de viajar.",
+              "donde-comer": f"Restaurantes, bares y cafés recomendados, con cupones de descuento.",
+              "donde-alojarse": f"Barrios recomendados, hoteles, cabañas y departamentos, con cupones de descuento."}[clave]
+    partes = []
+    if clave == "en-detalle":
+        det = detalle_html(f.get("detalle"))
+        if det:
+            partes.append(f'<article class="prose sub-prose">{det}</article>')
+        else:
+            partes.append(f'<article class="prose sub-prose">{md(f.get("por_que", "")) or "".join(f"<p>{esc(p)}</p>" for p in x.get("intro", []))}</article>')
+            partes.append(f'<div class="of-vacio"><b>Próximamente</b><p>Muy pronto vas a encontrar acá más fotos, videos e historias de {esc(n)}.</p></div>')
+    else:
+        serv = "gastronomia" if clave == "donde-comer" else "alojamiento"
+        texto = f.get("que_comer" if clave == "donde-comer" else "donde_alojarse") or ""
+        if texto.strip():
+            partes.append(f'<article class="prose sub-prose">{md(texto)}</article>')
+        xs = ofertas_de(serv, x["slug"])
+        aliados = [o for o in xs if o.get("tipo") == "aliado"]
+        propios = [o for o in xs if o.get("tipo") != "aliado"]
+        if propios:
+            partes.append(f'<section class="of-sec"><h2>{"Restaurantes recomendados" if serv == "gastronomia" else "Alojamientos recomendados"}</h2><div class="of-grid">'
+                          + "".join(oferta_card(o, d) for o in propios) + "</div></section>")
+        if aliados:
+            partes.append('<section class="of-sec"><div class="of-aliados">' + "".join(oferta_card(o, d) for o in aliados) + "</div></section>")
+        cups = _cupones_destino(x, ["Gastronomía"] if serv == "gastronomia" else ["Viajes"])
+        if cups:
+            partes.append('<section class="of-sec"><h2>Cupones de descuento</h2><div class="of-cups">'
+                          + "".join(f'<a class="of-cup" href="{rel(d, "cupones/")}#{esc(c["codigo"].lower())}"><b>{esc(c.get("descuento", ""))}</b><span>{esc(c["titulo"])}</span><small>{esc(c.get("comercio", ""))}</small></a>' for c in cups)
+                          + "</div></section>")
+        if not (propios or aliados or cups):
+            partes.append(f'<div class="of-vacio"><b>Próximamente</b><p>Estamos sumando {"restaurantes" if serv == "gastronomia" else "alojamientos"} y cupones en {esc(n)}.</p></div>')
+        pregunta = "¿Tenés un restaurante, bar o café?" if serv == "gastronomia" else "¿Tenés un hotel, una cabaña o un departamento?"
+        partes.append(f'<a class="of-publica" href="{rel(d, "mi-empresa/")}?publicar=viajes"><span><b>{pregunta}</b><small>Publicalo en la guía de {esc(n)} y sumá un cupón de descuento.</small></span><em>Publicar →</em></a>')
+    nav = f'<a href="{rel(d, p_dest(x))}">Guía de {esc(n)}</a>' + "".join(
+        f'<a href="{rel(d, p_dest(x) + k + "/")}"{" aria-current=\"page\"" if k == clave else ""}>{t}</a>' for k, t in SUBPAGINAS)
+    foto = f.get("foto")
+    hero_bg = f' style="--sub-foto:url(\'{esc(foto)}\')"' if foto else ""
+    main = f'''    <div class="wrap">
+{crumbs(d, [("Viajes", "viajes/"), (v["nombre"], p_pais(x["pais"])), (n, p_dest(x)), (titulo.split(" en ")[0] if " en " in titulo else "En detalle", None)])}
+      <nav class="of-nav" aria-label="Guía de {esc(n)}">{nav}</nav>
+      <section class="sub-hero{" has-foto" if foto else ""}"{hero_bg}>
+        <div><span class="eyebrow">{esc(n)} · {esc(v["nombre"])}</span><h1>{esc(titulo)}</h1><p>{esc(bajada)}</p></div>
+      </section>
+      {"".join(partes)}
+      <a class="d-volver" href="{rel(d, p_dest(x))}">← Volver a la guía de {esc(n)}</a>
+      <div class="ad-fila">{aviso(d, 3)}</div>
+    </div>'''
+    return page(d, f"{titulo} | Umarti Viajes", f"{bajada}", main)
 
 
 def destinos_por_nota():
@@ -872,6 +951,9 @@ def main():
         escribir(f"viajes/{k}/index.html", pagina_pais(k))
     for x in DESTINOS:
         escribir(p_dest(x) + "index.html", pagina_destino_panel(x) if x.get("panel") else pagina_destino(x))
+        if x.get("panel"):
+            for k, _ in SUBPAGINAS:
+                escribir(p_dest(x) + k + "/index.html", pagina_sub(x, k))
 
 
 if __name__ == "__main__":

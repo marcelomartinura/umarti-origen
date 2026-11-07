@@ -33,6 +33,7 @@ HERRAMIENTAS = [
     ("conversor-de-unidades", "Conversor de unidades", "Kilos y libras, centímetros y pulgadas, litros y galones.", "Vender en línea", "regla", False),
     ("enlace-de-whatsapp", "Enlace de WhatsApp y QR", "Para que tus clientes te escriban con un toque.", "Vender en línea", "chat", False),
     ("conversor-de-nomenclatura-dental", "Conversor de nomenclatura dental", "Odontograma interactivo: FDI, Universal y Palmer, en dientes permanentes y temporales.", "Salud", "diente", True),
+    ("diferencia-horaria", "Diferencia horaria", "Qué hora es en tu destino y cuántas horas de diferencia hay con donde estás.", "Viajes", "reloj", True),
     ("calculadora-de-imc", "Calculadora de IMC", "Índice de masa corporal y rango de referencia.", "Salud", "pulso", False),
     ("presencia-en-internet", "Presencia en internet", "Tu sitio web, Google Maps y redes sociales listos para que te encuentren.", "Servicios para tu negocio", "web", "https://www.umartidigital.com/presencia-digital/"),
     ("marketing-digital", "Servicio de marketing digital", "Redes, anuncios y contenido para atraer clientes a tu negocio.", "Servicios para tu negocio", "mega", UMARTI_DIGITAL),
@@ -41,6 +42,7 @@ HERRAMIENTAS = [
 GRUPOS = [("Comercio exterior", "Para exportar, importar y negociar con otros países."),
           ("Vender en línea", "Para poner precios, cobrar y atender a tus clientes."),
           ("Moda", "Para comprar y vender ropa y calzado sin errores de talle."),
+          ("Viajes", "Para planificar tu viaje sin sorpresas."),
           ("Salud", "Herramientas para profesionales de la salud y sus pacientes."),
           ("Servicios para tu negocio", "Servicios de Umarti Digital para vender más y atender mejor.")]
 
@@ -55,6 +57,7 @@ ICONOS = {
     "doc": '<path d="M6 3h9l4 4v14H6zM14 3v5h5M9 13h6M9 17h6"/>',
     "regla": '<path d="M3 17 17 3l4 4L7 21zM7 13l2 2M10 10l2 2M13 7l2 2"/>',
     "chat": '<path d="M4 19l1.5-4A8 8 0 1 1 9 18.5z"/>',
+    "reloj": '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
     "diente": '<path d="M7 3c-2.5 0-4 2-4 4.5 0 2.5 1.5 4 2 6.5.5 3 1 7 2.8 7 1.6 0 1.7-5 3.2-5s1.6 5 3.2 5c1.8 0 2.3-4 2.8-7 .5-2.5 2-4 2-6.5C21 5 19.5 3 17 3c-2 0-3 1-5 1S9 3 7 3z"/>',
     "pulso": '<path d="M3 12h4l2-5 4 10 2-5h6"/>',
     "mega": '<path d="M3 11v2a1 1 0 0 0 1 1h3l6 4V6L7 10H4a1 1 0 0 0-1 1zM16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"/>',
@@ -517,6 +520,60 @@ def dental():
                               "Herramienta de referencia. Verificá siempre la notación que usa cada historia clínica o laboratorio.")
 
 
+# ---------- 7. Diferencia horaria ----------
+ZONAS = [
+    ("América", [("Buenos Aires, Argentina", "America/Argentina/Buenos_Aires"), ("Ciudad de México, México", "America/Mexico_City"),
+                 ("Cancún, México", "America/Cancun"), ("Tijuana, México", "America/Tijuana"), ("Santiago, Chile", "America/Santiago"),
+                 ("Montevideo, Uruguay", "America/Montevideo"), ("Asunción, Paraguay", "America/Asuncion"), ("São Paulo, Brasil", "America/Sao_Paulo"),
+                 ("Lima, Perú", "America/Lima"), ("Bogotá, Colombia", "America/Bogota"), ("Caracas, Venezuela", "America/Caracas"),
+                 ("La Paz, Bolivia", "America/La_Paz"), ("Quito, Ecuador", "America/Guayaquil"), ("Panamá", "America/Panama"),
+                 ("San José, Costa Rica", "America/Costa_Rica"), ("Santo Domingo, Rep. Dominicana", "America/Santo_Domingo"),
+                 ("La Habana, Cuba", "America/Havana"), ("Miami / Nueva York, EE. UU.", "America/New_York"), ("Chicago, EE. UU.", "America/Chicago"),
+                 ("Denver, EE. UU.", "America/Denver"), ("Los Ángeles, EE. UU.", "America/Los_Angeles"), ("Toronto, Canadá", "America/Toronto"),
+                 ("Vancouver, Canadá", "America/Vancouver")]),
+    ("Europa", [("Madrid, España", "Europe/Madrid"), ("Canarias, España", "Atlantic/Canary"), ("Lisboa, Portugal", "Europe/Lisbon"),
+                ("Londres, Reino Unido", "Europe/London"), ("París, Francia", "Europe/Paris"), ("Roma, Italia", "Europe/Rome"),
+                ("Berlín, Alemania", "Europe/Berlin"), ("Ámsterdam, Países Bajos", "Europe/Amsterdam"), ("Zúrich, Suiza", "Europe/Zurich"),
+                ("Atenas, Grecia", "Europe/Athens"), ("Estambul, Turquía", "Europe/Istanbul"), ("Moscú, Rusia", "Europe/Moscow")]),
+    ("Asia y Oceanía", [("Dubái, Emiratos Árabes", "Asia/Dubai"), ("Tel Aviv, Israel", "Asia/Jerusalem"), ("Nueva Delhi, India", "Asia/Kolkata"),
+                        ("Bangkok, Tailandia", "Asia/Bangkok"), ("Singapur", "Asia/Singapore"), ("Shanghái / Pekín, China", "Asia/Shanghai"),
+                        ("Hong Kong", "Asia/Hong_Kong"), ("Tokio, Japón", "Asia/Tokyo"), ("Seúl, Corea del Sur", "Asia/Seoul"),
+                        ("Sídney, Australia", "Australia/Sydney"), ("Auckland, Nueva Zelanda", "Pacific/Auckland")]),
+    ("África", [("El Cairo, Egipto", "Africa/Cairo"), ("Marrakech, Marruecos", "Africa/Casablanca"), ("Ciudad del Cabo, Sudáfrica", "Africa/Johannesburg"),
+                ("Nairobi, Kenia", "Africa/Nairobi")]),
+]
+
+
+def horario():
+    opts = "".join(f'<optgroup label="{esc(g)}">' + "".join(f'<option value="{z}">{esc(n)}</option>' for n, z in xs) + "</optgroup>" for g, xs in ZONAS)
+    cuerpo = f'''      <section class="tool" data-tool="horario">
+        <div class="hz-row">
+          <div class="hz-col">
+            <label class="fld">Dónde estás<select id="hz-de"><option value="">Mi ubicación (automático)</option>{opts}</select></label>
+            <div class="hz-reloj" id="hz-r1"></div>
+          </div>
+          <button type="button" class="cv-swap" id="hz-swap" aria-label="Invertir">⇄</button>
+          <div class="hz-col">
+            <label class="fld">Adónde vas<select id="hz-a">{opts}</select></label>
+            <div class="hz-reloj" id="hz-r2"></div>
+          </div>
+        </div>
+        <div class="hz-dif" id="hz-dif" aria-live="polite"></div>
+      </section>
+      <section class="tool">
+        <h2 class="tool-h">Planificá tus llamadas</h2>
+        <p class="tool-intro">Si allá son estas horas, acá son:</p>
+        <div class="tbl-wrap"><table class="tbl" id="hz-tabla"></table></div>
+      </section>'''
+    faqs = [
+        ("¿La diferencia horaria cambia durante el año?", "Puede cambiar. Muchos países de Europa y América del Norte adelantan una hora en verano. Argentina y México (salvo algunas zonas de frontera) no cambian la hora. La herramienta tiene en cuenta estos cambios automáticamente."),
+        ("¿Cómo sabe la herramienta dónde estoy?", "Usa la zona horaria configurada en tu teléfono o computadora. No pide tu ubicación ni la guarda."),
+        ("¿Cuántas horas de diferencia hay entre Argentina y México?", "Depende de la época: la Ciudad de México está entre 2 y 3 horas detrás de Buenos Aires. Elegí las dos ciudades y la herramienta te muestra la diferencia de hoy."),
+    ]
+    return pagina_herramienta("diferencia-horaria", cuerpo, faqs, [],
+                              "Calculado en tu navegador con la base de zonas horarias oficial (IANA).")
+
+
 def main():
     escribir("recursos/index.html", portada())
     escribir("recursos/conversor-de-monedas/index.html", conversor())
@@ -525,6 +582,7 @@ def main():
     escribir("recursos/calculadora-de-precio-y-margen/index.html", margen())
     escribir("recursos/tabla-de-talles/index.html", talles())
     escribir("recursos/conversor-de-nomenclatura-dental/index.html", dental())
+    escribir("recursos/diferencia-horaria/index.html", horario())
 
 
 if __name__ == "__main__":

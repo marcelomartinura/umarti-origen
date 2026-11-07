@@ -207,7 +207,6 @@ def page(depth, title, desc, actual, main):
 <body data-prefix="{pre}">
 
 {comun.header(pre)}
-{barra_tienda(depth, "cupones")}
 {barra(depth, actual)}
 
   <main>

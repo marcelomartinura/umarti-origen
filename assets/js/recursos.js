@@ -303,6 +303,43 @@
     dibujar(); mostrar();
   })();
 
+  /* ---------- 7. Diferencia horaria ---------- */
+  if ($('[data-tool="horario"]')) (function () {
+    var de = $('#hz-de'), a = $('#hz-a'), local = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    var q = new URLSearchParams(location.search);
+    a.value = q.get('a') && a.querySelector('option[value="' + q.get('a') + '"]') ? q.get('a') : 'America/Argentina/Buenos_Aires';
+    if (q.get('de') && de.querySelector('option[value="' + q.get('de') + '"]')) de.value = q.get('de');
+    function zona(sel) { return sel.value || local; }
+    function nombre(sel) { return sel.value ? sel.options[sel.selectedIndex].text.split(',')[0] : 'Donde estás'; }
+    function offset(tz, d) {
+      var p = new Intl.DateTimeFormat('en-US', { timeZone: tz, hourCycle: 'h23', year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }).formatToParts(d);
+      var o = {}; p.forEach(function (x) { o[x.type] = +x.value; });
+      return (Date.UTC(o.year, o.month - 1, o.day, o.hour, o.minute) - Math.floor(d.getTime() / 60000) * 60000) / 60000;
+    }
+    function hora(tz, d) { return new Intl.DateTimeFormat('es-AR', { timeZone: tz, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(d); }
+    function dia(tz, d) { return new Intl.DateTimeFormat('es-AR', { timeZone: tz, weekday: 'long', day: 'numeric', month: 'long' }).format(d); }
+    function fmtDif(m) {
+      var h = Math.floor(Math.abs(m) / 60), mm = Math.abs(m) % 60;
+      return h + (h === 1 ? ' hora' : ' horas') + (mm ? ' y ' + mm + ' minutos' : '');
+    }
+    function pintar() {
+      var now = new Date(), z1 = zona(de), z2 = zona(a);
+      $('#hz-r1').innerHTML = '<b>' + hora(z1, now) + '</b><span>' + esc(dia(z1, now)) + '</span><small>' + esc(de.value ? nombre(de) : 'Tu zona: ' + local.replace(/_/g, ' ')) + '</small>';
+      $('#hz-r2').innerHTML = '<b>' + hora(z2, now) + '</b><span>' + esc(dia(z2, now)) + '</span><small>' + esc((q.get('n') && a.value === q.get('a')) ? q.get('n') : nombre(a)) + '</small>';
+      var dif = offset(z2, now) - offset(z1, now), dest = (q.get('n') && a.value === q.get('a')) ? q.get('n') : nombre(a);
+      $('#hz-dif').innerHTML = dif === 0 ? '<b>Tienen la misma hora.</b>' : '<b>' + esc(dest) + ' está ' + fmtDif(dif) + (dif > 0 ? ' adelante' : ' atrás') + '</b><span>' + (dif > 0 ? 'Allá ya es más tarde que donde estás.' : 'Allá todavía es más temprano que donde estás.') + '</span>';
+      var filas = '<thead><tr><th>' + esc(dest) + '</th><th>' + esc(de.value ? nombre(de) : 'Donde estás') + '</th></tr></thead><tbody>';
+      [7, 9, 12, 15, 18, 21].forEach(function (h) {
+        var m = ((h * 60 - dif) % 1440 + 1440) % 1440, dd = h * 60 - dif < 0 ? ' (día anterior)' : h * 60 - dif >= 1440 ? ' (día siguiente)' : '';
+        filas += '<tr><td>' + String(h).padStart(2, '0') + ':00</td><td>' + String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0') + dd + '</td></tr>';
+      });
+      $('#hz-tabla').innerHTML = filas + '</tbody>';
+    }
+    de.addEventListener('change', pintar); a.addEventListener('change', pintar);
+    $('#hz-swap').addEventListener('click', function () { var t = de.value; de.value = a.value; a.value = t || 'America/Argentina/Buenos_Aires'; q.delete('n'); pintar(); });
+    pintar(); setInterval(pintar, 30000);
+  })();
+
   /* ---------- filtro de la portada ---------- */
   var fb = $$('.rc-filtros [data-grupo]');
   fb.forEach(function (b) {

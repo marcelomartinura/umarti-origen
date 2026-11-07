@@ -41,11 +41,17 @@
    "bajada": "Traslados del aeropuerto al hotel y transporte en el destino.",
    "contenido": "",
    "activo": false
+  },
+  {
+   "clave": "gastronomia",
+   "bajada": "Restaurantes, bares y cafés recomendados en cada destino.",
+   "contenido": "",
+   "activo": false
   }
  ],
  "ofertas": [
   {
-   "id": "f8dfc165-a5f5-4f15-9177-d2733578a2fb",
+   "id": "f8dfc165",
    "servicio": "vuelos",
    "tipo": "aliado",
    "nombre": "Despegar",
@@ -64,7 +70,7 @@
    "orden": 0
   },
   {
-   "id": "22513c7f-9029-4b18-8652-617c4690159b",
+   "id": "22513c7f",
    "servicio": "paquetes",
    "tipo": "aliado",
    "nombre": "Despegar",
@@ -83,7 +89,7 @@
    "orden": 0
   },
   {
-   "id": "9dda0336-699d-43d3-babc-a2d5d4e9afe4",
+   "id": "9dda0336",
    "servicio": "autos",
    "tipo": "aliado",
    "nombre": "Despegar",
