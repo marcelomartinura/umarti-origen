@@ -51,7 +51,7 @@
  ],
  "ofertas": [
   {
-   "id": "f8dfc165",
+   "id": "f8dfc165-a5f5-4f15-9177-d2733578a2fb",
    "servicio": "vuelos",
    "tipo": "aliado",
    "nombre": "Despegar",
@@ -70,7 +70,7 @@
    "orden": 0
   },
   {
-   "id": "22513c7f",
+   "id": "22513c7f-9029-4b18-8652-617c4690159b",
    "servicio": "paquetes",
    "tipo": "aliado",
    "nombre": "Despegar",
@@ -89,7 +89,7 @@
    "orden": 0
   },
   {
-   "id": "9dda0336",
+   "id": "9dda0336-699d-43d3-babc-a2d5d4e9afe4",
    "servicio": "autos",
    "tipo": "aliado",
    "nombre": "Despegar",
