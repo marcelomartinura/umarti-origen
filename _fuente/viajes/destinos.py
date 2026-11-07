@@ -224,3 +224,39 @@ DESTACADOS = []
 
 # Link de afiliado de Despegar. Cuando tengas el tuyo, reemplazalo acá.
 DESPEGAR_URL = "https://www.despegar.com/"
+
+
+# ---------- Destinos cargados desde el Panel ----------
+# importar_destinos.py los baja de Supabase a destinos_panel.json. Si tienen la misma dirección (slug)
+# que uno de arriba, lo reemplazan; si no, se suman.
+def _clave_pais(nombre):
+    import unicodedata
+    s = unicodedata.normalize("NFD", nombre).encode("ascii", "ignore").decode().lower()
+    return "".join(c if c.isalnum() else "-" for c in s).strip("-")
+
+
+def _cargar_panel():
+    import json, os
+    ruta = os.path.join(os.path.dirname(os.path.abspath(__file__)), "destinos_panel.json")
+    if not os.path.exists(ruta):
+        return
+    for f in json.load(open(ruta, encoding="utf-8")):
+        pk = _clave_pais(f.get("pais") or "Argentina")
+        if pk not in PAISES:
+            PAISES[pk] = dict(nombre=f["pais"], continente=f.get("continente") or "", lead="", colores=("#4f6b3a", "#33472a"),
+                              moneda="", idioma="")
+        base = next((x for x in DESTINOS if x["slug"] == f["slug"]), None)
+        x = dict(base or {})
+        x.update(slug=f["slug"], nombre=f["ciudad"], pais=pk, region=f.get("region") or f["ciudad"],
+                 tipos=list(f.get("tags") or []), resumen=f.get("resumen") or "", dias=f.get("dias") or "",
+                 presupuesto=f.get("presupuesto") or "", mejor_epoca=f.get("mejor_epoca") or "", panel=f)
+        x.setdefault("paisaje", "ciudad")
+        x.setdefault("colores", PAISES[pk]["colores"])
+        x.setdefault("origen", [])
+        if base:
+            DESTINOS[DESTINOS.index(base)] = x
+        else:
+            DESTINOS.append(x)
+
+
+_cargar_panel()

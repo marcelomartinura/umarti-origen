@@ -489,6 +489,188 @@ def pagina_destino(x):
                 f"{x['resumen']} Mejor época, cómo llegar, imperdibles y consejos para viajar a {x['nombre']}.", main, ld)
 
 
+# ---------- Guías cargadas desde el Panel ----------
+import re as _re
+
+
+def _inline(t):
+    t = esc(t)
+    t = _re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
+    t = _re.sub(r"(?<![\w*])\*(?!\s)(.+?)(?<!\s)\*(?![\w*])", r"<em>\1</em>", t)
+    t = _re.sub(r"\[([^\]]+)\]\((https?://[^)\s]+)\)", r'<a href="\2" target="_blank" rel="noopener">\1</a>', t)
+    return t
+
+
+def md(texto):
+    """Formato simple del Panel: párrafos separados por una línea en blanco, '- ' para listas,
+    '### ' para subtítulos, **negrita**, *cursiva* y [texto](https://link)."""
+    out, lista, parrafo = [], [], []
+
+    def cerrar():
+        if lista:
+            out.append("<ul>" + "".join(f"<li>{_inline(i)}</li>" for i in lista) + "</ul>")
+            lista.clear()
+
+    def cerrar_p():
+        if parrafo:
+            out.append("<p>" + "<br>".join(_inline(l) for l in parrafo) + "</p>")
+            parrafo.clear()
+    for linea in (texto or "").replace("\r", "").split("\n"):
+        l = linea.strip()
+        if not l:
+            cerrar_p(); cerrar(); continue
+        if l.startswith(("- ", "* ", "• ")):
+            cerrar_p(); lista.append(l[2:].strip()); continue
+        if l.startswith("#"):
+            cerrar_p(); cerrar(); out.append(f"<h3>{_inline(l.lstrip('#').strip())}</h3>"); continue
+        cerrar(); parrafo.append(l)
+    cerrar_p(); cerrar()
+    return "\n".join(out)
+
+
+_LUGAR = r"^\*\*(.+?)\*\*\s*[:—-]\s*(.+)$"
+
+
+def md_lugares(texto):
+    """'Qué hacer': si todo es una lista de '- **Lugar**: descripción', se muestra como tarjetas."""
+    lineas = [l.strip() for l in (texto or "").split("\n") if l.strip()]
+    if lineas and all(l.startswith("- ") and _re.match(_LUGAR, l[2:]) for l in lineas):
+        cards = "".join(f'<div class="must"><strong>{esc(m.group(1))}</strong><span>{_inline(m.group(2))}</span></div>'
+                        for m in (_re.match(_LUGAR, l[2:]) for l in lineas))
+        return f'<div class="must-grid">{cards}</div>'
+    return md(texto)
+
+
+def video_html(url):
+    u = (url or "").strip()
+    m = _re.search(r"(?:youtube\.com/(?:watch\?v=|shorts/|embed/)|youtu\.be/)([\w-]{6,})", u)
+    if m:
+        return f'<div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/{m.group(1)}" title="Video" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'
+    m = _re.search(r"vimeo\.com/(\d+)", u)
+    if m:
+        return f'<div class="vid"><iframe src="https://player.vimeo.com/video/{m.group(1)}" title="Video" loading="lazy" allow="fullscreen; picture-in-picture" allowfullscreen></iframe></div>'
+    if u:
+        return f'<div class="vid"><video src="{esc(u)}" controls preload="metadata" playsinline></video></div>'
+    return ""
+
+
+def detalle_html(bloques):
+    out = []
+    for b in bloques or []:
+        t = b.get("tipo")
+        cap = f"<figcaption>{esc(b['pie'])}</figcaption>" if b.get("pie") else ""
+        if t == "texto" and (b.get("texto") or b.get("titulo")):
+            out.append((f"<h3>{esc(b['titulo'])}</h3>" if b.get("titulo") else "") + md(b.get("texto", "")))
+        elif t == "foto" and b.get("url"):
+            out.append(f'<figure class="d-fig"><img src="{esc(b["url"])}" alt="{esc(b.get("pie", ""))}" loading="lazy">{cap}</figure>')
+        elif t == "video" and b.get("url"):
+            out.append(f'<figure class="d-fig">{video_html(b["url"])}{cap}</figure>')
+    return "\n".join(out)
+
+
+def _catalogo():
+    try:
+        return json.load(open(os.path.join(AQUI, "tienda", "catalogo.json"), encoding="utf-8")).get("productos", [])
+    except FileNotFoundError:
+        return []
+
+
+def _pesos(v):
+    return format(int(v), ",").replace(",", ".")
+
+
+def pagina_destino_panel(x):
+    d = 3
+    v = PAISES[x["pais"]]
+    f = x["panel"]
+    n = x["nombre"]
+    secciones = [("por-que-ir", f"Por qué ir a {n}", "Por qué ir", "por_que", md),
+                 ("cuando-ir", "Cuándo ir", "Cuándo ir", "cuando_ir", md),
+                 ("que-comer", "Qué comer", "Qué comer", "que_comer", md),
+                 ("donde-alojarse", "Dónde alojarse", "Dónde alojarse", "donde_alojarse", md),
+                 ("como-llegar", "Cómo llegar", "Cómo llegar", "como_llegar", md),
+                 ("como-moverse", "Cómo moverse", "Cómo moverse", "como_moverse", md),
+                 ("que-hacer", f"Qué hacer en {n}", "Qué hacer", "que_hacer", md_lugares),
+                 ("consejos", "Consejos para tu viaje", "Consejos", "consejos", md)]
+    cuerpo, toc = [], []
+    for ancla, titulo, corto, campo, fn in secciones:
+        if (f.get(campo) or "").strip():
+            cuerpo.append(f'<h2 id="{ancla}">{esc(titulo)}</h2>\n{fn(f[campo])}')
+            toc.append((ancla, corto))
+    det = detalle_html(f.get("detalle"))
+    if det:
+        cuerpo.append(f'<section class="d-detalle" id="en-detalle"><h2>Conocé {esc(n)} en detalle</h2>\n{det}</section>')
+        toc.append(("en-detalle", "En detalle"))
+    prods = [p for p in _catalogo() if p.get("codigo") in (f.get("productos") or [])]
+    cats = f.get("categorias_tienda") or []
+    if prods or cats:
+        cards = "".join(
+            f'<a class="d-prod" href="{rel(d, "argentina/tienda/" + p["slug"] + "/")}">'
+            + (f'<img src="{esc(p["fotos"][0])}" alt="" loading="lazy">' if p.get("fotos") else '<span class="d-prod-ph"></span>')
+            + f'<span><b>{esc(p["nombre"])}</b>'
+            + (f'<small>$ {_pesos(p["precio_ars"])} ARS</small>' if p.get("precio_ars") and p.get("tienda_ar") else "")
+            + "</span></a>" for p in prods)
+        links = ""
+        for c in cats:
+            cat, _, sub = c.partition(" › ")
+            url = rel(d, "argentina/tienda/" + slug(cat) + "/") + (f"?sub={quote(sub)}" if sub else "")
+            links += f'<a class="d-cat" href="{url}">{esc(sub or cat)} →</a>'
+        cuerpo.append(f'<section class="d-tienda" id="en-la-tienda"><h2>Llevate {esc(n)} a casa</h2><p>Productos con origen para disfrutar antes o después del viaje.</p>'
+                      + (f'<div class="d-prods">{cards}</div>' if cards else "") + (f'<div class="d-cats">{links}</div>' if links else "") + "</section>")
+        toc.append(("en-la-tienda", "En la Tienda"))
+    fq = [(q.get("q", ""), q.get("a", "")) for q in (f.get("faqs") or []) if q.get("q")]
+    if fq:
+        cuerpo.append('<h2 id="preguntas">Preguntas frecuentes</h2><div class="faq-list">'
+                      + "".join(f"<details><summary>{esc(q)}</summary>{md(a)}</details>" for q, a in fq) + "</div>")
+        toc.append(("preguntas", "Preguntas frecuentes"))
+    toc_html = '<div class="box toc"><h2>En esta guía</h2><ol>' + "".join(f'<li><a href="#{a}">{esc(t)}</a></li>' for a, t in toc) + "</ol></div>"
+    notas = [NOTAS[s] for s in (f.get("notas") or []) if s in NOTAS]
+    notas_box = ""
+    if notas:
+        notas_box = '<div class="box d-notas"><h2>Para leer antes de viajar</h2>' + "".join(
+            f'<a href="{rel(d, "blog/" + nt["slug"] + "/")}">{esc(nt["titulo"])}</a>' for nt in notas) + "</div>"
+    plan_box = (f'<div class="box plan-box"><strong>Organizá tu viaje a {esc(n)}</strong><p>Vuelos, hoteles, autos y paquetes con nuestros aliados.</p>'
+                f'<a class="btn-green" href="{rel(d, "viajes/")}#organiza">Ver opciones</a></div>')
+    tipos = "".join(f'<span class="tipo">{esc(t)}</span>' for t in x["tipos"])
+    hechos = [(k, val) for k, val in (("Mejor época", (x.get("mejor_epoca") or "").split(";")[0]), ("Días ideales", x.get("dias")),
+                                      ("Presupuesto", x.get("presupuesto"))) if val]
+    facts = "".join(f"<div><small>{k}</small><b>{esc(val)}</b></div>" for k, val in hechos)
+    portada = (f'<figure class="d-foto"><img src="{esc(f["foto"])}" alt="{esc(n)}" style="object-position:{esc(f.get("foto_pos") or "center")}"></figure>'
+               if f.get("foto") else vcover(x["colores"], x["paisaje"]))
+    otros = [o for o in DESTINOS if o is not x and o["pais"] == x["pais"]][:3]
+    if len(otros) < 3:
+        otros += [o for o in DESTINOS if o is not x and o not in otros][:3 - len(otros)]
+    region = f"{esc(x['region'])}, {esc(v['nombre'])}" if x["region"] and x["region"] != n else esc(v["nombre"])
+    main = "\n".join([
+        '    <div class="wrap">',
+        crumbs(d, [("Viajes", "viajes/"), (v["nombre"], p_pais(x["pais"])), (n, None)]),
+        '      <section class="d-hero">',
+        f'        <div><a class="chip-pais" href="{rel(d, p_pais(x["pais"]))}">{region}</a>',
+        f'          <h1>{esc(n)}</h1><p class="lead">{esc(x["resumen"])}</p>',
+        f'          <div class="tipos">{tipos}</div><div class="d-facts">{facts}</div></div>',
+        f'        {portada}',
+        '      </section>',
+        '      <div class="post-layout">',
+        '        <article class="prose">', "\n".join(cuerpo), '        </article>',
+        f'        <aside class="post-aside"><div class="aside-sticky">{toc_html}{notas_box}{plan_box}</div></aside>',
+        '      </div>',
+        '    </div>',
+        '    <section class="related"><div class="wrap"><h2>Otros destinos</h2><div class="dest-grid">',
+        "\n".join(dest_card(o, d) for o in otros),
+        '    </div></div></section>'])
+    ld = {"@context": "https://schema.org", "@graph": [
+        {"@type": "TouristDestination", "name": n, "description": x["resumen"], "touristType": x["tipos"],
+         "containedInPlace": {"@type": "Country", "name": v["nombre"]}}]}
+    if f.get("foto"):
+        ld["@graph"][0]["image"] = f["foto"]
+    if fq:
+        ld["@graph"].append({"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in fq]})
+    if SITIO:
+        ld["@graph"][0]["url"] = f"{SITIO}/{p_dest(x)}"
+    return page(d, f"Guía de viaje de {n}: qué hacer, cuándo ir y qué comer | Umarti Viajes",
+                f"{x['resumen']} Cuándo ir, dónde alojarse, qué hacer y consejos para viajar a {n}.", main, ld)
+
+
 def destinos_por_nota():
     """Para el blog: qué destinos enlazan cada nota (así la nota muestra 'Conocé el origen')."""
     out = {}
@@ -496,13 +678,18 @@ def destinos_por_nota():
         for o in x["origen"]:
             if o.get("nota"):
                 out.setdefault(o["nota"], []).append(x)
+        for nt in (x.get("panel") or {}).get("notas") or []:
+            if x not in out.setdefault(nt, []):
+                out[nt].append(x)
     return out
 
 
 def main():
     for x in DESTINOS:
-        assert x["pais"] in PAISES and x["paisaje"] in PAISAJES, x["slug"]
-        assert all(t in TIPOS for t in x["tipos"]), x["slug"]
+        assert x["pais"] in PAISES, x["slug"]
+        if x["paisaje"] not in PAISAJES:
+            x["paisaje"] = "ciudad"
+        x["tipos"] = [t for t in x["tipos"] if t in TIPOS]
         for o in x["origen"]:
             if o.get("nota") and o["nota"] not in NOTAS:
                 raise SystemExit(f"{x['slug']}: la nota '{o['nota']}' no existe en el blog")
@@ -511,7 +698,7 @@ def main():
     for k in PAISES:
         escribir(f"viajes/{k}/index.html", pagina_pais(k))
     for x in DESTINOS:
-        escribir(p_dest(x) + "index.html", pagina_destino(x))
+        escribir(p_dest(x) + "index.html", pagina_destino_panel(x) if x.get("panel") else pagina_destino(x))
 
 
 if __name__ == "__main__":

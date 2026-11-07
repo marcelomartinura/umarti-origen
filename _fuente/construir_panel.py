@@ -15,6 +15,7 @@ import comun  # noqa: E402
 from comun import escribir  # noqa: E402
 from construir_blog import CATEGORIAS  # noqa: E402
 from destinos import DESTINOS, PAISES  # noqa: E402
+import construir_viajes as cv  # noqa: E402
 from supabase_config import SUPABASE_URL, SUPABASE_KEY  # noqa: E402
 
 cat = json.load(open(os.path.join(AQUI, "tienda", "catalogo.json"), encoding="utf-8"))
@@ -24,14 +25,20 @@ DATOS = {
     "temas": [{"clave": t["clave"], "nombre": t["nombre"]} for t in cat.get("temas", [])],
     "destinos": [{"slug": d["slug"], "nombre": d["nombre"], "pais": PAISES[d["pais"]]["nombre"]} for d in DESTINOS],
     "paises": ["Argentina", "México", "Uruguay", "Paraguay", "Chile", "Brasil", "Otro"],
+    "viajes": {
+        "tipos": cv.TIPOS,
+        "paises": [v["nombre"] for v in PAISES.values()],
+        "notas": sorted([{"slug": n["slug"], "titulo": n["titulo"], "seccion": n.get("seccion", "")} for n in cv.NOTAS.values() if not n.get("borrador")], key=lambda n: n["titulo"]),
+        "presupuestos": ["Bajo", "Medio", "Alto"],
+    },
     "paises_envio": ["México", "Estados Unidos", "España", "Chile", "Uruguay", "Colombia", "Perú", "Canadá", "Brasil", "Italia", "Alemania"],
 }
 
 MODULOS = [("productos", "Productos", True), ("publicidad", "Publicidad", False), ("cupones", "Cupones", False),
-           ("hub", "HUB", False), ("viajes", "Viajes", False)]
+           ("hub", "HUB", False), ("viajes", "Viajes", True)]
 
 botonera = "".join(
-    f'<button type="button" class="mod{" on" if activo else ""}" data-mod="{k}"{"" if activo else " disabled"}>{n}'
+    f'<button type="button" class="mod{" on" if k == "productos" else ""}" data-mod="{k}"{"" if activo else " disabled"}>{n}'
     f'{"" if activo else "<small>Pronto</small>"}</button>' for k, n, activo in MODULOS)
 
 html = f'''<!doctype html>
@@ -186,6 +193,107 @@ html = f'''<!doctype html>
         </aside>
       </form>
     </section>
+
+    <!-- Viajes: lista de destinos -->
+    <section id="v-vlista" hidden>
+      <div class="pn-head">
+        <div><h1>Viajes</h1><p class="muted" id="vl-resumen">Las guías de cada destino.</p></div>
+        <button class="btn pri" type="button" id="vb-nuevo">+ Nuevo destino</button>
+      </div>
+      <div class="pn-filtros">
+        <input type="search" id="vl-q" placeholder="Buscar por ciudad, provincia o país" aria-label="Buscar">
+      </div>
+      <div class="pn-tabla" id="vl-tabla"></div>
+      <p class="pn-nota">Los destinos en estado <b>Publicado</b> aparecen en el sitio en hasta 30 minutos. Las guías que todavía no cargaste acá siguen mostrándose como están.</p>
+    </section>
+
+    <!-- Viajes: editor -->
+    <section id="v-veditor" hidden>
+      <div class="pn-head">
+        <div>
+          <button type="button" class="link back" id="ve-volver">← Viajes</button>
+          <h1 id="ve-titulo">Nuevo destino</h1>
+          <p class="muted" id="ve-sub"></p>
+        </div>
+      </div>
+      <form id="f-dest" class="pn-editor" novalidate>
+        <div class="pn-form">
+          <fieldset class="card">
+            <legend>Ubicación</legend>
+            <label><span>País <em>*</em></span><input name="pais" list="vl-paises" required placeholder="Argentina"><datalist id="vl-paises"></datalist></label>
+            <label><span>Ciudad o destino <em>*</em></span><input name="ciudad" required maxlength="80" placeholder="Buenos Aires"></label>
+            <label>Estado o provincia<input name="region" maxlength="80" placeholder="Ciudad Autónoma de Buenos Aires"></label>
+            <label>Dirección en el sitio<span class="slug-wrap"><span id="ve-slug-pre">viajes/…/</span><input name="slug" required pattern="[a-z0-9-]+"><span>/</span></span></label>
+          </fieldset>
+
+          <fieldset class="card">
+            <legend>Presentación</legend>
+            <label class="full">Resumen<textarea name="resumen" rows="2" maxlength="260" placeholder="Una o dos oraciones que inviten a ir."></textarea><small class="count" data-for="resumen"></small></label>
+            <div class="full"><span class="lbl">Tags</span><div class="checks" id="ve-tags"></div></div>
+            <div class="full"><span class="lbl">Foto principal</span>
+              <div class="ve-foto" id="ve-foto"></div>
+              <label class="drop sm" id="ve-foto-drop"><input type="file" accept="image/jpeg,image/png,image/webp" hidden><b>Subir foto principal</b><small>Horizontal, idealmente. Se achica sola a 1600 px.</small></label>
+              <label class="inline">Encuadre<select name="foto_pos"><option value="center">Centro</option><option value="center 25%">Más arriba</option><option value="center 75%">Más abajo</option><option value="left center">Izquierda</option><option value="right center">Derecha</option></select></label>
+            </div>
+            <label>Días ideales<input name="dias" maxlength="40" placeholder="3 a 4 días"></label>
+            <label>Presupuesto<select name="presupuesto"><option value="">Sin indicar</option></select></label>
+            <label class="full">Mejor época (resumen)<input name="mejor_epoca" maxlength="120" placeholder="Primavera (septiembre a noviembre) y otoño (marzo a mayo)"><small class="muted">Se muestra arriba, junto a los días y el presupuesto.</small></label>
+          </fieldset>
+
+          <fieldset class="card">
+            <legend>Contenido de la guía</legend>
+            <p class="muted full ve-ayuda">Para dar formato: <b>**negrita**</b>, una línea con <b>- </b> al principio para listas, <b>### </b> para un subtítulo, y una línea en blanco entre párrafos. Los botones de cada campo lo hacen por vos. Los campos vacíos no se muestran en el sitio.</p>
+            <div class="full ve-campos" id="ve-campos"></div>
+          </fieldset>
+
+          <fieldset class="card">
+            <legend>Preguntas frecuentes</legend>
+            <div class="full" id="ve-faqs"></div>
+            <button type="button" class="btn sm" id="ve-faq-add">+ Agregar pregunta</button>
+          </fieldset>
+
+          <fieldset class="card">
+            <legend id="ve-det-leg">Conocé el destino en detalle</legend>
+            <p class="muted full">Sumá textos, fotos y videos en el orden que quieras. Para videos podés pegar un link de YouTube o Vimeo, o subir un video corto (hasta 50 MB).</p>
+            <div class="full ve-bloques" id="ve-bloques"></div>
+            <div class="full ve-add">
+              <button type="button" class="btn sm" data-bloque="texto">+ Texto</button>
+              <button type="button" class="btn sm" data-bloque="foto">+ Foto</button>
+              <button type="button" class="btn sm" data-bloque="video">+ Video</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="card">
+            <legend>Vincular</legend>
+            <div class="full"><span class="lbl">Notas del Blog</span><small class="muted">Aparecen en "Para leer antes de viajar", y la nota muestra el destino.</small>
+              <input type="search" class="ve-buscar" id="ve-notas-q" placeholder="Buscar nota">
+              <div class="checks col" id="ve-notas"></div></div>
+            <div class="full"><span class="lbl">Categorías de la Tienda</span><small class="muted">Se muestran como accesos en "Llevate el destino a casa".</small><div class="checks" id="ve-cats"></div></div>
+            <div class="full"><span class="lbl">Productos de la Tienda</span><small class="muted">Se muestran como tarjetas con foto y precio.</small><div class="checks col" id="ve-prods"></div></div>
+          </fieldset>
+        </div>
+
+        <aside class="pn-side">
+          <div class="card pub">
+            <label>Estado<select name="estado">
+              <option value="Borrador">Borrador: no se ve en el sitio</option>
+              <option value="Publicado">Publicado: visible en el sitio</option>
+              <option value="Pausado">Pausado: oculto temporalmente</option>
+            </select></label>
+            <button class="btn pri" type="submit" id="ve-guardar">Guardar</button>
+            <p class="msg" id="ve-msg" role="status"></p>
+            <div class="side-acts">
+              <a class="link" id="ve-ver" target="_blank" rel="noopener" hidden>Ver en el sitio ↗</a>
+              <button type="button" class="link danger" id="ve-borrar" hidden>Eliminar</button>
+            </div>
+          </div>
+          <div class="card ve-indice">
+            <span class="lbl">Secciones de la guía</span>
+            <ol id="ve-indice"></ol>
+          </div>
+        </aside>
+      </form>
+    </section>
   </main>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -193,6 +301,7 @@ html = f'''<!doctype html>
   <script>window.PANEL = {json.dumps(DATOS, ensure_ascii=False)};</script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
   <script src="../assets/js/panel.js"></script>
+  <script src="../assets/js/panel-viajes.js"></script>
 </body>
 </html>
 '''

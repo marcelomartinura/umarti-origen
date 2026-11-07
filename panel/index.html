@@ -11,12 +11,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/panel.css?v=c7d13d74">
+  <link rel="stylesheet" href="../assets/css/panel.css?v=831c8706">
 </head>
 <body>
   <header class="pn-top">
     <a class="pn-logo" href="../"><img src="../assets/img/marca/icono-blanco.png" alt="" width="259" height="236"><span>Umarti <span>Origen</span></span><small>Panel</small></a>
-    <nav class="pn-mods" aria-label="Módulos"><button type="button" class="mod on" data-mod="productos">Productos</button><button type="button" class="mod" data-mod="publicidad" disabled>Publicidad<small>Pronto</small></button><button type="button" class="mod" data-mod="cupones" disabled>Cupones<small>Pronto</small></button><button type="button" class="mod" data-mod="hub" disabled>HUB<small>Pronto</small></button><button type="button" class="mod" data-mod="viajes" disabled>Viajes<small>Pronto</small></button></nav>
+    <nav class="pn-mods" aria-label="Módulos"><button type="button" class="mod on" data-mod="productos">Productos</button><button type="button" class="mod" data-mod="publicidad" disabled>Publicidad<small>Pronto</small></button><button type="button" class="mod" data-mod="cupones" disabled>Cupones<small>Pronto</small></button><button type="button" class="mod" data-mod="hub" disabled>HUB<small>Pronto</small></button><button type="button" class="mod" data-mod="viajes">Viajes</button></nav>
     <div class="pn-user" id="pn-user" hidden>
       <span id="pn-email"></span>
       <a href="../" target="_blank" rel="noopener">Ver sitio ↗</a>
@@ -155,12 +155,114 @@
         </aside>
       </form>
     </section>
+
+    <!-- Viajes: lista de destinos -->
+    <section id="v-vlista" hidden>
+      <div class="pn-head">
+        <div><h1>Viajes</h1><p class="muted" id="vl-resumen">Las guías de cada destino.</p></div>
+        <button class="btn pri" type="button" id="vb-nuevo">+ Nuevo destino</button>
+      </div>
+      <div class="pn-filtros">
+        <input type="search" id="vl-q" placeholder="Buscar por ciudad, provincia o país" aria-label="Buscar">
+      </div>
+      <div class="pn-tabla" id="vl-tabla"></div>
+      <p class="pn-nota">Los destinos en estado <b>Publicado</b> aparecen en el sitio en hasta 30 minutos. Las guías que todavía no cargaste acá siguen mostrándose como están.</p>
+    </section>
+
+    <!-- Viajes: editor -->
+    <section id="v-veditor" hidden>
+      <div class="pn-head">
+        <div>
+          <button type="button" class="link back" id="ve-volver">← Viajes</button>
+          <h1 id="ve-titulo">Nuevo destino</h1>
+          <p class="muted" id="ve-sub"></p>
+        </div>
+      </div>
+      <form id="f-dest" class="pn-editor" novalidate>
+        <div class="pn-form">
+          <fieldset class="card">
+            <legend>Ubicación</legend>
+            <label><span>País <em>*</em></span><input name="pais" list="vl-paises" required placeholder="Argentina"><datalist id="vl-paises"></datalist></label>
+            <label><span>Ciudad o destino <em>*</em></span><input name="ciudad" required maxlength="80" placeholder="Buenos Aires"></label>
+            <label>Estado o provincia<input name="region" maxlength="80" placeholder="Ciudad Autónoma de Buenos Aires"></label>
+            <label>Dirección en el sitio<span class="slug-wrap"><span id="ve-slug-pre">viajes/…/</span><input name="slug" required pattern="[a-z0-9-]+"><span>/</span></span></label>
+          </fieldset>
+
+          <fieldset class="card">
+            <legend>Presentación</legend>
+            <label class="full">Resumen<textarea name="resumen" rows="2" maxlength="260" placeholder="Una o dos oraciones que inviten a ir."></textarea><small class="count" data-for="resumen"></small></label>
+            <div class="full"><span class="lbl">Tags</span><div class="checks" id="ve-tags"></div></div>
+            <div class="full"><span class="lbl">Foto principal</span>
+              <div class="ve-foto" id="ve-foto"></div>
+              <label class="drop sm" id="ve-foto-drop"><input type="file" accept="image/jpeg,image/png,image/webp" hidden><b>Subir foto principal</b><small>Horizontal, idealmente. Se achica sola a 1600 px.</small></label>
+              <label class="inline">Encuadre<select name="foto_pos"><option value="center">Centro</option><option value="center 25%">Más arriba</option><option value="center 75%">Más abajo</option><option value="left center">Izquierda</option><option value="right center">Derecha</option></select></label>
+            </div>
+            <label>Días ideales<input name="dias" maxlength="40" placeholder="3 a 4 días"></label>
+            <label>Presupuesto<select name="presupuesto"><option value="">Sin indicar</option></select></label>
+            <label class="full">Mejor época (resumen)<input name="mejor_epoca" maxlength="120" placeholder="Primavera (septiembre a noviembre) y otoño (marzo a mayo)"><small class="muted">Se muestra arriba, junto a los días y el presupuesto.</small></label>
+          </fieldset>
+
+          <fieldset class="card">
+            <legend>Contenido de la guía</legend>
+            <p class="muted full ve-ayuda">Para dar formato: <b>**negrita**</b>, una línea con <b>- </b> al principio para listas, <b>### </b> para un subtítulo, y una línea en blanco entre párrafos. Los botones de cada campo lo hacen por vos. Los campos vacíos no se muestran en el sitio.</p>
+            <div class="full ve-campos" id="ve-campos"></div>
+          </fieldset>
+
+          <fieldset class="card">
+            <legend>Preguntas frecuentes</legend>
+            <div class="full" id="ve-faqs"></div>
+            <button type="button" class="btn sm" id="ve-faq-add">+ Agregar pregunta</button>
+          </fieldset>
+
+          <fieldset class="card">
+            <legend id="ve-det-leg">Conocé el destino en detalle</legend>
+            <p class="muted full">Sumá textos, fotos y videos en el orden que quieras. Para videos podés pegar un link de YouTube o Vimeo, o subir un video corto (hasta 50 MB).</p>
+            <div class="full ve-bloques" id="ve-bloques"></div>
+            <div class="full ve-add">
+              <button type="button" class="btn sm" data-bloque="texto">+ Texto</button>
+              <button type="button" class="btn sm" data-bloque="foto">+ Foto</button>
+              <button type="button" class="btn sm" data-bloque="video">+ Video</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="card">
+            <legend>Vincular</legend>
+            <div class="full"><span class="lbl">Notas del Blog</span><small class="muted">Aparecen en "Para leer antes de viajar", y la nota muestra el destino.</small>
+              <input type="search" class="ve-buscar" id="ve-notas-q" placeholder="Buscar nota">
+              <div class="checks col" id="ve-notas"></div></div>
+            <div class="full"><span class="lbl">Categorías de la Tienda</span><small class="muted">Se muestran como accesos en "Llevate el destino a casa".</small><div class="checks" id="ve-cats"></div></div>
+            <div class="full"><span class="lbl">Productos de la Tienda</span><small class="muted">Se muestran como tarjetas con foto y precio.</small><div class="checks col" id="ve-prods"></div></div>
+          </fieldset>
+        </div>
+
+        <aside class="pn-side">
+          <div class="card pub">
+            <label>Estado<select name="estado">
+              <option value="Borrador">Borrador: no se ve en el sitio</option>
+              <option value="Publicado">Publicado: visible en el sitio</option>
+              <option value="Pausado">Pausado: oculto temporalmente</option>
+            </select></label>
+            <button class="btn pri" type="submit" id="ve-guardar">Guardar</button>
+            <p class="msg" id="ve-msg" role="status"></p>
+            <div class="side-acts">
+              <a class="link" id="ve-ver" target="_blank" rel="noopener" hidden>Ver en el sitio ↗</a>
+              <button type="button" class="link danger" id="ve-borrar" hidden>Eliminar</button>
+            </div>
+          </div>
+          <div class="card ve-indice">
+            <span class="lbl">Secciones de la guía</span>
+            <ol id="ve-indice"></ol>
+          </div>
+        </aside>
+      </form>
+    </section>
   </main>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script>window.PANEL = {"supabase": {"url": "https://tkrnwboyynvbellqnzle.supabase.co", "key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRrcm53Ym95eW52YmVsbHFuemxlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI0MjE0NTYsImV4cCI6MjEwNzk5NzQ1Nn0.B1wq_8z8Gwd4L3ieavvpE2PKjQcj1-KVXDREmCL7wjA"}, "categorias": {"Café, Té y Mate": ["Mates y bombillas", "Café", "Té", "Chocolate"], "Regalos y Kits": ["Kits de mate y café", "Regalos corporativos", "Personalizados"], "Artículos Regionales": ["Bolsos materos", "Marroquinería y riñoneras", "Juegos de asado", "Portatermos y llaveros"], "Bebidas": ["Vinos", "Cervezas y destilados", "Sin alcohol"], "Alimentos": ["Alimentos congelados", "Alimentos diet", "Golosinas", "Snacks"], "Salud y Bienestar": ["Odontología", "Cuidado personal", "Dispositivos médicos"], "Moda": ["Ropa de dama", "Zapatos", "Carteras", "Ropa de caballero"], "Tecnología": ["Accesorios", "Audio", "Hogar inteligente"], "Herramientas y Jardín": ["Herramientas", "Jardín", "Construcción"], "Hogar y Cocina": ["Bazar y cocina", "Organización", "Deco"], "Limpieza e Higiene": ["Productos de limpieza", "Productos de higiene personal"]}, "temas": [{"clave": "mate", "nombre": "Mate"}], "destinos": [{"slug": "buenos-aires", "nombre": "Buenos Aires", "pais": "Argentina"}, {"slug": "mendoza", "nombre": "Mendoza", "pais": "Argentina"}, {"slug": "bariloche", "nombre": "San Carlos de Bariloche", "pais": "Argentina"}, {"slug": "ushuaia", "nombre": "Ushuaia", "pais": "Argentina"}, {"slug": "salta", "nombre": "Salta", "pais": "Argentina"}, {"slug": "cataratas-del-iguazu", "nombre": "Cataratas del Iguazú", "pais": "Argentina"}, {"slug": "ciudad-de-mexico", "nombre": "Ciudad de México", "pais": "México"}, {"slug": "queretaro", "nombre": "Querétaro", "pais": "México"}], "paises": ["Argentina", "México", "Uruguay", "Paraguay", "Chile", "Brasil", "Otro"], "paises_envio": ["México", "Estados Unidos", "España", "Chile", "Uruguay", "Colombia", "Perú", "Canadá", "Brasil", "Italia", "Alemania"]};</script>
+  <script>window.PANEL = {"supabase": {"url": "https://tkrnwboyynvbellqnzle.supabase.co", "key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRrcm53Ym95eW52YmVsbHFuemxlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI0MjE0NTYsImV4cCI6MjEwNzk5NzQ1Nn0.B1wq_8z8Gwd4L3ieavvpE2PKjQcj1-KVXDREmCL7wjA"}, "categorias": {"Café, Té y Mate": ["Mates y bombillas", "Café", "Té", "Chocolate"], "Regalos y Kits": ["Kits de mate y café", "Regalos corporativos", "Personalizados"], "Artículos Regionales": ["Bolsos materos", "Marroquinería y riñoneras", "Juegos de asado", "Portatermos y llaveros"], "Bebidas": ["Vinos", "Cervezas y destilados", "Sin alcohol"], "Alimentos": ["Alimentos congelados", "Alimentos diet", "Golosinas", "Snacks"], "Salud y Bienestar": ["Odontología", "Cuidado personal", "Dispositivos médicos"], "Moda": ["Ropa de dama", "Zapatos", "Carteras", "Ropa de caballero"], "Tecnología": ["Accesorios", "Audio", "Hogar inteligente"], "Herramientas y Jardín": ["Herramientas", "Jardín", "Construcción"], "Hogar y Cocina": ["Bazar y cocina", "Organización", "Deco"], "Limpieza e Higiene": ["Productos de limpieza", "Productos de higiene personal"]}, "temas": [{"clave": "mate", "nombre": "Mate"}], "destinos": [{"slug": "buenos-aires", "nombre": "Buenos Aires", "pais": "Argentina"}, {"slug": "mendoza", "nombre": "Mendoza", "pais": "Argentina"}, {"slug": "bariloche", "nombre": "San Carlos de Bariloche", "pais": "Argentina"}, {"slug": "ushuaia", "nombre": "Ushuaia", "pais": "Argentina"}, {"slug": "salta", "nombre": "Salta", "pais": "Argentina"}, {"slug": "cataratas-del-iguazu", "nombre": "Cataratas del Iguazú", "pais": "Argentina"}, {"slug": "ciudad-de-mexico", "nombre": "Ciudad de México", "pais": "México"}, {"slug": "queretaro", "nombre": "Querétaro", "pais": "México"}], "paises": ["Argentina", "México", "Uruguay", "Paraguay", "Chile", "Brasil", "Otro"], "viajes": {"tipos": ["Aventura", "Cultura", "Gastronomía", "Montaña", "Naturaleza", "Nieve", "Urbano", "Vino"], "paises": ["Argentina", "México"], "notas": [{"slug": "con-que-acompanar-un-malbec", "titulo": "Con qué acompañar un Malbec: maridajes simples", "seccion": "productos"}, {"slug": "como-curar-un-mate", "titulo": "Cómo curar un mate de calabaza o de madera antes de estrenarlo", "seccion": "productos"}, {"slug": "como-curar-un-mate-de-palo-santo", "titulo": "Cómo curar un mate de palo santo sin que se agriete", "seccion": "productos"}, {"slug": "como-limpiar-la-bombilla-del-mate", "titulo": "Cómo limpiar la bombilla del mate (y que no se tape)", "seccion": "productos"}, {"slug": "como-preparar-un-buen-mate", "titulo": "Cómo preparar un buen mate, paso a paso", "seccion": "productos"}, {"slug": "como-usar-la-mesa-de-negociacion", "titulo": "Cómo usar Oportunidades Globales para encontrar lo que buscás", "seccion": "negocios"}, {"slug": "guia-de-talles-como-medirte", "titulo": "Guía de talles: cómo medirte para acertar en tu compra", "seccion": "productos"}, {"slug": "incoterms-explicados-fob-cif-exw", "titulo": "Incoterms explicados: FOB, CIF, EXW y los más usados", "seccion": "negocios"}, {"slug": "primeros-pasos-para-exportar-de-argentina-a-mexico", "titulo": "Primeros pasos para exportar de Argentina a México", "seccion": "negocios"}, {"slug": "que-es-el-mate", "titulo": "Qué es el mate: origen, tradición y cómo se toma", "seccion": "productos"}, {"slug": "que-es-la-posicion-arancelaria", "titulo": "Qué es la posición arancelaria y cómo encontrar la de tu producto", "seccion": "negocios"}, {"slug": "molienda-de-cafe-segun-tu-cafetera", "titulo": "Qué molienda de café usar según tu cafetera", "seccion": "productos"}], "presupuestos": ["Bajo", "Medio", "Alto"]}, "paises_envio": ["México", "Estados Unidos", "España", "Chile", "Uruguay", "Colombia", "Perú", "Canadá", "Brasil", "Italia", "Alemania"]};</script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-  <script src="../assets/js/panel.js?v=d9d78e32"></script>
+  <script src="../assets/js/panel.js?v=603d20d3"></script>
+  <script src="../assets/js/panel-viajes.js?v=b7f0bc9a"></script>
 </body>
 </html>

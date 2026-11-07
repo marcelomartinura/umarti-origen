@@ -61,7 +61,7 @@
     if (p.precio_usd != null) return [plata(p.precio_usd, 'USD'), 'USD'];
     return ['Sin precio', ''];
   }
-  function mostrar(id) { ['#v-login', '#v-noadmin', '#v-lista', '#v-editor'].forEach(function (v) { $(v).hidden = v !== id; }); window.scrollTo(0, 0); }
+  function mostrar(id) { $$('main.pn-main > section').forEach(function (v) { v.hidden = '#' + v.id !== id; }); window.scrollTo(0, 0); }
 
   /* ---------- ingreso ---------- */
   var modoAlta = false;
@@ -105,10 +105,19 @@
       $('#pn-email').textContent = s.user.email; $('#pn-user').hidden = false;
       return api.esAdmin().then(function (si) {
         if (!si) { $('#noadmin-email').textContent = s.user.email; mostrar('#v-noadmin'); return; }
-        cargarLista();
+        window.PanelComun.listo = true;
+        abrirModulo(location.hash === '#viajes' ? 'viajes' : 'productos');
       });
     });
   }
+
+  /* ---------- módulos ---------- */
+  function abrirModulo(m) {
+    $$('.pn-mods .mod').forEach(function (b) { b.classList.toggle('on', b.dataset.mod === m); });
+    if (m === 'viajes') { if (!window.PanelViajes) { setTimeout(function () { abrirModulo('viajes'); }, 50); return; } history.replaceState(null, '', '#viajes'); window.PanelViajes.abrir(); }
+    else { history.replaceState(null, '', location.pathname + location.search); cargarLista(); }
+  }
+  $$('.pn-mods .mod').forEach(function (b) { b.addEventListener('click', function () { if (!b.disabled && window.PanelComun.listo) abrirModulo(b.dataset.mod); }); });
 
   /* ---------- lista ---------- */
   var productos = [], filtroEstado = '';
@@ -353,6 +362,9 @@
     };
   }
 
+  window.PanelComun = { sb: sb, demo: demo, P: P, $: $, $$: $$, esc: esc, toast: toast, slugify: slugify, mostrar: mostrar, achicar: achicar,
+    productos: function () { return demo ? api.listar() : sb.from('productos').select('codigo,nombre,categoria,estado').order('codigo').then(ok); },
+    listo: false, abrirModulo: abrirModulo };
   iniciar();
   if (sb) sb.auth.onAuthStateChange(function (ev) { if (ev === 'SIGNED_OUT') mostrar('#v-login'); });
 })();

@@ -1,0 +1,58 @@
+[
+ {
+  "slug": "buenos-aires",
+  "pais": "Argentina",
+  "ciudad": "Buenos Aires",
+  "region": "Ciudad Autónoma de Buenos Aires",
+  "resumen": "Barrios con identidad propia, cafés notables, tango y una de las escenas gastronómicas más intensas del continente.",
+  "tags": [
+   "Cultura",
+   "Gastronomía",
+   "Urbano"
+  ],
+  "foto": "",
+  "foto_pos": "center",
+  "dias": "3 a 4 días",
+  "mejor_epoca": "Primavera (septiembre a noviembre) y otoño (marzo a mayo)",
+  "presupuesto": "Medio",
+  "por_que": "Buenos Aires es una ciudad para caminar. Cada barrio tiene su personalidad: la elegancia de Recoleta, el empedrado de San Telmo, los colores de La Boca, los edificios nuevos de Puerto Madero y la movida de Palermo.\n\nEs también la puerta de entrada a Argentina para la mayoría de los viajeros, y un buen lugar para probar todo lo que después vas a encontrar en el resto del país: carnes, vinos, mate y dulce de leche.",
+  "cuando_ir": "**Mejor época:** Primavera (septiembre a noviembre) y otoño (marzo a mayo).\n\n**Clima:** Templado y húmedo. Veranos calurosos (diciembre a febrero) e inviernos frescos, sin nieve.",
+  "que_comer": "- Asado y bife de chorizo en una parrilla de barrio\n- Pizza porteña al molde y fainá\n- Medialunas con café en un bar notable\n- Empanadas\n- Helado artesanal y dulce de leche",
+  "donde_alojarse": "La mayoría de los viajeros se alojan en estos barrios:\n\n- **Palermo**: parques, bares y restaurantes; ideal para salir de noche.\n- **Recoleta**: elegante, tranquila y cerca de museos.\n- **San Telmo**: empedrado, tango y ferias; con mucha historia.\n- **Centro y Puerto Madero**: cómodos para moverse y para viajes de trabajo.",
+  "como_llegar": "Los vuelos internacionales llegan al Aeropuerto de Ezeiza, a unos 35 km del centro. Los vuelos nacionales y algunos regionales usan Aeroparque, junto al Río de la Plata.",
+  "como_moverse": "Subte, colectivos y trenes se pagan con la tarjeta SUBE. Las zonas más turísticas se recorren bien a pie y en bicicleta, con ciclovías y bicicletas públicas.",
+  "que_hacer": "- **San Telmo**: La feria de antigüedades de los domingos y el tango en la calle.\n- **La Boca y Caminito**: Las casas de chapa de colores, mejor de día.\n- **Recoleta**: El cementerio, los museos y las plazas con ferias de fin de semana.\n- **Teatro Colón**: Una de las salas de ópera más importantes del mundo, con visitas guiadas.\n- **Palermo**: Parques, bares, diseño y restaurantes para todos los gustos.\n- **Plaza de Mayo**: La Casa Rosada, el Cabildo y la Catedral en un mismo lugar.",
+  "consejos": "- Reservá con anticipación las parrillas más conocidas, sobre todo los fines de semana.\n- Antes de viajar, revisá cómo conviene pagar: con tarjeta, en efectivo o con billeteras virtuales.\n- Se cena tarde: muchos restaurantes se llenan después de las 21 h.",
+  "faqs": [
+   {
+    "a": "Primavera (septiembre a noviembre) y otoño (marzo a mayo). Templado y húmedo. Veranos calurosos (diciembre a febrero) e inviernos frescos, sin nieve.",
+    "q": "¿Cuál es la mejor época para viajar a Buenos Aires?"
+   },
+   {
+    "a": "Recomendamos 3 a 4 días para recorrer lo esencial sin apuro.",
+    "q": "¿Cuántos días se necesitan para conocer Buenos Aires?"
+   },
+   {
+    "a": "Los vuelos internacionales llegan al Aeropuerto de Ezeiza, a unos 35 km del centro. Los vuelos nacionales y algunos regionales usan Aeroparque, junto al Río de la Plata.",
+    "q": "¿Cómo llegar a Buenos Aires?"
+   },
+   {
+    "a": "Subte, colectivos y trenes se pagan con la tarjeta SUBE. Las zonas más turísticas se recorren bien a pie y en bicicleta, con ciclovías y bicicletas públicas.",
+    "q": "¿Cómo moverse en Buenos Aires?"
+   }
+  ],
+  "detalle": [],
+  "notas": [
+   "como-preparar-un-buen-mate",
+   "que-es-el-mate"
+  ],
+  "productos": [],
+  "categorias_tienda": [
+   "Café, Té y Mate",
+   "Alimentos"
+  ],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-07T16:14:29.647129+00:00"
+ }
+]

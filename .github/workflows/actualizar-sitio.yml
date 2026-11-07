@@ -24,6 +24,8 @@ jobs:
           python-version: "3.12"
       - name: Traer productos del Panel
         run: python3 _fuente/tienda/importar_supabase.py
+      - name: Traer destinos de Viajes del Panel
+        run: python3 _fuente/viajes/importar_destinos.py
       - name: Reconstruir el sitio
         run: |
           python3 _fuente/construir_tienda.py > /dev/null
