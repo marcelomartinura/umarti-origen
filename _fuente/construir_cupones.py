@@ -273,7 +273,7 @@ def pagina_cat(nombre, s, colores, sub, cupones, cv):
     lista = [c for c in cupones if c["categoria"] == nombre]
     # Foto de la franja: assets/img/cupones/<categoría>.jpg (si existe)
     ruta = f"assets/img/cupones/{s}.jpg"
-    foto = f'<img class="ch-foto" src="{rel(d, ruta)}" alt="">' if os.path.exists(os.path.join(comun.RAIZ, ruta)) else ""
+    foto = f'<img class="ch-foto ch-{s}" src="{rel(d, ruta)}" alt="">' if os.path.exists(os.path.join(comun.RAIZ, ruta)) else ""
     main = f'''    <div class="wrap">
 {comun_crumbs(d, nombre)}
       <section class="cat-head{' has-foto' if foto else ''}" style="--c1:{colores[0]};--c2:{colores[1]}">{foto}<span class="ico">{icon(nombre)}</span><span class="eyebrow" style="color:#fff;opacity:.85">Cuponera</span><h1>Cupones de {nombre.lower()}</h1><p>{esc(sub)}. Tocá Ver código para obtener tu descuento.</p></section>
