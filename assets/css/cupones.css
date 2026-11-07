@@ -157,3 +157,13 @@ dialog.cu-dlg::backdrop { background: rgba(31, 26, 20, 0.6); }
   .merchant-band { padding: 24px; }
 }
 .cu-pub-nota { display: block; margin-top: 8px; font-size: 0.82rem; color: var(--muted); }
+.cat-head .eyebrow { position: relative; z-index: 1; }
+.cat-head.has-foto { min-height: 280px; display: flex; flex-direction: column; justify-content: center; }
+.cat-head .ch-foto { position: absolute; top: 0; right: 0; width: 62%; height: 100%; object-fit: cover; object-position: center 45%;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, rgba(0,0,0,.6) 22%, #000 48%); mask-image: linear-gradient(90deg, transparent 0, rgba(0,0,0,.6) 22%, #000 48%); }
+.cat-head.has-foto .ico { display: none; }
+.cat-head.has-foto h1, .cat-head.has-foto p { max-width: 520px; z-index: 1; text-shadow: 0 1px 12px rgba(0,0,0,.18); }
+@media (max-width: 760px) {
+  .cat-head.has-foto { padding-top: 190px; }
+  .cat-head .ch-foto { width: 100%; height: 200px; -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent); mask-image: linear-gradient(180deg, #000 55%, transparent); }
+}
