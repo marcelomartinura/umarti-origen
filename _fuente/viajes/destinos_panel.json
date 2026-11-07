@@ -56,6 +56,11 @@
   "actualizado": "2026-11-07T16:14:29.647129+00:00",
   "clima": "2-3435910",
   "requisitos": "- **Seguro médico:** las personas extranjeras que entran a la Argentina como turistas deben tener un seguro de salud que las cubra durante toda la estadía. Llevá la póliza a mano: te la pueden pedir al ingresar.\n- **Documento:** pasaporte vigente. Los ciudadanos de países del Mercosur y asociados pueden entrar con su documento de identidad.\n- **Visa:** la mayoría de los países de América y Europa no la necesitan para estadías turísticas de hasta 90 días. Consultá tu caso antes de viajar.",
-  "requisitos_fuente": "https://www.argentina.gob.ar/interior/migraciones"
+  "requisitos_fuente": "https://www.argentina.gob.ar/interior/migraciones",
+  "moneda": "Peso argentino (ARS). Se aceptan tarjetas en casi todos lados; conviene llevar algo de efectivo.",
+  "corriente": "220 V · 50 Hz. Enchufes tipo I (tres patas planas en V) y algunos tipo C.",
+  "huso": "America/Argentina/Buenos_Aires",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles argentinos: en ropa, numéricos o de letras; en calzado, un número menos que el europeo."
  }
 ]

@@ -39,6 +39,9 @@ ESPACIOS = {
     "viajes-1":          dict(nombre="Viajes · después de los destinos", formato="horizontal", modo="propio", adsense_slot="", codigo=""),
     "viajes-2":          dict(nombre="Viajes · después de Organizá tu viaje", formato="horizontal", modo="propio", adsense_slot="", codigo=""),
     "viajes-3":          dict(nombre="Viajes · al final",              formato="horizontal", modo="propio", adsense_slot="", codigo=""),
+    "guia-1":            dict(nombre="Guía de destino · debajo de la presentación", formato="horizontal", modo="propio", adsense_slot="", codigo=""),
+    "guia-2":            dict(nombre="Guía de destino · en medio de la guía", formato="horizontal", modo="propio", adsense_slot="", codigo=""),
+    "guia-3":            dict(nombre="Guía de destino · al final de la página", formato="horizontal", modo="propio", adsense_slot="", codigo=""),
 }
 
 ANUNCIOS = [

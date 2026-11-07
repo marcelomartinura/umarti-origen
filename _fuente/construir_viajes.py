@@ -606,12 +606,25 @@ def pagina_destino_panel(x):
                "donde_alojarse": (f"{base}donde-alojarse/", f"Dónde alojarse en {n}: hoteles, cabañas y cupones")}
     for ancla, titulo, corto, campo, fn in secciones:
         extra = clima_html(f.get("clima"), n) if campo == "cuando_ir" else ""
-        if campo in enlaces:
+        if campo == "por_que":
+            u, _ = enlaces[campo]
+            extra += (f'<a class="d-destacado" href="{u}"><span class="dd-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 1 2-2h2l2-2h6l2 2h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="4"/></svg></span>'
+                      f'<span class="dd-txt"><b>Conocé {esc(n)} en detalle</b><small>Fotos, videos e historias del destino</small></span><em>Ver →</em></a>')
+        elif campo in enlaces:
             u, t = enlaces[campo]
             extra += f'<a class="d-mas" href="{u}">{esc(t)} →</a>'
+        if campo == "como_llegar":
+            extra += f'<a class="d-mas" href="{rel(d, p_serv("vuelos"))}?destino={x["slug"]}">Buscar vuelos a {esc(n)} →</a>'
+        if campo == "consejos":
+            cuerpo.append(f'<div class="ad-fila">{aviso_guia(d, 2)}</div>')
         if (f.get(campo) or "").strip() or extra:
             cuerpo.append(f'<h2 id="{ancla}">{esc(titulo)}</h2>\n{fn(f.get(campo) or "")}{extra}')
             toc.append((ancla, corto))
+        if campo == "por_que":
+            dp = datos_practicos(x, d)
+            if dp:
+                cuerpo.append(dp)
+                toc.append(("datos-practicos", "Datos prácticos"))
         if campo == "cuando_ir" and (f.get("requisitos") or "").strip():
             fuente = (f.get("requisitos_fuente") or "").strip()
             fh = ""
@@ -673,6 +686,7 @@ def pagina_destino_panel(x):
         f'          <div class="tipos">{tipos}</div></div>',
         f'        {portada}',
         '      </section>',
+        f'      <div class="ad-fila ad-guia1">{aviso_guia(d, 1)}</div>',
         '      <div class="post-layout">',
         '        <article class="prose">', "\n".join(cuerpo), '        </article>',
         f'        <aside class="post-aside"><div class="aside-sticky">{toc_html}{notas_box}{plan_box}</div></aside>',
@@ -680,7 +694,8 @@ def pagina_destino_panel(x):
         '    </div>',
         '    <section class="related"><div class="wrap"><h2>Otros destinos</h2><div class="dest-grid">',
         "\n".join(dest_card(o, d) for o in otros),
-        '    </div></div></section>'])
+        '    </div></div></section>',
+        f'    <div class="wrap"><div class="ad-fila ad-guia3">{aviso_guia(d, 3)}</div></div>'])
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "TouristDestination", "name": n, "description": x["resumen"], "touristType": x["tipos"],
          "containedInPlace": {"@type": "Country", "name": v["nombre"]}}]}
@@ -827,6 +842,8 @@ def organiza_destino(x, d):
     items = []
     for n, ic in SERVICIOS:
         k = CLAVES_SERV[n]
+        if k in ("alojamiento", "vuelos"):
+            continue
         xs = ofertas_de(k, x["slug"])
         loc = sum(1 for o in xs if o.get("tipo") != "aliado")
         sub = (f"{loc} opción{'' if loc == 1 else 'es'} local{'' if loc == 1 else 'es'}" if loc else "Con nuestros aliados") if xs else "Próximamente"
@@ -834,6 +851,44 @@ def organiza_destino(x, d):
     tz = PAISES.get(x["pais"], {}).get("tz")
     items.append(f'<a class="od-item" href="{rel(d, "recursos/diferencia-horaria/")}{"?a=" + quote(tz) + "&n=" + quote(x["nombre"]) if tz else ""}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>Diferencia horaria</b><small>¿Qué hora es en {esc(x["nombre"])}?</small></span></a>')
     return f'<section class="d-organiza" id="organiza"><h2>Organizá tu viaje a {esc(x["nombre"])}</h2><div class="od-grid">{"".join(items)}</div></section>'
+
+
+def aviso_guia(depth, n):
+    import avisos
+    return avisos.espacio(f"guia-{n}", depth, "viajes", "Viajes")
+
+
+def _utc(tz):
+    try:
+        import datetime
+        from zoneinfo import ZoneInfo
+        off = datetime.datetime.now(ZoneInfo(tz)).utcoffset().total_seconds() / 3600
+        h = int(off) if off == int(off) else off
+        return "UTC" + ("+" if off >= 0 else "−") + str(abs(h)).replace(".5", ":30")
+    except Exception:
+        return ""
+
+
+def datos_practicos(x, d):
+    """Moneda, corriente, huso horario, unidades y talles, cada uno con su recurso digital."""
+    f = x.get("panel") or {}
+    v = PAISES.get(x["pais"], {})
+    tz = f.get("huso") or v.get("tz") or ""
+    import construir_recursos as cr
+    pais_corr = v.get("nombre") if any(p == v.get("nombre") for p, *_ in cr.CORRIENTE) else ""
+    items = [
+        ("Moneda", f.get("moneda") or v.get("moneda") or "", "recursos/conversor-de-monedas/", "Convertir monedas", "moneda"),
+        ("Corriente eléctrica", f.get("corriente") or "", "recursos/enchufes-y-corriente/" + (f"?a={quote(pais_corr)}" if pais_corr else ""), "¿Necesito adaptador?", "enchufe"),
+        ("Huso horario", (f"{_utc(tz)} · " if tz else "") + (tz.split("/")[-1].replace("_", " ") if tz else ""), "recursos/diferencia-horaria/" + (f"?a={quote(tz)}&n={quote(x['nombre'])}" if tz else ""), "Ver la diferencia horaria", "reloj"),
+        ("Unidades de medida", f.get("unidades") or "", "recursos/conversor-de-unidades/", "Convertir unidades", "regla"),
+        ("Sistema de talles", f.get("talles") or "", "recursos/tabla-de-talles/", "Ver tabla de talles", "talle"),
+    ]
+    items = [i for i in items if i[1].strip()]
+    if not items:
+        return ""
+    cards = "".join(f'<a class="dp-item" href="{rel(d, u)}"><span class="dp-ico">{cr.icono(ic, 22)}</span><span class="dp-txt"><small>{t}</small><b>{esc(val)}</b><em>{cta} →</em></span></a>'
+                    for t, val, u, cta, ic in items)
+    return f'<section class="d-practicos" id="datos-practicos"><h2>Datos prácticos</h2><div class="dp-grid">{cards}</div></section>'
 
 
 def clima_html(codigo, nombre):

@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="../../assets/img/marca/favicon-32.png">
+  <link rel="apple-touch-icon" href="../../assets/img/marca/apple-touch-icon.png">
+  <title>Conversor de unidades gratis | Recursos Umarti Origen</title>
+  <meta name="description" content="Kilómetros y millas, kilos y libras, litros y galones, grados Celsius y Fahrenheit.">
+  <meta property="og:title" content="Conversor de unidades gratis | Recursos Umarti Origen">
+  <meta property="og:description" content="Kilómetros y millas, kilos y libras, litros y galones, grados Celsius y Fahrenheit.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/umarti.css?v=3aea4176">
+  <link rel="stylesheet" href="../../assets/css/blog.css?v=422de8ce">
+  <link rel="stylesheet" href="../../assets/css/recursos.css?v=9465adae">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Conversor de unidades",
+  "description": "Kilómetros y millas, kilos y libras, litros y galones, grados Celsius y Fahrenheit.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Cualquiera (navegador)",
+  "inLanguage": "es",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué países usan millas y libras?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Estados Unidos usa millas, libras, galones y grados Fahrenheit. El Reino Unido usa millas en las rutas y pintas para la cerveza, pero el resto en sistema métrico. Casi todo el resto del mundo, incluidos Argentina y México, usa el sistema métrico."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuántos kilómetros es una milla?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Una milla son 1,609 kilómetros. Un truco rápido: multiplicá las millas por 1,6."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo paso de Fahrenheit a Celsius?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Restá 32 y multiplicá por 5/9. Por ejemplo, 77 °F son 25 °C."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body data-prefix="../../">
+
+  <header class="site-header" id="site-header">
+    <!-- Fila superior -->
+    <div class="wrap-wide topbar">
+      <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menú">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <a href="../../" class="logo" aria-label="Umarti Origen, ir al inicio"><img class="logo-ico" src="../../assets/img/marca/icono.png" alt="" width="259" height="236"><span class="logo-txt"><b>Umarti</b><b>Origen</b></span></a>
+      <form class="search" role="search" onsubmit="return false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" placeholder="Buscar productos, oportunidades o destinos" aria-label="Buscar">
+      </form>
+      <div class="user-actions">
+        <a href="../../" class="icon-link" aria-label="Mi cuenta">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+          <span>Mi cuenta</span>
+        </a>
+        <a href="../../favoritos/" class="icon-link" aria-label="Favoritos">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>
+          <span>Favoritos</span>
+          <b class="badge" id="fav-count" hidden>0</b>
+        </a>
+        <a href="../../" class="icon-link" aria-label="Carrito">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2"/><circle cx="10" cy="20.5" r="1.2"/><circle cx="17" cy="20.5" r="1.2"/></svg>
+          <span>Carrito</span>
+          <b class="badge">0</b>
+        </a>
+      </div>
+    </div>
+
+    <!-- Módulos de navegación -->
+    <nav class="wrap-wide modules" id="main-nav" aria-label="Principal">
+
+      <!-- Módulo 1: Tienda -->
+      <div class="module m-shop">
+        <p class="module-label"><span>Tienda</span><a class="mi-link" href="../../mi-tienda/">Mi tienda</a></p>
+        <ul class="module-items">
+          <li class="has-menu mega">
+            <button class="nav-btn" aria-expanded="false">Productos
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="dropdown mega-panel">
+              <div class="mega-grid">
+                <div><a class="cat" href="../../argentina/tienda/cafe-te-y-mate/">Café, Té y Mate</a>
+                  <ul><li><a href="../../argentina/tienda/cafe-te-y-mate/?sub=Mates%20y%20bombillas">Mates y bombillas</a></li><li><a href="../../argentina/tienda/cafe-te-y-mate/?sub=Caf%C3%A9">Café</a></li><li><a href="../../argentina/tienda/cafe-te-y-mate/?sub=T%C3%A9">Té</a></li><li><a href="../../argentina/tienda/cafe-te-y-mate/?sub=Chocolate">Chocolate</a></li></ul></div>
+                <div><a class="cat" href="../../argentina/tienda/regalos-y-kits/">Regalos y Kits</a>
+                  <ul><li><a href="../../argentina/tienda/regalos-y-kits/?sub=Kits%20de%20mate%20y%20caf%C3%A9">Kits de mate y café</a></li><li><a href="../../argentina/tienda/regalos-y-kits/?sub=Regalos%20corporativos">Regalos corporativos</a></li><li><a href="../../argentina/tienda/regalos-y-kits/?sub=Personalizados">Personalizados</a></li></ul></div>
+                <div><a class="cat" href="../../argentina/tienda/articulos-regionales/">Artículos Regionales</a>
+                  <ul><li><a href="../../argentina/tienda/articulos-regionales/?sub=Bolsos%20materos">Bolsos materos</a></li><li><a href="../../argentina/tienda/articulos-regionales/?sub=Marroquiner%C3%ADa%20y%20ri%C3%B1oneras">Marroquinería y riñoneras</a></li><li><a href="../../argentina/tienda/articulos-regionales/?sub=Juegos%20de%20asado">Juegos de asado</a></li><li><a href="../../argentina/tienda/articulos-regionales/?sub=Portatermos%20y%20llaveros">Portatermos y llaveros</a></li></ul></div>
+                <div><a class="cat" href="../../argentina/tienda/bebidas/">Bebidas</a>
+                  <ul><li><a href="../../argentina/tienda/bebidas/?sub=Vinos">Vinos</a></li><li><a href="../../argentina/tienda/bebidas/?sub=Cervezas%20y%20destilados">Cervezas y destilados</a></li><li><a href="../../argentina/tienda/bebidas/?sub=Sin%20alcohol">Sin alcohol</a></li></ul></div>
+                <div><a class="cat" href="../../argentina/tienda/alimentos/">Alimentos</a>
+                  <ul><li><a href="../../argentina/tienda/alimentos/?sub=Alimentos%20congelados">Alimentos congelados</a></li><li><a href="../../argentina/tienda/alimentos/?sub=Alimentos%20diet">Alimentos diet</a></li><li><a href="../../argentina/tienda/alimentos/?sub=Golosinas">Golosinas</a></li><li><a href="../../argentina/tienda/alimentos/?sub=Snacks">Snacks</a></li></ul></div>
+              </div>
+              <div class="mega-more"><span>Más categorías</span><a href="../../argentina/tienda/salud-y-bienestar/">Salud y Bienestar</a><a href="../../argentina/tienda/moda/">Moda</a><a href="../../argentina/tienda/tecnologia/">Tecnología</a><a href="../../argentina/tienda/herramientas-y-jardin/">Herramientas y Jardín</a><a href="../../argentina/tienda/hogar-y-cocina/">Hogar y Cocina</a><a href="../../argentina/tienda/limpieza-e-higiene/">Limpieza e Higiene</a></div>
+              <div class="mega-foot">
+                <span>Productos con origen, elegidos en Argentina.</span>
+                <span><a href="../../argentina/categorias/">Ver todos los productos →</a></span>
+              </div>
+            </div>
+          </li>
+          <li><a class="nav-btn" href="../../international-shop/">International Shop</a></li>
+        </ul>
+      </div>
+
+      <!-- Módulo 2: Mercados Globales -->
+      <div class="module m-world">
+        <p class="module-label"><span>Mercados Globales</span><a class="mi-link" href="../../mi-empresa/">Mi empresa</a></p>
+        <ul class="module-items">
+          <li class="has-menu">
+            <button class="nav-btn" aria-expanded="false">Hub de Oportunidades
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="dropdown">
+              <a class="item" href="../../oportunidades-globales/"><strong>Oportunidades Globales</strong><span>Búsquedas de productos y servicios</span></a>
+              <a class="item" href="../../productos-de-exportacion/"><strong>Productos de exportación</strong><span>Productos listos para vender a otros países</span></a>
+              <a class="item" href="../../servicios-de-comercio-exterior/"><strong>Servicios de Comercio Exterior</strong><span>Aduana, logística, seguros y asesoría</span></a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Módulo 3: Herramientas -->
+      <div class="module m-tools">
+        <p class="module-label">Herramientas</p>
+        <ul class="module-items">
+          <li><a class="nav-btn" href="../../blog/">Blog</a></li>
+          <li><a class="nav-btn" href="../../viajes/">Viajes</a></li>
+          <li><a class="nav-btn" href="../../recursos/">Recursos digitales</a></li>
+          <li><a class="nav-btn" href="../../cupones/">Cupones</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Ubicación"><ol><li><a href="../../">Inicio</a></li><li><a href="../../recursos/">Recursos digitales</a></li><li aria-current="page">Conversor de unidades</li></ol></nav>
+      <header class="rc-head">
+        <span class="rc-ico big"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17 17 3l4 4L7 21zM7 13l2 2M10 10l2 2M13 7l2 2"/></svg></span>
+        <div>
+          <span class="eyebrow">Viajes</span>
+          <h1>Conversor de unidades</h1>
+          <p>Kilómetros y millas, kilos y libras, litros y galones, grados Celsius y Fahrenheit.</p>
+        </div>
+      </header>
+      <section class="tool" data-tool="unidades">
+        <div class="seg un-tipos" role="radiogroup" aria-label="Magnitud">
+          <button type="button" data-u="longitud" aria-pressed="true">Distancia</button>
+          <button type="button" data-u="peso" aria-pressed="false">Peso</button>
+          <button type="button" data-u="volumen" aria-pressed="false">Volumen</button>
+          <button type="button" data-u="temperatura" aria-pressed="false">Temperatura</button>
+          <button type="button" data-u="velocidad" aria-pressed="false">Velocidad</button>
+          <button type="button" data-u="superficie" aria-pressed="false">Superficie</button>
+        </div>
+        <div class="cv-row" style="margin-top:16px">
+          <label class="fld grow">Valor<input id="un-v" type="number" step="any" value="1" inputmode="decimal"></label>
+          <label class="fld">De<select id="un-de"></select></label>
+          <button type="button" class="cv-swap" id="un-swap" aria-label="Invertir unidades">⇄</button>
+          <label class="fld">A<select id="un-a"></select></label>
+        </div>
+        <div class="cv-out" id="un-out" aria-live="polite"></div>
+      </section>
+      <section class="tool">
+        <h2 class="tool-h">Equivalencias rápidas para viajar</h2>
+        <div class="tbl-wrap"><table class="tbl" id="un-tabla"></table></div>
+      </section>
+      <p class="rc-aviso">Conversiones exactas con los factores oficiales del Sistema Internacional.</p>
+      <div class="ad-fila"><aside class="ad ad-en-nota ad-house" data-espacio="herramienta-1" aria-label="Espacio publicitario">
+            <span class="ad-label">Publicidad</span>
+            <a class="ad-body" href="../../publicidad/"><span class="ad-txt"><strong>Tu marca, acá</strong><span>Llegá a quienes leen sobre herramientas para vender y exportar. Este espacio está disponible.</span><b>Anunciá en Umarti →</b></span></a>
+          </aside></div>
+      <div class="rc-bottom">
+        <section class="rc-faq" aria-labelledby="faq-h">
+          <h2 id="faq-h">Preguntas frecuentes</h2>
+          <details><summary>¿Qué países usan millas y libras?</summary><p>Estados Unidos usa millas, libras, galones y grados Fahrenheit. El Reino Unido usa millas en las rutas y pintas para la cerveza, pero el resto en sistema métrico. Casi todo el resto del mundo, incluidos Argentina y México, usa el sistema métrico.</p></details><details><summary>¿Cuántos kilómetros es una milla?</summary><p>Una milla son 1,609 kilómetros. Un truco rápido: multiplicá las millas por 1,6.</p></details><details><summary>¿Cómo paso de Fahrenheit a Celsius?</summary><p>Restá 32 y multiplicá por 5/9. Por ejemplo, 77 °F son 25 °C.</p></details>
+        </section>
+        <aside class="rc-side">
+          
+          <aside class="ad ad-lateral ad-house" data-espacio="herramienta-2" aria-label="Espacio publicitario">
+            <span class="ad-label">Publicidad</span>
+            <a class="ad-body" href="../../publicidad/"><span class="ad-txt"><strong>Tu marca, acá</strong><span>Llegá a quienes leen sobre herramientas para vender y exportar. Este espacio está disponible.</span><b>Anunciá en Umarti →</b></span></a>
+          </aside>
+          <div class="box"><h2>Otras herramientas</h2><div class="rc-minis"><a class="rc-mini" href="../../recursos/enchufes-y-corriente/"><span class="rc-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2v6M15 2v6M6 8h12v4a6 6 0 0 1-12 0zM12 18v4"/></svg></span><span><b>Enchufes y corriente eléctrica</b><small>Qué enchufe y qué voltaje hay en tu destino, y si necesitás adaptador o transformador.</small></span></a><a class="rc-mini" href="../../recursos/diferencia-horaria/"><span class="rc-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><b>Diferencia horaria</b><small>Qué hora es en tu destino y cuántas horas de diferencia hay con donde estás.</small></span></a><a class="rc-mini" href="../../recursos/conversor-de-monedas/"><span class="rc-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.6-1-1.7-1.5-3-1.5-1.7 0-3 .9-3 2.2 0 3 6 1.6 6 4.6 0 1.3-1.3 2.2-3 2.2-1.4 0-2.6-.6-3.2-1.6M12 6v2M12 16v2"/></svg></span><span><b>Conversor de monedas</b><small>Pesos argentinos, mexicanos, dólares y más, con el dólar oficial, MEP y blue en vivo.</small></span></a><a class="rc-mini" href="../../recursos/calculadora-de-exportacion/"><span class="rc-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17h18M5 17l1.5-5h11L19 17M8 12V7h8v5M12 3v4"/></svg></span><span><b>Calculadora financiera de exportación</b><small>Factoraje, precio de exportación EXW, FOB y CIF, y precio puesto en destino.</small></span></a></div><a class="all" href="../../recursos/">Todos los recursos</a></div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap foot foot-top">
+      <div class="foot-marca">
+        <a href="../../" class="logo logo-foot" aria-label="Umarti Origen, ir al inicio"><img class="logo-ico" src="../../assets/img/marca/icono.png" alt="" width="259" height="236"><span class="logo-txt"><b>Umarti</b><b>Origen</b></span></a>
+        <p>Tienda &amp; Mercados Globales</p>
+      </div>
+      <div class="eco-band" aria-label="Ecosistema Umarti">
+        <span class="eco-tit">Ecosistema <b>Umarti</b></span>
+        <div class="eco-items"><a class="eco-item" href="https://www.umartidigital.com" target="_blank" rel="noopener"><img class="eco-av" src="../../assets/img/ecosistema/avatar-digital.jpg" alt="" width="56" height="56"><span class="eco-txt"><span class="eco-name"><img class="eco-logo" src="../../assets/img/ecosistema/logo-digital.png" alt="Umarti Digital" width="120" height="38"></span><small>Consultoría y evolución digital</small></span></a><a class="eco-item" href="https://profesionales.umartidigital.com/" target="_blank" rel="noopener"><img class="eco-av" src="../../assets/img/ecosistema/avatar-digital.jpg" alt="" width="56" height="56"><span class="eco-txt"><span class="eco-name"><b>Umarti Digital</b><b>Profesionales</b></span><small>Red de profesionales</small></span></a><div class="eco-item"><img class="eco-av" src="../../assets/img/ecosistema/avatar-motors.jpg" alt="" width="56" height="56"><span class="eco-txt"><span class="eco-name"><span class="eco-chip"><img src="../../assets/img/ecosistema/logo-motors.png" alt="Umarti Motors" width="96" height="37"></span></span><small>Marketplace de movilidad</small><em>Próximamente</em></span></div><div class="eco-item"><img class="eco-av eco-av-origen" src="../../assets/img/ecosistema/avatar-origen.jpg" alt="" width="56" height="56"><span class="eco-txt"><span class="eco-name"><span class="eco-chip eco-chip-origen"><img src="../../assets/img/marca/icono.png" alt="" width="26" height="24"><span><b>Umarti</b><b>Origen</b></span></span></span><small>Tienda y Mercados Globales</small><em>Próximamente</em></span></div></div>
+      </div>
+    </div>
+    <div class="wrap foot-legal">
+      <nav aria-label="Información legal">
+        <a href="../../legal/terminos/">Términos y Privacidad</a>
+        <a href="../../legal/cookies/">Cookies</a>
+        <a href="../../envios/">Envíos</a>
+        <span class="foot-copy">© 2026 Umarti · <a href="../../publicidad/">Anunciá en Umarti</a></span>
+      </nav>
+      <div class="foot-consumo">
+        <a class="btn-arrep" href="../../legal/arrepentimiento/">Botón de arrepentimiento</a>
+        <a class="def-cons" href="https://www.argentina.gob.ar/produccion/defensadelconsumidor/formulario" target="_blank" rel="noopener">Defensa de las y los Consumidores. Para reclamos <b>ingrese aquí</b></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/header.js?v=aeeac190"></script>
+  <script src="../../assets/js/recursos.js?v=fdbab582"></script>
+</body>
+</html>

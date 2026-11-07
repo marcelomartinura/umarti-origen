@@ -30,9 +30,10 @@ HERRAMIENTAS = [
     ("incoterms-interactivo", "Incoterms interactivo", "Qué paga y qué riesgo asume cada parte, tramo por tramo.", "Comercio exterior", "ruta", False),
     ("documentos-para-exportar", "Documentos para exportar", "La lista de papeles según origen, destino y tipo de producto.", "Comercio exterior", "doc", False),
     ("cotizacion-proforma", "Cotización y factura proforma", "Completá los datos y descargá un PDF listo para enviar.", "Vender en línea", "doc", False),
-    ("conversor-de-unidades", "Conversor de unidades", "Kilos y libras, centímetros y pulgadas, litros y galones.", "Vender en línea", "regla", False),
     ("enlace-de-whatsapp", "Enlace de WhatsApp y QR", "Para que tus clientes te escriban con un toque.", "Vender en línea", "chat", False),
     ("conversor-de-nomenclatura-dental", "Conversor de nomenclatura dental", "Odontograma interactivo: FDI, Universal y Palmer, en dientes permanentes y temporales.", "Salud", "diente", True),
+    ("conversor-de-unidades", "Conversor de unidades", "Kilómetros y millas, kilos y libras, litros y galones, grados Celsius y Fahrenheit.", "Viajes", "regla", True),
+    ("enchufes-y-corriente", "Enchufes y corriente eléctrica", "Qué enchufe y qué voltaje hay en tu destino, y si necesitás adaptador o transformador.", "Viajes", "enchufe", True),
     ("diferencia-horaria", "Diferencia horaria", "Qué hora es en tu destino y cuántas horas de diferencia hay con donde estás.", "Viajes", "reloj", True),
     ("calculadora-de-imc", "Calculadora de IMC", "Índice de masa corporal y rango de referencia.", "Salud", "pulso", False),
     ("presencia-en-internet", "Presencia en internet", "Tu sitio web, Google Maps y redes sociales listos para que te encuentren.", "Servicios para tu negocio", "web", "https://www.umartidigital.com/presencia-digital/"),
@@ -57,6 +58,7 @@ ICONOS = {
     "doc": '<path d="M6 3h9l4 4v14H6zM14 3v5h5M9 13h6M9 17h6"/>',
     "regla": '<path d="M3 17 17 3l4 4L7 21zM7 13l2 2M10 10l2 2M13 7l2 2"/>',
     "chat": '<path d="M4 19l1.5-4A8 8 0 1 1 9 18.5z"/>',
+    "enchufe": '<path d="M9 2v6M15 2v6M6 8h12v4a6 6 0 0 1-12 0zM12 18v4"/>',
     "reloj": '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
     "diente": '<path d="M7 3c-2.5 0-4 2-4 4.5 0 2.5 1.5 4 2 6.5.5 3 1 7 2.8 7 1.6 0 1.7-5 3.2-5s1.6 5 3.2 5c1.8 0 2.3-4 2.8-7 .5-2.5 2-4 2-6.5C21 5 19.5 3 17 3c-2 0-3 1-5 1S9 3 7 3z"/>',
     "pulso": '<path d="M3 12h4l2-5 4 10 2-5h6"/>',
@@ -574,6 +576,84 @@ def horario():
                               "Calculado en tu navegador con la base de zonas horarias oficial (IANA).")
 
 
+# ---------- 8. Conversor de unidades ----------
+def unidades():
+    cuerpo = '''      <section class="tool" data-tool="unidades">
+        <div class="seg un-tipos" role="radiogroup" aria-label="Magnitud">
+          <button type="button" data-u="longitud" aria-pressed="true">Distancia</button>
+          <button type="button" data-u="peso" aria-pressed="false">Peso</button>
+          <button type="button" data-u="volumen" aria-pressed="false">Volumen</button>
+          <button type="button" data-u="temperatura" aria-pressed="false">Temperatura</button>
+          <button type="button" data-u="velocidad" aria-pressed="false">Velocidad</button>
+          <button type="button" data-u="superficie" aria-pressed="false">Superficie</button>
+        </div>
+        <div class="cv-row" style="margin-top:16px">
+          <label class="fld grow">Valor<input id="un-v" type="number" step="any" value="1" inputmode="decimal"></label>
+          <label class="fld">De<select id="un-de"></select></label>
+          <button type="button" class="cv-swap" id="un-swap" aria-label="Invertir unidades">⇄</button>
+          <label class="fld">A<select id="un-a"></select></label>
+        </div>
+        <div class="cv-out" id="un-out" aria-live="polite"></div>
+      </section>
+      <section class="tool">
+        <h2 class="tool-h">Equivalencias rápidas para viajar</h2>
+        <div class="tbl-wrap"><table class="tbl" id="un-tabla"></table></div>
+      </section>'''
+    faqs = [
+        ("¿Qué países usan millas y libras?", "Estados Unidos usa millas, libras, galones y grados Fahrenheit. El Reino Unido usa millas en las rutas y pintas para la cerveza, pero el resto en sistema métrico. Casi todo el resto del mundo, incluidos Argentina y México, usa el sistema métrico."),
+        ("¿Cuántos kilómetros es una milla?", "Una milla son 1,609 kilómetros. Un truco rápido: multiplicá las millas por 1,6."),
+        ("¿Cómo paso de Fahrenheit a Celsius?", "Restá 32 y multiplicá por 5/9. Por ejemplo, 77 °F son 25 °C."),
+    ]
+    return pagina_herramienta("conversor-de-unidades", cuerpo, faqs, [], "Conversiones exactas con los factores oficiales del Sistema Internacional.")
+
+
+# ---------- 9. Enchufes y corriente eléctrica ----------
+CORRIENTE = [
+    ("Argentina", 220, "50", "C, I"), ("México", 127, "60", "A, B"), ("Estados Unidos", 120, "60", "A, B"), ("Canadá", 120, "60", "A, B"),
+    ("Chile", 220, "50", "C, L"), ("Uruguay", 220, "50", "C, F, I, L"), ("Paraguay", 220, "50", "C"), ("Brasil", 127, "60", "C, N"),
+    ("Perú", 220, "60", "A, B, C"), ("Colombia", 110, "60", "A, B"), ("Bolivia", 230, "50", "A, C"), ("Ecuador", 120, "60", "A, B"),
+    ("Venezuela", 120, "60", "A, B"), ("Costa Rica", 120, "60", "A, B"), ("Panamá", 120, "60", "A, B"), ("República Dominicana", 120, "60", "A, B"),
+    ("Cuba", 110, "60", "A, B, C, L"), ("España", 230, "50", "C, F"), ("Portugal", 230, "50", "C, F"), ("Francia", 230, "50", "C, E"),
+    ("Italia", 230, "50", "C, F, L"), ("Alemania", 230, "50", "C, F"), ("Países Bajos", 230, "50", "C, F"), ("Suiza", 230, "50", "C, J"),
+    ("Reino Unido", 230, "50", "G"), ("Grecia", 230, "50", "C, F"), ("Turquía", 230, "50", "C, F"), ("Emiratos Árabes Unidos", 230, "50", "G"),
+    ("Israel", 230, "50", "C, H"), ("India", 230, "50", "C, D, M"), ("Tailandia", 230, "50", "A, B, C, O"), ("China", 220, "50", "A, C, I"),
+    ("Japón", 100, "50/60", "A, B"), ("Corea del Sur", 220, "60", "C, F"), ("Singapur", 230, "50", "G"), ("Australia", 230, "50", "I"),
+    ("Nueva Zelanda", 230, "50", "I"), ("Egipto", 220, "50", "C, F"), ("Marruecos", 220, "50", "C, E"), ("Sudáfrica", 230, "50", "C, D, M, N"),
+]
+TIPOS_ENCHUFE = {
+    "A": "dos patas planas paralelas", "B": "dos patas planas y una redonda (tierra)", "C": "dos patas redondas finas (europeo)",
+    "D": "tres patas redondas en triángulo", "E": "dos patas redondas y orificio de tierra", "F": "dos patas redondas con tierra lateral (Schuko)",
+    "G": "tres patas rectangulares (británico)", "H": "tres patas en V (Israel)", "I": "dos o tres patas planas en V (Argentina, Australia, China)",
+    "J": "tres patas redondas (Suiza)", "L": "tres patas redondas en línea (Italia, Chile)", "M": "tres patas redondas grandes",
+    "N": "tres patas redondas (Brasil)", "O": "tres patas redondas (Tailandia)",
+}
+
+
+def enchufes():
+    opts = "".join(f'<option>{esc(p)}</option>' for p, *_ in CORRIENTE)
+    datos = {p: {"v": v, "hz": hz, "t": [t.strip() for t in ts.split(",")]} for p, v, hz, ts in CORRIENTE}
+    filas = [(p, f"{v} V", f"{hz} Hz", ts) for p, v, hz, ts in CORRIENTE]
+    cuerpo = f'''      <section class="tool" data-tool="enchufes">
+        <div class="hz-row">
+          <label class="fld">Tu país<select id="en-de">{opts}</select></label>
+          <button type="button" class="cv-swap" id="en-swap" aria-label="Invertir">⇄</button>
+          <label class="fld">Tu destino<select id="en-a">{opts}</select></label>
+        </div>
+        <div class="en-out" id="en-out" aria-live="polite"></div>
+      </section>
+      <script>window.CORRIENTE = {json.dumps(datos, ensure_ascii=False)}; window.TIPOS_ENCHUFE = {json.dumps(TIPOS_ENCHUFE, ensure_ascii=False)};</script>
+      <section class="tool">
+        <h2 class="tool-h">Corriente y enchufes por país</h2>
+        {tabla(["País", "Voltaje", "Frecuencia", "Tipos de enchufe"], filas)}
+      </section>'''
+    faqs = [
+        ("¿Qué diferencia hay entre adaptador y transformador?", "El adaptador solo cambia la forma del enchufe para que entre en el tomacorriente. El transformador (o conversor) cambia el voltaje: hace falta si tu aparato funciona solo con 110-127 V y viajás a un país de 220-240 V, o al revés."),
+        ("¿Mi cargador necesita transformador?", "Casi nunca. Los cargadores de celulares, notebooks y cámaras suelen decir 'INPUT 100-240V': funcionan en todo el mundo y solo necesitan adaptador. Revisá la etiqueta del cargador antes de viajar."),
+        ("¿Qué aparatos suelen necesitar transformador?", "Los de mucho consumo que no son de doble voltaje: secadores y planchitas de pelo, afeitadoras viejas o pavas eléctricas. Muchos tienen una perilla para elegir el voltaje."),
+    ]
+    return pagina_herramienta("enchufes-y-corriente", cuerpo, faqs, [], "Datos orientativos. En algunos hoteles hay tomacorrientes universales; ante la duda, llevá un adaptador universal.")
+
+
 def main():
     escribir("recursos/index.html", portada())
     escribir("recursos/conversor-de-monedas/index.html", conversor())
@@ -583,6 +663,8 @@ def main():
     escribir("recursos/tabla-de-talles/index.html", talles())
     escribir("recursos/conversor-de-nomenclatura-dental/index.html", dental())
     escribir("recursos/diferencia-horaria/index.html", horario())
+    escribir("recursos/conversor-de-unidades/index.html", unidades())
+    escribir("recursos/enchufes-y-corriente/index.html", enchufes())
 
 
 if __name__ == "__main__":

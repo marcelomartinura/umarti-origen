@@ -340,6 +340,67 @@
     pintar(); setInterval(pintar, 30000);
   })();
 
+  /* ---------- 8. Conversor de unidades ---------- */
+  if ($('[data-tool="unidades"]')) (function () {
+    var U = {
+      longitud: [['km', 'Kilómetros', 1000], ['m', 'Metros', 1], ['cm', 'Centímetros', 0.01], ['mi', 'Millas', 1609.344], ['yd', 'Yardas', 0.9144], ['ft', 'Pies', 0.3048], ['in', 'Pulgadas', 0.0254]],
+      peso: [['kg', 'Kilos', 1], ['g', 'Gramos', 0.001], ['lb', 'Libras', 0.45359237], ['oz', 'Onzas', 0.028349523125], ['t', 'Toneladas', 1000]],
+      volumen: [['l', 'Litros', 1], ['ml', 'Mililitros', 0.001], ['gal', 'Galones (EE. UU.)', 3.785411784], ['galuk', 'Galones (Reino Unido)', 4.54609], ['floz', 'Onzas líquidas', 0.0295735295625], ['pt', 'Pintas (Reino Unido)', 0.56826125]],
+      temperatura: [['c', 'Grados Celsius'], ['f', 'Grados Fahrenheit'], ['k', 'Kelvin']],
+      velocidad: [['kmh', 'Kilómetros por hora', 1], ['mph', 'Millas por hora', 1.609344], ['ms', 'Metros por segundo', 3.6], ['kn', 'Nudos', 1.852]],
+      superficie: [['m2', 'Metros cuadrados', 1], ['ha', 'Hectáreas', 10000], ['km2', 'Kilómetros cuadrados', 1e6], ['ft2', 'Pies cuadrados', 0.09290304], ['ac', 'Acres', 4046.8564224]]
+    };
+    var DEF = { longitud: ['km', 'mi'], peso: ['kg', 'lb'], volumen: ['l', 'gal'], temperatura: ['c', 'f'], velocidad: ['kmh', 'mph'], superficie: ['m2', 'ft2'] };
+    var RAP = { longitud: [['km', 'mi', [1, 5, 10, 100]], ['cm', 'in', [1, 10, 30]]], peso: [['kg', 'lb', [1, 5, 23]], ['g', 'oz', [100, 250]]], volumen: [['l', 'gal', [1, 10, 50]], ['ml', 'floz', [100, 500]]], temperatura: [['c', 'f', [-5, 0, 15, 25, 35]]], velocidad: [['kmh', 'mph', [50, 100, 120]]], superficie: [['m2', 'ft2', [1, 50, 100]]] };
+    var tipo = 'longitud', de = $('#un-de'), a = $('#un-a'), v = $('#un-v');
+    var fmt = function (x) { var ab = Math.abs(x); return new Intl.NumberFormat('es-AR', { maximumFractionDigits: ab >= 100 ? 1 : ab >= 1 ? 3 : 5 }).format(x); };
+    function conv(x, u1, u2) {
+      if (tipo === 'temperatura') { var c = u1 === 'c' ? x : u1 === 'f' ? (x - 32) * 5 / 9 : x - 273.15; return u2 === 'c' ? c : u2 === 'f' ? c * 9 / 5 + 32 : c + 273.15; }
+      var f = function (k) { return U[tipo].filter(function (u) { return u[0] === k; })[0][2]; };
+      return x * f(u1) / f(u2);
+    }
+    function nom(k) { return U[tipo].filter(function (u) { return u[0] === k; })[0][1]; }
+    function cargar() {
+      var o = U[tipo].map(function (u) { return '<option value="' + u[0] + '">' + u[1] + '</option>'; }).join('');
+      de.innerHTML = o; a.innerHTML = o; de.value = DEF[tipo][0]; a.value = DEF[tipo][1]; calc();
+    }
+    function calc() {
+      var x = parseFloat(v.value); if (!isFinite(x)) x = 0;
+      $('#un-out').innerHTML = '<span class="from">' + fmt(x) + ' ' + esc(nom(de.value).toLowerCase()) + ' =</span><b>' + fmt(conv(x, de.value, a.value)) + '</b> <span>' + esc(nom(a.value).toLowerCase()) + '</span>';
+      $('#un-tabla').innerHTML = '<tbody>' + RAP[tipo].map(function (r) { return r[2].map(function (n) { var save = [de.value, a.value]; return '<tr><td>' + fmt(n) + ' ' + esc(nom(r[0]).toLowerCase()) + '</td><td>' + fmt(conv(n, r[0], r[1])) + ' ' + esc(nom(r[1]).toLowerCase()) + '</td></tr>'; }).join(''); }).join('') + '</tbody>';
+    }
+    $$('[data-u]').forEach(function (b) { b.addEventListener('click', function () { tipo = b.dataset.u; $$('[data-u]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); }); cargar(); }); });
+    [v, de, a].forEach(function (e) { e.addEventListener('input', calc); e.addEventListener('change', calc); });
+    $('#un-swap').addEventListener('click', function () { var t = de.value; de.value = a.value; a.value = t; calc(); });
+    var q = new URLSearchParams(location.search).get('tipo'); if (q && U[q]) { var bq = $('[data-u="' + q + '"]'); if (bq) { bq.click(); return; } }
+    cargar();
+  })();
+
+  /* ---------- 9. Enchufes y corriente ---------- */
+  if ($('[data-tool="enchufes"]')) (function () {
+    var D = window.CORRIENTE, T = window.TIPOS_ENCHUFE, de = $('#en-de'), a = $('#en-a');
+    var q = new URLSearchParams(location.search);
+    de.value = q.get('de') && D[q.get('de')] ? q.get('de') : 'México';
+    a.value = q.get('a') && D[q.get('a')] ? q.get('a') : 'Argentina';
+    function grupo(v) { return v <= 130 ? 'bajo' : 'alto'; }
+    function pintar() {
+      var x = D[de.value], y = D[a.value];
+      var comunes = y.t.filter(function (t) { return x.t.indexOf(t) >= 0; });
+      var adapt = comunes.length === 0, trafo = grupo(x.v) !== grupo(y.v);
+      var card = function (p, d) { return '<div class="en-pais"><small>' + esc(p) + '</small><b>' + d.v + ' V · ' + d.hz + ' Hz</b><div class="en-tipos">' + d.t.map(function (t) { return '<span title="' + esc(T[t] || '') + '">' + t + '</span>'; }).join('') + '</div></div>'; };
+      var html = '<div class="en-cmp">' + card(de.value, x) + card(a.value, y) + '</div><ul class="en-res">';
+      html += '<li class="' + (adapt ? 'si' : 'no') + '"><b>' + (adapt ? 'Necesitás adaptador' : comunes.length === y.t.length ? 'No necesitás adaptador' : 'Puede que necesites adaptador') + '</b><span>' +
+        (adapt ? 'En ' + esc(a.value) + ' se usan enchufes tipo ' + y.t.join(', ') + ': ' + y.t.map(function (t) { return t + ': ' + esc(T[t]); }).join(' · ') + '.' :
+          comunes.length === y.t.length ? 'Tus enchufes entran en los tomacorrientes de ' + esc(a.value) + '.' : 'Los tipo ' + comunes.join(', ') + ' coinciden, pero en ' + esc(a.value) + ' también hay tipo ' + y.t.filter(function (t) { return comunes.indexOf(t) < 0; }).join(', ') + '. Llevá un adaptador universal por las dudas.') + '</span></li>';
+      html += '<li class="' + (trafo ? 'si' : 'no') + '"><b>' + (trafo ? 'Revisá el voltaje de tus aparatos' : 'El voltaje es compatible') + '</b><span>' +
+        (trafo ? 'En ' + esc(a.value) + ' hay ' + y.v + ' V y en ' + esc(de.value) + ' ' + x.v + ' V. Los cargadores que dicen "100-240V" funcionan sin problema; los aparatos de un solo voltaje (secadores, planchitas, pavas) necesitan transformador.' : 'Los dos países tienen un voltaje parecido (' + x.v + ' V y ' + y.v + ' V): tus aparatos funcionan igual.') + '</span></li></ul>';
+      $('#en-out').innerHTML = html;
+    }
+    de.addEventListener('change', pintar); a.addEventListener('change', pintar);
+    $('#en-swap').addEventListener('click', function () { var t = de.value; de.value = a.value; a.value = t; pintar(); });
+    pintar();
+  })();
+
   /* ---------- filtro de la portada ---------- */
   var fb = $$('.rc-filtros [data-grupo]');
   fb.forEach(function (b) {

@@ -16,6 +16,7 @@ from comun import escribir  # noqa: E402
 from construir_blog import CATEGORIAS  # noqa: E402
 from destinos import DESTINOS, PAISES  # noqa: E402
 import construir_viajes as cv  # noqa: E402
+import construir_recursos as cr  # noqa: E402
 from supabase_config import SUPABASE_URL, SUPABASE_KEY  # noqa: E402
 
 cat = json.load(open(os.path.join(AQUI, "tienda", "catalogo.json"), encoding="utf-8"))
@@ -33,6 +34,8 @@ DATOS = {
     },
     "paises_envio": ["México", "Estados Unidos", "España", "Chile", "Uruguay", "Colombia", "Perú", "Canadá", "Brasil", "Italia", "Alemania"],
 }
+
+opts_zonas = "".join(f'<optgroup label="{g}">' + "".join(f'<option value="{z}">{n}</option>' for n, z in xs) + "</optgroup>" for g, xs in cr.ZONAS)
 
 MODULOS = [("productos", "Productos", True), ("publicidad", "Publicidad", False), ("cupones", "Cupones", False),
            ("hub", "HUB", False), ("viajes", "Viajes", True)]
@@ -240,6 +243,16 @@ html = f'''<!doctype html>
             <label>Presupuesto<select name="presupuesto"><option value="">Sin indicar</option></select></label>
             <label class="full">Clima del lugar<input name="clima" placeholder="Código de yr.no, por ejemplo 2-3435910, o pegá el código del widget"><small class="muted">Buscá la ciudad en <a href="https://www.yr.no/en" target="_blank" rel="noopener">yr.no</a> y copiá el código que aparece en la dirección (por ejemplo …/forecast/daily-table/<b>2-3435910</b>/…). Se muestra en "Cuándo ir".</small></label>
             <label class="full">Mejor época (resumen)<input name="mejor_epoca" maxlength="120" placeholder="Primavera (septiembre a noviembre) y otoño (marzo a mayo)"><small class="muted">Se muestra arriba, junto a los días y el presupuesto.</small></label>
+          </fieldset>
+
+          <fieldset class="card">
+            <legend>Datos prácticos</legend>
+            <p class="muted full">Cada dato se muestra con un acceso a su herramienta en Recursos digitales. Los que dejes vacíos no aparecen.</p>
+            <label class="full">Moneda<input name="moneda" maxlength="160" placeholder="Peso argentino (ARS). Se aceptan tarjetas en casi todos lados."></label>
+            <label class="full">Corriente eléctrica<input name="corriente" maxlength="160" placeholder="220 V · 50 Hz. Enchufes tipo I y C."></label>
+            <label>Huso horario<select name="huso"><option value="">Según el país</option>{opts_zonas}</select></label>
+            <label>Unidades de medida<input name="unidades" maxlength="160" placeholder="Sistema métrico"></label>
+            <label class="full">Sistema de talles<input name="talles" maxlength="160" placeholder="Talles argentinos: en calzado, un número menos que el europeo."></label>
           </fieldset>
 
           <fieldset class="card">
