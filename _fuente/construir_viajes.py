@@ -16,7 +16,7 @@ from destinos import PAISES, DESTINOS, CONTINENTES, DESTACADOS, DESPEGAR_URL  # 
 import construir_blog  # noqa: E402
 
 esc = html.escape
-TIPOS = ["Aventura", "Cultura", "Gastronomía", "Montaña", "Naturaleza", "Nieve", "Urbano", "Vino"]
+TIPOS = ["Aventura", "Cultura", "Gastronomía", "Montaña", "Naturaleza", "Nieve", "Shopping", "Urbano", "Vino"]
 
 # títulos de las notas del blog, para enlazarlas desde los destinos
 NOTAS = {}
