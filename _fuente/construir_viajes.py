@@ -787,7 +787,7 @@ def _cupones_viaje():
         cs = json.load(open(os.path.join(AQUI, "cupones", "cupones.json"), encoding="utf-8"))
     except FileNotFoundError:
         return []
-    return [c for c in cs if c.get("categoria") == "Viajes" and c.get("estado", "Publicado") in ("Publicado", "Ejemplo")]
+    return [c for c in cs if c.get("categoria") in ("Viajes", "Alojamientos") and c.get("estado", "Publicado") in ("Publicado", "Ejemplo")]
 
 
 def pagina_servicio(nombre, icono):
@@ -810,7 +810,7 @@ def pagina_servicio(nombre, icono):
     if cups:
         cup_html = ('<section class="v-section of-sec"><div class="v-head"><div><h2>Cupones de viaje</h2><p>Descuentos de comercios y aliados para tu viaje.</p></div>'
                     f'<a class="v-more" href="{rel(d, "cupones/viajes/")}">Ver todos los cupones →</a></div><div class="of-cups">'
-                    + "".join(f'<a class="of-cup" href="{rel(d, "cupones/viajes/")}#{esc(c["codigo"].lower())}"><b>{esc(c.get("descuento", ""))}</b><span>{esc(c["titulo"])}</span><small>{esc(c.get("comercio", ""))}</small></a>' for c in cups[:4])
+                    + "".join(f'<a class="of-cup" href="{rel(d, "cupones/" + slug(c["categoria"]) + "/")}#{esc(c["codigo"].lower())}"><b>{esc(c.get("descuento", ""))}</b><span>{esc(c["titulo"])}</span><small>{esc(c.get("comercio", ""))}</small></a>' for c in cups[:4])
                     + "</div></section>")
     vacio = "" if xs or cont else '<div class="of-vacio"><b>Próximamente</b><p>Estamos sumando aliados y opciones para este servicio.</p></div>'
     publica = ""
@@ -950,10 +950,10 @@ def pagina_sub(x, clave):
                           + "".join(oferta_card(o, d) for o in propios) + "</div></section>")
         if aliados:
             partes.append('<section class="of-sec"><div class="of-aliados">' + "".join(oferta_card(o, d) for o in aliados) + "</div></section>")
-        cups = _cupones_destino(x, ["Gastronomía"] if serv == "gastronomia" else ["Viajes"])
+        cups = _cupones_destino(x, ["Gastronomía"] if serv == "gastronomia" else ["Alojamientos"])
         if cups:
             partes.append('<section class="of-sec"><h2>Cupones de descuento</h2><div class="of-cups">'
-                          + "".join(f'<a class="of-cup" href="{rel(d, "cupones/")}#{esc(c["codigo"].lower())}"><b>{esc(c.get("descuento", ""))}</b><span>{esc(c["titulo"])}</span><small>{esc(c.get("comercio", ""))}</small></a>' for c in cups)
+                          + "".join(f'<a class="of-cup" href="{rel(d, "cupones/" + slug(c["categoria"]) + "/")}#{esc(c["codigo"].lower())}"><b>{esc(c.get("descuento", ""))}</b><span>{esc(c["titulo"])}</span><small>{esc(c.get("comercio", ""))}</small></a>' for c in cups)
                           + "</div></section>")
         if not (propios or aliados or cups):
             partes.append(f'<div class="of-vacio"><b>Próximamente</b><p>Estamos sumando {"restaurantes" if serv == "gastronomia" else "alojamientos"} y cupones en {esc(n)}.</p></div>')

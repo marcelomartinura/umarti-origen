@@ -18,6 +18,7 @@ HOY = datetime.date.today()
 
 ICONOS = {
     "Viajes": '<path d="M2 16l20-8-3-2-7 3-6-4-2 1 4 5-4 2-2-1-1 1z"/>',
+    "Alojamientos": '<path d="M3 20V9l9-5 9 5v11"/><path d="M3 20h18M7 20v-6h4v6M15 12h3v3h-3z"/>',
     "Servicios": '<path d="M4 8h16v11H4zM9 8V5h6v3M4 13h16"/>',
     "Gastronomía": '<path d="M7 3v8a2 2 0 0 0 4 0V3M9 11v10M17 3c-2 0-3 2-3 6s1 5 3 5v7"/>',
     "Belleza y Spa": '<path d="M12 21c-4 0-7-3-7-7 3 0 5 1 7 4 2-3 4-4 7-4 0 4-3 7-7 7zM12 18c-2-3-2-7 0-11 2 4 2 8 0 11z"/>',
@@ -25,7 +26,8 @@ ICONOS = {
     "Digitales": '<path d="M7 3h10v18H7zM11 18h2"/>',
 }
 CATS = [
-    ("Viajes", "viajes", ("#3f8a5c", "#1f5636"), "Excursiones, alojamientos y traslados"),
+    ("Viajes", "viajes", ("#3f8a5c", "#1f5636"), "Excursiones, traslados y experiencias"),
+    ("Alojamientos", "alojamientos", ("#2f7a8a", "#1b4f5a"), "Hoteles, cabañas, posadas y departamentos"),
     ("Gastronomía", "gastronomia", ("#c8693e", "#8f3f1d"), "Restaurantes, cafés, 2x1 y menús especiales"),
     ("Belleza y Spa", "belleza-y-spa", ("#b5577a", "#7a2f4e"), "Masajes, spa, estética y cuidado personal"),
     ("Servicios", "servicios", ("#3d87ab", "#225670"), "Seguros, asesorías y experiencias"),
