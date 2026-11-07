@@ -358,7 +358,7 @@ def pagina_pais(k):
     v = PAISES[k]
     ds = [x for x in DESTINOS if x["pais"] == k]
     tipos_pres = {t for x in ds for t in x["tipos"]}
-    filas = "".join(f'<tr><td><a href="{rel(d, p_dest(x))}">{esc(x["nombre"])}</a></td><td>{esc(x["mejor_epoca"])}</td><td>{esc(x["clima"])}</td><td>{esc(x["dias"])}</td></tr>' for x in ds)
+    filas = "".join(f'<tr><td><a href="{rel(d, p_dest(x))}">{esc(x["nombre"])}</a></td><td>{esc(x.get("mejor_epoca", ""))}</td><td>{esc(x.get("dias", ""))}</td></tr>' for x in ds)
     main = f'''    <div class="wrap">
 {crumbs(d, [("Viajes", "viajes/"), (v['nombre'], None)])}
       <div class="{'pais-hero' if v.get('fotos') else 'blog-head'}">
@@ -374,7 +374,7 @@ def pagina_pais(k):
         </div>
         <div class="ph-salida">
           <a class="ph-volver" href="{rel(d, 'viajes/')}">← Ver otros destinos</a>
-          {"".join(f'<a class="ph-pais" href="{rel(d, p_pais(o))}">Ir a {esc(PAISES[o]["nombre"])}</a>' for o in PAISES if o != k)}
+          {"".join(f'<a class="ph-pais" href="{rel(d, p_pais(o))}">Ir a {esc(PAISES[o]["nombre"])}</a>' for o in PAISES if o != k and any(x["pais"] == o for x in DESTINOS))}
         </div>
         </div>
       </div>
@@ -389,7 +389,7 @@ def pagina_pais(k):
 
       <section aria-labelledby="h-when">
         <div class="v-head"><div><h2 id="h-when">¿Cuándo conviene ir?</h2><p>La mejor época para cada destino de {esc(v['nombre'])}, de un vistazo.</p></div></div>
-        <div class="when-table"><table><thead><tr><th>Destino</th><th>Mejor época</th><th>Clima</th><th>Días ideales</th></tr></thead><tbody>{filas}</tbody></table></div>
+        <div class="when-table"><table><thead><tr><th>Destino</th><th>Mejor época</th><th>Días ideales</th></tr></thead><tbody>{filas}</tbody></table></div>
       </section>
 
       <div class="cta-band">
@@ -1043,7 +1043,8 @@ def main():
         if CLAVES_SERV[nombre] not in SOLO_LINK:
             escribir(p_serv(CLAVES_SERV[nombre]) + "index.html", pagina_servicio(nombre, ic))
     for k in PAISES:
-        escribir(f"viajes/{k}/index.html", pagina_pais(k))
+        if any(x["pais"] == k for x in DESTINOS):
+            escribir(f"viajes/{k}/index.html", pagina_pais(k))
     for x in DESTINOS:
         escribir(p_dest(x) + "index.html", pagina_destino_panel(x) if x.get("panel") else pagina_destino(x))
         if x.get("panel"):

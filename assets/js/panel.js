@@ -106,7 +106,7 @@
       return api.esAdmin().then(function (si) {
         if (!si) { $('#noadmin-email').textContent = s.user.email; mostrar('#v-noadmin'); return; }
         window.PanelComun.listo = true;
-        abrirModulo(location.hash === '#viajes' ? 'viajes' : 'productos');
+        abrirModulo(location.hash === '#viajes' ? 'viajes' : location.hash === '#cupones' ? 'cupones' : 'productos');
       });
     });
   }
@@ -114,6 +114,7 @@
   /* ---------- módulos ---------- */
   function abrirModulo(m) {
     $$('.pn-mods .mod').forEach(function (b) { b.classList.toggle('on', b.dataset.mod === m); });
+    if (m === 'cupones') { if (!window.PanelCupones) { setTimeout(function () { abrirModulo('cupones'); }, 50); return; } history.replaceState(null, '', '#cupones'); window.PanelCupones.abrir(); return; }
     if (m === 'viajes') { if (!window.PanelViajes) { setTimeout(function () { abrirModulo('viajes'); }, 50); return; } history.replaceState(null, '', '#viajes'); window.PanelViajes.abrir(); }
     else { history.replaceState(null, '', location.pathname + location.search); cargarLista(); }
   }

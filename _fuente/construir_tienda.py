@@ -805,7 +805,7 @@ def main():
     notas = sorted([cb.leer_nota(r) for r in glob.glob(os.path.join(AQUI, "blog", "notas", "*.md"))], key=lambda n: n["fecha"], reverse=True)
     for p in productos:
         if p.get("destino") and not any(x["slug"] == p["destino"] for x in cv.DESTINOS):
-            raise SystemExit(f"{p['codigo']}: el destino '{p['destino']}' no existe en Viajes")
+            p["destino"] = ""   # la guía todavía no está publicada en el Panel
     escribir("assets/data/tienda-indice.js", indice_js(productos, cb))
     escribir(p_tienda() + "index.html", listado(productos, cb, cv))
     escribir(p_pais() + "index.html", portada_pais(productos, temas, cb, cv))

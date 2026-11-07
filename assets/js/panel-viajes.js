@@ -286,7 +286,7 @@
     var sc = servs.find(function (x) { return x.clave === servAct; }) || { clave: servAct };
     var fs = $('#f-serv'); fs.activo.checked = !!sc.activo; fs.bajada.value = sc.bajada || ''; fs.contenido.value = sc.contenido || ''; $('#vo-msg').textContent = '';
     var xs = ofs.filter(function (o) { return o.servicio === servAct; });
-    var nombres = {}; C.P.destinos.forEach(function (d) { nombres[d.slug] = d.nombre; });
+    var nombres = {}; destPanel.forEach(function (d) { nombres[d.slug] = d.nombre; });
     $('#vo-tabla').innerHTML = xs.length ? '<table><thead><tr><th>Nombre</th><th>Tipo</th><th>Destinos</th><th>Cupón</th><th>Estado</th></tr></thead><tbody>' + xs.map(function (o) {
       return '<tr data-id="' + esc(o.id) + '"><td><b>' + esc(o.nombre) + '</b><small>' + esc(o.etiqueta || '') + '</small></td><td><span class="pill ' + (o.tipo === 'aliado' ? 'al' : '') + '">' + (o.tipo === 'aliado' ? 'Aliado' : 'Propia') + '</span></td>' +
         '<td><small>' + ((o.destinos || []).map(function (s) { return esc(nombres[s] || s); }).join(', ') || 'Todos') + '</small></td><td><small>' + esc(o.cupon_codigo || '—') + '</small></td>' +
@@ -308,7 +308,10 @@
   /* editor de opción */
   var fo = $('#f-oferta'), oAct = null, oNuevo = false, oFoto = '';
   fo.servicio.innerHTML = SERVS.map(function (x) { return '<option value="' + x[0] + '">' + x[1] + '</option>'; }).join('');
-  $('#vf-destinos').innerHTML = C.P.destinos.map(function (d) { return '<label class="chk"><input type="checkbox" value="' + esc(d.slug) + '"> ' + esc(d.nombre) + '</label>'; }).join('');
+  var destPanel = C.P.destinos.slice();
+  function pintarDestOpts() { $('#vf-destinos').innerHTML = destPanel.map(function (d) { return '<label class="chk"><input type="checkbox" value="' + esc(d.slug) + '"> ' + esc(d.nombre) + '</label>'; }).join('') || '<small class="muted">Todavía no hay destinos cargados.</small>'; }
+  pintarDestOpts();
+  if (!demo) sb.from('destinos').select('slug,ciudad,estado').order('ciudad').then(function (r) { if (!r.error) { destPanel = r.data.map(function (d) { return { slug: d.slug, nombre: d.ciudad + (d.estado !== 'Publicado' ? ' (borrador)' : '') }; }); pintarDestOpts(); } });
   function tipoUI() {
     var al = fo.tipo.value === 'aliado';
     $('#vf-propio').hidden = al;

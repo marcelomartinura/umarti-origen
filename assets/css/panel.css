@@ -258,3 +258,24 @@ label.inline { display: flex; align-items: center; gap: 10px; font-size: 0.85rem
 #vf-propio[hidden] { display: none; }
 @media (max-width: 900px) { .vo-wrap { grid-template-columns: 1fr; } }
 .vo-nota:empty { display: none; } .vo-nota { background: #f8f4ec; border-radius: 12px; padding: 10px 14px; margin-bottom: 12px; }
+/* ---------- Módulo Cupones ---------- */
+#cl-tabla table { width: 100%; border-collapse: collapse; }
+#cl-tabla th { text-align: left; font-size: 0.72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 12px 14px; background: #f8f4ec; }
+#cl-tabla td { padding: 12px 14px; border-top: 1px solid var(--line); vertical-align: middle; }
+#cl-tabla tr[data-id] { cursor: pointer; }
+#cl-tabla tr[data-id]:hover td { background: #fbf8f2; }
+#cl-tabla td b, #cl-tabla td small { display: block; }
+#cl-tabla td small { color: var(--muted); }
+#cl-tabla code { font-weight: 700; color: var(--ink); }
+#cl-tabla td.venc { color: #b3261e; }
+.cbig { display: inline-grid; place-items: center; min-width: 64px; height: 44px; padding: 0 8px; border-radius: 10px; background: #2b241c; color: #f6d98f; font-family: "Fraunces", serif; font-weight: 700; font-size: 0.95rem; }
+#ce-cod[hidden] { display: none; }
+.cpv { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.cpv-top { background: linear-gradient(150deg, #b4532a, #8f3f1d); color: #fff; padding: 22px 14px; text-align: center; position: relative; }
+.cpv-top b { font-family: "Fraunces", serif; font-size: 2rem; }
+.cpv-top em { position: absolute; top: 6px; left: 8px; font-style: normal; font-size: 0.7rem; font-weight: 700; background: #1f1a14; padding: 2px 8px; border-radius: 6px; }
+.cpv-body { padding: 12px 14px; display: grid; gap: 4px; }
+.cpv-body small { color: var(--muted); }
+.cpv-tag { justify-self: start; font-size: 0.75rem; font-weight: 700; background: #e1f1e6; color: #2b6a43; padding: 2px 8px; border-radius: 6px; }
+.cpv-v { font-size: 0.8rem; color: var(--muted); }
+.cpv-code { margin-top: 6px; text-align: center; font-family: ui-monospace, monospace; font-weight: 700; border: 2px dashed #e3b45a; border-radius: 10px; padding: 8px; }

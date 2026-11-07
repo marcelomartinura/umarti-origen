@@ -1,40 +1,49 @@
 #!/usr/bin/env python3
-"""Convierte la pestaña Cupones de la hoja 'Plan Ecommerce' en _fuente/cupones/cupones.json
+"""Trae los cupones cargados en el Panel (Supabase) y actualiza _fuente/cupones/cupones.json
 
-Uso:  python3 _fuente/cupones/importar_cupones.py cupones_valores.json
-El archivo es la respuesta de leer el rango 'Cupones'!A4:R, con la forma {"values": [[encabezados], [fila], ...]}.
+Uso:  python3 _fuente/cupones/importar_cupones.py            (lee desde Supabase)
+      python3 _fuente/cupones/importar_cupones.py filas.json (usa un archivo con las filas ya descargadas)
+
+Solo se traen los cupones Publicados o de Ejemplo.
 """
-import json, os, re, sys, unicodedata
+import json, os, sys, urllib.request
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
-CAMPOS = {"Código": "codigo", "Título": "titulo", "Comercio": "comercio", "Categoría": "categoria", "Tipo": "tipo",
-          "Código de descuento": "cupon", "Descuento": "descuento", "Descripción": "descripcion", "Condiciones": "condiciones",
-          "País": "pais", "Ciudad": "ciudad", "Vence": "vence", "Link": "link", "Destacado": "destacado",
-          "Exclusivo": "exclusivo", "Destino en Viajes": "destino", "Tema": "tema", "Estado": "estado"}
+sys.path.insert(0, os.path.dirname(AQUI))
+from supabase_config import SUPABASE_URL, SUPABASE_KEY  # noqa: E402
+
+SALIDA = os.path.join(AQUI, "cupones.json")
+CAMPOS = ["codigo", "titulo", "comercio", "categoria", "tipo", "cupon", "descuento", "descripcion", "condiciones", "pais",
+          "ciudad", "vence", "link", "destacado", "exclusivo", "destino", "tema", "estado", "slug"]
 
 
-def slug(t):
-    t = unicodedata.normalize("NFD", t.lower())
-    t = "".join(c for c in t if unicodedata.category(c) != "Mn")
-    return re.sub(r"[^a-z0-9]+", "-", t).strip("-")
+def descargar():
+    url = f"{SUPABASE_URL}/rest/v1/cupones?select=*&estado=in.(Publicado,Ejemplo)&order=orden.asc,creado.asc"
+    req = urllib.request.Request(url, headers={"apikey": SUPABASE_KEY, "Authorization": f"Bearer {SUPABASE_KEY}"})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        return json.load(r)
 
 
-def main(path):
-    vals = json.load(open(path, encoding="utf-8")).get("values", [])
-    head = [CAMPOS.get(h.strip()) for h in vals[0]]
+def main():
+    filas = json.load(open(sys.argv[1], encoding="utf-8")) if len(sys.argv) > 1 else descargar()
     out = []
-    for r in vals[1:]:
-        d = {k: (r[i].strip() if i < len(r) else "") for i, k in enumerate(head) if k}
-        if d.get("estado") not in ("Publicado", "Ejemplo") or not d.get("titulo"):
+    for f in filas:
+        if f.get("estado") not in ("Publicado", "Ejemplo"):
             continue
-        d["destacado"] = d.get("destacado") == "Sí"
-        d["exclusivo"] = d.get("exclusivo") == "Sí"
-        d["slug"] = slug(f'{d["comercio"]}-{d["titulo"]}')
-        out.append(d)
-    dest = os.path.join(AQUI, "cupones.json")
-    json.dump(out, open(dest, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-    print(f"ok {len(out)} cupones -> {os.path.relpath(dest)}")
+        c = {k: f.get(k) for k in CAMPOS}
+        for k in ("cupon", "descripcion", "condiciones", "ciudad", "link", "destino", "tema", "slug", "descuento"):
+            c[k] = c[k] or ""
+        c["vence"] = (c["vence"] or "2099-12-31")[:10]
+        c["destacado"] = bool(c["destacado"]); c["exclusivo"] = bool(c["exclusivo"])
+        out.append(c)
+    nuevo = json.dumps(out, ensure_ascii=False, indent=1) + "\n"
+    viejo = open(SALIDA, encoding="utf-8").read() if os.path.exists(SALIDA) else ""
+    if nuevo != viejo:
+        open(SALIDA, "w", encoding="utf-8").write(nuevo)
+        print(f"ok {len(out)} cupones -> actualizado")
+    else:
+        print(f"ok {len(out)} cupones -> sin cambios")
 
 
 if __name__ == "__main__":
-    main(sys.argv[1])
+    main()

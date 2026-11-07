@@ -26,6 +26,8 @@ jobs:
         run: python3 _fuente/tienda/importar_supabase.py
       - name: Traer destinos de Viajes del Panel
         run: python3 _fuente/viajes/importar_destinos.py
+      - name: Traer cupones del Panel
+        run: python3 _fuente/cupones/importar_cupones.py
       - name: Reconstruir el sitio
         run: |
           python3 _fuente/construir_tienda.py > /dev/null

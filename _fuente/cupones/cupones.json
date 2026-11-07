@@ -15,7 +15,7 @@
   "link": "",
   "destacado": true,
   "exclusivo": true,
-  "destino": "mendoza",
+  "destino": "",
   "tema": "",
   "estado": "Ejemplo",
   "slug": "ruta-del-vino-tours-15-en-excursiones-a-bodegas-de-lujan-de-cuyo"
@@ -36,7 +36,7 @@
   "link": "",
   "destacado": true,
   "exclusivo": false,
-  "destino": "bariloche",
+  "destino": "",
   "tema": "",
   "estado": "Ejemplo",
   "slug": "hosteria-lago-azul-una-noche-gratis-en-estadias-de-4-noches"
@@ -57,7 +57,7 @@
   "link": "",
   "destacado": false,
   "exclusivo": false,
-  "destino": "queretaro",
+  "destino": "",
   "tema": "",
   "estado": "Ejemplo",
   "slug": "traslados-del-bajio-10-en-traslados-aeropuerto-centro"
@@ -99,7 +99,7 @@
   "link": "",
   "destacado": true,
   "exclusivo": true,
-  "destino": "ciudad-de-mexico",
+  "destino": "",
   "tema": "",
   "estado": "Ejemplo",
   "slug": "cocina-de-origen-20-en-el-menu-de-degustacion"
@@ -330,7 +330,7 @@
   "link": "",
   "destacado": true,
   "exclusivo": true,
-  "destino": "queretaro",
+  "destino": "",
   "tema": "",
   "estado": "Ejemplo",
   "slug": "spa-agua-termal-20-en-tu-primer-masaje-descontracturante"

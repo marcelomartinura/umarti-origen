@@ -17,6 +17,7 @@ from construir_blog import CATEGORIAS  # noqa: E402
 from destinos import DESTINOS, PAISES  # noqa: E402
 import construir_viajes as cv  # noqa: E402
 import construir_recursos as cr  # noqa: E402
+import construir_cupones as ccu  # noqa: E402
 from supabase_config import SUPABASE_URL, SUPABASE_KEY  # noqa: E402
 
 cat = json.load(open(os.path.join(AQUI, "tienda", "catalogo.json"), encoding="utf-8"))
@@ -32,12 +33,13 @@ DATOS = {
         "notas": sorted([{"slug": n["slug"], "titulo": n["titulo"], "seccion": n.get("seccion", "")} for n in cv.NOTAS.values() if not n.get("borrador")], key=lambda n: n["titulo"]),
         "presupuestos": ["Bajo", "Medio", "Alto"],
     },
+    "cupones": {"categorias": [c[0] for c in ccu.CATS], "paises": ["Argentina", "México", "En línea", "Uruguay", "Chile", "España", "Estados Unidos", "Otro"]},
     "paises_envio": ["México", "Estados Unidos", "España", "Chile", "Uruguay", "Colombia", "Perú", "Canadá", "Brasil", "Italia", "Alemania"],
 }
 
 opts_zonas = "".join(f'<optgroup label="{g}">' + "".join(f'<option value="{z}">{n}</option>' for n, z in xs) + "</optgroup>" for g, xs in cr.ZONAS)
 
-MODULOS = [("productos", "Productos", True), ("publicidad", "Publicidad", False), ("cupones", "Cupones", False),
+MODULOS = [("productos", "Productos", True), ("publicidad", "Publicidad", False), ("cupones", "Cupones", True),
            ("hub", "HUB", False), ("viajes", "Viajes", True)]
 
 botonera = "".join(
@@ -395,6 +397,64 @@ html = f'''<!doctype html>
         </aside>
       </form>
     </section>
+
+    <!-- Cupones: lista -->
+    <section id="v-clista" hidden>
+      <div class="pn-head">
+        <div><h1>Cupones</h1><p class="muted" id="cl-resumen"></p></div>
+        <button class="btn pri" type="button" id="cb-nuevo">+ Nuevo cupón</button>
+      </div>
+      <div class="pn-filtros">
+        <input type="search" id="cl-q" placeholder="Buscar por título, comercio, código o ciudad" aria-label="Buscar">
+        <div class="chips" id="cl-estados" role="group" aria-label="Estado"></div>
+        <select id="cl-cat" aria-label="Categoría"><option value="">Todas las categorías</option></select>
+      </div>
+      <div class="pn-tabla" id="cl-tabla"></div>
+      <p class="pn-nota">Los cupones <b>Publicados</b> (y los de <b>Ejemplo</b>) aparecen en la Cuponera en hasta 30 minutos. Los vencidos se ocultan solos.</p>
+    </section>
+
+    <!-- Cupones: editor -->
+    <section id="v-ceditor" hidden>
+      <div class="pn-head"><div><button type="button" class="link back" id="ce-volver">← Cupones</button><h1 id="ce-titulo">Nuevo cupón</h1><p class="muted" id="ce-sub"></p></div></div>
+      <form id="f-cupon" class="pn-editor" novalidate>
+        <div class="pn-form">
+          <fieldset class="card">
+            <legend>Cupón</legend>
+            <label class="full"><span>Título <em>*</em></span><input name="titulo" required maxlength="90" placeholder="20% en tu primer masaje"></label>
+            <label><span>Comercio <em>*</em></span><input name="comercio" required maxlength="60" placeholder="Spa Agua Termal"></label>
+            <label><span>Categoría <em>*</em></span><select name="categoria" required></select></label>
+            <label><span>Descuento <em>*</em></span><input name="descuento" required maxlength="20" placeholder="20%, 2x1, Gratis…"><small class="muted">Lo que se ve grande en la tarjeta.</small></label>
+            <label>Tipo<select name="tipo"><option value="Código">Código: el cliente copia un código</option><option value="Oferta">Oferta: se muestra en el local</option></select></label>
+            <label id="ce-cod">Código del cupón<input name="cupon" maxlength="30" placeholder="SPA20" style="text-transform:uppercase"></label>
+            <label><span>Vence <em>*</em></span><input name="vence" type="date" required></label>
+            <label class="full">Descripción<textarea name="descripcion" rows="2" maxlength="220"></textarea></label>
+            <label class="full">Condiciones<textarea name="condiciones" rows="2" maxlength="260" placeholder="Días, horarios, compra mínima, si es acumulable…"></textarea></label>
+            <label class="full">Link (opcional)<input name="link" placeholder="https://… o una página del sitio, por ejemplo argentina/tienda/…/"></label>
+          </fieldset>
+          <fieldset class="card">
+            <legend>Dónde aplica</legend>
+            <label>País<select name="pais"></select></label>
+            <label>Ciudad<input name="ciudad" maxlength="60" placeholder="Buenos Aires"></label>
+            <label>Destino de Viajes<select name="destino"><option value="">Ninguno</option></select><small class="muted">El cupón aparece en la guía de ese destino.</small></label>
+            <label>Tema<select name="tema"><option value="">Ninguno</option></select></label>
+          </fieldset>
+          <fieldset class="card">
+            <legend>Destacar</legend>
+            <label class="sw"><input type="checkbox" name="destacado"><span></span><b>Destacado</b> <small class="muted">aparece en la portada de la Cuponera</small></label>
+            <label class="sw"><input type="checkbox" name="exclusivo"><span></span><b>Exclusivo Umarti</b></label>
+          </fieldset>
+        </div>
+        <aside class="pn-side">
+          <div class="card pub">
+            <label>Estado<select name="estado"><option value="Borrador">Borrador: no se ve en el sitio</option><option value="Publicado">Publicado: visible en el sitio</option><option value="Pausado">Pausado: oculto temporalmente</option><option value="Ejemplo">Ejemplo: visible, marcado como ejemplo</option></select></label>
+            <button class="btn pri" type="submit" id="ce-guardar">Guardar</button>
+            <p class="msg" id="ce-msg" role="status"></p>
+            <div class="side-acts"><button type="button" class="link" id="ce-duplicar" hidden>Duplicar</button><button type="button" class="link danger" id="ce-borrar" hidden>Eliminar</button></div>
+          </div>
+          <div class="card prev"><span class="lbl">Así se ve en la Cuponera</span><div class="cpv" id="ce-prev"></div></div>
+        </aside>
+      </form>
+    </section>
   </main>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -403,6 +463,7 @@ html = f'''<!doctype html>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
   <script src="../assets/js/panel.js"></script>
   <script src="../assets/js/panel-viajes.js"></script>
+  <script src="../assets/js/panel-cupones.js"></script>
 </body>
 </html>
 '''
