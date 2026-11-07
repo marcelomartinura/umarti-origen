@@ -1,0 +1,105 @@
+{
+ "servicios": [
+  {
+   "clave": "alojamiento",
+   "bajada": "Hoteles, cabañas y departamentos para cada destino.",
+   "contenido": "",
+   "activo": false
+  },
+  {
+   "clave": "vuelos",
+   "bajada": "Vuelos, lo que conviene saber antes de volar y el chip para tener internet al llegar.",
+   "contenido": "",
+   "activo": false
+  },
+  {
+   "clave": "seguro",
+   "bajada": "Asistencia al viajero para viajar tranquilo.",
+   "contenido": "",
+   "activo": false
+  },
+  {
+   "clave": "autos",
+   "bajada": "Alquiler de autos en el destino.",
+   "contenido": "",
+   "activo": false
+  },
+  {
+   "clave": "excursiones",
+   "bajada": "Excursiones, visitas guiadas y actividades.",
+   "contenido": "",
+   "activo": false
+  },
+  {
+   "clave": "paquetes",
+   "bajada": "Paquetes con vuelo y alojamiento.",
+   "contenido": "",
+   "activo": false
+  },
+  {
+   "clave": "traslados",
+   "bajada": "Traslados del aeropuerto al hotel y transporte en el destino.",
+   "contenido": "",
+   "activo": false
+  }
+ ],
+ "ofertas": [
+  {
+   "id": "f8dfc165",
+   "servicio": "vuelos",
+   "tipo": "aliado",
+   "nombre": "Despegar",
+   "etiqueta": "Vuelos",
+   "descripcion": "Buscá y compará vuelos a todo el mundo.",
+   "link": "https://www.despegar.com/vuelos/",
+   "foto": "",
+   "destinos": [],
+   "ubicacion": "",
+   "precio_desde": "",
+   "whatsapp": "",
+   "email": "",
+   "cupon_codigo": "",
+   "cupon_texto": "",
+   "estado": "Publicado",
+   "orden": 0
+  },
+  {
+   "id": "22513c7f",
+   "servicio": "paquetes",
+   "tipo": "aliado",
+   "nombre": "Despegar",
+   "etiqueta": "Paquetes",
+   "descripcion": "Paquetes con vuelo y hotel.",
+   "link": "https://www.despegar.com/paquetes/",
+   "foto": "",
+   "destinos": [],
+   "ubicacion": "",
+   "precio_desde": "",
+   "whatsapp": "",
+   "email": "",
+   "cupon_codigo": "",
+   "cupon_texto": "",
+   "estado": "Publicado",
+   "orden": 0
+  },
+  {
+   "id": "9dda0336",
+   "servicio": "autos",
+   "tipo": "aliado",
+   "nombre": "Despegar",
+   "etiqueta": "Autos",
+   "descripcion": "Alquiler de autos en el destino.",
+   "link": "https://www.despegar.com/autos/",
+   "foto": "",
+   "destinos": [],
+   "ubicacion": "",
+   "precio_desde": "",
+   "whatsapp": "",
+   "email": "",
+   "cupon_codigo": "",
+   "cupon_texto": "",
+   "estado": "Publicado",
+   "orden": 0
+  }
+ ]
+}

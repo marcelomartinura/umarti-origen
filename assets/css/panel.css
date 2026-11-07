@@ -232,3 +232,28 @@ label.inline { display: flex; align-items: center; gap: 10px; font-size: 0.85rem
 .ve-indice li.ok { color: var(--ink); }
 .ve-indice li.ok::before { background: #2f7a57; border-color: #2f7a57; }
 .checks.col .chk { border-radius: 10px; font-weight: 500; } .checks.col .chk[hidden] { display: none; } .drop.sm { min-height: 0; }
+.v-subnav { display: inline-flex; gap: 4px; background: #e9e2d6; padding: 4px; border-radius: 12px; margin-bottom: 10px; }
+.v-subnav button { font: inherit; font-weight: 600; font-size: 0.88rem; border: 0; background: transparent; padding: 7px 14px; border-radius: 9px; cursor: pointer; color: var(--muted); }
+.v-subnav button.on { background: #fff; color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+.vo-servs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+.vo-servs button { font: inherit; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 8px 14px; cursor: pointer; }
+.vo-servs button small { color: var(--muted); }
+.vo-servs button[aria-selected="true"] { background: #1f1a14; color: #fff; border-color: #1f1a14; }
+.vo-servs button[aria-selected="true"] small { color: #cfc4b3; }
+.vo-wrap { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+.pn-head.sm { margin-bottom: 12px; align-items: center; }
+.pn-head.sm h2 { font-size: 1.5rem; }
+.vo-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+#vo-tabla table { width: 100%; border-collapse: collapse; }
+#vo-tabla th { text-align: left; font-size: 0.72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 12px 14px; background: #f8f4ec; }
+#vo-tabla td { padding: 12px 14px; border-top: 1px solid var(--line); }
+#vo-tabla tr[data-id] { cursor: pointer; }
+#vo-tabla tr[data-id]:hover td { background: #fbf8f2; }
+#vo-tabla td b { display: block; } #vo-tabla td small { color: var(--muted); }
+#vo-tabla .pill { font-size: 0.75rem; font-weight: 700; background: #f8ebe2; color: #8f3f1d; padding: 3px 9px; border-radius: 999px; }
+#vo-tabla .pill.al { background: #e4eef4; color: #245a75; }
+.vo-conf { display: grid; gap: 10px; }
+.vo-conf textarea { width: 100%; font: inherit; font-size: 0.93rem; border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; }
+.vo-ayuda ul { margin: 8px 0 0 16px; font-size: 0.86rem; display: grid; gap: 4px; }
+#vf-propio[hidden] { display: none; }
+@media (max-width: 900px) { .vo-wrap { grid-template-columns: 1fr; } }

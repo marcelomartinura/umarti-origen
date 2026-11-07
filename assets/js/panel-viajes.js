@@ -104,7 +104,7 @@
   function editar(d) {
     nuevo = !d;
     actual = d ? JSON.parse(JSON.stringify(d)) : { id: demo ? 'n' + Date.now() : null, pais: 'Argentina', estado: 'Borrador', tags: [], faqs: [], detalle: [], notas: [], productos: [], categorias_tienda: [], foto_pos: 'center' };
-    ['pais', 'ciudad', 'region', 'slug', 'resumen', 'dias', 'presupuesto', 'mejor_epoca', 'foto_pos', 'estado'].concat(CAMPOS.map(function (c) { return c[0]; })).forEach(function (k) { if (f[k]) f[k].value = actual[k] || (k === 'foto_pos' ? 'center' : ''); });
+    ['pais', 'ciudad', 'region', 'slug', 'resumen', 'dias', 'presupuesto', 'mejor_epoca', 'clima', 'foto_pos', 'estado'].concat(CAMPOS.map(function (c) { return c[0]; })).forEach(function (k) { if (f[k]) f[k].value = actual[k] || (k === 'foto_pos' ? 'center' : ''); });
     marcar('#ve-tags', actual.tags); marcar('#ve-cats', actual.categorias_tienda); marcar('#ve-notas', actual.notas);
     foto = actual.foto || ''; faqs = (actual.faqs || []).slice(); bloques = (actual.detalle || []).slice();
     slugManual = !!actual.slug; sucio = false;
@@ -215,7 +215,7 @@
   /* guardar */
   function leer() {
     var d = Object.assign({}, actual);
-    ['pais', 'ciudad', 'region', 'slug', 'resumen', 'dias', 'presupuesto', 'mejor_epoca', 'foto_pos', 'estado'].concat(CAMPOS.map(function (c) { return c[0]; })).forEach(function (k) { d[k] = f[k].value.trim(); });
+    ['pais', 'ciudad', 'region', 'slug', 'resumen', 'dias', 'presupuesto', 'mejor_epoca', 'clima', 'foto_pos', 'estado'].concat(CAMPOS.map(function (c) { return c[0]; })).forEach(function (k) { d[k] = f[k].value.trim(); });
     d.slug = C.slugify(d.slug || d.ciudad);
     d.tags = marcados('#ve-tags'); d.categorias_tienda = marcados('#ve-cats'); d.notas = marcados('#ve-notas'); d.productos = marcados('#ve-prods');
     d.foto = foto;
@@ -246,6 +246,123 @@
     if (!confirm('¿Eliminar ' + actual.ciudad + '? Esta acción no se puede deshacer.')) return;
     api.borrar(actual.id).then(function () { lista = lista.filter(function (x) { return x.id !== actual.id; }); C.toast('Destino eliminado.'); C.mostrar('#v-vlista'); pintar(); })
       .catch(function (er) { C.toast('No se pudo eliminar: ' + er.message, true); });
+  });
+
+  /* ================= Organizá tu viaje ================= */
+  var SERVS = [['alojamiento', 'Alojamiento'], ['vuelos', 'Vuelos'], ['seguro', 'Seguro de viaje'], ['autos', 'Autos'], ['excursiones', 'Excursiones'], ['paquetes', 'Paquetes'], ['traslados', 'Traslados y transporte']];
+  var apiO = demo ? (function () {
+    var serv = SERVS.map(function (x) { return { clave: x[0], bajada: '', contenido: '', activo: false }; });
+    var ofs = [{ id: 'o1', servicio: 'vuelos', tipo: 'aliado', nombre: 'Despegar', etiqueta: 'Vuelos', descripcion: 'Buscá y compará vuelos.', link: 'https://www.despegar.com/vuelos/', destinos: [], estado: 'Publicado', orden: 0 },
+      { id: 'o2', servicio: 'alojamiento', tipo: 'propio', nombre: 'Cabañas del Bosque', etiqueta: 'Cabaña', descripcion: 'Cabañas para 4 personas a 5 minutos del lago.', link: '', ubicacion: 'Villa La Angostura', precio_desde: '$ 80.000 la noche', whatsapp: '+5491112345678', destinos: ['bariloche'], cupon_codigo: 'UMARTI10', cupon_texto: '10% en estadías de 3 noches o más', estado: 'Borrador', orden: 1 }];
+    var R = function (v) { return Promise.resolve(v); };
+    return { servicios: function () { return R(serv); }, guardarServ: function (x) { serv = serv.map(function (o) { return o.clave === x.clave ? x : o; }); return R(x); },
+      ofertas: function () { return R(ofs.slice()); }, guardar: function (o, nuevo) { if (nuevo) { o.id = 'o' + Date.now(); ofs.push(o); } else ofs = ofs.map(function (x) { return x.id === o.id ? o : x; }); return R(o); },
+      borrar: function (id) { ofs = ofs.filter(function (x) { return x.id !== id; }); return R(); } };
+  })() : {
+    servicios: function () { return sb.from('viajes_servicios').select('*').then(ok); },
+    guardarServ: function (x) { return sb.from('viajes_servicios').upsert(x).select().single().then(ok); },
+    ofertas: function () { return sb.from('viajes_ofertas').select('*').order('orden').order('creado').then(ok); },
+    guardar: function (o, nuevo) { var q = nuevo ? sb.from('viajes_ofertas').insert(o) : sb.from('viajes_ofertas').update(o).eq('id', o.id); return q.select().single().then(ok); },
+    borrar: function (id) { return sb.from('viajes_ofertas').delete().eq('id', id).then(ok); }
+  };
+  var servs = [], ofs = [], servAct = 'alojamiento';
+  function nombreServ(k) { return (SERVS.find(function (x) { return x[0] === k; }) || [k, k])[1]; }
+  function abrirOrg() {
+    C.mostrar('#v-vorg');
+    $('#vo-tabla').innerHTML = '<p class="vacio">Cargando…</p>';
+    Promise.all([apiO.servicios(), apiO.ofertas()]).then(function (r) { servs = r[0]; ofs = r[1]; pintarOrg(); })
+      .catch(function (e) { $('#vo-tabla').innerHTML = '<p class="vacio err">No se pudo cargar: ' + esc(e.message) + '</p>'; });
+  }
+  function pintarOrg() {
+    $('#vo-servs').innerHTML = SERVS.map(function (x) {
+      var n = ofs.filter(function (o) { return o.servicio === x[0]; }).length;
+      return '<button type="button" role="tab" aria-selected="' + (x[0] === servAct) + '" data-serv="' + x[0] + '">' + x[1] + ' <small>' + n + '</small></button>';
+    }).join('');
+    $('#vo-titulo').textContent = nombreServ(servAct);
+    var sc = servs.find(function (x) { return x.clave === servAct; }) || { clave: servAct };
+    var fs = $('#f-serv'); fs.activo.checked = !!sc.activo; fs.bajada.value = sc.bajada || ''; fs.contenido.value = sc.contenido || ''; $('#vo-msg').textContent = '';
+    var xs = ofs.filter(function (o) { return o.servicio === servAct; });
+    var nombres = {}; C.P.destinos.forEach(function (d) { nombres[d.slug] = d.nombre; });
+    $('#vo-tabla').innerHTML = xs.length ? '<table><thead><tr><th>Nombre</th><th>Tipo</th><th>Destinos</th><th>Cupón</th><th>Estado</th></tr></thead><tbody>' + xs.map(function (o) {
+      return '<tr data-id="' + esc(o.id) + '"><td><b>' + esc(o.nombre) + '</b><small>' + esc(o.etiqueta || '') + '</small></td><td><span class="pill ' + (o.tipo === 'aliado' ? 'al' : '') + '">' + (o.tipo === 'aliado' ? 'Aliado' : 'Propia') + '</span></td>' +
+        '<td><small>' + ((o.destinos || []).map(function (s) { return esc(nombres[s] || s); }).join(', ') || 'Todos') + '</small></td><td><small>' + esc(o.cupon_codigo || '—') + '</small></td>' +
+        '<td><span class="st st-' + esc((o.estado || '').toLowerCase()) + '">' + esc(o.estado) + '</span></td></tr>';
+    }).join('') + '</tbody></table>' : '<p class="vacio">Todavía no hay opciones para ' + esc(nombreServ(servAct).toLowerCase()) + '. Sumá un aliado (programa de afiliados) o una opción propia.</p>';
+    $$('#vo-tabla tr[data-id]').forEach(function (tr) { tr.addEventListener('click', function () { editarOferta(ofs.find(function (o) { return o.id === tr.dataset.id; })); }); });
+  }
+  $('#vo-servs').addEventListener('click', function (e) { var b = e.target.closest('[data-serv]'); if (b) { servAct = b.dataset.serv; pintarOrg(); } });
+  $('#f-serv').addEventListener('submit', function (e) {
+    e.preventDefault(); var fs = e.target, m = $('#vo-msg');
+    var x = { clave: servAct, activo: fs.activo.checked, bajada: fs.bajada.value.trim(), contenido: fs.contenido.value.trim() };
+    m.className = 'msg'; m.textContent = 'Guardando…';
+    apiO.guardarServ(x).then(function (g) { var i = servs.findIndex(function (s) { return s.clave === g.clave; }); if (i >= 0) servs[i] = g; else servs.push(g); m.className = 'msg ok'; m.textContent = 'Guardado.'; })
+      .catch(function (er) { m.className = 'msg err'; m.textContent = 'No se pudo guardar: ' + er.message; });
+  });
+  $('#vo-cont').addEventListener('input', function () {});
+  $('#f-serv').addEventListener('click', function (e) { var bt = e.target.closest('[data-fmt]'); if (bt) formato($('#vo-cont'), bt.dataset.fmt); });
+
+  /* editor de opción */
+  var fo = $('#f-oferta'), oAct = null, oNuevo = false, oFoto = '';
+  fo.servicio.innerHTML = SERVS.map(function (x) { return '<option value="' + x[0] + '">' + x[1] + '</option>'; }).join('');
+  $('#vf-destinos').innerHTML = C.P.destinos.map(function (d) { return '<label class="chk"><input type="checkbox" value="' + esc(d.slug) + '"> ' + esc(d.nombre) + '</label>'; }).join('');
+  function tipoUI() {
+    var al = fo.tipo.value === 'aliado';
+    $('#vf-propio').hidden = al;
+    $('#vf-link-lbl').textContent = al ? 'Link de afiliado' : 'Link para reservar (opcional)';
+    fo.link.required = al;
+  }
+  fo.tipo.addEventListener('change', tipoUI);
+  function editarOferta(o, tipo) {
+    oNuevo = !o;
+    oAct = o ? JSON.parse(JSON.stringify(o)) : { servicio: servAct, tipo: tipo || 'propio', estado: 'Borrador', destinos: [] };
+    ['servicio', 'tipo', 'nombre', 'etiqueta', 'descripcion', 'link', 'ubicacion', 'precio_desde', 'whatsapp', 'email', 'cupon_codigo', 'cupon_texto', 'estado'].forEach(function (k) { fo[k].value = oAct[k] || ''; });
+    marcar('#vf-destinos', oAct.destinos); oFoto = oAct.foto || ''; pintarOFoto(); tipoUI();
+    $('#vf-titulo').textContent = oNuevo ? (oAct.tipo === 'aliado' ? 'Nuevo aliado' : 'Nueva opción propia') : oAct.nombre;
+    $('#vf-sub').textContent = nombreServ(oAct.servicio); $('#vf-msg').textContent = ''; $('#vf-borrar').hidden = oNuevo;
+    C.mostrar('#v-voferta');
+  }
+  function pintarOFoto() {
+    $('#vf-foto').innerHTML = oFoto ? '<figure><img src="' + esc(oFoto) + '" alt=""><button type="button" id="vf-foto-del">Quitar</button></figure>' : '';
+    var d = $('#vf-foto-del'); if (d) d.addEventListener('click', function () { oFoto = ''; pintarOFoto(); });
+  }
+  var vfd = $('#vf-foto-drop');
+  vfd.querySelector('input').addEventListener('change', function () {
+    var file = this.files[0]; if (!file) return; vfd.classList.add('busy'); vfd.querySelector('b').textContent = 'Subiendo…';
+    C.achicar(file).then(function (blob) { return api.subir('organiza/' + fo.servicio.value + '/' + Date.now() + '.jpg', blob, 'image/jpeg'); })
+      .then(function (u) { oFoto = u; pintarOFoto(); C.toast('Foto subida. Acordate de guardar.'); })
+      .catch(function (er) { C.toast('No se pudo subir: ' + er.message, true); })
+      .then(function () { vfd.classList.remove('busy'); vfd.querySelector('b').textContent = 'Subir foto'; vfd.querySelector('input').value = ''; });
+  });
+  fo.addEventListener('submit', function (e) {
+    e.preventDefault(); var m = $('#vf-msg');
+    var o = Object.assign({}, oAct);
+    ['servicio', 'tipo', 'nombre', 'etiqueta', 'descripcion', 'link', 'ubicacion', 'precio_desde', 'whatsapp', 'email', 'cupon_codigo', 'cupon_texto', 'estado'].forEach(function (k) { o[k] = fo[k].value.trim(); });
+    o.destinos = marcados('#vf-destinos'); o.foto = o.tipo === 'aliado' ? '' : oFoto;
+    if (!o.nombre) { m.className = 'msg err'; m.textContent = 'Poné un nombre.'; return; }
+    if (o.tipo === 'aliado' && !/^https?:\/\//.test(o.link)) { m.className = 'msg err'; m.textContent = 'Pegá el link de afiliado (empieza con https://).'; return; }
+    if (o.tipo === 'propio' && o.estado === 'Publicado' && !o.link && !o.whatsapp && !o.email) { m.className = 'msg err'; m.textContent = 'Para publicar, agregá al menos un link, un WhatsApp o un correo.'; return; }
+    delete o.creado; delete o.actualizado; if (oNuevo && !demo) delete o.id;
+    $('#vf-guardar').disabled = true; m.className = 'msg'; m.textContent = 'Guardando…';
+    apiO.guardar(o, oNuevo).then(function (g) {
+      var i = ofs.findIndex(function (x) { return x.id === g.id; }); if (i >= 0) ofs[i] = g; else ofs.push(g);
+      oAct = g; oNuevo = false; $('#vf-borrar').hidden = false; $('#vf-titulo').textContent = g.nombre;
+      m.className = 'msg ok'; m.textContent = g.estado === 'Publicado' ? 'Guardado. Se ve en el sitio en hasta 30 minutos.' : 'Guardado.';
+    }).catch(function (er) { m.className = 'msg err'; m.textContent = 'No se pudo guardar: ' + er.message; })
+      .then(function () { $('#vf-guardar').disabled = false; });
+  });
+  $('#vf-volver').addEventListener('click', function () { servAct = fo.servicio.value || servAct; C.mostrar('#v-vorg'); pintarOrg(); });
+  $('#vf-borrar').addEventListener('click', function () {
+    if (!confirm('¿Eliminar ' + oAct.nombre + '?')) return;
+    apiO.borrar(oAct.id).then(function () { ofs = ofs.filter(function (x) { return x.id !== oAct.id; }); C.mostrar('#v-vorg'); pintarOrg(); C.toast('Eliminado.'); })
+      .catch(function (er) { C.toast('No se pudo eliminar: ' + er.message, true); });
+  });
+  $('#vo-add-aliado').addEventListener('click', function () { editarOferta(null, 'aliado'); });
+  $('#vo-add-propio').addEventListener('click', function () { editarOferta(null, 'propio'); });
+
+  /* subpestañas Destinos / Organizá */
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-vsub]'); if (!b) return;
+    if (b.dataset.vsub === 'organiza') abrirOrg(); else abrir();
   });
 
   window.PanelViajes = { abrir: abrir };

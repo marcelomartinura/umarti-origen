@@ -197,7 +197,8 @@ html = f'''<!doctype html>
     <!-- Viajes: lista de destinos -->
     <section id="v-vlista" hidden>
       <div class="pn-head">
-        <div><h1>Viajes</h1><p class="muted" id="vl-resumen">Las guías de cada destino.</p></div>
+        <div><div class="v-subnav"><button type="button" class="on" data-vsub="destinos">Destinos</button><button type="button" data-vsub="organiza">Organizá tu viaje</button></div>
+          <h1>Viajes</h1><p class="muted" id="vl-resumen">Las guías de cada destino.</p></div>
         <button class="btn pri" type="button" id="vb-nuevo">+ Nuevo destino</button>
       </div>
       <div class="pn-filtros">
@@ -237,6 +238,7 @@ html = f'''<!doctype html>
             </div>
             <label>Días ideales<input name="dias" maxlength="40" placeholder="3 a 4 días"></label>
             <label>Presupuesto<select name="presupuesto"><option value="">Sin indicar</option></select></label>
+            <label class="full">Clima del lugar<input name="clima" placeholder="Código de yr.no, por ejemplo 2-3435910, o pegá el código del widget"><small class="muted">Buscá la ciudad en <a href="https://www.yr.no/en" target="_blank" rel="noopener">yr.no</a> y copiá el código que aparece en la dirección (por ejemplo …/forecast/daily-table/<b>2-3435910</b>/…). Se muestra en "Cuándo ir".</small></label>
             <label class="full">Mejor época (resumen)<input name="mejor_epoca" maxlength="120" placeholder="Primavera (septiembre a noviembre) y otoño (marzo a mayo)"><small class="muted">Se muestra arriba, junto a los días y el presupuesto.</small></label>
           </fieldset>
 
@@ -291,6 +293,83 @@ html = f'''<!doctype html>
             <span class="lbl">Secciones de la guía</span>
             <ol id="ve-indice"></ol>
           </div>
+        </aside>
+      </form>
+    </section>
+
+    <!-- Viajes: Organizá tu viaje -->
+    <section id="v-vorg" hidden>
+      <div class="pn-head">
+        <div><div class="v-subnav"><button type="button" data-vsub="destinos">Destinos</button><button type="button" class="on" data-vsub="organiza">Organizá tu viaje</button></div>
+          <h1>Organizá tu viaje</h1><p class="muted">Aliados (programas de afiliados), opciones propias de cada destino y cupones, por servicio.</p></div>
+      </div>
+      <div class="vo-servs" id="vo-servs" role="tablist"></div>
+      <div class="vo-wrap">
+        <div>
+          <div class="pn-head sm"><h2 id="vo-titulo"></h2>
+            <div class="vo-btns"><button class="btn" type="button" id="vo-add-aliado">+ Aliado (afiliados)</button><button class="btn pri" type="button" id="vo-add-propio">+ Opción propia</button></div></div>
+          <div class="pn-tabla" id="vo-tabla"></div>
+        </div>
+        <form class="card vo-conf" id="f-serv">
+          <span class="lbl">Página del servicio</span>
+          <label class="sw"><input type="checkbox" name="activo"><span></span><b>Mostrar como disponible</b></label>
+          <small class="muted">Si tiene opciones publicadas, se muestra disponible igual.</small>
+          <label>Bajada<textarea name="bajada" rows="2" maxlength="220"></textarea></label>
+          <label>Información del servicio
+            <span class="ve-tools" data-for="#vo-cont"><button type="button" data-fmt="b"><b>B</b></button><button type="button" data-fmt="ul">• Lista</button><button type="button" data-fmt="h">Subtítulo</button><button type="button" data-fmt="a">Link</button></span>
+            <textarea id="vo-cont" name="contenido" rows="9" placeholder="Por ejemplo, en Vuelos: requisitos de entrada, equipaje, qué aviones vuelan, consejos para el vuelo."></textarea></label>
+          <button class="btn pri" type="submit">Guardar página</button>
+          <p class="msg" id="vo-msg"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Viajes: editor de opción -->
+    <section id="v-voferta" hidden>
+      <div class="pn-head">
+        <div><button type="button" class="link back" id="vf-volver">← Organizá tu viaje</button>
+          <h1 id="vf-titulo">Nueva opción</h1><p class="muted" id="vf-sub"></p></div>
+      </div>
+      <form id="f-oferta" class="pn-editor" novalidate>
+        <div class="pn-form">
+          <fieldset class="card">
+            <legend>Datos</legend>
+            <label><span>Servicio <em>*</em></span><select name="servicio" required></select></label>
+            <label><span>Tipo</span><select name="tipo"><option value="aliado">Aliado: programa de afiliados</option><option value="propio">Opción propia: la publica el prestador</option></select></label>
+            <label><span>Nombre <em>*</em></span><input name="nombre" required maxlength="90" placeholder="Booking, Cabañas del Bosque…"></label>
+            <label>Etiqueta<input name="etiqueta" maxlength="40" placeholder="Hotel, Cabaña, eSIM, Vuelos…"></label>
+            <label class="full">Descripción<textarea name="descripcion" rows="3" maxlength="400"></textarea></label>
+            <label class="full"><span id="vf-link-lbl">Link de afiliado</span><input name="link" type="url" placeholder="https://…"></label>
+          </fieldset>
+          <fieldset class="card" id="vf-propio">
+            <legend>Opción propia</legend>
+            <div class="full"><span class="lbl">Foto</span><div class="ve-foto" id="vf-foto"></div>
+              <label class="drop sm" id="vf-foto-drop"><input type="file" accept="image/jpeg,image/png,image/webp" hidden><b>Subir foto</b></label></div>
+            <label>Ubicación<input name="ubicacion" maxlength="80" placeholder="Villa La Angostura, Neuquén"></label>
+            <label>Precio desde<input name="precio_desde" maxlength="40" placeholder="$ 45.000 la noche"></label>
+            <label>WhatsApp<input name="whatsapp" maxlength="30" placeholder="+54 9 11 1234-5678"></label>
+            <label>Correo<input name="email" type="email"></label>
+          </fieldset>
+          <fieldset class="card">
+            <legend>Destinos</legend>
+            <p class="muted full">Si no marcás ninguno, aparece en todos los destinos.</p>
+            <div class="full checks" id="vf-destinos"></div>
+          </fieldset>
+          <fieldset class="card">
+            <legend>Cupón de descuento</legend>
+            <label>Código<input name="cupon_codigo" maxlength="30" placeholder="UMARTI10"></label>
+            <label>Qué ofrece<input name="cupon_texto" maxlength="90" placeholder="10% de descuento en tu primera reserva"></label>
+          </fieldset>
+        </div>
+        <aside class="pn-side">
+          <div class="card pub">
+            <label>Estado<select name="estado"><option value="Borrador">Borrador: no se ve en el sitio</option><option value="Publicado">Publicado: visible en el sitio</option><option value="Pausado">Pausado: oculto temporalmente</option></select></label>
+            <button class="btn pri" type="submit" id="vf-guardar">Guardar</button>
+            <p class="msg" id="vf-msg" role="status"></p>
+            <div class="side-acts"><button type="button" class="link danger" id="vf-borrar" hidden>Eliminar</button></div>
+          </div>
+          <div class="card vo-ayuda"><span class="lbl">Programas de afiliados sugeridos</span>
+            <ul><li><b>Alojamiento:</b> Booking.com, Despegar</li><li><b>Vuelos:</b> Despegar · chip eSIM: Holafly</li><li><b>Autos y paquetes:</b> Despegar</li><li><b>Excursiones:</b> Civitatis</li><li><b>Seguro:</b> Assist Card, Universal Assistance</li><li><b>Traslados:</b> Civitatis, Welcome Pickups</li></ul></div>
         </aside>
       </form>
     </section>

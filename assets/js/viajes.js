@@ -51,4 +51,25 @@
       document.getElementById('plan-step-ok').hidden = true;
     });
   }
+
+  /* ---------- Organizá tu viaje: filtro por destino y copiar cupón ---------- */
+  var fbs = document.querySelectorAll('.of-filtro [data-dest]');
+  if (fbs.length) {
+    var aplicar = function (dest) {
+      fbs.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.dest === dest)); });
+      document.querySelectorAll('[data-destinos]').forEach(function (c) {
+        var ds = c.dataset.destinos ? c.dataset.destinos.split('|') : [];
+        c.hidden = !!dest && ds.length > 0 && ds.indexOf(dest) < 0;
+      });
+    };
+    fbs.forEach(function (b) { b.addEventListener('click', function () { aplicar(b.dataset.dest); }); });
+    var pd = new URLSearchParams(location.search).get('destino');
+    if (pd && document.querySelector('.of-filtro [data-dest="' + pd + '"]')) aplicar(pd);
+  }
+  document.querySelectorAll('[data-copiar]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = b.dataset.copiar, ok = function () { var o = b.textContent; b.textContent = '¡Copiado!'; setTimeout(function () { b.textContent = o; }, 1400); };
+      if (navigator.clipboard) navigator.clipboard.writeText(t).then(ok, ok); else ok();
+    });
+  });
 })();
