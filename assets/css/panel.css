@@ -257,3 +257,4 @@ label.inline { display: flex; align-items: center; gap: 10px; font-size: 0.85rem
 .vo-ayuda ul { margin: 8px 0 0 16px; font-size: 0.86rem; display: grid; gap: 4px; }
 #vf-propio[hidden] { display: none; }
 @media (max-width: 900px) { .vo-wrap { grid-template-columns: 1fr; } }
+.vo-nota:empty { display: none; } .vo-nota { background: #f8f4ec; border-radius: 12px; padding: 10px 14px; margin-bottom: 12px; }

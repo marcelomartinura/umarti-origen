@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../../assets/css/umarti.css?v=3aea4176">
   <link rel="stylesheet" href="../../../assets/css/blog.css?v=422de8ce">
-  <link rel="stylesheet" href="../../../assets/css/viajes.css?v=c7dfa8e3">
+  <link rel="stylesheet" href="../../../assets/css/viajes.css?v=87098f4a">
 </head>
 <body>
 
@@ -119,13 +119,14 @@
       <nav class="crumbs" aria-label="Ubicación">
         <ol><li><a href="../../../">Inicio</a></li><li><a href="../../../viajes/">Viajes</a></li><li><a href="../../../viajes/#organiza">Organizá tu viaje</a></li><li aria-current="page">Seguro médico</li></ol>
       </nav>
-      <nav class="of-nav" aria-label="Servicios"><a href="../../../viajes/organiza/alojamiento/">Alojamiento</a><a href="../../../viajes/organiza/vuelos/">Vuelos</a><a href="../../../viajes/organiza/seguro/" aria-current="page">Seguro médico</a><a href="../../../viajes/organiza/autos/">Autos</a><a href="../../../viajes/organiza/excursiones/">Excursiones</a><a href="../../../viajes/organiza/paquetes/">Paquetes</a><a href="../../../viajes/organiza/traslados/">Traslados y transporte</a></nav>
+      <nav class="of-nav" aria-label="Servicios"><a href="../../../viajes/organiza/alojamiento/">Alojamiento</a><a href="../../../viajes/organiza/seguro/" aria-current="page">Seguro médico</a><a href="../../../viajes/organiza/autos/">Autos</a><a href="../../../viajes/organiza/excursiones/">Excursiones</a><a href="../../../viajes/organiza/gastronomia/">Gastronomía</a><a href="../../../viajes/organiza/traslados/">Traslados y transporte</a></nav>
       <section class="of-hero">
         <span class="of-ico"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span>
         <div><span class="eyebrow">Viajar tranquilo</span><h1>Seguro médico</h1><p>Asistencia al viajero para viajar tranquilo.</p></div>
       </section>
       
-      <div class="of-vacio"><b>Próximamente</b><p>Estamos sumando aliados y opciones para este servicio.</p></div>
+      
+      <div class="of-vacio"><b>Próximamente</b><p>Estamos sumando {"restaurantes" if k == "gastronomia" else "aliados y opciones"}{" en cada destino" if k in POR_DESTINO else " para este servicio"}.</p></div>
       
       
       
@@ -164,6 +165,6 @@
   </footer>
 
   <script src="../../../assets/js/header.js?v=aeeac190"></script>
-  <script src="../../../assets/js/viajes.js?v=bf55c901"></script>
+  <script src="../../../assets/js/viajes.js?v=ba6433f8"></script>
 </body>
 </html>

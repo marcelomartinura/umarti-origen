@@ -444,3 +444,11 @@ a.service:hover { border-color: #cfc4b3; transform: translateY(-2px); }
 .prose a.dp-item, .prose a.d-destacado, .prose a.od-item { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
 .prose a.dp-item b, .prose a.d-destacado b, .prose a.od-item b { color: var(--ink); }
 .prose a.d-destacado em { color: #fff; }
+.of-buscar { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 14px 18px; margin-bottom: 22px; }
+.of-dest-sel { font: inherit; font-weight: 600; font-size: 1rem; border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; background: #fdfbf7; min-width: 260px; }
+.of-dest-info { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 22px 24px; }
+.of-dest-info .of-cups { margin-top: 14px; }
+[data-solo-destino][hidden] { display: none !important; }
+div.service { opacity: .7; }
+.services { grid-template-columns: repeat(4, 1fr); } @media (max-width: 600px) { .services { grid-template-columns: repeat(2, 1fr); } }
+.service small { color: var(--green-dark); font-weight: 700; }

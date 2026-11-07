@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../../assets/css/umarti.css?v=3aea4176">
   <link rel="stylesheet" href="../../../assets/css/blog.css?v=422de8ce">
-  <link rel="stylesheet" href="../../../assets/css/viajes.css?v=c7dfa8e3">
+  <link rel="stylesheet" href="../../../assets/css/viajes.css?v=87098f4a">
 </head>
 <body>
 
@@ -119,17 +119,19 @@
       <nav class="crumbs" aria-label="Ubicación">
         <ol><li><a href="../../../">Inicio</a></li><li><a href="../../../viajes/">Viajes</a></li><li><a href="../../../viajes/#organiza">Organizá tu viaje</a></li><li aria-current="page">Alojamiento</li></ol>
       </nav>
-      <nav class="of-nav" aria-label="Servicios"><a href="../../../viajes/organiza/alojamiento/" aria-current="page">Alojamiento</a><a href="../../../viajes/organiza/vuelos/">Vuelos</a><a href="../../../viajes/organiza/seguro/">Seguro médico</a><a href="../../../viajes/organiza/autos/">Autos</a><a href="../../../viajes/organiza/excursiones/">Excursiones</a><a href="../../../viajes/organiza/paquetes/">Paquetes</a><a href="../../../viajes/organiza/traslados/">Traslados y transporte</a></nav>
+      <nav class="of-nav" aria-label="Servicios"><a href="../../../viajes/organiza/alojamiento/" aria-current="page">Alojamiento</a><a href="../../../viajes/organiza/seguro/">Seguro médico</a><a href="../../../viajes/organiza/autos/">Autos</a><a href="../../../viajes/organiza/excursiones/">Excursiones</a><a href="../../../viajes/organiza/gastronomia/">Gastronomía</a><a href="../../../viajes/organiza/traslados/">Traslados y transporte</a></nav>
       <section class="of-hero">
         <span class="of-ico"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V7l8-4 8 4v14"/><path d="M9 21v-6h6v6M9 10h.01M15 10h.01"/></svg></span>
         <div><span class="eyebrow">Dónde dormir</span><h1>Alojamiento</h1><p>Hoteles, cabañas y departamentos para cada destino.</p></div>
       </section>
+      <div class="of-buscar"><label for="of-dest"><b>Elegí tu destino</b></label><select id="of-dest" class="of-dest-sel"><option value="">Todos los destinos</option><option value="buenos-aires">Buenos Aires · Argentina</option></select></div>
+      <section class="of-sec of-dest-info" data-solo-destino="buenos-aires" hidden><h2>Dónde alojarse en Buenos Aires</h2><div class="prose"><p>La mayoría de los viajeros se alojan en estos barrios:</p>
+<ul><li><strong>Palermo</strong>: parques, bares y restaurantes; ideal para salir de noche.</li><li><strong>Recoleta</strong>: elegante, tranquila y cerca de museos.</li><li><strong>San Telmo</strong>: empedrado, tango y ferias; con mucha historia.</li><li><strong>Centro y Puerto Madero</strong>: cómodos para moverse y para viajes de trabajo.</li></ul></div><a class="d-volver" href="../../../viajes/argentina/buenos-aires/">Ver la guía de Buenos Aires →</a></section>
+      <div class="of-vacio"><b>Próximamente</b><p>Estamos sumando {"restaurantes" if k == "gastronomia" else "aliados y opciones"}{" en cada destino" if k in POR_DESTINO else " para este servicio"}.</p></div>
       
-      <div class="of-vacio"><b>Próximamente</b><p>Estamos sumando aliados y opciones para este servicio.</p></div>
       
       
       
-      <section class="v-section of-sec"><div class="v-head"><div><h2>Cupones de viaje</h2><p>Descuentos de comercios y aliados para tu viaje.</p></div><a class="v-more" href="../../../cupones/viajes/">Ver todos los cupones →</a></div><div class="of-cups"><a class="of-cup" href="../../../cupones/viajes/#cu-0001"><b>15%</b><span>15% en excursiones a bodegas de Luján de Cuyo</span><small>Ruta del Vino Tours</small></a><a class="of-cup" href="../../../cupones/alojamientos/#cu-0002"><b>4x3</b><span>Una noche gratis en estadías de 4 noches</span><small>Hostería Lago Azul</small></a><a class="of-cup" href="../../../cupones/viajes/#cu-0003"><b>10%</b><span>10% en traslados aeropuerto–centro</span><small>Traslados del Bajío</small></a></div></section>
       <a class="of-publica" href="../../../mi-empresa/?publicar=viajes"><span><b>¿Tenés un hotel, una cabaña o un departamento?</b><small>Publicalo en Umarti Viajes y llegá a quienes están planificando su viaje.</small></span><em>Publicar →</em></a>
       <div class="ad-fila"><aside class="ad v-ad ad-en-nota ad-house" data-espacio="viajes-3" aria-label="Espacio publicitario">
             <span class="ad-label">Publicidad</span>
@@ -164,6 +166,6 @@
   </footer>
 
   <script src="../../../assets/js/header.js?v=aeeac190"></script>
-  <script src="../../../assets/js/viajes.js?v=bf55c901"></script>
+  <script src="../../../assets/js/viajes.js?v=ba6433f8"></script>
 </body>
 </html>

@@ -329,6 +329,7 @@ html = f'''<!doctype html>
         <div>
           <div class="pn-head sm"><h2 id="vo-titulo"></h2>
             <div class="vo-btns"><button class="btn" type="button" id="vo-add-aliado">+ Aliado (afiliados)</button><button class="btn pri" type="button" id="vo-add-propio">+ Opción propia</button></div></div>
+          <p class="muted vo-nota" id="vo-nota"></p>
           <div class="pn-tabla" id="vo-tabla"></div>
         </div>
         <form class="card vo-conf" id="f-serv">

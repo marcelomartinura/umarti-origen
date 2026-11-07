@@ -281,6 +281,8 @@
       return '<button type="button" role="tab" aria-selected="' + (x[0] === servAct) + '" data-serv="' + x[0] + '">' + x[1] + ' <small>' + n + '</small></button>';
     }).join('');
     $('#vo-titulo').textContent = nombreServ(servAct);
+    $('#vo-nota').textContent = servAct === 'vuelos' || servAct === 'paquetes' ? 'Este servicio no tiene página: en el sitio la tarjeta dice "Ver más" y lleva directo al link del primer aliado publicado. Cargá acá tu link de afiliado.' :
+      (servAct === 'alojamiento' || servAct === 'gastronomia') ? 'Las opciones propias tienen que tener al menos un destino: en el sitio se buscan por destino.' : '';
     var sc = servs.find(function (x) { return x.clave === servAct; }) || { clave: servAct };
     var fs = $('#f-serv'); fs.activo.checked = !!sc.activo; fs.bajada.value = sc.bajada || ''; fs.contenido.value = sc.contenido || ''; $('#vo-msg').textContent = '';
     var xs = ofs.filter(function (o) { return o.servicio === servAct; });
@@ -341,6 +343,7 @@
     ['servicio', 'tipo', 'nombre', 'etiqueta', 'descripcion', 'link', 'ubicacion', 'precio_desde', 'whatsapp', 'email', 'cupon_codigo', 'cupon_texto', 'estado'].forEach(function (k) { o[k] = fo[k].value.trim(); });
     o.destinos = marcados('#vf-destinos'); o.foto = o.tipo === 'aliado' ? '' : oFoto;
     if (!o.nombre) { m.className = 'msg err'; m.textContent = 'Poné un nombre.'; return; }
+    if (o.tipo === 'propio' && (o.servicio === 'alojamiento' || o.servicio === 'gastronomia') && !o.destinos.length) { m.className = 'msg err'; m.textContent = 'Elegí al menos un destino.'; return; }
     if (o.tipo === 'aliado' && !/^https?:\/\//.test(o.link)) { m.className = 'msg err'; m.textContent = 'Pegá el link de afiliado (empieza con https://).'; return; }
     if (o.tipo === 'propio' && o.estado === 'Publicado' && !o.link && !o.whatsapp && !o.email) { m.className = 'msg err'; m.textContent = 'Para publicar, agregá al menos un link, un WhatsApp o un correo.'; return; }
     delete o.creado; delete o.actualizado; if (oNuevo && !demo) delete o.id;
