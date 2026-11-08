@@ -396,3 +396,27 @@ dialog::backdrop { background: rgba(31, 26, 20, 0.55); }
 .env-btns a { text-decoration: none; font-weight: 600; font-size: 0.9rem; color: var(--ink); background: rgba(255,255,255,.8); border: 1px solid var(--line); padding: 8px 16px; border-radius: 999px; }
 .env-btns a:hover { border-color: var(--terra); }
 .env-btns a[aria-current="page"] { background: var(--terra); border-color: var(--terra); color: #fff; }
+
+/* Filtro por precio y orden */
+.shop-tools2 { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; margin: -8px 0 22px; }
+.pf { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.pf-lbl, .ord > span { font-size: 0.86rem; font-weight: 600; color: var(--ink); }
+.pf input { width: 128px; height: 40px; padding: 0 12px; border: 1.5px solid var(--line); border-radius: 10px; background: #fff; font: inherit; font-size: 0.9rem; color: var(--ink); -moz-appearance: textfield; }
+.pf input::-webkit-outer-spin-button, .pf input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.pf input:focus { outline: none; border-color: var(--terra); }
+.pf-sep { color: var(--muted); }
+.pf-go { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--line); background: #fff; color: var(--ink); display: grid; place-items: center; cursor: pointer; }
+.pf-go:hover { border-color: var(--terra); color: var(--terra); }
+.pf-clear { border: 0; background: none; font: inherit; font-size: 0.86rem; color: var(--terra); text-decoration: underline; cursor: pointer; padding: 4px; }
+.ord { display: flex; align-items: center; gap: 10px; }
+.ord select { height: 40px; padding: 0 36px 0 14px; border: 1.5px solid var(--line); border-radius: 10px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center; -webkit-appearance: none; appearance: none; font: inherit; font-size: 0.9rem; color: var(--ink); cursor: pointer; }
+.ord select:focus { outline: none; border-color: var(--terra); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.prod-card.is-hidden { display: none; }
+@media (max-width: 640px) {
+  .shop-tools2 { flex-direction: column; align-items: stretch; }
+  .pf label { flex: 1; min-width: 0; }
+  .pf input { width: 100%; }
+  .pf { flex-wrap: nowrap; }
+  .ord select { flex: 1; }
+}

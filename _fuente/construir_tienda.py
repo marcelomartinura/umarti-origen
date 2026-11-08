@@ -148,6 +148,44 @@ def fav(p):
     return f'<button class="fav" type="button" data-fav="{esc(p["codigo"])}" aria-pressed="false" aria-label="Guardar en favoritos">{ICON_HEART}</button>'
 
 
+def precio_num(p, modo="local"):
+    """Valor numérico del precio que muestra la tarjeta (para filtrar y ordenar)."""
+    if modo == "intl":
+        return p.get("precio_usd")
+    m = MONEDA_PAIS.get(p["pais"])
+    if m and p.get(f"precio_{m}") is not None and p.get(f"tienda_{m[:2]}"):
+        return p[f"precio_{m}"]
+    for flag, campo, m in TIENDAS_LOCALES.values():
+        if p.get(flag) and p.get(campo) is not None:
+            return p[campo]
+    return p.get("precio_usd")
+
+
+def herramientas_listado(moneda="$"):
+    """Filtro por precio y ordenamiento del listado (los maneja tienda.js)."""
+    return f'''      <div class="shop-tools2">
+        <form class="pf" id="pf" aria-label="Filtrar por precio">
+          <span class="pf-lbl">Precio</span>
+          <label><span class="sr">Desde</span><input type="number" inputmode="numeric" min="0" id="pf-min" placeholder="Desde"></label>
+          <span class="pf-sep">–</span>
+          <label><span class="sr">Hasta</span><input type="number" inputmode="numeric" min="0" id="pf-max" placeholder="Hasta"></label>
+          <button type="submit" class="pf-go" aria-label="Aplicar filtro de precio"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></button>
+          <button type="button" class="pf-clear" id="pf-clear" hidden>Limpiar</button>
+        </form>
+        <label class="ord"><span>Ordenar por</span>
+          <select id="shop-orden">
+            <option value="destacado">Destacados</option>
+            <option value="precio-asc">Precio: menor a mayor</option>
+            <option value="precio-desc">Precio: mayor a menor</option>
+            <option value="az">A - Z</option>
+            <option value="za">Z - A</option>
+            <option value="nuevo">Más nuevos</option>
+            <option value="viejo">Más antiguos</option>
+          </select>
+        </label>
+      </div>'''
+
+
 def card(p, depth, cb, cv, modo="local"):
     href = rel(depth, p_prod(p))
     ej = '<span class="badge-ej">Ejemplo</span>' if p["estado"] == "Ejemplo" else ""
@@ -156,7 +194,9 @@ def card(p, depth, cb, cv, modo="local"):
     else:
         pr, mon = precio_principal(p)
     zs = " · ".join(z["nombre"] for z in zonas(p))
-    return f'''        <article class="prod-card" data-cat="{esc(p['categoria'])}" data-sub="{esc(p['subcategoria'])}">
+    pn = precio_num(p, modo)
+    num = "".join(ch for ch in p["codigo"] if ch.isdigit()) or "0"
+    return f'''        <article class="prod-card" data-cat="{esc(p['categoria'])}" data-sub="{esc(p['subcategoria'])}" data-precio="{'' if pn is None else pn}" data-nombre="{esc(p['nombre'])}" data-n="{int(num)}">
           <div class="prod-media">{ej}{fav(p)}{carousel(p, cb, cv, href)}</div>
           <a class="info" href="{href}">
             <span class="kick">{esc(p['subcategoria'])}</span>
@@ -272,6 +312,7 @@ def listado(productos, cb, cv):
         </div>
       </div>
       <div class="shop-tools">{chips}<span class="v-count" id="shop-count"></span></div>
+{herramientas_listado()}
       <div class="prod-grid" id="shop-grid">
 {chr(10).join(card(p, d, cb, cv) for p in locales)}
         <p class="shop-empty" id="shop-empty">Todavía no hay productos en esta categoría.</p>
@@ -339,8 +380,11 @@ def international(productos, cb, cv):
         <li><span>2</span><div><b>Pagás en dólares</b><small>Con medios de pago internacionales.</small></div></li>
         <li><span>3</span><div><b>Te llega a tu casa</b><small>Envío internacional con seguimiento.</small></div></li>
       </ol>
-      <div class="prod-grid">
+      <div class="shop-tools"><span></span><span class="v-count" id="shop-count"></span></div>
+{herramientas_listado("US$")}
+      <div class="prod-grid" id="shop-grid">
 {chr(10).join(card(p, d, cb, cv, "intl") for p in intl)}
+        <p class="shop-empty" id="shop-empty">No hay productos en ese rango de precio.</p>
       </div>
       <p class="shop-note">¿Comprás por volumen para revender o distribuir? Mirá los <a href="{rel(d, 'productos-de-exportacion/')}">Productos de exportación</a> del Hub de Oportunidades.</p>
       <div style="height:88px"></div>
@@ -724,6 +768,7 @@ def pagina_categoria(cat, productos, notas, cb, cv, pais="Argentina"):
 {crumbs(d, [(pais, p_pais(pais)), ("Tienda", p_tienda(pais)), (cat, None)])}
 {cabecera}
       <div class="shop-tools">{chips}<span class="v-count" id="shop-count"></span></div>
+{herramientas_listado()}
       <div class="prod-grid" id="shop-grid">
 {chr(10).join(card(p, d, cb, cv) for p in prods)}
         <p class="shop-empty{' show' if not prods else ''}" id="shop-empty">{vacio}</p>

@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="../../../assets/css/umarti.css?v=97843a83">
   <link rel="stylesheet" href="../../../assets/css/blog.css?v=422de8ce">
   <link rel="stylesheet" href="../../../assets/css/viajes.css?v=87098f4a">
-  <link rel="stylesheet" href="../../../assets/css/tienda.css?v=c448f654">
+  <link rel="stylesheet" href="../../../assets/css/tienda.css?v=bbfc2429">
 </head>
 <body>
 
@@ -133,6 +133,27 @@
         <p>Vinos, cervezas, destilados y bebidas sin alcohol.</p>
       </div>
       <div class="shop-tools"><div class="chip-row" role="group" aria-label="Filtrar"><button type="button" data-filtro="" aria-pressed="true">Todo</button><button type="button" data-filtro="Vinos" aria-pressed="false">Vinos</button><button type="button" data-filtro="Cervezas y destilados" aria-pressed="false">Cervezas y destilados</button><button type="button" data-filtro="Sin alcohol" aria-pressed="false">Sin alcohol</button></div><span class="v-count" id="shop-count"></span></div>
+      <div class="shop-tools2">
+        <form class="pf" id="pf" aria-label="Filtrar por precio">
+          <span class="pf-lbl">Precio</span>
+          <label><span class="sr">Desde</span><input type="number" inputmode="numeric" min="0" id="pf-min" placeholder="Desde"></label>
+          <span class="pf-sep">–</span>
+          <label><span class="sr">Hasta</span><input type="number" inputmode="numeric" min="0" id="pf-max" placeholder="Hasta"></label>
+          <button type="submit" class="pf-go" aria-label="Aplicar filtro de precio"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></button>
+          <button type="button" class="pf-clear" id="pf-clear" hidden>Limpiar</button>
+        </form>
+        <label class="ord"><span>Ordenar por</span>
+          <select id="shop-orden">
+            <option value="destacado">Destacados</option>
+            <option value="precio-asc">Precio: menor a mayor</option>
+            <option value="precio-desc">Precio: mayor a menor</option>
+            <option value="az">A - Z</option>
+            <option value="za">Z - A</option>
+            <option value="nuevo">Más nuevos</option>
+            <option value="viejo">Más antiguos</option>
+          </select>
+        </label>
+      </div>
       <div class="prod-grid" id="shop-grid">
 
         <p class="shop-empty show" id="shop-empty">Todavía no hay productos en esta categoría. Muy pronto vas a encontrarlos acá.</p>
@@ -187,7 +208,7 @@
   <div class="toast" id="toast" role="status"></div>
   <script src="../../../assets/js/header.js?v=aeeac190"></script>
   <script src="../../../assets/data/tienda-indice.js?v=1872799c"></script>
-  <script src="../../../assets/js/tienda.js?v=a01bee61"></script>
+  <script src="../../../assets/js/tienda.js?v=6d262dc6"></script>
   <script src="../../../assets/js/idioma.js?v=6a7c8cee"></script>
 </body>
 </html>

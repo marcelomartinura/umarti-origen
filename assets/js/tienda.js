@@ -72,16 +72,44 @@
   }
   function initCarousels() { document.querySelectorAll('[data-carousel]').forEach(initCarousel); }
 
-  /* ---------- filtro del listado ---------- */
+  /* ---------- filtro del listado: categoría, precio y orden ---------- */
   var grid = document.getElementById('shop-grid');
   var chips = document.querySelectorAll('[data-filtro]');
   var p = new URLSearchParams(location.search);
   var filtro = p.get('sub') || p.get('cat') || '';
+  var pmin = null, pmax = null, orden = p.get('orden') || 'destacado';
+  var cards = grid ? Array.prototype.slice.call(grid.querySelectorAll('.prod-card')) : [];
+  cards.forEach(function (c, i) { c.dataset.i = i; });
+  function num(c) { return c.dataset.precio === '' || c.dataset.precio == null ? null : +c.dataset.precio; }
+
+  function ordenar() {
+    if (!grid) return;
+    var col = new Intl.Collator('es');
+    var lista = cards.slice().sort(function (a, b) {
+      var pa = num(a), pb = num(b);
+      switch (orden) {
+        case 'precio-asc': case 'precio-desc':
+          if (pa === null && pb === null) return a.dataset.i - b.dataset.i;
+          if (pa === null) return 1; if (pb === null) return -1;   // sin precio, al final
+          return orden === 'precio-asc' ? pa - pb : pb - pa;
+        case 'az': return col.compare(a.dataset.nombre, b.dataset.nombre);
+        case 'za': return col.compare(b.dataset.nombre, a.dataset.nombre);
+        case 'nuevo': return b.dataset.n - a.dataset.n;
+        case 'viejo': return a.dataset.n - b.dataset.n;
+        default: return a.dataset.i - b.dataset.i;
+      }
+    });
+    var empty = document.getElementById('shop-empty');
+    lista.forEach(function (c) { grid.insertBefore(c, empty); });
+  }
+
   function applyFilter() {
     if (!grid) return;
     var n = 0;
-    grid.querySelectorAll('.prod-card').forEach(function (c) {
-      var ok = !filtro || c.dataset.cat === filtro || c.dataset.sub === filtro;
+    cards.forEach(function (c) {
+      var pr = num(c);
+      var ok = (!filtro || c.dataset.cat === filtro || c.dataset.sub === filtro) &&
+        (pmin === null || (pr !== null && pr >= pmin)) && (pmax === null || (pr !== null && pr <= pmax));
       c.classList.toggle('is-hidden', !ok);
       if (ok) n++;
     });
@@ -89,9 +117,37 @@
     var cnt = document.getElementById('shop-count');
     if (cnt) cnt.textContent = n === 1 ? '1 producto' : n + ' productos';
     var empty = document.getElementById('shop-empty');
-    if (empty) empty.classList.toggle('show', n === 0);
+    if (empty) {
+      empty.classList.toggle('show', n === 0);
+      if (n === 0 && (pmin !== null || pmax !== null)) empty.textContent = 'No hay productos en ese rango de precio.';
+    }
   }
   chips.forEach(function (b) { b.addEventListener('click', function () { filtro = b.dataset.filtro; applyFilter(); }); });
+
+  var pf = document.getElementById('pf');
+  if (pf && grid) {
+    var iMin = document.getElementById('pf-min'), iMax = document.getElementById('pf-max'), lim = document.getElementById('pf-clear');
+    var precios = cards.map(num).filter(function (x) { return x !== null; });
+    if (precios.length) {
+      iMin.placeholder = 'Desde ' + Math.floor(Math.min.apply(null, precios)).toLocaleString('es-AR');
+      iMax.placeholder = 'Hasta ' + Math.ceil(Math.max.apply(null, precios)).toLocaleString('es-AR');
+    }
+    pf.addEventListener('submit', function (e) {
+      e.preventDefault();
+      pmin = iMin.value === '' ? null : +iMin.value;
+      pmax = iMax.value === '' ? null : +iMax.value;
+      if (pmin !== null && pmax !== null && pmin > pmax) { var t = pmin; pmin = pmax; pmax = t; iMin.value = pmin; iMax.value = pmax; }
+      lim.hidden = pmin === null && pmax === null;
+      applyFilter();
+    });
+    lim.addEventListener('click', function () { iMin.value = iMax.value = ''; pmin = pmax = null; lim.hidden = true; applyFilter(); });
+  }
+  var sel = document.getElementById('shop-orden');
+  if (sel && grid) {
+    if (sel.querySelector('option[value="' + orden + '"]')) sel.value = orden; else orden = 'destacado';
+    sel.addEventListener('change', function () { orden = sel.value; ordenar(); });
+    ordenar();
+  }
 
   /* ---------- consultas: precio por cantidad y conversar con el vendedor ---------- */
   var box = document.querySelector('[data-producto]');
