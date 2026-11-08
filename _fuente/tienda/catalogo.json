@@ -131,6 +131,39 @@
    "estado": "Publicado",
    "vendedor": "Umarti Origen",
    "slug": "mate-enlozado-blanco-con-dos-asas"
+  },
+  {
+   "codigo": "UM-0009",
+   "nombre": "Set de mate y bombilla de bambú",
+   "descripcion": "Mate de caña de bambú con terminación flameada y bombilla de bambú. Natural y liviano; curalo con yerba antes del primer uso.",
+   "categoria": "Café, Té y Mate",
+   "subcategoria": "Mates y bombillas",
+   "temas": [
+    "mate"
+   ],
+   "pais": "Argentina",
+   "region": "",
+   "destino": "",
+   "precio_ars": 15000,
+   "precio_mxn": null,
+   "precio_usd": 10,
+   "tienda_ar": true,
+   "tienda_mx": false,
+   "international": true,
+   "paises_envio": [
+    "Todos los países"
+   ],
+   "hub": false,
+   "hs": "",
+   "volumen": "",
+   "vigencia_hub": "",
+   "link_pago": "",
+   "fotos": [
+    "/assets/img/productos/set-de-mate-y-bombilla-de-bambu.jpg"
+   ],
+   "estado": "Publicado",
+   "vendedor": "Umarti Origen",
+   "slug": "set-de-mate-y-bombilla-de-bambu"
   }
  ],
  "temas": [
