@@ -283,5 +283,60 @@
   "huso": "America/Mexico_City",
   "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
   "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26)."
+ },
+ {
+  "slug": "leon",
+  "pais": "México",
+  "ciudad": "León",
+  "region": "Guanajuato",
+  "resumen": "La capital mexicana del calzado y la piel: compras a precio de fábrica, ferias, el Festival del Globo y la puerta de entrada al Bajío.",
+  "tags": [
+   "Cultura",
+   "Gastronomía",
+   "Shopping",
+   "Urbano"
+  ],
+  "foto": "",
+  "foto_pos": "center",
+  "dias": "2 a 3 días",
+  "mejor_epoca": "De octubre a abril; en noviembre, el Festival Internacional del Globo",
+  "presupuesto": "",
+  "por_que": "León es la ciudad más grande de Guanajuato y es famosa en todo México por su **industria del calzado y la piel**: zapatos, botas, chamarras, cinturones y bolsos a precios de fábrica. La **Zona Piel** es un paseo de compras obligado.\n\nAdemás tiene un centro con el Arco de la Calzada y la Catedral, ferias que reúnen a todo el país y el **Festival Internacional del Globo**, que llena el cielo de globos aerostáticos. Es también una buena base para conocer Guanajuato capital y San Miguel de Allende.",
+  "cuando_ir": "**Mejor época:** de octubre a abril, con días soleados y secos. En **noviembre** se hace el Festival Internacional del Globo, y entre **enero y febrero**, la Feria de León.\n\n**Clima:** templado y seco la mayor parte del año, con lluvias en verano.",
+  "que_comer": "- Guacamayas: bolillo con chicharrón y salsa, el antojo leonés\n- Tacos de cabeza\n- Enchiladas mineras\n- Carnitas\n- Nieves y dulces típicos",
+  "donde_alojarse": "- **Zona del Poliforum y Blvd. López Mateos**: hoteles cerca de la Zona Piel y los centros de exposiciones.\n- **Centro**: para recorrer el Arco de la Calzada y la Catedral a pie.\n- **Zona Campestre**: restaurantes, bares y hoteles modernos.",
+  "como_llegar": "El **Aeropuerto Internacional del Bajío** está entre León y Silao, a unos 20 minutos de la ciudad. Desde la Ciudad de México son unas 4 horas y media por carretera, con buses frecuentes.",
+  "como_moverse": "León tiene un sistema de transporte rápido, el Optibús, además de taxis y aplicaciones. Para visitar Guanajuato capital o San Miguel de Allende conviene auto o excursión.",
+  "que_hacer": "- **Zona Piel**: decenas de tiendas de calzado, ropa y accesorios de cuero.\n- **Centro histórico**: el Arco de la Calzada, la Catedral y la Plaza Principal.\n- **Festival Internacional del Globo**: cientos de globos aerostáticos cada noviembre.\n- **Parque Metropolitano**: sede del festival y lugar para caminar o andar en bici.\n- **Guanajuato capital**: callejones, túneles y museos, a una hora.",
+  "consejos": "- Llevá espacio en la valija: es difícil no comprar zapatos o una chamarra.\n- Para el Festival del Globo, reservá alojamiento con mucha anticipación.\n- Probá una guacamaya en un puesto del centro.",
+  "faqs": [
+   {
+    "a": "Calzado, botas, chamarras, cinturones y bolsos de piel, en la Zona Piel y en las tiendas de fábrica.",
+    "q": "¿Qué se compra en León?"
+   },
+   {
+    "a": "Se realiza cada año en noviembre, en el Parque Metropolitano.",
+    "q": "¿Cuándo es el Festival del Globo?"
+   },
+   {
+    "a": "A alrededor de una hora por carretera.",
+    "q": "¿Qué tan lejos está Guanajuato capital?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-08T00:52:44.198426+00:00",
+  "clima": "",
+  "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
+  "requisitos_fuente": "https://www.gob.mx/inm",
+  "moneda": "Peso mexicano (MXN). Se aceptan tarjetas en casi todos lados; para mercados, puestos y propinas conviene llevar efectivo.",
+  "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
+  "huso": "America/Mexico_City",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26)."
  }
 ]
