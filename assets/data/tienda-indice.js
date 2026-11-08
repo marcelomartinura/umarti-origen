@@ -7,7 +7,7 @@ window.TIENDA_INDICE = [
   "precio": "$ 18.000",
   "moneda": "ARS",
   "subcategoria": "Mates y bombillas",
-  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/productos/mate-de-vidrio-df959538/1792891295667-0.jpg",
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/productos/mate-de-vidrio-forrado-de-simil-cuero-con-guarda-pampa-df959538/1794102503351-0-um.jpg",
   "c1": "#5b7a43",
   "c2": "#33472a",
   "glifo": "M",
