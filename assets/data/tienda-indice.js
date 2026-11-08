@@ -58,7 +58,7 @@ window.TIENDA_INDICE = [
  },
  {
   "codigo": "UM-0009",
-  "nombre": "Set de mate y bombilla de bambú",
+  "nombre": "Mate y bombilla de bambú",
   "url": "argentina/tienda/set-de-mate-y-bombilla-de-bambu/",
   "precio": "$ 15.000",
   "moneda": "ARS",
@@ -66,7 +66,7 @@ window.TIENDA_INDICE = [
   "foto": "/assets/img/productos/set-de-mate-y-bombilla-de-bambu.jpg",
   "c1": "#5b7a43",
   "c2": "#33472a",
-  "glifo": "S",
+  "glifo": "M",
   "envio": "Argentina · Internacional",
   "ejemplo": false
  }
