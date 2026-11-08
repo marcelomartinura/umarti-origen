@@ -107,7 +107,7 @@
       var i = lista.findIndex(function (x) { return x.id === g.id; }); if (i >= 0) lista[i] = g; else lista.push(g);
       actual = g; nuevo = false; sucio = false;
       $('#ce-titulo').textContent = g.titulo; $('#ce-sub').textContent = g.codigo; $('#ce-borrar').hidden = false; $('#ce-duplicar').hidden = false;
-      m.className = 'msg ok'; m.textContent = (g.estado === 'Publicado' || g.estado === 'Ejemplo') ? 'Guardado. Se ve en la Cuponera en hasta 30 minutos.' : 'Guardado.';
+      C.publicar(); m.className = 'msg ok'; m.textContent = (g.estado === 'Publicado' || g.estado === 'Ejemplo') ? 'Guardado. Se ve en la Cuponera en unos minutos.' : 'Guardado.';
     }).catch(function (er) { m.className = 'msg err'; m.textContent = 'No se pudo guardar: ' + er.message; })
       .then(function () { $('#ce-guardar').disabled = false; });
   });
@@ -115,7 +115,7 @@
   $('#ce-duplicar').addEventListener('click', function () { editar(actual, true); });
   $('#ce-borrar').addEventListener('click', function () {
     if (!confirm('¿Eliminar el cupón "' + actual.titulo + '"?')) return;
-    api.borrar(actual.id).then(function () { lista = lista.filter(function (x) { return x.id !== actual.id; }); C.toast('Cupón eliminado.'); C.mostrar('#v-clista'); pintar(); })
+    api.borrar(actual.id).then(function () { lista = lista.filter(function (x) { return x.id !== actual.id; }); C.toast('Cupón eliminado.'); C.publicar(); C.mostrar('#v-clista'); pintar(); })
       .catch(function (er) { C.toast('No se pudo eliminar: ' + er.message, true); });
   });
 

@@ -98,7 +98,7 @@ html = f'''<!doctype html>
         <select id="l-cat" aria-label="Categoría"><option value="">Todas las categorías</option></select>
       </div>
       <div class="pn-tabla" id="l-tabla"></div>
-      <p class="pn-nota">Los cambios que guardás aparecen en el sitio en hasta 30 minutos. Solo se publican los productos en estado <b>Publicado</b> (y los de <b>Ejemplo</b>, mientras armás el catálogo).</p>
+      <p class="pn-nota">Los cambios que guardás aparecen en el sitio en unos minutos. Solo se publican los productos en estado <b>Publicado</b> (y los de <b>Ejemplo</b>, mientras armás el catálogo).</p>
     </section>
 
     <!-- Editor -->
@@ -210,7 +210,7 @@ html = f'''<!doctype html>
         <input type="search" id="vl-q" placeholder="Buscar por ciudad, provincia o país" aria-label="Buscar">
       </div>
       <div class="pn-tabla" id="vl-tabla"></div>
-      <p class="pn-nota">Los destinos en estado <b>Publicado</b> aparecen en el sitio en hasta 30 minutos. Las guías que todavía no cargaste acá siguen mostrándose como están.</p>
+      <p class="pn-nota">Los destinos en estado <b>Publicado</b> aparecen en el sitio en unos minutos. Las guías que todavía no cargaste acá siguen mostrándose como están.</p>
     </section>
 
     <!-- Viajes: editor -->
@@ -410,7 +410,7 @@ html = f'''<!doctype html>
         <select id="cl-cat" aria-label="Categoría"><option value="">Todas las categorías</option></select>
       </div>
       <div class="pn-tabla" id="cl-tabla"></div>
-      <p class="pn-nota">Los cupones <b>Publicados</b> (y los de <b>Ejemplo</b>) aparecen en la Cuponera en hasta 30 minutos. Los vencidos se ocultan solos.</p>
+      <p class="pn-nota">Los cupones <b>Publicados</b> (y los de <b>Ejemplo</b>) aparecen en la Cuponera en unos minutos. Los vencidos se ocultan solos.</p>
     </section>
 
     <!-- Cupones: editor -->

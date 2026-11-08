@@ -234,7 +234,7 @@
     $('#ve-guardar').disabled = true; msg.className = 'msg'; msg.textContent = 'Guardando…';
     api.guardar(d, nuevo).then(function (g) {
       actual = g; nuevo = false; sucio = false; $('#ve-borrar').hidden = false;
-      msg.className = 'msg ok'; msg.textContent = d.estado === 'Publicado' ? 'Guardado. Se ve en el sitio en hasta 30 minutos.' : 'Guardado.';
+      C.publicar(); msg.className = 'msg ok'; msg.textContent = d.estado === 'Publicado' ? 'Guardado. Se ve en el sitio en unos minutos.' : 'Guardado.';
       $('#ve-titulo').textContent = g.ciudad;
       var i = lista.findIndex(function (x) { return x.id === g.id; }); if (i >= 0) lista[i] = g; else lista.push(g);
       $('#ve-ver').hidden = d.estado !== 'Publicado'; $('#ve-ver').href = '../viajes/' + claveP(g.pais) + '/' + g.slug + '/';
@@ -246,7 +246,7 @@
   $('#ve-volver').addEventListener('click', function () { if (sucio && !confirm('Tenés cambios sin guardar. ¿Salir igual?')) return; C.mostrar('#v-vlista'); pintar(); });
   $('#ve-borrar').addEventListener('click', function () {
     if (!confirm('¿Eliminar ' + actual.ciudad + '? Esta acción no se puede deshacer.')) return;
-    api.borrar(actual.id).then(function () { lista = lista.filter(function (x) { return x.id !== actual.id; }); C.toast('Destino eliminado.'); C.mostrar('#v-vlista'); pintar(); })
+    api.borrar(actual.id).then(function () { lista = lista.filter(function (x) { return x.id !== actual.id; }); C.toast('Destino eliminado.'); C.publicar(); C.mostrar('#v-vlista'); pintar(); })
       .catch(function (er) { C.toast('No se pudo eliminar: ' + er.message, true); });
   });
 
@@ -299,7 +299,7 @@
     e.preventDefault(); var fs = e.target, m = $('#vo-msg');
     var x = { clave: servAct, activo: fs.activo.checked, bajada: fs.bajada.value.trim(), contenido: fs.contenido.value.trim() };
     m.className = 'msg'; m.textContent = 'Guardando…';
-    apiO.guardarServ(x).then(function (g) { var i = servs.findIndex(function (s) { return s.clave === g.clave; }); if (i >= 0) servs[i] = g; else servs.push(g); m.className = 'msg ok'; m.textContent = 'Guardado.'; })
+    apiO.guardarServ(x).then(function (g) { var i = servs.findIndex(function (s) { return s.clave === g.clave; }); if (i >= 0) servs[i] = g; else servs.push(g); C.publicar(); m.className = 'msg ok'; m.textContent = 'Guardado.'; })
       .catch(function (er) { m.className = 'msg err'; m.textContent = 'No se pudo guardar: ' + er.message; });
   });
   $('#vo-cont').addEventListener('input', function () {});
@@ -354,14 +354,14 @@
     apiO.guardar(o, oNuevo).then(function (g) {
       var i = ofs.findIndex(function (x) { return x.id === g.id; }); if (i >= 0) ofs[i] = g; else ofs.push(g);
       oAct = g; oNuevo = false; $('#vf-borrar').hidden = false; $('#vf-titulo').textContent = g.nombre;
-      m.className = 'msg ok'; m.textContent = g.estado === 'Publicado' ? 'Guardado. Se ve en el sitio en hasta 30 minutos.' : 'Guardado.';
+      C.publicar(); m.className = 'msg ok'; m.textContent = g.estado === 'Publicado' ? 'Guardado. Se ve en el sitio en unos minutos.' : 'Guardado.';
     }).catch(function (er) { m.className = 'msg err'; m.textContent = 'No se pudo guardar: ' + er.message; })
       .then(function () { $('#vf-guardar').disabled = false; });
   });
   $('#vf-volver').addEventListener('click', function () { servAct = fo.servicio.value || servAct; C.mostrar('#v-vorg'); pintarOrg(); });
   $('#vf-borrar').addEventListener('click', function () {
     if (!confirm('¿Eliminar ' + oAct.nombre + '?')) return;
-    apiO.borrar(oAct.id).then(function () { ofs = ofs.filter(function (x) { return x.id !== oAct.id; }); C.mostrar('#v-vorg'); pintarOrg(); C.toast('Eliminado.'); })
+    apiO.borrar(oAct.id).then(function () { ofs = ofs.filter(function (x) { return x.id !== oAct.id; }); C.mostrar('#v-vorg'); pintarOrg(); C.toast('Eliminado.'); C.publicar(); })
       .catch(function (er) { C.toast('No se pudo eliminar: ' + er.message, true); });
   });
   $('#vo-add-aliado').addEventListener('click', function () { editarOferta(null, 'aliado'); });

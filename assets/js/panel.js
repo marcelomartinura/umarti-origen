@@ -47,6 +47,17 @@
 
   /* ---------- utilidades ---------- */
   var toastEl = $('#toast'), tt;
+  /* Pide a GitHub que reconstruya el sitio unos segundos después del último cambio (si falla, igual se actualiza solo cada tanto). */
+  var tPub = null;
+  function publicar() {
+    if (demo || !sb) return;
+    clearTimeout(tPub);
+    tPub = setTimeout(function () {
+      sb.functions.invoke('publicar-sitio', { body: {} }).then(function (r) {
+        if (r.error) console.warn('publicar-sitio', r.error);
+      }).catch(function (e) { console.warn('publicar-sitio', e); });
+    }, 8000);
+  }
   function toast(m, err) { toastEl.textContent = m; toastEl.className = 'toast show' + (err ? ' err' : ''); clearTimeout(tt); tt = setTimeout(function () { toastEl.className = 'toast'; }, 3800); }
   function slugify(t) { return String(t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80); }
   function plata(v, m) {
@@ -208,7 +219,7 @@
   $('#e-duplicar').addEventListener('click', function () { abrirEditor(actual, true); toast('Copia lista para editar. Las fotos no se copian.'); });
   function borrarProducto(p) {
     if (!p || !confirm('¿Eliminar "' + p.nombre + '"? Se borran también sus fotos. No se puede deshacer.')) return;
-    api.borrar(p.id).then(function () { return api.borrarFotos((p.fotos || []).filter(function (u) { return /supabase/.test(u); })); }).then(function () { sucio = false; toast('Producto eliminado.'); cargarLista(); })
+    api.borrar(p.id).then(function () { return api.borrarFotos((p.fotos || []).filter(function (u) { return /supabase/.test(u); })); }).then(function () { sucio = false; toast('Producto eliminado.'); publicar(); cargarLista(); })
       .catch(function (e) { toast('No se pudo eliminar: ' + e.message, true); });
   }
   $('#e-borrar').addEventListener('click', function () { borrarProducto(actual); });
@@ -278,7 +289,8 @@
       b.disabled = false; sucio = false; aBorrar = [];
       var i = productos.map(function (o) { return o.id; }).indexOf(g.id);
       if (i > -1) productos[i] = g; else productos.push(g);
-      toast(g.estado === 'Publicado' || g.estado === 'Ejemplo' ? 'Guardado. Aparece en el sitio en hasta 30 minutos.' : 'Guardado como ' + g.estado.toLowerCase() + '. No se ve en el sitio.');
+      publicar();
+      toast(g.estado === 'Publicado' || g.estado === 'Ejemplo' ? 'Guardado. Aparece en el sitio en unos minutos.' : 'Guardado como ' + g.estado.toLowerCase() + '. No se ve en el sitio.');
       abrirEditor(g);
       $('#e-msg').className = 'msg ok'; $('#e-msg').textContent = 'Guardado ✓';
     }).catch(function (err) {
@@ -380,7 +392,7 @@
     };
   }
 
-  window.PanelComun = { sb: sb, demo: demo, P: P, $: $, $$: $$, esc: esc, toast: toast, slugify: slugify, mostrar: mostrar, achicar: achicar,
+  window.PanelComun = { publicar: publicar, sb: sb, demo: demo, P: P, $: $, $$: $$, esc: esc, toast: toast, slugify: slugify, mostrar: mostrar, achicar: achicar,
     productos: function () { return demo ? api.listar() : sb.from('productos').select('codigo,nombre,categoria,estado').order('codigo').then(ok); },
     listo: false, abrirModulo: abrirModulo };
   iniciar();
