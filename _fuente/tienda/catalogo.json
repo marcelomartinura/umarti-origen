@@ -166,39 +166,6 @@
    "slug": "set-de-mate-y-bombilla-de-bambu"
   },
   {
-   "codigo": "UM-0010",
-   "nombre": "Mate de vidrio con faja tejida guarda pampa y virola",
-   "descripcion": "Mate con interior de vidrio y virola, cuerpo revestido en tejido oscuro y una faja central con guarda pampa en rojo, verde y crudo, con ribetes trenzados. No necesita curado.",
-   "categoria": "Café, Té y Mate",
-   "subcategoria": "Mates y bombillas",
-   "temas": [
-    "mate"
-   ],
-   "pais": "Argentina",
-   "region": "",
-   "destino": "",
-   "precio_ars": 15000,
-   "precio_mxn": null,
-   "precio_usd": 10,
-   "tienda_ar": true,
-   "tienda_mx": false,
-   "international": true,
-   "paises_envio": [
-    "Todos los países"
-   ],
-   "hub": false,
-   "hs": "",
-   "volumen": "",
-   "vigencia_hub": "",
-   "link_pago": "",
-   "fotos": [
-    "/assets/img/productos/mate-de-acero-con-faja-tejida-guarda-pampa.jpg"
-   ],
-   "estado": "Publicado",
-   "vendedor": "Umarti Origen",
-   "slug": "mate-de-acero-con-faja-tejida-guarda-pampa"
-  },
-  {
    "codigo": "UM-0011",
    "nombre": "Mate de madera torneado con pie",
    "descripcion": "Mate de madera torneada, con pie y una línea decorativa en el cuerpo. Curalo con yerba antes del primer uso para que tome sabor.",

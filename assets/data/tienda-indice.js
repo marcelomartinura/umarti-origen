@@ -71,20 +71,6 @@ window.TIENDA_INDICE = [
   "ejemplo": false
  },
  {
-  "codigo": "UM-0010",
-  "nombre": "Mate de vidrio con faja tejida guarda pampa y virola",
-  "url": "argentina/tienda/mate-de-acero-con-faja-tejida-guarda-pampa/",
-  "precio": "$ 15.000",
-  "moneda": "ARS",
-  "subcategoria": "Mates y bombillas",
-  "foto": "/assets/img/productos/mate-de-acero-con-faja-tejida-guarda-pampa.jpg",
-  "c1": "#5b7a43",
-  "c2": "#33472a",
-  "glifo": "M",
-  "envio": "Argentina · Internacional",
-  "ejemplo": false
- },
- {
   "codigo": "UM-0011",
   "nombre": "Mate de madera torneado con pie",
   "url": "argentina/tienda/mate-de-madera-torneado-con-pie/",
