@@ -62,5 +62,117 @@
   "huso": "America/Argentina/Buenos_Aires",
   "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
   "talles": "Talles argentinos: en ropa, numéricos o de letras; en calzado, un número menos que el europeo."
+ },
+ {
+  "slug": "glaciar-perito-moreno",
+  "pais": "Argentina",
+  "ciudad": "Glaciar Perito Moreno",
+  "region": "Santa Cruz",
+  "resumen": "Una pared de hielo de 5 km de frente sobre el Lago Argentino, que avanza y se rompe frente a tus ojos. Uno de los grandes espectáculos naturales de la Patagonia.",
+  "tags": [
+   "Aventura",
+   "Gastronomía",
+   "Montaña",
+   "Naturaleza"
+  ],
+  "foto": "",
+  "foto_pos": "center",
+  "dias": "2 a 3 días (desde El Calafate)",
+  "mejor_epoca": "Primavera y verano (octubre a abril)",
+  "presupuesto": "",
+  "por_que": "El Perito Moreno es uno de los pocos glaciares del mundo que se puede ver tan de cerca y desde tantos ángulos. Su frente, de unos 5 kilómetros de ancho, se levanta entre 50 y 70 metros sobre las aguas del Lago Argentino, y de vez en cuando se desprenden bloques de hielo con un estruendo que se escucha a lo lejos.\n\nEstá dentro del **Parque Nacional Los Glaciares**, declarado Patrimonio de la Humanidad por la UNESCO, a unos 80 kilómetros de **El Calafate**, el pueblo que funciona como base para visitarlo. Desde las pasarelas, en barco o caminando sobre el hielo: cada forma de conocerlo es distinta.",
+  "cuando_ir": "**Mejor época:** de octubre a abril, con días largos y temperaturas más agradables. Enero y febrero son los meses con más visitantes.\n\n**Clima:** frío y ventoso todo el año. En verano las máximas rondan los 20 °C, pero el viento patagónico se siente; en invierno hace frío intenso y algunas excursiones no funcionan.\n\nEl glaciar se puede visitar todo el año: en invierno hay menos gente y paisajes nevados.",
+  "que_comer": "- Cordero patagónico al asador, la especialidad de la región\n- Trucha y centolla\n- Mermeladas y licores de calafate, el fruto que le da nombre al pueblo\n- Chocolates artesanales\n- Cervezas artesanales patagónicas",
+  "donde_alojarse": "La base para visitar el glaciar es **El Calafate**:\n\n- **Centro de El Calafate**: cerca de la avenida principal, restaurantes y agencias de excursiones.\n- **Zona costera del Lago Argentino**: hoteles con vista al lago, más tranquilos.\n- **Estancias**: para vivir la experiencia patagónica, con cabalgatas y cordero al asador.",
+  "como_llegar": "El **Aeropuerto Internacional de El Calafate** recibe vuelos desde Buenos Aires (unas 3 horas) y otras ciudades del país. También se puede llegar en bus desde Río Gallegos o, en temporada, desde El Chaltén y Puerto Natales (Chile).\n\nDesde El Calafate hasta el glaciar hay unos 80 kilómetros por ruta asfaltada: alrededor de 1 hora y media en auto, bus o excursión.",
+  "como_moverse": "Desde El Calafate salen buses regulares y excursiones al glaciar todos los días. Alquilar un auto da más libertad para quedarte en las pasarelas el tiempo que quieras. Dentro del parque se paga una entrada para acceder.",
+  "que_hacer": "- **Pasarelas**: varios kilómetros de recorridos frente al glaciar, con circuitos para todas las edades.\n- **Safari náutico**: navegación frente a la pared de hielo, para dimensionar su altura.\n- **Minitrekking sobre el hielo**: caminata con grampones guiada, una experiencia única.\n- **Navegación por el Lago Argentino**: hacia los glaciares Upsala y Spegazzini.\n- **Glaciarium**: museo de los hielos patagónicos, en El Calafate.\n- **El Chaltén**: a unas 3 horas, la capital del trekking con el cerro Fitz Roy.",
+  "consejos": "- Llevá ropa en capas, rompevientos y anteojos de sol: el reflejo del hielo es fuerte.\n- Reservá el minitrekking con anticipación en temporada alta; tiene límite de edad.\n- Quedate un rato largo en las pasarelas: los desprendimientos no avisan.\n- Respetá las zonas marcadas: no te acerques a la orilla frente al glaciar por los desprendimientos.",
+  "faqs": [
+   {
+    "a": "En el Parque Nacional Los Glaciares, provincia de Santa Cruz, a unos 80 km de El Calafate.",
+    "q": "¿Dónde queda el Glaciar Perito Moreno?"
+   },
+   {
+    "a": "Con 2 o 3 días en El Calafate alcanza para visitar el glaciar y hacer una navegación. Si sumás El Chaltén, calculá al menos 2 días más.",
+    "q": "¿Cuántos días se necesitan?"
+   },
+   {
+    "a": "Sí, con excursiones de minitrekking guiadas y con grampones. Tienen límites de edad y conviene reservar con anticipación.",
+    "q": "¿Se puede caminar sobre el glaciar?"
+   },
+   {
+    "a": "Ocurren todo el año, sobre todo en las horas de más calor y en verano. Hay que tener paciencia en las pasarelas.",
+    "q": "¿Cuándo hay más desprendimientos?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-07T23:33:50.419497+00:00",
+  "clima": "",
+  "requisitos": "- **Seguro médico:** las personas extranjeras que entran a la Argentina como turistas deben tener un seguro de salud que las cubra durante toda la estadía.\n- **Documento:** pasaporte vigente. Los ciudadanos de países del Mercosur y asociados pueden entrar con su documento de identidad.\n- **Entrada al parque:** el Parque Nacional Los Glaciares cobra una entrada, con tarifas distintas para residentes y extranjeros.",
+  "requisitos_fuente": "https://www.argentina.gob.ar/parquesnacionales/losglaciares",
+  "moneda": "Peso argentino (ARS). En El Calafate se aceptan tarjetas; llevá algo de efectivo para el parque y comercios chicos.",
+  "corriente": "220 V · 50 Hz. Enchufes tipo I (tres patas planas en V) y algunos tipo C.",
+  "huso": "America/Argentina/Buenos_Aires",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles argentinos: en calzado, un número menos que el europeo."
+ },
+ {
+  "slug": "rosario",
+  "pais": "Argentina",
+  "ciudad": "Rosario",
+  "region": "Santa Fe",
+  "resumen": "La ciudad de la Bandera, frente al río Paraná: costanera, islas, arquitectura, bares y una de las mejores escenas gastronómicas del interior argentino.",
+  "tags": [
+   "Gastronomía",
+   "Urbano"
+  ],
+  "foto": "",
+  "foto_pos": "center",
+  "dias": "2 a 3 días",
+  "mejor_epoca": "Primavera y otoño (septiembre a noviembre y marzo a mayo)",
+  "presupuesto": "Medio",
+  "por_que": "Rosario es la tercera ciudad más poblada de Argentina y se vive mirando al **río Paraná**. Su costanera de varios kilómetros, con parques, playas y bares, es el lugar donde la ciudad se encuentra a tomar mate y ver el atardecer.\n\nEs la ciudad del **Monumento Nacional a la Bandera**, cuna de figuras como Lionel Messi, Fito Páez y el Che Guevara, y tiene una vida cultural intensa: museos, teatros, ferias y una movida gastronómica y nocturna que sorprende. Está a unas 3 horas y media de Buenos Aires.",
+  "cuando_ir": "**Mejor época:** primavera y otoño, con temperaturas agradables para recorrer la costanera y las islas.\n\n**Clima:** templado y húmedo. Veranos calurosos, ideales para las playas del Paraná, e inviernos frescos.\n\nEn junio la ciudad celebra el **Día de la Bandera** (20 de junio) con actos y desfiles en el Monumento.",
+  "que_comer": "- Pescados de río: boga, surubí y dorado a la parrilla\n- Carlitos: el tostado rosarino, con jamón, queso y salsa ketchup\n- Asado en los bodegones de barrio\n- Helados artesanales\n- Cerveza artesanal en los bares de Pichincha",
+  "donde_alojarse": "- **Centro**: cerca del Monumento y de la peatonal Córdoba, cómodo para recorrer a pie.\n- **Pichincha**: el barrio de bares, restaurantes y vida nocturna.\n- **Costanera y Puerto Norte**: hoteles modernos frente al río.",
+  "como_llegar": "El **Aeropuerto Internacional de Rosario** recibe vuelos de cabotaje y algunos internacionales. Desde Buenos Aires son unos 300 kilómetros: alrededor de 3 horas y media en auto por la autopista o en bus desde Retiro. También hay trenes de larga distancia desde Buenos Aires.",
+  "como_moverse": "El centro y la costanera se recorren muy bien a pie y en bicicleta, con bicicletas públicas. Hay colectivos urbanos y taxis o aplicaciones. Para ir a las islas del Paraná salen lanchas desde la Estación Fluvial.",
+  "que_hacer": "- **Monumento a la Bandera**: subí al mirador para ver la ciudad y el río.\n- **Costanera**: parques, playas y bares a lo largo del Paraná.\n- **Islas del Paraná**: lanchas desde la Estación Fluvial para pasar el día en la playa.\n- **Pichincha**: el barrio de bares y restaurantes para salir de noche.\n- **Peatonal Córdoba y el Paseo del Siglo**: compras y arquitectura de principios del siglo XX.\n- **Museos**: el Museo de Arte Contemporáneo (MACRo) y el Museo Castagnino.",
+  "consejos": "- Los fines de semana de verano reservá la lancha a las islas temprano.\n- Probá el atardecer en la costanera: es el ritual rosarino.\n- Se cena tarde, como en Buenos Aires.",
+  "faqs": [
+   {
+    "a": "Con 2 o 3 días alcanza para el Monumento, la costanera, las islas y salir de noche.",
+    "q": "¿Cuántos días se necesitan para conocer Rosario?"
+   },
+   {
+    "a": "Son unos 300 km: alrededor de 3 horas y media en auto o en bus, y también hay trenes de larga distancia.",
+    "q": "¿Cómo llegar a Rosario desde Buenos Aires?"
+   },
+   {
+    "a": "Un tostado típico de Rosario, de jamón y queso con salsa ketchup.",
+    "q": "¿Qué es un carlito?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-07T23:33:57.227137+00:00",
+  "clima": "",
+  "requisitos": "- **Seguro médico:** las personas extranjeras que entran a la Argentina como turistas deben tener un seguro de salud que las cubra durante toda la estadía.\n- **Documento:** pasaporte vigente. Los ciudadanos de países del Mercosur y asociados pueden entrar con su documento de identidad.",
+  "requisitos_fuente": "https://www.argentina.gob.ar/interior/migraciones",
+  "moneda": "Peso argentino (ARS). Se aceptan tarjetas en casi todos lados.",
+  "corriente": "220 V · 50 Hz. Enchufes tipo I (tres patas planas en V) y algunos tipo C.",
+  "huso": "America/Argentina/Buenos_Aires",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles argentinos: en calzado, un número menos que el europeo."
  }
 ]

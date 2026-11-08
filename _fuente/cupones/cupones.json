@@ -57,7 +57,7 @@
   "link": "",
   "destacado": false,
   "exclusivo": false,
-  "destino": "",
+  "destino": "queretaro",
   "tema": "",
   "estado": "Ejemplo",
   "slug": "traslados-del-bajio-10-en-traslados-aeropuerto-centro"
@@ -99,7 +99,7 @@
   "link": "",
   "destacado": true,
   "exclusivo": true,
-  "destino": "",
+  "destino": "ciudad-de-mexico",
   "tema": "",
   "estado": "Ejemplo",
   "slug": "cocina-de-origen-20-en-el-menu-de-degustacion"
@@ -120,7 +120,7 @@
   "link": "",
   "destacado": false,
   "exclusivo": false,
-  "destino": "",
+  "destino": "queretaro",
   "tema": "",
   "estado": "Ejemplo",
   "slug": "parrilla-el-fogon-postre-de-regalo-con-tu-cena"
@@ -330,7 +330,7 @@
   "link": "",
   "destacado": true,
   "exclusivo": true,
-  "destino": "",
+  "destino": "queretaro",
   "tema": "",
   "estado": "Ejemplo",
   "slug": "spa-agua-termal-20-en-tu-primer-masaje-descontracturante"

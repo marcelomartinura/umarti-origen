@@ -1,141 +1,6 @@
 {
  "productos": [
   {
-   "codigo": "UM-0001",
-   "nombre": "Mate de calabaza forrado en cuero",
-   "descripcion": "Calabaza curada a mano, forrada en cuero con virola de alpaca.",
-   "categoria": "Café, Té y Mate",
-   "subcategoria": "Mates y bombillas",
-   "temas": [
-    "mate"
-   ],
-   "pais": "Argentina",
-   "region": "Buenos Aires",
-   "destino": "buenos-aires",
-   "precio_ars": 28000,
-   "precio_mxn": 650,
-   "precio_usd": 35,
-   "tienda_ar": true,
-   "tienda_mx": false,
-   "international": true,
-   "paises_envio": [
-    "México",
-    "Estados Unidos",
-    "España",
-    "Chile"
-   ],
-   "hub": true,
-   "hs": "",
-   "volumen": "500 unidades por mes",
-   "vigencia_hub": "2027-12-31",
-   "link_pago": "",
-   "fotos": [],
-   "estado": "Ejemplo",
-   "vendedor": "Umarti Origen",
-   "slug": "mate-de-calabaza-forrado-en-cuero"
-  },
-  {
-   "codigo": "UM-0002",
-   "nombre": "Bombilla de acero inoxidable con resorte",
-   "descripcion": "Filtro de resorte desmontable, fácil de limpiar y apta para hervir.",
-   "categoria": "Café, Té y Mate",
-   "subcategoria": "Mates y bombillas",
-   "temas": [
-    "mate"
-   ],
-   "pais": "Argentina",
-   "region": "Buenos Aires",
-   "destino": "",
-   "precio_ars": 9000,
-   "precio_mxn": 220,
-   "precio_usd": 12,
-   "tienda_ar": true,
-   "tienda_mx": false,
-   "international": true,
-   "paises_envio": [
-    "México",
-    "Estados Unidos",
-    "España",
-    "Chile"
-   ],
-   "hub": false,
-   "hs": "",
-   "volumen": "",
-   "vigencia_hub": "",
-   "link_pago": "",
-   "fotos": [],
-   "estado": "Ejemplo",
-   "vendedor": "Umarti Origen",
-   "slug": "bombilla-de-acero-inoxidable-con-resorte"
-  },
-  {
-   "codigo": "UM-0003",
-   "nombre": "Yerba mate elaborada con palo, 1 kg",
-   "descripcion": "Yerba misionera de estacionamiento natural, sabor equilibrado.",
-   "categoria": "Café, Té y Mate",
-   "subcategoria": "Mates y bombillas",
-   "temas": [
-    "mate"
-   ],
-   "pais": "Argentina",
-   "region": "Misiones",
-   "destino": "cataratas-del-iguazu",
-   "precio_ars": 6500,
-   "precio_mxn": 260,
-   "precio_usd": 15,
-   "tienda_ar": true,
-   "tienda_mx": false,
-   "international": true,
-   "paises_envio": [
-    "México",
-    "Estados Unidos",
-    "España",
-    "Chile"
-   ],
-   "hub": true,
-   "hs": "090300",
-   "volumen": "20 toneladas por mes",
-   "vigencia_hub": "2027-12-31",
-   "link_pago": "",
-   "fotos": [],
-   "estado": "Ejemplo",
-   "vendedor": "Umarti Origen",
-   "slug": "yerba-mate-elaborada-con-palo-1-kg"
-  },
-  {
-   "codigo": "UM-0004",
-   "nombre": "Kit matero de regalo",
-   "descripcion": "Mate, bombilla, yerba y un bolso de lona para llevar todo.",
-   "categoria": "Regalos y Kits",
-   "subcategoria": "Kits de mate y café",
-   "temas": [
-    "mate"
-   ],
-   "pais": "Argentina",
-   "region": "Buenos Aires",
-   "destino": "",
-   "precio_ars": 45000,
-   "precio_mxn": 1100,
-   "precio_usd": 60,
-   "tienda_ar": true,
-   "tienda_mx": false,
-   "international": true,
-   "paises_envio": [
-    "México",
-    "Estados Unidos",
-    "España"
-   ],
-   "hub": false,
-   "hs": "",
-   "volumen": "",
-   "vigencia_hub": "",
-   "link_pago": "",
-   "fotos": [],
-   "estado": "Ejemplo",
-   "vendedor": "Umarti Origen",
-   "slug": "kit-matero-de-regalo"
-  },
-  {
    "codigo": "UM-0005",
    "nombre": "Mate de vidrio forrado de simil cuero con Guarda Pampa",
    "descripcion": "",
@@ -167,6 +32,105 @@
    "estado": "Publicado",
    "vendedor": "Umarti Origen",
    "slug": "mate-de-vidrio-forrado-de-simil-cuero-con-guarda-pampa"
+  },
+  {
+   "codigo": "UM-0006",
+   "nombre": "Mate de acero esmaltado blanco con asas",
+   "descripcion": "Mate de cuerpo esmaltado en blanco con asas. Fácil de lavar y no necesita curado.",
+   "categoria": "Café, Té y Mate",
+   "subcategoria": "Mates y bombillas",
+   "temas": [
+    "mate"
+   ],
+   "pais": "Argentina",
+   "region": "",
+   "destino": "",
+   "precio_ars": 15000,
+   "precio_mxn": null,
+   "precio_usd": 10,
+   "tienda_ar": true,
+   "tienda_mx": false,
+   "international": true,
+   "paises_envio": [
+    "Todos los países"
+   ],
+   "hub": false,
+   "hs": "",
+   "volumen": "",
+   "vigencia_hub": "",
+   "link_pago": "",
+   "fotos": [
+    "/assets/img/productos/mate-de-acero-esmaltado-blanco-con-asas.jpg"
+   ],
+   "estado": "Publicado",
+   "vendedor": "Umarti Origen",
+   "slug": "mate-de-acero-esmaltado-blanco-con-asas"
+  },
+  {
+   "codigo": "UM-0007",
+   "nombre": "Mate forrado en símil cuero croco",
+   "descripcion": "Mate de vidrio y exterior forrado en símil cuero con textura de cocodrilo, en tonos marrón y caramelo. Mantiene la temperatura y no necesita curado. Fácil de lavar.",
+   "categoria": "Café, Té y Mate",
+   "subcategoria": "Mates y bombillas",
+   "temas": [
+    "mate"
+   ],
+   "pais": "Argentina",
+   "region": "",
+   "destino": "",
+   "precio_ars": 15000,
+   "precio_mxn": null,
+   "precio_usd": 10,
+   "tienda_ar": true,
+   "tienda_mx": false,
+   "international": true,
+   "paises_envio": [
+    "Todos los países"
+   ],
+   "hub": false,
+   "hs": "",
+   "volumen": "",
+   "vigencia_hub": "",
+   "link_pago": "",
+   "fotos": [
+    "/assets/img/productos/mate-forrado-en-simil-cuero-croco.jpg"
+   ],
+   "estado": "Publicado",
+   "vendedor": "Umarti Origen",
+   "slug": "mate-forrado-en-simil-cuero-croco"
+  },
+  {
+   "codigo": "UM-0008",
+   "nombre": "Mate enlozado blanco con dos asas",
+   "descripcion": "Mate de estilo enlozado clásico, blanco con borde negro y dos asas para tomarlo cómodo. Fácil de lavar y no necesita curado.",
+   "categoria": "Café, Té y Mate",
+   "subcategoria": "Mates y bombillas",
+   "temas": [
+    "mate"
+   ],
+   "pais": "Argentina",
+   "region": "",
+   "destino": "",
+   "precio_ars": 15000,
+   "precio_mxn": null,
+   "precio_usd": 10,
+   "tienda_ar": true,
+   "tienda_mx": false,
+   "international": true,
+   "paises_envio": [
+    "Todos los países"
+   ],
+   "hub": false,
+   "hs": "",
+   "volumen": "",
+   "vigencia_hub": "",
+   "link_pago": "",
+   "fotos": [
+    "/assets/img/productos/mate-enlozado-blanco-con-dos-asas.jpg"
+   ],
+   "estado": "Publicado",
+   "vendedor": "Umarti Origen",
+   "slug": "mate-enlozado-blanco-con-dos-asas"
   }
  ],
  "temas": [
