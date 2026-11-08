@@ -145,16 +145,25 @@
     });
     if (!productos.length) { $('#l-tabla').innerHTML = '<div class="vacio"><b>Todavía no hay productos.</b><p>Tocá "Nuevo producto" para cargar el primero.</p></div>'; return; }
     if (!lista.length) { $('#l-tabla').innerHTML = '<p class="vacio">Ningún producto coincide con la búsqueda.</p>'; return; }
-    $('#l-tabla').innerHTML = '<div class="row head"><span></span><span>Producto</span><span>Categoría</span><span>Precio</span><span>Dónde se vende</span><span>Estado</span></div>' +
+    $('#l-tabla').innerHTML = '<div class="row head"><span></span><span>Producto</span><span>Categoría</span><span>Precio</span><span>Dónde se vende</span><span>Estado</span><span></span></div>' +
       lista.map(function (p) {
         var pr = precioPrincipal(p);
         var donde = [p.tienda_ar && 'Local', p.international && 'Internacional', p.hub && 'HUB'].filter(Boolean).map(function (x) { return '<i>' + x + '</i>'; }).join('') || '<span class="muted">—</span>';
         var th = p.fotos && p.fotos[0] ? '<img src="' + esc(p.fotos[0]) + '" alt="" loading="lazy">' : '<span class="ph">' + esc((p.nombre || '?')[0]) + '</span>';
-        return '<button type="button" class="row" data-id="' + p.id + '"><span class="th">' + th + '</span><span class="nm"><b>' + esc(p.nombre) + '</b><small>' + esc(p.codigo) + (p.region ? ' · ' + esc(p.region) : '') + '</small></span>' +
+        return '<div class="row" role="button" tabindex="0" data-id="' + p.id + '"><span class="th">' + th + '</span><span class="nm"><b>' + esc(p.nombre) + '</b><small>' + esc(p.codigo) + (p.region ? ' · ' + esc(p.region) : '') + '</small></span>' +
           '<span class="ct">' + esc(p.categoria) + '<small>' + esc(p.subcategoria) + '</small></span><span class="pr">' + esc(pr[0]) + ' <small>' + pr[1] + '</small></span><span class="dn">' + donde + '</span>' +
-          '<span><em class="st st-' + slugify(p.estado) + '">' + esc(p.estado) + '</em></span></button>';
+          '<span><em class="st st-' + slugify(p.estado) + '">' + esc(p.estado) + '</em></span>' +
+          '<span class="acts"><button type="button" class="ic-btn" data-acc="editar" title="Editar" aria-label="Editar">✎</button><button type="button" class="ic-btn del" data-acc="borrar" title="Eliminar" aria-label="Eliminar">🗑</button></span></div>';
       }).join('');
-    $$('#l-tabla .row[data-id]').forEach(function (r) { r.addEventListener('click', function () { abrirEditor(productos.filter(function (p) { return p.id === r.dataset.id; })[0]); }); });
+    $$('#l-tabla .row[data-id]').forEach(function (r) {
+      var prod = function () { return productos.filter(function (p) { return p.id === r.dataset.id; })[0]; };
+      r.addEventListener('click', function (e) {
+        var b = e.target.closest('[data-acc]');
+        if (b && b.dataset.acc === 'borrar') { e.stopPropagation(); borrarProducto(prod()); return; }
+        abrirEditor(prod());
+      });
+      r.addEventListener('keydown', function (e) { if (e.key === 'Enter' && e.target === r) abrirEditor(prod()); });
+    });
   }
 
   /* ---------- editor ---------- */
@@ -197,11 +206,12 @@
   $('#e-volver').addEventListener('click', function () { if (sucio && !confirm('Tenés cambios sin guardar. ¿Salir igual?')) return; cargarLista(); });
   window.addEventListener('beforeunload', function (e) { if (sucio && !$('#v-editor').hidden) { e.preventDefault(); e.returnValue = ''; } });
   $('#e-duplicar').addEventListener('click', function () { abrirEditor(actual, true); toast('Copia lista para editar. Las fotos no se copian.'); });
-  $('#e-borrar').addEventListener('click', function () {
-    if (!confirm('¿Eliminar "' + actual.nombre + '"? Se borran también sus fotos. No se puede deshacer.')) return;
-    api.borrar(actual.id).then(function () { return api.borrarFotos(actual.fotos || []); }).then(function () { sucio = false; toast('Producto eliminado.'); cargarLista(); })
+  function borrarProducto(p) {
+    if (!p || !confirm('¿Eliminar "' + p.nombre + '"? Se borran también sus fotos. No se puede deshacer.')) return;
+    api.borrar(p.id).then(function () { return api.borrarFotos((p.fotos || []).filter(function (u) { return /supabase/.test(u); })); }).then(function () { sucio = false; toast('Producto eliminado.'); cargarLista(); })
       .catch(function (e) { toast('No se pudo eliminar: ' + e.message, true); });
-  });
+  }
+  $('#e-borrar').addEventListener('click', function () { borrarProducto(actual); });
 
   f.addEventListener('input', function (e) {
     sucio = true;
@@ -244,7 +254,7 @@
     $('#m-local-aviso').hidden = abierto;
     $('#m-local-aviso').textContent = abierto ? '' : 'La tienda local de ' + f.pais.value + ' todavía no está abierta. Por ahora vendelo por el Mercado internacional.';
     $$('.mercado').forEach(function (m) { var c = m.querySelector('.sw input'); m.classList.toggle('off', !c.checked || c.disabled); });
-    $$('.count').forEach(function (c) { var el = f[c.dataset.for]; c.textContent = el.value.length + ' / ' + el.maxLength; });
+    $$('.count', f).forEach(function (c) { var el = f[c.dataset.for]; c.textContent = el.value.length + ' / ' + el.maxLength; });
     var pr = precioPrincipal(p);
     var media = p.fotos[0] ? '<img src="' + esc(p.fotos[0]) + '" alt="">' : '<span class="pv-ph">' + esc((p.nombre || '?')[0]) + '</span>';
     var zonas = [p.tienda_ar && 'Argentina', p.international && 'Internacional'].filter(Boolean).join(' · ');
