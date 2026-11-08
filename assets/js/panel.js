@@ -67,8 +67,8 @@
   }
   function precioPrincipal(p) {
     var mon = { 'Argentina': 'ARS', 'México': 'MXN' }[p.pais];
-    if (mon === 'ARS' && p.tienda_ar && p.precio_ars != null) return [plata(p.precio_ars), 'ARS'];
-    if (p.tienda_ar && p.precio_ars != null) return [plata(p.precio_ars), 'ARS'];
+    var ml = p.moneda_local === 'USD' ? 'USD' : 'ARS';
+    if (p.tienda_ar && p.precio_ars != null) return [plata(p.precio_ars, ml), ml];
     if (p.precio_usd != null) return [plata(p.precio_usd, 'USD'), 'USD'];
     return ['Sin precio', ''];
   }
@@ -190,7 +190,7 @@
 
   function vacio() {
     return { id: (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())), nombre: '', descripcion: '', categoria: Object.keys(P.categorias)[0], subcategoria: '', temas: [], pais: 'Argentina', region: '', destino: '',
-      precio_ars: null, precio_usd: null, tienda_ar: true, international: false, paises_envio: ['México'], hub: false, hs: '', volumen: '', vigencia_hub: null,
+      precio_ars: null, moneda_local: 'ARS', precio_usd: null, tienda_ar: true, international: false, paises_envio: ['México'], hub: false, hs: '', volumen: '', vigencia_hub: null,
       link_pago: '', fotos: [], estado: 'Borrador', vendedor: 'Umarti Origen', slug: '' };
   }
   function abrirEditor(p, copia) {
@@ -202,6 +202,7 @@
     ['nombre', 'descripcion', 'region', 'hs', 'volumen', 'link_pago', 'vendedor', 'slug'].forEach(function (k) { f[k].value = actual[k] || ''; });
     ['precio_ars', 'precio_usd'].forEach(function (k) { f[k].value = actual[k] == null ? '' : actual[k]; });
     ['tienda_ar', 'international', 'hub'].forEach(function (k) { f[k].checked = !!actual[k]; });
+    f.moneda_local.value = actual.moneda_local === 'USD' ? 'USD' : 'ARS'; pintarMonedaLocal();
     selCatE.value = actual.categoria; llenarSubs(actual.subcategoria);
     f.pais.value = P.paises.indexOf(actual.pais) > -1 ? actual.pais : 'Otro';
     f.destino.value = actual.destino || ''; f.estado.value = actual.estado; f.vigencia_hub.value = actual.vigencia_hub || '';
@@ -237,7 +238,7 @@
     return {
       id: actual.id, nombre: f.nombre.value.trim(), descripcion: f.descripcion.value.trim(), categoria: selCatE.value, subcategoria: selSub.value,
       temas: $$('#e-temas input:checked').map(function (c) { return c.value; }), pais: f.pais.value, region: f.region.value.trim(), destino: f.destino.value,
-      precio_ars: num('precio_ars'), precio_usd: num('precio_usd'),
+      precio_ars: num('precio_ars'), moneda_local: f.moneda_local.value, precio_usd: num('precio_usd'),
       tienda_ar: f.tienda_ar.checked && localAbierto(), international: f.international.checked, paises_envio: paisesEnvio.slice(),
       hub: f.hub.checked, hs: f.hs.value.replace(/\D/g, ''), volumen: f.volumen.value.trim(), vigencia_hub: f.vigencia_hub.value || null,
       link_pago: f.link_pago.value.trim(), fotos: fotos.slice(), estado: f.estado.value, vendedor: f.vendedor.value.trim() || 'Umarti Origen', slug: slugify(f.slug.value)
@@ -250,7 +251,7 @@
     else if (productos.some(function (o) { return o.slug === p.slug && o.id !== p.id; })) out.push(['err', 'Ya hay otro producto con la dirección "' + p.slug + '".']);
     if (!p.tienda_ar && !p.international && !p.hub) out.push(['warn', 'No está marcado en ningún mercado: no se va a ver en ningún lado.']);
     else if (!p.tienda_ar && !p.international) out.push(['warn', 'Solo está en el HUB: no se va a poder comprar por unidad.']);
-    if (p.tienda_ar && p.precio_ars == null) out.push(['err', 'Marcaste Mercado local pero falta el precio en ARS.']);
+    if (p.tienda_ar && p.precio_ars == null) out.push(['err', 'Marcaste Mercado local pero falta el precio.']);
     if (p.international && p.precio_usd == null) out.push(['err', 'Marcaste Mercado internacional pero falta el precio en USD.']);
     if (p.international && !p.paises_envio.length) out.push(['warn', 'Mercado internacional sin países de envío.']);
     if (!p.fotos.length) out.push(['warn', 'Sin fotos: se va a mostrar un dibujo de color.']);
@@ -283,7 +284,7 @@
     var b = $('#e-guardar'); b.disabled = true; $('#e-msg').className = 'msg'; $('#e-msg').textContent = 'Guardando…';
     var nuevo = actual._nuevo;
     if (nuevo) { var max = productos.reduce(function (m, o) { return Math.max(m, o.orden || 0); }, 0); p.orden = max + 1; }
-    api.guardar(p, nuevo).then(function (g) {
+    marcarFotos().then(function () { p.fotos = fotos.slice(); $('#e-msg').textContent = 'Guardando…'; return api.guardar(p, nuevo); }).then(function (g) {
       return api.borrarFotos(aBorrar).then(function () { return g; });
     }).then(function (g) {
       b.disabled = false; sucio = false; aBorrar = [];
@@ -298,6 +299,13 @@
       $('#e-msg').textContent = /duplicate key.*slug/i.test(err.message) ? 'Ya existe otro producto con esa dirección.' : 'No se pudo guardar: ' + err.message;
     });
   });
+
+  /* ---------- moneda del Mercado local ---------- */
+  function pintarMonedaLocal() {
+    var usd = f.moneda_local.value === 'USD';
+    $('#pl-sim').textContent = usd ? 'US$' : '$'; $('#pl-mon').textContent = usd ? 'USD' : 'ARS';
+  }
+  f.moneda_local.addEventListener('change', pintarMonedaLocal);
 
   /* ---------- países de envío ---------- */
   function pintarPaises() {
@@ -336,27 +344,59 @@
       });
     });
   }
-  function achicar(file) {
-    return new Promise(function (res, rej) {
-      var img = new Image(), url = URL.createObjectURL(file);
-      img.onload = function () {
-        var max = 1600, w = img.naturalWidth, h = img.naturalHeight, k = Math.min(1, max / Math.max(w, h));
-        var c = document.createElement('canvas'); c.width = Math.round(w * k); c.height = Math.round(h * k);
-        var ctx = c.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, c.width, c.height); ctx.drawImage(img, 0, 0, c.width, c.height);
-        URL.revokeObjectURL(url);
-        c.toBlob(function (b) { b ? res(b) : rej(new Error('No se pudo procesar la imagen')); }, 'image/jpeg', 0.85);
-      };
-      img.onerror = function () { rej(new Error('El archivo no es una imagen válida')); };
-      img.src = url;
+  /* Marca de agua "Umarti Origen" en las fotos de productos (las fotos marcadas terminan en -um.jpg) */
+  var marcaImg = null;
+  function cargarMarca() {
+    if (!marcaImg) marcaImg = new Promise(function (res, rej) {
+      var i = new Image(); i.onload = function () { res(i); }; i.onerror = function () { marcaImg = null; rej(new Error('No se pudo cargar la marca de agua')); };
+      i.src = '../assets/img/marca/marca-agua.png';
     });
+    return marcaImg;
+  }
+  function conMarca(u) { return /-um\.jpg(\?|$)/.test(u); }
+  function achicar(file, marca) {
+    return (marca ? cargarMarca() : Promise.resolve(null)).then(function (m) {
+      return new Promise(function (res, rej) {
+        var img = new Image(), url = URL.createObjectURL(file);
+        img.onload = function () {
+          var max = 1600, w = img.naturalWidth, h = img.naturalHeight, k = Math.min(1, max / Math.max(w, h));
+          var c = document.createElement('canvas'); c.width = Math.round(w * k); c.height = Math.round(h * k);
+          var ctx = c.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, c.width, c.height); ctx.drawImage(img, 0, 0, c.width, c.height);
+          if (m) {
+            var mw = c.width * 0.56, mh = m.naturalHeight * mw / m.naturalWidth;
+            ctx.globalAlpha = 0.5; ctx.drawImage(m, (c.width - mw) / 2, (c.height - mh) / 2, mw, mh); ctx.globalAlpha = 1;
+          }
+          URL.revokeObjectURL(url);
+          c.toBlob(function (b) { b ? res(b) : rej(new Error('No se pudo procesar la imagen')); }, 'image/jpeg', 0.86);
+        };
+        img.onerror = function () { rej(new Error('El archivo no es una imagen válida')); };
+        img.src = url;
+      });
+    });
+  }
+  function basePrefijo() { return (slugify(f.slug.value || f.nombre.value) || 'producto') + '-' + actual.id.slice(0, 8); }
+  /* Antes de guardar: agrega la marca a las fotos que todavía no la tienen */
+  function marcarFotos() {
+    var pend = fotos.filter(function (u) { return !conMarca(u) && !/^blob:/.test(u); });
+    if (!pend.length) return Promise.resolve();
+    $('#e-msg').textContent = 'Agregando la marca de agua a las fotos…';
+    var base = basePrefijo();
+    return Promise.all(fotos.map(function (u, i) {
+      if (conMarca(u) || /^blob:/.test(u)) return u;
+      return fetch(u).then(function (r) { if (!r.ok) throw new Error(r.status); return r.blob(); })
+        .then(function (b) { return achicar(b, true); })
+        .then(function (b) { return api.subir(base + '/' + Date.now() + '-' + i + '-um.jpg', b); })
+        .then(function (nu) { if (/supabase/.test(u)) aBorrar.push(u); return nu; })
+        .catch(function () { return u; });   // si no se puede, queda la foto como estaba
+    })).then(function (nuevas) { fotos = nuevas; pintarFotos(); });
   }
   function subirArchivos(files) {
     files = Array.prototype.filter.call(files, function (x) { return /^image\//.test(x.type); });
     if (!files.length) return;
     var drop = $('#e-drop'); drop.classList.add('busy'); drop.querySelector('b').textContent = 'Subiendo ' + files.length + (files.length === 1 ? ' foto…' : ' fotos…');
-    var base = (slugify(f.slug.value || f.nombre.value) || 'producto') + '-' + actual.id.slice(0, 8);
+    var base = basePrefijo();
     Promise.all(files.map(function (file, i) {
-      return achicar(file).then(function (blob) { return api.subir(base + '/' + Date.now() + '-' + i + '.jpg', blob); });
+      return achicar(file, true).then(function (blob) { return api.subir(base + '/' + Date.now() + '-' + i + '-um.jpg', blob); });
     })).then(function (urls) {
       fotos = fotos.concat(urls); sucio = true; pintarFotos(); actualizar();
       toast(urls.length === 1 ? 'Foto subida. Acordate de guardar.' : urls.length + ' fotos subidas. Acordate de guardar.');

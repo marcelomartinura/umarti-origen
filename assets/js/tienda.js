@@ -149,6 +149,63 @@
     ordenar();
   }
 
+  /* ---------- agregar al carrito ---------- */
+  var addBtn = document.getElementById('cart-add'), cantIn = document.getElementById('buy-cant');
+  if (cantIn) {
+    document.querySelectorAll('[data-qty]').forEach(function (b) {
+      b.addEventListener('click', function () { cantIn.value = Math.max(1, Math.min(99, (+cantIn.value || 1) + (+b.dataset.qty))); });
+    });
+  }
+  if (addBtn && window.UmartiCarrito) {
+    addBtn.addEventListener('click', function () {
+      var img = document.querySelector('.pdp-photo img');
+      var cant = Math.max(1, Math.min(99, +(cantIn && cantIn.value) || 1));
+      UmartiCarrito.agregar({ codigo: addBtn.dataset.codigo, nombre: addBtn.dataset.nombre, precio: +addBtn.dataset.precio,
+        moneda: addBtn.dataset.moneda, foto: img ? img.currentSrc || img.src : '', url: location.pathname }, cant);
+      mostrarToast(cant === 1 ? 'Agregado al carrito.' : cant + ' unidades agregadas al carrito.');
+    });
+  }
+  function mostrarToast(m) {
+    var t = document.getElementById('toast'); if (!t) return;
+    var link = document.querySelector('a.icon-link[aria-label="Carrito"]');
+    t.innerHTML = '';
+    t.appendChild(document.createTextNode(m + ' '));
+    if (link) { var a = document.createElement('a'); a.href = link.href; a.textContent = 'Ver carrito'; t.appendChild(a); }
+    t.classList.add('show'); clearTimeout(mostrarToast.t); mostrarToast.t = setTimeout(function () { t.classList.remove('show'); }, 3800);
+  }
+
+  /* ---------- página del carrito ---------- */
+  var cartBox = document.getElementById('cart');
+  if (cartBox && window.UmartiCarrito) {
+    var fmt = function (v, m) { return (m === 'USD' ? 'US$ ' : '$ ') + Number(v).toLocaleString('es-AR', { maximumFractionDigits: 2 }); };
+    var escH = function (x) { return String(x).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    var pintarCarrito = function () {
+      var l = UmartiCarrito.leer();
+      cartBox.hidden = !l.length; document.getElementById('cart-empty').classList.toggle('show', !l.length);
+      document.getElementById('cart-items').innerHTML = l.map(function (x, i) {
+        return '<li class="ci"><a class="ci-foto" href="' + escH(x.url) + '">' + (x.foto ? '<img src="' + escH(x.foto) + '" alt="">' : '') + '</a>' +
+          '<div class="ci-txt"><a href="' + escH(x.url) + '"><b>' + escH(x.nombre) + '</b></a><small>' + fmt(x.precio, x.moneda) + ' ' + escH(x.moneda) + ' c/u</small>' +
+          '<button type="button" class="ci-del" data-del="' + i + '">Quitar</button></div>' +
+          '<div class="qty" role="group" aria-label="Cantidad"><button type="button" data-i="' + i + '" data-d="-1" aria-label="Uno menos">−</button><input type="number" min="1" max="99" value="' + x.cant + '" data-i="' + i + '" aria-label="Cantidad"><button type="button" data-i="' + i + '" data-d="1" aria-label="Uno más">+</button></div>' +
+          '<span class="ci-sub">' + fmt(x.precio * x.cant, x.moneda) + '</span></li>';
+      }).join('');
+      var tot = {};
+      l.forEach(function (x) { tot[x.moneda] = (tot[x.moneda] || 0) + x.precio * x.cant; });
+      document.getElementById('cart-totales').innerHTML = Object.keys(tot).map(function (m) {
+        return '<div class="cs-row"><span>Subtotal</span><b>' + fmt(tot[m], m) + ' <small>' + m + '</small></b></div>';
+      }).join('');
+    };
+    var cambiar = function (i, cant) { var l = UmartiCarrito.leer(); if (!l[i]) return; l[i].cant = Math.max(1, Math.min(99, cant || 1)); UmartiCarrito.guardar(l); pintarCarrito(); };
+    cartBox.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      if (b.dataset.del != null) { var l = UmartiCarrito.leer(); l.splice(+b.dataset.del, 1); UmartiCarrito.guardar(l); pintarCarrito(); }
+      else if (b.dataset.d) { var x = UmartiCarrito.leer()[+b.dataset.i]; if (x) cambiar(+b.dataset.i, +x.cant + (+b.dataset.d)); }
+    });
+    cartBox.addEventListener('change', function (e) { if (e.target.dataset.i != null) cambiar(+e.target.dataset.i, +e.target.value); });
+    document.addEventListener('umarti:carrito', function () {});
+    pintarCarrito();
+  }
+
   /* ---------- consultas: precio por cantidad y conversar con el vendedor ---------- */
   var box = document.querySelector('[data-producto]');
   var producto = box ? box.dataset.producto : '';

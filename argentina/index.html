@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="../assets/css/umarti.css?v=97843a83">
   <link rel="stylesheet" href="../assets/css/blog.css?v=422de8ce">
   <link rel="stylesheet" href="../assets/css/viajes.css?v=87098f4a">
-  <link rel="stylesheet" href="../assets/css/tienda.css?v=bbfc2429">
+  <link rel="stylesheet" href="../assets/css/tienda.css?v=1fefa386">
 </head>
 <body>
 
@@ -42,10 +42,10 @@
           <span>Favoritos</span>
           <b class="badge" id="fav-count" hidden>0</b>
         </a>
-        <a href="../" class="icon-link" aria-label="Carrito">
+        <a href="../carrito/" class="icon-link" aria-label="Carrito">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2"/><circle cx="10" cy="20.5" r="1.2"/><circle cx="17" cy="20.5" r="1.2"/></svg>
           <span>Carrito</span>
-          <b class="badge">0</b>
+          <b class="badge" id="cart-count" hidden>0</b>
         </a>
       </div>
     </div>
@@ -138,7 +138,7 @@
         </div>
         <div class="ts-vidriera" aria-label="En la vidriera">
           <span class="vt-label">En la vidriera</span>
-          <div class="vt-items"><a class="vt-item" href="../argentina/tienda/mate-de-vidrio-forrado-de-simil-cuero-con-guarda-pampa/"><span class="vt-media"><img src="https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/productos/mate-de-vidrio-df959538/1792891295667-0.jpg" alt="" loading="lazy"></span><span class="vt-tag"><b>Mate de vidrio forrado de simil cuero con Guarda Pampa</b><small>$ 18.000 ARS</small></span></a><a class="vt-item" href="../argentina/tienda/mate-de-acero-esmaltado-blanco-con-asas/"><span class="vt-media"><img src="/assets/img/productos/mate-de-acero-esmaltado-blanco-con-asas.jpg" alt="" loading="lazy"></span><span class="vt-tag"><b>Mate de acero esmaltado blanco con asas</b><small>$ 15.000 ARS</small></span></a><a class="vt-item" href="../argentina/tienda/mate-forrado-en-simil-cuero-croco/"><span class="vt-media"><img src="/assets/img/productos/mate-forrado-en-simil-cuero-croco.jpg" alt="" loading="lazy"></span><span class="vt-tag"><b>Mate forrado en símil cuero croco</b><small>$ 15.000 ARS</small></span></a></div>
+          <div class="vt-items"><a class="vt-item" href="../argentina/tienda/mate-de-vidrio-forrado-de-simil-cuero-con-guarda-pampa/"><span class="vt-media"><img src="https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/productos/mate-de-vidrio-df959538/1792891295667-0.jpg" alt="" loading="lazy"></span><span class="vt-tag"><b>Mate de vidrio forrado de simil cuero con Guarda Pampa</b><small>$ 18.000 ARS</small></span></a><a class="vt-item" href="../argentina/tienda/mate-de-acero-esmaltado-blanco-con-asas/"><span class="vt-media"><img src="/assets/img/productos/mate-de-acero-esmaltado-blanco-con-asas-um.jpg" alt="" loading="lazy"></span><span class="vt-tag"><b>Mate de acero esmaltado blanco con asas</b><small>$ 15.000 ARS</small></span></a><a class="vt-item" href="../argentina/tienda/mate-forrado-en-simil-cuero-croco/"><span class="vt-media"><img src="/assets/img/productos/mate-forrado-en-simil-cuero-croco-um.jpg" alt="" loading="lazy"></span><span class="vt-tag"><b>Mate forrado en símil cuero croco</b><small>$ 15.000 ARS</small></span></a></div>
         </div>
       </div>
     </section>
@@ -165,7 +165,7 @@
           </a>
         </article>
         <article class="prod-card" data-cat="Café, Té y Mate" data-sub="Mates y bombillas" data-precio="15000" data-nombre="Mate de acero esmaltado blanco con asas" data-n="6">
-          <div class="prod-media"><button class="fav" type="button" data-fav="UM-0006" aria-pressed="false" aria-label="Guardar en favoritos"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button><div class="carousel" data-carousel tabindex="0" aria-label="Fotos de Mate de acero esmaltado blanco con asas"><div class="car-track"><div class="car-slide"><a href="../argentina/tienda/mate-de-acero-esmaltado-blanco-con-asas/" tabindex="-1"><img src="/assets/img/productos/mate-de-acero-esmaltado-blanco-con-asas.jpg" alt="Mate de acero esmaltado blanco con asas, foto 1" loading="lazy"></a></div></div><div class="car-dots"></div></div></div>
+          <div class="prod-media"><button class="fav" type="button" data-fav="UM-0006" aria-pressed="false" aria-label="Guardar en favoritos"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button><div class="carousel" data-carousel tabindex="0" aria-label="Fotos de Mate de acero esmaltado blanco con asas"><div class="car-track"><div class="car-slide"><a href="../argentina/tienda/mate-de-acero-esmaltado-blanco-con-asas/" tabindex="-1"><img src="/assets/img/productos/mate-de-acero-esmaltado-blanco-con-asas-um.jpg" alt="Mate de acero esmaltado blanco con asas, foto 1" loading="lazy"></a></div></div><div class="car-dots"></div></div></div>
           <a class="info" href="../argentina/tienda/mate-de-acero-esmaltado-blanco-con-asas/">
             <span class="kick">Mates y bombillas</span>
             <h3>Mate de acero esmaltado blanco con asas</h3>
@@ -174,7 +174,7 @@
           </a>
         </article>
         <article class="prod-card" data-cat="Café, Té y Mate" data-sub="Mates y bombillas" data-precio="15000" data-nombre="Mate forrado en símil cuero croco" data-n="7">
-          <div class="prod-media"><button class="fav" type="button" data-fav="UM-0007" aria-pressed="false" aria-label="Guardar en favoritos"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button><div class="carousel" data-carousel tabindex="0" aria-label="Fotos de Mate forrado en símil cuero croco"><div class="car-track"><div class="car-slide"><a href="../argentina/tienda/mate-forrado-en-simil-cuero-croco/" tabindex="-1"><img src="/assets/img/productos/mate-forrado-en-simil-cuero-croco.jpg" alt="Mate forrado en símil cuero croco, foto 1" loading="lazy"></a></div></div><div class="car-dots"></div></div></div>
+          <div class="prod-media"><button class="fav" type="button" data-fav="UM-0007" aria-pressed="false" aria-label="Guardar en favoritos"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button><div class="carousel" data-carousel tabindex="0" aria-label="Fotos de Mate forrado en símil cuero croco"><div class="car-track"><div class="car-slide"><a href="../argentina/tienda/mate-forrado-en-simil-cuero-croco/" tabindex="-1"><img src="/assets/img/productos/mate-forrado-en-simil-cuero-croco-um.jpg" alt="Mate forrado en símil cuero croco, foto 1" loading="lazy"></a></div></div><div class="car-dots"></div></div></div>
           <a class="info" href="../argentina/tienda/mate-forrado-en-simil-cuero-croco/">
             <span class="kick">Mates y bombillas</span>
             <h3>Mate forrado en símil cuero croco</h3>
@@ -183,7 +183,7 @@
           </a>
         </article>
         <article class="prod-card" data-cat="Café, Té y Mate" data-sub="Mates y bombillas" data-precio="15000" data-nombre="Mate enlozado blanco con dos asas" data-n="8">
-          <div class="prod-media"><button class="fav" type="button" data-fav="UM-0008" aria-pressed="false" aria-label="Guardar en favoritos"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button><div class="carousel" data-carousel tabindex="0" aria-label="Fotos de Mate enlozado blanco con dos asas"><div class="car-track"><div class="car-slide"><a href="../argentina/tienda/mate-enlozado-blanco-con-dos-asas/" tabindex="-1"><img src="/assets/img/productos/mate-enlozado-blanco-con-dos-asas.jpg" alt="Mate enlozado blanco con dos asas, foto 1" loading="lazy"></a></div></div><div class="car-dots"></div></div></div>
+          <div class="prod-media"><button class="fav" type="button" data-fav="UM-0008" aria-pressed="false" aria-label="Guardar en favoritos"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button><div class="carousel" data-carousel tabindex="0" aria-label="Fotos de Mate enlozado blanco con dos asas"><div class="car-track"><div class="car-slide"><a href="../argentina/tienda/mate-enlozado-blanco-con-dos-asas/" tabindex="-1"><img src="/assets/img/productos/mate-enlozado-blanco-con-dos-asas-um.jpg" alt="Mate enlozado blanco con dos asas, foto 1" loading="lazy"></a></div></div><div class="car-dots"></div></div></div>
           <a class="info" href="../argentina/tienda/mate-enlozado-blanco-con-dos-asas/">
             <span class="kick">Mates y bombillas</span>
             <h3>Mate enlozado blanco con dos asas</h3>
@@ -224,9 +224,9 @@
   </footer>
 
   <div class="toast" id="toast" role="status"></div>
-  <script src="../assets/js/header.js?v=aeeac190"></script>
-  <script src="../assets/data/tienda-indice.js?v=db1a84ff"></script>
-  <script src="../assets/js/tienda.js?v=6d262dc6"></script>
+  <script src="../assets/js/header.js?v=134afb0a"></script>
+  <script src="../assets/data/tienda-indice.js?v=2b006fca"></script>
+  <script src="../assets/js/tienda.js?v=e8011f9a"></script>
   <script src="../assets/js/idioma.js?v=6a7c8cee"></script>
 </body>
 </html>

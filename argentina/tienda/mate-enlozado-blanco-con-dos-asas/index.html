@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="../../../assets/css/umarti.css?v=97843a83">
   <link rel="stylesheet" href="../../../assets/css/blog.css?v=422de8ce">
   <link rel="stylesheet" href="../../../assets/css/viajes.css?v=87098f4a">
-  <link rel="stylesheet" href="../../../assets/css/tienda.css?v=bbfc2429">
+  <link rel="stylesheet" href="../../../assets/css/tienda.css?v=1fefa386">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -46,7 +46,7 @@
     "name": "Umarti Origen"
   },
   "image": [
-    "/assets/img/productos/mate-enlozado-blanco-con-dos-asas.jpg"
+    "/assets/img/productos/mate-enlozado-blanco-con-dos-asas-um.jpg"
   ]
 }
   </script>
@@ -74,10 +74,10 @@
           <span>Favoritos</span>
           <b class="badge" id="fav-count" hidden>0</b>
         </a>
-        <a href="../../../" class="icon-link" aria-label="Carrito">
+        <a href="../../../carrito/" class="icon-link" aria-label="Carrito">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2"/><circle cx="10" cy="20.5" r="1.2"/><circle cx="17" cy="20.5" r="1.2"/></svg>
           <span>Carrito</span>
-          <b class="badge">0</b>
+          <b class="badge" id="cart-count" hidden>0</b>
         </a>
       </div>
     </div>
@@ -161,7 +161,7 @@
       </nav>
       <section class="pdp">
         <div class="pdp-photo">
-          <div class="prod-media"><button class="fav" type="button" data-fav="UM-0008" aria-pressed="false" aria-label="Guardar en favoritos"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button><div class="carousel big" data-carousel tabindex="0" aria-label="Fotos de Mate enlozado blanco con dos asas"><div class="car-track"><div class="car-slide"><img src="/assets/img/productos/mate-enlozado-blanco-con-dos-asas.jpg" alt="Mate enlozado blanco con dos asas, foto 1" loading="lazy"></div></div><div class="car-dots"></div></div></div>
+          <div class="prod-media"><button class="fav" type="button" data-fav="UM-0008" aria-pressed="false" aria-label="Guardar en favoritos"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button><div class="carousel big" data-carousel tabindex="0" aria-label="Fotos de Mate enlozado blanco con dos asas"><div class="car-track"><div class="car-slide"><img src="/assets/img/productos/mate-enlozado-blanco-con-dos-asas-um.jpg" alt="Mate enlozado blanco con dos asas, foto 1" loading="lazy"></div></div><div class="car-dots"></div></div></div>
           
         </div>
         <div>
@@ -171,17 +171,14 @@
           <p class="lead">Mate de estilo enlozado clásico, blanco con borde negro y dos asas para tomarlo cómodo. Fácil de lavar y no necesita curado.</p>
           <div class="buy-box" data-producto="Mate enlozado blanco con dos asas">
             <div class="buy-price">$ 15.000<small>ARS</small></div>
-            <div class="envio-box">
-              <p class="envio-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h11v10H3zM14 9h4l3 3v4h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><span>Envío disponible</span></p>
-              <ul class="zonas"><li><a class="zona" href="../../../argentina/envios/">Argentina</a><span class="zp">$ 15.000 <small>ARS</small></span></li><li><a class="zona" href="../../../international-shop/envios/">Internacional</a><span class="zp">US$ 10 <small>USD</small></span><small class="zd">A todo el mundo</small></li></ul>
-            </div>
-            <a class="btn-buy" href="#" aria-disabled="true">Disponible muy pronto</a><p class="buy-hint">Estamos preparando la venta en línea de este producto.</p><a class="buy-seguro" href="../../../legal/arrepentimiento/"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span><b>Comprá seguro:</b> pago protegido y 10 días para arrepentirte.</span></a>
-            <button class="btn-outline" type="button" data-dialog="dlg-cant"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg><span>Consultar precio por cantidad</span></button>
+            <p class="envio-line"><span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h11v10H3zM14 9h4l3 3v4h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>Envío a todo el país</span><a href="../../../international-shop/envios/"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>También enviamos al exterior</a></p>
+            <div class="buy-row"><div class="qty" role="group" aria-label="Cantidad"><button type="button" data-qty="-1" aria-label="Uno menos">−</button><input type="number" id="buy-cant" value="1" min="1" max="99" inputmode="numeric" aria-label="Cantidad"><button type="button" data-qty="1" aria-label="Uno más">+</button></div><button class="btn-buy" type="button" id="cart-add" data-codigo="UM-0008" data-nombre="Mate enlozado blanco con dos asas" data-precio="15000" data-moneda="ARS" data-foto="/assets/img/productos/mate-enlozado-blanco-con-dos-asas-um.jpg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2"/><circle cx="10" cy="20.5" r="1.2"/><circle cx="17" cy="20.5" r="1.2"/></svg><span>Agregar al carrito</span></button></div>
+            <div class="buy-2"><button class="btn-outline" type="button" data-dialog="dlg-conv"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/></svg><span>Consultar</span></button><button class="btn-outline" type="button" data-dialog="dlg-cant"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg><span>Consultar precio mayorista</span></button></div>
+            <a class="buy-seguro" href="../../../legal/arrepentimiento/"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span><b>Comprá seguro:</b> pago protegido y 10 días para arrepentirte.</span></a>
           </div>
           <div class="seller">
             <div class="seller-av">U</div>
             <div><small>Vendido por</small><strong>Umarti Origen</strong></div>
-            <button class="btn-outline small" type="button" data-dialog="dlg-conv"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/></svg><span>Conversá con el vendedor</span></button>
           </div>
           <div class="link-cards"><a class="link-card tema" href="../../../mate/"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2zM8 7h6"/></svg></span><span><strong>Todo sobre el mate</strong><small>Guías, productos, destinos y más en un solo lugar</small></span></a></div>
         </div>
@@ -191,18 +188,18 @@
       <div class="wrap">
         <h2>Aprendé a usarlo y cuidarlo</h2>
       <div class="post-grid">
-        <a class="post-card" href="../../../blog/como-curar-un-mate/" data-texto="cómo curar un mate de calabaza o de madera antes de estrenarlo curar el mate sella sus poros, mejora el sabor y evita hongos y grietas. qué mates hay que curar, el método con yerba usada paso a paso y otras dos técnicas tradicionales. café, té y mate mates y bombillas  mate curado calabaza" data-sub="Mates y bombillas">
-          <div class="cover has-photo " style="--c1:#5b7a43;--c2:#33472a"><img src="../../../assets/img/blog/mate-de-madera-curado.jpg" alt="" loading="lazy"><span>Mates y bombillas</span></div>
-          <p class="post-kicker"><b>Productos</b> · Café, Té y Mate</p>
-          <h3>Cómo curar un mate de calabaza o de madera antes de estrenarlo</h3>
-          <p>Curar el mate sella sus poros, mejora el sabor y evita hongos y grietas. Qué mates hay que curar, el método con yerba usada paso a paso y otras dos técnicas tradicionales.</p>
-          <span class="post-meta">18 de octubre de 2026 · 4 min de lectura</span>
-        </a>
         <a class="post-card" href="../../../blog/que-es-el-mate/" data-texto="qué es el mate: origen, tradición y cómo se toma una infusión de origen guaraní que se volvió símbolo de amistad en el sur de américa. de dónde viene, qué tiene, cómo se comparte la ronda y las formas de tomarlo, dulce, amargo o saborizado. café, té y mate mates y bombillas  mate yerba mate historia" data-sub="Mates y bombillas">
           <div class="cover has-photo " style="--c1:#5b7a43;--c2:#33472a"><img src="../../../assets/img/blog/mate-galeria-de-piedra.jpg" alt="" loading="lazy" style="object-position:35% 66%"><span>Mates y bombillas</span></div>
           <p class="post-kicker"><b>Productos</b> · Café, Té y Mate</p>
           <h3>Qué es el mate: origen, tradición y cómo se toma</h3>
           <p>Una infusión de origen guaraní que se volvió símbolo de amistad en el sur de América. De dónde viene, qué tiene, cómo se comparte la ronda y las formas de tomarlo, dulce, amargo o saborizado.</p>
+          <span class="post-meta">18 de octubre de 2026 · 4 min de lectura</span>
+        </a>
+        <a class="post-card" href="../../../blog/como-curar-un-mate/" data-texto="cómo curar un mate de calabaza o de madera antes de estrenarlo curar el mate sella sus poros, mejora el sabor y evita hongos y grietas. qué mates hay que curar, el método con yerba usada paso a paso y otras dos técnicas tradicionales. café, té y mate mates y bombillas  mate curado calabaza" data-sub="Mates y bombillas">
+          <div class="cover has-photo " style="--c1:#5b7a43;--c2:#33472a"><img src="../../../assets/img/blog/mate-de-madera-curado.jpg" alt="" loading="lazy"><span>Mates y bombillas</span></div>
+          <p class="post-kicker"><b>Productos</b> · Café, Té y Mate</p>
+          <h3>Cómo curar un mate de calabaza o de madera antes de estrenarlo</h3>
+          <p>Curar el mate sella sus poros, mejora el sabor y evita hongos y grietas. Qué mates hay que curar, el método con yerba usada paso a paso y otras dos técnicas tradicionales.</p>
           <span class="post-meta">18 de octubre de 2026 · 4 min de lectura</span>
         </a>
         <a class="post-card" href="../../../blog/como-curar-un-mate-de-palo-santo/" data-texto="cómo curar un mate de palo santo sin que se agriete el palo santo da uno de los mates más ricos y aromáticos, pero su madera no perdona los cambios bruscos de temperatura. cómo curarlo paso a paso y cómo cuidarlo para que dure. café, té y mate mates y bombillas  mate curado palo santo" data-sub="Mates y bombillas">
@@ -229,7 +226,7 @@
           </a>
         </article>
         <article class="prod-card" data-cat="Café, Té y Mate" data-sub="Mates y bombillas" data-precio="15000" data-nombre="Mate de acero esmaltado blanco con asas" data-n="6">
-          <div class="prod-media"><button class="fav" type="button" data-fav="UM-0006" aria-pressed="false" aria-label="Guardar en favoritos"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button><div class="carousel" data-carousel tabindex="0" aria-label="Fotos de Mate de acero esmaltado blanco con asas"><div class="car-track"><div class="car-slide"><a href="../../../argentina/tienda/mate-de-acero-esmaltado-blanco-con-asas/" tabindex="-1"><img src="/assets/img/productos/mate-de-acero-esmaltado-blanco-con-asas.jpg" alt="Mate de acero esmaltado blanco con asas, foto 1" loading="lazy"></a></div></div><div class="car-dots"></div></div></div>
+          <div class="prod-media"><button class="fav" type="button" data-fav="UM-0006" aria-pressed="false" aria-label="Guardar en favoritos"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button><div class="carousel" data-carousel tabindex="0" aria-label="Fotos de Mate de acero esmaltado blanco con asas"><div class="car-track"><div class="car-slide"><a href="../../../argentina/tienda/mate-de-acero-esmaltado-blanco-con-asas/" tabindex="-1"><img src="/assets/img/productos/mate-de-acero-esmaltado-blanco-con-asas-um.jpg" alt="Mate de acero esmaltado blanco con asas, foto 1" loading="lazy"></a></div></div><div class="car-dots"></div></div></div>
           <a class="info" href="../../../argentina/tienda/mate-de-acero-esmaltado-blanco-con-asas/">
             <span class="kick">Mates y bombillas</span>
             <h3>Mate de acero esmaltado blanco con asas</h3>
@@ -238,7 +235,7 @@
           </a>
         </article>
         <article class="prod-card" data-cat="Café, Té y Mate" data-sub="Mates y bombillas" data-precio="15000" data-nombre="Mate forrado en símil cuero croco" data-n="7">
-          <div class="prod-media"><button class="fav" type="button" data-fav="UM-0007" aria-pressed="false" aria-label="Guardar en favoritos"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button><div class="carousel" data-carousel tabindex="0" aria-label="Fotos de Mate forrado en símil cuero croco"><div class="car-track"><div class="car-slide"><a href="../../../argentina/tienda/mate-forrado-en-simil-cuero-croco/" tabindex="-1"><img src="/assets/img/productos/mate-forrado-en-simil-cuero-croco.jpg" alt="Mate forrado en símil cuero croco, foto 1" loading="lazy"></a></div></div><div class="car-dots"></div></div></div>
+          <div class="prod-media"><button class="fav" type="button" data-fav="UM-0007" aria-pressed="false" aria-label="Guardar en favoritos"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button><div class="carousel" data-carousel tabindex="0" aria-label="Fotos de Mate forrado en símil cuero croco"><div class="car-track"><div class="car-slide"><a href="../../../argentina/tienda/mate-forrado-en-simil-cuero-croco/" tabindex="-1"><img src="/assets/img/productos/mate-forrado-en-simil-cuero-croco-um.jpg" alt="Mate forrado en símil cuero croco, foto 1" loading="lazy"></a></div></div><div class="car-dots"></div></div></div>
           <a class="info" href="../../../argentina/tienda/mate-forrado-en-simil-cuero-croco/">
             <span class="kick">Mates y bombillas</span>
             <h3>Mate forrado en símil cuero croco</h3>
@@ -247,7 +244,7 @@
           </a>
         </article>
         <article class="prod-card" data-cat="Café, Té y Mate" data-sub="Mates y bombillas" data-precio="15000" data-nombre="Mate y bombilla de bambú" data-n="9">
-          <div class="prod-media"><button class="fav" type="button" data-fav="UM-0009" aria-pressed="false" aria-label="Guardar en favoritos"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button><div class="carousel" data-carousel tabindex="0" aria-label="Fotos de Mate y bombilla de bambú"><div class="car-track"><div class="car-slide"><a href="../../../argentina/tienda/set-de-mate-y-bombilla-de-bambu/" tabindex="-1"><img src="/assets/img/productos/set-de-mate-y-bombilla-de-bambu.jpg" alt="Mate y bombilla de bambú, foto 1" loading="lazy"></a></div></div><div class="car-dots"></div></div></div>
+          <div class="prod-media"><button class="fav" type="button" data-fav="UM-0009" aria-pressed="false" aria-label="Guardar en favoritos"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button><div class="carousel" data-carousel tabindex="0" aria-label="Fotos de Mate y bombilla de bambú"><div class="car-track"><div class="car-slide"><a href="../../../argentina/tienda/set-de-mate-y-bombilla-de-bambu/" tabindex="-1"><img src="/assets/img/productos/set-de-mate-y-bombilla-de-bambu-um.jpg" alt="Mate y bombilla de bambú, foto 1" loading="lazy"></a></div></div><div class="car-dots"></div></div></div>
           <a class="info" href="../../../argentina/tienda/set-de-mate-y-bombilla-de-bambu/">
             <span class="kick">Mates y bombillas</span>
             <h3>Mate y bombilla de bambú</h3>
@@ -285,7 +282,7 @@
     </div>
   </footer>
   <dialog id="dlg-cant" aria-labelledby="cant-title">
-    <div class="dlg-head"><div><h2 id="cant-title">Consultar precio por cantidad</h2><p id="cant-sub"></p></div><button class="dlg-close" type="button" data-close aria-label="Cerrar">×</button></div>
+    <div class="dlg-head"><div><h2 id="cant-title">Consultar precio mayorista</h2><p id="cant-sub"></p></div><button class="dlg-close" type="button" data-close aria-label="Cerrar">×</button></div>
     <div class="dlg-body">
       <form id="cant-form" data-ok="cant-ok">
         <div class="form-grid">
@@ -296,13 +293,13 @@
           <div class="field full"><label for="c-mail">Correo <span class="req">*</span></label><input id="c-mail" type="email" required autocomplete="email"></div>
           <div class="field full"><label for="c-msg">Comentarios</label><textarea id="c-msg" placeholder="Fechas, personalización o lo que necesites."></textarea></div>
         </div>
-        <div class="form-foot"><small>Te respondemos por correo con un precio para esa cantidad.</small><button class="btn-buy small" type="submit">Enviar consulta</button></div>
+        <div class="form-foot"><small>Te respondemos por correo con el precio mayorista para esa cantidad.</small><button class="btn-buy small" type="submit">Enviar consulta</button></div>
       </form>
       <div class="dlg-ok" id="cant-ok" hidden><h3>¡Consulta enviada!</h3><p>En la versión final te llega la cotización por correo. En este prototipo no se envía nada.</p><button class="btn-line-dark" type="button" data-close>Volver al producto</button></div>
     </div>
   </dialog>
   <dialog id="dlg-conv" aria-labelledby="conv-title">
-    <div class="dlg-head"><div><h2 id="conv-title">Conversá con el vendedor</h2><p id="conv-sub"></p></div><button class="dlg-close" type="button" data-close aria-label="Cerrar">×</button></div>
+    <div class="dlg-head"><div><h2 id="conv-title">Consultar al vendedor</h2><p id="conv-sub"></p></div><button class="dlg-close" type="button" data-close aria-label="Cerrar">×</button></div>
     <div class="dlg-body">
       <form id="conv-form" data-ok="conv-ok">
         <div class="form-grid">
@@ -316,9 +313,9 @@
     </div>
   </dialog>
   <div class="toast" id="toast" role="status"></div>
-  <script src="../../../assets/js/header.js?v=aeeac190"></script>
-  <script src="../../../assets/data/tienda-indice.js?v=db1a84ff"></script>
-  <script src="../../../assets/js/tienda.js?v=6d262dc6"></script>
+  <script src="../../../assets/js/header.js?v=134afb0a"></script>
+  <script src="../../../assets/data/tienda-indice.js?v=2b006fca"></script>
+  <script src="../../../assets/js/tienda.js?v=e8011f9a"></script>
   <script src="../../../assets/js/idioma.js?v=6a7c8cee"></script>
 </body>
 </html>

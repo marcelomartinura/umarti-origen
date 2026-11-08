@@ -15,7 +15,7 @@ from supabase_config import SUPABASE_URL, SUPABASE_KEY  # noqa: E402
 
 CATALOGO = os.path.join(AQUI, "catalogo.json")
 CAMPOS = ["codigo", "nombre", "descripcion", "categoria", "subcategoria", "temas", "pais", "region", "destino",
-          "precio_ars", "precio_mxn", "precio_usd", "tienda_ar", "tienda_mx", "international", "paises_envio",
+          "precio_ars", "moneda_local", "precio_mxn", "precio_usd", "tienda_ar", "tienda_mx", "international", "paises_envio",
           "hub", "hs", "volumen", "vigencia_hub", "link_pago", "fotos", "estado", "vendedor", "slug"]
 
 
@@ -36,13 +36,14 @@ def numero(v):
 
 def convertir(fila):
     p = {k: fila.get(k) for k in CAMPOS}
-    for k in ("precio_ars", "precio_mxn", "precio_usd"):
+    for k in ("precio_ars", "moneda_local", "precio_mxn", "precio_usd"):
         p[k] = numero(p[k])
     for k in ("temas", "paises_envio", "fotos"):
         p[k] = p[k] or []
     for k in ("descripcion", "region", "destino", "hs", "volumen", "link_pago", "vendedor"):
         p[k] = p[k] or ""
     p["vigencia_hub"] = p["vigencia_hub"] or ""
+    p["moneda_local"] = "USD" if p.get("moneda_local") == "USD" else "ARS"
     p["vendedor"] = p["vendedor"] or "Umarti Origen"
     return p
 

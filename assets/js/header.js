@@ -64,3 +64,26 @@
   window.addEventListener('storage', update);
   update();
 })();
+
+/* Carrito (se guarda en este navegador) y su contador en el encabezado */
+(function () {
+  var KEY = 'umarti-carrito';
+  function leer() { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { return []; } }
+  function guardar(l) { try { localStorage.setItem(KEY, JSON.stringify(l)); } catch (e) { /* sin almacenamiento */ } document.dispatchEvent(new Event('umarti:carrito')); }
+  function contar() { return leer().reduce(function (n, x) { return n + (+x.cant || 0); }, 0); }
+  window.UmartiCarrito = {
+    leer: leer, guardar: guardar, contar: contar,
+    agregar: function (item, cant) {
+      var l = leer(), x = l.filter(function (i) { return i.codigo === item.codigo; })[0];
+      if (x) { x.cant = Math.min(99, (+x.cant || 0) + cant); Object.assign(x, item, { cant: x.cant }); }
+      else { item.cant = cant; l.push(item); }
+      guardar(l);
+    }
+  };
+  var badge = document.getElementById('cart-count');
+  if (!badge) return;
+  function update() { var n = contar(); badge.textContent = n > 99 ? '99+' : n; badge.hidden = n === 0; }
+  document.addEventListener('umarti:carrito', update);
+  window.addEventListener('storage', update);
+  update();
+})();

@@ -284,3 +284,8 @@ label.inline { display: flex; align-items: center; gap: 10px; font-size: 0.85rem
 .ic-btn { width: 34px; height: 34px; border-radius: 10px; border: 1px solid var(--line); background: #fff; cursor: pointer; font-size: 0.95rem; display: grid; place-items: center; }
 .ic-btn:hover { border-color: var(--terra); }
 .ic-btn.del:hover { border-color: #b3261e; background: #fbeae8; }
+.precio-local { display: flex; gap: 10px; align-items: end; }
+.precio-local .precio { flex: 1; min-width: 0; }
+.mon-sel { font-weight: 500; color: var(--muted); font-size: 0.8rem; display: flex; flex-direction: column; gap: 6px; }
+.mon-sel select { width: 140px; }
+.mercado.off .precio-local { opacity: .45; }

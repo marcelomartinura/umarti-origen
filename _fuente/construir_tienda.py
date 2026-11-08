@@ -79,18 +79,28 @@ def rel(depth, path=""):
 def precio(v, moneda):
     if v is None:
         return ""
-    n = f"{v:,.0f}".replace(",", ".")
+    if float(v).is_integer():
+        n = f"{v:,.0f}".replace(",", ".")
+    else:
+        n = f"{v:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
     return {"ars": f"$ {n}", "mxn": f"$ {n}", "usd": f"US$ {n}"}[moneda]
+
+
+def moneda_campo(p, campo, m):
+    """El precio del Mercado local de Argentina (precio_ars) puede estar cargado en dólares."""
+    return "usd" if campo == "precio_ars" and p.get("moneda_local") == "USD" else m
 
 
 def precio_principal(p):
     """Precio en la moneda del país de origen; si no hay, el de International Shop."""
     m = MONEDA_PAIS.get(p["pais"])
     if m and p.get(f"precio_{m}") is not None and p.get(f"tienda_{m[:2]}"):
-        return precio(p[f"precio_{m}"], m), m.upper()
+        mm = moneda_campo(p, f"precio_{m}", m)
+        return precio(p[f"precio_{m}"], mm), mm.upper()
     for flag, campo, m in TIENDAS_LOCALES.values():
         if p.get(flag) and p.get(campo) is not None:
-            return precio(p[campo], m), m.upper()
+            mm = moneda_campo(p, campo, m)
+            return precio(p[campo], mm), mm.upper()
     return precio(p["precio_usd"], "usd"), "USD"
 
 
@@ -101,7 +111,8 @@ def zonas(p):
     nacionales.sort(key=lambda x: x[0] != p["pais"])
     for nombre, flag, campo, mon in nacionales:
         if p.get(flag):
-            z.append(dict(nombre=nombre, slug=slug(nombre), precio=precio(p.get(campo), mon), moneda=mon.upper(), detalle=""))
+            mm = moneda_campo(p, campo, mon)
+            z.append(dict(nombre=nombre, slug=slug(nombre), precio=precio(p.get(campo), mm), moneda=mm.upper(), detalle=""))
     if p.get("international"):
         z.append(dict(nombre="Internacional", slug="internacional", precio=precio(p.get("precio_usd"), "usd"), moneda="USD",
                       detalle=("A todo el mundo" if "Todos los países" in p["paises_envio"] else "A " + ", ".join(p["paises_envio"])) if p["paises_envio"] else ""))
@@ -109,6 +120,7 @@ def zonas(p):
 
 
 # ---------- fotos y carrusel ----------
+ICON_CART = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2"/><circle cx="10" cy="20.5" r="1.2"/><circle cx="17" cy="20.5" r="1.2"/></svg>'
 ICON_TRUCK = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h11v10H3zM14 9h4l3 3v4h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>'
 ICON_HEART = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>'
 ICON_CAM = '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>'
@@ -258,7 +270,7 @@ ICON = {
 }
 
 DIALOGOS = '''  <dialog id="dlg-cant" aria-labelledby="cant-title">
-    <div class="dlg-head"><div><h2 id="cant-title">Consultar precio por cantidad</h2><p id="cant-sub"></p></div><button class="dlg-close" type="button" data-close aria-label="Cerrar">×</button></div>
+    <div class="dlg-head"><div><h2 id="cant-title">Consultar precio mayorista</h2><p id="cant-sub"></p></div><button class="dlg-close" type="button" data-close aria-label="Cerrar">×</button></div>
     <div class="dlg-body">
       <form id="cant-form" data-ok="cant-ok">
         <div class="form-grid">
@@ -269,13 +281,13 @@ DIALOGOS = '''  <dialog id="dlg-cant" aria-labelledby="cant-title">
           <div class="field full"><label for="c-mail">Correo <span class="req">*</span></label><input id="c-mail" type="email" required autocomplete="email"></div>
           <div class="field full"><label for="c-msg">Comentarios</label><textarea id="c-msg" placeholder="Fechas, personalización o lo que necesites."></textarea></div>
         </div>
-        <div class="form-foot"><small>Te respondemos por correo con un precio para esa cantidad.</small><button class="btn-buy small" type="submit">Enviar consulta</button></div>
+        <div class="form-foot"><small>Te respondemos por correo con el precio mayorista para esa cantidad.</small><button class="btn-buy small" type="submit">Enviar consulta</button></div>
       </form>
       <div class="dlg-ok" id="cant-ok" hidden><h3>¡Consulta enviada!</h3><p>En la versión final te llega la cotización por correo. En este prototipo no se envía nada.</p><button class="btn-line-dark" type="button" data-close>Volver al producto</button></div>
     </div>
   </dialog>
   <dialog id="dlg-conv" aria-labelledby="conv-title">
-    <div class="dlg-head"><div><h2 id="conv-title">Conversá con el vendedor</h2><p id="conv-sub"></p></div><button class="dlg-close" type="button" data-close aria-label="Cerrar">×</button></div>
+    <div class="dlg-head"><div><h2 id="conv-title">Consultar al vendedor</h2><p id="conv-sub"></p></div><button class="dlg-close" type="button" data-close aria-label="Cerrar">×</button></div>
     <div class="dlg-body">
       <form id="conv-form" data-ok="conv-ok">
         <div class="form-grid">
@@ -412,16 +424,22 @@ def pagina_producto(p, productos, temas, notas, cb, cv):
     dest = next((x for x in cv.DESTINOS if x["slug"] == p.get("destino")), None)
     pr, mon = precio_principal(p)
     galeria = carousel(p, cb, cv, grande=True)
-    def fila(z):
-        det = f'<small class="zd">{esc(z["detalle"])}</small>' if z["detalle"] else ""
-        return (f'<li><a class="zona" href="{rel(d, p_envio(z["slug"]))}">{esc(z["nombre"])}</a>'
-                f'<span class="zp">{z["precio"]} <small>{z["moneda"]}</small></span>{det}</li>')
-    filas = "".join(fila(z) for z in zonas(p))
-    if p.get("link_pago"):
-        comprar = f'<a class="btn-buy" href="{esc(p["link_pago"])}" rel="noopener">Comprar</a>'
+    pn = precio_num(p)
+    envio = [f'<span>{ICON_TRUCK}Envío a todo el país</span>'] if en_tienda_local(p) else []
+    if p.get("international"):
+        envio.append(f'<a href="{rel(d, p_envio("internacional"))}">{ICON["pin"]}También enviamos al exterior</a>')
+    foto0 = p["fotos"][0] if p.get("fotos") else ""
+    if pn is not None:
+        carrito = (f'<div class="buy-row"><div class="qty" role="group" aria-label="Cantidad"><button type="button" data-qty="-1" aria-label="Uno menos">−</button>'
+                   f'<input type="number" id="buy-cant" value="1" min="1" max="99" inputmode="numeric" aria-label="Cantidad"><button type="button" data-qty="1" aria-label="Uno más">+</button></div>'
+                   f'<button class="btn-buy" type="button" id="cart-add" data-codigo="{esc(p["codigo"])}" data-nombre="{esc(p["nombre"])}" data-precio="{pn}" data-moneda="{mon}" data-foto="{esc(foto0)}">{ICON_CART}<span>Agregar al carrito</span></button></div>')
     else:
-        comprar = '<a class="btn-buy" href="#" aria-disabled="true">Disponible muy pronto</a><p class="buy-hint">Estamos preparando la venta en línea de este producto.</p>'
-    comprar += f'<a class="buy-seguro" href="{rel(d, "legal/arrepentimiento/")}">{ICON_LOCK}<span><b>Comprá seguro:</b> pago protegido y 10 días para arrepentirte.</span></a>'
+        carrito = '<div class="buy-row"><a class="btn-buy" href="#" aria-disabled="true">Precio a consultar</a></div>'
+    if p.get("link_pago"):
+        carrito += f'<a class="btn-buy alt" href="{esc(p["link_pago"])}" rel="noopener">Comprar ahora</a>'
+    consultas = (f'<div class="buy-2"><button class="btn-outline" type="button" data-dialog="dlg-conv">{ICON["msg"]}<span>Consultar</span></button>'
+                 f'<button class="btn-outline" type="button" data-dialog="dlg-cant">{ICON["box"]}<span>Consultar precio mayorista</span></button></div>')
+    seguro = f'<a class="buy-seguro" href="{rel(d, "legal/arrepentimiento/")}">{ICON_LOCK}<span><b>Comprá seguro:</b> pago protegido y 10 días para arrepentirte.</span></a>'
     links = []
     if dest:
         links.append(f'<a class="link-card origen" href="{rel(d, f"viajes/{dest["pais"]}/{dest["slug"]}/")}"><span class="ic">{ICON["pin"]}</span><span><strong>Origen: {esc(p["region"])}, {esc(p["pais"])}</strong><small>Conocé el lugar en la guía de viaje de {esc(dest["nombre"])}</small></span></a>')
@@ -448,18 +466,15 @@ def pagina_producto(p, productos, temas, notas, cb, cv):
           <h1>{esc(p['nombre'])}</h1>
           <p class="lead">{esc(p['descripcion'])}</p>
           <div class="buy-box" data-producto="{esc(p['nombre'])}">
-            <div class="buy-price">{pr}<small>{mon}</small></div>
-            <div class="envio-box">
-              <p class="envio-title">{ICON_TRUCK}<span>Envío disponible</span></p>
-              <ul class="zonas">{filas}</ul>
-            </div>
-            {comprar}
-            <button class="btn-outline" type="button" data-dialog="dlg-cant">{ICON["box"]}<span>Consultar precio por cantidad</span></button>
+            <div class="buy-price">{pr or "Precio a consultar"}<small>{mon if pr else ""}</small></div>
+            <p class="envio-line">{"".join(envio)}</p>
+            {carrito}
+            {consultas}
+            {seguro}
           </div>
           <div class="seller">
             <div class="seller-av">{esc(p['vendedor'][0])}</div>
             <div><small>Vendido por</small><strong>{esc(p['vendedor'])}</strong></div>
-            <button class="btn-outline small" type="button" data-dialog="dlg-conv">{ICON["msg"]}<span>Conversá con el vendedor</span></button>
           </div>
           <div class="link-cards">{"".join(links)}</div>
         </div>
@@ -482,7 +497,7 @@ def pagina_producto(p, productos, temas, notas, cb, cv):
     ld = None
     if p["estado"] == "Publicado":
         offers = []
-        if p["tienda_ar"] and p["precio_ars"]: offers.append({"@type": "Offer", "price": p["precio_ars"], "priceCurrency": "ARS", "availability": "https://schema.org/InStock"})
+        if p["tienda_ar"] and p["precio_ars"]: offers.append({"@type": "Offer", "price": p["precio_ars"], "priceCurrency": "USD" if p.get("moneda_local") == "USD" else "ARS", "availability": "https://schema.org/InStock"})
         if p["international"] and p["precio_usd"]: offers.append({"@type": "Offer", "price": p["precio_usd"], "priceCurrency": "USD", "availability": "https://schema.org/InStock"})
         ld = {"@context": "https://schema.org", "@type": "Product", "name": p["nombre"], "description": p["descripcion"], "sku": p["codigo"],
               "category": f'{p["categoria"]} > {p["subcategoria"]}', "countryOfOrigin": p["pais"], "offers": offers,
@@ -810,6 +825,28 @@ def pagina_favoritos():
     return page(d, "Mis favoritos | Umarti Origen", "Productos guardados en favoritos.", main, ["blog", "viajes", "tienda"], noindex=True)
 
 
+def pagina_carrito():
+    d = 1
+    main = f'''    <div class="wrap">
+{crumbs(d, [("Carrito", None)])}
+      <div class="blog-head"><span class="eyebrow" style="color:var(--terra)">Tu compra</span><h1>Carrito</h1><p>Los productos que agregaste. Se guardan en este navegador.</p></div>
+      <div class="cart" id="cart" hidden>
+        <ul class="cart-items" id="cart-items"></ul>
+        <aside class="cart-sum">
+          <h2>Resumen</h2>
+          <div id="cart-totales"></div>
+          <p class="cart-envio">{ICON_TRUCK}<span>El envío se calcula al finalizar la compra.</span></p>
+          <a class="btn-buy" href="#" aria-disabled="true">Finalizar compra</a>
+          <p class="buy-hint">Muy pronto vas a poder pagar en línea. Mientras tanto, escribinos para coordinar tu pedido.</p>
+          <a class="buy-seguro" href="{rel(d, "legal/arrepentimiento/")}">{ICON_LOCK}<span><b>Comprá seguro:</b> pago protegido y 10 días para arrepentirte.</span></a>
+        </aside>
+      </div>
+      <p class="shop-empty" id="cart-empty">Tu carrito está vacío. <a href="{rel(d, p_tienda())}">Ir a la Tienda</a></p>
+      <div style="height:88px"></div>
+    </div>'''
+    return page(d, "Carrito | Umarti Origen", "Los productos de tu compra.", main, ["blog", "viajes", "tienda"], noindex=True)
+
+
 def indice_js(productos, cb):
     data = []
     for p in productos:
@@ -872,6 +909,15 @@ def main():
     for e in envios:
         escribir(p_envio(e["slug"]) + "index.html", pagina_envio(e, envios, productos))
     escribir("favoritos/index.html", pagina_favoritos())
+    escribir("carrito/index.html", pagina_carrito())
+    # Borra las páginas de productos que ya no están publicados (pausados, borradores o eliminados en el panel)
+    vigentes = {p_prod(p) for p in productos} | {p_cat(c) for c in cb.CATEGORIAS}
+    raiz = os.path.dirname(AQUI)
+    for idx in glob.glob(os.path.join(raiz, "*", "tienda", "*", "index.html")):
+        rel_dir = os.path.relpath(os.path.dirname(idx), raiz).replace(os.sep, "/") + "/"
+        if rel_dir not in vigentes and len(os.listdir(os.path.dirname(idx))) == 1:
+            os.remove(idx); os.rmdir(os.path.dirname(idx))
+            print("Quitada:", rel_dir)
 
 
 if __name__ == "__main__":

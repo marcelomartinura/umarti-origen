@@ -147,7 +147,8 @@ html = f'''<!doctype html>
                 <label class="sw"><input type="checkbox" name="tienda_ar"><span></span><b>Mercado local</b></label>
                 <small class="m-sub">Tienda Argentina · se vende y se envía dentro del país</small>
               </div>
-              <label class="precio">Precio en pesos argentinos<span class="money"><i>$</i><input name="precio_ars" type="number" min="0" step="1" inputmode="decimal"><i>ARS</i></span></label>
+              <div class="precio-local"><label class="precio">Precio<span class="money"><i id="pl-sim">$</i><input name="precio_ars" type="number" min="0" step="0.01" inputmode="decimal"><i id="pl-mon">ARS</i></span></label>
+                <label class="mon-sel">Moneda<select name="moneda_local"><option value="ARS">Pesos</option><option value="USD">Dólares</option></select></label></div>
               <p class="m-aviso" id="m-local-aviso" hidden></p>
             </div>
             <div class="mercado" id="m-intl">
