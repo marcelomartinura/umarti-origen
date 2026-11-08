@@ -83,5 +83,19 @@ window.TIENDA_INDICE = [
   "glifo": "M",
   "envio": "Argentina · Internacional",
   "ejemplo": false
+ },
+ {
+  "codigo": "UM-0011",
+  "nombre": "Mate de madera torneado con pie",
+  "url": "argentina/tienda/mate-de-madera-torneado-con-pie/",
+  "precio": "$ 15.000",
+  "moneda": "ARS",
+  "subcategoria": "Mates y bombillas",
+  "foto": "/assets/img/productos/mate-de-madera-torneado-con-pie.jpg",
+  "c1": "#5b7a43",
+  "c2": "#33472a",
+  "glifo": "M",
+  "envio": "Argentina · Internacional",
+  "ejemplo": false
  }
 ];

@@ -197,6 +197,39 @@
    "estado": "Publicado",
    "vendedor": "Umarti Origen",
    "slug": "mate-de-acero-con-faja-tejida-guarda-pampa"
+  },
+  {
+   "codigo": "UM-0011",
+   "nombre": "Mate de madera torneado con pie",
+   "descripcion": "Mate de madera torneada, con pie y una línea decorativa en el cuerpo. Curalo con yerba antes del primer uso para que tome sabor.",
+   "categoria": "Café, Té y Mate",
+   "subcategoria": "Mates y bombillas",
+   "temas": [
+    "mate"
+   ],
+   "pais": "Argentina",
+   "region": "",
+   "destino": "",
+   "precio_ars": 15000,
+   "precio_mxn": null,
+   "precio_usd": 9.9,
+   "tienda_ar": true,
+   "tienda_mx": false,
+   "international": true,
+   "paises_envio": [
+    "Todos los países"
+   ],
+   "hub": false,
+   "hs": "",
+   "volumen": "",
+   "vigencia_hub": "",
+   "link_pago": "",
+   "fotos": [
+    "/assets/img/productos/mate-de-madera-torneado-con-pie.jpg"
+   ],
+   "estado": "Publicado",
+   "vendedor": "Umarti Origen",
+   "slug": "mate-de-madera-torneado-con-pie"
   }
  ],
  "temas": [
