@@ -228,6 +228,39 @@
    "estado": "Publicado",
    "vendedor": "Umarti Origen",
    "slug": "mate-amarillo-con-medallon-arbol-de-la-vida"
+  },
+  {
+   "codigo": "UM-0013",
+   "nombre": "Bombilla de acero inoxidable con filtro cilíndrico",
+   "descripcion": "Bombilla de acero inoxidable con pico curvo, filtro cilíndrico y detalles dorados. Resistente y fácil de limpiar.",
+   "categoria": "Café, Té y Mate",
+   "subcategoria": "Mates y bombillas",
+   "temas": [
+    "mate"
+   ],
+   "pais": "Argentina",
+   "region": "",
+   "destino": "",
+   "precio_ars": 15000,
+   "precio_mxn": null,
+   "precio_usd": 9.81,
+   "tienda_ar": true,
+   "tienda_mx": false,
+   "international": true,
+   "paises_envio": [
+    "Todos los países"
+   ],
+   "hub": false,
+   "hs": "",
+   "volumen": "",
+   "vigencia_hub": "",
+   "link_pago": "",
+   "fotos": [
+    "/assets/img/productos/bombilla-de-acero-con-filtro-cilindrico.jpg"
+   ],
+   "estado": "Publicado",
+   "vendedor": "Umarti Origen",
+   "slug": "bombilla-de-acero-con-filtro-cilindrico"
   }
  ],
  "temas": [

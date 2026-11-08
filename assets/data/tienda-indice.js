@@ -97,5 +97,19 @@ window.TIENDA_INDICE = [
   "glifo": "M",
   "envio": "Argentina · Internacional",
   "ejemplo": false
+ },
+ {
+  "codigo": "UM-0013",
+  "nombre": "Bombilla de acero inoxidable con filtro cilíndrico",
+  "url": "argentina/tienda/bombilla-de-acero-con-filtro-cilindrico/",
+  "precio": "$ 15.000",
+  "moneda": "ARS",
+  "subcategoria": "Mates y bombillas",
+  "foto": "/assets/img/productos/bombilla-de-acero-con-filtro-cilindrico.jpg",
+  "c1": "#5b7a43",
+  "c2": "#33472a",
+  "glifo": "B",
+  "envio": "Argentina · Internacional",
+  "ejemplo": false
  }
 ];
