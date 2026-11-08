@@ -228,5 +228,60 @@
   "huso": "America/Mexico_City",
   "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
   "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26)."
+ },
+ {
+  "slug": "ciudad-de-mexico",
+  "pais": "México",
+  "ciudad": "Ciudad de México",
+  "region": "Ciudad de México",
+  "resumen": "Una de las ciudades más grandes del mundo: pirámides, museos, barrios con historia y una de las mejores escenas gastronómicas del planeta.",
+  "tags": [
+   "Cultura",
+   "Gastronomía",
+   "Shopping",
+   "Urbano"
+  ],
+  "foto": "",
+  "foto_pos": "center",
+  "dias": "4 a 5 días",
+  "mejor_epoca": "De octubre a mayo, fuera de la temporada de lluvias",
+  "presupuesto": "Medio",
+  "por_que": "La Ciudad de México es enorme y nunca se termina de conocer. En el **Centro Histórico**, Patrimonio de la Humanidad, conviven el Zócalo, la Catedral, el Templo Mayor y los murales de Diego Rivera en el Palacio Nacional.\n\nBarrios como **Roma, Condesa y Coyoacán** invitan a caminar entre cafés, parques y casas coloniales. Y la comida es una razón en sí misma: desde un taco al pastor en la calle hasta algunos de los restaurantes más reconocidos del mundo.",
+  "cuando_ir": "**Mejor época:** de octubre a mayo, con días secos y soleados. De junio a septiembre llueve casi todas las tardes.\n\n**Clima:** templado todo el año por la altura (unos 2.240 metros). Las mañanas y noches son frescas, aun en primavera.\n\nA fines de octubre y principios de noviembre se celebra el **Día de Muertos**, uno de los mejores momentos para visitarla.",
+  "que_comer": "- Tacos al pastor, de suadero y de canasta\n- Chilaquiles en el desayuno\n- Tamales y atole\n- Pozole y mole\n- Mezcal y pulque",
+  "donde_alojarse": "- **Roma y Condesa**: barrios arbolados, con cafés, bares y restaurantes.\n- **Centro Histórico**: para estar cerca de los museos y edificios históricos.\n- **Polanco**: zona elegante, con hoteles de categoría y compras.\n- **Coyoacán**: tranquilo y con aire de pueblo, al sur de la ciudad.",
+  "como_llegar": "El **Aeropuerto Internacional de la Ciudad de México** recibe vuelos de todo el mundo. También funciona el Aeropuerto Internacional Felipe Ángeles, más alejado del centro.",
+  "como_moverse": "El Metro y el Metrobús son rápidos y económicos. Taxis y aplicaciones funcionan en toda la ciudad; usá taxis de sitio o aplicaciones en vez de parar uno en la calle. Las zonas de Roma, Condesa y el Centro se recorren muy bien a pie.",
+  "que_hacer": "- **Centro Histórico**: el Zócalo, la Catedral, el Templo Mayor y el Palacio Nacional.\n- **Museo Nacional de Antropología**: uno de los museos más importantes de América.\n- **Bosque de Chapultepec**: parque enorme, con castillo y museos.\n- **Coyoacán**: la Casa Azul de Frida Kahlo y su plaza principal.\n- **Xochimilco**: paseo en trajinera por los canales.\n- **Teotihuacan**: las pirámides del Sol y de la Luna, a una hora de la ciudad.",
+  "consejos": "- Tomate con calma el primer día: la altura se siente al caminar o subir escaleras.\n- Reservá con anticipación los museos más visitados, como la Casa Azul.\n- Andá temprano a Teotihuacan para evitar el calor y las multitudes.\n- Tomá agua embotellada.",
+  "faqs": [
+   {
+    "a": "Con 4 o 5 días alcanza para lo esencial, más un día para Teotihuacan.",
+    "q": "¿Cuántos días se necesitan para conocer la Ciudad de México?"
+   },
+   {
+    "a": "Sí, es la forma más rápida de moverse. Evitá las horas pico y cuidá tus pertenencias.",
+    "q": "¿Es seguro el Metro?"
+   },
+   {
+    "a": "Se celebra entre el 31 de octubre y el 2 de noviembre.",
+    "q": "¿Cuándo es el Día de Muertos?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-08T00:52:33.55574+00:00",
+  "clima": "",
+  "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
+  "requisitos_fuente": "https://www.gob.mx/inm",
+  "moneda": "Peso mexicano (MXN). Se aceptan tarjetas en casi todos lados; para mercados, puestos y propinas conviene llevar efectivo.",
+  "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
+  "huso": "America/Mexico_City",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26)."
  }
 ]
