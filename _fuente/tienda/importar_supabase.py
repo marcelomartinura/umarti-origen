@@ -36,7 +36,7 @@ def numero(v):
 
 def convertir(fila):
     p = {k: fila.get(k) for k in CAMPOS}
-    for k in ("precio_ars", "moneda_local", "precio_mxn", "precio_usd"):
+    for k in ("precio_ars", "precio_mxn", "precio_usd"):
         p[k] = numero(p[k])
     for k in ("temas", "paises_envio", "fotos"):
         p[k] = p[k] or []
