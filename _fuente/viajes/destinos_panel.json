@@ -174,5 +174,59 @@
   "huso": "America/Argentina/Buenos_Aires",
   "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
   "talles": "Talles argentinos: en calzado, un número menos que el europeo."
+ },
+ {
+  "slug": "queretaro",
+  "pais": "México",
+  "ciudad": "Querétaro",
+  "region": "Querétaro",
+  "resumen": "Un centro histórico Patrimonio de la Humanidad, el acueducto, la Peña de Bernal y la Ruta del Arte, Queso y Vino, a pocas horas de la Ciudad de México.",
+  "tags": [
+   "Cultura",
+   "Gastronomía",
+   "Vino"
+  ],
+  "foto": "",
+  "foto_pos": "center",
+  "dias": "3 a 4 días",
+  "mejor_epoca": "Todo el año; de octubre a abril hay menos lluvias",
+  "presupuesto": "Medio",
+  "por_que": "Querétaro tiene uno de los centros históricos mejor conservados de México, declarado **Patrimonio de la Humanidad por la UNESCO**: plazas, templos barrocos, callejones y casonas que se recorren a pie. Su símbolo es el **acueducto**, con sus arcos del siglo XVIII.\n\nAlrededor de la ciudad está la **Ruta del Arte, Queso y Vino**, que conecta viñedos, queserías y pueblos mágicos como Tequisquiapan y Bernal, al pie de uno de los monolitos más grandes del mundo. Más al norte, la Sierra Gorda guarda misiones franciscanas también reconocidas por la UNESCO.",
+  "cuando_ir": "**Mejor época:** se puede visitar todo el año. De octubre a abril hay días soleados y casi sin lluvias; en verano llueve por las tardes, pero los viñedos están en plena actividad.\n\n**Clima:** semiseco y templado. Días agradables y noches frescas, sobre todo en invierno.",
+  "que_comer": "- Enchiladas queretanas\n- Gorditas de migajas\n- Quesos artesanales de la región\n- Vinos tintos y espumosos queretanos\n- Dulces de leche y cajeta",
+  "donde_alojarse": "- **Centro histórico**: casonas convertidas en hoteles, a pasos de plazas y restaurantes.\n- **Zona de Juriquilla y Centro Sur**: hoteles modernos, cómodos para viajes de trabajo.\n- **Tequisquiapan y Bernal**: hoteles boutique y casas de campo para recorrer la ruta del vino.",
+  "como_llegar": "El **Aeropuerto Intercontinental de Querétaro** recibe vuelos nacionales e internacionales. Desde la Ciudad de México son unas 3 horas por carretera, con buses frecuentes desde la Terminal Norte.",
+  "como_moverse": "El centro se recorre a pie. Para moverte por la ciudad hay transporte público, taxis y aplicaciones. Para la Ruta del Arte, Queso y Vino y la Sierra Gorda conviene alquilar un auto o tomar una excursión.",
+  "que_hacer": "- **Centro histórico**: plazas, templos barrocos y callejones para caminar.\n- **Acueducto**: los arcos del siglo XVIII, iluminados por la noche.\n- **Peña de Bernal**: el monolito y el pueblo mágico a sus pies.\n- **Tequisquiapan**: pueblo de artesanías y punto de partida de la ruta del queso y el vino.\n- **Viñedos de la región**: visitas y degustaciones, con los espumosos como especialidad.\n- **Misiones de la Sierra Gorda**: misiones franciscanas en plena sierra.",
+  "consejos": "- Los fines de semana la Ruta del Arte, Queso y Vino se llena: si podés, andá entre semana.\n- Para subir a la Peña de Bernal, empezá temprano y llevá calzado cómodo.\n- Combiná Querétaro con San Miguel de Allende, a poco más de una hora.",
+  "faqs": [
+   {
+    "a": "Con 3 o 4 días alcanza para el centro histórico, Bernal y una visita a viñedos.",
+    "q": "¿Cuántos días se necesitan para conocer Querétaro?"
+   },
+   {
+    "a": "Son unas 3 horas por carretera, en auto o en bus desde la Terminal Norte.",
+    "q": "¿Cómo llegar a Querétaro desde la Ciudad de México?"
+   },
+   {
+    "a": "Un recorrido por viñedos, queserías y pueblos de la región, como Tequisquiapan y Bernal.",
+    "q": "¿Qué es la Ruta del Arte, Queso y Vino?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-08T00:52:13.485089+00:00",
+  "clima": "",
+  "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
+  "requisitos_fuente": "https://www.gob.mx/inm",
+  "moneda": "Peso mexicano (MXN). Se aceptan tarjetas en casi todos lados; para mercados, puestos y propinas conviene llevar efectivo.",
+  "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
+  "huso": "America/Mexico_City",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26)."
  }
 ]
