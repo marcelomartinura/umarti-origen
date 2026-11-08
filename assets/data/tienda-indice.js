@@ -97,5 +97,19 @@ window.TIENDA_INDICE = [
   "glifo": "M",
   "envio": "Argentina · Internacional",
   "ejemplo": false
+ },
+ {
+  "codigo": "UM-0012",
+  "nombre": "Mate amarillo de plástico con medalla Árbol de la Vida",
+  "url": "argentina/tienda/mate-amarillo-con-medallon-arbol-de-la-vida/",
+  "precio": "$ 15.000",
+  "moneda": "ARS",
+  "subcategoria": "Mates y bombillas",
+  "foto": "/assets/img/productos/mate-amarillo-con-medallon-arbol-de-la-vida.jpg",
+  "c1": "#5b7a43",
+  "c2": "#33472a",
+  "glifo": "M",
+  "envio": "Argentina · Internacional",
+  "ejemplo": false
  }
 ];

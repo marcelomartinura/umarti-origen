@@ -230,6 +230,37 @@
    "estado": "Publicado",
    "vendedor": "Umarti Origen",
    "slug": "mate-de-madera-torneado-con-pie"
+  },
+  {
+   "codigo": "UM-0012",
+   "nombre": "Mate amarillo de plástico con medalla Árbol de la Vida",
+   "descripcion": "Mate de plástico de color amarillo intenso con un medallón metálico del Árbol de la Vida. Interior liso, fácil de lavar. No necesita curado.",
+   "categoria": "Café, Té y Mate",
+   "subcategoria": "Mates y bombillas",
+   "temas": [
+    "mate"
+   ],
+   "pais": "Argentina",
+   "region": "",
+   "destino": "",
+   "precio_ars": 15000,
+   "precio_mxn": null,
+   "precio_usd": 9.78,
+   "tienda_ar": true,
+   "tienda_mx": false,
+   "international": true,
+   "paises_envio": [],
+   "hub": false,
+   "hs": "",
+   "volumen": "",
+   "vigencia_hub": "",
+   "link_pago": "",
+   "fotos": [
+    "/assets/img/productos/mate-amarillo-con-medallon-arbol-de-la-vida.jpg"
+   ],
+   "estado": "Publicado",
+   "vendedor": "Umarti Origen",
+   "slug": "mate-amarillo-con-medallon-arbol-de-la-vida"
   }
  ],
  "temas": [
