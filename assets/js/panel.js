@@ -294,9 +294,16 @@
   }
   function agregarPais() {
     var v = $('#e-pais-nuevo').value.trim();
-    if (v && paisesEnvio.indexOf(v) < 0) { paisesEnvio.push(v); sucio = true; }
+    if (/^todos( los países)?$/i.test(v)) return agregarTodos();
+    if (v && paisesEnvio.indexOf(v) < 0) { paisesEnvio = paisesEnvio.filter(function (x) { return x !== TODOS; }); paisesEnvio.push(v); sucio = true; }
     $('#e-pais-nuevo').value = ''; pintarPaises(); actualizar();
   }
+  var TODOS = 'Todos los países';
+  function agregarTodos() {
+    if (paisesEnvio.length !== 1 || paisesEnvio[0] !== TODOS) { paisesEnvio = [TODOS]; sucio = true; }
+    $('#e-pais-nuevo').value = ''; pintarPaises(); actualizar();
+  }
+  $('#e-pais-todos').addEventListener('click', agregarTodos);
   $('#e-pais-add').addEventListener('click', agregarPais);
   $('#e-pais-nuevo').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); agregarPais(); } });
 

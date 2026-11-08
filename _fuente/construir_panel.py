@@ -34,7 +34,7 @@ DATOS = {
         "presupuestos": ["Bajo", "Medio", "Alto"],
     },
     "cupones": {"categorias": [c[0] for c in ccu.CATS], "paises": ["Argentina", "México", "En línea", "Uruguay", "Chile", "España", "Estados Unidos", "Otro"]},
-    "paises_envio": ["México", "Estados Unidos", "España", "Chile", "Uruguay", "Colombia", "Perú", "Canadá", "Brasil", "Italia", "Alemania"],
+    "paises_envio": ["Todos los países", "México", "Estados Unidos", "España", "Chile", "Uruguay", "Colombia", "Perú", "Canadá", "Brasil", "Italia", "Alemania"],
 }
 
 opts_zonas = "".join(f'<optgroup label="{g}">' + "".join(f'<option value="{z}">{n}</option>' for n, z in xs) + "</optgroup>" for g, xs in cr.ZONAS)
@@ -157,7 +157,7 @@ html = f'''<!doctype html>
               </div>
               <label class="precio">Precio en dólares<span class="money"><i>US$</i><input name="precio_usd" type="number" min="0" step="0.01" inputmode="decimal"><i>USD</i></span></label>
               <div class="full envio-intl"><span class="lbl">Países a los que enviás</span><div class="tags" id="e-paises"></div>
-                <div class="tag-add"><input id="e-pais-nuevo" list="l-paises" placeholder="Agregar país"><datalist id="l-paises"></datalist><button type="button" class="btn sm" id="e-pais-add">Agregar</button></div></div>
+                <div class="tag-add"><input id="e-pais-nuevo" list="l-paises" placeholder="Agregar país"><datalist id="l-paises"></datalist><button type="button" class="btn sm" id="e-pais-add">Agregar</button><button type="button" class="btn sm" id="e-pais-todos" title="Enviás a cualquier país">Todos</button></div></div>
             </div>
             <div class="mercado" id="m-hub">
               <div class="m-head">

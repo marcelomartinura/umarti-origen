@@ -239,3 +239,10 @@ a.eco-item:hover { background: rgba(255,255,255,.08); }
 .mi-link:hover { background: rgba(255,255,255,.8); }
 .mi-link[aria-current="page"] { background: #fff; }
 .module-label { align-items: center; min-height: 26px; }
+
+/* Ver en inglés (Google Translate) */
+.lang-btn { border: 0; background: none; color: inherit; font: inherit; font-size: 0.92rem; font-weight: 500; cursor: pointer; }
+.ver-en .lang-btn { background: var(--sand); }
+#gt-el, iframe.skiptranslate, .goog-te-banner-frame, #goog-gt-tt, .goog-te-balloon-frame, .VIpgJd-ZVi9od-ORHb-OEVmcd, .VIpgJd-ZVi9od-aZ2wEe-wOHMyf { display: none !important; }
+html.ver-en body { top: 0 !important; position: static !important; }
+.goog-text-highlight { background: none !important; box-shadow: none !important; }

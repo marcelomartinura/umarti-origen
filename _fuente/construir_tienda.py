@@ -104,7 +104,7 @@ def zonas(p):
             z.append(dict(nombre=nombre, slug=slug(nombre), precio=precio(p.get(campo), mon), moneda=mon.upper(), detalle=""))
     if p.get("international"):
         z.append(dict(nombre="Internacional", slug="internacional", precio=precio(p.get("precio_usd"), "usd"), moneda="USD",
-                      detalle=("A " + ", ".join(p["paises_envio"])) if p["paises_envio"] else ""))
+                      detalle=("A todo el mundo" if "Todos los países" in p["paises_envio"] else "A " + ", ".join(p["paises_envio"])) if p["paises_envio"] else ""))
     return z
 
 
@@ -167,7 +167,7 @@ def card(p, depth, cb, cv, modo="local"):
         </article>'''
 
 
-def page(depth, title, desc, main, css, jsonld=None, noindex=False, extra=""):
+def page(depth, title, desc, main, css, jsonld=None, noindex=False, extra="", en=False):
     pre = rel(depth)
     links = "".join(f'\n  <link rel="stylesheet" href="{pre}assets/css/{c}.css">' for c in ["umarti"] + css)
     ld = f'\n  <script type="application/ld+json">\n{json.dumps(jsonld, ensure_ascii=False, indent=2)}\n  </script>' if jsonld else ""
@@ -184,7 +184,7 @@ def page(depth, title, desc, main, css, jsonld=None, noindex=False, extra=""):
   <meta property="og:description" content="{esc(desc)}">
 {comun.FUENTES}{links}{ld}
 </head>
-<body>
+<body{' data-en' if en else ''}>
 
 {comun.header(pre)}
 
@@ -198,6 +198,7 @@ def page(depth, title, desc, main, css, jsonld=None, noindex=False, extra=""):
   <script src="{pre}assets/js/header.js"></script>
   <script src="{pre}assets/data/tienda-indice.js"></script>
   <script src="{pre}assets/js/tienda.js"></script>
+  <script src="{pre}assets/js/idioma.js"></script>
 </body>
 </html>
 '''
@@ -321,6 +322,7 @@ def international(productos, cb, cv):
     d = 1
     intl = [p for p in productos if p["international"]]
     paises = sorted({c for p in intl for c in p["paises_envio"]}, key=slug)
+    if "Todos los países" in paises: paises = ["todo el mundo"]
     main = f'''    <div class="wrap">
 {crumbs(d, [("International Shop", None)])}
       <section class="is-hero">
@@ -345,7 +347,7 @@ def international(productos, cb, cv):
     </div>'''
     main = barra_tienda(d, "intl") + main
     return page(d, "International Shop: productos argentinos con envío internacional | Umarti Origen",
-                f"Mate, yerba y productos argentinos con envío a {', '.join(paises)}.", main, ["blog", "viajes", "tienda"])
+                f"Mate, yerba y productos argentinos con envío a {', '.join(paises)}.", main, ["blog", "viajes", "tienda"], en=True)
 
 
 def notas_relacionadas(p_or_tema, notas, etiquetas=None):
@@ -446,7 +448,7 @@ def pagina_producto(p, productos, temas, notas, cb, cv):
     if en_tienda_local(p):
         main = barra_tienda(d, "tienda", p["pais"]) + main
     return page(d, f"{p['nombre']} | Tienda Umarti Origen", p["descripcion"], main, ["blog", "viajes", "tienda"], ld,
-                noindex=p["estado"] != "Publicado", extra=DIALOGOS)
+                noindex=p["estado"] != "Publicado", extra=DIALOGOS, en=bool(p.get("international")))
 
 
 def pagina_tema(t, productos, notas, cb, cv):
@@ -504,6 +506,7 @@ def pagina_envio(e, envios, productos):
     extra = ""
     if e["slug"] == "internacional":
         paises = sorted({c for p in productos if p["international"] for c in p["paises_envio"]}, key=slug)
+        if "Todos los países" in paises: paises = ["Todo el mundo"]
         extra = f'<h2>Países a los que enviamos</h2><div class="countries">{"".join(f"<span>{esc(c)}</span>" for c in paises)}</div><p class="muted">Cada producto indica a qué países se envía. Los impuestos de importación los define el país de destino.</p>'
     otras = "".join(f'<a class="zona" href="{rel(d, p_envio(o["slug"]))}">{esc(o["zona"])}</a>' for o in envios if o is not e)
     main = f'''    <div class="wrap envio-page">
@@ -525,7 +528,7 @@ def pagina_envio(e, envios, productos):
     </div>'''
     main = barra_tienda(d, "envios", "Argentina" if e["slug"] == "internacional" else e["zona"]) + main
     return page(d, f"{titulo}: condiciones | Umarti Origen", f"Plazos, costos, seguimiento y cambios de los {titulo.lower()} de Umarti Origen.",
-                main, ["blog", "viajes", "tienda"], noindex=borrador)
+                main, ["blog", "viajes", "tienda"], noindex=borrador, en=e["slug"] == "internacional")
 
 
 BANDERA = {

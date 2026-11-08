@@ -97,7 +97,7 @@ def page(depth, title, desc, main, jsonld=None):
   <link rel="stylesheet" href="{pre}assets/css/blog.css">
   <link rel="stylesheet" href="{pre}assets/css/viajes.css">{ld}
 </head>
-<body>
+<body data-en>
 
 {comun.header(pre)}
 
@@ -109,6 +109,7 @@ def page(depth, title, desc, main, jsonld=None):
 
   <script src="{pre}assets/js/header.js"></script>
   <script src="{pre}assets/js/viajes.js"></script>
+  <script src="{pre}assets/js/idioma.js"></script>
 </body>
 </html>
 '''
