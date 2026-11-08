@@ -338,5 +338,114 @@
   "huso": "America/Mexico_City",
   "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
   "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26)."
+ },
+ {
+  "slug": "puerto-escondido",
+  "pais": "México",
+  "ciudad": "Puerto Escondido",
+  "region": "Oaxaca",
+  "resumen": "Playas de arena dorada en la costa de Oaxaca: olas para surfear, bahías tranquilas, tortugas y atardeceres en el Pacífico.",
+  "tags": [
+   "Aventura",
+   "Gastronomía",
+   "Naturaleza"
+  ],
+  "foto": "",
+  "foto_pos": "center",
+  "dias": "4 a 6 días",
+  "mejor_epoca": "De noviembre a abril, en la temporada seca",
+  "presupuesto": "",
+  "por_que": "Puerto Escondido es uno de los destinos de playa más buscados de México, con un estilo relajado y lejos de los grandes complejos turísticos. **Playa Zicatela** es famosa en el mundo del surf por sus olas enormes, y a pocos minutos hay bahías tranquilas como **Carrizalillo** y **Puerto Angelito**, ideales para nadar.\n\nCerca se pueden liberar tortugas, ver la **laguna de Manialtepec** brillar de noche por la bioluminiscencia y recorrer pueblos de playa como Mazunte y Zipolite.",
+  "cuando_ir": "**Mejor época:** de noviembre a abril, con cielo despejado y mar más calmo.\n\n**Clima:** cálido todo el año. De mayo a octubre es temporada de lluvias, con posibilidad de tormentas y huracanes; las olas de Zicatela son más grandes en esos meses.",
+  "que_comer": "- Pescados y mariscos frescos a la talla\n- Tlayudas\n- Mole oaxaqueño\n- Quesillo y chapulines\n- Mezcal de Oaxaca",
+  "donde_alojarse": "- **Zicatela**: frente a la playa de surf, con bares y vida nocturna.\n- **Rinconada y Carrizalillo**: zona más tranquila, cerca de las bahías para nadar.\n- **La Punta**: ambiente bohemio y de mochileros, al final de Zicatela.",
+  "como_llegar": "El **Aeropuerto Internacional de Puerto Escondido** recibe vuelos desde la Ciudad de México y otras ciudades. Desde Oaxaca capital se llega por carretera, en auto o en bus.",
+  "como_moverse": "Los taxis son la forma más práctica de moverse entre playas. Para Mazunte, Zipolite o Manialtepec conviene tomar una excursión o un colectivo.",
+  "que_hacer": "- **Playa Zicatela**: para ver a los surfistas o tomar una clase.\n- **Playa Carrizalillo**: bahía protegida, ideal para nadar y hacer snorkel.\n- **Liberación de tortugas**: en campamentos de conservación de la zona.\n- **Laguna de Manialtepec**: paseo nocturno para ver la bioluminiscencia.\n- **Mazunte y Zipolite**: pueblos de playa a alrededor de una hora.\n- **Atardecer en Punta Zicatela**: uno de los mejores del Pacífico mexicano.",
+  "consejos": "- Zicatela tiene corrientes fuertes: si no surfeás, nadá en Carrizalillo o Puerto Angelito.\n- Usá protector solar biodegradable.\n- Llevá efectivo: algunos lugares chicos no aceptan tarjeta.",
+  "faqs": [
+   {
+    "a": "No es recomendable: tiene olas grandes y corrientes fuertes. Para nadar, mejor Carrizalillo o Puerto Angelito.",
+    "q": "¿Se puede nadar en Playa Zicatela?"
+   },
+   {
+    "a": "De noviembre a abril, en la temporada seca.",
+    "q": "¿Cuándo es mejor ir a Puerto Escondido?"
+   },
+   {
+    "a": "Un fenómeno natural que hace brillar el agua de la laguna de noche, al moverla.",
+    "q": "¿Qué es la bioluminiscencia de Manialtepec?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-08T00:52:53.241046+00:00",
+  "clima": "",
+  "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
+  "requisitos_fuente": "https://www.gob.mx/inm",
+  "moneda": "Peso mexicano (MXN). Se aceptan tarjetas en casi todos lados; para mercados, puestos y propinas conviene llevar efectivo.",
+  "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
+  "huso": "America/Mexico_City",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26)."
+ },
+ {
+  "slug": "san-miguel-de-allende",
+  "pais": "México",
+  "ciudad": "San Miguel de Allende",
+  "region": "Guanajuato",
+  "resumen": "Calles empedradas, casas de colores y la parroquia rosa más famosa de México: una ciudad Patrimonio de la Humanidad llena de arte, gastronomía y compras.",
+  "tags": [
+   "Cultura",
+   "Gastronomía",
+   "Shopping",
+   "Vino"
+  ],
+  "foto": "",
+  "foto_pos": "center",
+  "dias": "2 a 3 días",
+  "mejor_epoca": "De octubre a abril",
+  "presupuesto": "",
+  "por_que": "San Miguel de Allende es una de las ciudades más lindas de México y fue declarada **Patrimonio de la Humanidad por la UNESCO**. Su símbolo es la **Parroquia de San Miguel Arcángel**, de torres rosadas, frente al Jardín Principal.\n\nSus calles empedradas están llenas de galerías, tiendas de artesanías y diseño, terrazas y restaurantes. Alrededor hay aguas termales, viñedos y el **Santuario de Atotonilco**, también Patrimonio de la Humanidad.",
+  "cuando_ir": "**Mejor época:** de octubre a abril, con días soleados y noches frescas.\n\n**Clima:** templado y seco, con lluvias en verano. Las noches de invierno pueden ser frías.\n\nLa ciudad tiene muchas fiestas a lo largo del año, como las de San Miguel Arcángel a fines de septiembre.",
+  "que_comer": "- Enchiladas mineras\n- Gorditas y tacos en el mercado\n- Cocina de autor en las terrazas del centro\n- Vinos de Guanajuato\n- Nieves artesanales del Jardín",
+  "donde_alojarse": "- **Centro**: hoteles boutique en casonas, a pasos del Jardín Principal.\n- **Guadiana y San Antonio**: barrios tranquilos, cerca del centro.\n- **Afueras**: haciendas y hoteles con spa, cerca de viñedos y aguas termales.",
+  "como_llegar": "Los aeropuertos más cercanos son el **Aeropuerto Internacional de Querétaro**, a poco más de una hora, y el **del Bajío**, a alrededor de una hora y media. Desde la Ciudad de México son unas 4 horas por carretera.",
+  "como_moverse": "El centro se recorre a pie: calzado cómodo, porque las calles son empedradas y con subidas. Para viñedos, aguas termales y Atotonilco conviene taxi o excursión.",
+  "que_hacer": "- **Parroquia de San Miguel Arcángel**: el ícono de la ciudad, frente al Jardín.\n- **Mercado de Artesanías**: textiles, hojalata, vidrio y cerámica.\n- **Fábrica La Aurora**: antigua fábrica textil convertida en centro de arte y diseño.\n- **El Charco del Ingenio**: jardín botánico con vistas a la ciudad.\n- **Santuario de Atotonilco**: con pinturas murales que le dieron el apodo de \"Capilla Sixtina de México\".\n- **Aguas termales y viñedos**: a pocos minutos del centro.",
+  "consejos": "- Usá calzado cómodo: las calles empedradas cansan.\n- Los fines de semana y los feriados se llena: reservá con anticipación.\n- Combiná la visita con Querétaro o Guanajuato capital.",
+  "faqs": [
+   {
+    "a": "Con 2 o 3 días alcanza para el centro, las compras y una visita a Atotonilco o a un viñedo.",
+    "q": "¿Cuántos días se necesitan en San Miguel de Allende?"
+   },
+   {
+    "a": "El de Querétaro, a poco más de una hora, o el del Bajío, a alrededor de una hora y media.",
+    "q": "¿Cuál es el aeropuerto más cercano?"
+   },
+   {
+    "a": "Artesanías, textiles, hojalata, joyería y diseño, en el Mercado de Artesanías y en la Fábrica La Aurora.",
+    "q": "¿Qué se compra en San Miguel de Allende?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-08T00:52:59.770014+00:00",
+  "clima": "",
+  "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
+  "requisitos_fuente": "https://www.gob.mx/inm",
+  "moneda": "Peso mexicano (MXN). Se aceptan tarjetas en casi todos lados; para mercados, puestos y propinas conviene llevar efectivo.",
+  "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
+  "huso": "America/Mexico_City",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26)."
  }
 ]
