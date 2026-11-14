@@ -246,3 +246,13 @@ a.eco-item:hover { background: rgba(255,255,255,.08); }
 #gt-el, iframe.skiptranslate, .goog-te-banner-frame, #goog-gt-tt, .goog-te-balloon-frame, .VIpgJd-ZVi9od-ORHb-OEVmcd, .VIpgJd-ZVi9od-aZ2wEe-wOHMyf { display: none !important; }
 html.ver-en body { top: 0 !important; position: static !important; }
 .goog-text-highlight { background: none !important; box-shadow: none !important; }
+
+/* Módulo Viajes (cuarto grupo de la botonera) */
+.m-travel { background: #fbefd5; color: #8a5e0c; flex: 1 1 auto; }
+.ml-link { color: inherit; text-decoration: none; }
+.ml-link:hover { text-decoration: underline; }
+@media (min-width: 981px) {
+  .modules { gap: 10px; }
+  .module { padding: 8px 8px; }
+  .nav-btn { padding: 0 10px; }
+}
