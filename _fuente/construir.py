@@ -13,7 +13,8 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 RAIZ = os.path.dirname(AQUI)
 sys.path.insert(0, AQUI)
 import comun  # noqa: E402
-from datos import SECTORES, CATEGORIAS_SERVICIO, PRODUCTOS, SERVICIOS, BUSQUEDAS, PAISES, CC  # noqa: E402
+from datos import SECTORES, CATEGORIAS_SERVICIO, PRODUCTOS, SERVICIOS, BUSQUEDAS, PAISES, CC, EMPRESAS  # noqa: E402
+from construir_blog import CATEGORIAS as CATS_TIENDA, COLORES as COLORES_CAT  # noqa: E402  (las mismas categorías de la Tienda)
 
 # Los productos de la Tienda marcados "Hub de Oportunidades: Sí" en el Catálogo se suman a Productos de exportación
 sys.path.insert(0, os.path.join(AQUI, "tienda"))
@@ -55,13 +56,13 @@ def texto(*partes):
 # ---------- tarjetas ----------
 def card_producto(o):
     info = f"{o['cod']} · SA {hsfmt(o['hs'])} · Origen: {o['pais']}" if o["hs"] else f"{o['cod']} · Origen: {o['pais']}"
-    return f'''        <article class="op op--producto" id="{o['cod'].lower()}" data-kind="producto" data-codigo="{o['cod']}" data-sector="{esc(o['sector'])}" data-pais="{esc(o['pais'])}" data-vence="{o['vence']}" data-info="{esc(info)}" data-texto="{texto(o['nombre'], o['hs'], hsfmt(o['hs']), o['cod'], o['sector'], o['pais'], o['region'], o['destinos'], o['claves'])}">
+    return f'''        <article class="op op--producto" id="{o['cod'].lower()}" data-kind="producto" data-codigo="{o['cod']}" data-sector="{esc(o['sector'])}" data-categoria="{esc(o.get('categoria', ''))}" data-pais="{esc(o['pais'])}" data-vence="{o['vence']}" data-info="{esc(info)}" data-texto="{texto(o['nombre'], o['hs'], hsfmt(o['hs']), o['cod'], o['sector'], o['pais'], o['region'], o['destinos'], o['claves'])}">
           <div class="op-top">
             <span class="op-code">{o['cod']}</span>
             <span class="op-chips">{'<span class="chip chip-review">Umarti</span>' if o.get('tienda_url') else ''}<span class="chip chip-hs" title="Posición arancelaria (Sistema Armonizado)">{('SA ' + hsfmt(o['hs'])) if o['hs'] else 'Posición a definir'}</span></span>
           </div>
           <h3 class="op-title">{esc(o['nombre'])}</h3>
-          <p class="op-sector">{esc(o['sector'])}</p>
+          <p class="op-sector">{esc(o.get('categoria') or o['sector'])}</p>
           <dl class="op-meta">
 {meta([("Origen", cc(o['pais']) + esc(o['pais']) + ' · ' + esc(o['region'])), ("Volumen disponible", esc(o['vol'])), ("Mercados de interés", esc(o['destinos']), 1)])}
           </dl>
@@ -192,7 +193,7 @@ def crumbs(actual, pre="../", medio=None):
     return f'''      <nav class="crumbs" aria-label="Ubicación">
         <ol>
           <li><a href="{pre}">Inicio</a></li>
-          <li>Hub de Oportunidades</li>{m}
+          <li><a href="{pre}hub/">Hub de Oportunidades</a></li>{m}
           <li aria-current="page">{actual}</li>
         </ol>
       </nav>'''
@@ -563,8 +564,8 @@ def productos():
           <input id="f-q" type="search" data-filter="texto" placeholder="Producto, posición arancelaria o código" autocomplete="off">
         </div>
         <div class="field">
-          <label for="f-sector">Sector</label>
-          <select id="f-sector" data-filter="sector"><option value="">Todos</option>{opts(SECTORES)}</select>
+          <label for="f-cat">Categoría</label>
+          <select id="f-cat" data-filter="categoria"><option value="">Todas</option>{opts(list(CATS_TIENDA))}</select>
         </div>
         <div class="field">
           <label for="f-pais">País de origen</label>
@@ -730,6 +731,252 @@ def servicios():
                 '  <script src="../assets/js/catalogo.js"></script>')
 
 
+# ---------- Hub: Mesa de Negocio de Oportunidades Comerciales Globales (portada del Hub) ----------
+def _slug(t):
+    import unicodedata
+    t = unicodedata.normalize("NFD", t.lower())
+    t = "".join(c for c in t if unicodedata.category(c) != "Mn")
+    return re.sub(r"[^a-z0-9]+", "-", t).strip("-")
+
+
+ICON_IA = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/><path d="M5 16l.6 1.4L7 18l-1.4.6L5 20l-.6-1.4L3 18l1.4-.6z"/></svg>'
+ICON_CE = {
+    "servicios": '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17h13l3-5h2"/><path d="M5 17l-2-5h11l2 5"/><path d="M7 12V8h5l2 4"/><path d="M2 20c2 1 4 1 6 0s4-1 6 0 4 1 6 0"/></svg>',
+    "recursos": '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M8 6h8v3H8zM8 13h1M12 13h1M16 13h0M8 17h1M12 17h1M16 13v4"/></svg>',
+    "blog": '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h12a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3z"/><path d="M8 8h7M8 12h7M8 16h4"/><circle cx="18.5" cy="5.5" r="3"/><path d="M15.5 5.5h6M18.5 2.5c1 1 1 5 0 6"/></svg>',
+}
+EJEMPLOS_IA = ["20 toneladas de yerba mate para España", "Despachante de aduana en México", "Vino Malbec por contenedor para Alemania"]
+
+
+def crumbs_hub(actual=None, pre="../"):
+    fin = f'\n          <li aria-current="page">{actual}</li>' if actual else ""
+    hub = f'<li><a href="{pre}hub/">Hub de Oportunidades</a></li>' if actual else '<li aria-current="page">Hub de Oportunidades</li>'
+    return f'''      <nav class="crumbs" aria-label="Ubicación">
+        <ol>
+          <li><a href="{pre}">Inicio</a></li>
+          {hub}{fin}
+        </ol>
+      </nav>'''
+
+
+def hub():
+    pre = "../"
+    cuenta = {}
+    for o in PRODUCTOS:
+        cuenta[o.get("categoria", "")] = cuenta.get(o.get("categoria", ""), 0) + 1
+    tiles = []
+    for c in CATS_TIENDA:
+        col = COLORES_CAT.get(c, ("#4b5d78", "#2b3648"))
+        n = cuenta.get(c, 0)
+        foto = os.path.join(RAIZ, "assets", "img", "categorias", _slug(c) + ".jpg")
+        img = f'<img src="{pre}assets/img/categorias/{_slug(c)}.jpg" alt="" loading="lazy">' if os.path.exists(foto) else ""
+        tiles.append(f'''          <a class="hc-tile" href="{pre}productos-de-exportacion/?categoria={esc(c)}" style="--c1:{col[0]};--c2:{col[1]}">{img}
+            <b>{esc(c)}</b><small>{plural_txt(n, "producto", "productos") if n else "Sé el primero en publicar"}</small>
+          </a>''')
+    tiles.append(f'''          <a class="hc-tile hc-serv" href="{pre}servicios-de-comercio-exterior/">
+            <b>Servicios de comercio exterior</b><small>{plural_txt(len(SERVICIOS), "servicio", "servicios")}</small>
+          </a>''')
+    ejemplos = "".join(f'<button type="button" data-ej="{esc(e)}">{esc(e)}</button>' for e in EJEMPLOS_IA)
+    main = f'''    <div class="wrap">
+{crumbs_hub(None, pre)}
+      <section class="mesa-hero">
+        <div class="mh-txt">
+          <span class="eyebrow">Hub de Oportunidades Globales</span>
+          <h1>Mesa de Negocio de Oportunidades Comerciales Globales</h1>
+          <p>Compradores, productores y proveedores de distintos países, en una misma mesa. Contanos qué necesitás o mostrá lo que exportás, y te conectamos.</p>
+        </div>
+        <img class="mh-img" src="{pre}assets/img/hub-mesa.svg" alt="Dos personas cierran un acuerdo con un apretón de manos sobre una mesa de negocios">
+      </section>
+
+      <div class="hub-main">
+        <section class="hub-ia" aria-labelledby="ia-title">
+          <h2 id="ia-title">¿Buscás importar productos o servicios?</h2>
+          <p class="hia-lead">Escribilo con tus palabras: qué necesitás, cuánto y para qué país. Lo cruzamos con lo que ofrecen productores y proveedores de todo el mundo.</p>
+          <form id="ia-form" class="hia-form" autocomplete="off">
+            <div class="hia-box">
+              <span class="hia-ico">{ICON_IA}</span>
+              <label for="ia-q" class="sr">Qué estás buscando</label>
+              <textarea id="ia-q" name="q" rows="2" maxlength="300" required placeholder="Ej.: Busco 20 toneladas de yerba mate para importar a España"></textarea>
+              <button class="hia-go" type="submit">{ICON_SEARCH}<span id="ia-go-txt">Buscar</span></button>
+            </div>
+            <div class="hia-ej"><span>Probá con:</span>{ejemplos}</div>
+            <label class="hia-pub">
+              <input type="checkbox" id="ia-pub" name="publicar">
+              <span class="sw" aria-hidden="true"></span>
+              <span><b>¿Querés dejar publicada tu búsqueda?</b><small>La ven productores y proveedores de otros países y te pueden ofrecer lo que buscás. Tus datos de contacto no se publican.</small></span>
+            </label>
+            <div class="hia-datos" id="ia-datos" hidden>
+              <div class="field"><label for="ia-pais">País de destino <span class="req">*</span></label><input id="ia-pais" name="pais" list="paises" placeholder="Ej.: España"></div>
+              <div class="field"><label for="ia-vol">Volumen</label><input id="ia-vol" name="vol" maxlength="80" placeholder="Ej.: 5 toneladas por mes"></div>
+              <div class="field"><label for="ia-vence">Vigente hasta <span class="req">*</span></label><input id="ia-vence" name="vence" type="date"></div>
+              <div class="field"><label for="ia-emp">Empresa <span class="req">*</span></label><input id="ia-emp" name="empresa" maxlength="80" autocomplete="organization"></div>
+              <div class="field"><label for="ia-mail">Correo <span class="req">*</span></label><input id="ia-mail" name="mail" type="email" autocomplete="email"></div>
+            </div>
+          </form>
+          <div class="hia-res" id="ia-res" hidden aria-live="polite"></div>
+        </section>
+
+        <aside class="hub-exp" aria-labelledby="exp-title">
+          <span class="he-tag">Exportadores</span>
+          <h2 id="exp-title">¿Querés exportar tus productos?</h2>
+          <p>Armá la página de tu empresa exportadora y que los compradores de otros países te encuentren.</p>
+          <ul>
+            <li>Quiénes son y qué producen</li>
+            <li>Capacidad, certificaciones e Incoterms</li>
+            <li>Mercados a los que ya venden</li>
+          </ul>
+          <a class="he-btn" href="{pre}empresas-exportadoras/">Publicar mi empresa</a>
+          <a class="he-link" href="{pre}empresas-exportadoras/{EMPRESAS[0]['slug']}/">Ver una página de ejemplo →</a>
+          <hr>
+          <a class="he-link" href="{pre}oportunidades-globales/">Ver lo que están buscando los compradores →</a>
+        </aside>
+      </div>
+
+      <section class="hub-cats" aria-labelledby="hc-title">
+        <div class="hc-head">
+          <h2 id="hc-title">Encontrá el producto o servicio</h2>
+          <p>Productos listos para exportar, ordenados con las mismas categorías de la Tienda.</p>
+        </div>
+        <div class="hc-grid">
+{chr(10).join(tiles)}
+        </div>
+      </section>
+
+      <section class="hub-ce" aria-labelledby="ce-title">
+        <div class="ce-head">
+          <span class="ce-eye">Todo para operar con el mundo</span>
+          <h2 id="ce-title">Comercio exterior, de punta a punta</h2>
+          <p>Quién te ayuda, con qué herramientas y lo que conviene saber antes de exportar o importar.</p>
+        </div>
+        <div class="ce-grid">
+          <a class="ce-card c1" href="{pre}servicios-de-comercio-exterior/">
+            <span class="ce-ico">{ICON_CE["servicios"]}</span>
+            <h3>Servicios de Comercio Exterior</h3>
+            <p>Despachantes de aduana, transporte y logística, seguros de carga, certificaciones y consultoría.</p>
+            <span class="ce-go">Ver {plural_txt(len(SERVICIOS), "servicio", "servicios")} →</span>
+          </a>
+          <a class="ce-card c2" href="{pre}recursos/#g-comercio-exterior">
+            <span class="ce-ico">{ICON_CE["recursos"]}</span>
+            <h3>Recursos Digitales de Comercio Exterior</h3>
+            <p>Calculadora de exportación, conversor de monedas, calculadora de carga y más herramientas gratis.</p>
+            <span class="ce-go">Usar las herramientas →</span>
+          </a>
+          <a class="ce-card c3" href="{pre}blog/negocios/">
+            <span class="ce-ico">{ICON_CE["blog"]}</span>
+            <h3>Blog de Negocios Internacionales</h3>
+            <p>Incoterms, mercados, cómo exportar paso a paso y novedades del comercio internacional.</p>
+            <span class="ce-go">Leer las notas →</span>
+          </a>
+        </div>
+      </section>
+{MESA_BAND.format(pre=pre)}
+    </div>'''
+    return page("pg-mesa pg-hub", None,
+                "Mesa de Negocio de Oportunidades Comerciales Globales | Hub de Oportunidades | Umarti Origen",
+                "Buscá productos y servicios para importar, publicá tu búsqueda o mostrá tu empresa exportadora. Compradores, productores y proveedores de distintos países en una misma mesa.",
+                "Mesa de Negocio de Oportunidades Comerciales Globales | Umarti Origen", main, _faqs_og(), "Lo que conviene saber", "",
+                f'  <script src="{pre}assets/js/hub-mesa.js"></script>', pre)
+
+
+def plural_txt(n, uno, varios):
+    return f"{n} {uno if n == 1 else varios}"
+
+
+# ---------- Empresas exportadoras ----------
+def _empresa_card(e, pre):
+    return f'''          <a class="ee-card" href="{pre}empresas-exportadoras/{e['slug']}/">
+            <span class="ee-av">{esc(e['nombre'][0])}</span>
+            <span class="ee-txt"><b>{esc(e['nombre'])}</b><small>{cc(e['pais'])}{esc(e['region'])}, {esc(e['pais'])} · {esc(e['rubro'])}</small>
+            <em>{esc(e['lema'])}</em></span>
+            {'<span class="ee-ej">Ejemplo</span>' if e.get('ejemplo') else ''}
+          </a>'''
+
+
+def empresas():
+    pre = "../"
+    main = f'''    <div class="wrap">
+{crumbs_hub("Empresas exportadoras", pre)}
+      <section class="ee-hero">
+        <div>
+          <span class="eyebrow">Hub de Oportunidades</span>
+          <h1>Empresas exportadoras</h1>
+          <p>Cada empresa tiene su propia página: quiénes son, qué producen, cuánto pueden producir, con qué certificaciones y a qué mercados ya venden. Así un comprador de otro país conoce a la empresa, no solo un producto suelto.</p>
+          <div class="og-btns">
+            <a class="og-btn" href="{pre}mi-empresa/?publicar=empresa">{ICON_PLUS} Crear la página de mi empresa</a>
+            <a class="og-btn ghost" href="{pre}empresas-exportadoras/{EMPRESAS[0]['slug']}/">Ver un ejemplo</a>
+          </div>
+        </div>
+        <ol class="ee-pasos">
+          <li><b>Registrás tu empresa</b><small>Validamos su identidad antes de publicar.</small></li>
+          <li><b>Completás tu página</b><small>Historia, productos, capacidad, certificaciones y mercados.</small></li>
+          <li><b>Te encuentran</b><small>Aparecés en las búsquedas de compradores y te escriben por la mesa.</small></li>
+        </ol>
+      </section>
+      <div class="block-head"><div><h2>Directorio</h2><p>Empresas con página publicada.</p></div></div>
+      <div class="ee-grid">
+{chr(10).join(_empresa_card(e, pre) for e in EMPRESAS)}
+      </div>
+{PROTO.format(txt="La empresa de esta página es un ejemplo para mostrar cómo se ve. Todavía no hay empresas publicadas.")}
+    </div>'''
+    return page("pg-mesa pg-hub", None, "Empresas exportadoras | Hub de Oportunidades | Umarti Origen",
+                "Páginas de empresas exportadoras de Argentina, México y otros países: qué producen, capacidad, certificaciones y mercados.",
+                "Empresas exportadoras | Umarti Origen", main, [], "", "", "", pre)
+
+
+def empresa_pagina(e):
+    pre = "../../"
+    prods = "".join(f'''
+            <li><b>{esc(n)}</b><small>{('SA ' + hsfmt(hs) + ' · ') if hs else ''}{esc(pres)}</small>{f'<a href="{pre}productos-de-exportacion/#{cod.lower()}">Ver la oferta →</a>' if cod else ''}</li>''' for n, hs, pres, cod in e["productos"])
+    certs = "".join(f"<li>{esc(c)}</li>" for c in e["certificaciones"])
+    mercados = "".join(f'<li>{cc(m)}{esc(m)}</li>' for m in e["mercados"])
+    anios = 2026 - e["desde"]
+    info = f"{e['nombre']} · {e['region']}, {e['pais']}"
+    main = f'''    <div class="wrap">
+{crumbs_hub(esc(e['nombre']), pre).replace('<li aria-current="page">', f'<li><a href="{pre}empresas-exportadoras/">Empresas exportadoras</a></li>{chr(10)}          <li aria-current="page">')}
+{PROTO.format(txt="Esta es una empresa de ejemplo para mostrar cómo se ve la página de una empresa exportadora.") if e.get("ejemplo") else ""}
+      <article class="emp op" data-kind="producto" data-codigo="{e['slug']}" data-info="{esc(info)}">
+        <header class="emp-hero">
+          <span class="emp-av">{esc(e['nombre'][0])}</span>
+          <div>
+            <span class="eyebrow">{esc(e['rubro'])}</span>
+            <h1 class="op-title">{esc(e['nombre'])}</h1>
+            <p class="emp-lema">{esc(e['lema'])}</p>
+            <p class="emp-loc">{cc(e['pais'])}{esc(e['region'])}, {esc(e['pais'])}<span>·</span>Identidad verificada</p>
+          </div>
+          <div class="emp-cta">
+            <button class="og-btn" type="button" data-negociar>Contactar a la empresa</button>
+            <small>Tus datos se comparten solo si las dos partes aceptan negociar.</small>
+          </div>
+        </header>
+        <div class="emp-stats">
+          <div><strong>{anios}</strong><span>años produciendo</span></div>
+          <div><strong>{2026 - e['exporta_desde']}</strong><span>años exportando</span></div>
+          <div><strong>{len(e['mercados'])}</strong><span>mercados</span></div>
+          <div><strong>{esc(e['capacidad'])}</strong><span>capacidad</span></div>
+        </div>
+        <div class="emp-grid">
+          <section class="emp-box emp-sobre"><h2>Quiénes somos</h2><p>{esc(e['sobre'])}</p>{'<p class="emp-mb">También fabricamos con la marca de tu empresa (marca blanca).</p>' if e.get('marca_blanca') else ''}</section>
+          <section class="emp-box"><h2>Qué producimos</h2><ul class="emp-prods">{prods}
+          </ul></section>
+          <section class="emp-box"><h2>Capacidad y logística</h2>
+            <dl class="emp-dl">
+              <div><dt>Capacidad de producción</dt><dd>{esc(e['capacidad'])}</dd></div>
+              <div><dt>Pedido mínimo</dt><dd>{esc(e['minimo'])}</dd></div>
+              <div><dt>Plazo de entrega</dt><dd>{esc(e['entrega'])}</dd></div>
+              <div><dt>Condiciones de entrega</dt><dd>{" · ".join(e['incoterms'])}</dd></div>
+              <div><dt>Salida</dt><dd>{esc(", ".join(e['puertos']))}</dd></div>
+            </dl>
+          </section>
+          <section class="emp-box"><h2>Certificaciones</h2><ul class="emp-chips">{certs}</ul>
+            <h2 class="mt">Mercados donde ya vendemos</h2><ul class="emp-chips mk">{mercados}</ul></section>
+        </div>
+      </article>
+    </div>'''
+    return page("pg-mesa pg-hub", None, f"{e['nombre']}: empresa exportadora | Umarti Origen",
+                f"{e['nombre']}, {e['rubro'].lower()} de {e['region']}, {e['pais']}. {e['lema']}",
+                f"{e['nombre']} | Empresas exportadoras | Umarti Origen", main, [], "", "", "", pre)
+
+
 def datos_js():
     def con(items, kind):
         out = []
@@ -751,6 +998,10 @@ def escribir(ruta, contenido):
 
 if __name__ == "__main__":
     escribir("assets/data/hub-datos.js", datos_js())
+    escribir("hub/index.html", hub())
+    escribir("empresas-exportadoras/index.html", empresas())
+    for e in EMPRESAS:
+        escribir(f"empresas-exportadoras/{e['slug']}/index.html", empresa_pagina(e))
     escribir("oportunidades-globales/index.html", oportunidades())
     escribir("oportunidades-globales/como-funciona/index.html", como_funciona())
     escribir("oportunidades-globales/buscar/index.html", buscar())

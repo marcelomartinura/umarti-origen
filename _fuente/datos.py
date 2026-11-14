@@ -8,14 +8,14 @@ CATEGORIAS_SERVICIO = ["Despachantes de aduana", "Transporte y logística", "Seg
 
 # Productos de exportación (ofertas de venta)
 PRODUCTOS = [
-  dict(cod="UO-P-0001", nombre="Vino Malbec embotellado, 750 ml", hs="220421", sector="Alimentos y bebidas", pais="Argentina", region="Mendoza", destinos="Alemania, México, Brasil", vol="2 contenedores por mes", vence="2027-06-30", claves="vino tinto malbec bodega"),
-  dict(cod="UO-P-0002", nombre="Maní tipo confitería, sin cáscara", hs="120242", sector="Agroindustria", pais="Argentina", region="Córdoba", destinos="China, Unión Europea", vol="500 toneladas", vence="2027-03-31", claves="maní cacahuate cacahuete"),
-  dict(cod="UO-P-0003", nombre="Yerba mate elaborada con palo", hs="090300", sector="Alimentos y bebidas", pais="Argentina", region="Misiones", destinos="España, Estados Unidos, Siria", vol="20 toneladas por mes", vence="2027-08-15", claves="yerba mate infusión"),
-  dict(cod="UO-P-0004", nombre="Miel natural a granel", hs="040900", sector="Agroindustria", pais="Argentina", region="Entre Ríos", destinos="Alemania, Estados Unidos", vol="100 toneladas", vence="2027-01-31", claves="miel apícola"),
-  dict(cod="UO-P-0005", nombre="Aguacate Hass fresco", hs="080440", sector="Agroindustria", pais="México", region="Michoacán", destinos="Canadá, Japón, Emiratos Árabes Unidos", vol="40 toneladas por semana", vence="2027-05-31", claves="aguacate palta hass fruta"),
-  dict(cod="UO-P-0006", nombre="Tequila 100% agave", hs="220890", sector="Alimentos y bebidas", pais="México", region="Jalisco", destinos="Estados Unidos, España, Argentina", vol="5.000 cajas", vence="2027-09-30", claves="tequila agave destilado bebida"),
-  dict(cod="UO-P-0007", nombre="Limón fresco", hs="080550", sector="Agroindustria", pais="Argentina", region="Tucumán", destinos="Estados Unidos, Unión Europea", vol="300 toneladas por temporada", vence="2027-04-30", claves="limón cítrico fruta"),
-  dict(cod="UO-P-0008", nombre="Filtros de aire para vehículos", hs="842131", sector="Manufacturas", pais="México", region="Querétaro", destinos="Argentina, Brasil, Chile", vol="20.000 unidades por mes", vence="2027-02-28", claves="filtros autopartes automotriz"),
+  dict(cod="UO-P-0001", categoria="Bebidas", nombre="Vino Malbec embotellado, 750 ml", hs="220421", sector="Alimentos y bebidas", pais="Argentina", region="Mendoza", destinos="Alemania, México, Brasil", vol="2 contenedores por mes", vence="2027-06-30", claves="vino tinto malbec bodega"),
+  dict(cod="UO-P-0002", categoria="Alimentos", nombre="Maní tipo confitería, sin cáscara", hs="120242", sector="Agroindustria", pais="Argentina", region="Córdoba", destinos="China, Unión Europea", vol="500 toneladas", vence="2027-03-31", claves="maní cacahuate cacahuete"),
+  dict(cod="UO-P-0003", categoria="Café, Té y Mate", nombre="Yerba mate elaborada con palo", hs="090300", sector="Alimentos y bebidas", pais="Argentina", region="Misiones", destinos="España, Estados Unidos, Siria", vol="20 toneladas por mes", vence="2027-08-15", claves="yerba mate infusión"),
+  dict(cod="UO-P-0004", categoria="Alimentos", nombre="Miel natural a granel", hs="040900", sector="Agroindustria", pais="Argentina", region="Entre Ríos", destinos="Alemania, Estados Unidos", vol="100 toneladas", vence="2027-01-31", claves="miel apícola"),
+  dict(cod="UO-P-0005", categoria="Alimentos", nombre="Aguacate Hass fresco", hs="080440", sector="Agroindustria", pais="México", region="Michoacán", destinos="Canadá, Japón, Emiratos Árabes Unidos", vol="40 toneladas por semana", vence="2027-05-31", claves="aguacate palta hass fruta"),
+  dict(cod="UO-P-0006", categoria="Bebidas", nombre="Tequila 100% agave", hs="220890", sector="Alimentos y bebidas", pais="México", region="Jalisco", destinos="Estados Unidos, España, Argentina", vol="5.000 cajas", vence="2027-09-30", claves="tequila agave destilado bebida"),
+  dict(cod="UO-P-0007", categoria="Alimentos", nombre="Limón fresco", hs="080550", sector="Agroindustria", pais="Argentina", region="Tucumán", destinos="Estados Unidos, Unión Europea", vol="300 toneladas por temporada", vence="2027-04-30", claves="limón cítrico fruta"),
+  dict(cod="UO-P-0008", categoria="Herramientas y Jardín", nombre="Filtros de aire para vehículos", hs="842131", sector="Manufacturas", pais="México", region="Querétaro", destinos="Argentina, Brasil, Chile", vol="20.000 unidades por mes", vence="2027-02-28", claves="filtros autopartes automotriz"),
 ]
 
 # Servicios de comercio exterior
@@ -29,6 +29,22 @@ SERVICIOS = [
   dict(cod="UO-S-0007", nombre="Gestión de certificados de origen y fitosanitarios", categoria="Certificaciones", pais="Argentina", region="Rosario", cobertura="Exportaciones desde Argentina", detalle="Trámites para acceder a preferencias arancelarias y requisitos sanitarios.", claves="certificado origen fitosanitario senasa certificación"),
   dict(cod="UO-S-0008", nombre="Consultoría para exportar a México", categoria="Consultoría en comercio exterior", pais="México", region="Querétaro", cobertura="Exportadores de Sudamérica", detalle="Normas oficiales mexicanas, etiquetado, registro y primeros clientes.", claves="consultoría asesoría etiquetado normas nom exportar"),
   dict(cod="UO-S-0009", nombre="Desarrollo de software a medida", categoria="Servicios digitales", pais="Argentina", region="Buenos Aires", cobertura="México, España, Estados Unidos", detalle="Equipos dedicados para tiendas en línea, sistemas de gestión y automatización.", claves="software desarrollo programación sistemas tienda digital"),
+]
+
+# Empresas exportadoras (landing pages). Prototipo: la primera es un ejemplo para mostrar cómo se ve.
+EMPRESAS = [
+  dict(slug="yerbatera-del-litoral", nombre="Yerbatera del Litoral", ejemplo=True, pais="Argentina", region="Misiones",
+       rubro="Yerba mate y hierbas", categoria="Café, Té y Mate", desde=1987, exporta_desde=2009,
+       lema="Yerba mate de Misiones, estacionada en forma natural, para el mundo.",
+       sobre="Somos una empresa familiar de Misiones con tres generaciones en la producción de yerba mate. Cultivamos, secamos y estacionamos nuestra propia yerba, y la envasamos con marca propia o con la marca de nuestros clientes.",
+       productos=[("Yerba mate elaborada con palo", "090300", "Paquetes de 500 g y 1 kg, o a granel en bolsas de 25 kg", "UO-P-0003"),
+                  ("Yerba mate despalada", "090300", "Paquetes de 500 g y 1 kg", ""),
+                  ("Yerba mate compuesta con hierbas", "090300", "Menta, peperina y cedrón, paquetes de 500 g", "")],
+       capacidad="60 toneladas por mes", minimo="1 pallet (720 kg)", entrega="25 días desde la confirmación",
+       incoterms=["EXW", "FOB", "CIF"], puertos=["Puerto de Buenos Aires", "Posadas (terrestre)"],
+       certificaciones=["Certificado de origen", "Registro Nacional de Establecimiento (RNE)", "Análisis bromatológico", "Kosher"],
+       mercados=["España", "Estados Unidos", "Siria", "Chile", "Uruguay"],
+       marca_blanca=True),
 ]
 
 # Búsquedas publicadas en la Mesa de negociación

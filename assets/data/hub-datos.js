@@ -3,6 +3,7 @@ window.HUB_DATOS = {
  "productos": [
   {
    "cod": "UO-P-0001",
+   "categoria": "Bebidas",
    "nombre": "Vino Malbec embotellado, 750 ml",
    "hs": "220421",
    "sector": "Alimentos y bebidas",
@@ -17,6 +18,7 @@ window.HUB_DATOS = {
   },
   {
    "cod": "UO-P-0002",
+   "categoria": "Alimentos",
    "nombre": "Maní tipo confitería, sin cáscara",
    "hs": "120242",
    "sector": "Agroindustria",
@@ -31,6 +33,7 @@ window.HUB_DATOS = {
   },
   {
    "cod": "UO-P-0003",
+   "categoria": "Café, Té y Mate",
    "nombre": "Yerba mate elaborada con palo",
    "hs": "090300",
    "sector": "Alimentos y bebidas",
@@ -45,6 +48,7 @@ window.HUB_DATOS = {
   },
   {
    "cod": "UO-P-0004",
+   "categoria": "Alimentos",
    "nombre": "Miel natural a granel",
    "hs": "040900",
    "sector": "Agroindustria",
@@ -59,6 +63,7 @@ window.HUB_DATOS = {
   },
   {
    "cod": "UO-P-0005",
+   "categoria": "Alimentos",
    "nombre": "Aguacate Hass fresco",
    "hs": "080440",
    "sector": "Agroindustria",
@@ -73,6 +78,7 @@ window.HUB_DATOS = {
   },
   {
    "cod": "UO-P-0006",
+   "categoria": "Bebidas",
    "nombre": "Tequila 100% agave",
    "hs": "220890",
    "sector": "Alimentos y bebidas",
@@ -87,6 +93,7 @@ window.HUB_DATOS = {
   },
   {
    "cod": "UO-P-0007",
+   "categoria": "Alimentos",
    "nombre": "Limón fresco",
    "hs": "080550",
    "sector": "Agroindustria",
@@ -101,6 +108,7 @@ window.HUB_DATOS = {
   },
   {
    "cod": "UO-P-0008",
+   "categoria": "Herramientas y Jardín",
    "nombre": "Filtros de aire para vehículos",
    "hs": "842131",
    "sector": "Manufacturas",

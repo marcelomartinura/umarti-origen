@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/umarti.css?v=97843a83">
-  <link rel="stylesheet" href="../assets/css/hub.css?v=b05b2728">
+  <link rel="stylesheet" href="../assets/css/hub.css?v=7a759a08">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -121,15 +121,8 @@
       <div class="module m-world">
         <p class="module-label"><span>Mercados Globales</span><a class="mi-link" href="../mi-empresa/">Mi empresa</a></p>
         <ul class="module-items">
-          <li class="has-menu">
-            <button class="nav-btn" aria-expanded="false">Hub de Oportunidades
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
-            </button>
-            <div class="dropdown">
-              <a class="item" href="../oportunidades-globales/"><strong>Oportunidades Globales</strong><span>Búsquedas de productos y servicios</span></a>
-              <a class="item" href="../productos-de-exportacion/"><strong>Productos de exportación</strong><span>Productos listos para vender a otros países</span></a>
-              <a class="item" href="../servicios-de-comercio-exterior/"><strong>Servicios de Comercio Exterior</strong><span>Aduana, logística, seguros y asesoría</span></a>
-            </div>
+          <li>
+            <a class="nav-btn" href="../hub/">Hub de Oportunidades Globales</a>
           </li>
         </ul>
       </div>
@@ -152,7 +145,7 @@
       <nav class="crumbs" aria-label="Ubicación">
         <ol>
           <li><a href="../">Inicio</a></li>
-          <li>Hub de Oportunidades</li>
+          <li><a href="../hub/">Hub de Oportunidades</a></li>
           <li aria-current="page">Productos de exportación</li>
         </ol>
       </nav>
@@ -181,8 +174,8 @@
           <input id="f-q" type="search" data-filter="texto" placeholder="Producto, posición arancelaria o código" autocomplete="off">
         </div>
         <div class="field">
-          <label for="f-sector">Sector</label>
-          <select id="f-sector" data-filter="sector"><option value="">Todos</option><option value="Alimentos y bebidas">Alimentos y bebidas</option><option value="Agroindustria">Agroindustria</option><option value="Manufacturas">Manufacturas</option><option value="Minería y energía">Minería y energía</option><option value="Moda y textil">Moda y textil</option><option value="Salud">Salud</option><option value="Tecnología">Tecnología</option></select>
+          <label for="f-cat">Categoría</label>
+          <select id="f-cat" data-filter="categoria"><option value="">Todas</option><option value="Café, Té y Mate">Café, Té y Mate</option><option value="Regalos y Kits">Regalos y Kits</option><option value="Artículos Regionales">Artículos Regionales</option><option value="Bebidas">Bebidas</option><option value="Alimentos">Alimentos</option><option value="Salud y Bienestar">Salud y Bienestar</option><option value="Moda">Moda</option><option value="Tecnología">Tecnología</option><option value="Herramientas y Jardín">Herramientas y Jardín</option><option value="Hogar y Cocina">Hogar y Cocina</option><option value="Limpieza e Higiene">Limpieza e Higiene</option></select>
         </div>
         <div class="field">
           <label for="f-pais">País de origen</label>
@@ -205,13 +198,13 @@
       </p>
 
       <div class="cards" id="list">
-        <article class="op op--producto" id="uo-p-0001" data-kind="producto" data-codigo="UO-P-0001" data-sector="Alimentos y bebidas" data-pais="Argentina" data-vence="2027-06-30" data-info="UO-P-0001 · SA 2204.21 · Origen: Argentina" data-texto="vino malbec embotellado, 750 ml 220421 2204.21 uo-p-0001 alimentos y bebidas argentina mendoza alemania, méxico, brasil vino tinto malbec bodega">
+        <article class="op op--producto" id="uo-p-0001" data-kind="producto" data-codigo="UO-P-0001" data-sector="Alimentos y bebidas" data-categoria="Bebidas" data-pais="Argentina" data-vence="2027-06-30" data-info="UO-P-0001 · SA 2204.21 · Origen: Argentina" data-texto="vino malbec embotellado, 750 ml 220421 2204.21 uo-p-0001 alimentos y bebidas argentina mendoza alemania, méxico, brasil vino tinto malbec bodega">
           <div class="op-top">
             <span class="op-code">UO-P-0001</span>
             <span class="op-chips"><span class="chip chip-hs" title="Posición arancelaria (Sistema Armonizado)">SA 2204.21</span></span>
           </div>
           <h3 class="op-title">Vino Malbec embotellado, 750 ml</h3>
-          <p class="op-sector">Alimentos y bebidas</p>
+          <p class="op-sector">Bebidas</p>
           <dl class="op-meta">
             <div><dt>Origen</dt><dd><span class="cc">AR</span>Argentina · Mendoza</dd></div>
             <div><dt>Volumen disponible</dt><dd>2 contenedores por mes</dd></div>
@@ -222,13 +215,13 @@
             <button class="op-cta" type="button" data-negociar>Negociar</button>
           </div>
         </article>
-        <article class="op op--producto" id="uo-p-0002" data-kind="producto" data-codigo="UO-P-0002" data-sector="Agroindustria" data-pais="Argentina" data-vence="2027-03-31" data-info="UO-P-0002 · SA 1202.42 · Origen: Argentina" data-texto="maní tipo confitería, sin cáscara 120242 1202.42 uo-p-0002 agroindustria argentina córdoba china, unión europea maní cacahuate cacahuete">
+        <article class="op op--producto" id="uo-p-0002" data-kind="producto" data-codigo="UO-P-0002" data-sector="Agroindustria" data-categoria="Alimentos" data-pais="Argentina" data-vence="2027-03-31" data-info="UO-P-0002 · SA 1202.42 · Origen: Argentina" data-texto="maní tipo confitería, sin cáscara 120242 1202.42 uo-p-0002 agroindustria argentina córdoba china, unión europea maní cacahuate cacahuete">
           <div class="op-top">
             <span class="op-code">UO-P-0002</span>
             <span class="op-chips"><span class="chip chip-hs" title="Posición arancelaria (Sistema Armonizado)">SA 1202.42</span></span>
           </div>
           <h3 class="op-title">Maní tipo confitería, sin cáscara</h3>
-          <p class="op-sector">Agroindustria</p>
+          <p class="op-sector">Alimentos</p>
           <dl class="op-meta">
             <div><dt>Origen</dt><dd><span class="cc">AR</span>Argentina · Córdoba</dd></div>
             <div><dt>Volumen disponible</dt><dd>500 toneladas</dd></div>
@@ -239,13 +232,13 @@
             <button class="op-cta" type="button" data-negociar>Negociar</button>
           </div>
         </article>
-        <article class="op op--producto" id="uo-p-0003" data-kind="producto" data-codigo="UO-P-0003" data-sector="Alimentos y bebidas" data-pais="Argentina" data-vence="2027-08-15" data-info="UO-P-0003 · SA 0903.00 · Origen: Argentina" data-texto="yerba mate elaborada con palo 090300 0903.00 uo-p-0003 alimentos y bebidas argentina misiones españa, estados unidos, siria yerba mate infusión">
+        <article class="op op--producto" id="uo-p-0003" data-kind="producto" data-codigo="UO-P-0003" data-sector="Alimentos y bebidas" data-categoria="Café, Té y Mate" data-pais="Argentina" data-vence="2027-08-15" data-info="UO-P-0003 · SA 0903.00 · Origen: Argentina" data-texto="yerba mate elaborada con palo 090300 0903.00 uo-p-0003 alimentos y bebidas argentina misiones españa, estados unidos, siria yerba mate infusión">
           <div class="op-top">
             <span class="op-code">UO-P-0003</span>
             <span class="op-chips"><span class="chip chip-hs" title="Posición arancelaria (Sistema Armonizado)">SA 0903.00</span></span>
           </div>
           <h3 class="op-title">Yerba mate elaborada con palo</h3>
-          <p class="op-sector">Alimentos y bebidas</p>
+          <p class="op-sector">Café, Té y Mate</p>
           <dl class="op-meta">
             <div><dt>Origen</dt><dd><span class="cc">AR</span>Argentina · Misiones</dd></div>
             <div><dt>Volumen disponible</dt><dd>20 toneladas por mes</dd></div>
@@ -256,13 +249,13 @@
             <button class="op-cta" type="button" data-negociar>Negociar</button>
           </div>
         </article>
-        <article class="op op--producto" id="uo-p-0004" data-kind="producto" data-codigo="UO-P-0004" data-sector="Agroindustria" data-pais="Argentina" data-vence="2027-01-31" data-info="UO-P-0004 · SA 0409.00 · Origen: Argentina" data-texto="miel natural a granel 040900 0409.00 uo-p-0004 agroindustria argentina entre ríos alemania, estados unidos miel apícola">
+        <article class="op op--producto" id="uo-p-0004" data-kind="producto" data-codigo="UO-P-0004" data-sector="Agroindustria" data-categoria="Alimentos" data-pais="Argentina" data-vence="2027-01-31" data-info="UO-P-0004 · SA 0409.00 · Origen: Argentina" data-texto="miel natural a granel 040900 0409.00 uo-p-0004 agroindustria argentina entre ríos alemania, estados unidos miel apícola">
           <div class="op-top">
             <span class="op-code">UO-P-0004</span>
             <span class="op-chips"><span class="chip chip-hs" title="Posición arancelaria (Sistema Armonizado)">SA 0409.00</span></span>
           </div>
           <h3 class="op-title">Miel natural a granel</h3>
-          <p class="op-sector">Agroindustria</p>
+          <p class="op-sector">Alimentos</p>
           <dl class="op-meta">
             <div><dt>Origen</dt><dd><span class="cc">AR</span>Argentina · Entre Ríos</dd></div>
             <div><dt>Volumen disponible</dt><dd>100 toneladas</dd></div>
@@ -273,13 +266,13 @@
             <button class="op-cta" type="button" data-negociar>Negociar</button>
           </div>
         </article>
-        <article class="op op--producto" id="uo-p-0005" data-kind="producto" data-codigo="UO-P-0005" data-sector="Agroindustria" data-pais="México" data-vence="2027-05-31" data-info="UO-P-0005 · SA 0804.40 · Origen: México" data-texto="aguacate hass fresco 080440 0804.40 uo-p-0005 agroindustria méxico michoacán canadá, japón, emiratos árabes unidos aguacate palta hass fruta">
+        <article class="op op--producto" id="uo-p-0005" data-kind="producto" data-codigo="UO-P-0005" data-sector="Agroindustria" data-categoria="Alimentos" data-pais="México" data-vence="2027-05-31" data-info="UO-P-0005 · SA 0804.40 · Origen: México" data-texto="aguacate hass fresco 080440 0804.40 uo-p-0005 agroindustria méxico michoacán canadá, japón, emiratos árabes unidos aguacate palta hass fruta">
           <div class="op-top">
             <span class="op-code">UO-P-0005</span>
             <span class="op-chips"><span class="chip chip-hs" title="Posición arancelaria (Sistema Armonizado)">SA 0804.40</span></span>
           </div>
           <h3 class="op-title">Aguacate Hass fresco</h3>
-          <p class="op-sector">Agroindustria</p>
+          <p class="op-sector">Alimentos</p>
           <dl class="op-meta">
             <div><dt>Origen</dt><dd><span class="cc">MX</span>México · Michoacán</dd></div>
             <div><dt>Volumen disponible</dt><dd>40 toneladas por semana</dd></div>
@@ -290,13 +283,13 @@
             <button class="op-cta" type="button" data-negociar>Negociar</button>
           </div>
         </article>
-        <article class="op op--producto" id="uo-p-0006" data-kind="producto" data-codigo="UO-P-0006" data-sector="Alimentos y bebidas" data-pais="México" data-vence="2027-09-30" data-info="UO-P-0006 · SA 2208.90 · Origen: México" data-texto="tequila 100% agave 220890 2208.90 uo-p-0006 alimentos y bebidas méxico jalisco estados unidos, españa, argentina tequila agave destilado bebida">
+        <article class="op op--producto" id="uo-p-0006" data-kind="producto" data-codigo="UO-P-0006" data-sector="Alimentos y bebidas" data-categoria="Bebidas" data-pais="México" data-vence="2027-09-30" data-info="UO-P-0006 · SA 2208.90 · Origen: México" data-texto="tequila 100% agave 220890 2208.90 uo-p-0006 alimentos y bebidas méxico jalisco estados unidos, españa, argentina tequila agave destilado bebida">
           <div class="op-top">
             <span class="op-code">UO-P-0006</span>
             <span class="op-chips"><span class="chip chip-hs" title="Posición arancelaria (Sistema Armonizado)">SA 2208.90</span></span>
           </div>
           <h3 class="op-title">Tequila 100% agave</h3>
-          <p class="op-sector">Alimentos y bebidas</p>
+          <p class="op-sector">Bebidas</p>
           <dl class="op-meta">
             <div><dt>Origen</dt><dd><span class="cc">MX</span>México · Jalisco</dd></div>
             <div><dt>Volumen disponible</dt><dd>5.000 cajas</dd></div>
@@ -307,13 +300,13 @@
             <button class="op-cta" type="button" data-negociar>Negociar</button>
           </div>
         </article>
-        <article class="op op--producto" id="uo-p-0007" data-kind="producto" data-codigo="UO-P-0007" data-sector="Agroindustria" data-pais="Argentina" data-vence="2027-04-30" data-info="UO-P-0007 · SA 0805.50 · Origen: Argentina" data-texto="limón fresco 080550 0805.50 uo-p-0007 agroindustria argentina tucumán estados unidos, unión europea limón cítrico fruta">
+        <article class="op op--producto" id="uo-p-0007" data-kind="producto" data-codigo="UO-P-0007" data-sector="Agroindustria" data-categoria="Alimentos" data-pais="Argentina" data-vence="2027-04-30" data-info="UO-P-0007 · SA 0805.50 · Origen: Argentina" data-texto="limón fresco 080550 0805.50 uo-p-0007 agroindustria argentina tucumán estados unidos, unión europea limón cítrico fruta">
           <div class="op-top">
             <span class="op-code">UO-P-0007</span>
             <span class="op-chips"><span class="chip chip-hs" title="Posición arancelaria (Sistema Armonizado)">SA 0805.50</span></span>
           </div>
           <h3 class="op-title">Limón fresco</h3>
-          <p class="op-sector">Agroindustria</p>
+          <p class="op-sector">Alimentos</p>
           <dl class="op-meta">
             <div><dt>Origen</dt><dd><span class="cc">AR</span>Argentina · Tucumán</dd></div>
             <div><dt>Volumen disponible</dt><dd>300 toneladas por temporada</dd></div>
@@ -324,13 +317,13 @@
             <button class="op-cta" type="button" data-negociar>Negociar</button>
           </div>
         </article>
-        <article class="op op--producto" id="uo-p-0008" data-kind="producto" data-codigo="UO-P-0008" data-sector="Manufacturas" data-pais="México" data-vence="2027-02-28" data-info="UO-P-0008 · SA 8421.31 · Origen: México" data-texto="filtros de aire para vehículos 842131 8421.31 uo-p-0008 manufacturas méxico querétaro argentina, brasil, chile filtros autopartes automotriz">
+        <article class="op op--producto" id="uo-p-0008" data-kind="producto" data-codigo="UO-P-0008" data-sector="Manufacturas" data-categoria="Herramientas y Jardín" data-pais="México" data-vence="2027-02-28" data-info="UO-P-0008 · SA 8421.31 · Origen: México" data-texto="filtros de aire para vehículos 842131 8421.31 uo-p-0008 manufacturas méxico querétaro argentina, brasil, chile filtros autopartes automotriz">
           <div class="op-top">
             <span class="op-code">UO-P-0008</span>
             <span class="op-chips"><span class="chip chip-hs" title="Posición arancelaria (Sistema Armonizado)">SA 8421.31</span></span>
           </div>
           <h3 class="op-title">Filtros de aire para vehículos</h3>
-          <p class="op-sector">Manufacturas</p>
+          <p class="op-sector">Herramientas y Jardín</p>
           <dl class="op-meta">
             <div><dt>Origen</dt><dd><span class="cc">MX</span>México · Querétaro</dd></div>
             <div><dt>Volumen disponible</dt><dd>20.000 unidades por mes</dd></div>
@@ -467,7 +460,7 @@
   <div class="toast" id="toast" role="status"></div>
 
   <script src="../assets/js/header.js?v=134afb0a"></script>
-  <script src="../assets/data/hub-datos.js?v=131d7bd6"></script>
+  <script src="../assets/data/hub-datos.js?v=af3a4df5"></script>
   <script src="../assets/js/hub-comun.js?v=384ed416"></script>
   <script src="../assets/js/catalogo.js?v=bdd07dc4"></script>
 </body>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420">
+  <defs>
+    <linearGradient id="mesa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9a6a43"/><stop offset="1" stop-color="#6e4628"/></linearGradient>
+    <radialGradient id="luz" cx=".5" cy=".35" r=".6"><stop offset="0" stop-color="#ffffff" stop-opacity=".22"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="640" height="420" fill="#173248"/><rect width="640" height="420" fill="url(#luz)"/>
+  <!-- globo -->
+  <g opacity=".22" fill="none" stroke="#bfe3f2" stroke-width="2">
+    <circle cx="320" cy="150" r="118"/><ellipse cx="320" cy="150" rx="52" ry="118"/><path d="M202 150h236M214 95h212M214 205h212"/>
+  </g>
+  <!-- mesa -->
+  <path d="M40 300 L600 300 L640 420 L0 420 Z" fill="url(#mesa)"/>
+  <path d="M40 300 L600 300" stroke="#b98a5f" stroke-width="3"/>
+  <!-- papeles -->
+  <g transform="rotate(-8 170 325)"><rect x="110" y="305" width="120" height="70" rx="4" fill="#f6f1e7"/><path d="M124 322h80M124 334h92M124 346h64" stroke="#c9bfae" stroke-width="4" stroke-linecap="round"/></g>
+  <g transform="rotate(6 470 330)"><rect x="420" y="310" width="110" height="64" rx="4" fill="#fbf8f2"/><path d="M434 326h70M434 338h82M434 350h50" stroke="#c9bfae" stroke-width="4" stroke-linecap="round"/><path d="M470 362c8-8 14 6 22-2s12 4 18-2" stroke="#2f6f8f" stroke-width="2.5" fill="none" stroke-linecap="round"/></g>
+  <!-- brazo izquierdo -->
+  <path d="M-10 268 L170 214 L190 262 L-10 330 Z" fill="#1f3b57"/>
+  <path d="M158 210 L186 200 L206 252 L178 264 Z" fill="#f4f1ea"/>
+  <!-- brazo derecho -->
+  <path d="M650 262 L466 212 L448 262 L650 326 Z" fill="#b5532e"/>
+  <path d="M478 204 L452 196 L432 248 L458 258 Z" fill="#f4f1ea"/>
+  <!-- manos -->
+  <path d="M190 206 C222 192 252 190 282 198 L330 214 C342 218 342 232 330 234 L300 232 C306 244 296 254 284 250 L250 244 C232 250 214 252 200 250 Z" fill="#d9a47c"/>
+  <path d="M446 200 C414 186 380 186 350 196 L312 214 C300 220 304 234 316 234 L340 234 C334 246 344 256 356 252 L392 244 C410 250 428 252 442 248 Z" fill="#c68c63"/>
+  <path d="M300 208 C312 200 330 200 344 206" stroke="#a96f48" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M258 222 C270 218 284 220 296 226 M262 234 C276 230 290 232 300 238" stroke="#b67e57" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M322 224 C334 226 344 232 350 240" stroke="#a96f48" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>

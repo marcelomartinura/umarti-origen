@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="../assets/img/marca/favicon-32.png">
+  <link rel="apple-touch-icon" href="../assets/img/marca/apple-touch-icon.png">
+  <title>Mesa de Negocio de Oportunidades Comerciales Globales | Hub de Oportunidades | Umarti Origen</title>
+  <meta name="description" content="Buscá productos y servicios para importar, publicá tu búsqueda o mostrá tu empresa exportadora. Compradores, productores y proveedores de distintos países en una misma mesa.">
+  <!-- Prototipo con datos de ejemplo: quitar esta línea cuando haya publicaciones reales -->
+  <meta name="robots" content="noindex">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mesa de Negocio de Oportunidades Comerciales Globales | Umarti Origen">
+  <meta property="og:description" content="Buscá productos y servicios para importar, publicá tu búsqueda o mostrá tu empresa exportadora. Compradores, productores y proveedores de distintos países en una misma mesa.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/umarti.css?v=97843a83">
+  <link rel="stylesheet" href="../assets/css/hub.css?v=7a759a08">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cómo funciona Oportunidades Globales?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ingresás el producto o servicio que estás buscando. El sistema lo cruza con lo publicado en Productos de exportación y en Servicios de Comercio Exterior. Si hay coincidencia, te vinculamos con esa oferta para empezar a negociar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa si lo que busco no está publicado?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nuestro equipo sale a buscarlo entre productores y proveedores, y te responde en un plazo de 5 días hábiles con lo que encontró. Mientras tanto, tu búsqueda queda publicada para que otros vendedores puedan ofrecerte su producto."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué es la posición arancelaria y por qué conviene indicarla?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es el código del Sistema Armonizado que identifica cada producto en el comercio internacional, igual en todos los países. Con ella, la mesa encuentra coincidencias aunque cada parte describa el producto con palabras distintas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Quién ve mis datos de contacto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nadie, mientras no decidas avanzar. En la mesa se publican el producto, el destino, el volumen y la vigencia; los datos de tu empresa se comparten solo cuando ambas partes aceptan negociar."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="pg-mesa pg-hub" data-pre="">
+
+  <header class="site-header" id="site-header">
+    <!-- Fila superior -->
+    <div class="wrap-wide topbar">
+      <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menú">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <a href="../" class="logo" aria-label="Umarti Origen, ir al inicio"><img class="logo-ico" src="../assets/img/marca/icono.png" alt="" width="259" height="236"><span class="logo-txt"><b>Umarti</b><b>Origen</b></span></a>
+      <form class="search" role="search" onsubmit="return false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" placeholder="Buscar productos, oportunidades o destinos" aria-label="Buscar">
+      </form>
+      <div class="user-actions">
+        <a href="../" class="icon-link" aria-label="Mi cuenta">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+          <span>Mi cuenta</span>
+        </a>
+        <a href="../favoritos/" class="icon-link" aria-label="Favoritos">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>
+          <span>Favoritos</span>
+          <b class="badge" id="fav-count" hidden>0</b>
+        </a>
+        <a href="../carrito/" class="icon-link" aria-label="Carrito">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2"/><circle cx="10" cy="20.5" r="1.2"/><circle cx="17" cy="20.5" r="1.2"/></svg>
+          <span>Carrito</span>
+          <b class="badge" id="cart-count" hidden>0</b>
+        </a>
+      </div>
+    </div>
+
+    <!-- Módulos de navegación -->
+    <nav class="wrap-wide modules" id="main-nav" aria-label="Principal">
+
+      <!-- Módulo 1: Tienda -->
+      <div class="module m-shop">
+        <p class="module-label"><span>Tienda</span><a class="mi-link" href="../mi-tienda/">Mi tienda</a></p>
+        <ul class="module-items">
+          <li class="has-menu mega">
+            <button class="nav-btn" aria-expanded="false">Productos
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="dropdown mega-panel">
+              <div class="mega-grid">
+                <div><a class="cat" href="../argentina/tienda/cafe-te-y-mate/">Café, Té y Mate</a>
+                  <ul><li><a href="../argentina/tienda/cafe-te-y-mate/?sub=Mates%20y%20bombillas">Mates y bombillas</a></li><li><a href="../argentina/tienda/cafe-te-y-mate/?sub=Caf%C3%A9">Café</a></li><li><a href="../argentina/tienda/cafe-te-y-mate/?sub=T%C3%A9">Té</a></li><li><a href="../argentina/tienda/cafe-te-y-mate/?sub=Chocolate">Chocolate</a></li></ul></div>
+                <div><a class="cat" href="../argentina/tienda/regalos-y-kits/">Regalos y Kits</a>
+                  <ul><li><a href="../argentina/tienda/regalos-y-kits/?sub=Kits%20de%20mate%20y%20caf%C3%A9">Kits de mate y café</a></li><li><a href="../argentina/tienda/regalos-y-kits/?sub=Regalos%20corporativos">Regalos corporativos</a></li><li><a href="../argentina/tienda/regalos-y-kits/?sub=Personalizados">Personalizados</a></li></ul></div>
+                <div><a class="cat" href="../argentina/tienda/articulos-regionales/">Artículos Regionales</a>
+                  <ul><li><a href="../argentina/tienda/articulos-regionales/?sub=Bolsos%20materos">Bolsos materos</a></li><li><a href="../argentina/tienda/articulos-regionales/?sub=Marroquiner%C3%ADa%20y%20ri%C3%B1oneras">Marroquinería y riñoneras</a></li><li><a href="../argentina/tienda/articulos-regionales/?sub=Juegos%20de%20asado">Juegos de asado</a></li><li><a href="../argentina/tienda/articulos-regionales/?sub=Portatermos%20y%20llaveros">Portatermos y llaveros</a></li></ul></div>
+                <div><a class="cat" href="../argentina/tienda/bebidas/">Bebidas</a>
+                  <ul><li><a href="../argentina/tienda/bebidas/?sub=Vinos">Vinos</a></li><li><a href="../argentina/tienda/bebidas/?sub=Cervezas%20y%20destilados">Cervezas y destilados</a></li><li><a href="../argentina/tienda/bebidas/?sub=Sin%20alcohol">Sin alcohol</a></li></ul></div>
+                <div><a class="cat" href="../argentina/tienda/alimentos/">Alimentos</a>
+                  <ul><li><a href="../argentina/tienda/alimentos/?sub=Alimentos%20congelados">Alimentos congelados</a></li><li><a href="../argentina/tienda/alimentos/?sub=Alimentos%20diet">Alimentos diet</a></li><li><a href="../argentina/tienda/alimentos/?sub=Golosinas">Golosinas</a></li><li><a href="../argentina/tienda/alimentos/?sub=Snacks">Snacks</a></li></ul></div>
+              </div>
+              <div class="mega-more"><span>Más categorías</span><a href="../argentina/tienda/salud-y-bienestar/">Salud y Bienestar</a><a href="../argentina/tienda/moda/">Moda</a><a href="../argentina/tienda/tecnologia/">Tecnología</a><a href="../argentina/tienda/herramientas-y-jardin/">Herramientas y Jardín</a><a href="../argentina/tienda/hogar-y-cocina/">Hogar y Cocina</a><a href="../argentina/tienda/limpieza-e-higiene/">Limpieza e Higiene</a></div>
+              <div class="mega-foot">
+                <span>Productos con origen, elegidos en Argentina.</span>
+                <span><a href="../argentina/categorias/">Ver todos los productos →</a></span>
+              </div>
+            </div>
+          </li>
+          <li><a class="nav-btn" href="../international-shop/">International Shop</a></li>
+        </ul>
+      </div>
+
+      <!-- Módulo 2: Mercados Globales -->
+      <div class="module m-world">
+        <p class="module-label"><span>Mercados Globales</span><a class="mi-link" href="../mi-empresa/">Mi empresa</a></p>
+        <ul class="module-items">
+          <li>
+            <a class="nav-btn" href="../hub/">Hub de Oportunidades Globales</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Módulo 3: Herramientas -->
+      <div class="module m-tools">
+        <p class="module-label">Herramientas</p>
+        <ul class="module-items">
+          <li><a class="nav-btn" href="../blog/">Blog</a></li>
+          <li><a class="nav-btn" href="../viajes/">Viajes</a></li>
+          <li><a class="nav-btn" href="../recursos/">Recursos digitales</a></li>
+          <li><a class="nav-btn" href="../cupones/">Cupones</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Ubicación">
+        <ol>
+          <li><a href="../">Inicio</a></li>
+          <li aria-current="page">Hub de Oportunidades</li>
+        </ol>
+      </nav>
+      <section class="mesa-hero">
+        <div class="mh-txt">
+          <span class="eyebrow">Hub de Oportunidades Globales</span>
+          <h1>Mesa de Negocio de Oportunidades Comerciales Globales</h1>
+          <p>Compradores, productores y proveedores de distintos países, en una misma mesa. Contanos qué necesitás o mostrá lo que exportás, y te conectamos.</p>
+        </div>
+        <img class="mh-img" src="../assets/img/hub-mesa.svg" alt="Dos personas cierran un acuerdo con un apretón de manos sobre una mesa de negocios">
+      </section>
+
+      <div class="hub-main">
+        <section class="hub-ia" aria-labelledby="ia-title">
+          <h2 id="ia-title">¿Buscás importar productos o servicios?</h2>
+          <p class="hia-lead">Escribilo con tus palabras: qué necesitás, cuánto y para qué país. Lo cruzamos con lo que ofrecen productores y proveedores de todo el mundo.</p>
+          <form id="ia-form" class="hia-form" autocomplete="off">
+            <div class="hia-box">
+              <span class="hia-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/><path d="M5 16l.6 1.4L7 18l-1.4.6L5 20l-.6-1.4L3 18l1.4-.6z"/></svg></span>
+              <label for="ia-q" class="sr">Qué estás buscando</label>
+              <textarea id="ia-q" name="q" rows="2" maxlength="300" required placeholder="Ej.: Busco 20 toneladas de yerba mate para importar a España"></textarea>
+              <button class="hia-go" type="submit"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span id="ia-go-txt">Buscar</span></button>
+            </div>
+            <div class="hia-ej"><span>Probá con:</span><button type="button" data-ej="20 toneladas de yerba mate para España">20 toneladas de yerba mate para España</button><button type="button" data-ej="Despachante de aduana en México">Despachante de aduana en México</button><button type="button" data-ej="Vino Malbec por contenedor para Alemania">Vino Malbec por contenedor para Alemania</button></div>
+            <label class="hia-pub">
+              <input type="checkbox" id="ia-pub" name="publicar">
+              <span class="sw" aria-hidden="true"></span>
+              <span><b>¿Querés dejar publicada tu búsqueda?</b><small>La ven productores y proveedores de otros países y te pueden ofrecer lo que buscás. Tus datos de contacto no se publican.</small></span>
+            </label>
+            <div class="hia-datos" id="ia-datos" hidden>
+              <div class="field"><label for="ia-pais">País de destino <span class="req">*</span></label><input id="ia-pais" name="pais" list="paises" placeholder="Ej.: España"></div>
+              <div class="field"><label for="ia-vol">Volumen</label><input id="ia-vol" name="vol" maxlength="80" placeholder="Ej.: 5 toneladas por mes"></div>
+              <div class="field"><label for="ia-vence">Vigente hasta <span class="req">*</span></label><input id="ia-vence" name="vence" type="date"></div>
+              <div class="field"><label for="ia-emp">Empresa <span class="req">*</span></label><input id="ia-emp" name="empresa" maxlength="80" autocomplete="organization"></div>
+              <div class="field"><label for="ia-mail">Correo <span class="req">*</span></label><input id="ia-mail" name="mail" type="email" autocomplete="email"></div>
+            </div>
+          </form>
+          <div class="hia-res" id="ia-res" hidden aria-live="polite"></div>
+        </section>
+
+        <aside class="hub-exp" aria-labelledby="exp-title">
+          <span class="he-tag">Exportadores</span>
+          <h2 id="exp-title">¿Querés exportar tus productos?</h2>
+          <p>Armá la página de tu empresa exportadora y que los compradores de otros países te encuentren.</p>
+          <ul>
+            <li>Quiénes son y qué producen</li>
+            <li>Capacidad, certificaciones e Incoterms</li>
+            <li>Mercados a los que ya venden</li>
+          </ul>
+          <a class="he-btn" href="../empresas-exportadoras/">Publicar mi empresa</a>
+          <a class="he-link" href="../empresas-exportadoras/yerbatera-del-litoral/">Ver una página de ejemplo →</a>
+          <hr>
+          <a class="he-link" href="../oportunidades-globales/">Ver lo que están buscando los compradores →</a>
+        </aside>
+      </div>
+
+      <section class="hub-cats" aria-labelledby="hc-title">
+        <div class="hc-head">
+          <h2 id="hc-title">Encontrá el producto o servicio</h2>
+          <p>Productos listos para exportar, ordenados con las mismas categorías de la Tienda.</p>
+        </div>
+        <div class="hc-grid">
+          <a class="hc-tile" href="../productos-de-exportacion/?categoria=Café, Té y Mate" style="--c1:#5b7a43;--c2:#33472a"><img src="../assets/img/categorias/cafe-te-y-mate.jpg" alt="" loading="lazy">
+            <b>Café, Té y Mate</b><small>1 producto</small>
+          </a>
+          <a class="hc-tile" href="../productos-de-exportacion/?categoria=Regalos y Kits" style="--c1:#c8922a;--c2:#8a5e0c">
+            <b>Regalos y Kits</b><small>Sé el primero en publicar</small>
+          </a>
+          <a class="hc-tile" href="../productos-de-exportacion/?categoria=Artículos Regionales" style="--c1:#8a5a3c;--c2:#55341f">
+            <b>Artículos Regionales</b><small>Sé el primero en publicar</small>
+          </a>
+          <a class="hc-tile" href="../productos-de-exportacion/?categoria=Bebidas" style="--c1:#9a3445;--c2:#5c1c27">
+            <b>Bebidas</b><small>2 productos</small>
+          </a>
+          <a class="hc-tile" href="../productos-de-exportacion/?categoria=Alimentos" style="--c1:#c8693e;--c2:#8f3f1d">
+            <b>Alimentos</b><small>4 productos</small>
+          </a>
+          <a class="hc-tile" href="../productos-de-exportacion/?categoria=Salud y Bienestar" style="--c1:#2f8a8a;--c2:#1b5555">
+            <b>Salud y Bienestar</b><small>Sé el primero en publicar</small>
+          </a>
+          <a class="hc-tile" href="../productos-de-exportacion/?categoria=Moda" style="--c1:#a24f7a;--c2:#66304c">
+            <b>Moda</b><small>Sé el primero en publicar</small>
+          </a>
+          <a class="hc-tile" href="../productos-de-exportacion/?categoria=Tecnología" style="--c1:#4b5d78;--c2:#2b3648">
+            <b>Tecnología</b><small>Sé el primero en publicar</small>
+          </a>
+          <a class="hc-tile" href="../productos-de-exportacion/?categoria=Herramientas y Jardín" style="--c1:#6b7f3a;--c2:#414e22">
+            <b>Herramientas y Jardín</b><small>1 producto</small>
+          </a>
+          <a class="hc-tile" href="../productos-de-exportacion/?categoria=Hogar y Cocina" style="--c1:#b0703a;--c2:#734520">
+            <b>Hogar y Cocina</b><small>Sé el primero en publicar</small>
+          </a>
+          <a class="hc-tile" href="../productos-de-exportacion/?categoria=Limpieza e Higiene" style="--c1:#3d87ab;--c2:#225670">
+            <b>Limpieza e Higiene</b><small>Sé el primero en publicar</small>
+          </a>
+          <a class="hc-tile hc-serv" href="../servicios-de-comercio-exterior/">
+            <b>Servicios de comercio exterior</b><small>9 servicios</small>
+          </a>
+        </div>
+      </section>
+
+      <section class="hub-ce" aria-labelledby="ce-title">
+        <div class="ce-head">
+          <span class="ce-eye">Todo para operar con el mundo</span>
+          <h2 id="ce-title">Comercio exterior, de punta a punta</h2>
+          <p>Quién te ayuda, con qué herramientas y lo que conviene saber antes de exportar o importar.</p>
+        </div>
+        <div class="ce-grid">
+          <a class="ce-card c1" href="../servicios-de-comercio-exterior/">
+            <span class="ce-ico"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17h13l3-5h2"/><path d="M5 17l-2-5h11l2 5"/><path d="M7 12V8h5l2 4"/><path d="M2 20c2 1 4 1 6 0s4-1 6 0 4 1 6 0"/></svg></span>
+            <h3>Servicios de Comercio Exterior</h3>
+            <p>Despachantes de aduana, transporte y logística, seguros de carga, certificaciones y consultoría.</p>
+            <span class="ce-go">Ver 9 servicios →</span>
+          </a>
+          <a class="ce-card c2" href="../recursos/#g-comercio-exterior">
+            <span class="ce-ico"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M8 6h8v3H8zM8 13h1M12 13h1M16 13h0M8 17h1M12 17h1M16 13v4"/></svg></span>
+            <h3>Recursos Digitales de Comercio Exterior</h3>
+            <p>Calculadora de exportación, conversor de monedas, calculadora de carga y más herramientas gratis.</p>
+            <span class="ce-go">Usar las herramientas →</span>
+          </a>
+          <a class="ce-card c3" href="../blog/negocios/">
+            <span class="ce-ico"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h12a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3z"/><path d="M8 8h7M8 12h7M8 16h4"/><circle cx="18.5" cy="5.5" r="3"/><path d="M15.5 5.5h6M18.5 2.5c1 1 1 5 0 6"/></svg></span>
+            <h3>Blog de Negocios Internacionales</h3>
+            <p>Incoterms, mercados, cómo exportar paso a paso y novedades del comercio internacional.</p>
+            <span class="ce-go">Leer las notas →</span>
+          </a>
+        </div>
+      </section>
+      <a class="mesa-band-og" href="../mesa-de-negociacion/">
+        <span class="mb-tag">Próximamente</span>
+        <span class="mb-txt"><b>Mesa de negociación digital</b><small>Ofertas, contraofertas y acuerdos con reglas claras, identidad verificada y depósito en garantía.</small></span>
+        <span class="mb-go">Ver cómo va a ser →</span>
+      </a>
+    </div>
+
+    <section class="faq">
+      <div class="wrap faq-grid">
+        <div>
+          <span class="eyebrow">Preguntas frecuentes</span>
+          <h2>Lo que conviene saber</h2>
+        </div>
+        <div>
+          <details>
+            <summary>¿Cómo funciona Oportunidades Globales?</summary>
+            <p>Ingresás el producto o servicio que estás buscando. El sistema lo cruza con lo publicado en Productos de exportación y en Servicios de Comercio Exterior. Si hay coincidencia, te vinculamos con esa oferta para empezar a negociar.</p>
+          </details>
+          <details>
+            <summary>¿Qué pasa si lo que busco no está publicado?</summary>
+            <p>Nuestro equipo sale a buscarlo entre productores y proveedores, y te responde en un plazo de 5 días hábiles con lo que encontró. Mientras tanto, tu búsqueda queda publicada para que otros vendedores puedan ofrecerte su producto.</p>
+          </details>
+          <details>
+            <summary>¿Qué es la posición arancelaria y por qué conviene indicarla?</summary>
+            <p>Es el código del Sistema Armonizado que identifica cada producto en el comercio internacional, igual en todos los países. Con ella, la mesa encuentra coincidencias aunque cada parte describa el producto con palabras distintas.</p>
+          </details>
+          <details>
+            <summary>¿Quién ve mis datos de contacto?</summary>
+            <p>Nadie, mientras no decidas avanzar. En la mesa se publican el producto, el destino, el volumen y la vigencia; los datos de tu empresa se comparten solo cuando ambas partes aceptan negociar.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot foot-top">
+      <div class="foot-marca">
+        <a href="../" class="logo logo-foot" aria-label="Umarti Origen, ir al inicio"><img class="logo-ico" src="../assets/img/marca/icono.png" alt="" width="259" height="236"><span class="logo-txt"><b>Umarti</b><b>Origen</b></span></a>
+        <p>Tienda &amp; Mercados Globales</p>
+      </div>
+      <div class="eco-band" aria-label="Ecosistema Umarti">
+        <span class="eco-tit">Ecosistema <b>Umarti</b></span>
+        <div class="eco-items"><a class="eco-item" href="https://www.umartidigital.com" target="_blank" rel="noopener"><img class="eco-av" src="../assets/img/ecosistema/avatar-digital.jpg" alt="" width="56" height="56"><span class="eco-txt"><span class="eco-name"><img class="eco-logo" src="../assets/img/ecosistema/logo-digital.png" alt="Umarti Digital" width="120" height="38"></span><small>Consultoría y evolución digital</small></span></a><a class="eco-item" href="https://profesionales.umartidigital.com/" target="_blank" rel="noopener"><img class="eco-av" src="../assets/img/ecosistema/avatar-digital.jpg" alt="" width="56" height="56"><span class="eco-txt"><span class="eco-name"><b>Umarti Digital</b><b>Profesionales</b></span><small>Red de profesionales</small></span></a><div class="eco-item"><img class="eco-av" src="../assets/img/ecosistema/avatar-motors.jpg" alt="" width="56" height="56"><span class="eco-txt"><span class="eco-name"><span class="eco-chip"><img src="../assets/img/ecosistema/logo-motors.png" alt="Umarti Motors" width="96" height="37"></span></span><small>Marketplace de movilidad</small><em>Próximamente</em></span></div><div class="eco-item"><img class="eco-av eco-av-origen" src="../assets/img/ecosistema/avatar-origen.jpg" alt="" width="56" height="56"><span class="eco-txt"><span class="eco-name"><span class="eco-chip eco-chip-origen"><img src="../assets/img/marca/icono.png" alt="" width="26" height="24"><span><b>Umarti</b><b>Origen</b></span></span></span><small>Tienda y Mercados Globales</small><em>Próximamente</em></span></div></div>
+      </div>
+    </div>
+    <div class="wrap foot-legal">
+      <nav aria-label="Información legal">
+        <a href="../legal/terminos/">Términos y Privacidad</a>
+        <a href="../legal/cookies/">Cookies</a>
+        <a href="../envios/">Envíos</a>
+        <span class="foot-copy">© 2026 Umarti · <a href="../publicidad/">Anunciá en Umarti</a></span>
+      </nav>
+      <div class="foot-consumo">
+        <a class="btn-arrep" href="../legal/arrepentimiento/">Botón de arrepentimiento</a>
+        <a class="def-cons" href="https://www.argentina.gob.ar/produccion/defensadelconsumidor/formulario" target="_blank" rel="noopener">Defensa de las y los Consumidores. Para reclamos <b>ingrese aquí</b></a>
+      </div>
+    </div>
+  </footer>
+
+
+  <dialog id="dlg-neg" class="k-producto" aria-labelledby="neg-title">
+    <div class="dlg-head">
+      <div>
+        <h2 id="neg-title">Negociar</h2>
+        <p id="neg-sub"></p>
+      </div>
+      <button class="dlg-close" type="button" data-close aria-label="Cerrar">×</button>
+    </div>
+    <div class="dlg-body">
+      <div id="neg-step-form">
+        <div class="neg-summary" id="neg-summary"></div>
+        <form id="neg-form">
+          <div class="form-grid">
+            <div class="field"><label for="n-nom">Nombre <span class="req">*</span></label><input id="n-nom" required maxlength="80" autocomplete="name"></div>
+            <div class="field"><label for="n-emp">Empresa <span class="req">*</span></label><input id="n-emp" required maxlength="80" autocomplete="organization"></div>
+            <div class="field"><label for="n-pais">País</label><input id="n-pais" list="paises" maxlength="60"></div>
+            <div class="field"><label for="n-mail">Correo <span class="req">*</span></label><input id="n-mail" type="email" required autocomplete="email"></div>
+            <div class="field full"><label for="n-msg">Tu propuesta</label><textarea id="n-msg" maxlength="800" placeholder="Volumen, precio de referencia, condiciones de entrega o lo que quieras plantear."></textarea></div>
+          </div>
+          <div class="form-foot">
+            <small>Umarti revisa tu propuesta y pone en contacto a las partes.</small>
+            <button class="btn-submit" type="submit">Enviar a la mesa</button>
+          </div>
+        </form>
+      </div>
+      <div class="success" id="neg-step-ok" hidden>
+        <div class="tick"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></div>
+        <h3>Tu propuesta quedó registrada</h3>
+        <p>En la versión final, acá recibís la confirmación y Umarti te contacta para coordinar la negociación. En este prototipo no se envía nada.</p>
+        <button class="btn-submit" type="button" data-close>Volver</button>
+      </div>
+    </div>
+  </dialog>
+
+  <datalist id="paises"><option value="Alemania"><option value="Argentina"><option value="Bolivia"><option value="Brasil"><option value="Canadá"><option value="Chile"><option value="China"><option value="Colombia"><option value="Corea del Sur"><option value="Ecuador"><option value="Emiratos Árabes Unidos"><option value="España"><option value="Estados Unidos"><option value="Etiopía"><option value="Francia"><option value="India"><option value="Italia"><option value="Japón"><option value="México"><option value="Países Bajos"><option value="Paraguay"><option value="Perú"><option value="Portugal"><option value="Reino Unido"><option value="Uruguay"></datalist>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="../assets/js/header.js?v=134afb0a"></script>
+  <script src="../assets/data/hub-datos.js?v=af3a4df5"></script>
+  <script src="../assets/js/hub-comun.js?v=384ed416"></script>
+  <script src="../assets/js/hub-mesa.js?v=58c3ec63"></script>
+</body>
+</html>

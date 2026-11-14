@@ -66,6 +66,7 @@ CONF = {
               "Constancia de inscripción fiscal de la empresa", "Si exportás: habilitaciones o certificados del producto"],
         otra=("mi-tienda/", "¿Vendés al público o tenés un comercio con cupones?", "Ir a Mi tienda"),
         publicar={"producto": "Para publicar un producto de exportación, ingresá o registrá tu empresa.",
+                  "empresa": "Para crear la página de tu empresa exportadora, ingresá o registrá tu empresa.",
                   "servicio": "Para ofrecer tus servicios, ingresá o registrá tu empresa.",
                   "viajes": "Para publicar tu alojamiento, excursión, traslado o alquiler de autos en Umarti Viajes, ingresá o registrá tu empresa."},
     ),

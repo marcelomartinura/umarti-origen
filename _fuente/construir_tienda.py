@@ -64,7 +64,7 @@ def productos_para_hub():
     for p in productos:
         if not p["hub"]:
             continue
-        out.append(dict(cod=p["codigo"], nombre=p["nombre"], hs=p["hs"], sector=SECTOR_HUB.get(p["categoria"], "Manufacturas"),
+        out.append(dict(cod=p["codigo"], nombre=p["nombre"], hs=p["hs"], sector=SECTOR_HUB.get(p["categoria"], "Manufacturas"), categoria=p["categoria"],
                         pais=p["pais"], region=p["region"] or p["pais"], destinos=", ".join(p["paises_envio"]) or "A convenir",
                         vol=p["volumen"] or "A convenir", vence=p["vigencia_hub"] or "2027-12-31",
                         claves=" ".join(p["temas"] + [p["subcategoria"], p["descripcion"]]), tienda_url=p_prod(p)))
