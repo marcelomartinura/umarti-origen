@@ -43,11 +43,14 @@
     ]
   },
   "Salud y Bienestar": {
+    "titulo": "Salud y bienestar",
     "bajada": "Odontología, cuidado personal y dispositivos médicos.",
     "temas": [],
     "recursos": [
       "conversor-de-nomenclatura-dental"
-    ]
+    ],
+    "imagen": "assets/img/categorias/salud-y-bienestar.jpg",
+    "imagen_pos": "center 48%"
   },
   "Moda": {
     "bajada": "Ropa de dama y de caballero, zapatos y carteras.",

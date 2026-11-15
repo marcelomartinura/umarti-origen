@@ -270,7 +270,7 @@ def destacados():
 
 
 # Países que tienen tienda propia en Umarti Origen (portada de la tienda)
-TIENDAS_PAIS = {"argentina": "argentina/"}
+TIENDAS_PAIS = {"argentina": "argentina/tienda/"}
 
 
 def pagina_todos():

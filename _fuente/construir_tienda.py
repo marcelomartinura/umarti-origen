@@ -46,7 +46,9 @@ PAIS_SLUG = {"Argentina": "argentina", "México": "mexico"}
 
 
 def p_pais(pais="Argentina"): return PAIS_SLUG.get(pais, "argentina") + "/"
-def p_tienda(pais="Argentina"): return p_pais(pais) + "tienda/"
+def p_tienda(pais="Argentina"): return p_pais(pais) + "tienda/"     # portada de la tienda del país (la "puerta")
+def p_portada(pais="Argentina"): return p_tienda(pais)
+def p_catalogo(pais="Argentina"): return p_tienda(pais) + "productos/"   # listado con todos los productos
 def p_prod(p): return f"{p_tienda(p['pais'])}{p['slug']}/"
 def p_cat(cat, pais="Argentina", sub=None):
     """Página propia de cada categoría; con sub, abre filtrada en esa subcategoría."""
@@ -304,7 +306,7 @@ DIALOGOS = '''  <dialog id="dlg-cant" aria-labelledby="cant-title">
 
 # ---------- páginas ----------
 def listado(productos, cb, cv):
-    d = 2
+    d = 3
     locales = [p for p in productos if en_tienda_local(p)]
     cats = []
     for p in locales:
@@ -314,7 +316,7 @@ def listado(productos, cb, cv):
     chips = '<div class="chip-row" role="group" aria-label="Filtrar"><button type="button" data-filtro="" aria-pressed="true">Todo</button>' + "".join(
         f'<button type="button" data-filtro="{esc(c)}" aria-pressed="false">{esc(c)}</button>' for c in cats) + "</div>"
     main = f'''    <div class="wrap">
-{crumbs(d, [("Argentina", p_pais()), ("Tienda", None)])}
+{crumbs(d, [("Tienda Argentina", p_portada()), ("Todos los productos", None)])}
       <div class="pres-banner tienda-banner" style="--pb-bg:#efe2cf">
         <img src="{rel(d, 'assets/img/banners/tienda-puerta.svg')}" alt="">
         <div class="pb-txt">
@@ -454,7 +456,7 @@ def pagina_producto(p, productos, temas, notas, cb, cv):
     otros = [o for o in productos if o is not p and set(o["temas"]) & set(p["temas"])][:4]
     ej = '<span class="badge-ej" style="position:static;display:inline-block;margin-bottom:6px">Producto de ejemplo</span>' if p["estado"] == "Ejemplo" else ""
     main = f'''    <div class="wrap">
-{crumbs(d, [("Argentina", p_pais(p["pais"])), ("Tienda", p_tienda(p["pais"])), (p["categoria"], None), (p["subcategoria"], None), (p["nombre"], None)])}
+{crumbs(d, [(f"Tienda {p['pais']}", p_portada(p["pais"])), (p["categoria"], p_cat(p["categoria"], p["pais"])), (p["subcategoria"], None), (p["nombre"], None)])}
       <section class="pdp">
         <div class="pdp-photo">
           <div class="prod-media">{fav(p)}{galeria[0]}</div>
@@ -569,7 +571,7 @@ def pagina_envio(e, envios, productos):
         extra = f'<h2>Países a los que enviamos</h2><div class="countries">{"".join(f"<span>{esc(c)}</span>" for c in paises)}</div><p class="muted">Cada producto indica a qué países se envía. Los impuestos de importación los define el país de destino.</p>'
     otras = "".join(f'<a class="zona" href="{rel(d, p_envio(o["slug"]))}">{esc(o["zona"])}</a>' for o in envios if o is not e)
     main = f'''    <div class="wrap envio-page">
-{crumbs(d, [("International Shop", "international-shop/"), ("Envíos", None)] if e["slug"] == "internacional" else [(e["zona"], p_pais(e["zona"])), ("Envíos", None)])}
+{crumbs(d, [("International Shop", "international-shop/"), ("Envíos", None)] if e["slug"] == "internacional" else [(f"Tienda {e['zona']}", p_portada(e["zona"])), ("Envíos", None)])}
       <div class="pres-banner envio-banner" style="--pb-bg:#efe3d6">
         <img src="{rel(d, 'assets/img/envios-avion-atardecer.jpg')}" alt="">
         <div class="pb-txt">
@@ -598,12 +600,12 @@ ICON_LOCK = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke=
 
 def barra_tienda(d, actual, pais="Argentina"):
     """Barra propia de la tienda del país: Tienda, International Shop, Envíos y Guía de viajes."""
-    items = [("tienda", "Tienda", p_tienda(pais)), ("intl", "International Shop", "international-shop/"), ("envios", "Envíos", p_envio(slug(pais))),
+    items = [("tienda", "Tienda", p_catalogo(pais)), ("intl", "International Shop", "international-shop/"), ("envios", "Envíos", p_envio(slug(pais))),
              ("viajes", "Guía de viajes", "viajes/")]
     links = "".join(f'<a href="{rel(d, u)}"{" aria-current=\"page\"" if k == actual else ""}>{t}</a>' for k, t, u in items)
     return f'''    <div class="ts-bar">
       <div class="wrap-wide">
-        <a class="ts-marca" href="{rel(d, p_pais(pais))}">{BANDERA.get(pais, "")}<span><b>Tienda {esc(pais)}</b><small>Umarti Origen</small></span></a>
+        <a class="ts-marca" href="{rel(d, p_portada(pais))}">{BANDERA.get(pais, "")}<span><b>Tienda {esc(pais)}</b><small>Umarti Origen</small></span></a>
         <nav class="ts-nav" aria-label="Tienda {esc(pais)}">{links}</nav>
         <a class="ts-seguro" href="{rel(d, 'legal/arrepentimiento/')}">{ICON_LOCK}Comprá seguro</a>
       </div>
@@ -611,8 +613,19 @@ def barra_tienda(d, actual, pais="Argentina"):
 '''
 
 
+def redireccion(destino):
+    """La portada de la tienda se mudó: la dirección vieja (/argentina/) lleva a la nueva."""
+    return f'''<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><title>Tienda Argentina | Umarti Origen</title>
+<meta name="robots" content="noindex"><link rel="canonical" href="../{destino}">
+<meta http-equiv="refresh" content="0; url=../{destino}">
+<script>location.replace('../{destino}' + location.search + location.hash);</script></head>
+<body><p><a href="../{destino}">Ir a la Tienda Argentina</a></p></body></html>
+'''
+
+
 def portada_pais(productos, temas, cb, cv, pais="Argentina"):
-    d = 1
+    d = 2
     locales = [p for p in productos if p["pais"] == pais and en_tienda_local(p)]
     def tile(p):
         c1, c2 = cb.COLORES.get(p["categoria"], cb.COLORES["Alimentos"])
@@ -644,7 +657,7 @@ def portada_pais(productos, temas, cb, cv, pais="Argentina"):
           <h1>Tienda {esc(pais)}</h1>
           <p>Mates, yerba y kits de regalo con historia, elegidos uno por uno y enviados a todo el país.</p>
           <div class="ts-ctas">
-            <a class="btn btn-primary" href="{rel(d, p_tienda(pais))}">Entrá a la tienda</a>
+            <a class="btn btn-primary" href="{rel(d, p_catalogo(pais))}">Entrá a la tienda</a>
             <a class="text-link" href="{rel(d, p_envio(slug(pais)))}">Cómo llegan los envíos</a>
           </div>
         </div>
@@ -668,11 +681,11 @@ def portada_pais(productos, temas, cb, cv, pais="Argentina"):
         </div>
       </section>
       <section class="ts-cats" aria-labelledby="h-cats">
-        <div class="blk-head"><div><h2 id="h-cats">Categorías</h2><p>Todo lo que encontrás en la Tienda {esc(pais)}.</p></div><a class="text-link" href="{rel(d, "argentina/categorias/")}">Ver todas las categorías →</a></div>
+        <div class="blk-head"><div><h2 id="h-cats">Categorías</h2><p>Todo lo que encontrás en la Tienda {esc(pais)}.</p></div><a class="text-link" href="{rel(d, p_pais(pais) + "categorias/")}">Ver todas las categorías →</a></div>
         <div class="tc-grid">{cats_html}</div>
       </section>
       <section class="ts-pasillos" aria-labelledby="h-pas">
-        <div class="blk-head"><div><h2 id="h-pas">Recorré la tienda</h2><p>Elegí un pasillo o mirá todo el catálogo.</p></div><a class="text-link" href="{rel(d, p_tienda(pais))}">Ver todos los productos →</a></div>
+        <div class="blk-head"><div><h2 id="h-pas">Recorré la tienda</h2><p>Elegí un pasillo o mirá todo el catálogo.</p></div><a class="text-link" href="{rel(d, p_catalogo(pais))}">Ver todos los productos →</a></div>
         <div class="pasillos">{pas_html}</div>
       </section>
       <section class="pais-dest" aria-labelledby="h-dest">
@@ -727,11 +740,11 @@ def pagina_categorias(productos, cb, pais="Argentina"):
         <div class="cg-subs">{items}</div>
       </section>''')
     main = barra_tienda(d, "tienda", pais) + f'''    <div class="wrap">
-{crumbs(d, [(pais, p_pais(pais)), ("Todas las categorías", None)])}
+{crumbs(d, [(f"Tienda {pais}", p_portada(pais)), ("Todas las categorías", None)])}
       <div class="blog-head">
         <span class="eyebrow" style="color:var(--terra)">Tienda {esc(pais)}</span>
         <h1>Todas las categorías</h1>
-        <p>Recorré la tienda completa, categoría por categoría. Si preferís ver todo junto, entrá al <a href="{rel(d, p_tienda(pais))}">catálogo completo</a>.</p>
+        <p>Recorré la tienda completa, categoría por categoría. Si preferís ver todo junto, entrá al <a href="{rel(d, p_catalogo(pais))}">catálogo completo</a>.</p>
       </div>
       <div class="cg-grid">
 {chr(10).join(bloques)}
@@ -798,7 +811,7 @@ def pagina_categoria(cat, productos, notas, cb, cv, pais="Argentina"):
         {texto_cab}
       </div>'''
     main = barra_tienda(d, "tienda", pais) + f'''    <div class="wrap">
-{crumbs(d, [(pais, p_pais(pais)), ("Tienda", p_tienda(pais)), (cat, None)])}
+{crumbs(d, [(f"Tienda {pais}", p_portada(pais)), (cat, None)])}
 {cabecera}
       <div class="shop-tools">{chips}<span class="v-count" id="shop-count"></span></div>
 {herramientas_listado()}
@@ -910,8 +923,9 @@ def main():
         if p.get("destino") and not any(x["slug"] == p["destino"] for x in cv.DESTINOS):
             p["destino"] = ""   # la guía todavía no está publicada en el Panel
     escribir("assets/data/tienda-indice.js", indice_js(productos, cb))
-    escribir(p_tienda() + "index.html", listado(productos, cb, cv))
-    escribir(p_pais() + "index.html", portada_pais(productos, temas, cb, cv))
+    escribir(p_catalogo() + "index.html", listado(productos, cb, cv))
+    escribir(p_portada() + "index.html", portada_pais(productos, temas, cb, cv))
+    escribir(p_pais() + "index.html", redireccion(p_portada()))
     escribir(p_pais() + "categorias/index.html", pagina_categorias(productos, cb))
     slugs_prod = {p["slug"] for p in productos}
     for cat in cb.CATEGORIAS:
@@ -929,7 +943,7 @@ def main():
     escribir("favoritos/index.html", pagina_favoritos())
     escribir("carrito/index.html", pagina_carrito())
     # Borra las páginas de productos que ya no están publicados (pausados, borradores o eliminados en el panel)
-    vigentes = {p_prod(p) for p in productos} | {p_cat(c) for c in cb.CATEGORIAS}
+    vigentes = {p_prod(p) for p in productos} | {p_cat(c) for c in cb.CATEGORIAS} | {p_catalogo()}
     raiz = os.path.dirname(AQUI)
     for idx in glob.glob(os.path.join(raiz, "*", "tienda", "*", "index.html")):
         rel_dir = os.path.relpath(os.path.dirname(idx), raiz).replace(os.sep, "/") + "/"
