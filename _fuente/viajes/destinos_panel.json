@@ -241,7 +241,7 @@
    "Shopping",
    "Urbano"
   ],
-  "foto": "",
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/ciudad-de-mexico/principal/1794781271252.jpg",
   "foto_pos": "center",
   "dias": "4 a 5 días",
   "mejor_epoca": "De octubre a mayo, fuera de la temporada de lluvias",
@@ -274,7 +274,7 @@
   "categorias_tienda": [],
   "estado": "Publicado",
   "orden": 0,
-  "actualizado": "2026-11-08T00:52:33.55574+00:00",
+  "actualizado": "2026-11-15T22:21:12.00307+00:00",
   "clima": "",
   "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
   "requisitos_fuente": "https://www.gob.mx/inm",
