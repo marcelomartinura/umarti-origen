@@ -75,7 +75,7 @@
    "Montaña",
    "Naturaleza"
   ],
-  "foto": "",
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/glaciar-perito-moreno/principal/1794778653826.jpg",
   "foto_pos": "center",
   "dias": "2 a 3 días (desde El Calafate)",
   "mejor_epoca": "Primavera y verano (octubre a abril)",
@@ -112,7 +112,7 @@
   "categorias_tienda": [],
   "estado": "Publicado",
   "orden": 0,
-  "actualizado": "2026-11-07T23:33:50.419497+00:00",
+  "actualizado": "2026-11-15T21:37:34.603625+00:00",
   "clima": "",
   "requisitos": "- **Seguro médico:** las personas extranjeras que entran a la Argentina como turistas deben tener un seguro de salud que las cubra durante toda la estadía.\n- **Documento:** pasaporte vigente. Los ciudadanos de países del Mercosur y asociados pueden entrar con su documento de identidad.\n- **Entrada al parque:** el Parque Nacional Los Glaciares cobra una entrada, con tarifas distintas para residentes y extranjeros.",
   "requisitos_fuente": "https://www.argentina.gob.ar/parquesnacionales/losglaciares",
