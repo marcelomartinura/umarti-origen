@@ -350,7 +350,7 @@
    "Gastronomía",
    "Naturaleza"
   ],
-  "foto": "",
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/puerto-escondido/principal/1794780281388.jpg",
   "foto_pos": "center",
   "dias": "4 a 6 días",
   "mejor_epoca": "De noviembre a abril, en la temporada seca",
@@ -383,7 +383,7 @@
   "categorias_tienda": [],
   "estado": "Publicado",
   "orden": 0,
-  "actualizado": "2026-11-08T00:52:53.241046+00:00",
+  "actualizado": "2026-11-15T22:04:44.457536+00:00",
   "clima": "",
   "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
   "requisitos_fuente": "https://www.gob.mx/inm",
