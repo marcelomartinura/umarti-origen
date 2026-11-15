@@ -18,6 +18,14 @@
         if (ok) n++;
       });
       if (count) count.textContent = n === 1 ? '1 destino' : n + ' destinos';
+      // Agrupado por país: oculta los países sin resultados y actualiza los botones
+      grid.querySelectorAll('.dg-pais').forEach(function (g) {
+        var k = g.querySelectorAll('.dest-card:not(.is-hidden)').length, txt = k === 1 ? '1 destino' : k + ' destinos';
+        g.hidden = k === 0;
+        var h = g.querySelector('[data-n]'); if (h) h.textContent = txt;
+        var b = document.querySelector('.pais-btn[data-pais="' + g.id.replace('pais-', '') + '"]');
+        if (b) { b.classList.toggle('vacio', k === 0); b.querySelector('[data-n]').textContent = txt; }
+      });
       chips.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.tipo === tipo)); });
     };
     chips.forEach(function (b) { b.addEventListener('click', function () { tipo = b.dataset.tipo; apply(); }); });

@@ -272,16 +272,31 @@ def destacados():
 def pagina_todos():
     d = 2
     tipos_pres = {t for x in DESTINOS for t in x["tipos"]}
+    paises = [(k, v, [x for x in DESTINOS if x["pais"] == k]) for k, v in PAISES.items()]
+    paises = [t for t in paises if t[2]]
+    def plural(n): return f'{n} destino{"" if n == 1 else "s"}'
+    def mini(v):
+        f = (v.get("fotos") or [None])[0]
+        return f'<img src="{rel(d, f[0])}" alt="" loading="lazy">' if f else f'<span class="pb-ini">{esc(v["nombre"][0])}</span>'
+    botones = "".join(f'<a class="pais-btn" href="#pais-{k}" data-pais="{k}">{mini(v)}<span><b>{esc(v["nombre"])}</b><small data-n>{plural(len(ds))}</small></span></a>'
+                      for k, v, ds in paises)
+    grupos = [f'''          <section class="dg-pais" id="pais-{k}" aria-labelledby="h-{k}">
+            <div class="dg-head"><h2 id="h-{k}">{esc(v["nombre"])}</h2><span class="dg-n" data-n>{plural(len(ds))}</span><a href="{rel(d, p_pais(k))}">Ver la guía de {esc(v["nombre"])} →</a></div>
+            <div class="dest-grid dest-grid-4">
+{chr(10).join(dest_card(x, d) for x in ds)}
+            </div>
+          </section>''' for k, v, ds in paises]
     main = f'''    <div class="wrap">
 {crumbs(d, [("Viajes", "viajes/"), ("Todos los destinos", None)])}
       <section class="v-section" id="destinos" aria-labelledby="h-dest" style="margin-top:18px">
-        <div class="v-head"><div><h1 id="h-dest" style="font-size:clamp(2rem,4.4vw,2.9rem)">Todos los destinos</h1><p>Buscá por nombre o filtrá por tipo de viaje.</p></div></div>
+        <div class="v-head"><div><h1 id="h-dest" style="font-size:clamp(2rem,4.4vw,2.9rem)">Todos los destinos</h1><p>Elegí un país, buscá por nombre o filtrá por tipo de viaje.</p></div></div>
+        <nav class="pais-btns" aria-label="Ir a un país">{botones}</nav>
         <form class="v-search v-search-sm" role="search" onsubmit="return false">
           <label><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="v-q" type="search" placeholder="¿Adónde querés ir?" aria-label="Buscar destino"></label>
         </form>
         <div class="v-tools">{chips(tipos_pres)}<span class="v-count" id="v-count"></span></div>
-        <div class="dest-grid dest-grid-4" id="dest-grid">
-{chr(10).join(dest_card(x, d) for x in DESTINOS)}
+        <div id="dest-grid">
+{chr(10).join(grupos)}
         </div>
       </section>
     </div>'''
