@@ -53,7 +53,7 @@
   ],
   "estado": "Publicado",
   "orden": 0,
-  "actualizado": "2026-11-15T21:34:04.113744+00:00",
+  "actualizado": "2026-11-15T22:56:10.480564+00:00",
   "clima": "2-3435910",
   "requisitos": "- **Seguro médico:** las personas extranjeras que entran a la Argentina como turistas deben tener un seguro de salud que las cubra durante toda la estadía. Llevá la póliza a mano: te la pueden pedir al ingresar.\n- **Documento:** pasaporte vigente. Los ciudadanos de países del Mercosur y asociados pueden entrar con su documento de identidad.\n- **Visa:** la mayoría de los países de América y Europa no la necesitan para estadías turísticas de hasta 90 días. Consultá tu caso antes de viajar.",
   "requisitos_fuente": "https://www.argentina.gob.ar/interior/migraciones",
@@ -61,7 +61,9 @@
   "corriente": "220 V · 50 Hz. Enchufes tipo I (tres patas planas en V) y algunos tipo C.",
   "huso": "America/Argentina/Buenos_Aires",
   "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
-  "talles": "Talles argentinos: en ropa, numéricos o de letras; en calzado, un número menos que el europeo."
+  "talles": "Talles argentinos: en ropa, numéricos o de letras; en calzado, un número menos que el europeo.",
+  "lugar": "Ciudad",
+  "pueblo_magico": false
  },
  {
   "slug": "glaciar-perito-moreno",
@@ -112,7 +114,7 @@
   "categorias_tienda": [],
   "estado": "Publicado",
   "orden": 0,
-  "actualizado": "2026-11-15T21:37:34.603625+00:00",
+  "actualizado": "2026-11-15T22:56:10.480564+00:00",
   "clima": "",
   "requisitos": "- **Seguro médico:** las personas extranjeras que entran a la Argentina como turistas deben tener un seguro de salud que las cubra durante toda la estadía.\n- **Documento:** pasaporte vigente. Los ciudadanos de países del Mercosur y asociados pueden entrar con su documento de identidad.\n- **Entrada al parque:** el Parque Nacional Los Glaciares cobra una entrada, con tarifas distintas para residentes y extranjeros.",
   "requisitos_fuente": "https://www.argentina.gob.ar/parquesnacionales/losglaciares",
@@ -120,7 +122,9 @@
   "corriente": "220 V · 50 Hz. Enchufes tipo I (tres patas planas en V) y algunos tipo C.",
   "huso": "America/Argentina/Buenos_Aires",
   "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
-  "talles": "Talles argentinos: en calzado, un número menos que el europeo."
+  "talles": "Talles argentinos: en calzado, un número menos que el europeo.",
+  "lugar": "Destino natural",
+  "pueblo_magico": false
  },
  {
   "slug": "rosario",
@@ -165,7 +169,7 @@
   "categorias_tienda": [],
   "estado": "Publicado",
   "orden": 0,
-  "actualizado": "2026-11-07T23:33:57.227137+00:00",
+  "actualizado": "2026-11-15T22:56:10.480564+00:00",
   "clima": "",
   "requisitos": "- **Seguro médico:** las personas extranjeras que entran a la Argentina como turistas deben tener un seguro de salud que las cubra durante toda la estadía.\n- **Documento:** pasaporte vigente. Los ciudadanos de países del Mercosur y asociados pueden entrar con su documento de identidad.",
   "requisitos_fuente": "https://www.argentina.gob.ar/interior/migraciones",
@@ -173,7 +177,9 @@
   "corriente": "220 V · 50 Hz. Enchufes tipo I (tres patas planas en V) y algunos tipo C.",
   "huso": "America/Argentina/Buenos_Aires",
   "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
-  "talles": "Talles argentinos: en calzado, un número menos que el europeo."
+  "talles": "Talles argentinos: en calzado, un número menos que el europeo.",
+  "lugar": "Ciudad",
+  "pueblo_magico": false
  },
  {
   "slug": "queretaro",
@@ -219,7 +225,7 @@
   "categorias_tienda": [],
   "estado": "Publicado",
   "orden": 0,
-  "actualizado": "2026-11-08T00:52:13.485089+00:00",
+  "actualizado": "2026-11-15T22:56:10.480564+00:00",
   "clima": "",
   "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
   "requisitos_fuente": "https://www.gob.mx/inm",
@@ -227,7 +233,9 @@
   "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
   "huso": "America/Mexico_City",
   "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
-  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26)."
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
+  "lugar": "Ciudad",
+  "pueblo_magico": false
  },
  {
   "slug": "ciudad-de-mexico",
@@ -274,7 +282,7 @@
   "categorias_tienda": [],
   "estado": "Publicado",
   "orden": 0,
-  "actualizado": "2026-11-15T22:21:12.00307+00:00",
+  "actualizado": "2026-11-15T22:56:10.480564+00:00",
   "clima": "",
   "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
   "requisitos_fuente": "https://www.gob.mx/inm",
@@ -282,7 +290,9 @@
   "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
   "huso": "America/Mexico_City",
   "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
-  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26)."
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
+  "lugar": "Ciudad",
+  "pueblo_magico": false
  },
  {
   "slug": "leon",
@@ -329,7 +339,7 @@
   "categorias_tienda": [],
   "estado": "Publicado",
   "orden": 0,
-  "actualizado": "2026-11-08T00:52:44.198426+00:00",
+  "actualizado": "2026-11-15T22:56:10.480564+00:00",
   "clima": "",
   "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
   "requisitos_fuente": "https://www.gob.mx/inm",
@@ -337,7 +347,9 @@
   "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
   "huso": "America/Mexico_City",
   "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
-  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26)."
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
+  "lugar": "Ciudad",
+  "pueblo_magico": false
  },
  {
   "slug": "puerto-escondido",
@@ -383,7 +395,7 @@
   "categorias_tienda": [],
   "estado": "Publicado",
   "orden": 0,
-  "actualizado": "2026-11-15T22:04:44.457536+00:00",
+  "actualizado": "2026-11-15T22:56:10.480564+00:00",
   "clima": "",
   "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
   "requisitos_fuente": "https://www.gob.mx/inm",
@@ -391,7 +403,9 @@
   "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
   "huso": "America/Mexico_City",
   "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
-  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26)."
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
+  "lugar": "Pueblo",
+  "pueblo_magico": false
  },
  {
   "slug": "san-miguel-de-allende",
@@ -438,7 +452,7 @@
   "categorias_tienda": [],
   "estado": "Publicado",
   "orden": 0,
-  "actualizado": "2026-11-15T21:59:28.760395+00:00",
+  "actualizado": "2026-11-15T22:56:10.480564+00:00",
   "clima": "",
   "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
   "requisitos_fuente": "https://www.gob.mx/inm",
@@ -446,7 +460,9 @@
   "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
   "huso": "America/Mexico_City",
   "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
-  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26)."
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
+  "lugar": "Ciudad",
+  "pueblo_magico": false
  },
  {
   "slug": "el-chalten",
@@ -496,7 +512,7 @@
   "categorias_tienda": [],
   "estado": "Publicado",
   "orden": 0,
-  "actualizado": "2026-11-15T21:49:26.099402+00:00",
+  "actualizado": "2026-11-15T22:56:10.480564+00:00",
   "clima": "",
   "requisitos": "- **Seguro médico:** las personas extranjeras que entran a la Argentina como turistas deben tener un seguro de salud que las cubra durante toda la estadía.\n- **Documento:** pasaporte vigente. Los ciudadanos de países del Mercosur y asociados pueden entrar con su documento de identidad.\n- **Acceso a los senderos:** algunos senderos del Parque Nacional Los Glaciares en la zona de El Chaltén cobran un derecho de acceso. Consultá las tarifas vigentes antes de viajar.",
   "requisitos_fuente": "https://www.argentina.gob.ar/parquesnacionales/tarifas",
@@ -504,7 +520,9 @@
   "corriente": "220 V · 50 Hz. Enchufes tipo I (tres patas planas en V) y algunos tipo C.",
   "huso": "America/Argentina/Buenos_Aires",
   "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
-  "talles": "Talles argentinos: en calzado, un número menos que el europeo."
+  "talles": "Talles argentinos: en calzado, un número menos que el europeo.",
+  "lugar": "Pueblo",
+  "pueblo_magico": false
  },
  {
   "slug": "pena-de-bernal",
@@ -554,7 +572,7 @@
   "categorias_tienda": [],
   "estado": "Publicado",
   "orden": 0,
-  "actualizado": "2026-11-15T22:50:00.698273+00:00",
+  "actualizado": "2026-11-15T22:56:10.480564+00:00",
   "clima": "",
   "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
   "requisitos_fuente": "https://www.gob.mx/inm",
@@ -562,6 +580,8 @@
   "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
   "huso": "America/Mexico_City",
   "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
-  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26)."
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
+  "lugar": "Pueblo",
+  "pueblo_magico": true
  }
 ]
