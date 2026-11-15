@@ -505,5 +505,63 @@
   "huso": "America/Argentina/Buenos_Aires",
   "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
   "talles": "Talles argentinos: en calzado, un número menos que el europeo."
+ },
+ {
+  "slug": "pena-de-bernal",
+  "pais": "México",
+  "ciudad": "Peña de Bernal",
+  "region": "Querétaro",
+  "resumen": "Un Pueblo Mágico al pie de uno de los monolitos más grandes del mundo: calles empedradas, tejidos de lana, gorditas y la Ruta del Arte, Queso y Vino a pocos minutos.",
+  "tags": [
+   "Cultura",
+   "Naturaleza",
+   "Vino"
+  ],
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/pena-de-bernal/principal/1794782995729.jpg",
+  "foto_pos": "center",
+  "dias": "1 a 2 días",
+  "mejor_epoca": "Otoño, invierno y primavera (octubre a abril)",
+  "presupuesto": "Medio",
+  "por_que": "La **Peña de Bernal** es una enorme roca que se levanta sobre el semidesierto queretano y se ve desde kilómetros de distancia. A sus pies está **Bernal**, un Pueblo Mágico de calles empedradas, casas de colores, talleres de tejido en telar y puestos de gorditas, con la peña siempre de fondo.\n\nPara la tradición otomí es un lugar sagrado: las celebraciones de la Santa Cruz forman parte de las tradiciones de los pueblos otomí-chichimecas de la región reconocidas por la UNESCO como Patrimonio Cultural Inmaterial. Además, está en el corazón de la **Ruta del Arte, Queso y Vino**, así que es fácil combinar la visita con viñedos y queserías.",
+  "cuando_ir": "**Mejor época:** de octubre a abril, con días soleados y temperaturas agradables para caminar. Las mañanas y noches de invierno son frías.\n\n**Clima:** semidesértico, seco la mayor parte del año. En verano llueve por las tardes y el sol al mediodía es fuerte.\n\n**Fechas especiales:** alrededor del **equinoccio de primavera** (21 de marzo) el pueblo se llena de visitantes, y a principios de mayo se celebran las fiestas de la Santa Cruz. Los fines de semana hay mucha gente: si podés, andá entre semana.",
+  "que_comer": "- Gorditas de maíz quebrado, la especialidad del pueblo, rellenas de guisos\n- Enchiladas queretanas\n- Quesos de la región y vino de los viñedos cercanos\n- Dulces típicos: obleas, cocadas y dulces de leche\n- Nieves artesanales para la tarde\n- Pulque y atole en los puestos del centro",
+  "donde_alojarse": "- **Centro de Bernal**: hoteles boutique y casas de huéspedes a pasos de la plaza, muchos con vista a la peña.\n- **Alrededores del pueblo**: cabañas y hoteles con jardín, más tranquilos y con vistas abiertas.\n- **Ruta del vino**: hoteles en viñedos entre Bernal, Ezequiel Montes y Tequisquiapan, para combinar con catas.\n\nPara los fines de semana largos y el equinoccio conviene reservar con anticipación.",
+  "como_llegar": "Bernal está a unos **60 kilómetros de la ciudad de Querétaro**, alrededor de una hora en auto. Desde la **Ciudad de México** son unos 200 kilómetros, unas 3 horas por carretera.\n\nEl aeropuerto más cercano es el **Aeropuerto Intercontinental de Querétaro**. Desde la terminal de autobuses de Querétaro salen buses hacia Bernal, y también hay excursiones de un día que incluyen la Ruta del Arte, Queso y Vino.",
+  "como_moverse": "El pueblo es chico y se recorre caminando: todo queda a pocas cuadras de la plaza. Para visitar viñedos, queserías y pueblos cercanos como Tequisquiapan conviene tener auto o contratar un tour, porque el transporte público entre ellos es limitado.\n\nSi vas a tomar en las catas, dejá el auto: hay tours con traslado incluido.",
+  "que_hacer": "- **Subir por el sendero de la peña**: una caminata empinada hasta una parte alta, con vista a todo el valle. La cima solo se alcanza con equipo de escalada y guía.\n- **Recorrer el centro**: la plaza, la capilla de las Ánimas, el templo de San Sebastián y las calles empedradas.\n- **Talleres de tejido**: mantas, sarapes y prendas de lana hechas en telar.\n- **Museo de la Máscara**: máscaras tradicionales de distintas regiones de México.\n- **Ruta del Arte, Queso y Vino**: catas en viñedos y visitas a queserías de la zona.\n- **Tequisquiapan**: otro Pueblo Mágico, a unos 35 kilómetros, ideal para sumar en el mismo viaje.",
+  "consejos": "- Llevá zapatillas cómodas, gorra, protector solar y agua para subir la peña: hay poca sombra.\n- Subí temprano: el sol del mediodía es fuerte y a la tarde hay más gente.\n- Llevá efectivo para los puestos de comida y artesanías.\n- Si querés escalar hasta la cima, hacelo solo con guías y equipo.\n- Evitá los fines de semana largos si buscás un pueblo tranquilo.",
+  "faqs": [
+   {
+    "a": "En el pueblo de Bernal, municipio de Ezequiel Montes, en el estado de Querétaro, a unos 60 km de la ciudad de Querétaro.",
+    "q": "¿Dónde queda la Peña de Bernal?"
+   },
+   {
+    "a": "Sí, hay un sendero que sube hasta una parte alta de la peña, apto para personas con buen estado físico. La cima solo se alcanza escalando, con equipo y guía.",
+    "q": "¿Se puede subir a la Peña de Bernal?"
+   },
+   {
+    "a": "Con un día alcanza para el pueblo y la peña. Con dos días podés sumar la Ruta del Arte, Queso y Vino o Tequisquiapan.",
+    "q": "¿Cuántos días se necesitan?"
+   },
+   {
+    "a": "Sí, son unas 3 horas por carretera, aunque conviene hacer noche en Bernal o en Querétaro para disfrutarlo sin apuro.",
+    "q": "¿Se puede ir en el día desde la Ciudad de México?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-15T22:50:00.698273+00:00",
+  "clima": "",
+  "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
+  "requisitos_fuente": "https://www.gob.mx/inm",
+  "moneda": "Peso mexicano (MXN). Muchos hoteles y restaurantes aceptan tarjeta; para puestos, artesanías y propinas llevá efectivo.",
+  "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
+  "huso": "America/Mexico_City",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26)."
  }
 ]
