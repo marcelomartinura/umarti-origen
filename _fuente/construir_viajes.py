@@ -55,12 +55,23 @@ def vcover(colores, paisaje, titulo="", sub="", sun=True):
             f'<path d="{back}" opacity=".16"/><path d="{front}" opacity=".24"/></svg>{t}{s}</div>')
 
 
+def foto_cover(d, titulo, sub):
+    """Tarjeta con la misma foto de portada que se carga en el panel (si no hay foto, la ilustración de colores)."""
+    f = (d.get("panel") or {})
+    if not f.get("foto"):
+        return vcover(d['colores'], d['paisaje'], titulo, sub)
+    t = f"<b>{esc(titulo)}</b>" if titulo else ""
+    s = f"<small>{esc(sub)}</small>" if sub else ""
+    return (f'<div class="vcover con-foto"><img src="{esc(f["foto"])}" alt="" loading="lazy" '
+            f'style="object-position:{esc(f.get("foto_pos") or "center")}">{t}{s}</div>')
+
+
 def dest_card(d, depth):
     pais = PAISES[d["pais"]]["nombre"]
     tipos = "".join(f'<span class="tipo">{esc(t)}</span>' for t in d["tipos"])
     texto = esc(" ".join([d["nombre"], d["region"], pais, d["resumen"]] + d["tipos"]).lower())
     return f'''        <a class="dest-card" href="{rel(depth, p_dest(d))}" data-tipos="{esc('|'.join(d['tipos']))}" data-texto="{texto}">
-          {vcover(d['colores'], d['paisaje'], d['nombre'], f"{d['region']}, {pais}" if d['region'] != d['nombre'] else pais)}
+          {foto_cover(d, d['nombre'], f"{d['region']}, {pais}" if d['region'] != d['nombre'] else pais)}
           <div class="body">
             <div class="tipos">{tipos}</div>
             <p>{esc(d['resumen'])}</p>
