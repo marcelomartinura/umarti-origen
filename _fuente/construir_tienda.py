@@ -627,6 +627,14 @@ def portada_pais(productos, temas, cb, cv, pais="Argentina"):
             pasillos.append((p["subcategoria"], p["categoria"]))
     cat_de_sub = {p["subcategoria"]: p["categoria"] for p in locales}
     pas_html = "".join(f'<a class="pasillo" href="{rel(d, p_cat(cat_de_sub[sub], pais, sub))}"><small>Pasillo</small><b>{esc(sub)}</b><span>{(lambda n: f"{n} producto" + ("" if n == 1 else "s"))(sum(1 for p in locales if p["subcategoria"] == sub))}</span></a>' for sub, _ in pasillos)
+    def cat_tile(c):
+        c1, c2 = cb.COLORES.get(c, cb.COLORES["Alimentos"])
+        n = sum(1 for p in locales if p["categoria"] == c)
+        foto = os.path.join(os.path.dirname(AQUI), "assets", "img", "categorias", slug(c) + ".jpg")
+        img = f'<img src="{rel(d, "assets/img/categorias/" + slug(c) + ".jpg")}" alt="" loading="lazy">' if os.path.exists(foto) else ""
+        cuenta = "Muy pronto" if n == 0 else f"{n} producto" + ("" if n == 1 else "s")
+        return f'<a class="tc-tile" href="{rel(d, p_cat(c, pais))}" style="--c1:{c1};--c2:{c2}">{img}<b>{esc(c)}</b><small>{cuenta}</small></a>'
+    cats_html = "".join(cat_tile(c) for c in cb.CATEGORIAS)
     main = barra_tienda(d, "", pais) + f'''    <section class="ts-hero">
       <div class="ts-toldo" aria-hidden="true"></div>
       <div class="wrap ts-fachada">
@@ -652,6 +660,17 @@ def portada_pais(productos, temas, cb, cv, pais="Argentina"):
         <li>{ICON_TRUCK}<span><b>Envío a todo el país</b> con seguimiento</span></li>
         <li>{ICON["box"]}<span><b>10 días para arrepentirte</b>, sin costo</span></li>
       </ul>
+      <section class="ts-exterior" aria-labelledby="h-ext">
+        <div class="tx-txt"><span class="tx-globo" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg></span><div><h2 id="h-ext">¿Estás fuera de {esc(pais)}?</h2><p lang="en">Visiting from abroad? We ship Argentine products worldwide.</p></div></div>
+        <div class="tx-btns">
+          <a class="tx-btn" href="{rel(d, 'international-shop/')}">Quiero comprar desde el exterior</a>
+          <a class="tx-btn en" href="{rel(d, 'international-shop/')}?lang=en" lang="en">I want to buy from abroad</a>
+        </div>
+      </section>
+      <section class="ts-cats" aria-labelledby="h-cats">
+        <div class="blk-head"><div><h2 id="h-cats">Categorías</h2><p>Todo lo que encontrás en la Tienda {esc(pais)}.</p></div><a class="text-link" href="{rel(d, "argentina/categorias/")}">Ver todas las categorías →</a></div>
+        <div class="tc-grid">{cats_html}</div>
+      </section>
       <section class="ts-pasillos" aria-labelledby="h-pas">
         <div class="blk-head"><div><h2 id="h-pas">Recorré la tienda</h2><p>Elegí un pasillo o mirá todo el catálogo.</p></div><a class="text-link" href="{rel(d, p_tienda(pais))}">Ver todos los productos →</a></div>
         <div class="pasillos">{pas_html}</div>
@@ -662,7 +681,6 @@ def portada_pais(productos, temas, cb, cv, pais="Argentina"):
 {chr(10).join(card(p, d, cb, cv) for p in locales[:4])}
         </div>
       </section>
-      <p class="shop-note">¿Comprás desde otro país? Entrá a <a href="{rel(d, 'international-shop/')}">International Shop</a>.</p>
       <div style="height:72px"></div>
     </div>'''
     return page(d, f"Tienda {pais} | Umarti Origen: mates, yerba y kits de regalo", f"Comprá mates, yerba y kits de regalo de {pais}, con envío a todo el país y compra segura.", main, ["blog", "viajes", "tienda"])

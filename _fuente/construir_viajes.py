@@ -269,19 +269,26 @@ def destacados():
     return DESTINOS[:8]
 
 
+# Países que tienen tienda propia en Umarti Origen (portada de la tienda)
+TIENDAS_PAIS = {"argentina": "argentina/"}
+
+
 def pagina_todos():
     d = 2
     tipos_pres = {t for x in DESTINOS for t in x["tipos"]}
     paises = [(k, v, [x for x in DESTINOS if x["pais"] == k]) for k, v in PAISES.items()]
     paises = [t for t in paises if t[2]]
     def plural(n): return f'{n} destino{"" if n == 1 else "s"}'
+    def tienda_btn(k, v):
+        u = TIENDAS_PAIS.get(k)
+        return f'<a class="dg-tienda" href="{rel(d, u)}">Conocé la Tienda {esc(v["nombre"])}</a>' if u else ""
     def mini(v):
         f = (v.get("fotos") or [None])[0]
         return f'<img src="{rel(d, f[0])}" alt="" loading="lazy">' if f else f'<span class="pb-ini">{esc(v["nombre"][0])}</span>'
     botones = "".join(f'<a class="pais-btn" href="#pais-{k}" data-pais="{k}">{mini(v)}<span><b>{esc(v["nombre"])}</b><small data-n>{plural(len(ds))}</small></span></a>'
                       for k, v, ds in paises)
     grupos = [f'''          <section class="dg-pais" id="pais-{k}" aria-labelledby="h-{k}">
-            <div class="dg-head"><h2 id="h-{k}">{esc(v["nombre"])}</h2><span class="dg-n" data-n>{plural(len(ds))}</span><a href="{rel(d, p_pais(k))}">Ver la guía de {esc(v["nombre"])} →</a></div>
+            <div class="dg-head"><h2 id="h-{k}">{esc(v["nombre"])}</h2><span class="dg-n" data-n>{plural(len(ds))}</span>{tienda_btn(k, v)}<a href="{rel(d, p_pais(k))}">Ver la guía de {esc(v["nombre"])} →</a></div>
             <div class="dest-grid dest-grid-4">
 {chr(10).join(dest_card(x, d) for x in ds)}
             </div>

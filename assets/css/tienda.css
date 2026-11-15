@@ -476,3 +476,24 @@ dialog::backdrop { background: rgba(31, 26, 20, 0.55); }
 .buy-2 .btn-outline svg { flex: none; }
 .buy-box .buy-price { font-size: 2.4rem; }
 @media (max-width: 1100px) and (min-width: 861px) { .buy-2 { grid-template-columns: 1fr; } }
+
+/* Portada de la tienda: ¿Estás fuera del país? y categorías */
+.ts-exterior { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px 24px; margin: 28px 0 8px; padding: 22px 26px; border-radius: 22px; background: linear-gradient(120deg, #1f4e6e, #2b6a8c); color: #fff; }
+.tx-txt { display: flex; align-items: center; gap: 16px; }
+.tx-globo { width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,.14); display: grid; place-items: center; flex: none; }
+.ts-exterior h2 { color: #fff; font-size: 1.35rem; }
+.ts-exterior p { color: #cfe0ec; margin-top: 2px; font-size: 0.95rem; }
+.tx-btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.tx-btn { display: inline-flex; align-items: center; padding: 12px 20px; border-radius: 999px; background: #fff; color: #1f4e6e; font-weight: 700; text-decoration: none; font-size: 0.95rem; transition: transform .2s; }
+.tx-btn:hover { transform: translateY(-1px); }
+.tx-btn.en { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.7); }
+.tx-btn.en:hover { background: rgba(255,255,255,.1); }
+.ts-cats { margin-top: 36px; }
+.tc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+.tc-tile { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; min-height: 104px; padding: 14px 16px; border-radius: 18px; color: #fff; text-decoration: none; background: linear-gradient(140deg, var(--c1), var(--c2)); transition: transform .2s, box-shadow .2s; }
+.tc-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .35; mix-blend-mode: luminosity; }
+.tc-tile b, .tc-tile small { position: relative; }
+.tc-tile b { font-size: 1rem; line-height: 1.2; }
+.tc-tile small { opacity: .85; font-size: 0.8rem; margin-top: 2px; }
+.tc-tile:hover { transform: translateY(-2px); box-shadow: 0 14px 26px -16px rgba(0,0,0,.5); }
+@media (max-width: 640px) { .tx-btns, .tx-btn { width: 100%; } .tx-btn { justify-content: center; } .tc-grid { grid-template-columns: 1fr 1fr; } }

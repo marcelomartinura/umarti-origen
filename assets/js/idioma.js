@@ -3,6 +3,8 @@
 (function () {
   'use strict';
   var activo = /(?:^|;\s*)googtrans=\/es\/en/.test(document.cookie);
+  // Enlace con ?lang=en (por ejemplo "I want to buy from abroad"): entra directo en inglés
+  var pide = new URLSearchParams(location.search).get('lang');
   var ofrece = document.body.hasAttribute('data-en');
   if (!ofrece && !activo) return;
 
@@ -12,6 +14,9 @@
     for (var i = 0; i < partes.length - 1; i++) doms.push('; domain=.' + partes.slice(i).join('.'));
     doms.forEach(function (d) { document.cookie = 'googtrans=' + (valor || '') + '; path=/' + d + vence; });
   }
+
+  if (pide === 'en' && !activo) { cookie('/es/en'); location.replace(location.pathname + location.hash); return; }
+  if (pide === 'es' && activo) { cookie(null); location.replace(location.pathname + location.hash); return; }
 
   // Marcas que no se traducen
   Array.prototype.forEach.call(document.querySelectorAll('.logo, .ts-brand, .footer-brand'), function (e) { e.classList.add('notranslate'); });
