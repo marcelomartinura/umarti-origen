@@ -242,6 +242,8 @@ html = f'''<!doctype html>
               <label class="drop sm" id="ve-foto-drop"><input type="file" accept="image/jpeg,image/png,image/webp" hidden><b>Subir foto principal</b><small>Horizontal, idealmente. Se achica sola a 1600 px.</small></label>
               <label class="inline">Encuadre<select name="foto_pos"><option value="center">Centro</option><option value="center 25%">Más arriba</option><option value="center 75%">Más abajo</option><option value="left center">Izquierda</option><option value="right center">Derecha</option></select></label>
             </div>
+            <label>Tipo de lugar<select name="lugar"><option value="">Sin indicar</option><option>Ciudad</option><option>Pueblo</option><option>Destino natural</option></select></label>
+            <label class="chk-pm" id="ve-pm-box"><input type="checkbox" name="pueblo_magico"> <span><b>Pueblo Mágico</b><small class="muted">Se muestra como sticker en el sitio (solo México).</small></span></label>
             <label>Días ideales<input name="dias" maxlength="40" placeholder="3 a 4 días"></label>
             <label>Presupuesto<select name="presupuesto"><option value="">Sin indicar</option></select></label>
             <label class="full">Clima del lugar<input name="clima" placeholder="Código de yr.no, por ejemplo 2-3435910, o pegá el código del widget"><small class="muted">Buscá la ciudad en <a href="https://www.yr.no/en" target="_blank" rel="noopener">yr.no</a> y copiá el código que aparece en la dirección (por ejemplo …/forecast/daily-table/<b>2-3435910</b>/…). Se muestra en "Cuándo ir".</small></label>

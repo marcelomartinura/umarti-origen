@@ -55,15 +55,26 @@ def vcover(colores, paisaje, titulo="", sub="", sun=True):
             f'<path d="{back}" opacity=".16"/><path d="{front}" opacity=".24"/></svg>{t}{s}</div>')
 
 
+def stickers(d, cls="stk-row"):
+    """Stickers de tipo de lugar (Ciudad, Pueblo, Destino natural) y Pueblo Mágico."""
+    f = d.get("panel") or {}
+    out = []
+    if f.get("pueblo_magico"):
+        out.append('<span class="stk stk-pm">✦ Pueblo Mágico</span>')
+    if f.get("lugar"):
+        out.append(f'<span class="stk stk-{slug(f["lugar"])}">{esc(f["lugar"])}</span>')
+    return f'<span class="{cls}">{"".join(out)}</span>' if out else ""
+
+
 def foto_cover(d, titulo, sub):
     """Tarjeta con la misma foto de portada que se carga en el panel (si no hay foto, la ilustración de colores)."""
     f = (d.get("panel") or {})
     if not f.get("foto"):
-        return vcover(d['colores'], d['paisaje'], titulo, sub)
+        return vcover(d['colores'], d['paisaje'], titulo, sub).replace('<div class="vcover"', '<div class="vcover"', 1).replace("</div>", stickers(d) + "</div>", 1)
     t = f"<b>{esc(titulo)}</b>" if titulo else ""
     s = f"<small>{esc(sub)}</small>" if sub else ""
     return (f'<div class="vcover con-foto"><img src="{esc(f["foto"])}" alt="" loading="lazy" '
-            f'style="object-position:{esc(f.get("foto_pos") or "center")}">{t}{s}</div>')
+            f'style="object-position:{esc(f.get("foto_pos") or "center")}">{stickers(d)}{t}{s}</div>')
 
 
 def dest_card(d, depth):
@@ -721,7 +732,7 @@ def pagina_destino_panel(x):
         '    <div class="wrap">',
         crumbs(d, [("Viajes", "viajes/"), (v["nombre"], p_pais(x["pais"])), (n, None)]),
         '      <section class="d-hero">',
-        f'        <div><a class="chip-pais" href="{rel(d, p_pais(x["pais"]))}">{region}</a>',
+        f'        <div><div class="d-chips"><a class="chip-pais" href="{rel(d, p_pais(x["pais"]))}">{region}</a>{stickers(x, "stk-row en-hero")}</div>',
         f'          <h1>{esc(n)}</h1><p class="lead">{esc(x["resumen"])}</p>',
         f'          <div class="tipos">{tipos}</div></div>',
         f'        {portada}',

@@ -104,7 +104,8 @@
   function editar(d) {
     nuevo = !d;
     actual = d ? JSON.parse(JSON.stringify(d)) : { id: demo ? 'n' + Date.now() : null, pais: 'Argentina', estado: 'Borrador', tags: [], faqs: [], detalle: [], notas: [], productos: [], categorias_tienda: [], foto_pos: 'center' };
-    ['pais', 'ciudad', 'region', 'slug', 'resumen', 'dias', 'presupuesto', 'mejor_epoca', 'clima', 'requisitos', 'requisitos_fuente', 'moneda', 'corriente', 'huso', 'unidades', 'talles', 'foto_pos', 'estado'].concat(CAMPOS.map(function (c) { return c[0]; })).forEach(function (k) { if (f[k]) f[k].value = actual[k] || (k === 'foto_pos' ? 'center' : ''); });
+    ['pais', 'ciudad', 'region', 'slug', 'resumen', 'dias', 'presupuesto', 'mejor_epoca', 'clima', 'requisitos', 'requisitos_fuente', 'moneda', 'corriente', 'huso', 'unidades', 'talles', 'lugar', 'foto_pos', 'estado'].concat(CAMPOS.map(function (c) { return c[0]; })).forEach(function (k) { if (f[k]) f[k].value = actual[k] || (k === 'foto_pos' ? 'center' : ''); });
+    f.pueblo_magico.checked = !!actual.pueblo_magico; pintarPM();
     marcar('#ve-tags', actual.tags); marcar('#ve-cats', actual.categorias_tienda); marcar('#ve-notas', actual.notas);
     foto = actual.foto || ''; faqs = (actual.faqs || []).slice(); bloques = (actual.detalle || []).slice();
     slugManual = !!actual.slug; sucio = false;
@@ -129,6 +130,10 @@
     $('#ve-det-leg').textContent = 'Conocé ' + (f.ciudad.value || 'el destino') + ' en detalle';
   }
   f.ciudad.addEventListener('input', actualizarSlug); f.pais.addEventListener('input', actualizarSlug);
+  /* Pueblo Mágico: solo para destinos de México */
+  function esMexico() { return /^m[eé]xico$/i.test((f.pais.value || '').trim()); }
+  function pintarPM() { $('#ve-pm-box').hidden = !esMexico(); }
+  f.pais.addEventListener('input', pintarPM); f.pais.addEventListener('change', pintarPM);
   f.slug.addEventListener('input', function () { slugManual = true; });
   function contar() { $$('#f-dest .count').forEach(function (c) { var el = f[c.dataset.for]; c.textContent = el.value.length + ' / ' + el.maxLength; }); }
   f.addEventListener('input', function () { sucio = true; contar(); indice(); });
@@ -217,8 +222,9 @@
   /* guardar */
   function leer() {
     var d = Object.assign({}, actual);
-    ['pais', 'ciudad', 'region', 'slug', 'resumen', 'dias', 'presupuesto', 'mejor_epoca', 'clima', 'requisitos', 'requisitos_fuente', 'moneda', 'corriente', 'huso', 'unidades', 'talles', 'foto_pos', 'estado'].concat(CAMPOS.map(function (c) { return c[0]; })).forEach(function (k) { d[k] = f[k].value.trim(); });
+    ['pais', 'ciudad', 'region', 'slug', 'resumen', 'dias', 'presupuesto', 'mejor_epoca', 'clima', 'requisitos', 'requisitos_fuente', 'moneda', 'corriente', 'huso', 'unidades', 'talles', 'lugar', 'foto_pos', 'estado'].concat(CAMPOS.map(function (c) { return c[0]; })).forEach(function (k) { d[k] = f[k].value.trim(); });
     d.slug = C.slugify(d.slug || d.ciudad);
+    d.pueblo_magico = esMexico() && f.pueblo_magico.checked;
     d.tags = marcados('#ve-tags'); d.categorias_tienda = marcados('#ve-cats'); d.notas = marcados('#ve-notas'); d.productos = marcados('#ve-prods');
     d.foto = foto;
     d.faqs = faqs.filter(function (q) { return q.q.trim(); }).map(function (q) { return { q: q.q.trim(), a: (q.a || '').trim() }; });
