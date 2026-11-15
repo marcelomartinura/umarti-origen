@@ -447,5 +447,63 @@
   "huso": "America/Mexico_City",
   "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
   "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26)."
+ },
+ {
+  "slug": "el-chalten",
+  "pais": "Argentina",
+  "ciudad": "El Chaltén",
+  "region": "Santa Cruz",
+  "resumen": "La capital nacional del trekking: un pueblo chico al pie del cerro Fitz Roy, con senderos que salen desde la misma calle hacia lagunas, glaciares y las agujas más famosas de la Patagonia.",
+  "tags": [
+   "Aventura",
+   "Montaña",
+   "Naturaleza"
+  ],
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/el-chalten/principal/1794779359331.jpg",
+  "foto_pos": "center",
+  "dias": "3 a 5 días",
+  "mejor_epoca": "Primavera y verano (octubre a abril)",
+  "presupuesto": "Medio",
+  "por_que": "El Chaltén es el lugar para caminar la Patagonia. Desde el mismo pueblo salen senderos señalizados que llevan a la **Laguna de los Tres**, al pie del **Fitz Roy**, y a la **Laguna Torre**, frente al cerro Torre: dos de las vistas de montaña más impresionantes del continente.\n\nEstá dentro del **Parque Nacional Los Glaciares**, en el norte de la provincia de Santa Cruz, a unos 220 kilómetros de **El Calafate**. Es un pueblo joven, fundado en 1985, con un ritmo tranquilo, cervecerías artesanales y una comunidad que vive de la montaña. No hace falta ser experto: hay caminatas de una hora y otras de un día entero.",
+  "cuando_ir": "**Mejor época:** de octubre a abril, cuando funcionan todos los servicios y los días son largos. Diciembre a febrero es temporada alta.\n\n**Clima:** cambiante y con mucho viento, a cualquier hora del día. En verano las máximas rondan los 15 a 20 °C; en otoño los bosques de lengas se vuelven rojos y amarillos, y hay menos gente.\n\nEn invierno muchos alojamientos y restaurantes cierran, y algunos senderos se cubren de nieve.",
+  "que_comer": "- Cordero patagónico al asador\n- Trucha de los lagos de la zona\n- Guisos y locros para después de la caminata\n- Cervezas artesanales del pueblo, con agua de deshielo\n- Tortas, alfajores y chocolate caliente en las casas de té\n- Dulces de calafate y de frutos rojos",
+  "donde_alojarse": "- **Centro del pueblo**: hosterías, cabañas y hostels cerca de la avenida San Martín, a pasos de los restaurantes.\n- **Cerca del inicio de los senderos**: en el extremo norte del pueblo, ideal para salir temprano hacia la Laguna de los Tres.\n- **Hosterías y estancias en las afueras**: camino al Lago del Desierto, para más silencio y vistas a los cerros.\n\nEn temporada alta conviene reservar con anticipación: el pueblo es chico y se llena.",
+  "como_llegar": "La forma más común es volar a **El Calafate** y desde ahí tomar un bus o alquilar un auto: son unos 220 kilómetros por ruta asfaltada, alrededor de 3 horas de viaje, con paradas en el mirador del Lago Viedma.\n\nEn temporada también hay buses que conectan El Chaltén con otros destinos de la Patagonia, como la Ruta 40 hacia el norte.",
+  "como_moverse": "El pueblo se recorre caminando y los senderos principales empiezan en sus calles, así que no hace falta auto. Para ir al **Lago del Desierto**, al Chorrillo del Salto o a otros puntos alejados hay transfers y excursiones que salen desde el centro.\n\nConsultá antes de salir el estado de los senderos en el centro de visitantes del Parque Nacional, a la entrada del pueblo.",
+  "que_hacer": "- **Laguna de los Tres**: la caminata clásica hasta el pie del Fitz Roy; día completo, con un último tramo empinado.\n- **Laguna Torre**: frente al cerro Torre y su glaciar; día completo y menos desnivel.\n- **Mirador de los Cóndores y de las Águilas**: caminata corta, ideal para el atardecer y la primera tarde.\n- **Chorrillo del Salto**: una cascada a pocos kilómetros del pueblo, fácil para toda la familia.\n- **Lago del Desierto**: navegación y caminatas hasta el glaciar Huemul.\n- **Trekking sobre hielo y escalada**: con guías habilitados, en el glaciar Viedma y en la zona del cerro Torre.",
+  "consejos": "- Pasá primero por el centro de visitantes del Parque Nacional: te explican los senderos y el pronóstico.\n- Salí temprano a las caminatas largas: el viento suele aumentar a la tarde.\n- Llevá ropa en capas, rompevientos, gorro, protector solar y agua; el clima cambia en minutos.\n- Hay pocos cajeros automáticos y a veces se quedan sin efectivo: llevá pesos desde El Calafate.\n- No dejes basura en el parque y quedate en los senderos marcados.",
+  "faqs": [
+   {
+    "a": "En el norte de la provincia de Santa Cruz, dentro del Parque Nacional Los Glaciares, a unos 220 km de El Calafate.",
+    "q": "¿Dónde queda El Chaltén?"
+   },
+   {
+    "a": "Con 3 días podés hacer las dos caminatas clásicas, Laguna de los Tres y Laguna Torre. Con 4 o 5 días tenés margen por si un día hay mal tiempo.",
+    "q": "¿Cuántos días se necesitan?"
+   },
+   {
+    "a": "No. Hay caminatas cortas y fáciles, y otras de día completo que requieren buen estado físico pero no experiencia técnica. Los senderos están señalizados.",
+    "q": "¿Hay que ser experto para hacer trekking?"
+   },
+   {
+    "a": "Sí, es la combinación más común: volás a El Calafate, visitás el glaciar y después seguís 3 horas por ruta hasta El Chaltén.",
+    "q": "¿Se puede combinar con el Glaciar Perito Moreno?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-15T21:49:26.099402+00:00",
+  "clima": "",
+  "requisitos": "- **Seguro médico:** las personas extranjeras que entran a la Argentina como turistas deben tener un seguro de salud que las cubra durante toda la estadía.\n- **Documento:** pasaporte vigente. Los ciudadanos de países del Mercosur y asociados pueden entrar con su documento de identidad.\n- **Acceso a los senderos:** algunos senderos del Parque Nacional Los Glaciares en la zona de El Chaltén cobran un derecho de acceso. Consultá las tarifas vigentes antes de viajar.",
+  "requisitos_fuente": "https://www.argentina.gob.ar/parquesnacionales/tarifas",
+  "moneda": "Peso argentino (ARS). Muchos comercios aceptan tarjeta, pero hay pocos cajeros: llevá efectivo.",
+  "corriente": "220 V · 50 Hz. Enchufes tipo I (tres patas planas en V) y algunos tipo C.",
+  "huso": "America/Argentina/Buenos_Aires",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles argentinos: en calzado, un número menos que el europeo."
  }
 ]
