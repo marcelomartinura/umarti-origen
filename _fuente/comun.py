@@ -52,7 +52,7 @@ def ecosistema(prefijo):
         ("https://www.umartidigital.com", f'<img class="eco-av" src="{img}ecosistema/avatar-digital.jpg" alt="" width="56" height="56">',
          f'<img class="eco-logo" src="{img}ecosistema/logo-digital.png" alt="Umarti Digital" width="120" height="38">', "Consultoría y evolución digital", ""),
         ("https://profesionales.umartidigital.com/", f'<img class="eco-av" src="{img}ecosistema/avatar-digital.jpg" alt="" width="56" height="56">',
-         "<b>Umarti Digital</b><b>Profesionales</b>", "Red de profesionales", ""),
+         f'<span class="eco-chip eco-chip-pro"><img src="{img}ecosistema/logo-profesionales.png" alt="Umarti Digital Profesionales" width="149" height="36"></span>', "Red de profesionales", ""),
         (None, f'<img class="eco-av" src="{img}ecosistema/avatar-motors.jpg" alt="" width="56" height="56">',
          f'<span class="eco-chip"><img src="{img}ecosistema/logo-motors.png" alt="Umarti Motors" width="96" height="37"></span>', "Marketplace de movilidad", "Próximamente"),
         (None, f'<img class="eco-av eco-av-origen" src="{img}ecosistema/avatar-origen.jpg" alt="" width="56" height="56">',
