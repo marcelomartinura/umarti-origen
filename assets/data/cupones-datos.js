@@ -77,25 +77,6 @@ window.CUPONES = [
   "online": false
  },
  {
-  "codigo": "CU-0005",
-  "titulo": "20% en el menú de degustación",
-  "comercio": "Cocina de Origen",
-  "iniciales": "CO",
-  "lugar": "Ciudad de México, México",
-  "descripcion": "Siete tiempos con productos de distintas regiones de México.",
-  "tipo": "Código",
-  "cupon": "ORIGEN20",
-  "condiciones": "Reserva previa. Hasta 4 personas por cupón.",
-  "vence_txt": "20/11/2026",
-  "link": "",
-  "destino_url": "viajes/mexico/ciudad-de-mexico/",
-  "destino_nombre": "Ciudad de México",
-  "tema": "",
-  "tema_url": "",
-  "ejemplo": true,
-  "online": false
- },
- {
   "codigo": "CU-0006",
   "titulo": "Postre de regalo con tu cena",
   "comercio": "Parrilla El Fogón",
