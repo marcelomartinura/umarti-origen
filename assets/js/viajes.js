@@ -7,15 +7,24 @@
   if (grid) {
     var q = document.getElementById('v-q');
     var chips = document.querySelectorAll('[data-tipo]');
+    var chipsL = document.querySelectorAll('button[data-lugar]');
     var count = document.getElementById('v-count');
-    var tipo = '';
+    var tipo = '', lugar = '';
+    var limite = +grid.dataset.limite || 0;   // en "Todos los destinos": se muestran los primeros de cada país
     var apply = function () {
       var t = q ? norm(q.value).trim() : '';
-      var n = 0;
+      var n = 0, filtrando = !!(t || tipo || lugar);
       grid.querySelectorAll('.dest-card').forEach(function (c) {
-        var ok = (!t || norm(c.dataset.texto).indexOf(t) > -1) && (!tipo || c.dataset.tipos.split('|').indexOf(tipo) > -1);
+        var okL = !lugar || (lugar === 'pm' ? c.dataset.pm === '1' : c.dataset.lugar === lugar);
+        var ok = (!t || norm(c.dataset.texto).indexOf(t) > -1) && (!tipo || c.dataset.tipos.split('|').indexOf(tipo) > -1) && okL;
         c.classList.toggle('is-hidden', !ok);
         if (ok) n++;
+      });
+      // Si no hay filtros, cada país muestra sus primeros destinos y un botón "Ver los N destinos"
+      if (limite) grid.querySelectorAll('.dg-pais').forEach(function (g) {
+        var vis = g.querySelectorAll('.dest-card:not(.is-hidden)'), abierto = g.classList.contains('abierto') || filtrando;
+        vis.forEach(function (c, i) { c.classList.toggle('is-mas', !abierto && i >= limite); });
+        var b = g.querySelector('.dg-mas'); if (b) b.hidden = abierto || vis.length <= limite;
       });
       if (count) count.textContent = n === 1 ? '1 destino' : n + ' destinos';
       // Agrupado por país: oculta los países sin resultados y actualiza los botones
@@ -27,11 +36,15 @@
         if (b) { b.classList.toggle('vacio', k === 0); b.querySelector('[data-n]').textContent = txt; }
       });
       chips.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.tipo === tipo)); });
+      chipsL.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.lugar === lugar)); });
     };
     chips.forEach(function (b) { b.addEventListener('click', function () { tipo = b.dataset.tipo; apply(); }); });
+    chipsL.forEach(function (b) { b.addEventListener('click', function () { lugar = b.dataset.lugar; apply(); }); });
+    grid.querySelectorAll('.dg-mas').forEach(function (b) { b.addEventListener('click', function () { b.closest('.dg-pais').classList.add('abierto'); apply(); }); });
     if (q) q.addEventListener('input', apply);
     var p = new URLSearchParams(location.search);
     if (p.get('tipo')) tipo = p.get('tipo');
+    if (p.get('lugar')) lugar = p.get('lugar') === 'pueblo-magico' ? 'pm' : p.get('lugar');
     if (q && p.get('q')) q.value = p.get('q');
     apply();
   }

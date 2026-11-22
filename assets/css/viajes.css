@@ -494,3 +494,14 @@ div.service { opacity: .7; }
 .stk-row.en-hero { position: static; }
 .stk-row.en-hero .stk { font-size: 0.82rem; padding: 5px 12px; box-shadow: none; border: 1px solid var(--line); }
 .stk-row.en-hero .stk-pm { border: 0; box-shadow: 0 4px 12px -4px rgba(229,54,122,.5); }
+
+/* Filtro por tipo de lugar y "Ver los N destinos" */
+.v-tools-2 { margin-top: -6px; }
+.v-tools-2:empty { display: none; }
+.chips-lugar .lbl { font-size: 0.9rem; color: var(--muted); margin-right: 4px; align-self: center; }
+.chip-row.chips-lugar button.pm[aria-pressed="true"] { background: linear-gradient(135deg, #e5367a, #f2a13a); border-color: transparent; color: #fff; }
+.chip-row.chips-lugar button.pm { color: #c42b6a; }
+.dest-card.is-mas { display: none; }
+.dg-mas { display: block; margin: 18px auto 0; padding: 12px 26px; border-radius: 999px; border: 1.5px solid #2e7d5b; background: #fff; color: #2e7d5b; font: inherit; font-weight: 700; cursor: pointer; }
+.dg-mas:hover { background: #2e7d5b; color: #fff; }
+.dg-mas[hidden] { display: none; }

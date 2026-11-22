@@ -81,7 +81,7 @@ def dest_card(d, depth):
     pais = PAISES[d["pais"]]["nombre"]
     tipos = "".join(f'<span class="tipo">{esc(t)}</span>' for t in d["tipos"])
     texto = esc(" ".join([d["nombre"], d["region"], pais, d["resumen"]] + d["tipos"]).lower())
-    return f'''        <a class="dest-card" href="{rel(depth, p_dest(d))}" data-tipos="{esc('|'.join(d['tipos']))}" data-texto="{texto}">
+    return f'''        <a class="dest-card" href="{rel(depth, p_dest(d))}" data-tipos="{esc('|'.join(d['tipos']))}" data-lugar="{esc(lugar_de(d))}" data-pm="{'1' if (d.get('panel') or {}).get('pueblo_magico') else ''}" data-texto="{texto}">
           {foto_cover(d, d['nombre'], f"{d['region']}, {pais}" if d['region'] != d['nombre'] else pais)}
           <div class="body">
             <div class="tipos">{tipos}</div>
@@ -89,6 +89,24 @@ def dest_card(d, depth):
             <div class="facts"><span><b>Ideal:</b> {esc(d['dias'])}</span><span><b>Presupuesto:</b> {esc(d['presupuesto'])}</span></div>
           </div>
         </a>'''
+
+
+def lugar_de(d):
+    return (d.get("panel") or {}).get("lugar") or ""
+
+
+LUGARES = [("Ciudad", "Ciudades"), ("Pueblo", "Pueblos"), ("pm", "Pueblos Mágicos"), ("Destino natural", "Destinos naturales")]
+
+
+def chips_lugar(destinos):
+    """Filtro por tipo de lugar: Ciudades, Pueblos, Pueblos Mágicos y Destinos naturales (solo los que existen)."""
+    hay = {lugar_de(x) for x in destinos} | ({"pm"} if any((x.get("panel") or {}).get("pueblo_magico") for x in destinos) else set())
+    opciones = [(k, n) for k, n in LUGARES if k in hay]
+    if len(opciones) < 2:
+        return ""
+    btns = ['<button type="button" data-lugar="" aria-pressed="true">Todos</button>']
+    btns += [f'<button type="button" data-lugar="{esc(k)}" aria-pressed="false"{" class=\"pm\"" if k == "pm" else ""}>{"✦ " if k == "pm" else ""}{esc(n)}</button>' for k, n in opciones]
+    return f'<div class="chip-row chips-lugar" role="group" aria-label="Tipo de lugar"><span>Lugar:</span>{"".join(btns)}</div>'
 
 
 def chips(tipos_presentes):
@@ -303,6 +321,7 @@ def pagina_todos():
             <div class="dest-grid dest-grid-4">
 {chr(10).join(dest_card(x, d) for x in ds)}
             </div>
+            <button type="button" class="dg-mas" hidden>Ver los {len(ds)} destinos de {esc(v["nombre"])}</button>
           </section>''' for k, v, ds in paises]
     main = f'''    <div class="wrap">
 {crumbs(d, [("Viajes", "viajes/"), ("Todos los destinos", None)])}
@@ -313,7 +332,8 @@ def pagina_todos():
           <label><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="v-q" type="search" placeholder="¿Adónde querés ir?" aria-label="Buscar destino"></label>
         </form>
         <div class="v-tools">{chips(tipos_pres)}<span class="v-count" id="v-count"></span></div>
-        <div id="dest-grid">
+        <div class="v-tools v-tools-2">{chips_lugar(DESTINOS)}</div>
+        <div id="dest-grid" data-limite="8">
 {chr(10).join(grupos)}
         </div>
       </section>
@@ -427,6 +447,7 @@ def pagina_pais(k):
       <section class="v-section" aria-labelledby="h-d">
         <div class="v-head"><div><h2 id="h-d">Destinos de {esc(v['nombre'])}</h2></div></div>
         <div class="v-tools">{chips(tipos_pres)}<span class="v-count" id="v-count"></span></div>
+        <div class="v-tools v-tools-2">{chips_lugar(ds)}</div>
         <div class="dest-grid" id="dest-grid">
 {chr(10).join(dest_card(x, d) for x in ds)}
         </div>
