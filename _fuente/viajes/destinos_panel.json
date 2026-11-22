@@ -192,7 +192,7 @@
    "Gastronomía",
    "Vino"
   ],
-  "foto": "",
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/queretaro/principal/1795379757817.jpg",
   "foto_pos": "center",
   "dias": "3 a 4 días",
   "mejor_epoca": "Todo el año; de octubre a abril hay menos lluvias",
@@ -225,7 +225,7 @@
   "categorias_tienda": [],
   "estado": "Publicado",
   "orden": 0,
-  "actualizado": "2026-11-15T22:56:10.480564+00:00",
+  "actualizado": "2026-11-22T20:36:09.657299+00:00",
   "clima": "",
   "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
   "requisitos_fuente": "https://www.gob.mx/inm",
