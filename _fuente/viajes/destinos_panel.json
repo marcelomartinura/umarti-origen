@@ -705,6 +705,66 @@
   "pueblo_magico": false
  },
  {
+  "slug": "san-luis-potosi",
+  "pais": "México",
+  "ciudad": "San Luis Potosí",
+  "region": "San Luis Potosí",
+  "resumen": "Una capital colonial de cantera rosa, puerta de entrada a la Huasteca Potosina, con sus cascadas turquesa, y al desierto de Real de Catorce.",
+  "tags": [
+   "Cultura",
+   "Gastronomía",
+   "Naturaleza"
+  ],
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/san-luis-potosi/principal/1795380376699.jpg",
+  "foto_pos": "center",
+  "dias": "2 a 3 días (más si sumás la Huasteca)",
+  "mejor_epoca": "Octubre a abril",
+  "presupuesto": "Medio",
+  "por_que": "**San Luis Potosí** es una ciudad colonial que sorprende: plazas amplias, templos barrocos de cantera rosa, museos y una vida tranquila. Su centro histórico forma parte del **Camino Real de Tierra Adentro**, la antigua ruta de la plata reconocida como Patrimonio de la Humanidad.\n\nAdemás, es la puerta de entrada a dos mundos muy distintos: la **Huasteca Potosina**, con ríos y cascadas color turquesa y el jardín surrealista de Xilitla, y el desierto de **Real de Catorce**, un antiguo pueblo minero en lo alto de la sierra.",
+  "cuando_ir": "**Mejor época:** de octubre a abril para la ciudad, con días templados y noches frescas.\n\n**Clima:** semiseco, con días soleados y noches frías en invierno. En la **Huasteca**, en cambio, el clima es cálido y húmedo: las cascadas lucen su color turquesa en la temporada seca (de noviembre a mayo); con las lluvias del verano el agua se pone turbia.\n\n**Fechas especiales:** la **Procesión del Silencio**, el Viernes Santo, es una de las celebraciones de Semana Santa más impresionantes del país.",
+  "que_comer": "- **Enchiladas potosinas**: de masa roja con chile, rellenas de queso\n- **Tacos rojos** y **gorditas** de horno\n- **Zacahuil**: un tamal gigante de la Huasteca, cocido en horno de leña\n- **Queso de tuna** y otros dulces de cactus\n- **Colonche**, una bebida fermentada de tuna roja\n- **Enchiladas huastecas** y **bocoles**, si vas a la Huasteca",
+  "donde_alojarse": "- **Centro histórico**: hoteles en casonas a pasos de la Plaza de Armas y los templos.\n- **Zona de Carranza**: la avenida con más restaurantes y vida, entre el centro y las zonas modernas.\n- **Para la Huasteca**: conviene hacer base en **Ciudad Valles**, **Aquismón** o **Xilitla**, a unas 4 horas de la capital.",
+  "como_llegar": "El **Aeropuerto Internacional de San Luis Potosí** tiene vuelos desde la Ciudad de México, Monterrey y algunas ciudades de Estados Unidos.\n\nPor tierra son unos 420 kilómetros desde la Ciudad de México (alrededor de 5 horas por autopista) y unos 200 kilómetros desde Querétaro (unas 2 horas y media). Hay buses frecuentes desde las principales ciudades.",
+  "como_moverse": "El centro histórico se recorre caminando: las plazas, templos y museos están cerca unos de otros. Para el resto de la ciudad hay taxis y apps de transporte.\n\nPara la **Huasteca** y **Real de Catorce** conviene alquilar un auto o contratar tours: las distancias son largas y el transporte público es limitado.",
+  "que_hacer": "- **Centro histórico**: Plaza de Armas, la Catedral, el Templo del Carmen y la Caja Real.\n- **Museo Nacional de la Máscara**: máscaras ceremoniales de todo México.\n- **Calzada de Guadalupe**: un paseo arbolado hasta el Santuario de Guadalupe.\n- **Huasteca Potosina**: la cascada de Tamul, Micos, Tamasopo y el Puente de Dios.\n- **Xilitla**: el jardín surrealista Las Pozas, creado por Edward James en plena selva.\n- **Sótano de las Golondrinas**: un abismo natural donde miles de aves salen al amanecer.\n- **Real de Catorce**: un pueblo minero en el desierto, al que se entra por un túnel.",
+  "consejos": "- Si vas a la Huasteca, dedicale al menos 3 días: las distancias entre cascadas son largas.\n- Para ver el agua turquesa, evitá la temporada de lluvias.\n- En la Huasteca llevá traje de baño, calzado para agua y repelente.\n- Real de Catorce está a más de 2.700 metros de altura: llevá abrigo, porque de noche hace frío.\n- Para la Procesión del Silencio, buscá lugar con anticipación.",
+  "faqs": [
+   {
+    "a": "Con 2 días conocés la ciudad. Si sumás la Huasteca Potosina, calculá al menos 3 días más, y otros 2 para Real de Catorce.",
+    "q": "¿Cuántos días se necesitan?"
+   },
+   {
+    "a": "Ciudad Valles, la puerta de entrada a la Huasteca, está a unas 4 horas en auto desde la capital.",
+    "q": "¿Qué tan lejos está la Huasteca Potosina?"
+   },
+   {
+    "a": "En la temporada seca, de noviembre a mayo, cuando el agua de ríos y cascadas tiene su color turquesa.",
+    "q": "¿Cuándo conviene ir a la Huasteca?"
+   },
+   {
+    "a": "En avión, alrededor de 1 hora. En auto o bus, unas 5 horas por autopista.",
+    "q": "¿Cómo llegar desde la Ciudad de México?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-22T20:46:23.265552+00:00",
+  "clima": "",
+  "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
+  "requisitos_fuente": "https://www.gob.mx/inm",
+  "moneda": "Peso mexicano (MXN). En la ciudad se aceptan tarjetas; en la Huasteca y Real de Catorce llevá efectivo, porque hay pocos cajeros.",
+  "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
+  "huso": "America/Mexico_City",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
+  "lugar": "Ciudad",
+  "pueblo_magico": false
+ },
+ {
   "slug": "guadalajara",
   "pais": "México",
   "ciudad": "Guadalajara",
