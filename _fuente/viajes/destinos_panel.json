@@ -824,5 +824,65 @@
   "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
   "lugar": "Ciudad",
   "pueblo_magico": false
+ },
+ {
+  "slug": "ajijic-chapala",
+  "pais": "México",
+  "ciudad": "Ajijic (Chapala)",
+  "region": "Jalisco",
+  "resumen": "Un Pueblo Mágico de calles empedradas y murales a orillas del Lago de Chapala, con clima templado todo el año, galerías de arte y atardeceres sobre el agua, a menos de una hora de Guadalajara.",
+  "tags": [
+   "Cultura",
+   "Gastronomía",
+   "Naturaleza"
+  ],
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/ajijic-chapala/principal/1795380529274.jpg",
+  "foto_pos": "center",
+  "dias": "2 a 3 días",
+  "mejor_epoca": "Todo el año (mejor de octubre a mayo)",
+  "presupuesto": "Medio",
+  "por_que": "**Ajijic** es un pueblo colorido a orillas del **Lago de Chapala**, el lago más grande de México, con la sierra de fondo. Sus calles empedradas están llenas de **murales**, galerías, cafés y pequeños restaurantes, y su malecón es ideal para caminar al atardecer.\n\nEs **Pueblo Mágico** y tiene un ambiente tranquilo y cosmopolita: desde hace décadas atrae a artistas y a una gran comunidad de residentes extranjeros por su clima templado todo el año. A pocos minutos está **Chapala**, la cabecera municipal, con su malecón, su muelle y las lanchas que cruzan a las islas del lago.",
+  "cuando_ir": "**Mejor época:** se puede ir todo el año. De octubre a mayo los días son secos y soleados; abril y mayo son los meses más cálidos.\n\n**Clima:** templado, con pocas variaciones a lo largo del año. De junio a septiembre llueve por las tardes y el paisaje está más verde.\n\n**Fechas especiales:** las **fiestas de San Andrés**, el santo patrono, a fines de noviembre; el **Carnaval**, antes de la Cuaresma; y el **Día de Muertos**, con altares y catrinas en las calles.",
+  "que_comer": "- **Charales** fritos, el pescadito típico del lago, con limón y salsa\n- **Pescado blanco** y **caldo michi**\n- **Birria** de chivo, como en todo Jalisco\n- **Tortas ahogadas** y **pozole** en los puestos del pueblo\n- **Nieves de garrafa** en el malecón de Chapala\n- Cocina internacional y cafés de especialidad, gracias a su comunidad de residentes extranjeros",
+  "donde_alojarse": "- **Centro de Ajijic**: hoteles boutique y casas de huéspedes a pocas cuadras de la plaza y el malecón.\n- **Frente al lago**: hoteles con vista al Lago de Chapala, para ver el atardecer desde la terraza.\n- **Chapala**: más opciones y precios, a unos 10 minutos en auto.\n\nMuchos alojamientos son casas con jardín: conviene reservar con anticipación en invierno, la temporada con más visitantes extranjeros.",
+  "como_llegar": "Ajijic está a unos **50 kilómetros al sur de Guadalajara**, alrededor de una hora en auto. El **Aeropuerto Internacional de Guadalajara** queda a unos 40 minutos, en el camino a Chapala.\n\nDesde la Nueva Central Camionera de Guadalajara salen buses frecuentes hacia Chapala y Ajijic.",
+  "como_moverse": "El centro de Ajijic se recorre caminando. Entre Ajijic, Chapala y los pueblos del lago hay autobuses locales y taxis; también se puede ir en bicicleta por la ciclovía que bordea el lago.\n\nPara visitar la **Isla de Mezcala** o la **Isla de los Alacranes** se toman lanchas desde los muelles de Chapala o Mezcala.",
+  "que_hacer": "- **Recorrer los murales**: las calles del centro son una galería a cielo abierto.\n- **Plaza principal y templo de San Andrés**: el corazón del pueblo.\n- **Malecón de Ajijic**: caminata y atardeceres frente al lago.\n- **Galerías y talleres de artistas**: pintura, cerámica y artesanías.\n- **Malecón de Chapala**: el muelle, el mercado y las casonas de principios del siglo XX.\n- **Paseo en lancha**: a la Isla de los Alacranes o a la Isla de Mezcala, con historia de la Independencia.\n- **Senderismo**: caminos por los cerros de la sierra, con vista a todo el lago.",
+  "consejos": "- Llegá a media tarde al malecón para ver el atardecer sobre el lago.\n- Usá calzado cómodo: las calles empedradas son irregulares.\n- Llevá protector solar, aunque el clima sea templado: el sol es fuerte.\n- Los fines de semana llegan muchos visitantes de Guadalajara: entre semana es más tranquilo.\n- Combiná la visita con Guadalajara, Tlaquepaque y Tequila en el mismo viaje.",
+  "faqs": [
+   {
+    "a": "En la orilla norte del Lago de Chapala, en el municipio de Chapala, Jalisco, a unos 50 km al sur de Guadalajara.",
+    "q": "¿Dónde queda Ajijic?"
+   },
+   {
+    "a": "Sí, Ajijic forma parte del programa de Pueblos Mágicos de México.",
+    "q": "¿Ajijic es Pueblo Mágico?"
+   },
+   {
+    "a": "Con un día recorrés Ajijic y Chapala. Con 2 o 3 días podés sumar un paseo en lancha a las islas, caminatas y disfrutar el pueblo sin apuro.",
+    "q": "¿Cuántos días se necesitan?"
+   },
+   {
+    "a": "Sí, está a alrededor de una hora en auto o en bus.",
+    "q": "¿Se puede ir en el día desde Guadalajara?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-22T20:48:54.592451+00:00",
+  "clima": "",
+  "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
+  "requisitos_fuente": "https://www.gob.mx/inm",
+  "moneda": "Peso mexicano (MXN). Muchos restaurantes y hoteles aceptan tarjeta; para puestos, lanchas y propinas llevá efectivo.",
+  "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
+  "huso": "America/Mexico_City",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
+  "lugar": "Pueblo",
+  "pueblo_magico": true
  }
 ]
