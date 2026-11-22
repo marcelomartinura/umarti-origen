@@ -117,7 +117,7 @@
       return api.esAdmin().then(function (si) {
         if (!si) { $('#noadmin-email').textContent = s.user.email; mostrar('#v-noadmin'); return; }
         window.PanelComun.listo = true;
-        abrirModulo(location.hash === '#viajes' ? 'viajes' : location.hash === '#cupones' ? 'cupones' : 'productos');
+        abrirModulo(location.hash === '#viajes' ? 'viajes' : location.hash === '#cupones' ? 'cupones' : location.hash === '#afiliados' ? 'afiliados' : 'productos');
       });
     });
   }
@@ -125,6 +125,7 @@
   /* ---------- módulos ---------- */
   function abrirModulo(m) {
     $$('.pn-mods .mod').forEach(function (b) { b.classList.toggle('on', b.dataset.mod === m); });
+    if (m === 'afiliados') { if (!window.PanelAfiliados) { setTimeout(function () { abrirModulo('afiliados'); }, 50); return; } history.replaceState(null, '', '#afiliados'); window.PanelAfiliados.abrir(); return; }
     if (m === 'cupones') { if (!window.PanelCupones) { setTimeout(function () { abrirModulo('cupones'); }, 50); return; } history.replaceState(null, '', '#cupones'); window.PanelCupones.abrir(); return; }
     if (m === 'viajes') { if (!window.PanelViajes) { setTimeout(function () { abrirModulo('viajes'); }, 50); return; } history.replaceState(null, '', '#viajes'); window.PanelViajes.abrir(); }
     else { history.replaceState(null, '', location.pathname + location.search); cargarLista(); }
@@ -143,7 +144,7 @@
   function cargarLista() {
     mostrar('#v-lista');
     $('#l-tabla').innerHTML = '<p class="vacio">Cargando productos…</p>';
-    api.listar().then(function (d) { productos = d; pintarLista(); }).catch(function (e) { $('#l-tabla').innerHTML = '<p class="vacio err">No se pudieron cargar los productos: ' + esc(e.message) + '</p>'; });
+    api.listar().then(function (d) { productos = d.filter(function (p) { return p.tipo !== 'afiliado'; }); pintarLista(); }).catch(function (e) { $('#l-tabla').innerHTML = '<p class="vacio err">No se pudieron cargar los productos: ' + esc(e.message) + '</p>'; });
   }
   function pintarLista() {
     var q = slugify($('#l-q').value).replace(/-/g, ' '), c = selCat.value;

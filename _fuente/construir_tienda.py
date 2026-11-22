@@ -35,7 +35,49 @@ def en_tienda_local(p):
 
 def cargar():
     d = json.load(open(CATALOGO, encoding="utf-8"))
+    AFILIADOS[:] = d.get("afiliados", [])
     return d["productos"], d["temas"]
+
+
+# Productos de tiendas externas (Amazon, Mercado Libre, AliExpress) cargados en el módulo Afiliados del Panel.
+# Se muestran mezclados con los productos de la Tienda, con una tarjeta más chica y discreta.
+AFILIADOS = []
+TIENDA_EXT = {"amazon-mx": ("Amazon", "amz"), "ml-ar": ("Mercado Libre", "ml"), "ml-mx": ("Mercado Libre", "ml"), "aliexpress": ("AliExpress", "ali")}
+
+
+def card_af(a, d, modo="local"):
+    tienda, cls = TIENDA_EXT.get(a.get("plataforma_afiliado"), ("la tienda", "x"))
+    orden = ("usd", "mxn", "ars") if modo == "intl" else ("ars", "usd", "mxn")
+    pr = mon = ""
+    pn = None
+    if a.get("plataforma_afiliado") != "amazon-mx":
+        for m in orden:
+            if a.get(f"precio_{m}") is not None:
+                pr, mon = precio(a[f"precio_{m}"], m), m.upper()
+                if m == ("usd" if modo == "intl" else "ars"):
+                    pn = a[f"precio_{m}"]
+                break
+    foto = a["fotos"][0] if a.get("fotos") else ""
+    img = (f'<img src="{esc(foto)}" alt="" loading="lazy" referrerpolicy="no-referrer">' if foto
+           else f'<span class="af-ph">{esc(a["nombre"][:1])}</span>')
+    precio_html = f'<span class="af-price">{pr}<small>{mon}</small></span>' if pr else '<span class="af-price ver">Ver precio</span>'
+    return f'''        <article class="prod-card af-card af-{cls}" data-cat="{esc(a.get('categoria') or '')}" data-sub="{esc(a.get('subcategoria') or '')}" data-origen="" data-precio="{'' if pn is None else pn}" data-nombre="{esc(a['nombre'])}" data-n="0">
+          <a class="af-link" href="{esc(a['url_afiliado'])}" target="_blank" rel="sponsored nofollow noopener">
+            <span class="af-media">{img}</span>
+            <span class="af-info"><span class="kick">{esc(a.get('subcategoria') or a.get('categoria') or '')}</span><h3>{esc(a['nombre'])}</h3>{precio_html}
+            <span class="af-btn">Ver en {tienda} <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span>
+          </a>
+        </article>'''
+
+
+def mezclar(propias, externas, cada=3):
+    """Intercala las tarjetas externas entre las propias: una cada `cada` productos propios."""
+    out, j = [], 0
+    for i, c in enumerate(propias, 1):
+        out.append(c)
+        if i % cada == 0 and j < len(externas):
+            out.append(externas[j]); j += 1
+    return out + externas[j:]
 
 
 def cargar_envios():
@@ -330,7 +372,7 @@ def listado(productos, cb, cv):
       <div class="shop-tools">{chips}<span class="v-count" id="shop-count"></span></div>
 {herramientas_listado()}
       <div class="prod-grid" id="shop-grid">
-{chr(10).join(card(p, d, cb, cv) for p in locales)}
+{chr(10).join(mezclar([card(p, d, cb, cv) for p in locales], [card_af(a, d) for a in AFILIADOS if a["tienda_ar"]]))}
         <p class="shop-empty" id="shop-empty">Todavía no hay productos en esta categoría.</p>
       </div>
       <p class="shop-note">¿Comprás desde otro país? Mirá <a href="{rel(d, 'international-shop/')}">International Shop</a>. · <a href="{rel(d, p_envio('argentina'))}">Condiciones de envío</a></p>
@@ -402,7 +444,7 @@ def international(productos, cb, cv):
       <div class="shop-tools"><div class="chip-row" role="group" aria-label="Filtrar por origen"><span class="chips-lbl">Origen</span><button type="button" data-filtro="" aria-pressed="true">Todos</button>{origenes}</div><span class="v-count" id="shop-count"></span></div>
 {herramientas_listado("US$")}
       <div class="prod-grid" id="shop-grid">
-{chr(10).join(card(p, d, cb, cv, "intl") for p in intl)}
+{chr(10).join(mezclar([card(p, d, cb, cv, "intl") for p in intl], [card_af(a, d, "intl") for a in AFILIADOS if a["international"]]))}
         <p class="shop-empty" id="shop-empty">No hay productos en ese rango de precio.</p>
       </div>
       <p class="shop-note">¿Comprás por volumen para revender o distribuir? Mirá los <a href="{rel(d, 'productos-de-exportacion/')}">Productos de exportación</a> del Hub de Oportunidades.</p>
@@ -786,10 +828,11 @@ def pagina_categoria(cat, productos, notas, cb, cv, pais="Argentina"):
     conf = json.load(open(os.path.join(AQUI, "tienda", "categorias.json"), encoding="utf-8")).get(cat, {})
     subs = cb.CATEGORIAS[cat]
     prods = [p for p in productos if p["pais"] == pais and en_tienda_local(p) and p["categoria"] == cat]
+    afis_cat = [a for a in AFILIADOS if a["categoria"] == cat and (a["tienda_ar"] if pais == "Argentina" else a.get("tienda_mx"))]
     intl = [p for p in productos if p["international"] and p["categoria"] == cat]
     chips = '<div class="chip-row" role="group" aria-label="Filtrar"><button type="button" data-filtro="" aria-pressed="true">Todo</button>' + "".join(
         f'<button type="button" data-filtro="{esc(s)}" aria-pressed="false">{esc(s)}</button>' for s in subs) + "</div>"
-    vacio = "Todavía no hay productos en esta categoría. Muy pronto vas a encontrarlos acá." if not prods else "Todavía no hay productos en esta subcategoría."
+    vacio = "Todavía no hay productos en esta categoría. Muy pronto vas a encontrarlos acá." if not prods and not afis_cat else "Todavía no hay productos en esta subcategoría."
     notas_cat = [n for n in notas if n.get("categoria") == cat]
     bloque_notas = ""
     if notas_cat:
@@ -841,8 +884,8 @@ def pagina_categoria(cat, productos, notas, cb, cv, pais="Argentina"):
       <div class="shop-tools">{chips}<span class="v-count" id="shop-count"></span></div>
 {herramientas_listado()}
       <div class="prod-grid" id="shop-grid">
-{chr(10).join(card(p, d, cb, cv) for p in prods)}
-        <p class="shop-empty{' show' if not prods else ''}" id="shop-empty">{vacio}</p>
+{chr(10).join(mezclar([card(p, d, cb, cv) for p in prods], [card_af(a, d) for a in afis_cat]))}
+        <p class="shop-empty{' show' if not prods and not afis_cat else ''}" id="shop-empty">{vacio}</p>
       </div>
 {bloque_notas}
 {bloque_extras}

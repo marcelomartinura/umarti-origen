@@ -11,12 +11,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/panel.css?v=d1c166a9">
+  <link rel="stylesheet" href="../assets/css/panel.css?v=87812835">
 </head>
 <body>
   <header class="pn-top">
     <a class="pn-logo" href="../"><img src="../assets/img/marca/icono-blanco.png" alt="" width="259" height="236"><span>Umarti <span>Origen</span></span><small>Panel</small></a>
-    <nav class="pn-mods" aria-label="Módulos"><button type="button" class="mod on" data-mod="productos">Productos</button><button type="button" class="mod" data-mod="publicidad" disabled>Publicidad<small>Pronto</small></button><button type="button" class="mod" data-mod="cupones">Cupones</button><button type="button" class="mod" data-mod="hub" disabled>HUB<small>Pronto</small></button><button type="button" class="mod" data-mod="viajes">Viajes</button></nav>
+    <nav class="pn-mods" aria-label="Módulos"><button type="button" class="mod on" data-mod="productos">Productos</button><button type="button" class="mod" data-mod="afiliados">Afiliados</button><button type="button" class="mod" data-mod="publicidad" disabled>Publicidad<small>Pronto</small></button><button type="button" class="mod" data-mod="cupones">Cupones</button><button type="button" class="mod" data-mod="hub" disabled>HUB<small>Pronto</small></button><button type="button" class="mod" data-mod="viajes">Viajes</button></nav>
     <div class="pn-user" id="pn-user" hidden>
       <span id="pn-email"></span>
       <a href="../" target="_blank" rel="noopener">Ver sitio ↗</a>
@@ -358,6 +358,25 @@
       </form>
     </section>
 
+    <!-- Afiliados: carga rápida en tabla -->
+    <section id="v-afiliados" hidden>
+      <div class="pn-head">
+        <div><h1>Afiliados</h1><p class="muted" id="af-resumen">Productos de Amazon México, Mercado Libre y AliExpress. En el sitio se ven mezclados en la Tienda, más chicos y sin decir "afiliado".</p></div>
+        <button class="btn pri" type="button" id="af-guardar" disabled>Guardar cambios</button>
+      </div>
+      <div class="af-carga">
+        <label for="af-links"><b>Pegá uno o varios links</b> <small class="muted">uno por renglón · Amazon México, Mercado Libre (Argentina o México) o AliExpress</small></label>
+        <textarea id="af-links" rows="3" placeholder="https://amzn.to/...&#10;https://meli.la/...&#10;https://s.click.aliexpress.com/..."></textarea>
+        <div class="af-carga-pie"><button class="btn" type="button" id="af-agregar">Agregar a la tabla</button><span class="muted" id="af-estado-carga"></span></div>
+      </div>
+      <div class="pn-filtros">
+        <input type="search" id="af-q" placeholder="Buscar por título o código" aria-label="Buscar">
+        <div class="chips" id="af-filtro-pl" role="group" aria-label="Tienda de origen"></div>
+      </div>
+      <div class="pn-tabla af-tabla" id="af-tabla"></div>
+      <p class="pn-nota">Completamos el título y la foto solos cuando la tienda lo permite (Amazon a veces lo bloquea: escribilos a mano). El título lo podés cambiar siempre. <b>Amazon no permite mostrar precios escritos a mano</b>: en sus productos dejá el precio vacío y el sitio dice "Ver precio". Los <b>Publicados</b> aparecen en el sitio en unos minutos.</p>
+    </section>
+
     <!-- Cupones: lista -->
     <section id="v-clista" hidden>
       <div class="pn-head">
@@ -421,8 +440,9 @@
 
   <script>window.PANEL = {"supabase": {"url": "https://tkrnwboyynvbellqnzle.supabase.co", "key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRrcm53Ym95eW52YmVsbHFuemxlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI0MjE0NTYsImV4cCI6MjEwNzk5NzQ1Nn0.B1wq_8z8Gwd4L3ieavvpE2PKjQcj1-KVXDREmCL7wjA"}, "categorias": {"Café, Té y Mate": ["Mates y bombillas", "Café", "Té", "Chocolate"], "Regalos y Kits": ["Kits de mate y café", "Regalos corporativos", "Personalizados"], "Artículos Regionales": ["Bolsos materos", "Marroquinería y riñoneras", "Juegos de asado", "Portatermos y llaveros"], "Bebidas": ["Vinos", "Cervezas y destilados", "Sin alcohol"], "Alimentos": ["Alimentos congelados", "Alimentos diet", "Golosinas", "Snacks"], "Salud y Bienestar": ["Odontología", "Cuidado personal", "Dispositivos médicos"], "Moda": ["Ropa de dama", "Zapatos", "Carteras", "Ropa de caballero"], "Tecnología": ["Accesorios", "Audio", "Hogar inteligente"], "Herramientas y Jardín": ["Herramientas", "Jardín", "Construcción"], "Hogar y Cocina": ["Bazar y cocina", "Organización", "Deco"], "Limpieza e Higiene": ["Productos de limpieza", "Productos de higiene personal"]}, "temas": [{"clave": "mate", "nombre": "Mate"}], "destinos": [{"slug": "buenos-aires", "nombre": "Buenos Aires", "pais": "Argentina"}, {"slug": "glaciar-perito-moreno", "nombre": "Glaciar Perito Moreno", "pais": "Argentina"}, {"slug": "rosario", "nombre": "Rosario", "pais": "Argentina"}, {"slug": "queretaro", "nombre": "Querétaro", "pais": "México"}, {"slug": "ciudad-de-mexico", "nombre": "Ciudad de México", "pais": "México"}, {"slug": "leon", "nombre": "León", "pais": "México"}, {"slug": "puerto-escondido", "nombre": "Puerto Escondido", "pais": "México"}, {"slug": "san-miguel-de-allende", "nombre": "San Miguel de Allende", "pais": "México"}, {"slug": "el-chalten", "nombre": "El Chaltén", "pais": "Argentina"}, {"slug": "pena-de-bernal", "nombre": "Peña de Bernal", "pais": "México"}, {"slug": "tequisquiapan", "nombre": "Tequisquiapan", "pais": "México"}], "paises": ["Argentina", "México", "Uruguay", "Paraguay", "Chile", "Brasil", "Otro"], "viajes": {"tipos": ["Aventura", "Cultura", "Gastronomía", "Montaña", "Naturaleza", "Nieve", "Shopping", "Urbano", "Vino"], "paises": ["Argentina", "México"], "notas": [{"slug": "con-que-acompanar-un-malbec", "titulo": "Con qué acompañar un Malbec: maridajes simples", "seccion": "productos"}, {"slug": "como-curar-un-mate", "titulo": "Cómo curar un mate de calabaza o de madera antes de estrenarlo", "seccion": "productos"}, {"slug": "como-curar-un-mate-de-palo-santo", "titulo": "Cómo curar un mate de palo santo sin que se agriete", "seccion": "productos"}, {"slug": "como-limpiar-la-bombilla-del-mate", "titulo": "Cómo limpiar la bombilla del mate (y que no se tape)", "seccion": "productos"}, {"slug": "como-preparar-un-buen-mate", "titulo": "Cómo preparar un buen mate, paso a paso", "seccion": "productos"}, {"slug": "como-usar-la-mesa-de-negociacion", "titulo": "Cómo usar Oportunidades Globales para encontrar lo que buscás", "seccion": "negocios"}, {"slug": "guia-de-talles-como-medirte", "titulo": "Guía de talles: cómo medirte para acertar en tu compra", "seccion": "productos"}, {"slug": "incoterms-explicados-fob-cif-exw", "titulo": "Incoterms explicados: FOB, CIF, EXW y los más usados", "seccion": "negocios"}, {"slug": "primeros-pasos-para-exportar-de-argentina-a-mexico", "titulo": "Primeros pasos para exportar de Argentina a México", "seccion": "negocios"}, {"slug": "que-es-el-mate", "titulo": "Qué es el mate: origen, tradición y cómo se toma", "seccion": "productos"}, {"slug": "que-es-la-posicion-arancelaria", "titulo": "Qué es la posición arancelaria y cómo encontrar la de tu producto", "seccion": "negocios"}, {"slug": "molienda-de-cafe-segun-tu-cafetera", "titulo": "Qué molienda de café usar según tu cafetera", "seccion": "productos"}], "presupuestos": ["Bajo", "Medio", "Alto"]}, "cupones": {"categorias": ["Viajes", "Alojamientos", "Gastronomía", "Belleza y Spa", "Servicios", "Productos", "Digitales"], "paises": ["Argentina", "México", "En línea", "Uruguay", "Chile", "España", "Estados Unidos", "Otro"]}, "paises_envio": ["Todos los países", "México", "Estados Unidos", "España", "Chile", "Uruguay", "Colombia", "Perú", "Canadá", "Brasil", "Italia", "Alemania"]};</script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-  <script src="../assets/js/panel.js?v=6bb57d96"></script>
+  <script src="../assets/js/panel.js?v=539d8330"></script>
   <script src="../assets/js/panel-viajes.js?v=63abb90c"></script>
   <script src="../assets/js/panel-cupones.js?v=79b4a615"></script>
+  <script src="../assets/js/panel-afiliados.js?v=b268c54b"></script>
 </body>
 </html>

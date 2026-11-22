@@ -39,7 +39,7 @@ DATOS = {
 
 opts_zonas = "".join(f'<optgroup label="{g}">' + "".join(f'<option value="{z}">{n}</option>' for n, z in xs) + "</optgroup>" for g, xs in cr.ZONAS)
 
-MODULOS = [("productos", "Productos", True), ("publicidad", "Publicidad", False), ("cupones", "Cupones", True),
+MODULOS = [("productos", "Productos", True), ("afiliados", "Afiliados", True), ("publicidad", "Publicidad", False), ("cupones", "Cupones", True),
            ("hub", "HUB", False), ("viajes", "Viajes", True)]
 
 botonera = "".join(
@@ -401,6 +401,25 @@ html = f'''<!doctype html>
       </form>
     </section>
 
+    <!-- Afiliados: carga rápida en tabla -->
+    <section id="v-afiliados" hidden>
+      <div class="pn-head">
+        <div><h1>Afiliados</h1><p class="muted" id="af-resumen">Productos de Amazon México, Mercado Libre y AliExpress. En el sitio se ven mezclados en la Tienda, más chicos y sin decir "afiliado".</p></div>
+        <button class="btn pri" type="button" id="af-guardar" disabled>Guardar cambios</button>
+      </div>
+      <div class="af-carga">
+        <label for="af-links"><b>Pegá uno o varios links</b> <small class="muted">uno por renglón · Amazon México, Mercado Libre (Argentina o México) o AliExpress</small></label>
+        <textarea id="af-links" rows="3" placeholder="https://amzn.to/...&#10;https://meli.la/...&#10;https://s.click.aliexpress.com/..."></textarea>
+        <div class="af-carga-pie"><button class="btn" type="button" id="af-agregar">Agregar a la tabla</button><span class="muted" id="af-estado-carga"></span></div>
+      </div>
+      <div class="pn-filtros">
+        <input type="search" id="af-q" placeholder="Buscar por título o código" aria-label="Buscar">
+        <div class="chips" id="af-filtro-pl" role="group" aria-label="Tienda de origen"></div>
+      </div>
+      <div class="pn-tabla af-tabla" id="af-tabla"></div>
+      <p class="pn-nota">Completamos el título y la foto solos cuando la tienda lo permite (Amazon a veces lo bloquea: escribilos a mano). El título lo podés cambiar siempre. <b>Amazon no permite mostrar precios escritos a mano</b>: en sus productos dejá el precio vacío y el sitio dice "Ver precio". Los <b>Publicados</b> aparecen en el sitio en unos minutos.</p>
+    </section>
+
     <!-- Cupones: lista -->
     <section id="v-clista" hidden>
       <div class="pn-head">
@@ -467,6 +486,7 @@ html = f'''<!doctype html>
   <script src="../assets/js/panel.js"></script>
   <script src="../assets/js/panel-viajes.js"></script>
   <script src="../assets/js/panel-cupones.js"></script>
+  <script src="../assets/js/panel-afiliados.js"></script>
 </body>
 </html>
 '''

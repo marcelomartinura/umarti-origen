@@ -48,17 +48,35 @@ def convertir(fila):
     return p
 
 
+CAMPOS_AF = ["codigo", "nombre", "categoria", "subcategoria", "url_afiliado", "plataforma_afiliado", "fotos",
+             "precio_ars", "precio_mxn", "precio_usd", "tienda_ar", "tienda_mx", "international", "estado"]
+
+
+def convertir_afiliado(fila):
+    """Productos de Amazon, Mercado Libre y AliExpress cargados en el módulo Afiliados del Panel."""
+    a = {k: fila.get(k) for k in CAMPOS_AF}
+    for k in ("precio_ars", "precio_mxn", "precio_usd"):
+        a[k] = numero(a[k])
+    a["fotos"] = a["fotos"] or []
+    for k in ("tienda_ar", "tienda_mx", "international"):
+        a[k] = bool(a[k])
+    return a
+
+
 def main():
     filas = json.load(open(sys.argv[1], encoding="utf-8")) if len(sys.argv) > 1 else descargar()
     cat = json.load(open(CATALOGO, encoding="utf-8"))
+    afis = [f for f in filas if f.get("tipo") == "afiliado"]
+    filas = [f for f in filas if f.get("tipo") != "afiliado"]
     cat["productos"] = [convertir(f) for f in filas]
+    cat["afiliados"] = [convertir_afiliado(f) for f in afis if f.get("url_afiliado") and f.get("estado") == "Publicado"]
     nuevo = json.dumps(cat, ensure_ascii=False, indent=1)
     viejo = open(CATALOGO, encoding="utf-8").read()
     if nuevo.strip() != viejo.strip():
         open(CATALOGO, "w", encoding="utf-8").write(nuevo + "\n")
-        print(f"ok {len(filas)} productos -> catálogo actualizado")
+        print(f"ok {len(filas)} productos y {len(cat['afiliados'])} de afiliados -> catálogo actualizado")
     else:
-        print(f"ok {len(filas)} productos -> sin cambios")
+        print(f"ok {len(filas)} productos y {len(cat['afiliados'])} de afiliados -> sin cambios")
 
 
 if __name__ == "__main__":
