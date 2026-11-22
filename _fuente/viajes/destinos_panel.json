@@ -643,5 +643,65 @@
   "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
   "lugar": "Pueblo",
   "pueblo_magico": true
+ },
+ {
+  "slug": "oaxaca",
+  "pais": "México",
+  "ciudad": "Oaxaca",
+  "region": "Oaxaca",
+  "resumen": "Una ciudad colonial de cantera verde, capital del mole y del mezcal: mercados, artesanías, Monte Albán y tradiciones vivas como la Guelaguetza y el Día de Muertos.",
+  "tags": [
+   "Cultura",
+   "Gastronomía",
+   "Urbano"
+  ],
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/oaxaca/principal/1795376582356.jpg",
+  "foto_pos": "center",
+  "dias": "3 a 5 días",
+  "mejor_epoca": "Octubre a mayo",
+  "presupuesto": "Medio",
+  "por_que": "**Oaxaca de Juárez** es una de las ciudades más ricas de México en cultura, cocina y artesanía. Su centro histórico, de calles de cantera verde, templos barrocos y casonas convertidas en museos y restaurantes, y la zona arqueológica de **Monte Albán**, a pocos kilómetros, son Patrimonio de la Humanidad.\n\nEs la tierra del **mole**, las **tlayudas** y el **mezcal**, y el centro de un estado donde conviven decenas de pueblos indígenas con sus lenguas, textiles y fiestas. Desde la ciudad se visitan pueblos de artesanos, palenques de mezcal y paisajes como Hierve el Agua, así que es fácil armar varios días distintos.",
+  "cuando_ir": "**Mejor época:** de octubre a mayo, con días soleados y poca lluvia. Marzo a mayo son los meses más calurosos.\n\n**Clima:** templado y agradable casi todo el año. De junio a septiembre llueve por las tardes, aunque las mañanas suelen ser despejadas.\n\n**Fechas especiales:** la **Guelaguetza**, la gran fiesta de danzas de las regiones de Oaxaca, se celebra en julio. El **Día de Muertos**, a fines de octubre y principios de noviembre, llena la ciudad de altares, comparsas y panteones iluminados. En las dos fechas conviene reservar con mucha anticipación.",
+  "que_comer": "- **Mole**: negro, coloradito, amarillo y otros; Oaxaca es conocida como la tierra de los siete moles\n- **Tlayudas**: tortillas grandes y crujientes con asiento, frijol, quesillo y tasajo\n- **Quesillo**, el queso de hebra oaxaqueño\n- **Chapulines** tostados, para los que se animan\n- **Chocolate de agua** y **tejate**, una bebida prehispánica de maíz y cacao\n- **Mezcal**, en mezcalerías del centro o directo en los palenques\n- **Memelas** y **empanadas de amarillo** en los mercados",
+  "donde_alojarse": "- **Centro histórico**: hoteles boutique en casonas coloniales, a pasos del zócalo y del andador Macedonio Alcalá.\n- **Barrio de Jalatlaco**: calles empedradas y murales, más tranquilo y a pocas cuadras del centro.\n- **Barrio de Xochimilco**: residencial y con encanto, cerca de Santo Domingo.\n\nPara la Guelaguetza y el Día de Muertos conviene reservar con meses de anticipación.",
+  "como_llegar": "El **Aeropuerto Internacional de Oaxaca** recibe vuelos desde la Ciudad de México (alrededor de 1 hora), Monterrey, Guadalajara, Tijuana y algunas ciudades de Estados Unidos.\n\nPor tierra son unos 460 kilómetros desde la Ciudad de México: unas 6 horas por autopista. Hay buses directos y cómodos desde la terminal TAPO y otras terminales de la capital.",
+  "como_moverse": "El centro histórico se recorre caminando: la mayoría de los museos, templos, mercados y restaurantes está a pocas cuadras del zócalo. Para distancias más largas hay taxis y apps de transporte.\n\nPara Monte Albán, Hierve el Agua, Mitla y los pueblos de artesanos conviene contratar un tour o alquilar un auto; también hay colectivos que salen desde la ciudad hacia los pueblos de los valles.",
+  "que_hacer": "- **Templo de Santo Domingo de Guzmán**: su interior dorado es una joya barroca; al lado están el Museo de las Culturas y el Jardín Etnobotánico.\n- **Andador Macedonio Alcalá y el zócalo**: galerías, tiendas de artesanías y cafés.\n- **Mercados 20 de Noviembre y Benito Juárez**: el pasillo de humo para la carne asada, moles, chocolate y artesanías.\n- **Monte Albán**: la antigua capital zapoteca, con vista a todo el valle.\n- **Hierve el Agua**: cascadas petrificadas y pozas naturales en lo alto de la sierra.\n- **Pueblos de artesanos**: tapetes de lana en Teotitlán del Valle, barro negro en San Bartolo Coyotepec y alebrijes en San Martín Tilcajete.\n- **Árbol del Tule y Mitla**: un ahuehuete milenario y una zona arqueológica con grecas de piedra únicas.\n- **Palenques de mezcal**: visitas con cata en la zona de Santiago Matatlán.",
+  "consejos": "- Probá el mole y la tlayuda en los mercados: es donde más se come como los oaxaqueños.\n- Llevá efectivo para mercados, artesanías y pueblos.\n- Al comprar artesanías, preferí los talleres de los propios artesanos: el precio es justo y el dinero queda en la comunidad.\n- Usá protector solar y agua en Monte Albán y Hierve el Agua: hay poca sombra.\n- Si vas en Guelaguetza o Día de Muertos, reservá alojamiento y entradas con meses de anticipación.",
+  "faqs": [
+   {
+    "a": "Con 3 días conocés el centro y Monte Albán. Con 5 días podés sumar Hierve el Agua, Mitla, el Tule y los pueblos de artesanos.",
+    "q": "¿Cuántos días se necesitan para conocer Oaxaca?"
+   },
+   {
+    "a": "Se celebra en julio, en dos lunes consecutivos conocidos como los Lunes del Cerro. Conviene confirmar las fechas de cada año.",
+    "q": "¿Cuándo es la Guelaguetza?"
+   },
+   {
+    "a": "El centro histórico y los recorridos turísticos habituales son tranquilos. Como en cualquier ciudad, tomá precauciones normales y consultá las recomendaciones oficiales antes de viajar.",
+    "q": "¿Es seguro visitar Oaxaca?"
+   },
+   {
+    "a": "En avión, alrededor de 1 hora. En bus o auto, unas 6 horas por autopista.",
+    "q": "¿Cómo llegar desde la Ciudad de México?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-22T19:43:12.171229+00:00",
+  "clima": "",
+  "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
+  "requisitos_fuente": "https://www.gob.mx/inm",
+  "moneda": "Peso mexicano (MXN). Hoteles y restaurantes aceptan tarjeta; para mercados, artesanías, pueblos y colectivos llevá efectivo.",
+  "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
+  "huso": "America/Mexico_City",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
+  "lugar": "Ciudad",
+  "pueblo_magico": false
  }
 ]
