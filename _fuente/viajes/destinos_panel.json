@@ -583,5 +583,65 @@
   "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
   "lugar": "Pueblo",
   "pueblo_magico": true
+ },
+ {
+  "slug": "tequisquiapan",
+  "pais": "México",
+  "ciudad": "Tequisquiapan",
+  "region": "Querétaro",
+  "resumen": "Un Pueblo Mágico de calles empedradas y buganvilias, con aguas termales, la Feria Nacional del Queso y el Vino y los viñedos de Querétaro a pocos minutos.",
+  "tags": [
+   "Cultura",
+   "Gastronomía",
+   "Vino"
+  ],
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/tequisquiapan/principal/1795369628769.jpg",
+  "foto_pos": "center",
+  "dias": "2 a 3 días",
+  "mejor_epoca": "Primavera y otoño",
+  "presupuesto": "Medio",
+  "por_que": "**Tequisquiapan** es uno de los pueblos más agradables del Bajío para bajar el ritmo. Su centro gira alrededor de una plaza con portales y el templo de Santa María de la Asunción, rodeada de calles empedradas, casas con buganvilias, nieverías y tiendas de artesanías.\n\nEs Pueblo Mágico desde 2012 y una de las puertas de la **Ruta del Arte, Queso y Vino**: alrededor del pueblo hay viñedos, cavas y queserías que se pueden visitar en el día. Además es conocido por sus **aguas termales** y balnearios, y por la **Feria Nacional del Queso y el Vino**, que cada año reúne a productores de todo el país.",
+  "cuando_ir": "**Mejor época:** primavera y otoño, con días templados y soleados. De diciembre a febrero las mañanas y noches son frías.\n\n**Clima:** semiseco y templado. En verano llueve por las tardes y los viñedos están verdes.\n\n**Fechas especiales:** la **Feria Nacional del Queso y el Vino** se hace a fines de mayo y principios de junio; en agosto y septiembre es época de vendimia en los viñedos de la zona. Los fines de semana y puentes hay mucha gente: entre semana el pueblo es mucho más tranquilo.",
+  "que_comer": "- Quesos de la región: frescos, madurados y de cabra\n- Vinos y espumosos de los viñedos de Querétaro\n- Gorditas de maíz quebrado y de migajas\n- Barbacoa de borrego los fines de semana\n- Enchiladas queretanas\n- Nieves y helados artesanales en la plaza",
+  "donde_alojarse": "- **Centro de Tequisquiapan**: hoteles boutique y casonas a pocas cuadras de la plaza, para recorrer todo caminando.\n- **Hoteles con aguas termales**: con albercas de agua tibia y spa, ideales para descansar.\n- **Viñedos y alrededores**: hoteles entre viñedos camino a Ezequiel Montes y Bernal, para combinar con catas.\n\nPara la Feria del Queso y el Vino y los fines de semana largos conviene reservar con anticipación.",
+  "como_llegar": "Tequisquiapan está a unos **65 kilómetros de la ciudad de Querétaro**, alrededor de una hora en auto, y a unos **180 kilómetros de la Ciudad de México**, unas 2 horas y media por la autopista México–Querétaro.\n\nEl aeropuerto más cercano es el **Aeropuerto Intercontinental de Querétaro**. Desde las terminales de autobuses de Querétaro y de la Ciudad de México salen buses directos.",
+  "como_moverse": "El centro es chico y se recorre caminando. Para visitar viñedos, queserías y la Peña de Bernal (a unos 35 kilómetros) conviene tener auto o contratar un tour, porque el transporte público entre esos puntos es limitado.\n\nSi vas a hacer catas, hay recorridos con traslado incluido para no manejar.",
+  "que_hacer": "- **Recorrer el centro**: la plaza Miguel Hidalgo, el templo de Santa María de la Asunción y los portales.\n- **Mercado de artesanías**: canastas y muebles de mimbre, textiles y piedras de la región.\n- **Ruta del Arte, Queso y Vino**: catas en viñedos y cavas, y visitas a queserías de los alrededores.\n- **Aguas termales**: un día de descanso en un balneario o en el spa de algún hotel.\n- **Vuelo en globo**: al amanecer, sobre los viñedos y el valle, con vista a la Peña de Bernal.\n- **Peña de Bernal**: el Pueblo Mágico vecino, ideal para sumar en el mismo viaje.",
+  "consejos": "- Andá entre semana si buscás tranquilidad: los fines de semana se llena de visitantes.\n- Reservá con anticipación las catas y los vuelos en globo.\n- Llevá efectivo para el mercado de artesanías y los puestos de comida.\n- Si vas a tomar vino, no manejes: elegí un tour con traslado.\n- Llevá algo de abrigo: aunque el día sea cálido, las noches refrescan.",
+  "faqs": [
+   {
+    "a": "En el estado de Querétaro, a unos 65 km de la ciudad de Querétaro y a unos 180 km de la Ciudad de México.",
+    "q": "¿Dónde queda Tequisquiapan?"
+   },
+   {
+    "a": "Con 2 días recorrés el pueblo y hacés una visita a viñedos. Con 3 días podés sumar aguas termales y la Peña de Bernal.",
+    "q": "¿Cuántos días se necesitan?"
+   },
+   {
+    "a": "Se hace cada año a fines de mayo y principios de junio. Conviene confirmar las fechas exactas antes de viajar.",
+    "q": "¿Cuándo es la Feria del Queso y el Vino?"
+   },
+   {
+    "a": "Sí, están a unos 35 km. Es la combinación más común de la Ruta del Arte, Queso y Vino.",
+    "q": "¿Se puede combinar con la Peña de Bernal?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-22T17:47:18.066863+00:00",
+  "clima": "",
+  "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
+  "requisitos_fuente": "https://www.gob.mx/inm",
+  "moneda": "Peso mexicano (MXN). Muchos hoteles, restaurantes y viñedos aceptan tarjeta; para el mercado, puestos y propinas llevá efectivo.",
+  "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
+  "huso": "America/Mexico_City",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
+  "lugar": "Pueblo",
+  "pueblo_magico": true
  }
 ]
