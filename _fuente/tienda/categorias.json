@@ -53,11 +53,14 @@
     "imagen_pos": "center 48%"
   },
   "Moda": {
+    "titulo": "Moda",
     "bajada": "Ropa de dama y de caballero, zapatos y carteras.",
     "temas": [],
     "recursos": [
       "tabla-de-talles"
-    ]
+    ],
+    "imagen": "assets/img/categorias/moda.jpg",
+    "imagen_pos": "right center"
   },
   "Tecnología": {
     "bajada": "Accesorios, audio y hogar inteligente.",
