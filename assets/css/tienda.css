@@ -497,3 +497,10 @@ dialog::backdrop { background: rgba(31, 26, 20, 0.55); }
 .tc-tile small { opacity: .85; font-size: 0.8rem; margin-top: 2px; }
 .tc-tile:hover { transform: translateY(-2px); box-shadow: 0 14px 26px -16px rgba(0,0,0,.5); }
 @media (max-width: 640px) { .tx-btns, .tx-btn { width: 100%; } .tx-btn { justify-content: center; } .tc-grid { grid-template-columns: 1fr 1fr; } }
+
+/* International Shop: tienda de todos los países */
+.is-bar { border-bottom-color: #2f6f8f; }
+.is-globo { width: 34px; height: 34px; display: grid; place-items: center; color: #2f6f8f; }
+.chips-lbl { font-size: 0.86rem; font-weight: 600; color: var(--muted); margin-right: 4px; align-self: center; }
+.chip-row .bm { margin-right: 6px; vertical-align: -1px; border-radius: 2px; }
+.prod-card .envio.origen svg { width: 15px; height: 15px; }

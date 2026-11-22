@@ -108,7 +108,7 @@
     var n = 0;
     cards.forEach(function (c) {
       var pr = num(c);
-      var ok = (!filtro || c.dataset.cat === filtro || c.dataset.sub === filtro) &&
+      var ok = (!filtro || c.dataset.cat === filtro || c.dataset.sub === filtro || c.dataset.origen === filtro) &&
         (pmin === null || (pr !== null && pr >= pmin)) && (pmax === null || (pr !== null && pr <= pmax));
       c.classList.toggle('is-hidden', !ok);
       if (ok) n++;

@@ -208,15 +208,17 @@ def card(p, depth, cb, cv, modo="local"):
     else:
         pr, mon = precio_principal(p)
     zs = " · ".join(z["nombre"] for z in zonas(p))
+    linea = (f'<span class="envio origen">{ICON["pin"]}<span>Origen: <b>{esc(p["pais"])}</b> · Envío internacional</span></span>' if modo == "intl"
+             else f'<span class="envio">{ICON_TRUCK}<span>Envío disponible <b>{esc(zs)}</b></span></span>')
     pn = precio_num(p, modo)
     num = "".join(ch for ch in p["codigo"] if ch.isdigit()) or "0"
-    return f'''        <article class="prod-card" data-cat="{esc(p['categoria'])}" data-sub="{esc(p['subcategoria'])}" data-precio="{'' if pn is None else pn}" data-nombre="{esc(p['nombre'])}" data-n="{int(num)}">
+    return f'''        <article class="prod-card" data-cat="{esc(p['categoria'])}" data-sub="{esc(p['subcategoria'])}" data-origen="{esc(p['pais'])}" data-precio="{'' if pn is None else pn}" data-nombre="{esc(p['nombre'])}" data-n="{int(num)}">
           <div class="prod-media">{ej}{fav(p)}{carousel(p, cb, cv, href)}</div>
           <a class="info" href="{href}">
             <span class="kick">{esc(p['subcategoria'])}</span>
             <h3>{esc(p['nombre'])}</h3>
             <span class="price">{pr}<small>{mon}</small></span>
-            <span class="envio">{ICON_TRUCK}<span>Envío disponible <b>{esc(zs)}</b></span></span>
+            {linea}
           </a>
         </article>'''
 
@@ -339,7 +341,7 @@ def listado(productos, cb, cv):
                 "Mates, bombillas, yerba y productos seleccionados de Argentina, con envío en Argentina y al exterior, incluido México.", main, ["blog", "viajes", "tienda"])
 
 
-ILUSTRACION_INTL = '''<svg viewBox="0 0 440 330" role="img" aria-label="Un paquete viaja desde Argentina, sobre el globo, hacia otros países">
+ILUSTRACION_INTL = '''<svg viewBox="0 0 440 330" role="img" aria-label="Paquetes que viajan entre países, sobre el globo">
   <defs>
     <radialGradient id="is-mar" cx="40%" cy="35%" r="75%"><stop offset="0" stop-color="#eef6fc"/><stop offset="1" stop-color="#c9e0f2"/></radialGradient>
     <clipPath id="is-globo"><circle cx="205" cy="185" r="118"/></clipPath>
@@ -359,12 +361,13 @@ ILUSTRACION_INTL = '''<svg viewBox="0 0 440 330" role="img" aria-label="Un paque
   <g transform="translate(250 48) rotate(8)">
     <path d="M-14 0h22l10-9h6l-5 9h9l4-4h4l-3 6 3 6h-4l-4-4h-9l5 9h-6L8 4h-22z" fill="#1f1a14"/>
   </g>
-  <g transform="translate(176 230)">
-    <path d="M0 0v42" stroke="#5a3d27" stroke-width="2.5" stroke-linecap="round"/>
-    <rect x="1" y="0" width="36" height="24" rx="2" fill="#74acdf"/><rect x="1" y="8" width="36" height="8" fill="#fff"/>
-    <circle cx="19" cy="12" r="3" fill="#f6b40e" stroke="#85340a" stroke-width=".6"/>
-    <circle cx="0" cy="44" r="4" fill="#b4532a"/>
+  <g transform="translate(182 262)">
+    <path d="M0 0c-9-11-15-19-15-27a15 15 0 0 1 30 0c0 8-6 16-15 27z" fill="#b4532a"/><circle cx="0" cy="-27" r="5.5" fill="#fff"/>
   </g>
+  <g transform="translate(286 128)">
+    <path d="M0 0c-7-9-12-15-12-21a12 12 0 0 1 24 0c0 6-5 12-12 21z" fill="#2f6f8f"/><circle cx="0" cy="-21" r="4.5" fill="#fff"/>
+  </g>
+  <path d="M286 128c30 18 44 40 40 70" fill="none" stroke="#2f6f8f" stroke-width="2.2" stroke-dasharray="6 7" stroke-linecap="round" opacity=".8"/>
   <g transform="translate(366 58)">
     <path d="M0 14 26 0l26 14v30L26 58 0 44z" fill="#c9965d"/>
     <path d="M0 14l26 14 26-14M26 28v30" fill="none" stroke="#8c6236" stroke-width="1.5"/>
@@ -378,23 +381,25 @@ def international(productos, cb, cv):
     intl = [p for p in productos if p["international"]]
     paises = sorted({c for p in intl for c in p["paises_envio"]}, key=slug)
     if "Todos los países" in paises: paises = ["todo el mundo"]
+    origenes = "".join(f'<button type="button" data-filtro="{esc(o)}" aria-pressed="false">{BANDERA_MINI.get(o, "")}{esc(o)}</button>'
+                       for o in sorted({p["pais"] for p in intl}, key=slug))
     main = f'''    <div class="wrap">
 {crumbs(d, [("International Shop", None)])}
       <section class="is-hero">
         <div class="is-txt">
           <span class="eyebrow" style="color:var(--intl)">International Shop</span>
-          <h1>De Argentina al mundo</h1>
-          <p>Productos argentinos con envío internacional. Precios en dólares; el costo del envío y los impuestos de importación dependen del país de destino.</p>
+          <h1>International Shop</h1>
+          <p>Productos con origen de distintos países, con envío internacional. Precios en dólares; el costo del envío y los impuestos de importación dependen del país de destino.</p>
           <a class="text-link" href="{rel(d, p_envio('internacional'))}">Ver las condiciones de envío internacional</a>
         </div>
         <div class="is-art">{ILUSTRACION_INTL}</div>
       </section>
       <ol class="is-pasos" aria-label="Cómo funciona">
-        <li><span>1</span><div><b>Elegís desde tu país</b><small>Productos con origen, elegidos en Argentina.</small></div></li>
+        <li><span>1</span><div><b>Elegís desde tu país</b><small>Productos con origen, elegidos uno por uno en cada país.</small></div></li>
         <li><span>2</span><div><b>Pagás en dólares</b><small>Con medios de pago internacionales.</small></div></li>
         <li><span>3</span><div><b>Te llega a tu casa</b><small>Envío internacional con seguimiento.</small></div></li>
       </ol>
-      <div class="shop-tools"><span></span><span class="v-count" id="shop-count"></span></div>
+      <div class="shop-tools"><div class="chip-row" role="group" aria-label="Filtrar por origen"><span class="chips-lbl">Origen</span><button type="button" data-filtro="" aria-pressed="true">Todos</button>{origenes}</div><span class="v-count" id="shop-count"></span></div>
 {herramientas_listado("US$")}
       <div class="prod-grid" id="shop-grid">
 {chr(10).join(card(p, d, cb, cv, "intl") for p in intl)}
@@ -403,9 +408,9 @@ def international(productos, cb, cv):
       <p class="shop-note">¿Comprás por volumen para revender o distribuir? Mirá los <a href="{rel(d, 'productos-de-exportacion/')}">Productos de exportación</a> del Hub de Oportunidades.</p>
       <div style="height:88px"></div>
     </div>'''
-    main = barra_tienda(d, "intl") + main
-    return page(d, "International Shop: productos argentinos con envío internacional | Umarti Origen",
-                f"Mate, yerba y productos argentinos con envío a {', '.join(paises)}.", main, ["blog", "viajes", "tienda"], en=True)
+    main = barra_intl(d) + main
+    return page(d, "International Shop: productos con origen y envío internacional | Umarti Origen",
+                f"Productos con origen de distintos países, con envío a {', '.join(paises)}.", main, ["blog", "viajes", "tienda"], en=True)
 
 
 def notas_relacionadas(p_or_tema, notas, etiquetas=None):
@@ -587,7 +592,7 @@ def pagina_envio(e, envios, productos):
       <p class="muted" style="margin-top:28px">Otras zonas: <span class="zonas-inline">{otras}</span></p>
       <div style="height:88px"></div>
     </div>'''
-    main = barra_tienda(d, "envios", "Argentina" if e["slug"] == "internacional" else e["zona"]) + main
+    main = (barra_intl(d) if e["slug"] == "internacional" else barra_tienda(d, "envios", e["zona"])) + main
     return page(d, f"{titulo}: condiciones | Umarti Origen", f"Plazos, costos, seguimiento y cambios de los {titulo.lower()} de Umarti Origen.",
                 main, ["blog", "viajes", "tienda"], noindex=borrador, en=e["slug"] == "internacional")
 
@@ -607,6 +612,26 @@ def barra_tienda(d, actual, pais="Argentina"):
       <div class="wrap-wide">
         <a class="ts-marca" href="{rel(d, p_portada(pais))}">{BANDERA.get(pais, "")}<span><b>Tienda {esc(pais)}</b><small>Umarti Origen</small></span></a>
         <nav class="ts-nav" aria-label="Tienda {esc(pais)}">{links}</nav>
+        <a class="ts-seguro" href="{rel(d, 'legal/arrepentimiento/')}">{ICON_LOCK}Comprá seguro</a>
+      </div>
+    </div>
+'''
+
+
+BANDERA_MINI = {"Argentina": '<svg class="bm" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><rect width="18" height="12" rx="2" fill="#74acdf"/><rect y="4" width="18" height="4" fill="#fff"/><circle cx="9" cy="6" r="1.4" fill="#f6b40e"/></svg>',
+                "México": '<svg class="bm" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><rect width="6" height="12" fill="#006847"/><rect x="6" width="6" height="12" fill="#fff"/><rect x="12" width="6" height="12" fill="#ce1126"/><circle cx="9" cy="6" r="1.4" fill="#8c6a2d"/></svg>'}
+ICON_GLOBO = '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>'
+
+
+def barra_intl(d):
+    """Barra de International Shop: es una tienda de todos los países, no de uno solo."""
+    items = [("International Shop", "international-shop/", True), ("Tienda Argentina", p_portada("Argentina"), False),
+             ("Envíos internacionales", p_envio("internacional"), False), ("Guía de viajes", "viajes/", False)]
+    links = "".join(f'<a href="{rel(d, u)}"{" aria-current=\"page\"" if a else ""}>{t}</a>' for t, u, a in items)
+    return f'''    <div class="ts-bar is-bar">
+      <div class="wrap-wide">
+        <a class="ts-marca" href="{rel(d, "international-shop/")}"><span class="is-globo">{ICON_GLOBO}</span><span><b>International Shop</b><small>Umarti Origen</small></span></a>
+        <nav class="ts-nav" aria-label="International Shop">{links}</nav>
         <a class="ts-seguro" href="{rel(d, 'legal/arrepentimiento/')}">{ICON_LOCK}Comprá seguro</a>
       </div>
     </div>
