@@ -290,7 +290,7 @@ def page(depth, title, desc, main, css, jsonld=None, noindex=False, extra="", en
 {main}
   </main>
 
-{comun.footer(pre)}
+{comun.footer(pre, tienda=True)}
 {extra}
   <div class="toast" id="toast" role="status"></div>
   <script src="{pre}assets/js/header.js"></script>

@@ -68,7 +68,13 @@ def ecosistema(prefijo):
       </div>'''
 
 
-def footer(prefijo):
+def footer(prefijo, tienda=False):
+    """tienda=True agrega el botón de arrepentimiento y el link a Defensa del Consumidor (solo en las páginas de la Tienda)."""
+    consumo = f'''
+      <div class="foot-consumo">
+        <a class="btn-arrep" href="{prefijo}legal/arrepentimiento/">Botón de arrepentimiento</a>
+        <a class="def-cons" href="{DEFENSA_CONSUMIDOR}" target="_blank" rel="noopener">Defensa de las y los Consumidores. Para reclamos <b>ingrese aquí</b></a>
+      </div>''' if tienda else ""
     return f'''  <footer>
     <div class="wrap foot foot-top">
       <div class="foot-marca">
@@ -83,11 +89,7 @@ def footer(prefijo):
         <a href="{prefijo}legal/cookies/">Cookies</a>
         <a href="{prefijo}envios/">Envíos</a>
         <span class="foot-copy">© 2026 Umarti · <a href="{prefijo}publicidad/">Anunciá en Umarti</a></span>
-      </nav>
-      <div class="foot-consumo">
-        <a class="btn-arrep" href="{prefijo}legal/arrepentimiento/">Botón de arrepentimiento</a>
-        <a class="def-cons" href="{DEFENSA_CONSUMIDOR}" target="_blank" rel="noopener">Defensa de las y los Consumidores. Para reclamos <b>ingrese aquí</b></a>
-      </div>
+      </nav>{consumo}
     </div>
   </footer>'''
 
