@@ -703,5 +703,66 @@
   "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
   "lugar": "Ciudad",
   "pueblo_magico": false
+ },
+ {
+  "slug": "guadalajara",
+  "pais": "México",
+  "ciudad": "Guadalajara",
+  "region": "Jalisco",
+  "resumen": "La cuna del mariachi y del tequila: un centro histórico monumental, murales de Orozco, Tlaquepaque y Tonalá para comprar artesanías, y tortas ahogadas en cada esquina.",
+  "tags": [
+   "Cultura",
+   "Gastronomía",
+   "Shopping",
+   "Urbano"
+  ],
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/guadalajara/principal/1795380359625.jpg",
+  "foto_pos": "center",
+  "dias": "3 a 4 días",
+  "mejor_epoca": "Octubre a mayo",
+  "presupuesto": "Medio",
+  "por_que": "**Guadalajara**, capital de Jalisco, es la ciudad de muchos de los símbolos de México: el **mariachi**, el **tequila**, la charrería y la torta ahogada. Es la segunda ciudad del país, moderna y con mucha vida, pero su centro histórico conserva plazas, templos y edificios monumentales.\n\nEl **Hospicio Cabañas**, con los murales de José Clemente Orozco, es Patrimonio de la Humanidad. A pocos minutos están **Tlaquepaque** y **Tonalá**, dos de los grandes centros artesanales del país, y en una excursión de un día llegás al pueblo de **Tequila**, entre campos de agave, o al **Lago de Chapala**.",
+  "cuando_ir": "**Mejor época:** de octubre a mayo, con días soleados y temperaturas agradables. Abril y mayo son los meses más calurosos.\n\n**Clima:** templado y soleado buena parte del año. De junio a septiembre llueve casi todas las tardes, con tormentas fuertes pero cortas.\n\n**Fechas especiales:** el **Encuentro Internacional del Mariachi y la Charrería**, entre agosto y septiembre; las **Fiestas de Octubre**; y la **Feria Internacional del Libro (FIL)**, una de las más importantes del mundo en español, entre fines de noviembre y principios de diciembre.",
+  "que_comer": "- **Torta ahogada**: pan birote relleno de carnitas, bañado en salsa de jitomate y chile\n- **Birria** de chivo o de res, con su caldo\n- **Carne en su jugo**, con frijoles y tocino\n- **Pozole** rojo y **tacos de barbacoa**\n- **Tejuino**, una bebida fría de maíz fermentado con limón y sal\n- **Jericalla**, el postre tapatío parecido al flan\n- **Tequila** y **raicilla**, los destilados de Jalisco",
+  "donde_alojarse": "- **Centro histórico**: para recorrer catedral, plazas y museos caminando.\n- **Colonia Americana y Lafayette**: casonas, cafés, bares y restaurantes de moda; la zona con más ambiente.\n- **Providencia y Chapultepec**: zonas modernas, con buenos restaurantes y vida nocturna.\n- **Tlaquepaque**: hoteles boutique en un pueblo de artesanos, a unos 20 minutos del centro.",
+  "como_llegar": "El **Aeropuerto Internacional de Guadalajara** tiene vuelos desde la Ciudad de México (alrededor de 1 hora y cuarto), muchas ciudades del país y de Estados Unidos.\n\nPor tierra son unos 540 kilómetros desde la Ciudad de México, unas 6 horas por autopista, con buses directos y cómodos durante todo el día.",
+  "como_moverse": "El centro histórico se recorre caminando. Para ir a la Colonia Americana, Chapultepec o Tlaquepaque podés usar el **tren ligero**, el **Macrobús**, taxis o apps de transporte.\n\nPara Tequila, Chapala y Ajijic conviene un tour o alquilar un auto. También existe el **José Cuervo Express**, un tren turístico que va de Guadalajara a Tequila.",
+  "que_hacer": "- **Centro histórico**: la Catedral, la Plaza de Armas, el Teatro Degollado y el Palacio de Gobierno, con murales de Orozco.\n- **Hospicio Cabañas**: Patrimonio de la Humanidad, con la cúpula pintada por Orozco.\n- **Mercado San Juan de Dios**: uno de los mercados techados más grandes de América Latina.\n- **Plaza de los Mariachis**: para escuchar mariachi en vivo.\n- **Tlaquepaque y Tonalá**: cerámica, vidrio soplado, muebles y artesanías de todo México.\n- **Tequila**: destilerías, campos de agave y un Pueblo Mágico, a unos 60 kilómetros.\n- **Lago de Chapala y Ajijic**: el lago más grande de México y un pueblo colorido a orillas del agua.",
+  "consejos": "- Probá la torta ahogada \"media ahogada\" si no estás acostumbrado al picante.\n- Para Tequila, elegí un tour o el tren: así podés hacer catas sin manejar.\n- En Tlaquepaque y Tonalá conviene ir entre semana: en Tonalá el tianguis más grande es los jueves y domingos.\n- Llevá paraguas si vas en verano: las tormentas de la tarde son fuertes.\n- Reservá con anticipación si coincidís con la FIL o el Encuentro del Mariachi.",
+  "faqs": [
+   {
+    "a": "Con 3 días conocés el centro, Tlaquepaque y una excursión a Tequila. Con 4 días podés sumar Chapala y Ajijic.",
+    "q": "¿Cuántos días se necesitan para conocer Guadalajara?"
+   },
+   {
+    "a": "Sí, está a unos 60 km. Hay tours, buses y un tren turístico que salen desde Guadalajara.",
+    "q": "¿Se puede ir a Tequila en el día?"
+   },
+   {
+    "a": "La torta ahogada, la birria, la carne en su jugo y, para tomar, el tejuino y el tequila.",
+    "q": "¿Qué es lo típico para comer?"
+   },
+   {
+    "a": "La Feria Internacional del Libro se hace cada año entre fines de noviembre y principios de diciembre.",
+    "q": "¿Cuándo es la FIL?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-22T20:46:03.225175+00:00",
+  "clima": "",
+  "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
+  "requisitos_fuente": "https://www.gob.mx/inm",
+  "moneda": "Peso mexicano (MXN). Se aceptan tarjetas en casi todos lados; para mercados, puestos y propinas conviene llevar efectivo.",
+  "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
+  "huso": "America/Mexico_City",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
+  "lugar": "Ciudad",
+  "pueblo_magico": false
  }
 ]
