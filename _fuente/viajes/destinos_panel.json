@@ -884,5 +884,65 @@
   "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
   "lugar": "Pueblo",
   "pueblo_magico": true
+ },
+ {
+  "slug": "puebla-de-zaragoza",
+  "pais": "México",
+  "ciudad": "Puebla de Zaragoza",
+  "region": "Puebla",
+  "resumen": "Una de las grandes ciudades coloniales de México: centro histórico Patrimonio de la Humanidad, talavera, la cuna del mole poblano y los chiles en nogada, y Cholula con su pirámide a pocos minutos.",
+  "tags": [
+   "Cultura",
+   "Gastronomía",
+   "Urbano"
+  ],
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/puebla-de-zaragoza/principal/1795479622317.jpg",
+  "foto_pos": "center",
+  "dias": "2 a 3 días",
+  "mejor_epoca": "Octubre a mayo (y agosto–septiembre para los chiles en nogada)",
+  "presupuesto": "Medio",
+  "por_que": "**Puebla** es una de las ciudades coloniales más bonitas de México. Su **centro histórico**, Patrimonio de la Humanidad, tiene cientos de edificios de los siglos XVI al XIX, fachadas de ladrillo rojo y azulejos de **talavera**, la Catedral y la deslumbrante **Capilla del Rosario**.\n\nEs también una de las capitales gastronómicas del país: acá nacieron el **mole poblano** y los **chiles en nogada**. A pocos minutos está **Cholula**, con la Gran Pirámide y la iglesia de los Remedios en su cima, con vista a los volcanes Popocatépetl e Iztaccíhuatl.",
+  "cuando_ir": "**Mejor época:** de octubre a mayo, con días secos y templados. De junio a septiembre llueve por las tardes.\n\n**Clima:** templado todo el año, con mañanas y noches frescas.\n\n**Fechas especiales:** la temporada de **chiles en nogada**, entre agosto y septiembre, y el **5 de mayo**, cuando se recuerda la Batalla de Puebla con un gran desfile.",
+  "que_comer": "- **Mole poblano**, el plato más famoso de la ciudad\n- **Chiles en nogada**, en temporada (agosto y septiembre)\n- **Cemitas**: sándwiches en pan de ajonjolí con milanesa, quesillo y pápalo\n- **Chalupas** y **molotes**, antojitos clásicos\n- **Tacos árabes**, una tradición poblana de origen libanés\n- **Dulces típicos**: camotes, tortitas de Santa Clara y muéganos, en la Calle de los Dulces",
+  "donde_alojarse": "- **Centro histórico**: hoteles en casonas coloniales, a pasos del zócalo y los museos.\n- **Barrio de Analco y Los Sapos**: con encanto, antigüedades y bares.\n- **Cholula**: más tranquilo, con hoteles boutique cerca de la pirámide.\n- **Angelópolis**: la zona moderna, con centros comerciales y hoteles de cadena.",
+  "como_llegar": "Puebla está a unos **130 kilómetros de la Ciudad de México**, alrededor de 2 horas por autopista. Hay buses directos muy frecuentes, incluso desde el aeropuerto de la Ciudad de México.\n\nLa ciudad tiene su propio aeropuerto, con algunos vuelos nacionales e internacionales.",
+  "como_moverse": "El centro histórico se recorre caminando. Para Cholula, Angelópolis y otras zonas hay taxis, apps de transporte y autobuses urbanos.\n\nPara Val'Quirico, Atlixco o los volcanes conviene alquilar un auto o contratar un tour.",
+  "que_hacer": "- **Zócalo y Catedral**: el corazón de la ciudad.\n- **Capilla del Rosario**: en el Templo de Santo Domingo, una joya del barroco cubierta de oro.\n- **Biblioteca Palafoxiana**: considerada la primera biblioteca pública de América.\n- **Barrio del Artista y Callejón de los Sapos**: talleres de pintores, antigüedades y bares.\n- **Talleres de talavera**: para ver cómo se hace la cerámica tradicional poblana.\n- **Museo Amparo** y **Museo Internacional del Barroco**: arte prehispánico, virreinal y contemporáneo.\n- **Cholula**: la Gran Pirámide, la iglesia de los Remedios y la vista a los volcanes.\n- **Val'Quirico y Atlixco**: escapadas cercanas para sumar al viaje.",
+  "consejos": "- Andá en agosto o septiembre si querés probar los chiles en nogada de temporada.\n- Comprá talavera en talleres certificados: es la forma de asegurarte de que es auténtica.\n- Subí a la pirámide de Cholula al atardecer, con buen clima se ven los volcanes.\n- Llevá abrigo liviano: las noches refrescan aunque el día sea cálido.",
+  "faqs": [
+   {
+    "a": "Con 2 días conocés el centro y Cholula. Con 3 días podés sumar Val'Quirico o Atlixco.",
+    "q": "¿Cuántos días se necesitan para conocer Puebla?"
+   },
+   {
+    "a": "Principalmente en agosto y septiembre, cuando hay granada y nuez de castilla frescas.",
+    "q": "¿Cuándo es la temporada de chiles en nogada?"
+   },
+   {
+    "a": "Sí, está a unas 2 horas, aunque conviene quedarse al menos una noche.",
+    "q": "¿Se puede ir en el día desde la Ciudad de México?"
+   },
+   {
+    "a": "Una cerámica vidriada tradicional de Puebla y Tlaxcala, reconocida por la UNESCO como Patrimonio Cultural Inmaterial.",
+    "q": "¿Qué es la talavera?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-24T00:20:25.940025+00:00",
+  "clima": "",
+  "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
+  "requisitos_fuente": "https://www.gob.mx/inm",
+  "moneda": "Peso mexicano (MXN). Se aceptan tarjetas en la mayoría de los restaurantes y tiendas; para puestos y propinas llevá efectivo.",
+  "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
+  "huso": "America/Mexico_City",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
+  "lugar": "Ciudad",
+  "pueblo_magico": false
  }
 ]
