@@ -944,5 +944,65 @@
   "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
   "lugar": "Ciudad",
   "pueblo_magico": false
+ },
+ {
+  "slug": "mazamitla",
+  "pais": "México",
+  "ciudad": "Mazamitla",
+  "region": "Jalisco",
+  "resumen": "Un Pueblo Mágico de montaña entre bosques de pino, conocido como \"la Suiza de México\": cabañas con chimenea, cascadas, aire frío y casas de techos de teja y madera.",
+  "tags": [
+   "Aventura",
+   "Montaña",
+   "Naturaleza"
+  ],
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/mazamitla/principal/1795479639192.jpg",
+  "foto_pos": "center",
+  "dias": "2 a 3 días",
+  "mejor_epoca": "Todo el año (más frío de noviembre a febrero)",
+  "presupuesto": "Medio",
+  "por_que": "**Mazamitla** es un pueblo de montaña en el sureste de Jalisco, a más de 2.000 metros de altura, rodeado de bosques de pino y oyamel. Sus casas de adobe blanco con techos de teja y balcones de madera, el frío y la neblina le valieron el apodo de **\"la Suiza de México\"**.\n\nEs **Pueblo Mágico** y uno de los destinos favoritos de fin de semana desde Guadalajara: la gente viene a quedarse en **cabañas** con chimenea, caminar por el bosque, visitar cascadas y hacer actividades de aventura como tirolesas y cabalgatas.",
+  "cuando_ir": "**Mejor época:** se puede ir todo el año. De noviembre a febrero hace más frío y es la temporada favorita para las cabañas con chimenea; en verano el bosque está verde y hay más cascadas por las lluvias.\n\n**Clima:** templado a frío de montaña, con noches frías todo el año y lluvias de junio a septiembre.\n\nLos fines de semana largos y las vacaciones se llena: conviene reservar las cabañas con anticipación.",
+  "que_comer": "- **Birria** y **carne asada** en los restaurantes del centro\n- **Jocoque**, **quesos** y **cajeta** de la región\n- **Conservas y dulces** de frutas del bosque\n- **Ponche** caliente y **café de olla** para el frío\n- **Pan de leña** y gorditas",
+  "donde_alojarse": "- **Cabañas en el bosque**: la experiencia típica de Mazamitla, con chimenea y vistas; muchas están en desarrollos como Monteverde o Sierra del Tigre.\n- **Centro del pueblo**: hoteles y posadas a pocas cuadras de la plaza, para recorrer todo caminando.\n\nPara cabañas, fijate que tengan leña incluida y buen acceso si vas en temporada de lluvias.",
+  "como_llegar": "Mazamitla está a unos **130 kilómetros de Guadalajara**, alrededor de 2 horas en auto, pasando por el Lago de Chapala.\n\nDesde la Nueva Central Camionera de Guadalajara salen buses directos. El aeropuerto más cercano es el de Guadalajara.",
+  "como_moverse": "El centro se recorre caminando. Para llegar a las cabañas, las cascadas y los parques de aventura conviene tener auto; también hay taxis y recorridos locales que salen desde la plaza.",
+  "que_hacer": "- **Parroquia de San Cristóbal**: con su particular fachada, frente a la plaza principal.\n- **Cascada El Salto**: una caída de agua en el bosque, a la que se llega por un sendero.\n- **Parques de aventura**: tirolesas, puentes colgantes, cuatrimotos y cabalgatas.\n- **Caminatas por el bosque**: senderos entre pinos con miradores a la sierra.\n- **Tiendas del centro**: artesanías de madera, conservas, quesos y dulces.\n- **Lago de Chapala y Ajijic**: en el camino desde Guadalajara.",
+  "consejos": "- Llevá abrigo en cualquier época: las noches son frías.\n- Reservá la cabaña con anticipación para fines de semana largos.\n- Si vas en temporada de lluvias, consultá el estado de los caminos a las cabañas.\n- Llevá efectivo para puestos y actividades de aventura.",
+  "faqs": [
+   {
+    "a": "En el sureste del estado de Jalisco, a unos 130 km de Guadalajara (alrededor de 2 horas en auto).",
+    "q": "¿Dónde queda Mazamitla?"
+   },
+   {
+    "a": "Por sus bosques de pino, el clima frío y las casas de techos de teja y madera.",
+    "q": "¿Por qué le dicen la Suiza de México?"
+   },
+   {
+    "a": "Sí, forma parte del programa de Pueblos Mágicos de México.",
+    "q": "¿Mazamitla es Pueblo Mágico?"
+   },
+   {
+    "a": "Un fin de semana de 2 o 3 días alcanza para el pueblo, el bosque y alguna actividad de aventura.",
+    "q": "¿Cuántos días se necesitan?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-24T00:20:44.164597+00:00",
+  "clima": "",
+  "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
+  "requisitos_fuente": "https://www.gob.mx/inm",
+  "moneda": "Peso mexicano (MXN). Muchos hoteles aceptan tarjeta; para puestos, actividades y propinas llevá efectivo, porque hay pocos cajeros.",
+  "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
+  "huso": "America/Mexico_City",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
+  "lugar": "Pueblo",
+  "pueblo_magico": true
  }
 ]
