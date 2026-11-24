@@ -1004,5 +1004,64 @@
   "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
   "lugar": "Pueblo",
   "pueblo_magico": true
+ },
+ {
+  "slug": "san-pedro-de-los-pozos-mineral-de-pozos",
+  "pais": "México",
+  "ciudad": "San Pedro de los Pozos (Mineral de Pozos)",
+  "region": "Guanajuato",
+  "resumen": "Un antiguo pueblo minero de Guanajuato que fue casi abandonado y hoy es Pueblo Mágico: ruinas de minas e iglesias, galerías de arte, talleres de instrumentos prehispánicos y cielos del semidesierto.",
+  "tags": [
+   "Cultura",
+   "Naturaleza"
+  ],
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/san-pedro-de-los-pozos-mineral-de-pozos/principal/1795479657297.jpg",
+  "foto_pos": "center",
+  "dias": "1 a 2 días",
+  "mejor_epoca": "Octubre a abril",
+  "presupuesto": "Medio",
+  "por_que": "**Mineral de Pozos** (San Pedro de los Pozos) fue uno de los centros mineros más importantes de Guanajuato. Cuando las minas cerraron, a principios del siglo XX, el pueblo quedó casi vacío, y por eso muchos lo llamaron **\"pueblo fantasma\"**.\n\nHoy es **Pueblo Mágico** y un lugar muy especial: las **ruinas de las haciendas de beneficio**, con sus chimeneas y hornos de piedra en medio del semidesierto, conviven con galerías de arte, hoteles boutique y talleres donde se fabrican **instrumentos musicales prehispánicos**. Está a una hora de San Miguel de Allende, ideal para sumar al viaje.",
+  "cuando_ir": "**Mejor época:** de octubre a abril, con días soleados y secos. Las noches de invierno son frías.\n\n**Clima:** semidesértico, con mucho sol y poca lluvia; en verano llueve por las tardes.\n\nEs un pueblo tranquilo casi todo el año; los fines de semana llegan más visitantes desde San Miguel de Allende y Querétaro.",
+  "que_comer": "- Gorditas y enchiladas mineras\n- Cocina de autor en los restaurantes de los hoteles boutique\n- Pulque y dulces de la región\n- Café y pan en las cafeterías del jardín principal",
+  "donde_alojarse": "- **Hoteles boutique en casonas restauradas**: la mejor forma de vivir el pueblo, con mucha calma por la noche.\n- **San Miguel de Allende**: más opciones, a alrededor de una hora, para ir y volver en el día.",
+  "como_llegar": "Mineral de Pozos está a unos **45 kilómetros de San Miguel de Allende** (alrededor de una hora en auto) y a unas 2 horas de la ciudad de Querétaro. Pertenece al municipio de San Luis de la Paz, en el noreste de Guanajuato.\n\nLo más práctico es llegar en auto; el transporte público es limitado. Los aeropuertos más cercanos son los de Querétaro y del Bajío (León).",
+  "como_moverse": "El pueblo se recorre caminando. Para las ruinas de las minas que están en las afueras, como Santa Brígida o Cinco Señores, conviene ir en auto o con un guía local, que además cuenta su historia.",
+  "que_hacer": "- **Ruinas de Santa Brígida**: las chimeneas y hornos de piedra más fotografiados del pueblo.\n- **Mina Cinco Señores** y otras haciendas mineras: recorridos guiados por las ruinas.\n- **Talleres de instrumentos prehispánicos**: tambores, flautas y sonajas hechos a mano, con demostraciones.\n- **Jardín principal y templo de San Pedro**: el centro tranquilo del pueblo.\n- **Galerías de arte**: artistas que eligieron vivir en Pozos.\n- **Cielos estrellados**: con poca luz artificial, de noche se ven muy bien las estrellas.",
+  "consejos": "- Llevá protector solar, gorra y agua para recorrer las ruinas: hay poca sombra.\n- Hacé los recorridos de minas con un guía local: hay pozos abiertos y no conviene ir solo.\n- Llevá efectivo: hay pocos cajeros en el pueblo.\n- Combinalo con San Miguel de Allende en el mismo viaje.",
+  "faqs": [
+   {
+    "a": "En el municipio de San Luis de la Paz, Guanajuato, a unos 45 km de San Miguel de Allende.",
+    "q": "¿Dónde queda Mineral de Pozos?"
+   },
+   {
+    "a": "Porque cuando cerraron las minas a principios del siglo XX quedó casi deshabitado. Hoy está habitado y es Pueblo Mágico.",
+    "q": "¿Por qué le dicen pueblo fantasma?"
+   },
+   {
+    "a": "Sí, hay recorridos por las ruinas de varias haciendas mineras. Conviene hacerlos con guía.",
+    "q": "¿Se pueden visitar las minas?"
+   },
+   {
+    "a": "Con un día recorrés el pueblo y las ruinas principales. Quedarte una noche permite disfrutar la calma y el cielo estrellado.",
+    "q": "¿Cuánto tiempo hace falta?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-24T00:21:00.636878+00:00",
+  "clima": "",
+  "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
+  "requisitos_fuente": "https://www.gob.mx/inm",
+  "moneda": "Peso mexicano (MXN). Muchos hoteles aceptan tarjeta; para puestos, actividades y propinas llevá efectivo, porque hay pocos cajeros.",
+  "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
+  "huso": "America/Mexico_City",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
+  "lugar": "Pueblo",
+  "pueblo_magico": true
  }
 ]
