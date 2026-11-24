@@ -306,7 +306,7 @@
    "Shopping",
    "Urbano"
   ],
-  "foto": "",
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/leon/principal/1795479933536.jpg",
   "foto_pos": "center",
   "dias": "2 a 3 días",
   "mejor_epoca": "De octubre a abril; en noviembre, el Festival Internacional del Globo",
@@ -339,7 +339,7 @@
   "categorias_tienda": [],
   "estado": "Publicado",
   "orden": 0,
-  "actualizado": "2026-11-15T22:56:10.480564+00:00",
+  "actualizado": "2026-11-24T00:25:36.417815+00:00",
   "clima": "",
   "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
   "requisitos_fuente": "https://www.gob.mx/inm",
