@@ -6,7 +6,7 @@ RAIZ = os.path.dirname(AQUI)
 
 # Cuando esté el dominio definitivo, completarlo (ej. "https://umartiorigen.com") para generar
 # direcciones canónicas y migas de pan para Google.
-SITIO = ""
+SITIO = "https://umartiorigen.com"
 
 FUENTES = '''  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
