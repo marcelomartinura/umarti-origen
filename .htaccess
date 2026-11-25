@@ -1,0 +1,12 @@
+# Umarti Origen: siempre por https y sin "www"
+RewriteEngine On
+
+# www.umartiorigen.com -> umartiorigen.com
+RewriteCond %{HTTP_HOST} ^www\.umartiorigen\.com$ [NC]
+RewriteRule ^ https://umartiorigen.com%{REQUEST_URI} [L,R=301]
+
+# http -> https
+RewriteCond %{HTTP_HOST} ^umartiorigen\.com$ [NC]
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://umartiorigen.com%{REQUEST_URI} [L,R=301]
