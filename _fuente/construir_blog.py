@@ -40,7 +40,7 @@ esc = html.escape
 # ---------- taxonomía: mismas categorías y subcategorías que la Tienda ----------
 CATEGORIAS = {
     # Las 5 primeras son las principales: se muestran con sus subcategorías en el menú Productos.
-    "Café, Té y Mate": ["Mates y bombillas", "Café", "Té", "Chocolate"],
+    "Café, Té y Mate": ["Mates y bombillas", "Termos y pavas eléctricas", "Café", "Té", "Chocolate"],
     "Regalos y Kits": ["Kits de mate y café", "Regalos corporativos", "Personalizados"],
     "Artículos Regionales": ["Bolsos materos", "Marroquinería y riñoneras", "Juegos de asado", "Portatermos y llaveros"],
     "Bebidas": ["Vinos", "Cervezas y destilados", "Sin alcohol"],
@@ -51,10 +51,11 @@ CATEGORIAS = {
     "Herramientas y Jardín": ["Herramientas", "Jardín", "Construcción"],
     "Hogar y Cocina": ["Bazar y cocina", "Organización", "Deco"],
     "Limpieza e Higiene": ["Productos de limpieza", "Productos de higiene personal"],
+    "Productos para viajes": ["Mochilas y bolsos", "Organizadores de equipaje", "Adaptadores y tecnología", "Accesorios de viaje"],
 }
 PRINCIPALES = 5  # cuántas categorías se muestran con subcategorías en el menú
 TIENDA_TEXTO = {
-    "Café, Té y Mate": "Mates, bombillas, cafés, tés y chocolates seleccionados.",
+    "Café, Té y Mate": "Mates, bombillas, termos, pavas eléctricas, cafés, tés y chocolates seleccionados.",
     "Regalos y Kits": "Kits armados, regalos personalizados y para empresas.",
     "Artículos Regionales": "Bolsos materos, marroquinería, juegos de asado y artículos con identidad argentina.",
     "Bebidas": "Vinos, cervezas, destilados y bebidas sin alcohol.",
@@ -65,6 +66,7 @@ TIENDA_TEXTO = {
     "Herramientas y Jardín": "Herramientas, jardín y construcción.",
     "Hogar y Cocina": "Bazar, cocina, organización y deco.",
     "Limpieza e Higiene": "Productos de limpieza y de higiene personal.",
+    "Productos para viajes": "Mochilas, organizadores de equipaje, adaptadores y accesorios para tu próximo viaje.",
 }
 TEMAS = ["Comercio exterior", "Mercados", "Ecommerce y ventas", "Cómo usar Umarti"]
 COLORES = {
@@ -73,6 +75,7 @@ COLORES = {
     "Salud y Bienestar": ("#2f8a8a", "#1b5555"), "Moda": ("#a24f7a", "#66304c"),
     "Tecnología": ("#4b5d78", "#2b3648"), "Herramientas y Jardín": ("#6b7f3a", "#414e22"),
     "Hogar y Cocina": ("#b0703a", "#734520"), "Limpieza e Higiene": ("#3d87ab", "#225670"),
+    "Productos para viajes": ("#c79a2e", "#7a5a12"),
 "Alimentos": ("#c8693e", "#8f3f1d"),  # color por defecto
     "negocios": ("#3d87ab", "#225670"),
     "opinion": ("#7a4a8c", "#4a2a5a"),

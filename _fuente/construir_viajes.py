@@ -281,13 +281,15 @@ def tienda_viajeros(d):
              ("Organizadores de equipaje", '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V4h8v3M3 13h18"/>'),
              ("Adaptadores y tecnología", '<path d="M9 2v6M15 2v6M6 8h12v4a6 6 0 0 1-12 0zM12 18v4"/>'),
              ("Accesorios de viaje", '<circle cx="12" cy="12" r="9"/><path d="m15 9-2 6-4 0 2-6z"/>')]
-    its = "".join(f'<div class="tv-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">{ic}</svg><span>{n}</span></div>' for n, ic in items)
+    from urllib.parse import quote
+    cat = rel(d, "argentina/tienda/productos-para-viajes/")
+    its = "".join(f'<a class="tv-item" href="{cat}?sub={quote(n)}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">{ic}</svg><span>{n}</span></a>' for n, ic in items)
     return f'''      <section class="v-section tienda-viajeros" aria-labelledby="h-tv">
-        <span class="tv-badge">En construcción</span>
+        <span class="tv-badge">Nueva</span>
         <h2 id="h-tv">Tienda para viajeros</h2>
-        <p>Estamos armando una selección de productos para tu próxima aventura.</p>
+        <p>Una selección de productos para tu próxima aventura.</p>
         <div class="tv-items">{its}</div>
-        <a class="tv-cta" href="{rel(d, 'oportunidades-globales/buscar/')}">¿Tenés productos para viajeros? Escribinos →</a>
+        <a class="tv-cta" href="{cat}">Ver productos para viajes →</a>
       </section>'''
 
 

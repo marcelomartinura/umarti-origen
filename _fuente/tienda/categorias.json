@@ -2,7 +2,7 @@
   "_ayuda": "Qué se muestra en la página de cada categoría de la Tienda. 'recursos' son claves de Recursos digitales (ver _fuente/construir_recursos.py); 'temas' sirve para encontrar cupones relacionados. 'imagen' (opcional) es la foto de la franja de presentación, y 'imagen_pos' qué parte se ve.",
   "Café, Té y Mate": {
     "titulo": "Café, té y mate",
-    "bajada": "Mates, bombillas, cafés, tés y chocolates seleccionados, con envío a todo el país.",
+    "bajada": "Mates, bombillas, termos, pavas eléctricas, cafés, tés y chocolates seleccionados, con envío a todo el país.",
     "temas": [
       "mate"
     ],
@@ -88,6 +88,16 @@
     "temas": [],
     "recursos": [
       "calculadora-de-precio-y-margen"
+    ]
+  },
+  "Productos para viajes": {
+    "titulo": "Productos para viajes",
+    "bajada": "Mochilas, organizadores de equipaje, adaptadores y accesorios para tu próximo viaje.",
+    "temas": [],
+    "recursos": [
+      "enchufes-y-corriente",
+      "diferencia-horaria",
+      "conversor-de-unidades"
     ]
   }
 }

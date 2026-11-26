@@ -505,3 +505,4 @@ div.service { opacity: .7; }
 .dg-mas { display: block; margin: 18px auto 0; padding: 12px 26px; border-radius: 999px; border: 1.5px solid #2e7d5b; background: #fff; color: #2e7d5b; font: inherit; font-weight: 700; cursor: pointer; }
 .dg-mas:hover { background: #2e7d5b; color: #fff; }
 .dg-mas[hidden] { display: none; }
+a.tv-item { text-decoration: none; transition: border-color .2s, color .2s; } a.tv-item:hover { border-color: var(--green); color: var(--ink); }
