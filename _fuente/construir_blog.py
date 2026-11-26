@@ -52,6 +52,7 @@ CATEGORIAS = {
     "Hogar y Cocina": ["Bazar y cocina", "Organización", "Deco"],
     "Limpieza e Higiene": ["Productos de limpieza", "Productos de higiene personal"],
     "Productos para viajes": ["Mochilas, bolsos y valijas", "Organizadores de equipaje", "Adaptadores y tecnología", "Accesorios de viaje"],
+    "Deportes y aire libre": ["Bicicletas", "Accesorios de ciclismo", "Camping", "Termos deportivos", "Mochilas de trekking"],
 }
 PRINCIPALES = 5  # cuántas categorías se muestran con subcategorías en el menú
 TIENDA_TEXTO = {
@@ -67,6 +68,7 @@ TIENDA_TEXTO = {
     "Hogar y Cocina": "Bazar, cocina, organización y deco.",
     "Limpieza e Higiene": "Productos de limpieza y de higiene personal.",
     "Productos para viajes": "Mochilas, bolsos, valijas, organizadores de equipaje, adaptadores y accesorios para tu próximo viaje.",
+    "Deportes y aire libre": "Bicicletas, accesorios de ciclismo, camping, termos deportivos y mochilas de trekking.",
 }
 TEMAS = ["Comercio exterior", "Mercados", "Ecommerce y ventas", "Cómo usar Umarti"]
 COLORES = {
@@ -76,6 +78,7 @@ COLORES = {
     "Tecnología": ("#4b5d78", "#2b3648"), "Herramientas y Jardín": ("#6b7f3a", "#414e22"),
     "Hogar y Cocina": ("#b0703a", "#734520"), "Limpieza e Higiene": ("#3d87ab", "#225670"),
     "Productos para viajes": ("#c79a2e", "#7a5a12"),
+    "Deportes y aire libre": ("#2e7d5b", "#1a4d37"),
 "Alimentos": ("#c8693e", "#8f3f1d"),  # color por defecto
     "negocios": ("#3d87ab", "#225670"),
     "opinion": ("#7a4a8c", "#4a2a5a"),
