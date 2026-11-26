@@ -276,14 +276,71 @@ def recomendaciones(d):
       </section>'''
 
 
+CAT_VIAJES = "Productos para viajes"
+
+
+def productos_viajes():
+    """Productos publicados de la categoría "Productos para viajes" de la Tienda: propios y de afiliados."""
+    try:
+        c = json.load(open(os.path.join(AQUI, "tienda", "catalogo.json"), encoding="utf-8"))
+    except Exception:
+        return []
+    propios = [dict(x, _af=False) for x in c.get("productos", []) if x.get("categoria") == CAT_VIAJES and x.get("estado") == "Publicado"
+               and (x.get("tienda_ar") or x.get("international"))]
+    afis = [dict(x, _af=True) for x in c.get("afiliados", []) if x.get("categoria") == CAT_VIAJES and (x.get("tienda_ar") or x.get("international"))]
+    out, j = [], 0                       # mezclados: uno externo cada tres propios
+    for i, x in enumerate(propios, 1):
+        out.append(x)
+        if i % 3 == 0 and j < len(afis):
+            out.append(afis[j]); j += 1
+    return out + afis[j:]
+
+
+def _precio_txt(x):
+    if x["_af"] and x.get("plataforma_afiliado") == "amazon-mx":
+        return "Ver precio"
+    for m, sim in (("ars", "$"), ("mxn", "MX$"), ("usd", "US$")):
+        v = x.get(f"precio_{m}")
+        if v is not None and (not x["_af"] or True):
+            if m == "ars" and not x["_af"] and x.get("moneda_local") == "USD":
+                sim, m = "US$", "usd"
+            n = f"{v:,.0f}".replace(",", ".") if float(v).is_integer() else f"{v:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+            return f"{sim} {n}"
+    return "Ver precio" if x["_af"] else "Precio a consultar"
+
+
+def mini_prod(x, d):
+    tiendas = {"amazon-mx": "Amazon", "ml-ar": "Mercado Libre", "ml-mx": "Mercado Libre", "aliexpress": "AliExpress"}
+    foto = (x.get("fotos") or [""])[0]
+    src = foto if foto.startswith(("http", "/")) else rel(d, foto) if foto else ""
+    img = f'<img src="{esc(src)}" alt="" loading="lazy" referrerpolicy="no-referrer">' if src else f'<span class="tvp-ph">{esc(x["nombre"][:1])}</span>'
+    if x["_af"]:
+        href, extra, pie = x["url_afiliado"], ' target="_blank" rel="sponsored nofollow noopener"', f'<span class="tvp-btn">Ver en {tiendas.get(x.get("plataforma_afiliado"), "la tienda")} ↗</span>'
+    else:
+        pais = "argentina" if x.get("pais", "Argentina") == "Argentina" else slug(x["pais"])
+        href, extra, pie = rel(d, f"{pais}/tienda/{x['slug']}/"), "", '<span class="tvp-btn">Ver producto</span>'
+    return (f'<a class="tvp{" tvp-af" if x["_af"] else ""}" href="{esc(href)}"{extra}><span class="tvp-img">{img}</span>'
+            f'<span class="tvp-sub">{esc(x.get("subcategoria") or "")}</span><b>{esc(x["nombre"])}</b>'
+            f'<span class="tvp-precio">{_precio_txt(x)}</span>{pie}</a>')
+
+
 def tienda_viajeros(d):
-    items = [("Mochilas y bolsos", '<path d="M7 8V6a5 5 0 0 1 10 0v2"/><rect x="5" y="8" width="14" height="13" rx="3"/><path d="M9 13h6"/>'),
+    items = [("Mochilas, bolsos y valijas", '<path d="M7 8V6a5 5 0 0 1 10 0v2"/><rect x="5" y="8" width="14" height="13" rx="3"/><path d="M9 13h6"/>'),
              ("Organizadores de equipaje", '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V4h8v3M3 13h18"/>'),
              ("Adaptadores y tecnología", '<path d="M9 2v6M15 2v6M6 8h12v4a6 6 0 0 1-12 0zM12 18v4"/>'),
              ("Accesorios de viaje", '<circle cx="12" cy="12" r="9"/><path d="m15 9-2 6-4 0 2-6z"/>')]
     from urllib.parse import quote
     cat = rel(d, "argentina/tienda/productos-para-viajes/")
     its = "".join(f'<a class="tv-item" href="{cat}?sub={quote(n)}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">{ic}</svg><span>{n}</span></a>' for n, ic in items)
+    prods = productos_viajes()
+    if prods:
+        tarjetas = "".join(mini_prod(x, d) for x in prods[:8])
+        return f'''      <section class="v-section tienda-viajeros con-productos" aria-labelledby="h-tv">
+        <div class="v-head"><div><h2 id="h-tv">Tienda para viajeros</h2><p>Una selección de productos para tu próxima aventura.</p></div>
+          <a class="v-more" href="{cat}">Ver todos →</a></div>
+        <div class="tv-subs">{its}</div>
+        <div class="tv-grid">{tarjetas}</div>
+      </section>'''
     return f'''      <section class="v-section tienda-viajeros" aria-labelledby="h-tv">
         <span class="tv-badge">Nueva</span>
         <h2 id="h-tv">Tienda para viajeros</h2>

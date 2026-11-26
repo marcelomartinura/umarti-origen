@@ -51,7 +51,7 @@ CATEGORIAS = {
     "Herramientas y Jardín": ["Herramientas", "Jardín", "Construcción"],
     "Hogar y Cocina": ["Bazar y cocina", "Organización", "Deco"],
     "Limpieza e Higiene": ["Productos de limpieza", "Productos de higiene personal"],
-    "Productos para viajes": ["Mochilas y bolsos", "Organizadores de equipaje", "Adaptadores y tecnología", "Accesorios de viaje"],
+    "Productos para viajes": ["Mochilas, bolsos y valijas", "Organizadores de equipaje", "Adaptadores y tecnología", "Accesorios de viaje"],
 }
 PRINCIPALES = 5  # cuántas categorías se muestran con subcategorías en el menú
 TIENDA_TEXTO = {
@@ -66,7 +66,7 @@ TIENDA_TEXTO = {
     "Herramientas y Jardín": "Herramientas, jardín y construcción.",
     "Hogar y Cocina": "Bazar, cocina, organización y deco.",
     "Limpieza e Higiene": "Productos de limpieza y de higiene personal.",
-    "Productos para viajes": "Mochilas, organizadores de equipaje, adaptadores y accesorios para tu próximo viaje.",
+    "Productos para viajes": "Mochilas, bolsos, valijas, organizadores de equipaje, adaptadores y accesorios para tu próximo viaje.",
 }
 TEMAS = ["Comercio exterior", "Mercados", "Ecommerce y ventas", "Cómo usar Umarti"]
 COLORES = {
