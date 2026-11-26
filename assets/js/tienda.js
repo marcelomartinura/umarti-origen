@@ -86,6 +86,9 @@
     if (!grid) return;
     var col = new Intl.Collator('es');
     var lista = cards.slice().sort(function (a, b) {
+      // Los productos publicados de la Tienda siempre van antes que los de tiendas externas
+      var ea = a.classList.contains('af-card'), eb = b.classList.contains('af-card');
+      if (ea !== eb) return ea ? 1 : -1;
       var pa = num(a), pb = num(b);
       switch (orden) {
         case 'precio-asc': case 'precio-desc':
@@ -101,6 +104,8 @@
     });
     var empty = document.getElementById('shop-empty');
     lista.forEach(function (c) { grid.insertBefore(c, empty); });
+    var sep = grid.querySelector('.af-sep'), primero = grid.querySelector('.af-card');
+    if (sep && primero) grid.insertBefore(sep, primero);
   }
 
   function applyFilter() {
@@ -113,6 +118,8 @@
       c.classList.toggle('is-hidden', !ok);
       if (ok) n++;
     });
+    var sepEl = grid.querySelector('.af-sep');
+    if (sepEl) sepEl.hidden = !grid.querySelector('.af-card:not(.is-hidden)') || !grid.querySelector('.prod-card:not(.af-card):not(.is-hidden)');
     chips.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.filtro === filtro)); });
     var cnt = document.getElementById('shop-count');
     if (cnt) cnt.textContent = n === 1 ? '1 producto' : n + ' productos';

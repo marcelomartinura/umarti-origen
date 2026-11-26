@@ -70,14 +70,12 @@ def card_af(a, d, modo="local"):
         </article>'''
 
 
-def mezclar(propias, externas, cada=3):
-    """Intercala las tarjetas externas entre las propias: una cada `cada` productos propios."""
-    out, j = [], 0
-    for i, c in enumerate(propias, 1):
-        out.append(c)
-        if i % cada == 0 and j < len(externas):
-            out.append(externas[j]); j += 1
-    return out + externas[j:]
+def mezclar(propias, externas, cada=None):
+    """Primero todos los productos publicados de la Tienda; después, separados, los de tiendas externas."""
+    if not externas:
+        return propias
+    sep = '        <div class="af-sep" role="presentation"><span>También te puede interesar</span></div>' if propias else ""
+    return propias + ([sep] if sep else []) + externas
 
 
 def cargar_envios():

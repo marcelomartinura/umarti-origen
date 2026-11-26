@@ -288,12 +288,7 @@ def productos_viajes():
     propios = [dict(x, _af=False) for x in c.get("productos", []) if x.get("categoria") == CAT_VIAJES and x.get("estado") == "Publicado"
                and (x.get("tienda_ar") or x.get("international"))]
     afis = [dict(x, _af=True) for x in c.get("afiliados", []) if x.get("categoria") == CAT_VIAJES and (x.get("tienda_ar") or x.get("international"))]
-    out, j = [], 0                       # mezclados: uno externo cada tres propios
-    for i, x in enumerate(propios, 1):
-        out.append(x)
-        if i % 3 == 0 and j < len(afis):
-            out.append(afis[j]); j += 1
-    return out + afis[j:]
+    return propios + afis                # primero los productos publicados de la Tienda
 
 
 def _precio_txt(x):

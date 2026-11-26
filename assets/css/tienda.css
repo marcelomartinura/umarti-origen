@@ -523,3 +523,8 @@ dialog::backdrop { background: rgba(31, 26, 20, 0.55); }
 .af-amz .af-btn { color: #232f3e; }
 .af-ml .af-btn { color: #2d3277; }
 .af-ali .af-btn { color: #c4271c; }
+
+/* Separador: después de los productos de la Tienda vienen los de tiendas externas */
+.af-sep { grid-column: 1 / -1; display: flex; align-items: center; gap: 14px; margin: 18px 0 2px; color: var(--muted); font-size: 0.78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.af-sep::before, .af-sep::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.af-sep[hidden] { display: none; }
