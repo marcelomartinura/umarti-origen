@@ -330,3 +330,8 @@ table.af .af-donde label { display: flex !important; flex-direction: row !import
 table.af .af-donde label.muted { color: var(--muted); }
 table.af .af-donde label small { font-size: 0.72rem; }
 #v-afiliados .pn-head { position: sticky; top: 62px; z-index: 5; background: var(--bg, #f3efe7); padding: 10px 0; }
+.af-acciones { display: flex; gap: 10px; flex-wrap: wrap; }
+.af-sync { display: block; margin-top: 4px; color: #2e6b3f; }
+.af-sync.warn { color: #a2501b; }
+.af-sync.off { color: #8f3f1d; font-weight: 600; }
+table.af input[readonly] { background: #f3efe7; color: var(--muted); }

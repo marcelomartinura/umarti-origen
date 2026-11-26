@@ -405,7 +405,8 @@ html = f'''<!doctype html>
     <section id="v-afiliados" hidden>
       <div class="pn-head">
         <div><h1>Afiliados</h1><p class="muted" id="af-resumen">Productos de Amazon México, Mercado Libre y AliExpress. En el sitio se ven mezclados en la Tienda, más chicos y sin decir "afiliado".</p></div>
-        <button class="btn pri" type="button" id="af-guardar" disabled>Guardar cambios</button>
+        <div class="af-acciones"><button class="btn" type="button" id="af-sync" title="Revisa ahora precio y stock de los productos de Mercado Libre">Sincronizar precios ahora</button>
+        <button class="btn pri" type="button" id="af-guardar" disabled>Guardar cambios</button></div>
       </div>
       <div class="af-carga">
         <label for="af-links"><b>Pegá uno o varios links</b> <small class="muted">uno por renglón · Amazon México, Mercado Libre (Argentina o México) o AliExpress</small></label>
@@ -417,7 +418,7 @@ html = f'''<!doctype html>
         <div class="chips" id="af-filtro-pl" role="group" aria-label="Tienda de origen"></div>
       </div>
       <div class="pn-tabla af-tabla" id="af-tabla"></div>
-      <p class="pn-nota">Completamos el título y la foto solos cuando la tienda lo permite (Amazon a veces lo bloquea: escribilos a mano). El título lo podés cambiar siempre. <b>Amazon no permite mostrar precios escritos a mano</b>: en sus productos dejá el precio vacío y el sitio dice "Ver precio". Los <b>Publicados</b> aparecen en el sitio en unos minutos.</p>
+      <p class="pn-nota">Completamos el título y la foto solos cuando la tienda lo permite (Amazon a veces lo bloquea: escribilos a mano). El título lo podés cambiar siempre. <b>Mercado Libre</b>: el precio y el stock se actualizan solos cada 4 horas; si la publicación se pausa o se queda sin stock, se pausa en el sitio y vuelve sola cuando está disponible. <b>Amazon no permite mostrar precios escritos a mano</b>: en sus productos dejá el precio vacío y el sitio dice "Ver precio". Los <b>Publicados</b> aparecen en el sitio en unos minutos.</p>
     </section>
 
     <!-- Cupones: lista -->

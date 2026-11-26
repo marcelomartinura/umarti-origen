@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/panel.css?v=87812835">
+  <link rel="stylesheet" href="../assets/css/panel.css?v=54a735d0">
 </head>
 <body>
   <header class="pn-top">
@@ -362,7 +362,8 @@
     <section id="v-afiliados" hidden>
       <div class="pn-head">
         <div><h1>Afiliados</h1><p class="muted" id="af-resumen">Productos de Amazon México, Mercado Libre y AliExpress. En el sitio se ven mezclados en la Tienda, más chicos y sin decir "afiliado".</p></div>
-        <button class="btn pri" type="button" id="af-guardar" disabled>Guardar cambios</button>
+        <div class="af-acciones"><button class="btn" type="button" id="af-sync" title="Revisa ahora precio y stock de los productos de Mercado Libre">Sincronizar precios ahora</button>
+        <button class="btn pri" type="button" id="af-guardar" disabled>Guardar cambios</button></div>
       </div>
       <div class="af-carga">
         <label for="af-links"><b>Pegá uno o varios links</b> <small class="muted">uno por renglón · Amazon México, Mercado Libre (Argentina o México) o AliExpress</small></label>
@@ -374,7 +375,7 @@
         <div class="chips" id="af-filtro-pl" role="group" aria-label="Tienda de origen"></div>
       </div>
       <div class="pn-tabla af-tabla" id="af-tabla"></div>
-      <p class="pn-nota">Completamos el título y la foto solos cuando la tienda lo permite (Amazon a veces lo bloquea: escribilos a mano). El título lo podés cambiar siempre. <b>Amazon no permite mostrar precios escritos a mano</b>: en sus productos dejá el precio vacío y el sitio dice "Ver precio". Los <b>Publicados</b> aparecen en el sitio en unos minutos.</p>
+      <p class="pn-nota">Completamos el título y la foto solos cuando la tienda lo permite (Amazon a veces lo bloquea: escribilos a mano). El título lo podés cambiar siempre. <b>Mercado Libre</b>: el precio y el stock se actualizan solos cada 4 horas; si la publicación se pausa o se queda sin stock, se pausa en el sitio y vuelve sola cuando está disponible. <b>Amazon no permite mostrar precios escritos a mano</b>: en sus productos dejá el precio vacío y el sitio dice "Ver precio". Los <b>Publicados</b> aparecen en el sitio en unos minutos.</p>
     </section>
 
     <!-- Cupones: lista -->
@@ -443,6 +444,6 @@
   <script src="../assets/js/panel.js?v=539d8330"></script>
   <script src="../assets/js/panel-viajes.js?v=63abb90c"></script>
   <script src="../assets/js/panel-cupones.js?v=79b4a615"></script>
-  <script src="../assets/js/panel-afiliados.js?v=b268c54b"></script>
+  <script src="../assets/js/panel-afiliados.js?v=c341b823"></script>
 </body>
 </html>

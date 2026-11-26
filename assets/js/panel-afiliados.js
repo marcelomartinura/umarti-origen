@@ -35,15 +35,34 @@
       return Promise.resolve(Object.assign({}, p));
     },
     borrar: function (id) { datosDemo = datosDemo.filter(function (x) { return x.id !== id; }); return Promise.resolve(); },
+    sincronizar: function () { return new Promise(function (r) { setTimeout(function () { r({ ok: true, revisados: 1, precios: 1, pausados: 0, reactivados: 0, sin_leer: 0 }); }, 500); }); },
     leer: function (url) { var pl = platDe(url) || 'ml-mx'; return new Promise(function (r) { setTimeout(function () { r({ ok: true, plataforma: pl, titulo: pl === 'amazon-mx' ? '' : 'Producto de ejemplo leído del link', imagen: '', precio: null, moneda: '' }); }, 300); }); }
   } : {
-    listar: function () { return sb.from('productos').select('*').eq('tipo', 'afiliado').order('orden').order('creado', { ascending: false }).then(ok); },
+    listar: function () {
+      return Promise.all([
+        sb.from('productos').select('*').eq('tipo', 'afiliado').order('orden').order('creado', { ascending: false }).then(ok),
+        sb.from('afiliados_sync').select('*').then(function (r) { return r.data || []; })
+      ]).then(function (x) { sync = {}; x[1].forEach(function (s) { sync[s.producto_id] = s; }); return x[0]; });
+    },
+    sincronizar: function () { return sb.functions.invoke('sincronizar-afiliados', { body: {} }).then(function (r) { if (r.error) throw r.error; return r.data; }); },
     guardar: function (p, nuevo) { var q = nuevo ? sb.from('productos').insert(p) : sb.from('productos').update(p).eq('id', p.id); return q.select().single().then(ok); },
     borrar: function (id) { return sb.from('productos').delete().eq('id', id).eq('tipo', 'afiliado').then(ok); },
     leer: function (url) { return sb.functions.invoke('leer-link', { body: { url: url } }).then(function (r) { if (r.error) throw r.error; return r.data; }); }
   };
 
-  var filas = [], filtroPl = '', $tabla = $('#af-tabla');
+  var filas = [], filtroPl = '', $tabla = $('#af-tabla'), sync = {};
+  function esML(p) { return /^ml-/.test(p.plataforma_afiliado || ''); }
+  function hace(iso) {
+    var m = Math.round((Date.now() - new Date(iso).getTime()) / 60000);
+    return m < 2 ? 'recién' : m < 60 ? 'hace ' + m + ' min' : m < 1440 ? 'hace ' + Math.round(m / 60) + ' h' : 'hace ' + Math.round(m / 1440) + ' días';
+  }
+  function estadoSync(f) {
+    var p = f.p; if (!esML(p) || f.nuevo) return '';
+    if (p.pausado_por_sync) return '<span class="af-sync off">⏸ Pausado solo: sin stock o pausada en Mercado Libre. Se reactiva cuando vuelva a estar disponible.</span>';
+    var s = sync[p.id];
+    if (!s) return '<span class="af-sync">🔄 Precio y stock se sincronizan con Mercado Libre cada 4 horas.</span>';
+    return '<span class="af-sync' + (s.resultado === 'sin-leer' ? ' warn' : '') + '">🔄 Revisado ' + hace(s.revisado) + ' · ' + esc(s.nota) + '</span>';
+  }
   var cats = Object.keys(P.categorias);
 
   /* ---------- abrir y listar ---------- */
@@ -70,11 +89,11 @@
         '<input data-k="foto" value="' + esc(foto) + '" placeholder="Link de la foto" aria-label="Link de la foto"></td>' +
       '<td class="af-tit"><textarea data-k="nombre" rows="2" maxlength="140" placeholder="' + (f.cargando ? 'Leyendo el link…' : 'Título que se ve en tu sitio') + '" aria-label="Título">' + esc(p.nombre || '') + '</textarea>' +
         '<small><span class="af-pl af-' + esc(p.plataforma_afiliado || 'x') + '">' + esc(pl ? pl.n : 'Tienda sin detectar') + '</span>' + (p.codigo ? ' · ' + esc(p.codigo) : '') +
-        ' · <a href="' + esc(p.url_afiliado) + '" target="_blank" rel="noopener">Abrir link ↗</a>' + (f.aviso ? ' · <span class="af-aviso">' + esc(f.aviso) + '</span>' : '') + '</small></td>' +
+        ' · <a href="' + esc(p.url_afiliado) + '" target="_blank" rel="noopener">Abrir link ↗</a>' + (f.aviso ? ' · <span class="af-aviso">' + esc(f.aviso) + '</span>' : '') + estadoSync(f) + '</small></td>' +
       '<td class="af-cat"><select data-k="categoria" aria-label="Categoría">' + opts(cats, p.categoria) + '</select>' +
         '<select data-k="subcategoria" aria-label="Subcategoría">' + opts(P.categorias[p.categoria] || [], p.subcategoria) + '</select></td>' +
       '<td class="af-pre">' + (esAmazon ? '<span class="muted af-np">Ver precio<small>Amazon no permite precio fijo</small></span>' :
-        '<input data-k="precio" type="number" min="0" step="0.01" value="' + esc(precio(p)) + '" placeholder="Opcional" aria-label="Precio">' +
+        '<input data-k="precio" type="number" min="0" step="0.01" value="' + esc(precio(p)) + '" placeholder="' + (esML(p) ? 'Automático' : 'Opcional') + '" aria-label="Precio"' + (esML(p) ? ' readonly title="Se actualiza solo desde Mercado Libre"' : '') + '>' +
         '<select data-k="moneda" aria-label="Moneda">' + opts(['ARS', 'MXN', 'USD'], moneda(p)) + '</select>') + '</td>' +
       '<td class="af-donde">' +
         '<label><input type="checkbox" data-k="tienda_ar"' + (p.tienda_ar ? ' checked' : '') + '> Tienda Argentina</label>' +
@@ -181,6 +200,17 @@
       completar(f).then(function () { activos--; pintar(); siguiente(); });
     }
     for (var k = 0; k < 3; k++) siguiente();
+  });
+
+  /* ---------- sincronizar con Mercado Libre ahora ---------- */
+  $('#af-sync').addEventListener('click', function () {
+    if (filas.some(function (f) { return f.sucio; })) { C.toast('Primero guardá los cambios pendientes.', true); return; }
+    var b = this; b.disabled = true; b.textContent = 'Sincronizando…';
+    api.sincronizar().then(function (r) {
+      C.toast('Listo: ' + r.revisados + ' revisados · ' + r.precios + ' precios actualizados · ' + r.pausados + ' pausados · ' + r.reactivados + ' reactivados' + (r.sin_leer ? ' · ' + r.sin_leer + ' sin leer' : '') + '.');
+      abrir();
+    }).catch(function (e) { C.toast('No se pudo sincronizar: ' + e.message, true); })
+      .then(function () { b.disabled = false; b.textContent = 'Sincronizar precios ahora'; });
   });
 
   /* ---------- guardar todo ---------- */
