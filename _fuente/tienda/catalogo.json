@@ -318,6 +318,42 @@
  ],
  "afiliados": [
   {
+   "codigo": "UM-0016",
+   "nombre": "Bolsa Secadora De Pelo Gadnic Anti Frizz Tipo Bonnette Portatil Tela Resistente Impermeable Compatible Cordon Ajustable Plegable",
+   "categoria": "Salud y Bienestar",
+   "subcategoria": "Cuidado personal",
+   "url_afiliado": "https://meli.la/29ToJGg",
+   "plataforma_afiliado": "ml-ar",
+   "fotos": [
+    "https://http2.mlstatic.com/D_NQ_NP_723522-MLA109470322909_032026-P.webp"
+   ],
+   "precio_ars": 16499,
+   "precio_mxn": null,
+   "precio_usd": null,
+   "tienda_ar": true,
+   "tienda_mx": false,
+   "international": false,
+   "estado": "Publicado"
+  },
+  {
+   "codigo": "UM-0017",
+   "nombre": "Cargador Super Rápido 125w Tipo C Para Samsung Motoro Xiaomi Negro",
+   "categoria": "Tecnología",
+   "subcategoria": "Accesorios",
+   "url_afiliado": "https://meli.la/1zkPQAD",
+   "plataforma_afiliado": "ml-ar",
+   "fotos": [
+    "https://http2.mlstatic.com/D_NQ_NP_904734-MLA107903032609_032026-P.webp"
+   ],
+   "precio_ars": 9211,
+   "precio_mxn": null,
+   "precio_usd": null,
+   "tienda_ar": true,
+   "tienda_mx": false,
+   "international": false,
+   "estado": "Publicado"
+  },
+  {
    "codigo": "UM-0018",
    "nombre": "Tensiómetro Digital De Brazo Automático Medidor Presión Arterial Beurer Bm 27",
    "categoria": "Salud y Bienestar",
@@ -346,6 +382,24 @@
     "https://http2.mlstatic.com/D_NQ_NP_890141-MLA113708481777_062026-P.webp"
    ],
    "precio_ars": 116834,
+   "precio_mxn": null,
+   "precio_usd": null,
+   "tienda_ar": true,
+   "tienda_mx": false,
+   "international": false,
+   "estado": "Publicado"
+  },
+  {
+   "codigo": "UM-0019",
+   "nombre": "Bicicleta Mtb Overtech R29 Q3 Con Suspensión Tamaño Del Cuadro L Negro/rojo/blanco",
+   "categoria": "Deportes y aire libre",
+   "subcategoria": "Bicicletas",
+   "url_afiliado": "https://meli.la/1oXmPL6",
+   "plataforma_afiliado": "ml-ar",
+   "fotos": [
+    "https://http2.mlstatic.com/D_NQ_NP_852618-MLA117527798083_092026-P.webp"
+   ],
+   "precio_ars": 240136,
    "precio_mxn": null,
    "precio_usd": null,
    "tienda_ar": true,
@@ -454,6 +508,24 @@
     "https://http2.mlstatic.com/D_NQ_NP_712760-MLA109929704637_042026-P.webp"
    ],
    "precio_ars": 98900,
+   "precio_mxn": null,
+   "precio_usd": null,
+   "tienda_ar": true,
+   "tienda_mx": false,
+   "international": false,
+   "estado": "Publicado"
+  },
+  {
+   "codigo": "UM-0026",
+   "nombre": "Maquina De Cortar Pelo Vgr V-055 Patillera Barba Recargable Negro",
+   "categoria": "Limpieza e Higiene",
+   "subcategoria": "Productos de higiene personal",
+   "url_afiliado": "https://meli.la/2uZEAuS",
+   "plataforma_afiliado": "ml-ar",
+   "fotos": [
+    "https://http2.mlstatic.com/D_NQ_NP_716624-MLA99529730226_122025-P.webp"
+   ],
+   "precio_ars": 31515,
    "precio_mxn": null,
    "precio_usd": null,
    "tienda_ar": true,
