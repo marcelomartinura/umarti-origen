@@ -1423,5 +1423,65 @@
   "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
   "lugar": "Pueblo",
   "pueblo_magico": true
+ },
+ {
+  "slug": "jalpan-de-serra",
+  "pais": "México",
+  "ciudad": "Jalpan de Serra",
+  "region": "Querétaro",
+  "resumen": "El corazón de la Sierra Gorda de Querétaro: un Pueblo Mágico entre montañas, con una misión franciscana barroca declarada Patrimonio de la Humanidad y una reserva de la biosfera alrededor.",
+  "tags": [
+   "Cultura",
+   "Montaña",
+   "Naturaleza"
+  ],
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/jalpan-de-serra/principal/1795805023648.jpg",
+  "foto_pos": "center",
+  "dias": "2 a 3 días",
+  "mejor_epoca": "De octubre a abril",
+  "presupuesto": "Bajo",
+  "por_que": "**Jalpan de Serra** es la cabecera de la **Sierra Gorda de Querétaro**, en el norte del estado, en un valle rodeado de montañas.\n\nEs **Pueblo Mágico** y su gran atractivo es la **misión de Santiago de Jalpan**, la primera de las cinco **Misiones Franciscanas de la Sierra Gorda** fundadas a mediados del siglo XVIII por **fray Junípero Serra**. Sus fachadas barrocas, talladas con figuras de santos, ángeles y elementos de la naturaleza, son **Patrimonio de la Humanidad** por la UNESCO. Alrededor se extiende la **Reserva de la Biosfera Sierra Gorda**, con bosques, ríos y cañones.",
+  "cuando_ir": "**Mejor época:** de octubre a abril, con días templados y menos lluvia, ideal para recorrer las misiones y la sierra.\n\n**Clima:** cálido en el valle de Jalpan, más fresco en las partes altas de la sierra. De junio a septiembre llueve más y los ríos crecen.\n\nEn temporada de lluvias conviene consultar el estado de los caminos de montaña.",
+  "que_comer": "- **Cecina** serrana y **enchiladas serranas**\n- **Zacahuil** y tamales huastecos\n- **Bocoles** y gorditas de maíz\n- **Acamayas** (langostinos de río) en temporada\n- **Dulces regionales** y **café** de la sierra",
+  "donde_alojarse": "- **Centro de Jalpan**: hoteles y posadas frente o cerca del jardín principal y la misión.\n- **Cabañas y hoteles ecoturísticos** en la Sierra Gorda, para dormir en la naturaleza.\n\nJalpan es una buena base para recorrer las otras misiones y seguir hacia Xilitla.",
+  "como_llegar": "Jalpan está a unos **190 kilómetros de la ciudad de Querétaro**, alrededor de 3 horas y media en auto, cruzando la sierra por Pinal de Amoles. El camino tiene muchas curvas y vistas espectaculares.\n\nHay buses desde la terminal de Querétaro. El aeropuerto más cercano es el de Querétaro.",
+  "como_moverse": "El centro se recorre caminando. Para visitar las otras misiones (Landa, Tilaco, Tancoyol y Concá) y los atractivos de la sierra conviene tener auto o contratar un recorrido local.",
+  "que_hacer": "- **Misión de Santiago de Jalpan**: la primera de las misiones franciscanas, frente al jardín principal.\n- **Ruta de las Misiones**: Landa, Tilaco, Tancoyol y Concá, cada una con su fachada barroca única.\n- **Museo Histórico de la Sierra Gorda**: sobre la historia de la región y de las misiones.\n- **Presa Jalpan**: para caminar, observar aves y ver el atardecer.\n- **Reserva de la Biosfera Sierra Gorda**: senderismo, ríos y miradores.\n- **Mirador Cuatro Palos** (Pinal de Amoles): con vistas a la sierra, en el camino desde Querétaro.\n- **Xilitla y Las Pozas**: a menos de 2 horas, ya en San Luis Potosí.",
+  "consejos": "- Manejá de día por la sierra: hay muchas curvas y neblina en las partes altas.\n- Cargá combustible antes de salir hacia las misiones: hay pocas estaciones.\n- Llevá ropa para calor y abrigo para las partes altas.\n- Llevá efectivo para las comunidades y los puestos.",
+  "faqs": [
+   {
+    "a": "En la Sierra Gorda, en el norte del estado de Querétaro, a unos 190 km de la capital (alrededor de 3 horas y media en auto).",
+    "q": "¿Dónde queda Jalpan de Serra?"
+   },
+   {
+    "a": "Cinco misiones franciscanas del siglo XVIII, con fachadas barrocas, fundadas por fray Junípero Serra y declaradas Patrimonio de la Humanidad por la UNESCO.",
+    "q": "¿Qué son las Misiones de la Sierra Gorda?"
+   },
+   {
+    "a": "Sí, forma parte del programa de Pueblos Mágicos de México.",
+    "q": "¿Jalpan de Serra es Pueblo Mágico?"
+   },
+   {
+    "a": "Con 2 días alcanza para Jalpan y algunas misiones; con 3 podés recorrer las cinco y la sierra.",
+    "q": "¿Cuántos días se necesitan?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-27T18:43:44.988481+00:00",
+  "clima": "",
+  "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
+  "requisitos_fuente": "https://www.gob.mx/inm",
+  "moneda": "Peso mexicano (MXN). En el centro hay cajeros; para las misiones, las comunidades y los puestos llevá efectivo.",
+  "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
+  "huso": "America/Mexico_City",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
+  "lugar": "Pueblo",
+  "pueblo_magico": true
  }
 ]
