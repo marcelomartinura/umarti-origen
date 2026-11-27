@@ -886,6 +886,66 @@
   "pueblo_magico": true
  },
  {
+  "slug": "san-joaquin",
+  "pais": "México",
+  "ciudad": "San Joaquín",
+  "region": "Querétaro",
+  "resumen": "Un Pueblo Mágico entre bosques y neblina en la Sierra Gorda de Querétaro: aire de montaña, cabañas, la zona arqueológica de Ranas y el famoso concurso de huapango.",
+  "tags": [
+   "Cultura",
+   "Montaña",
+   "Naturaleza"
+  ],
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/san-joaquin/principal/1795805006756.jpg",
+  "foto_pos": "center",
+  "dias": "2 días",
+  "mejor_epoca": "Todo el año (abrigo en invierno)",
+  "presupuesto": "Bajo",
+  "por_que": "**San Joaquín** es un pueblo de montaña en plena **Sierra Gorda de Querétaro**, a más de 2.000 metros de altura, rodeado de bosques de pino y encino. Sus calles empinadas, la neblina de las mañanas y el aire frío lo hacen muy distinto del Querétaro semidesértico.\n\nEs **Pueblo Mágico** y un buen lugar para desconectar: caminatas por el bosque, cabañas con chimenea, una antigua historia minera y la zona arqueológica de **Ranas**, en lo alto de un cerro. Además es sede del **Concurso Nacional de Huapango**, una gran fiesta de música y baile huasteco.",
+  "cuando_ir": "**Mejor época:** se puede ir todo el año. De octubre a febrero hace frío, sobre todo de noche, y la neblina es frecuente; en primavera los días son templados.\n\n**Clima:** templado a frío de montaña, con lluvias en verano.\n\n**Fechas especiales:** el **Concurso Nacional de Huapango** reúne a bailarines y tríos huastecos de todo el país, generalmente en primavera. En esas fechas el pueblo se llena: conviene reservar con anticipación.",
+  "que_comer": "- Enchiladas serranas y gorditas de maíz hechas a mano\n- Cecina y barbacoa los fines de semana\n- Pan de horno de leña\n- Atole y café de olla para el frío\n- Dulces y conservas de frutas de la sierra",
+  "donde_alojarse": "- **Centro de San Joaquín**: hoteles sencillos y casas de huéspedes a pocas cuadras de la plaza.\n- **Cabañas en el bosque**: con chimenea, en los alrededores y cerca del parque Campo Alegre.\n\nLa oferta es chica: para fines de semana largos y el concurso de huapango, reservá con tiempo.",
+  "como_llegar": "San Joaquín está a unas **3 horas en auto desde la ciudad de Querétaro**, por la carretera a Cadereyta y luego un camino de montaña con muchas curvas.\n\nDesde la terminal de autobuses de Querétaro salen buses hacia la Sierra Gorda con paradas en San Joaquín. Si vas en auto, manejá con precaución: hay neblina y curvas cerradas.",
+  "como_moverse": "El pueblo se recorre caminando, aunque las calles son empinadas. Para ir a Ranas, Campo Alegre o la gruta conviene tener auto o contratar un recorrido local.",
+  "que_hacer": "- **Zona arqueológica de Ranas**: antiguas construcciones en lo alto de un cerro, con vistas a la sierra.\n- **Parque Campo Alegre**: bosque, senderos, áreas para acampar y cabañas.\n- **Gruta Los Herrera**: una cueva con formaciones de roca que se recorre con guía.\n- **Plaza y templo del pueblo**: el centro de la vida de San Joaquín.\n- **Concurso Nacional de Huapango**: música y baile huasteco durante varios días.\n- **Sierra Gorda**: combinable con otros puntos de la sierra, como Bernal o Cadereyta en el camino.",
+  "consejos": "- Llevá abrigo aunque viajes en verano: las noches son frías.\n- Manejá de día: la neblina y las curvas complican el camino de noche.\n- Llevá efectivo: hay pocos cajeros y no todos los lugares aceptan tarjeta.\n- Usá calzado cómodo para las calles empinadas y los senderos.",
+  "faqs": [
+   {
+    "a": "En la Sierra Gorda del estado de Querétaro, a unas 3 horas en auto de la ciudad de Querétaro.",
+    "q": "¿Dónde queda San Joaquín?"
+   },
+   {
+    "a": "Sí, forma parte del programa de Pueblos Mágicos de México.",
+    "q": "¿San Joaquín es Pueblo Mágico?"
+   },
+   {
+    "a": "Una competencia de baile y música huasteca que reúne a parejas y tríos de todo el país. Conviene confirmar las fechas de cada año.",
+    "q": "¿Qué es el Concurso Nacional de Huapango?"
+   },
+   {
+    "a": "Sí, sobre todo de noche y en invierno. Llevá abrigo en cualquier época.",
+    "q": "¿Hace frío?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-27T18:43:27.489178+00:00",
+  "clima": "",
+  "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
+  "requisitos_fuente": "https://www.gob.mx/inm",
+  "moneda": "Peso mexicano (MXN). Hay pocos cajeros y muchos lugares solo aceptan efectivo: llevá pesos desde Querétaro.",
+  "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
+  "huso": "America/Mexico_City",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
+  "lugar": "Pueblo",
+  "pueblo_magico": true
+ },
+ {
   "slug": "puebla-de-zaragoza",
   "pais": "México",
   "ciudad": "Puebla de Zaragoza",
