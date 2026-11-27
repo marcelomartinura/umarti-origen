@@ -622,6 +622,114 @@
    "tienda_mx": false,
    "international": false,
    "estado": "Publicado"
+  },
+  {
+   "codigo": "UM-0033",
+   "nombre": "Smartwatch Nictom Rosa Reloj Inteligente Sumergible Deportiva Pantalla Táctil Notificaciones Bluetooth Salud Mujer Resistente al Agua",
+   "categoria": "Tecnología",
+   "subcategoria": "Accesorios",
+   "url_afiliado": "https://meli.la/2gja6qV",
+   "plataforma_afiliado": "ml-ar",
+   "fotos": [
+    "https://http2.mlstatic.com/D_NQ_NP_804417-MLA99940028515_112025-P.webp"
+   ],
+   "precio_ars": 42599,
+   "precio_mxn": null,
+   "precio_usd": null,
+   "tienda_ar": true,
+   "tienda_mx": false,
+   "international": false,
+   "estado": "Publicado"
+  },
+  {
+   "codigo": "UM-0034",
+   "nombre": "Escurre Seca Platos Para Bacha Organizador 65cm Hogar Actual",
+   "categoria": "Hogar y Cocina",
+   "subcategoria": "Bazar y cocina",
+   "url_afiliado": "https://meli.la/2gngdcd",
+   "plataforma_afiliado": "ml-ar",
+   "fotos": [
+    "https://http2.mlstatic.com/D_NQ_NP_742225-MLA103017789202_012026-P.webp"
+   ],
+   "precio_ars": 48999,
+   "precio_mxn": null,
+   "precio_usd": null,
+   "tienda_ar": true,
+   "tienda_mx": false,
+   "international": false,
+   "estado": "Publicado"
+  },
+  {
+   "codigo": "UM-0037",
+   "nombre": "Cafetera Espresso 20 Bar 1350 W Suono Acero Inoxidable Vaporizador de Leche 1,5 lts Capacidad de agua",
+   "categoria": "Café, Té y Mate",
+   "subcategoria": "Café",
+   "url_afiliado": "https://meli.la/1UPVM1Q",
+   "plataforma_afiliado": "ml-ar",
+   "fotos": [
+    "https://http2.mlstatic.com/D_NQ_NP_640961-MLA120812285531_112026-P.webp"
+   ],
+   "precio_ars": 99999,
+   "precio_mxn": null,
+   "precio_usd": null,
+   "tienda_ar": true,
+   "tienda_mx": false,
+   "international": false,
+   "estado": "Publicado"
+  },
+  {
+   "codigo": "UM-0036",
+   "nombre": "Set 3 Piezas Bandolera y Billetera para Mujer de Cuero PU con Tarjetero Levys Bazar",
+   "categoria": "Moda",
+   "subcategoria": "Carteras",
+   "url_afiliado": "https://meli.la/18bHfyU",
+   "plataforma_afiliado": "ml-ar",
+   "fotos": [
+    "https://http2.mlstatic.com/D_NQ_NP_720614-MLA117195100852_102026-P.webp"
+   ],
+   "precio_ars": 31499,
+   "precio_mxn": null,
+   "precio_usd": null,
+   "tienda_ar": true,
+   "tienda_mx": false,
+   "international": false,
+   "estado": "Publicado"
+  },
+  {
+   "codigo": "UM-0039",
+   "nombre": "Termo para Mate OZZ 1 Litro de Acero Inoxidable 304 con 2 Tapones Intercambiables, Pico Cebador y Tapón 360°, Doble Pared, Mantiene el Agua Caliente hasta 12 Ho",
+   "categoria": "Café, Té y Mate",
+   "subcategoria": "Termos y pavas eléctricas",
+   "url_afiliado": "https://meli.la/1qBTyL5",
+   "plataforma_afiliado": "ml-ar",
+   "fotos": [
+    "https://http2.mlstatic.com/D_NQ_NP_768523-MLA118797538118_102026-P.webp"
+   ],
+   "precio_ars": 23999,
+   "precio_mxn": null,
+   "precio_usd": null,
+   "tienda_ar": true,
+   "tienda_mx": false,
+   "international": false,
+   "estado": "Publicado"
+  },
+  {
+   "codigo": "UM-0040",
+   "nombre": "Cortina Blackout Textil 2 Paños 1,40 X 2,20 Presilla Oculta",
+   "categoria": "Hogar y Cocina",
+   "subcategoria": "Deco",
+   "url_afiliado": "https://meli.la/1rWwtjm",
+   "plataforma_afiliado": "ml-ar",
+   "fotos": [
+    "https://http2.mlstatic.com/D_NQ_NP_604580-MLA93024031409_092025-P.webp"
+   ],
+   "precio_ars": 27795,
+   "precio_mxn": null,
+   "precio_usd": null,
+   "tienda_ar": true,
+   "tienda_mx": false,
+   "international": false,
+   "estado": "Publicado"
   }
  ]
 }
