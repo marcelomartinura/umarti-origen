@@ -642,6 +642,24 @@
    "estado": "Publicado"
   },
   {
+   "codigo": "UM-0038",
+   "nombre": "Secador de Pelo Ultracomb SC-4606 Tourmaline Ion Pro con 2200 W y Tecnología Iónica",
+   "categoria": "Salud y Bienestar",
+   "subcategoria": "Cuidado del cabello",
+   "url_afiliado": "https://meli.la/1WdYkoV",
+   "plataforma_afiliado": "ml-ar",
+   "fotos": [
+    "https://http2.mlstatic.com/D_NQ_NP_640980-MLA112498151866_062026-P.webp"
+   ],
+   "precio_ars": 43499,
+   "precio_mxn": null,
+   "precio_usd": null,
+   "tienda_ar": true,
+   "tienda_mx": false,
+   "international": false,
+   "estado": "Publicado"
+  },
+  {
    "codigo": "UM-0037",
    "nombre": "Cafetera Espresso 20 Bar 1350 W Suono Acero Inoxidable Vaporizador de Leche 1,5 lts Capacidad de agua",
    "categoria": "Café, Té y Mate",
