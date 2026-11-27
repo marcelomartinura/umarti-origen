@@ -17,20 +17,20 @@ window.BLOG_INDICE = [
   "url": "blog/tips-para-una-mejor-higiene-bucal/"
  },
  {
-  "slug": "como-curar-un-mate",
-  "titulo": "Cómo curar un mate de calabaza o de madera antes de estrenarlo",
-  "resumen": "Curar el mate sella sus poros, mejora el sabor y evita hongos y grietas. Qué mates hay que curar, el método con yerba usada paso a paso y otras dos técnicas tradicionales.",
+  "slug": "tipos-de-mate",
+  "titulo": "Tipos de mate: una tradición argentina en diferentes formas",
+  "resumen": "Calabaza, madera, vidrio, cerámica, metal, cuero, camionero e imperial: los principales tipos de mate, cómo es cada uno y cuál conviene según tu forma de tomarlo.",
   "seccion": "productos",
   "categoria": "Café, Té y Mate",
   "subcategoria": "Mates y bombillas",
   "tema": "",
-  "fecha": "2026-10-18",
+  "fecha": "2026-11-27",
   "tags": [
    "mate",
-   "curado",
-   "calabaza"
+   "tipos de mate",
+   "mates artesanales"
   ],
-  "url": "blog/como-curar-un-mate/"
+  "url": "blog/tipos-de-mate/"
  },
  {
   "slug": "que-es-el-mate",
@@ -47,6 +47,22 @@ window.BLOG_INDICE = [
    "historia"
   ],
   "url": "blog/que-es-el-mate/"
+ },
+ {
+  "slug": "como-curar-un-mate",
+  "titulo": "Cómo curar un mate de calabaza o de madera antes de estrenarlo",
+  "resumen": "Curar el mate sella sus poros, mejora el sabor y evita hongos y grietas. Qué mates hay que curar, el método con yerba usada paso a paso y otras dos técnicas tradicionales.",
+  "seccion": "productos",
+  "categoria": "Café, Té y Mate",
+  "subcategoria": "Mates y bombillas",
+  "tema": "",
+  "fecha": "2026-10-18",
+  "tags": [
+   "mate",
+   "curado",
+   "calabaza"
+  ],
+  "url": "blog/como-curar-un-mate/"
  },
  {
   "slug": "como-curar-un-mate-de-palo-santo",
