@@ -444,6 +444,24 @@
    "estado": "Publicado"
   },
   {
+   "codigo": "UM-0022",
+   "nombre": "Freidora de Aire Novohome 4.5 Litros Airfryer Display Pantalla Digital Sin Aceite 1200w Color Negro",
+   "categoria": "Hogar y Cocina",
+   "subcategoria": "Bazar y cocina",
+   "url_afiliado": "https://meli.la/2TEB3BQ",
+   "plataforma_afiliado": "ml-ar",
+   "fotos": [
+    "https://http2.mlstatic.com/D_NQ_NP_822969-MLA115525004419_082026-P.webp"
+   ],
+   "precio_ars": 78499,
+   "precio_mxn": null,
+   "precio_usd": null,
+   "tienda_ar": true,
+   "tienda_mx": false,
+   "international": false,
+   "estado": "Publicado"
+  },
+  {
    "codigo": "UM-0024",
    "nombre": "Kit 2 Camaras Seguridad Geotek 3mp Ip Wifi Exterior Full Hd Domo Vision Nocturna Inteligente Deteccion Movimiento",
    "categoria": "Tecnología",
@@ -561,7 +579,7 @@
    "fotos": [
     "https://http2.mlstatic.com/D_NQ_NP_850162-MLA99382608602_112025-P.webp"
    ],
-   "precio_ars": 474999,
+   "precio_ars": 493699,
    "precio_mxn": null,
    "precio_usd": null,
    "tienda_ar": true,
@@ -669,7 +687,7 @@
    "fotos": [
     "https://http2.mlstatic.com/D_NQ_NP_640961-MLA120812285531_112026-P.webp"
    ],
-   "precio_ars": 113489,
+   "precio_ars": 99999,
    "precio_mxn": null,
    "precio_usd": null,
    "tienda_ar": true,
