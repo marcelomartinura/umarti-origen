@@ -1,6 +1,22 @@
 /* Generado por _fuente/construir_blog.py. Lo usa la Tienda para mostrar las notas de cada categoría. */
 window.BLOG_INDICE = [
  {
+  "slug": "tips-para-una-mejor-higiene-bucal",
+  "titulo": "Tips para una mejor higiene bucal: cómo cepillarse correctamente los dientes",
+  "resumen": "Cuánto tiempo cepillarse, con qué técnica, qué cepillo y qué pasta elegir, y cómo sumar el hilo dental. Siete hábitos simples para cuidar tu sonrisa todos los días.",
+  "seccion": "productos",
+  "categoria": "Salud y Bienestar",
+  "subcategoria": "Odontología",
+  "tema": "",
+  "fecha": "2026-11-27",
+  "tags": [
+   "higiene bucal",
+   "cepillo dental",
+   "salud dental"
+  ],
+  "url": "blog/tips-para-una-mejor-higiene-bucal/"
+ },
+ {
   "slug": "que-es-el-mate",
   "titulo": "Qué es el mate: origen, tradición y cómo se toma",
   "resumen": "Una infusión de origen guaraní que se volvió símbolo de amistad en el sur de América. De dónde viene, qué tiene, cómo se comparte la ronda y las formas de tomarlo, dulce, amargo o saborizado.",

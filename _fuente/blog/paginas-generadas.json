@@ -9,9 +9,11 @@
 "blog/etiqueta/bombilla/index.html",
 "blog/etiqueta/cafe/index.html",
 "blog/etiqueta/calabaza/index.html",
+"blog/etiqueta/cepillo-dental/index.html",
 "blog/etiqueta/comercio-exterior/index.html",
 "blog/etiqueta/curado/index.html",
 "blog/etiqueta/exportar/index.html",
+"blog/etiqueta/higiene-bucal/index.html",
 "blog/etiqueta/historia/index.html",
 "blog/etiqueta/incoterms/index.html",
 "blog/etiqueta/limpieza/index.html",
@@ -24,6 +26,7 @@
 "blog/etiqueta/posicion-arancelaria/index.html",
 "blog/etiqueta/preparacion/index.html",
 "blog/etiqueta/proveedores/index.html",
+"blog/etiqueta/salud-dental/index.html",
 "blog/etiqueta/yerba-mate/index.html",
 "blog/incoterms-explicados-fob-cif-exw/index.html",
 "blog/index.html",
@@ -38,6 +41,9 @@
 "blog/productos/cafe-te-y-mate/index.html",
 "blog/productos/cafe-te-y-mate/mates-y-bombillas/index.html",
 "blog/productos/index.html",
+"blog/productos/salud-y-bienestar/index.html",
+"blog/productos/salud-y-bienestar/odontologia/index.html",
 "blog/que-es-el-mate/index.html",
-"blog/que-es-la-posicion-arancelaria/index.html"
+"blog/que-es-la-posicion-arancelaria/index.html",
+"blog/tips-para-una-mejor-higiene-bucal/index.html"
 ]
