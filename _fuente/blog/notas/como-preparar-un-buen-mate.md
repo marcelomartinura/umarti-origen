@@ -7,7 +7,7 @@ subcategoria: Mates y bombillas
 tags: mate, yerba mate, preparación
 fecha: 2026-10-08
 destacada: si
-imagen: https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/blog/como-preparar-un-buen-mate/1795812995856-um.jpg
+imagen: https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/blog/como-preparar-un-buen-mate/1795818808443-um.jpg
 imagen_alt: Mate de palo santo forrado con aluminio
 ---
 Preparar un mate parece simple, y lo es. Pero hay tres o cuatro detalles que separan un mate que se lava en la segunda vuelta de uno que acompaña toda la tarde. Acá van, en orden.
