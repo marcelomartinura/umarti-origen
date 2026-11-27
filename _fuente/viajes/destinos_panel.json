@@ -1065,6 +1065,66 @@
   "pueblo_magico": true
  },
  {
+  "slug": "aculco",
+  "pais": "México",
+  "ciudad": "Aculco",
+  "region": "Estado de México",
+  "resumen": "Un Pueblo Mágico de cantera rosa en el norte del Estado de México, famoso por sus quesos y natas, sus lavaderos coloniales y dos cascadas a pocos minutos del centro.",
+  "tags": [
+   "Cultura",
+   "Gastronomía",
+   "Naturaleza"
+  ],
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/aculco/principal/1795804190417.jpg",
+  "foto_pos": "center",
+  "dias": "1 a 2 días",
+  "mejor_epoca": "Todo el año (cascadas con más agua de julio a octubre)",
+  "presupuesto": "Bajo",
+  "por_que": "**Aculco** es un pueblo del norte del **Estado de México**, en el límite con Querétaro, con calles empedradas, portales y casas de **cantera rosa**. Fue parada del **Camino Real de Tierra Adentro**, la antigua ruta de la plata que unía la Ciudad de México con el norte, hoy Patrimonio de la Humanidad.\n\nEs **Pueblo Mágico** y una escapada ideal de fin de semana: se combina el centro histórico, sus famosos **lácteos** —quesos, natas y requesón— y la naturaleza de las cascadas de **La Concepción** y **Tixhiñú**.",
+  "cuando_ir": "**Mejor época:** se puede ir todo el año. En la temporada de lluvias, de julio a octubre, las cascadas tienen más agua y el paisaje está verde.\n\n**Clima:** templado de altura, con días agradables y noches frescas; en invierno puede hacer bastante frío por la noche.\n\nLos fines de semana hay más movimiento en el centro y en los puestos de lácteos.",
+  "que_comer": "- **Quesos**, **natas**, **requesón** y **mantequilla** de los productores locales\n- **Pan de nata**\n- **Barbacoa** de borrego los fines de semana\n- **Dulces de leche** y cajeta\n- **Pulque** y **curados**",
+  "donde_alojarse": "- **Centro histórico**: hoteles y posadas en casonas de cantera, a pasos de la plaza y la parroquia.\n- **Cabañas y hoteles campestres** en los alrededores, cerca de la presa y las cascadas.\n\nEs un pueblo chico: con una noche alcanza, y muchos lo visitan en el día desde Querétaro o la Ciudad de México.",
+  "como_llegar": "Aculco está a unos **140 kilómetros de la Ciudad de México**, alrededor de 2 horas en auto por la autopista México–Querétaro, y a cerca de **1 hora y media de Querétaro**.\n\nHay buses desde la Terminal Norte de la Ciudad de México y desde San Juan del Río. El aeropuerto más cercano es el de Querétaro.",
+  "como_moverse": "El centro se recorre caminando. Para ir a las cascadas y a la presa conviene tener auto; también hay taxis locales que hacen el recorrido desde la plaza.",
+  "que_hacer": "- **Parroquia y exconvento de San Jerónimo**: del siglo XVI, frente a la plaza.\n- **Lavaderos públicos**: lavaderos coloniales de piedra, uno de los símbolos del pueblo.\n- **Cascada La Concepción**: una caída de agua sobre paredes de roca basáltica.\n- **Cascada Tixhiñú**: otra cascada cercana, rodeada de formaciones de roca.\n- **Presa Ñadó**: para caminar, pescar o acampar.\n- **Tiendas de lácteos** del centro, para probar y llevar quesos y natas.\n- **Casa de Hidalgo**: donde se alojó Miguel Hidalgo en 1810, durante la Guerra de Independencia.\n- **Amealco**: otro Pueblo Mágico, del lado de Querétaro, a menos de una hora.",
+  "consejos": "- Llevá una heladera o bolsa térmica si querés volver con quesos y natas.\n- Para las cascadas, llevá calzado cómodo: hay escalones y piedras.\n- Llevá abrigo para la noche, incluso en primavera.\n- Llevá efectivo: muchos puestos y tiendas no aceptan tarjeta.",
+  "faqs": [
+   {
+    "a": "En el norte del Estado de México, cerca del límite con Querétaro, a unos 140 km de la Ciudad de México.",
+    "q": "¿Dónde queda Aculco?"
+   },
+   {
+    "a": "Sí, forma parte del programa de Pueblos Mágicos de México.",
+    "q": "¿Aculco es Pueblo Mágico?"
+   },
+   {
+    "a": "Por sus quesos, natas y lácteos, sus construcciones de cantera rosa, sus lavaderos coloniales y las cascadas cercanas.",
+    "q": "¿Por qué es famoso Aculco?"
+   },
+   {
+    "a": "Alcanza con un día o un fin de semana para el centro y las cascadas.",
+    "q": "¿Cuántos días se necesitan?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-27T18:29:54.323184+00:00",
+  "clima": "",
+  "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
+  "requisitos_fuente": "https://www.gob.mx/inm",
+  "moneda": "Peso mexicano (MXN). Algunos hoteles y restaurantes aceptan tarjeta, pero para puestos, tiendas de lácteos y las cascadas llevá efectivo.",
+  "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
+  "huso": "America/Mexico_City",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
+  "lugar": "Pueblo",
+  "pueblo_magico": true
+ },
+ {
   "slug": "amealco",
   "pais": "México",
   "ciudad": "Amealco",
