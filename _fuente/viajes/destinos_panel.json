@@ -946,6 +946,65 @@
   "pueblo_magico": false
  },
  {
+  "slug": "val-quirico",
+  "pais": "México",
+  "ciudad": "Val'Quirico",
+  "region": "Tlaxcala",
+  "resumen": "Un pueblo de estilo medieval toscano entre Puebla y Tlaxcala: calles empedradas, restaurantes, tiendas y un ambiente de escapada europea a pocos minutos de la ciudad de Puebla.",
+  "tags": [
+   "Gastronomía",
+   "Shopping"
+  ],
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/val-quirico/principal/1795804369897.jpg",
+  "foto_pos": "center",
+  "dias": "1 día",
+  "mejor_epoca": "Todo el año (mejor de octubre a mayo)",
+  "presupuesto": "Medio",
+  "por_que": "**Val'Quirico** es un pueblo construido con estilo medieval y toscano, en el estado de **Tlaxcala**, muy cerca de la ciudad de Puebla. Sus calles empedradas, muros de piedra, plazas y faroles hacen que parezca un rincón de Europa en medio del valle.\n\nNo es un pueblo histórico sino un complejo temático, pensado para pasear, comer y comprar: tiene restaurantes de cocina italiana, española y mexicana, cafés, tiendas de diseño, vinos y quesos, y hoteles boutique. Es una escapada popular de fin de semana desde Puebla y la Ciudad de México, y se combina fácil con las zonas arqueológicas de **Cacaxtla y Xochitécatl**.",
+  "cuando_ir": "**Mejor época:** se puede ir todo el año. De octubre a mayo hay menos lluvias; de junio a septiembre suele llover por la tarde.\n\n**Clima:** templado, con mañanas y noches frescas.\n\nLos fines de semana y puentes hay mucha gente: si podés, andá entre semana o temprano.",
+  "que_comer": "- Cocina italiana y española en los restaurantes del pueblo\n- Tablas de quesos y embutidos con vino\n- Pan artesanal, postres y café en las cafeterías de las plazas\n- Cocina tlaxcalteca y poblana en los alrededores: mole, tlacoyos y pulque",
+  "donde_alojarse": "- **Dentro de Val'Quirico**: hoteles boutique con la misma estética medieval, para quedarse cuando se van los visitantes del día.\n- **Ciudad de Puebla**: más opciones y precios, a unos 30 a 40 minutos en auto.\n- **Tlaxcala capital**: otra opción cercana, más tranquila.",
+  "como_llegar": "Val'Quirico está a unos **30 kilómetros de la ciudad de Puebla** (entre 30 y 40 minutos en auto) y a unas **2 horas de la Ciudad de México** por autopista.\n\nLo más práctico es ir en auto o en taxi desde Puebla; el transporte público hasta la entrada es limitado. El acceso al pueblo es peatonal: los autos quedan en el estacionamiento.",
+  "como_moverse": "Dentro del pueblo todo se recorre caminando. Para visitar Cacaxtla, Xochitécatl o la ciudad de Tlaxcala conviene tener auto.",
+  "que_hacer": "- **Pasear por las calles y plazas**: la mejor forma de conocerlo es sin apuro, a pie.\n- **Comer o tomar algo** en alguno de sus restaurantes, cafés o vinotecas.\n- **Tiendas**: diseño, decoración, ropa, vinos y productos gourmet.\n- **Fotos**: los rincones de piedra y los faroles son de los lugares más fotografiados de la zona.\n- **Cacaxtla y Xochitécatl**: zonas arqueológicas cercanas, famosas por sus murales prehispánicos.\n- **Ciudad de Puebla o Tlaxcala**: para sumar historia y gastronomía en el mismo viaje.",
+  "consejos": "- Llegá temprano los fines de semana: el estacionamiento se llena.\n- Usá calzado cómodo: todo el pueblo es de empedrado.\n- Consultá en su sitio oficial si hay costo de acceso o estacionamiento antes de ir.\n- Combinalo con Puebla para armar una escapada de 2 o 3 días.",
+  "faqs": [
+   {
+    "a": "En el estado de Tlaxcala, a unos 30 km de la ciudad de Puebla y a unas 2 horas de la Ciudad de México.",
+    "q": "¿Dónde queda Val'Quirico?"
+   },
+   {
+    "a": "No. Es un complejo de estilo medieval y toscano construido en este siglo, pensado para pasear, comer y comprar.",
+    "q": "¿Val'Quirico es un pueblo antiguo?"
+   },
+   {
+    "a": "Medio día o un día completo alcanza para recorrerlo y comer sin apuro.",
+    "q": "¿Cuánto tiempo hace falta?"
+   },
+   {
+    "a": "No, el pueblo es peatonal: el auto queda en el estacionamiento de la entrada.",
+    "q": "¿Se puede entrar en auto?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-27T18:32:51.428535+00:00",
+  "clima": "",
+  "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
+  "requisitos_fuente": "https://www.gob.mx/inm",
+  "moneda": "Peso mexicano (MXN). Se aceptan tarjetas en la mayoría de los restaurantes y tiendas; para puestos y propinas llevá efectivo.",
+  "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
+  "huso": "America/Mexico_City",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
+  "lugar": "Pueblo",
+  "pueblo_magico": false
+ },
+ {
   "slug": "mazamitla",
   "pais": "México",
   "ciudad": "Mazamitla",
