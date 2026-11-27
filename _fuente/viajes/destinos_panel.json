@@ -1425,6 +1425,66 @@
   "pueblo_magico": true
  },
  {
+  "slug": "xilitla",
+  "pais": "México",
+  "ciudad": "Xilitla",
+  "region": "San Luis Potosí",
+  "resumen": "Un Pueblo Mágico en plena Huasteca Potosina, rodeado de selva y niebla, famoso por Las Pozas, el jardín surrealista de Edward James, y por su café de altura.",
+  "tags": [
+   "Aventura",
+   "Cultura",
+   "Naturaleza"
+  ],
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/xilitla/principal/1795805258531.jpg",
+  "foto_pos": "center",
+  "dias": "2 a 3 días",
+  "mejor_epoca": "De octubre a abril (menos lluvia y calor)",
+  "presupuesto": "Medio",
+  "por_que": "**Xilitla** es un pueblo de montaña de la **Huasteca Potosina**, en San Luis Potosí, entre cerros cubiertos de selva, cafetales y niebla.\n\nEs **Pueblo Mágico** y el hogar de **Las Pozas**, el jardín surrealista que el poeta y mecenas británico **Edward James** construyó en medio de la selva: escaleras que no llevan a ningún lado, columnas gigantes y estructuras de concreto entre pozas y cascadas. Además, es la puerta de entrada a los ríos, cascadas y sótanos de la Huasteca.",
+  "cuando_ir": "**Mejor época:** de octubre a abril, con temperaturas más agradables y menos lluvias. En verano los ríos y cascadas de la Huasteca pueden crecer y verse turbios.\n\n**Clima:** cálido y húmedo de montaña, con lluvias frecuentes de junio a septiembre y mañanas con neblina.\n\nLos fines de semana largos y Semana Santa hay mucha gente en Las Pozas: conviene llegar temprano.",
+  "que_comer": "- **Zacahuil**, el tamal gigante huasteco cocido en horno de leña\n- **Enchiladas huastecas** y **bocoles**\n- **Café de Xilitla**, cultivado en la sierra\n- **Pemoles** y pan de la región\n- **Frutas** tropicales y dulces caseros",
+  "donde_alojarse": "- **Centro de Xilitla**: hoteles y posadas cerca de la plaza y del convento.\n- **El Castillo**: la casa donde vivía el amigo y colaborador de Edward James, hoy convertida en hospedaje.\n- **Cabañas y hoteles cerca de Las Pozas**, rodeados de selva.",
+  "como_llegar": "Xilitla está a alrededor de **5 horas de Querétaro**, cruzando la Sierra Gorda por Jalpan de Serra, y a unas 5 horas de la ciudad de San Luis Potosí. Desde Ciudad de México son cerca de 6 a 7 horas en auto.\n\nHay buses desde Querétaro, San Luis Potosí y Ciudad Valles. Los caminos de montaña tienen muchas curvas: conviene manejar de día.",
+  "como_moverse": "El centro se recorre caminando, aunque tiene subidas. A Las Pozas se puede ir en taxi desde el centro. Para recorrer la Huasteca (cascadas, sótanos y ríos) conviene tener auto o contratar tours desde Xilitla o Ciudad Valles.",
+  "que_hacer": "- **Las Pozas**: el jardín surrealista de Edward James; la entrada es por visita guiada y tiene cupos limitados.\n- **Museo Leonora Carrington**: con obras de la artista surrealista, amiga de Edward James.\n- **Exconvento de San Agustín**: del siglo XVI, en el centro del pueblo.\n- **El Castillo**: la casa de inspiración surrealista vinculada a Edward James.\n- **Sótano de las Huahuas** y **Sótano de las Golondrinas** (Aquismón): para ver salir y entrar miles de aves al amanecer y al atardecer.\n- **Cascadas y ríos de la Huasteca**: Tamul, Micos y Tamasopo, a algunas horas.\n- **Jalpan de Serra** y las misiones de la Sierra Gorda, en el camino desde Querétaro.",
+  "consejos": "- Reservá o llegá temprano a Las Pozas: hay cupos por horario.\n- Llevá calzado que se pueda mojar, repelente de mosquitos y ropa liviana.\n- Manejá de día en la sierra: hay curvas, neblina y animales en el camino.\n- Llevá efectivo: hay pocos cajeros y muchos lugares no aceptan tarjeta.",
+  "faqs": [
+   {
+    "a": "En la Huasteca Potosina, en el estado de San Luis Potosí, a alrededor de 5 horas de Querétaro cruzando la Sierra Gorda.",
+    "q": "¿Dónde queda Xilitla?"
+   },
+   {
+    "a": "Un jardín surrealista construido por el poeta y mecenas británico Edward James en la selva de Xilitla, con esculturas y estructuras de concreto entre pozas y cascadas.",
+    "q": "¿Qué es Las Pozas?"
+   },
+   {
+    "a": "Sí, forma parte del programa de Pueblos Mágicos de México.",
+    "q": "¿Xilitla es Pueblo Mágico?"
+   },
+   {
+    "a": "Con 2 días alcanza para Xilitla y Las Pozas; con 3 o más podés sumar cascadas y sótanos de la Huasteca.",
+    "q": "¿Cuántos días se necesitan?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-27T18:47:39.622867+00:00",
+  "clima": "",
+  "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
+  "requisitos_fuente": "https://www.gob.mx/inm",
+  "moneda": "Peso mexicano (MXN). Hay pocos cajeros y muchos lugares solo aceptan efectivo: llevá pesos.",
+  "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
+  "huso": "America/Mexico_City",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
+  "lugar": "Pueblo",
+  "pueblo_magico": true
+ },
+ {
   "slug": "jalpan-de-serra",
   "pais": "México",
   "ciudad": "Jalpan de Serra",
