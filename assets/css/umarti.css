@@ -262,3 +262,24 @@ html.ver-en body { top: 0 !important; position: static !important; }
 .foot-redes { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 0.82rem; color: var(--muted); font-weight: 600; }
 .foot-redes a { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px 6px 10px; border-radius: 999px; background: #1877f2; color: #fff; text-decoration: none; font-weight: 600; transition: background .15s; }
 .foot-redes a:hover { background: #0f63d1; }
+
+/* Selector de país de la Tienda (TIENDA · AR ▾) — hoy Argentina; México cuando abra */
+.ml-pais { display: inline-flex; align-items: center; gap: 6px; position: relative; }
+.pais-sel { position: relative; }
+.pais-sel summary { list-style: none; display: inline-flex; align-items: center; gap: 5px; cursor: pointer; padding: 1px 7px 1px 5px; border-radius: 999px; background: rgba(255,255,255,.75); border: 1px solid rgba(0,0,0,.08); font-weight: 800; letter-spacing: .08em; line-height: 1.4; }
+.pais-sel summary::-webkit-details-marker { display: none; }
+.pais-sel summary::after { content: ""; width: 7px; height: 7px; border-right: 1.6px solid currentColor; border-bottom: 1.6px solid currentColor; transform: translateY(-2px) rotate(45deg); margin-left: 2px; }
+.pais-sel[open] summary, .pais-sel summary:hover { background: #fff; }
+.flag { display: inline-block; width: 16px; height: 11px; border-radius: 2px; flex: 0 0 auto; box-shadow: 0 0 0 1px rgba(0,0,0,.08); }
+.flag-ar { background: linear-gradient(#74acdf 33.3%, #fff 33.3% 66.6%, #74acdf 66.6%); }
+.flag-mx { background: linear-gradient(90deg, #006847 33.3%, #fff 33.3% 66.6%, #ce1126 66.6%); }
+.flag-intl { background: radial-gradient(circle at 50% 50%, #3b82c4 0 45%, #2c6aa3 46%); border-radius: 50%; width: 13px; height: 13px; }
+.ps-menu { position: absolute; top: calc(100% + 8px); left: -6px; z-index: 60; min-width: 300px; background: #fff; border-radius: 14px; padding: 8px; box-shadow: 0 14px 36px rgba(40,30,20,.18); border: 1px solid var(--line, #eadfce); display: grid; gap: 2px; text-transform: none; letter-spacing: 0; font-weight: 500; font-size: .92rem; color: var(--ink, #2b2118); }
+.ps-tit { font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted, #7a6c5d); padding: 4px 10px 6px; }
+.ps-menu a, .ps-prox { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 10px; text-decoration: none; color: inherit; }
+.ps-menu a:hover { background: #f6efe5; }
+.ps-menu a[aria-current="true"] { font-weight: 700; background: #fbf3ea; }
+.ps-menu small { margin-left: auto; font-size: .72rem; color: var(--muted, #7a6c5d); font-weight: 600; }
+.ps-prox { color: #a99b8b; cursor: default; }
+.ps-prox small { background: #f3ebdf; padding: 2px 8px; border-radius: 999px; }
+.ps-menu a, .ps-prox { white-space: nowrap; }

@@ -87,3 +87,15 @@
   window.addEventListener('storage', update);
   update();
 })();
+
+/* Selector de país de la Tienda: se cierra al tocar afuera o con Escape */
+(function () {
+  var sels = document.querySelectorAll('.pais-sel');
+  if (!sels.length) return;
+  document.addEventListener('click', function (e) {
+    sels.forEach(function (d) { if (d.open && !d.contains(e.target)) d.open = false; });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') sels.forEach(function (d) { d.open = false; });
+  });
+})();

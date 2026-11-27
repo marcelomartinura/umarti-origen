@@ -67,7 +67,9 @@
   "temas": [],
   "recursos": [
    "conversor-de-monedas"
-  ]
+  ],
+  "imagen": "assets/img/categorias/tecnologia.jpg",
+  "imagen_pos": "right center"
  },
  "Herramientas y Jardín": {
   "bajada": "Herramientas, jardín y construcción.",

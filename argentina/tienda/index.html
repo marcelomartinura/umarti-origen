@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/umarti.css?v=f2831f95">
+  <link rel="stylesheet" href="../../assets/css/umarti.css?v=0429d3e5">
   <link rel="stylesheet" href="../../assets/css/blog.css?v=422de8ce">
   <link rel="stylesheet" href="../../assets/css/viajes.css?v=3c31dbd9">
   <link rel="stylesheet" href="../../assets/css/tienda.css?v=557e466a">
@@ -55,7 +55,20 @@
 
       <!-- Módulo 1: Tienda -->
       <div class="module m-shop">
-        <p class="module-label"><a class="ml-link" href="../../argentina/tienda/">Tienda</a><a class="mi-link" href="../../mi-tienda/">Mi tienda</a></p>
+        <div class="module-label">
+          <span class="ml-pais"><a class="ml-link" href="../../argentina/tienda/">Tienda</a>
+            <details class="pais-sel">
+              <summary aria-label="País de la tienda: Argentina. Cambiar"><i class="flag flag-ar" aria-hidden="true"></i>AR</summary>
+              <div class="ps-menu">
+                <span class="ps-tit">Elegí la tienda</span>
+                <a href="../../argentina/tienda/" aria-current="true"><i class="flag flag-ar" aria-hidden="true"></i>Tienda Argentina</a>
+                <span class="ps-prox"><i class="flag flag-mx" aria-hidden="true"></i>Tienda México <small>Próximamente</small></span>
+                <a href="../../international-shop/"><i class="flag flag-intl" aria-hidden="true"></i>International Shop <small>Envíos al mundo</small></a>
+              </div>
+            </details>
+          </span>
+          <a class="mi-link" href="../../mi-tienda/">Mi tienda</a>
+        </div>
         <ul class="module-items">
           <li class="has-menu mega">
             <button class="nav-btn" aria-expanded="false">Productos
@@ -158,7 +171,7 @@
       </section>
       <section class="ts-cats" aria-labelledby="h-cats">
         <div class="blk-head"><div><h2 id="h-cats">Categorías</h2><p>Todo lo que encontrás en la Tienda Argentina.</p></div><a class="text-link" href="../../argentina/categorias/">Ver todas las categorías →</a></div>
-        <div class="tc-grid"><a class="tc-tile" href="../../argentina/tienda/cafe-te-y-mate/" style="--c1:#5b7a43;--c2:#33472a"><img src="../../assets/img/categorias/cafe-te-y-mate.jpg" alt="" loading="lazy"><b>Café, Té y Mate</b><small>8 productos</small></a><a class="tc-tile" href="../../argentina/tienda/regalos-y-kits/" style="--c1:#c8922a;--c2:#8a5e0c"><b>Regalos y Kits</b><small>Muy pronto</small></a><a class="tc-tile" href="../../argentina/tienda/articulos-regionales/" style="--c1:#8a5a3c;--c2:#55341f"><b>Artículos Regionales</b><small>Muy pronto</small></a><a class="tc-tile" href="../../argentina/tienda/bebidas/" style="--c1:#9a3445;--c2:#5c1c27"><b>Bebidas</b><small>Muy pronto</small></a><a class="tc-tile" href="../../argentina/tienda/alimentos/" style="--c1:#c8693e;--c2:#8f3f1d"><b>Alimentos</b><small>Muy pronto</small></a><a class="tc-tile" href="../../argentina/tienda/salud-y-bienestar/" style="--c1:#2f8a8a;--c2:#1b5555"><img src="../../assets/img/categorias/salud-y-bienestar.jpg" alt="" loading="lazy"><b>Salud y Bienestar</b><small>Muy pronto</small></a><a class="tc-tile" href="../../argentina/tienda/moda/" style="--c1:#a24f7a;--c2:#66304c"><img src="../../assets/img/categorias/moda.jpg" alt="" loading="lazy"><b>Moda</b><small>Muy pronto</small></a><a class="tc-tile" href="../../argentina/tienda/tecnologia/" style="--c1:#4b5d78;--c2:#2b3648"><b>Tecnología</b><small>Muy pronto</small></a><a class="tc-tile" href="../../argentina/tienda/herramientas-y-jardin/" style="--c1:#6b7f3a;--c2:#414e22"><b>Herramientas y Jardín</b><small>Muy pronto</small></a><a class="tc-tile" href="../../argentina/tienda/hogar-y-cocina/" style="--c1:#b0703a;--c2:#734520"><b>Hogar y Cocina</b><small>Muy pronto</small></a><a class="tc-tile" href="../../argentina/tienda/limpieza-e-higiene/" style="--c1:#3d87ab;--c2:#225670"><b>Limpieza e Higiene</b><small>Muy pronto</small></a><a class="tc-tile" href="../../argentina/tienda/productos-para-viajes/" style="--c1:#c79a2e;--c2:#7a5a12"><b>Productos para viajes</b><small>Muy pronto</small></a><a class="tc-tile" href="../../argentina/tienda/deportes-y-aire-libre/" style="--c1:#2e7d5b;--c2:#1a4d37"><b>Deportes y aire libre</b><small>Muy pronto</small></a></div>
+        <div class="tc-grid"><a class="tc-tile" href="../../argentina/tienda/cafe-te-y-mate/" style="--c1:#5b7a43;--c2:#33472a"><img src="../../assets/img/categorias/cafe-te-y-mate.jpg" alt="" loading="lazy"><b>Café, Té y Mate</b><small>8 productos</small></a><a class="tc-tile" href="../../argentina/tienda/regalos-y-kits/" style="--c1:#c8922a;--c2:#8a5e0c"><b>Regalos y Kits</b><small>Muy pronto</small></a><a class="tc-tile" href="../../argentina/tienda/articulos-regionales/" style="--c1:#8a5a3c;--c2:#55341f"><b>Artículos Regionales</b><small>Muy pronto</small></a><a class="tc-tile" href="../../argentina/tienda/bebidas/" style="--c1:#9a3445;--c2:#5c1c27"><b>Bebidas</b><small>Muy pronto</small></a><a class="tc-tile" href="../../argentina/tienda/alimentos/" style="--c1:#c8693e;--c2:#8f3f1d"><b>Alimentos</b><small>Muy pronto</small></a><a class="tc-tile" href="../../argentina/tienda/salud-y-bienestar/" style="--c1:#2f8a8a;--c2:#1b5555"><img src="../../assets/img/categorias/salud-y-bienestar.jpg" alt="" loading="lazy"><b>Salud y Bienestar</b><small>Muy pronto</small></a><a class="tc-tile" href="../../argentina/tienda/moda/" style="--c1:#a24f7a;--c2:#66304c"><img src="../../assets/img/categorias/moda.jpg" alt="" loading="lazy"><b>Moda</b><small>Muy pronto</small></a><a class="tc-tile" href="../../argentina/tienda/tecnologia/" style="--c1:#4b5d78;--c2:#2b3648"><img src="../../assets/img/categorias/tecnologia.jpg" alt="" loading="lazy"><b>Tecnología</b><small>Muy pronto</small></a><a class="tc-tile" href="../../argentina/tienda/herramientas-y-jardin/" style="--c1:#6b7f3a;--c2:#414e22"><b>Herramientas y Jardín</b><small>Muy pronto</small></a><a class="tc-tile" href="../../argentina/tienda/hogar-y-cocina/" style="--c1:#b0703a;--c2:#734520"><b>Hogar y Cocina</b><small>Muy pronto</small></a><a class="tc-tile" href="../../argentina/tienda/limpieza-e-higiene/" style="--c1:#3d87ab;--c2:#225670"><b>Limpieza e Higiene</b><small>Muy pronto</small></a><a class="tc-tile" href="../../argentina/tienda/productos-para-viajes/" style="--c1:#c79a2e;--c2:#7a5a12"><b>Productos para viajes</b><small>Muy pronto</small></a><a class="tc-tile" href="../../argentina/tienda/deportes-y-aire-libre/" style="--c1:#2e7d5b;--c2:#1a4d37"><b>Deportes y aire libre</b><small>Muy pronto</small></a></div>
       </section>
       <section class="ts-pasillos" aria-labelledby="h-pas">
         <div class="blk-head"><div><h2 id="h-pas">Recorré la tienda</h2><p>Elegí un pasillo o mirá todo el catálogo.</p></div><a class="text-link" href="../../argentina/tienda/productos/">Ver todos los productos →</a></div>
@@ -238,7 +251,7 @@
   </footer>
 
   <div class="toast" id="toast" role="status"></div>
-  <script src="../../assets/js/header.js?v=134afb0a"></script>
+  <script src="../../assets/js/header.js?v=d0d04d2f"></script>
   <script src="../../assets/data/tienda-indice.js?v=3a4b20aa"></script>
   <script src="../../assets/js/tienda.js?v=3bf57394"></script>
   <script src="../../assets/js/idioma.js?v=1fc06b76"></script>

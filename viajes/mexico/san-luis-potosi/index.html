@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../../assets/css/umarti.css?v=f2831f95">
+  <link rel="stylesheet" href="../../../assets/css/umarti.css?v=0429d3e5">
   <link rel="stylesheet" href="../../../assets/css/blog.css?v=422de8ce">
   <link rel="stylesheet" href="../../../assets/css/viajes.css?v=3c31dbd9">
   <script type="application/ld+json">
@@ -114,7 +114,20 @@
 
       <!-- Módulo 1: Tienda -->
       <div class="module m-shop">
-        <p class="module-label"><a class="ml-link" href="../../../argentina/tienda/">Tienda</a><a class="mi-link" href="../../../mi-tienda/">Mi tienda</a></p>
+        <div class="module-label">
+          <span class="ml-pais"><a class="ml-link" href="../../../argentina/tienda/">Tienda</a>
+            <details class="pais-sel">
+              <summary aria-label="País de la tienda: Argentina. Cambiar"><i class="flag flag-ar" aria-hidden="true"></i>AR</summary>
+              <div class="ps-menu">
+                <span class="ps-tit">Elegí la tienda</span>
+                <a href="../../../argentina/tienda/" aria-current="true"><i class="flag flag-ar" aria-hidden="true"></i>Tienda Argentina</a>
+                <span class="ps-prox"><i class="flag flag-mx" aria-hidden="true"></i>Tienda México <small>Próximamente</small></span>
+                <a href="../../../international-shop/"><i class="flag flag-intl" aria-hidden="true"></i>International Shop <small>Envíos al mundo</small></a>
+              </div>
+            </details>
+          </span>
+          <a class="mi-link" href="../../../mi-tienda/">Mi tienda</a>
+        </div>
         <ul class="module-items">
           <li class="has-menu mega">
             <button class="nav-btn" aria-expanded="false">Productos
@@ -281,7 +294,7 @@
     </div>
   </footer>
 
-  <script src="../../../assets/js/header.js?v=134afb0a"></script>
+  <script src="../../../assets/js/header.js?v=d0d04d2f"></script>
   <script src="../../../assets/js/viajes.js?v=030ad708"></script>
   <script src="../../../assets/js/idioma.js?v=1fc06b76"></script>
 </body>
