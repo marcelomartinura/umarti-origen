@@ -6,7 +6,7 @@ categoria: Café, Té y Mate
 subcategoria: Mates y bombillas
 tags: mate, curado, palo santo
 fecha: 2026-10-17
-imagen: assets/img/blog/mate-palo-santo-galeria.jpg
+imagen: https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/blog/como-curar-un-mate-de-palo-santo/1795819094116-um.jpg
 imagen_alt: Mate de palo santo con virola de alpaca sobre un poste de madera, frente a una galería de piedra
 ---
 Quien probó un mate en un recipiente de palo santo difícilmente lo olvida: la madera le suma un aroma y un sabor que ningún otro material da. El problema es que es una madera muy sensible. Con los cambios de temperatura y de humedad se puede agrietar, e incluso partir, aunque se haya curado. Por eso vale la pena hacerlo con tiempo y con cuidado.
