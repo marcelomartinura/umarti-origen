@@ -1303,5 +1303,65 @@
   "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
   "lugar": "Ciudad",
   "pueblo_magico": false
+ },
+ {
+  "slug": "santa-maria-del-rio",
+  "pais": "México",
+  "ciudad": "Santa María del Río",
+  "region": "San Luis Potosí",
+  "resumen": "Un Pueblo Mágico de San Luis Potosí con alma de seda: la tierra del rebozo artesanal, tejido a mano en telar de cintura, con un centro tranquilo y balnearios de aguas termales cerca.",
+  "tags": [
+   "Cultura",
+   "Gastronomía",
+   "Shopping"
+  ],
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/santa-maria-del-rio/principal/1795804970961.jpg",
+  "foto_pos": "center",
+  "dias": "1 día",
+  "mejor_epoca": "Todo el año (feria del rebozo en agosto)",
+  "presupuesto": "Bajo",
+  "por_que": "**Santa María del Río** es un pueblo del sur de **San Luis Potosí**, a menos de una hora de la capital del estado, conocido en todo México como la **cuna del rebozo de seda**.\n\nEs **Pueblo Mágico** y conserva una tradición de siglos: los **rebozos** se tejen a mano en **telar de cintura** con la técnica del jaspeado, y se terminan con flecos anudados a mano (el rapacejo). En sus talleres y en la **Escuela del Rebozo** se puede ver el proceso completo y comprar directamente a los artesanos.",
+  "cuando_ir": "**Mejor época:** se puede ir todo el año. En **agosto** se celebra la **Feria del Rebozo**, el mejor momento para ver la tradición en todo su esplendor.\n\n**Clima:** semiseco y templado, con días soleados, noches frescas y pocas lluvias, concentradas en verano.\n\nEs una visita ideal de un día desde San Luis Potosí o en el camino desde Querétaro.",
+  "que_comer": "- **Enchiladas potosinas**, de masa roja de chile\n- **Gorditas** de horno y de comal\n- **Cabrito** y **barbacoa**\n- **Dulces regionales**: queso de tuna, cajeta y dulces de leche\n- **Colonche**, bebida fermentada de tuna roja (en temporada)",
+  "donde_alojarse": "- **Centro de Santa María del Río**: hoteles y posadas sencillas a pocas cuadras de la plaza.\n- **San Luis Potosí capital**: con más opciones, a menos de una hora, para visitarlo en el día.\n- **Balnearios de aguas termales** en los alrededores, algunos con hospedaje.",
+  "como_llegar": "Santa María del Río está a unos **45 kilómetros al sur de la ciudad de San Luis Potosí**, alrededor de 45 minutos en auto por la carretera 57. Desde Querétaro son cerca de 2 horas y media por la misma carretera.\n\nHay buses frecuentes desde la terminal de San Luis Potosí. El aeropuerto más cercano es el de San Luis Potosí.",
+  "como_moverse": "El centro es chico y se recorre caminando. Para ir a los balnearios y a los alrededores conviene tener auto o tomar un taxi local.",
+  "que_hacer": "- **Escuela del Rebozo** y **talleres de rebocería**: para ver cómo se tiñe, se teje y se anuda un rebozo de seda.\n- **Jardín principal y parroquia**: el corazón del pueblo, con sus portales.\n- **Tiendas de artesanías**: rebozos de seda y algodón, y las tradicionales **cajitas de madera taraceada** para guardarlos.\n- **Feria del Rebozo** (agosto): desfiles, concursos y venta de rebozos.\n- **Balnearios de aguas termales** de la zona, como el de Lourdes.\n- **San Luis Potosí**: la capital del estado, con su centro histórico, a menos de una hora.",
+  "consejos": "- Un rebozo de seda hecho a mano lleva meses de trabajo: preguntá por el proceso y comprá directamente a los artesanos.\n- Visitá los talleres en días de semana, cuando hay más artesanos trabajando.\n- Llevá protector solar y sombrero: el sol es fuerte.\n- Llevá efectivo: muchos talleres y puestos no aceptan tarjeta.",
+  "faqs": [
+   {
+    "a": "En el sur del estado de San Luis Potosí, a unos 45 km de la capital (alrededor de 45 minutos en auto).",
+    "q": "¿Dónde queda Santa María del Río?"
+   },
+   {
+    "a": "Por sus rebozos de seda tejidos a mano en telar de cintura, una tradición de siglos.",
+    "q": "¿Por qué es famosa Santa María del Río?"
+   },
+   {
+    "a": "Sí, forma parte del programa de Pueblos Mágicos de México.",
+    "q": "¿Santa María del Río es Pueblo Mágico?"
+   },
+   {
+    "a": "Con un día alcanza para recorrer el centro, los talleres de rebozo y algún balneario.",
+    "q": "¿Cuántos días se necesitan?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-27T18:42:51.934585+00:00",
+  "clima": "",
+  "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
+  "requisitos_fuente": "https://www.gob.mx/inm",
+  "moneda": "Peso mexicano (MXN). Hay algunos cajeros en el centro, pero muchos talleres y puestos solo aceptan efectivo.",
+  "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
+  "huso": "America/Mexico_City",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
+  "lugar": "Pueblo",
+  "pueblo_magico": true
  }
 ]
