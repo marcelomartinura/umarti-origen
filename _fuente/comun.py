@@ -68,6 +68,13 @@ def ecosistema(prefijo):
       </div>'''
 
 
+FACEBOOK = "https://www.facebook.com/umartiorigen"
+REDES = f'''
+        <div class="foot-redes"><span>Seguinos</span>
+          <a href="{FACEBOOK}" target="_blank" rel="noopener" aria-label="Umarti Origen en Facebook" title="Facebook"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.5h2.6l.4-3.1h-3v-2c0-.9.3-1.5 1.6-1.5h1.6V4.1c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H7.9v3.1h2.6V21h3z"/></svg>Facebook</a>
+        </div>'''
+
+
 def footer(prefijo, tienda=False):
     """tienda=True agrega el botón de arrepentimiento y el link a Defensa del Consumidor (solo en las páginas de la Tienda)."""
     consumo = f'''
@@ -79,7 +86,7 @@ def footer(prefijo, tienda=False):
     <div class="wrap foot foot-top">
       <div class="foot-marca">
         <a href="{prefijo or './'}" class="logo logo-foot" aria-label="Umarti Origen, ir al inicio"><img class="logo-ico" src="{prefijo}assets/img/marca/icono.png" alt="" width="259" height="236"><span class="logo-txt"><b>Umarti</b><b>Origen</b></span></a>
-        <p>Tienda &amp; Mercados Globales</p>
+        <p>Tienda &amp; Mercados Globales</p>{REDES}
       </div>
 {ecosistema(prefijo)}
     </div>

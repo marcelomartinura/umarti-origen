@@ -13,7 +13,9 @@ sys.path.insert(0, AQUI)
 sys.path.insert(0, os.path.join(AQUI, "viajes"))
 import comun  # noqa: E402
 from comun import escribir  # noqa: E402
-from construir_blog import CATEGORIAS  # noqa: E402
+from construir_blog import CATEGORIAS, TEMAS as TEMAS_BLOG  # noqa: E402
+sys.path.insert(0, os.path.join(AQUI, "blog"))
+from autores import AUTORES, TEMAS_OPINION  # noqa: E402
 from destinos import DESTINOS, PAISES  # noqa: E402
 import construir_viajes as cv  # noqa: E402
 import construir_recursos as cr  # noqa: E402
@@ -34,12 +36,13 @@ DATOS = {
         "presupuestos": ["Bajo", "Medio", "Alto"],
     },
     "cupones": {"categorias": [c[0] for c in ccu.CATS], "paises": ["Argentina", "México", "En línea", "Uruguay", "Chile", "España", "Estados Unidos", "Otro"]},
+    "blog": {"temas": TEMAS_BLOG, "temas_opinion": TEMAS_OPINION, "autores": {k: a["nombre"] for k, a in AUTORES.items()}},
     "paises_envio": ["Todos los países", "México", "Estados Unidos", "España", "Chile", "Uruguay", "Colombia", "Perú", "Canadá", "Brasil", "Italia", "Alemania"],
 }
 
 opts_zonas = "".join(f'<optgroup label="{g}">' + "".join(f'<option value="{z}">{n}</option>' for n, z in xs) + "</optgroup>" for g, xs in cr.ZONAS)
 
-MODULOS = [("productos", "Productos", True), ("afiliados", "Afiliados", True), ("publicidad", "Publicidad", False), ("cupones", "Cupones", True),
+MODULOS = [("productos", "Productos", True), ("afiliados", "Afiliados", True), ("publicidad", "Publicidad", False), ("cupones", "Cupones", True), ("blog", "Blog", True),
            ("hub", "HUB", False), ("viajes", "Viajes", True)]
 
 botonera = "".join(
@@ -478,6 +481,83 @@ html = f'''<!doctype html>
         </aside>
       </form>
     </section>
+
+    <!-- Blog: lista -->
+    <section id="v-blista" hidden>
+      <div class="pn-head">
+        <div><h1>Blog</h1><p class="muted" id="bl-resumen"></p></div>
+        <button class="btn pri" type="button" id="bb-nueva">+ Nueva nota</button>
+      </div>
+      <div class="pn-filtros">
+        <input type="search" id="bl-q" placeholder="Buscar por título, tema o etiqueta" aria-label="Buscar">
+        <div class="chips" id="bl-estados" role="group" aria-label="Estado"></div>
+        <select id="bl-sec" aria-label="Sección"><option value="">Todas las secciones</option><option value="productos">Productos</option><option value="negocios">Negocios</option><option value="opinion">Opinión</option></select>
+      </div>
+      <div class="pn-tabla" id="bl-tabla"></div>
+      <p class="pn-nota">Las notas <b>Publicadas</b> aparecen en el blog en unos minutos. Las que están en <b>Borrador</b> no se ven en el sitio. En la columna <b>Para completar</b> te marcamos lo que le falta a cada nota para quedar redonda: foto de portada, texto corto, subtítulos o etiquetas.</p>
+    </section>
+
+    <!-- Blog: editor -->
+    <section id="v-beditor" hidden>
+      <div class="pn-head"><div><button type="button" class="link back" id="be-volver">← Blog</button><h1 id="be-titulo">Nueva nota</h1><p class="muted" id="be-sub"></p></div></div>
+      <form id="f-nota" class="pn-editor" novalidate>
+        <div class="pn-form">
+          <fieldset class="card">
+            <legend>Nota</legend>
+            <label class="full"><span>Título <em>*</em></span><input name="titulo" required maxlength="110" placeholder="Cómo preparar un buen mate, paso a paso"><small class="count" data-for="titulo"></small></label>
+            <label class="full"><span>Resumen <em>*</em></span><textarea name="resumen" rows="2" maxlength="240" placeholder="Una o dos oraciones: se ven en las tarjetas del blog y en Google."></textarea><small class="count" data-for="resumen"></small></label>
+            <label class="full">Dirección<span class="be-url"><span class="muted">umartiorigen.com/blog/</span><input name="slug" maxlength="90" pattern="[a-z0-9-]+" placeholder="se-arma-sola-con-el-titulo"></span><small class="muted" id="be-slug-nota">Se arma sola con el título.</small></label>
+          </fieldset>
+          <fieldset class="card">
+            <legend>Dónde va</legend>
+            <label>Sección<select name="seccion"><option value="productos">Productos: guías de la Tienda</option><option value="negocios">Negocios: comercio exterior</option><option value="opinion">Opinión: columna</option></select></label>
+            <label id="be-cat-l">Categoría<select name="categoria"></select></label>
+            <label id="be-sub-l">Subcategoría<select name="subcategoria"></select></label>
+            <label id="be-tema-l">Tema<select name="tema"></select></label>
+            <label id="be-autor-l">Autor<select name="autor"></select></label>
+            <label>Fecha<input name="fecha" type="date"></label>
+            <label class="full">Etiquetas<input name="tags" maxlength="120" placeholder="mate, yerba mate, preparación"><small class="muted">Dos o tres, separadas por coma. Cada etiqueta tiene su página en el blog.</small></label>
+          </fieldset>
+          <fieldset class="card be-texto">
+            <legend>Texto</legend>
+            <div class="be-tabs" role="tablist"><button type="button" class="on" data-vista="escribir">Escribir</button><button type="button" data-vista="previa">Vista previa</button><span class="muted small" id="be-palabras"></span></div>
+            <div class="be-barra" id="be-barra">
+              <button type="button" data-md="h2" title="Subtítulo">Subtítulo</button>
+              <button type="button" data-md="h3" title="Subtítulo chico">Subtítulo chico</button>
+              <button type="button" data-md="b" title="Negrita"><b>N</b></button>
+              <button type="button" data-md="i" title="Cursiva"><i>C</i></button>
+              <button type="button" data-md="ul" title="Lista">• Lista</button>
+              <button type="button" data-md="ol" title="Lista numerada">1. Pasos</button>
+              <button type="button" data-md="tip" title="Recuadro de consejo">Consejo</button>
+              <button type="button" data-md="link" title="Enlace">Enlace</button>
+              <label class="be-fotobtn" title="Insertar una foto en el texto"><input type="file" id="be-foto-texto" accept="image/jpeg,image/png,image/webp" hidden>+ Foto</label>
+            </div>
+            <textarea name="cuerpo" id="be-cuerpo" rows="22" spellcheck="true" placeholder="Empezá con un párrafo que enganche. Después usá Subtítulo para separar las partes de la nota."></textarea>
+            <div class="be-previa" id="be-previa" hidden></div>
+            <details class="be-ayuda"><summary>Cómo dar formato</summary>
+              <p><code>## Subtítulo</code> · <code>### Subtítulo chico</code> · <code>**negrita**</code> · <code>*cursiva*</code> · <code>[texto](https://enlace)</code> · líneas que empiezan con <code>- </code> (lista) o <code>1. </code> (pasos) · <code>&gt; </code> para un recuadro de consejo · tablas con <code>|</code> · fotos con el botón <b>+ Foto</b> (dos fotos seguidas se ven una al lado de la otra).</p>
+            </details>
+          </fieldset>
+        </div>
+        <aside class="pn-side">
+          <div class="card pub">
+            <label>Estado<select name="estado"><option value="Borrador">Borrador: no se ve en el sitio</option><option value="Publicado">Publicado: visible en el blog</option></select></label>
+            <label class="sw"><input type="checkbox" name="destacada"><span></span><b>Destacada</b> <small class="muted">aparece arriba en la portada del blog</small></label>
+            <button class="btn pri" type="submit" id="be-guardar">Guardar</button>
+            <p class="msg" id="be-msg" role="status"></p>
+            <div class="side-acts"><a class="link" id="be-ver" href="#" target="_blank" rel="noopener" hidden>Ver en el sitio ↗</a><button type="button" class="link danger" id="be-borrar" hidden>Eliminar</button></div>
+          </div>
+          <div class="card">
+            <span class="lbl">Foto de portada</span>
+            <div class="ve-foto" id="be-foto"></div>
+            <label class="drop sm" id="be-foto-drop"><input type="file" accept="image/jpeg,image/png,image/webp" hidden><b>Subir foto de portada</b><small>Horizontal. Se achica sola y lleva la marca de agua.</small></label>
+            <label>Descripción de la foto<input name="imagen_alt" maxlength="160" placeholder="Mate de madera con bombilla sobre una mesa"><small class="muted">Para Google y para quien no puede verla.</small></label>
+            <label>Encuadre en las tarjetas<select name="imagen_pos"><option value="">Centro</option><option value="center 25%">Más arriba</option><option value="center 75%">Más abajo</option><option value="left center">Izquierda</option><option value="right center">Derecha</option></select></label>
+          </div>
+          <div class="card be-check"><span class="lbl">Para que quede completa</span><ul id="be-check"></ul></div>
+        </aside>
+      </form>
+    </section>
   </main>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -488,6 +568,7 @@ html = f'''<!doctype html>
   <script src="../assets/js/panel-viajes.js"></script>
   <script src="../assets/js/panel-cupones.js"></script>
   <script src="../assets/js/panel-afiliados.js"></script>
+  <script src="../assets/js/panel-blog.js"></script>
 </body>
 </html>
 '''

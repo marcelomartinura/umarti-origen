@@ -86,6 +86,35 @@ COLORES = {
 SECCION_NOMBRE = {"productos": "Productos", "negocios": "Negocios", "opinion": "Opinión"}
 
 NOTAS_DIR = os.path.join(AQUI, "blog", "notas")
+GENERADAS = os.path.join(AQUI, "blog", "paginas-generadas.json")
+_escritas = set()
+_escribir = escribir
+
+
+def escribir(ruta, contenido):  # noqa: F811  (anota cada página para poder borrar las que ya no existen)
+    _escritas.add(ruta)
+    _escribir(ruta, contenido)
+
+
+def limpiar_viejas():
+    """Borra las páginas del blog que se generaron antes y ya no (notas borradas o despublicadas en el Panel,
+    etiquetas que nadie usa)."""
+    raiz = comun.RAIZ
+    if os.path.exists(GENERADAS):
+        antes = set(json.load(open(GENERADAS, encoding="utf-8")))
+    else:
+        antes = {os.path.relpath(r, raiz) for r in glob.glob(os.path.join(raiz, "blog", "**", "index.html"), recursive=True)}
+    for ruta in sorted(antes - _escritas):
+        if not ruta.startswith("blog/"):
+            continue
+        completa = os.path.join(raiz, ruta)
+        if os.path.exists(completa):
+            os.remove(completa)
+            print("borrada", ruta)
+        carpeta = os.path.dirname(completa)
+        while carpeta.startswith(os.path.join(raiz, "blog")) and os.path.isdir(carpeta) and not os.listdir(carpeta):
+            os.rmdir(carpeta); carpeta = os.path.dirname(carpeta)
+    json.dump(sorted(r for r in _escritas if r.startswith("blog/")), open(GENERADAS, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
 
 
 def destinos_de_nota(slug_nota):
@@ -168,7 +197,8 @@ def markdown(src):
             while i < len(lines) and IMG_RE.match(lines[i]):
                 alt, src, pie = IMG_RE.match(lines[i]).groups(); i += 1
                 cap = f"<figcaption>{inline(pie)}</figcaption>" if pie else ""
-                figs.append(f'<figure><img src="{{{{RAIZ}}}}{esc(src)}" alt="{esc(alt)}" loading="lazy">{cap}</figure>')
+                raiz = "" if es_url(src) else "{{RAIZ}}"
+                figs.append(f'<figure><img src="{raiz}{esc(src)}" alt="{esc(alt)}" loading="lazy">{cap}</figure>')
             cls = "post-figs" + (" duo" if len(figs) > 1 else "")
             out.append(f'<div class="{cls}">' + "".join(figs) + "</div>"); continue
         if ln.startswith("### "):
@@ -208,6 +238,19 @@ def rel(depth, path=""):
     return ("../" * depth) + path if depth or path else "./"
 
 
+def es_url(u):
+    return bool(re.match(r"https?://", u or ""))
+
+
+def img(depth, u):
+    """Fotos del repo (assets/…) van relativas; las que se suben desde el Panel ya son una dirección completa."""
+    return u if es_url(u) else rel(depth, u)
+
+
+def img_abs(u):
+    return u if es_url(u) else f"{SITIO}/{u}"
+
+
 def p_nota(n): return f"blog/{n['slug']}/"
 def p_cat(cat): return f"blog/productos/{slug(cat)}/"
 def p_sub(cat, sub): return f"blog/productos/{slug(cat)}/{slug(sub)}/"
@@ -222,7 +265,7 @@ def cover(n, cls="", depth=None):
     c1, c2 = n["colores"]
     if n.get("imagen") and depth is not None:
         pos = f' style="object-position:{esc(n["imagen_pos"])}"' if n.get("imagen_pos") else ""
-        return f'<div class="cover has-photo {cls}" style="--c1:{c1};--c2:{c2}"><img src="{rel(depth, n["imagen"])}" alt="" loading="lazy"{pos}><span>{esc(n["etiqueta"])}</span></div>'
+        return f'<div class="cover has-photo {cls}" style="--c1:{c1};--c2:{c2}"><img src="{img(depth, n["imagen"])}" alt="" loading="lazy"{pos}><span>{esc(n["etiqueta"])}</span></div>'
     return f'<div class="cover {cls}" data-glyph="{esc(n["glifo"])}" style="--c1:{c1};--c2:{c2}" aria-hidden="true"><span>{esc(n["etiqueta"])}</span></div>'
 
 
@@ -308,7 +351,7 @@ def page(depth, title, desc, main, jsonld=None, scripts="", noindex=False, image
     pre = rel(depth) if depth else ""
     canon = '\n  <meta name="robots" content="noindex">' if noindex else ""
     if imagen and SITIO:
-        canon += f'\n  <meta property="og:image" content="{SITIO}/{imagen}">'
+        canon += f'\n  <meta property="og:image" content="{img_abs(imagen)}">'
     ld = f'\n  <script type="application/ld+json">\n{json.dumps(jsonld, ensure_ascii=False, indent=2)}\n  </script>' if jsonld else ""
     return f'''<!doctype html>
 <html lang="es">
@@ -615,7 +658,7 @@ def pagina_nota(n, notas):
     foto = ""
     if n.get("imagen"):
         foto = f'''
-        <figure class="post-hero"><img src="{rel(d, n["imagen"])}" alt="{esc(n.get("imagen_alt", n["titulo"]))}"></figure>'''
+        <figure class="post-hero"><img src="{img(d, n["imagen"])}" alt="{esc(n.get("imagen_alt", n["titulo"]))}"></figure>'''
     aviso = ""
     if n["borrador"]:
         aviso = '      <div class="draft-banner"><strong>Borrador.</strong> Esta nota no aparece en el blog ni en Google hasta que le quites la línea <code>borrador: si</code>.</div>\n'
@@ -670,7 +713,7 @@ def pagina_nota(n, notas):
     if es_op:
         ld["articleSection"] = "Opinión"
     if n.get("imagen") and SITIO:
-        ld["image"] = f"{SITIO}/{n['imagen']}"
+        ld["image"] = img_abs(n['imagen'])
     return page(d, f"{n['titulo']} | Blog Umarti Origen", n["resumen"], main, ld, noindex=n["borrador"], imagen=n.get("imagen", ""))
 
 
@@ -849,6 +892,7 @@ def main():
         escribir(p_nota(n) + "index.html", pagina_nota(n, notas))
 
     escribir("assets/data/blog-indice.js", indice_js(notas))
+    limpiar_viejas()
 
 
 if __name__ == "__main__":

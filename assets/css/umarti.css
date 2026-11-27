@@ -257,3 +257,8 @@ html.ver-en body { top: 0 !important; position: static !important; }
   .nav-btn { padding: 0 10px; }
 }
 .eco-chip-pro img { height: 36px !important; }
+
+/* Redes sociales en el footer */
+.foot-redes { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 0.82rem; color: var(--muted); font-weight: 600; }
+.foot-redes a { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px 6px 10px; border-radius: 999px; background: #1877f2; color: #fff; text-decoration: none; font-weight: 600; transition: background .15s; }
+.foot-redes a:hover { background: #0f63d1; }

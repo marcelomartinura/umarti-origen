@@ -11,12 +11,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/panel.css?v=54a735d0">
+  <link rel="stylesheet" href="../assets/css/panel.css?v=453c1c83">
 </head>
 <body>
   <header class="pn-top">
     <a class="pn-logo" href="../"><img src="../assets/img/marca/icono-blanco.png" alt="" width="259" height="236"><span>Umarti <span>Origen</span></span><small>Panel</small></a>
-    <nav class="pn-mods" aria-label="Módulos"><button type="button" class="mod on" data-mod="productos">Productos</button><button type="button" class="mod" data-mod="afiliados">Afiliados</button><button type="button" class="mod" data-mod="publicidad" disabled>Publicidad<small>Pronto</small></button><button type="button" class="mod" data-mod="cupones">Cupones</button><button type="button" class="mod" data-mod="hub" disabled>HUB<small>Pronto</small></button><button type="button" class="mod" data-mod="viajes">Viajes</button></nav>
+    <nav class="pn-mods" aria-label="Módulos"><button type="button" class="mod on" data-mod="productos">Productos</button><button type="button" class="mod" data-mod="afiliados">Afiliados</button><button type="button" class="mod" data-mod="publicidad" disabled>Publicidad<small>Pronto</small></button><button type="button" class="mod" data-mod="cupones">Cupones</button><button type="button" class="mod" data-mod="blog">Blog</button><button type="button" class="mod" data-mod="hub" disabled>HUB<small>Pronto</small></button><button type="button" class="mod" data-mod="viajes">Viajes</button></nav>
     <div class="pn-user" id="pn-user" hidden>
       <span id="pn-email"></span>
       <a href="../" target="_blank" rel="noopener">Ver sitio ↗</a>
@@ -435,15 +435,93 @@
         </aside>
       </form>
     </section>
+
+    <!-- Blog: lista -->
+    <section id="v-blista" hidden>
+      <div class="pn-head">
+        <div><h1>Blog</h1><p class="muted" id="bl-resumen"></p></div>
+        <button class="btn pri" type="button" id="bb-nueva">+ Nueva nota</button>
+      </div>
+      <div class="pn-filtros">
+        <input type="search" id="bl-q" placeholder="Buscar por título, tema o etiqueta" aria-label="Buscar">
+        <div class="chips" id="bl-estados" role="group" aria-label="Estado"></div>
+        <select id="bl-sec" aria-label="Sección"><option value="">Todas las secciones</option><option value="productos">Productos</option><option value="negocios">Negocios</option><option value="opinion">Opinión</option></select>
+      </div>
+      <div class="pn-tabla" id="bl-tabla"></div>
+      <p class="pn-nota">Las notas <b>Publicadas</b> aparecen en el blog en unos minutos. Las que están en <b>Borrador</b> no se ven en el sitio. En la columna <b>Para completar</b> te marcamos lo que le falta a cada nota para quedar redonda: foto de portada, texto corto, subtítulos o etiquetas.</p>
+    </section>
+
+    <!-- Blog: editor -->
+    <section id="v-beditor" hidden>
+      <div class="pn-head"><div><button type="button" class="link back" id="be-volver">← Blog</button><h1 id="be-titulo">Nueva nota</h1><p class="muted" id="be-sub"></p></div></div>
+      <form id="f-nota" class="pn-editor" novalidate>
+        <div class="pn-form">
+          <fieldset class="card">
+            <legend>Nota</legend>
+            <label class="full"><span>Título <em>*</em></span><input name="titulo" required maxlength="110" placeholder="Cómo preparar un buen mate, paso a paso"><small class="count" data-for="titulo"></small></label>
+            <label class="full"><span>Resumen <em>*</em></span><textarea name="resumen" rows="2" maxlength="240" placeholder="Una o dos oraciones: se ven en las tarjetas del blog y en Google."></textarea><small class="count" data-for="resumen"></small></label>
+            <label class="full">Dirección<span class="be-url"><span class="muted">umartiorigen.com/blog/</span><input name="slug" maxlength="90" pattern="[a-z0-9-]+" placeholder="se-arma-sola-con-el-titulo"></span><small class="muted" id="be-slug-nota">Se arma sola con el título.</small></label>
+          </fieldset>
+          <fieldset class="card">
+            <legend>Dónde va</legend>
+            <label>Sección<select name="seccion"><option value="productos">Productos: guías de la Tienda</option><option value="negocios">Negocios: comercio exterior</option><option value="opinion">Opinión: columna</option></select></label>
+            <label id="be-cat-l">Categoría<select name="categoria"></select></label>
+            <label id="be-sub-l">Subcategoría<select name="subcategoria"></select></label>
+            <label id="be-tema-l">Tema<select name="tema"></select></label>
+            <label id="be-autor-l">Autor<select name="autor"></select></label>
+            <label>Fecha<input name="fecha" type="date"></label>
+            <label class="full">Etiquetas<input name="tags" maxlength="120" placeholder="mate, yerba mate, preparación"><small class="muted">Dos o tres, separadas por coma. Cada etiqueta tiene su página en el blog.</small></label>
+          </fieldset>
+          <fieldset class="card be-texto">
+            <legend>Texto</legend>
+            <div class="be-tabs" role="tablist"><button type="button" class="on" data-vista="escribir">Escribir</button><button type="button" data-vista="previa">Vista previa</button><span class="muted small" id="be-palabras"></span></div>
+            <div class="be-barra" id="be-barra">
+              <button type="button" data-md="h2" title="Subtítulo">Subtítulo</button>
+              <button type="button" data-md="h3" title="Subtítulo chico">Subtítulo chico</button>
+              <button type="button" data-md="b" title="Negrita"><b>N</b></button>
+              <button type="button" data-md="i" title="Cursiva"><i>C</i></button>
+              <button type="button" data-md="ul" title="Lista">• Lista</button>
+              <button type="button" data-md="ol" title="Lista numerada">1. Pasos</button>
+              <button type="button" data-md="tip" title="Recuadro de consejo">Consejo</button>
+              <button type="button" data-md="link" title="Enlace">Enlace</button>
+              <label class="be-fotobtn" title="Insertar una foto en el texto"><input type="file" id="be-foto-texto" accept="image/jpeg,image/png,image/webp" hidden>+ Foto</label>
+            </div>
+            <textarea name="cuerpo" id="be-cuerpo" rows="22" spellcheck="true" placeholder="Empezá con un párrafo que enganche. Después usá Subtítulo para separar las partes de la nota."></textarea>
+            <div class="be-previa" id="be-previa" hidden></div>
+            <details class="be-ayuda"><summary>Cómo dar formato</summary>
+              <p><code>## Subtítulo</code> · <code>### Subtítulo chico</code> · <code>**negrita**</code> · <code>*cursiva*</code> · <code>[texto](https://enlace)</code> · líneas que empiezan con <code>- </code> (lista) o <code>1. </code> (pasos) · <code>&gt; </code> para un recuadro de consejo · tablas con <code>|</code> · fotos con el botón <b>+ Foto</b> (dos fotos seguidas se ven una al lado de la otra).</p>
+            </details>
+          </fieldset>
+        </div>
+        <aside class="pn-side">
+          <div class="card pub">
+            <label>Estado<select name="estado"><option value="Borrador">Borrador: no se ve en el sitio</option><option value="Publicado">Publicado: visible en el blog</option></select></label>
+            <label class="sw"><input type="checkbox" name="destacada"><span></span><b>Destacada</b> <small class="muted">aparece arriba en la portada del blog</small></label>
+            <button class="btn pri" type="submit" id="be-guardar">Guardar</button>
+            <p class="msg" id="be-msg" role="status"></p>
+            <div class="side-acts"><a class="link" id="be-ver" href="#" target="_blank" rel="noopener" hidden>Ver en el sitio ↗</a><button type="button" class="link danger" id="be-borrar" hidden>Eliminar</button></div>
+          </div>
+          <div class="card">
+            <span class="lbl">Foto de portada</span>
+            <div class="ve-foto" id="be-foto"></div>
+            <label class="drop sm" id="be-foto-drop"><input type="file" accept="image/jpeg,image/png,image/webp" hidden><b>Subir foto de portada</b><small>Horizontal. Se achica sola y lleva la marca de agua.</small></label>
+            <label>Descripción de la foto<input name="imagen_alt" maxlength="160" placeholder="Mate de madera con bombilla sobre una mesa"><small class="muted">Para Google y para quien no puede verla.</small></label>
+            <label>Encuadre en las tarjetas<select name="imagen_pos"><option value="">Centro</option><option value="center 25%">Más arriba</option><option value="center 75%">Más abajo</option><option value="left center">Izquierda</option><option value="right center">Derecha</option></select></label>
+          </div>
+          <div class="card be-check"><span class="lbl">Para que quede completa</span><ul id="be-check"></ul></div>
+        </aside>
+      </form>
+    </section>
   </main>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script>window.PANEL = {"supabase": {"url": "https://tkrnwboyynvbellqnzle.supabase.co", "key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRrcm53Ym95eW52YmVsbHFuemxlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI0MjE0NTYsImV4cCI6MjEwNzk5NzQ1Nn0.B1wq_8z8Gwd4L3ieavvpE2PKjQcj1-KVXDREmCL7wjA"}, "categorias": {"Café, Té y Mate": ["Mates y bombillas", "Termos y pavas eléctricas", "Café", "Té", "Chocolate"], "Regalos y Kits": ["Kits de mate y café", "Regalos corporativos", "Personalizados"], "Artículos Regionales": ["Bolsos materos", "Marroquinería y riñoneras", "Juegos de asado", "Portatermos y llaveros"], "Bebidas": ["Vinos", "Cervezas y destilados", "Sin alcohol"], "Alimentos": ["Alimentos congelados", "Alimentos diet", "Golosinas", "Snacks"], "Salud y Bienestar": ["Odontología", "Cuidado personal", "Cuidado del cabello", "Dispositivos médicos"], "Moda": ["Ropa de dama", "Zapatos", "Carteras", "Ropa de caballero"], "Tecnología": ["Accesorios", "Audio", "Hogar inteligente"], "Herramientas y Jardín": ["Herramientas", "Jardín", "Construcción"], "Hogar y Cocina": ["Bazar y cocina", "Organización", "Deco"], "Limpieza e Higiene": ["Productos de limpieza", "Productos de higiene personal"], "Productos para viajes": ["Mochilas, bolsos y valijas", "Organizadores de equipaje", "Adaptadores y tecnología", "Accesorios de viaje"], "Deportes y aire libre": ["Bicicletas", "Accesorios de ciclismo", "Camping", "Termos deportivos", "Mochilas de trekking"]}, "temas": [{"clave": "mate", "nombre": "Mate"}], "destinos": [{"slug": "buenos-aires", "nombre": "Buenos Aires", "pais": "Argentina"}, {"slug": "glaciar-perito-moreno", "nombre": "Glaciar Perito Moreno", "pais": "Argentina"}, {"slug": "rosario", "nombre": "Rosario", "pais": "Argentina"}, {"slug": "queretaro", "nombre": "Querétaro", "pais": "México"}, {"slug": "ciudad-de-mexico", "nombre": "Ciudad de México", "pais": "México"}, {"slug": "leon", "nombre": "León", "pais": "México"}, {"slug": "puerto-escondido", "nombre": "Puerto Escondido", "pais": "México"}, {"slug": "san-miguel-de-allende", "nombre": "San Miguel de Allende", "pais": "México"}, {"slug": "el-chalten", "nombre": "El Chaltén", "pais": "Argentina"}, {"slug": "pena-de-bernal", "nombre": "Peña de Bernal", "pais": "México"}, {"slug": "tequisquiapan", "nombre": "Tequisquiapan", "pais": "México"}, {"slug": "oaxaca", "nombre": "Oaxaca", "pais": "México"}, {"slug": "san-luis-potosi", "nombre": "San Luis Potosí", "pais": "México"}, {"slug": "guadalajara", "nombre": "Guadalajara", "pais": "México"}, {"slug": "ajijic-chapala", "nombre": "Ajijic (Chapala)", "pais": "México"}, {"slug": "san-joaquin", "nombre": "San Joaquín", "pais": "México"}, {"slug": "puebla-de-zaragoza", "nombre": "Puebla de Zaragoza", "pais": "México"}, {"slug": "val-quirico", "nombre": "Val'Quirico", "pais": "México"}, {"slug": "mazamitla", "nombre": "Mazamitla", "pais": "México"}, {"slug": "san-pedro-de-los-pozos-mineral-de-pozos", "nombre": "San Pedro de los Pozos (Mineral de Pozos)", "pais": "México"}, {"slug": "aculco", "nombre": "Aculco", "pais": "México"}, {"slug": "amealco", "nombre": "Amealco", "pais": "México"}, {"slug": "puerto-vallarta", "nombre": "Puerto Vallarta", "pais": "México"}, {"slug": "santa-maria-del-rio", "nombre": "Santa María del Río", "pais": "México"}, {"slug": "xilitla", "nombre": "Xilitla", "pais": "México"}, {"slug": "jalpan-de-serra", "nombre": "Jalpan de Serra", "pais": "México"}], "paises": ["Argentina", "México", "Uruguay", "Paraguay", "Chile", "Brasil", "Otro"], "viajes": {"tipos": ["Aventura", "Cultura", "Gastronomía", "Montaña", "Naturaleza", "Nieve", "Playa", "Shopping", "Urbano", "Vino"], "paises": ["Argentina", "México"], "notas": [{"slug": "con-que-acompanar-un-malbec", "titulo": "Con qué acompañar un Malbec: maridajes simples", "seccion": "productos"}, {"slug": "como-curar-un-mate", "titulo": "Cómo curar un mate de calabaza o de madera antes de estrenarlo", "seccion": "productos"}, {"slug": "como-curar-un-mate-de-palo-santo", "titulo": "Cómo curar un mate de palo santo sin que se agriete", "seccion": "productos"}, {"slug": "como-limpiar-la-bombilla-del-mate", "titulo": "Cómo limpiar la bombilla del mate (y que no se tape)", "seccion": "productos"}, {"slug": "como-preparar-un-buen-mate", "titulo": "Cómo preparar un buen mate, paso a paso", "seccion": "productos"}, {"slug": "como-usar-la-mesa-de-negociacion", "titulo": "Cómo usar Oportunidades Globales para encontrar lo que buscás", "seccion": "negocios"}, {"slug": "guia-de-talles-como-medirte", "titulo": "Guía de talles: cómo medirte para acertar en tu compra", "seccion": "productos"}, {"slug": "incoterms-explicados-fob-cif-exw", "titulo": "Incoterms explicados: FOB, CIF, EXW y los más usados", "seccion": "negocios"}, {"slug": "primeros-pasos-para-exportar-de-argentina-a-mexico", "titulo": "Primeros pasos para exportar de Argentina a México", "seccion": "negocios"}, {"slug": "que-es-el-mate", "titulo": "Qué es el mate: origen, tradición y cómo se toma", "seccion": "productos"}, {"slug": "que-es-la-posicion-arancelaria", "titulo": "Qué es la posición arancelaria y cómo encontrar la de tu producto", "seccion": "negocios"}, {"slug": "molienda-de-cafe-segun-tu-cafetera", "titulo": "Qué molienda de café usar según tu cafetera", "seccion": "productos"}], "presupuestos": ["Bajo", "Medio", "Alto"]}, "cupones": {"categorias": ["Viajes", "Alojamientos", "Gastronomía", "Belleza y Spa", "Servicios", "Productos", "Digitales"], "paises": ["Argentina", "México", "En línea", "Uruguay", "Chile", "España", "Estados Unidos", "Otro"]}, "paises_envio": ["Todos los países", "México", "Estados Unidos", "España", "Chile", "Uruguay", "Colombia", "Perú", "Canadá", "Brasil", "Italia", "Alemania"]};</script>
+  <script>window.PANEL = {"supabase": {"url": "https://tkrnwboyynvbellqnzle.supabase.co", "key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRrcm53Ym95eW52YmVsbHFuemxlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI0MjE0NTYsImV4cCI6MjEwNzk5NzQ1Nn0.B1wq_8z8Gwd4L3ieavvpE2PKjQcj1-KVXDREmCL7wjA"}, "categorias": {"Café, Té y Mate": ["Mates y bombillas", "Termos y pavas eléctricas", "Café", "Té", "Chocolate"], "Regalos y Kits": ["Kits de mate y café", "Regalos corporativos", "Personalizados"], "Artículos Regionales": ["Bolsos materos", "Marroquinería y riñoneras", "Juegos de asado", "Portatermos y llaveros"], "Bebidas": ["Vinos", "Cervezas y destilados", "Sin alcohol"], "Alimentos": ["Alimentos congelados", "Alimentos diet", "Golosinas", "Snacks"], "Salud y Bienestar": ["Odontología", "Cuidado personal", "Cuidado del cabello", "Dispositivos médicos"], "Moda": ["Ropa de dama", "Zapatos", "Carteras", "Ropa de caballero"], "Tecnología": ["Accesorios", "Audio", "Hogar inteligente"], "Herramientas y Jardín": ["Herramientas", "Jardín", "Construcción"], "Hogar y Cocina": ["Bazar y cocina", "Organización", "Deco"], "Limpieza e Higiene": ["Productos de limpieza", "Productos de higiene personal"], "Productos para viajes": ["Mochilas, bolsos y valijas", "Organizadores de equipaje", "Adaptadores y tecnología", "Accesorios de viaje"], "Deportes y aire libre": ["Bicicletas", "Accesorios de ciclismo", "Camping", "Termos deportivos", "Mochilas de trekking"]}, "temas": [{"clave": "mate", "nombre": "Mate"}], "destinos": [{"slug": "buenos-aires", "nombre": "Buenos Aires", "pais": "Argentina"}, {"slug": "glaciar-perito-moreno", "nombre": "Glaciar Perito Moreno", "pais": "Argentina"}, {"slug": "rosario", "nombre": "Rosario", "pais": "Argentina"}, {"slug": "queretaro", "nombre": "Querétaro", "pais": "México"}, {"slug": "ciudad-de-mexico", "nombre": "Ciudad de México", "pais": "México"}, {"slug": "leon", "nombre": "León", "pais": "México"}, {"slug": "puerto-escondido", "nombre": "Puerto Escondido", "pais": "México"}, {"slug": "san-miguel-de-allende", "nombre": "San Miguel de Allende", "pais": "México"}, {"slug": "el-chalten", "nombre": "El Chaltén", "pais": "Argentina"}, {"slug": "pena-de-bernal", "nombre": "Peña de Bernal", "pais": "México"}, {"slug": "tequisquiapan", "nombre": "Tequisquiapan", "pais": "México"}, {"slug": "oaxaca", "nombre": "Oaxaca", "pais": "México"}, {"slug": "san-luis-potosi", "nombre": "San Luis Potosí", "pais": "México"}, {"slug": "guadalajara", "nombre": "Guadalajara", "pais": "México"}, {"slug": "ajijic-chapala", "nombre": "Ajijic (Chapala)", "pais": "México"}, {"slug": "san-joaquin", "nombre": "San Joaquín", "pais": "México"}, {"slug": "puebla-de-zaragoza", "nombre": "Puebla de Zaragoza", "pais": "México"}, {"slug": "val-quirico", "nombre": "Val'Quirico", "pais": "México"}, {"slug": "mazamitla", "nombre": "Mazamitla", "pais": "México"}, {"slug": "san-pedro-de-los-pozos-mineral-de-pozos", "nombre": "San Pedro de los Pozos (Mineral de Pozos)", "pais": "México"}, {"slug": "aculco", "nombre": "Aculco", "pais": "México"}, {"slug": "amealco", "nombre": "Amealco", "pais": "México"}, {"slug": "puerto-vallarta", "nombre": "Puerto Vallarta", "pais": "México"}, {"slug": "santa-maria-del-rio", "nombre": "Santa María del Río", "pais": "México"}, {"slug": "xilitla", "nombre": "Xilitla", "pais": "México"}, {"slug": "jalpan-de-serra", "nombre": "Jalpan de Serra", "pais": "México"}], "paises": ["Argentina", "México", "Uruguay", "Paraguay", "Chile", "Brasil", "Otro"], "viajes": {"tipos": ["Aventura", "Cultura", "Gastronomía", "Montaña", "Naturaleza", "Nieve", "Playa", "Shopping", "Urbano", "Vino"], "paises": ["Argentina", "México"], "notas": [{"slug": "con-que-acompanar-un-malbec", "titulo": "Con qué acompañar un Malbec: maridajes simples", "seccion": "productos"}, {"slug": "como-curar-un-mate", "titulo": "Cómo curar un mate de calabaza o de madera antes de estrenarlo", "seccion": "productos"}, {"slug": "como-curar-un-mate-de-palo-santo", "titulo": "Cómo curar un mate de palo santo sin que se agriete", "seccion": "productos"}, {"slug": "como-limpiar-la-bombilla-del-mate", "titulo": "Cómo limpiar la bombilla del mate (y que no se tape)", "seccion": "productos"}, {"slug": "como-preparar-un-buen-mate", "titulo": "Cómo preparar un buen mate, paso a paso", "seccion": "productos"}, {"slug": "como-usar-la-mesa-de-negociacion", "titulo": "Cómo usar Oportunidades Globales para encontrar lo que buscás", "seccion": "negocios"}, {"slug": "guia-de-talles-como-medirte", "titulo": "Guía de talles: cómo medirte para acertar en tu compra", "seccion": "productos"}, {"slug": "incoterms-explicados-fob-cif-exw", "titulo": "Incoterms explicados: FOB, CIF, EXW y los más usados", "seccion": "negocios"}, {"slug": "primeros-pasos-para-exportar-de-argentina-a-mexico", "titulo": "Primeros pasos para exportar de Argentina a México", "seccion": "negocios"}, {"slug": "que-es-el-mate", "titulo": "Qué es el mate: origen, tradición y cómo se toma", "seccion": "productos"}, {"slug": "que-es-la-posicion-arancelaria", "titulo": "Qué es la posición arancelaria y cómo encontrar la de tu producto", "seccion": "negocios"}, {"slug": "molienda-de-cafe-segun-tu-cafetera", "titulo": "Qué molienda de café usar según tu cafetera", "seccion": "productos"}], "presupuestos": ["Bajo", "Medio", "Alto"]}, "cupones": {"categorias": ["Viajes", "Alojamientos", "Gastronomía", "Belleza y Spa", "Servicios", "Productos", "Digitales"], "paises": ["Argentina", "México", "En línea", "Uruguay", "Chile", "España", "Estados Unidos", "Otro"]}, "blog": {"temas": ["Comercio exterior", "Mercados", "Ecommerce y ventas", "Cómo usar Umarti"], "temas_opinion": ["Negocios", "Experiencias"], "autores": {"marcelo-uranga": "Marcelo Uranga Martínez"}}, "paises_envio": ["Todos los países", "México", "Estados Unidos", "España", "Chile", "Uruguay", "Colombia", "Perú", "Canadá", "Brasil", "Italia", "Alemania"]};</script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-  <script src="../assets/js/panel.js?v=539d8330"></script>
+  <script src="../assets/js/panel.js?v=6e5290f5"></script>
   <script src="../assets/js/panel-viajes.js?v=63abb90c"></script>
   <script src="../assets/js/panel-cupones.js?v=79b4a615"></script>
   <script src="../assets/js/panel-afiliados.js?v=c341b823"></script>
+  <script src="../assets/js/panel-blog.js?v=d289b40d"></script>
 </body>
 </html>
