@@ -1,22 +1,6 @@
 /* Generado por _fuente/construir_blog.py. Lo usa la Tienda para mostrar las notas de cada categoría. */
 window.BLOG_INDICE = [
  {
-  "slug": "que-es-el-mate",
-  "titulo": "Qué es el mate: origen, tradición y cómo se toma",
-  "resumen": "Una infusión de origen guaraní que se volvió símbolo de amistad en el sur de América. De dónde viene, qué tiene, cómo se comparte la ronda y las formas de tomarlo, dulce, amargo o saborizado.",
-  "seccion": "productos",
-  "categoria": "Café, Té y Mate",
-  "subcategoria": "Mates y bombillas",
-  "tema": "",
-  "fecha": "2026-10-18",
-  "tags": [
-   "mate",
-   "yerba mate",
-   "historia"
-  ],
-  "url": "blog/que-es-el-mate/"
- },
- {
   "slug": "como-curar-un-mate",
   "titulo": "Cómo curar un mate de calabaza o de madera antes de estrenarlo",
   "resumen": "Curar el mate sella sus poros, mejora el sabor y evita hongos y grietas. Qué mates hay que curar, el método con yerba usada paso a paso y otras dos técnicas tradicionales.",
@@ -31,6 +15,22 @@ window.BLOG_INDICE = [
    "calabaza"
   ],
   "url": "blog/como-curar-un-mate/"
+ },
+ {
+  "slug": "que-es-el-mate",
+  "titulo": "Qué es el mate: origen, tradición y cómo se toma",
+  "resumen": "Una infusión de origen guaraní que se volvió símbolo de amistad en el sur de América. De dónde viene, qué tiene, cómo se comparte la ronda y las formas de tomarlo, dulce, amargo o saborizado.",
+  "seccion": "productos",
+  "categoria": "Café, Té y Mate",
+  "subcategoria": "Mates y bombillas",
+  "tema": "",
+  "fecha": "2026-10-18",
+  "tags": [
+   "mate",
+   "yerba mate",
+   "historia"
+  ],
+  "url": "blog/que-es-el-mate/"
  },
  {
   "slug": "como-curar-un-mate-de-palo-santo",
@@ -63,22 +63,6 @@ window.BLOG_INDICE = [
    "proveedores"
   ],
   "url": "blog/como-usar-la-mesa-de-negociacion/"
- },
- {
-  "slug": "guia-de-talles-como-medirte",
-  "titulo": "Guía de talles: cómo medirte para acertar en tu compra",
-  "resumen": "Los talles cambian según el país y la marca. Lo que no cambia son tus medidas. Cómo tomarlas bien, cómo leer la tabla de cada producto y qué hacer si estás entre dos talles.",
-  "seccion": "productos",
-  "categoria": "Moda",
-  "subcategoria": "Ropa de dama",
-  "tema": "",
-  "fecha": "2026-10-09",
-  "tags": [
-   "talles",
-   "moda",
-   "calzado"
-  ],
-  "url": "blog/guia-de-talles-como-medirte/"
  },
  {
   "slug": "como-preparar-un-buen-mate",
@@ -175,21 +159,5 @@ window.BLOG_INDICE = [
    "logística"
   ],
   "url": "blog/incoterms-explicados-fob-cif-exw/"
- },
- {
-  "slug": "con-que-acompanar-un-malbec",
-  "titulo": "Con qué acompañar un Malbec: maridajes simples",
-  "resumen": "Del asado a las empanadas, pasando por pastas y quesos. Qué combina con un Malbec joven y qué con uno de guarda, y a qué temperatura servirlo.",
-  "seccion": "productos",
-  "categoria": "Bebidas",
-  "subcategoria": "Vinos",
-  "tema": "",
-  "fecha": "2026-10-01",
-  "tags": [
-   "vino",
-   "malbec",
-   "maridaje"
-  ],
-  "url": "blog/con-que-acompanar-un-malbec/"
  }
 ];
