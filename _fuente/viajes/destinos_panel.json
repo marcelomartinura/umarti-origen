@@ -1063,5 +1063,65 @@
   "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
   "lugar": "Pueblo",
   "pueblo_magico": true
+ },
+ {
+  "slug": "amealco",
+  "pais": "México",
+  "ciudad": "Amealco",
+  "region": "Querétaro",
+  "resumen": "Un Pueblo Mágico de montaña en el sur de Querétaro, cuna de la muñeca artesanal otomí, con bosques, clima fresco y comunidades indígenas que conservan su lengua y sus tradiciones.",
+  "tags": [
+   "Cultura",
+   "Montaña",
+   "Naturaleza"
+  ],
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/amealco/principal/1795804135666.jpg",
+  "foto_pos": "center",
+  "dias": "1 a 2 días",
+  "mejor_epoca": "Todo el año (más frío de noviembre a febrero)",
+  "presupuesto": "Bajo",
+  "por_que": "**Amealco de Bonfil** es un pueblo del sur de **Querétaro**, a unos 2.600 metros de altura, rodeado de bosques y de comunidades **otomíes (hñäñho)** que mantienen vivas su lengua, sus fiestas y su vestimenta.\n\nEs **Pueblo Mágico** y la cuna de la **muñeca artesanal otomí**, la famosa muñeca de trapo con listones de colores que hoy es símbolo de Querétaro. Es un destino tranquilo, para conocer artesanías, recorrer las comunidades y disfrutar del clima fresco de la sierra.",
+  "cuando_ir": "**Mejor época:** se puede ir todo el año. De noviembre a febrero hace más frío, ideal para el pan y el café caliente; en la temporada de lluvias, de junio a septiembre, los bosques están verdes.\n\n**Clima:** templado a frío de montaña, con noches frías durante casi todo el año.\n\nLas fiestas patronales de las comunidades son una buena ocasión para ver danzas y trajes tradicionales.",
+  "que_comer": "- **Gorditas** de maíz de colores y **quesadillas** en comal\n- **Barbacoa** de borrego los fines de semana\n- **Mole** y **tamales** tradicionales\n- **Pan de pulque** y pan de horno de leña\n- **Pulque** y **atole**",
+  "donde_alojarse": "- **Centro de Amealco**: hoteles y posadas sencillas a pocas cuadras de la plaza.\n- **Cabañas en el bosque** en los alrededores, para quienes buscan tranquilidad y naturaleza.\n\nMuchos lo visitan en el día desde Querétaro o San Juan del Río, pero vale la pena quedarse una noche para recorrer las comunidades.",
+  "como_llegar": "Amealco está a alrededor de **1 hora de la ciudad de Querétaro** y a unos 45 minutos de San Juan del Río. Desde la Ciudad de México son cerca de 2 horas y media en auto por la autopista México–Querétaro.\n\nHay buses desde la terminal de Querétaro y desde San Juan del Río. El aeropuerto más cercano es el de Querétaro.",
+  "como_moverse": "El centro se recorre caminando. Para visitar las comunidades otomíes, como **San Ildefonso Tultepec** y **Santiago Mexquititlán**, y los miradores de la sierra conviene tener auto o contratar un recorrido local.",
+  "que_hacer": "- **Museo de la Muñeca**: dedicado a la muñeca artesanal otomí y a sus artesanas.\n- **Plaza y parroquia de Santa María Amealco**, en el centro del pueblo.\n- **Santiago Mexquititlán y San Ildefonso Tultepec**: comunidades otomíes donde se elaboran las muñecas, textiles y bordados.\n- **Artesanías**: muñecas, bordados, textiles y alfarería en las tiendas del centro.\n- **Bosques y miradores** de la sierra para caminar.\n- **Aculco**: otro Pueblo Mágico, del lado del Estado de México, a menos de una hora.\n- **San Juan del Río** y **Tequisquiapan**: en el camino hacia Querétaro.",
+  "consejos": "- Llevá abrigo en cualquier época: las noches son frías.\n- Comprá las muñecas directamente a las artesanas: es la mejor forma de apoyar a las comunidades.\n- Pedí permiso antes de fotografiar a las personas en las comunidades.\n- Llevá efectivo: muchos puestos y artesanas no aceptan tarjeta.",
+  "faqs": [
+   {
+    "a": "En el sur del estado de Querétaro, a alrededor de 1 hora de la ciudad de Querétaro.",
+    "q": "¿Dónde queda Amealco?"
+   },
+   {
+    "a": "Sí, forma parte del programa de Pueblos Mágicos de México.",
+    "q": "¿Amealco es Pueblo Mágico?"
+   },
+   {
+    "a": "Por ser la cuna de la muñeca artesanal otomí, símbolo de Querétaro, y por sus comunidades indígenas.",
+    "q": "¿Por qué es famoso Amealco?"
+   },
+   {
+    "a": "Con un día alcanza para el pueblo; con dos podés recorrer también las comunidades otomíes.",
+    "q": "¿Cuántos días se necesitan?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-27T18:28:57.356383+00:00",
+  "clima": "",
+  "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
+  "requisitos_fuente": "https://www.gob.mx/inm",
+  "moneda": "Peso mexicano (MXN). Hay pocos cajeros y muchos puestos y artesanas solo aceptan efectivo: llevá pesos.",
+  "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
+  "huso": "America/Mexico_City",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
+  "lugar": "Pueblo",
+  "pueblo_magico": true
  }
 ]
