@@ -1123,5 +1123,66 @@
   "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
   "lugar": "Pueblo",
   "pueblo_magico": true
+ },
+ {
+  "slug": "puerto-vallarta",
+  "pais": "México",
+  "ciudad": "Puerto Vallarta",
+  "region": "Jalisco",
+  "resumen": "Un puerto del Pacífico en la Bahía de Banderas, entre la selva y el mar: malecón frente al océano, playas, atardeceres, ballenas en invierno y un centro de calles empedradas.",
+  "tags": [
+   "Aventura",
+   "Gastronomía",
+   "Naturaleza",
+   "Playa"
+  ],
+  "foto": "https://tkrnwboyynvbellqnzle.supabase.co/storage/v1/object/public/viajes/puerto-vallarta/principal/1795804154260.jpg",
+  "foto_pos": "center",
+  "dias": "4 a 5 días",
+  "mejor_epoca": "De noviembre a abril",
+  "presupuesto": "Medio",
+  "por_que": "**Puerto Vallarta** está en la costa de Jalisco, sobre la **Bahía de Banderas**, una de las bahías más grandes de México, con la Sierra Madre cubierta de selva cayendo casi directo al mar.\n\nCombina playa y ciudad: un **malecón** lleno de esculturas frente al océano, un centro de calles empedradas y casas blancas con techos de teja, una gran oferta gastronómica y paseos en lancha a playas a las que solo se llega por mar. En invierno, además, llegan las **ballenas jorobadas** a la bahía.",
+  "cuando_ir": "**Mejor época:** de noviembre a abril, con días soleados, poca humedad y mar tranquilo. De diciembre a marzo es la **temporada de ballenas**.\n\n**Clima:** cálido todo el año. De junio a octubre es la temporada de lluvias, con más calor y humedad; septiembre y octubre pueden traer tormentas tropicales.\n\nSemana Santa, Navidad y Año Nuevo son temporada alta: conviene reservar con anticipación.",
+  "que_comer": "- **Pescado zarandeado**, asado a la leña, el clásico de la costa\n- **Aguachile** y **ceviche** de camarón o pescado\n- **Tacos de marlin** ahumado\n- **Mariscos** frescos en los puestos y restaurantes de playa\n- **Raicilla**, el destilado de agave típico de la región\n- **Pay de plátano** y **coco** en la playa",
+  "donde_alojarse": "- **Zona Romántica** (Viejo Vallarta): junto a Playa Los Muertos, con bares, restaurantes y ambiente para recorrer caminando.\n- **Centro y Malecón**: cerca de todo, ideal para un primer viaje.\n- **Zona Hotelera** y **Marina Vallarta**: grandes hoteles y resorts todo incluido, más cerca del aeropuerto.\n- **Zona sur** (Conchas Chinas, Mismaloya): más tranquila, con vistas a la bahía.",
+  "como_llegar": "El **Aeropuerto Internacional de Puerto Vallarta** (PVR) recibe vuelos directos desde Ciudad de México, Guadalajara, Monterrey y varias ciudades de Estados Unidos y Canadá. Está a unos 15 minutos del centro.\n\nEn auto o bus, desde Guadalajara son alrededor de 4 a 5 horas.",
+  "como_moverse": "El centro, el Malecón y la Zona Romántica se recorren caminando. Para el resto de la ciudad hay buses urbanos baratos, taxis y aplicaciones de transporte. A las playas del sur como Yelapa o Las Ánimas se llega en **lancha** desde el muelle de Los Muertos o Boca de Tomatlán.",
+  "que_hacer": "- **Malecón**: paseo frente al mar con esculturas, ideal al atardecer.\n- **Parroquia de Nuestra Señora de Guadalupe**: con su torre coronada, símbolo de la ciudad.\n- **Zona Romántica y Playa Los Muertos**: la playa más animada del centro.\n- **Los Arcos y Mismaloya**: formaciones rocosas en el mar, para esnórquel y kayak.\n- **Yelapa y Las Ánimas**: playas a las que se llega en lancha.\n- **Avistamiento de ballenas** (diciembre a marzo).\n- **Islas Marietas**: parque nacional con la famosa Playa del Amor; el acceso es limitado y con operadores autorizados.\n- **Jardín Botánico de Vallarta**: en la selva, al sur de la ciudad.\n- **Sayulita**: pueblo surfero en Nayarit, a una hora al norte.",
+  "consejos": "- Usá protector solar biodegradable, sobre todo en las excursiones al mar.\n- Para las Islas Marietas, reservá con anticipación: los cupos son limitados.\n- Si vas de junio a octubre, revisá el pronóstico por tormentas tropicales.\n- Negociá el precio del taxi antes de subir si no tiene taxímetro.\n- Llevá efectivo para lanchas, puestos de playa y propinas.",
+  "faqs": [
+   {
+    "a": "En la costa del Pacífico del estado de Jalisco, sobre la Bahía de Banderas, en el límite con Nayarit.",
+    "q": "¿Dónde queda Puerto Vallarta?"
+   },
+   {
+    "a": "De diciembre a marzo, cuando las ballenas jorobadas llegan a la Bahía de Banderas.",
+    "q": "¿Cuándo se ven ballenas en Puerto Vallarta?"
+   },
+   {
+    "a": "De noviembre a abril, la temporada seca, con sol, poca humedad y mar tranquilo.",
+    "q": "¿Cuál es la mejor época para ir?"
+   },
+   {
+    "a": "Con 4 o 5 días alcanza para la ciudad, las playas y una o dos excursiones en lancha.",
+    "q": "¿Cuántos días se necesitan?"
+   }
+  ],
+  "detalle": [],
+  "notas": [],
+  "productos": [],
+  "categorias_tienda": [],
+  "estado": "Publicado",
+  "orden": 0,
+  "actualizado": "2026-11-27T18:29:16.435573+00:00",
+  "clima": "",
+  "requisitos": "- **Pasaporte:** vigente durante toda la estadía.\n- **Visa:** los ciudadanos de Argentina, la Unión Europea, Estados Unidos y muchos otros países no la necesitan para turismo. Consultá tu caso antes de viajar.\n- **Registro de ingreso:** al llegar, migración registra tu entrada y el tiempo autorizado de estadía. Guardá el comprobante: te lo pueden pedir al salir.\n- **Seguro médico:** no es obligatorio, pero es muy recomendable: la atención privada es cara para turistas.",
+  "requisitos_fuente": "https://www.gob.mx/inm",
+  "moneda": "Peso mexicano (MXN). En la zona turística se acepta tarjeta en casi todos lados y hay muchos cajeros; para lanchas, puestos de playa y propinas llevá efectivo.",
+  "corriente": "127 V · 60 Hz. Enchufes tipo A y B (patas planas, como en Estados Unidos).",
+  "huso": "America/Mexico_City",
+  "unidades": "Sistema métrico: kilómetros, kilos, litros y grados Celsius.",
+  "talles": "Talles mexicanos: en ropa, CH, M, G y EG; en calzado, numeración en centímetros (por ejemplo, 25 o 26).",
+  "lugar": "Ciudad",
+  "pueblo_magico": false
  }
 ]
