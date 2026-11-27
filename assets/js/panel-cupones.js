@@ -46,14 +46,23 @@
     var pub = lista.filter(function (c) { return c.estado === 'Publicado'; }).length;
     $('#cl-resumen').textContent = lista.length + ' cupones · ' + pub + ' publicados · ' + lista.filter(vencido).length + ' vencidos';
     if (!xs.length) { $('#cl-tabla').innerHTML = '<p class="vacio">' + (lista.length ? 'No hay cupones con estos filtros.' : 'Todavía no hay cupones. Tocá "+ Nuevo cupón".') + '</p>'; return; }
-    $('#cl-tabla').innerHTML = '<table class="ct"><thead><tr><th></th><th>Cupón</th><th>Categoría</th><th>Dónde</th><th>Vence</th><th>Estado</th></tr></thead><tbody>' + xs.map(function (c) {
+    $('#cl-tabla').innerHTML = '<table class="ct"><thead><tr><th></th><th>Cupón</th><th>Categoría</th><th>Dónde</th><th>Vence</th><th>Estado</th><th></th></tr></thead><tbody>' + xs.map(function (c) {
       return '<tr data-id="' + esc(c.id) + '"><td><span class="cbig">' + esc(c.descuento || '%') + '</span></td>' +
         '<td><b>' + esc(c.titulo) + '</b><small>' + esc(c.codigo) + ' · ' + esc(c.comercio) + (c.tipo === 'Código' && c.cupon ? ' · <code>' + esc(c.cupon) + '</code>' : '') + (c.destacado ? ' · ★' : '') + '</small></td>' +
         '<td>' + esc(c.categoria) + '</td><td><small>' + esc([c.ciudad, c.pais].filter(Boolean).join(', ')) + '</small></td>' +
         '<td' + (vencido(c) ? ' class="venc"' : '') + '>' + fecha(c.vence) + (vencido(c) ? '<small>Vencido</small>' : '') + '</td>' +
-        '<td><span class="st st-' + esc((c.estado || '').toLowerCase()) + '">' + esc(c.estado) + '</span></td></tr>';
+        '<td><span class="st st-' + esc((c.estado || '').toLowerCase()) + '">' + esc(c.estado) + '</span></td>' +
+        '<td class="af-acc"><button type="button" class="ic-btn del" data-borrar title="Eliminar" aria-label="Eliminar cupón">🗑</button></td></tr>';
     }).join('') + '</tbody></table>';
-    $$('#cl-tabla tr[data-id]').forEach(function (tr) { tr.addEventListener('click', function () { editar(lista.find(function (c) { return c.id === tr.dataset.id; })); }); });
+    $$('#cl-tabla tr[data-id]').forEach(function (tr) {
+      tr.addEventListener('click', function (e) {
+        var c = lista.find(function (x) { return x.id === tr.dataset.id; });
+        if (!e.target.closest('[data-borrar]')) { editar(c); return; }
+        if (!confirm('¿Eliminar el cupón "' + c.titulo + '"?' + (c.estado === 'Publicado' ? ' Está publicado: se quita de la Cuponera.' : '') + ' No se puede deshacer.')) return;
+        api.borrar(c.id).then(function () { lista = lista.filter(function (x) { return x.id !== c.id; }); C.toast('Cupón eliminado.'); C.publicar(); pintar(); })
+          .catch(function (er) { C.toast('No se pudo eliminar: ' + er.message, true); });
+      });
+    });
   }
 
   /* ---------- editor ---------- */
