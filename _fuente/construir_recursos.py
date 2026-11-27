@@ -6,7 +6,7 @@ Uso:  python3 _fuente/construir_recursos.py
 Las herramientas funcionan en el navegador (assets/js/recursos.js). Solo el conversor de monedas
 consulta datos en vivo: dolarapi.com (dólar en Argentina) y open.er-api.com (resto de las monedas).
 """
-import html, json, os, sys
+import html, json, os, re, sys
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, AQUI)
@@ -139,6 +139,9 @@ def app_ld(nombre, desc):
 def pagina_herramienta(clave, cuerpo, faqs, relacionadas, aviso):
     h = next(x for x in HERRAMIENTAS if x[0] == clave)
     d = 2
+    # las notas del blog se pueden borrar desde el Panel: solo se listan las que existen
+    relacionadas = [(t, u) for t, u in relacionadas
+                    if not re.fullmatch(r"blog/[a-z0-9-]+/", u) or os.path.exists(os.path.join(comun.RAIZ, "_fuente", "blog", "notas", u.split("/")[1] + ".md"))]
     rels = "".join(f'<li><a href="{rel(d, url)}">{esc(t)}</a></li>' for t, url in relacionadas)
     otras = [x for x in HERRAMIENTAS if x[5] is True and x[0] != clave and x[3] == h[3]]
     otras = (otras + [x for x in HERRAMIENTAS if x[5] is True and x[0] != clave and x not in otras])[:4]

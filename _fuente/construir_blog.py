@@ -173,8 +173,21 @@ def inline(t):
     t = esc(t, quote=False)
     t = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
     t = re.sub(r"(?<![\w*])\*([^*\s][^*]*?)\*(?![\w*])", r"<em>\1</em>", t)
-    t = re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)", lambda m: f'<a href="{m.group(2)}">{m.group(1)}</a>', t)
+    t = re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)", enlace, t)
     return t
+
+
+def nota_existe(slug):
+    return os.path.exists(os.path.join(NOTAS_DIR, slug + ".md"))
+
+
+def enlace(m):
+    """Un enlace a otra nota que se borró o despublicó en el Panel queda como texto, sin romperse."""
+    txt, href = m.group(1), m.group(2)
+    otra = re.fullmatch(r"\.\./([a-z0-9]+(?:-[a-z0-9]+)*)/", href)
+    if otra and otra.group(1) not in ("productos", "negocios", "opinion", "etiqueta", "autor") and not nota_existe(otra.group(1)):
+        return txt
+    return f'<a href="{href}">{txt}</a>'
 
 
 IMG_RE = re.compile(r'^!\[([^\]]*)\]\((\S+?)(?:\s+"([^"]*)")?\)\s*$')
