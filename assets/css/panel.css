@@ -387,3 +387,12 @@ table.af input[readonly] { background: #f3efe7; color: var(--muted); }
 .be-check li.ok { color: var(--ok); }
 .be-check li.ok::before { content: "✓"; }
 .ct.bl th { text-align: left; } .ct.bl td { vertical-align: middle; }
+.ct.bl .bl-chk { width: 36px; text-align: center; cursor: default; }
+.ct.bl .bl-chk input { width: 18px; height: 18px; accent-color: var(--terra); cursor: pointer; }
+.ct.bl tr.sel td { background: #fdf1e8; }
+.bl-sel { position: sticky; top: 8px; z-index: 5; display: flex; align-items: center; gap: 14px; margin: 0 0 10px; padding: 10px 14px 10px 18px; border-radius: 14px; background: var(--ink); color: #fff; box-shadow: 0 6px 20px rgba(0,0,0,.15); }
+.bl-sel[hidden] { display: none; }
+.bl-sel .link { color: #fff; opacity: .8; }
+.bl-sel .bl-del { margin-left: auto; background: var(--err); color: #fff; border: 0; padding: 8px 18px; border-radius: 999px; font-weight: 700; cursor: pointer; }
+.bl-sel .bl-del:disabled { opacity: .6; }
+.ct.bl { width: 100%; }

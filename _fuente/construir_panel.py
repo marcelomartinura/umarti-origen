@@ -493,6 +493,7 @@ html = f'''<!doctype html>
         <div class="chips" id="bl-estados" role="group" aria-label="Estado"></div>
         <select id="bl-sec" aria-label="Sección"><option value="">Todas las secciones</option><option value="productos">Productos</option><option value="negocios">Negocios</option><option value="opinion">Opinión</option></select>
       </div>
+      <div class="bl-sel" id="bl-sel" hidden><b id="bl-sel-n"></b><button type="button" class="link" id="bl-sel-limpiar">Desmarcar</button><button type="button" class="btn bl-del" id="bl-sel-borrar">Eliminar</button></div>
       <div class="pn-tabla" id="bl-tabla"></div>
       <p class="pn-nota">Las notas <b>Publicadas</b> aparecen en el blog en unos minutos. Las que están en <b>Borrador</b> no se ven en el sitio. En la columna <b>Para completar</b> te marcamos lo que le falta a cada nota para quedar redonda: foto de portada, texto corto, subtítulos o etiquetas.</p>
     </section>

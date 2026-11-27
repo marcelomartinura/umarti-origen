@@ -14,11 +14,13 @@
     listar: function () { return Promise.resolve(datosDemo.slice()); },
     guardar: function (n, nuevo) { if (nuevo) { n.id = 'x' + Date.now(); datosDemo.push(n); } else datosDemo = datosDemo.map(function (x) { return x.id === n.id ? n : x; }); return Promise.resolve(n); },
     borrar: function (id) { datosDemo = datosDemo.filter(function (x) { return x.id !== id; }); return Promise.resolve(); },
+    borrarVarias: function (ids) { datosDemo = datosDemo.filter(function (x) { return ids.indexOf(x.id) < 0; }); return Promise.resolve(); },
     subir: function (ruta, blob) { return Promise.resolve(URL.createObjectURL(blob)); }
   } : {
     listar: function () { return sb.from('blog_notas').select('*').order('fecha', { ascending: false }).order('creado', { ascending: false }).then(ok); },
     guardar: function (n, nuevo) { var q = nuevo ? sb.from('blog_notas').insert(n) : sb.from('blog_notas').update(n).eq('id', n.id); return q.select().single().then(ok); },
     borrar: function (id) { return sb.from('blog_notas').delete().eq('id', id).then(ok); },
+    borrarVarias: function (ids) { return sb.from('blog_notas').delete().in('id', ids).then(ok); },
     subir: function (ruta, blob) {
       return sb.storage.from(BUCKET).upload(ruta, blob, { contentType: 'image/jpeg', upsert: false }).then(function (r) {
         if (r.error) throw r.error;
@@ -48,7 +50,7 @@
   }
 
   /* ---------- lista ---------- */
-  var lista = [], filtroEstado = '';
+  var lista = [], filtroEstado = '', marcadas = {};
   $('#bl-estados').innerHTML = ['', 'Publicado', 'Borrador', 'Incompletas'].map(function (e) { return '<button type="button" data-estado="' + e + '" aria-pressed="' + (e === '') + '">' + (e || 'Todas') + ' <small></small></button>'; }).join('');
   $$('#bl-estados button').forEach(function (b) { b.addEventListener('click', function () { filtroEstado = b.dataset.estado; pintar(); }); });
   $('#bl-q').addEventListener('input', pintar); $('#bl-sec').addEventListener('change', pintar);
@@ -69,19 +71,47 @@
     });
     var pub = lista.filter(function (n) { return n.estado === 'Publicado'; }).length;
     $('#bl-resumen').textContent = lista.length + ' notas · ' + pub + ' publicadas · ' + lista.filter(function (n) { return faltantes(n).length; }).length + ' para completar';
+    Object.keys(marcadas).forEach(function (id) { if (!lista.some(function (n) { return n.id === id; })) delete marcadas[id]; });
+    barraSel();
     if (!xs.length) { $('#bl-tabla').innerHTML = '<p class="vacio">' + (lista.length ? 'No hay notas con estos filtros.' : 'Todavía no hay notas. Tocá "+ Nueva nota".') + '</p>'; return; }
-    $('#bl-tabla').innerHTML = '<table class="ct bl"><thead><tr><th></th><th>Nota</th><th>Sección</th><th>Fecha</th><th>Para completar</th><th>Estado</th></tr></thead><tbody>' + xs.map(function (n) {
+    $('#bl-tabla').innerHTML = '<table class="ct bl"><thead><tr><th class="bl-chk"><input type="checkbox" id="bl-todas" aria-label="Marcar todas"></th><th></th><th>Nota</th><th>Sección</th><th>Fecha</th><th>Para completar</th><th>Estado</th></tr></thead><tbody>' + xs.map(function (n) {
       var fx = faltantes(n);
       var foto = n.imagen ? '<img class="bl-th" src="' + esc(verFoto(n.imagen)) + '" alt="">' : '<span class="bl-th bl-ph">' + esc((n.titulo || '?')[0]) + '</span>';
-      return '<tr data-id="' + esc(n.id) + '"><td>' + foto + '</td>' +
+      return '<tr data-id="' + esc(n.id) + '"' + (marcadas[n.id] ? ' class="sel"' : '') + '><td class="bl-chk"><input type="checkbox" data-sel="' + esc(n.id) + '"' + (marcadas[n.id] ? ' checked' : '') + ' aria-label="Marcar"></td><td>' + foto + '</td>' +
         '<td><b>' + esc(n.titulo || 'Sin título') + '</b><small>' + palabras(n.cuerpo) + ' palabras' + (n.destacada ? ' · ★ Destacada' : '') + '</small></td>' +
         '<td>' + esc(SECCION[n.seccion] || n.seccion) + '<small>' + esc(n.seccion === 'productos' ? n.subcategoria : n.tema) + '</small></td>' +
         '<td>' + fecha(n.fecha) + '</td>' +
         '<td>' + (fx.length ? '<div class="bl-falta">' + fx.map(function (x) { return '<span class="' + (x[1] ? 'grave' : '') + '">' + esc(x[0]) + '</span>'; }).join('') + '</div>' : '<span class="bl-ok">✓ Completa</span>') + '</td>' +
         '<td><span class="st st-' + esc((n.estado || '').toLowerCase()) + '">' + esc(n.estado) + '</span></td></tr>';
     }).join('') + '</tbody></table>';
-    $$('#bl-tabla tr[data-id]').forEach(function (tr) { tr.addEventListener('click', function () { editar(lista.find(function (n) { return n.id === tr.dataset.id; })); }); });
+    $$('#bl-tabla tr[data-id]').forEach(function (tr) { tr.addEventListener('click', function (e) { if (e.target.closest('.bl-chk')) return; editar(lista.find(function (n) { return n.id === tr.dataset.id; })); }); });
+    $$('#bl-tabla [data-sel]').forEach(function (c) {
+      c.addEventListener('change', function () { if (c.checked) marcadas[c.dataset.sel] = true; else delete marcadas[c.dataset.sel]; c.closest('tr').classList.toggle('sel', c.checked); barraSel(); });
+    });
+    $$('#bl-tabla td.bl-chk').forEach(function (td) { td.addEventListener('click', function (e) { if (e.target === td) { var c = td.querySelector('input'); c.checked = !c.checked; c.dispatchEvent(new Event('change')); } }); });
+    var todas = $('#bl-todas'), visibles = xs.map(function (n) { return n.id; });
+    todas.checked = visibles.length > 0 && visibles.every(function (id) { return marcadas[id]; });
+    todas.addEventListener('change', function () { visibles.forEach(function (id) { if (todas.checked) marcadas[id] = true; else delete marcadas[id]; }); pintar(); });
   }
+  function barraSel() {
+    var ids = Object.keys(marcadas), bar = $('#bl-sel');
+    bar.hidden = !ids.length;
+    $('#bl-sel-n').textContent = ids.length === 1 ? '1 nota marcada' : ids.length + ' notas marcadas';
+  }
+  $('#bl-sel-limpiar').addEventListener('click', function () { marcadas = {}; pintar(); });
+  $('#bl-sel-borrar').addEventListener('click', function () {
+    var ids = Object.keys(marcadas); if (!ids.length) return;
+    var ns = lista.filter(function (n) { return marcadas[n.id]; }), pub = ns.filter(function (n) { return n.estado === 'Publicado'; }).length;
+    var txt = '¿Eliminar ' + (ns.length === 1 ? 'la nota "' + ns[0].titulo + '"' : 'estas ' + ns.length + ' notas') + '?' +
+      (pub ? '\n\n' + (pub === 1 && ns.length === 1 ? 'Está publicada: se quita' : pub + (pub === 1 ? ' está publicada y se quita' : ' están publicadas y se quitan')) + ' del blog.' : '') + '\n\nNo se puede deshacer.';
+    if (!confirm(txt)) return;
+    var b = $('#bl-sel-borrar'); b.disabled = true; b.textContent = 'Eliminando…';
+    api.borrarVarias(ids).then(function () {
+      lista = lista.filter(function (n) { return !marcadas[n.id]; }); marcadas = {};
+      C.toast(ids.length === 1 ? 'Nota eliminada.' : ids.length + ' notas eliminadas.'); C.publicar(); pintar();
+    }).catch(function (er) { C.toast('No se pudieron eliminar: ' + er.message, true); })
+      .then(function () { b.disabled = false; b.textContent = 'Eliminar'; });
+  });
 
   /* ---------- editor ---------- */
   var f = $('#f-nota'), actual = null, nuevo = false, sucio = false, imagen = '', slugTocado = false, vista = 'escribir';
