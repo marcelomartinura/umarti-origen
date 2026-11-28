@@ -33,22 +33,6 @@ window.BLOG_INDICE = [
   "url": "blog/tipos-de-mate/"
  },
  {
-  "slug": "que-es-el-mate",
-  "titulo": "Qué es el mate: origen, tradición y cómo se toma",
-  "resumen": "Una infusión de origen guaraní que se volvió símbolo de amistad en el sur de América. De dónde viene, qué tiene, cómo se comparte la ronda y las formas de tomarlo, dulce, amargo o saborizado.",
-  "seccion": "productos",
-  "categoria": "Café, Té y Mate",
-  "subcategoria": "Mates y bombillas",
-  "tema": "",
-  "fecha": "2026-10-18",
-  "tags": [
-   "mate",
-   "yerba mate",
-   "historia"
-  ],
-  "url": "blog/que-es-el-mate/"
- },
- {
   "slug": "como-curar-un-mate",
   "titulo": "Cómo curar un mate de calabaza o de madera antes de estrenarlo",
   "resumen": "Curar el mate sella sus poros, mejora el sabor y evita hongos y grietas. Qué mates hay que curar, el método con yerba usada paso a paso y otras dos técnicas tradicionales.",
@@ -63,6 +47,22 @@ window.BLOG_INDICE = [
    "calabaza"
   ],
   "url": "blog/como-curar-un-mate/"
+ },
+ {
+  "slug": "que-es-el-mate",
+  "titulo": "Qué es el mate: origen, tradición y cómo se toma",
+  "resumen": "Una infusión de origen guaraní que se volvió símbolo de amistad en el sur de América. De dónde viene, qué tiene, cómo se comparte la ronda y las formas de tomarlo, dulce, amargo o saborizado.",
+  "seccion": "productos",
+  "categoria": "Café, Té y Mate",
+  "subcategoria": "Mates y bombillas",
+  "tema": "",
+  "fecha": "2026-10-18",
+  "tags": [
+   "mate",
+   "yerba mate",
+   "historia"
+  ],
+  "url": "blog/que-es-el-mate/"
  },
  {
   "slug": "como-curar-un-mate-de-palo-santo",
