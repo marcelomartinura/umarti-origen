@@ -178,9 +178,212 @@ def pagina(k):
 '''
 
 
+I_HEART = '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>'
+I_CART = '<path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2"/><circle cx="10" cy="20.5" r="1.2"/><circle cx="17" cy="20.5" r="1.2"/>'
+I_PIN = '<path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>'
+I_LOCK = '<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>'
+I_HOME = '<path d="M3 11l9-7 9 7M5 10v10h14V10"/>'
+
+
+def pagina_cliente():
+    """Mi cuenta: para compradores de la Tienda y usuarios de la Cuponera (Supabase Auth)."""
+    from supabase_config import SUPABASE_URL, SUPABASE_KEY
+    beneficios = [(I_HEART, "Tus favoritos en todos tus dispositivos", "Guardá productos y encontralos en la compu o en el celular."),
+                  (I_BOX, "Tus pedidos en un solo lugar", "Seguí el estado de tus compras en la Tienda."),
+                  (I_TAG, "Cupones guardados", "Guardá descuentos de la Cuponera para usarlos después."),
+                  (I_PIN, "Comprá más rápido", "Tus datos de envío quedan listos para la próxima compra.")]
+    ben = "".join(f'<div class="ac-can"><span>{ic(p, 20)}</span><div><b>{t}</b><small>{d}</small></div></div>' for p, t, d in beneficios)
+    paises = "".join(f"<option>{p}</option>" for p in PAISES)
+    tabs = [("resumen", I_HOME, "Resumen"), ("pedidos", I_BOX, "Mis pedidos"), ("favoritos", I_HEART, "Favoritos"),
+            ("cupones", I_TAG, "Mis cupones"), ("datos", I_USER, "Mis datos"), ("seguridad", I_LOCK, "Seguridad")]
+    nav = "".join(f'<a href="#{k}" data-sec="{k}">{ic(i, 18)}<span>{t}</span></a>' for k, i, t in tabs)
+    main = f'''    <div class="wrap ac-wrap ac-sun">
+      <nav class="crumbs" aria-label="Ubicación"><ol><li><a href="{PRE}">Inicio</a></li><li aria-current="page">Mi cuenta</li></ol></nav>
+
+      <p class="mc-cargando" id="mc-cargando">Cargando tu cuenta…</p>
+
+      <!-- Sin sesión: ingresar o crear cuenta -->
+      <div class="ac-grid" id="mc-fuera" hidden>
+        <section class="ac-info">
+          <span class="eyebrow">Mi cuenta</span>
+          <h1>Tu cuenta en Umarti Origen</h1>
+          <p class="ac-lead">Para quienes compran en la Tienda y usan la Cuponera. Creá tu cuenta gratis con tu correo.</p>
+          <div class="ac-cans">{ben}</div>
+          <div class="mc-vende">
+            <b>¿Vendés o tenés una empresa?</b>
+            <span>Las cuentas para vender son otras: <a href="{PRE}mi-tienda/">Mi tienda</a> (productos y cupones) o <a href="{PRE}mi-empresa/">Mi empresa</a> (comercio exterior).</span>
+          </div>
+        </section>
+
+        <aside class="ac-card" id="acceso">
+          <p class="ac-aviso" id="mc-aviso" hidden></p>
+          <div class="ac-tabs" role="tablist">
+            <button type="button" role="tab" aria-selected="true" data-tab="in">Ingresar</button>
+            <button type="button" role="tab" aria-selected="false" data-tab="up">Crear cuenta</button>
+          </div>
+          <form class="ac-form" data-panel="in" novalidate>
+            <label class="ac-f">Correo<input name="email" type="email" required autocomplete="email"></label>
+            <label class="ac-f">Contraseña<input name="pass" type="password" required autocomplete="current-password"></label>
+            <button class="ac-btn" type="submit">Ingresar</button>
+            <button class="ac-link" type="button" data-ir="olvide">¿Olvidaste tu contraseña?</button>
+            <p class="mc-msg" role="status"></p>
+          </form>
+          <form class="ac-form" data-panel="up" hidden novalidate>
+            <label class="ac-f">Nombre<input name="nombre" required autocomplete="given-name" maxlength="60"></label>
+            <label class="ac-f">País<select name="pais" required><option value="">Elegí</option>{paises}</select></label>
+            <label class="ac-f">Correo<input name="email" type="email" required autocomplete="email"></label>
+            <label class="ac-f">Contraseña<input name="pass" type="password" required minlength="8" autocomplete="new-password"><small class="muted">Mínimo 8 caracteres.</small></label>
+            <label class="ac-chk"><input type="checkbox" name="novedades"> Quiero recibir novedades, ofertas y cupones nuevos.</label>
+            <label class="ac-chk"><input type="checkbox" required> Acepto los <a href="{PRE}legal/terminos/">términos</a> y la <a href="{PRE}legal/privacidad/">política de privacidad</a>.</label>
+            <button class="ac-btn" type="submit">Crear mi cuenta</button>
+            <p class="mc-msg" role="status"></p>
+          </form>
+          <form class="ac-form" data-panel="olvide" hidden novalidate>
+            <h2 class="mc-h">Recuperá tu contraseña</h2>
+            <p class="muted">Te mandamos un enlace a tu correo para elegir una nueva.</p>
+            <label class="ac-f">Correo<input name="email" type="email" required autocomplete="email"></label>
+            <button class="ac-btn" type="submit">Enviar enlace</button>
+            <button class="ac-link" type="button" data-ir="in">← Volver a ingresar</button>
+            <p class="mc-msg" role="status"></p>
+          </form>
+          <form class="ac-form" data-panel="nueva" hidden novalidate>
+            <h2 class="mc-h">Elegí tu nueva contraseña</h2>
+            <label class="ac-f">Nueva contraseña<input name="pass" type="password" required minlength="8" autocomplete="new-password"></label>
+            <button class="ac-btn" type="submit">Guardar contraseña</button>
+            <p class="mc-msg" role="status"></p>
+          </form>
+          <div class="ac-ok" data-panel="revisa" hidden>
+            <span class="ac-tick">{ic(I_CHECK, 28)}</span>
+            <h2>Revisá tu correo</h2>
+            <p>Te mandamos un enlace a <b data-mail></b> para confirmar tu cuenta. Si no lo ves, fijate en correo no deseado.</p>
+            <button class="ac-btn ghost" type="button" data-reenviar>Reenviar el correo</button>
+            <button class="ac-link" type="button" data-ir="in">Ya lo confirmé: ingresar</button>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Con sesión: panel del comprador -->
+      <div class="mc-panel" id="mc-dentro" hidden>
+        <aside class="mc-side">
+          <div class="mc-yo"><span class="mc-av" data-iniciales></span><div><b data-nombre></b><small data-mail></small></div></div>
+          <nav class="mc-nav" aria-label="Secciones de mi cuenta">{nav}</nav>
+          <button class="mc-salir" type="button" data-salir>Cerrar sesión</button>
+        </aside>
+        <div class="mc-main">
+          <section data-panel-sec="resumen">
+            <h1 class="mc-hola">Hola, <span data-nombre-corto></span></h1>
+            <p class="muted">Desde acá ves tus pedidos, favoritos y cupones, y cambiás tus datos.</p>
+            <div class="mc-tiles">
+              <a class="mc-tile" href="#pedidos"><span>{ic(I_BOX, 22)}</span><b data-n="pedidos">0</b><small>Pedidos</small></a>
+              <a class="mc-tile" href="{PRE}favoritos/"><span>{ic(I_HEART, 22)}</span><b data-n="favoritos">0</b><small>Favoritos</small></a>
+              <a class="mc-tile" href="{PRE}carrito/"><span>{ic(I_CART, 22)}</span><b data-n="carrito">0</b><small>En el carrito</small></a>
+              <a class="mc-tile" href="#cupones"><span>{ic(I_TAG, 22)}</span><b data-n="cupones">0</b><small>Cupones</small></a>
+            </div>
+            <div class="mc-completa" data-completa hidden>
+              <div><b>Completá tus datos de envío</b><small>Así la próxima compra es más rápida.</small></div>
+              <a class="ac-btn" href="#datos">Completar</a>
+            </div>
+            <div class="mc-atajos">
+              <a href="{PRE}argentina/tienda/"><b>Tienda Argentina</b><small>Productos con origen</small></a>
+              <a href="{PRE}international-shop/"><b>International Shop</b><small>Envíos al mundo</small></a>
+              <a href="{PRE}cupones/"><b>Cuponera</b><small>Descuentos de comercios</small></a>
+              <a href="{PRE}viajes/"><b>Viajes</b><small>Guías de destinos</small></a>
+            </div>
+          </section>
+
+          <section data-panel-sec="pedidos" hidden>
+            <h1>Mis pedidos</h1>
+            <div class="mc-vacio">{ic(I_BOX, 40)}<h2>Todavía no hiciste compras</h2><p>Cuando compres en la Tienda, vas a ver acá el estado de cada pedido y su seguimiento.</p><a class="ac-btn" href="{PRE}argentina/tienda/">Ir a la Tienda</a></div>
+          </section>
+
+          <section data-panel-sec="favoritos" hidden>
+            <h1>Favoritos</h1>
+            <p class="muted mc-fav-txt"></p>
+            <div class="mc-vacio" data-fav-vacio>{ic(I_HEART, 40)}<h2>Todavía no guardaste favoritos</h2><p>Tocá el corazón en cualquier producto para guardarlo. Con tu cuenta, tus favoritos te siguen en todos tus dispositivos.</p><a class="ac-btn" href="{PRE}argentina/tienda/">Explorar la Tienda</a></div>
+            <a class="ac-btn" data-fav-ver href="{PRE}favoritos/" hidden>Ver mis favoritos</a>
+          </section>
+
+          <section data-panel-sec="cupones" hidden>
+            <h1>Mis cupones</h1>
+            <div class="mc-vacio">{ic(I_TAG, 40)}<h2>La Cuponera abre muy pronto</h2><p>Estamos sumando los primeros comercios. Cuando haya cupones, vas a poder guardarlos acá{'<span data-nov> y, como pediste recibir novedades, te avisamos por correo</span>'}.</p><a class="ac-btn ghost" href="{PRE}cupones/">Conocé la Cuponera</a></div>
+          </section>
+
+          <section data-panel-sec="datos" hidden>
+            <h1>Mis datos</h1>
+            <form class="mc-form" id="mc-datos" novalidate>
+              <fieldset><legend>Datos personales</legend>
+                <label class="ac-f">Nombre<input name="nombre" maxlength="60" autocomplete="given-name"></label>
+                <label class="ac-f">Apellido<input name="apellido" maxlength="60" autocomplete="family-name"></label>
+                <label class="ac-f">Teléfono<input name="telefono" type="tel" maxlength="30" autocomplete="tel" placeholder="+54 9 11 …"></label>
+                <label class="ac-f">País<select name="pais"><option value="">Elegí</option>{paises}</select></label>
+              </fieldset>
+              <fieldset><legend>Dirección de envío</legend>
+                <label class="ac-f full">Calle y número<input name="calle" maxlength="120" autocomplete="address-line1"></label>
+                <label class="ac-f">Piso / depto.<input name="depto" maxlength="40" autocomplete="address-line2"></label>
+                <label class="ac-f">Código postal<input name="cp" maxlength="12" autocomplete="postal-code"></label>
+                <label class="ac-f">Ciudad<input name="ciudad" maxlength="80" autocomplete="address-level2"></label>
+                <label class="ac-f">Provincia o estado<input name="provincia" maxlength="80" autocomplete="address-level1"></label>
+                <label class="ac-f full">Indicaciones para la entrega<input name="indicaciones" maxlength="160" placeholder="Ej.: timbre B, dejar en portería"></label>
+              </fieldset>
+              <fieldset><legend>Preferencias</legend>
+                <label class="ac-f">Tienda<select name="tienda"><option value="AR">Tienda Argentina</option><option value="MX" disabled>Tienda México (próximamente)</option></select></label>
+                <label class="ac-chk full"><input type="checkbox" name="novedades"> Quiero recibir novedades, ofertas y cupones nuevos.</label>
+              </fieldset>
+              <div class="mc-foot"><button class="ac-btn" type="submit">Guardar cambios</button><p class="mc-msg" role="status"></p></div>
+            </form>
+          </section>
+
+          <section data-panel-sec="seguridad" hidden>
+            <h1>Seguridad</h1>
+            <form class="mc-form" id="mc-clave" novalidate>
+              <fieldset><legend>Cambiar contraseña</legend>
+                <label class="ac-f">Nueva contraseña<input name="pass" type="password" minlength="8" required autocomplete="new-password"></label>
+                <label class="ac-f">Repetila<input name="pass2" type="password" minlength="8" required autocomplete="new-password"></label>
+              </fieldset>
+              <div class="mc-foot"><button class="ac-btn" type="submit">Cambiar contraseña</button><p class="mc-msg" role="status"></p></div>
+            </form>
+            <div class="mc-box"><b>Correo de la cuenta</b><span data-mail></span></div>
+            <div class="mc-box"><b>¿Querés dar de baja tu cuenta?</b><span>Escribinos desde el correo de tu cuenta y la eliminamos junto con tus datos.</span></div>
+            <button class="ac-btn ghost" type="button" data-salir>Cerrar sesión</button>
+          </section>
+        </div>
+      </div>
+    </div>'''
+    return f'''<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi cuenta | Umarti Origen</title>
+  <meta name="description" content="Ingresá o creá tu cuenta en Umarti Origen para guardar favoritos, seguir tus pedidos y usar la Cuponera.">
+  <meta name="robots" content="noindex">
+{comun.FUENTES}
+  <link rel="stylesheet" href="{PRE}assets/css/umarti.css">
+  <link rel="stylesheet" href="{PRE}assets/css/blog.css">
+  <link rel="stylesheet" href="{PRE}assets/css/cuentas.css">
+</head>
+<body data-cuenta="cliente" data-sb-url="{SUPABASE_URL}" data-sb-key="{SUPABASE_KEY}">
+
+{comun.header(PRE)}
+
+  <main>
+{main}
+  </main>
+
+{comun.footer(PRE)}
+
+  <script src="{PRE}assets/js/header.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="{PRE}assets/js/mi-cuenta.js"></script>
+</body>
+</html>
+'''
+
+
 def main():
     escribir("mi-tienda/index.html", pagina("tienda"))
     escribir("mi-empresa/index.html", pagina("empresa"))
+    escribir("mi-cuenta/index.html", pagina_cliente())
 
 
 if __name__ == "__main__":

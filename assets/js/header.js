@@ -99,3 +99,18 @@
     if (e.key === 'Escape') sels.forEach(function (d) { d.open = false; });
   });
 })();
+
+/* Mi cuenta: si la persona ya ingresó en este navegador, el encabezado la saluda */
+(function () {
+  var txt = document.querySelector('[data-cuenta-txt]');
+  if (!txt) return;
+  function pintar() {
+    var c = null;
+    try { c = JSON.parse(localStorage.getItem('umarti-cuenta') || 'null'); } catch (e) { c = null; }
+    var n = c && c.nombre ? String(c.nombre).split(' ')[0].slice(0, 14) : '';
+    txt.textContent = n ? 'Hola, ' + n : 'Mi cuenta';
+  }
+  document.addEventListener('umarti:cuenta', pintar);
+  window.addEventListener('storage', pintar);
+  pintar();
+})();

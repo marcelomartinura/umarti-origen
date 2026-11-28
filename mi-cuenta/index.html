@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="../assets/img/marca/favicon-32.png">
+  <link rel="apple-touch-icon" href="../assets/img/marca/apple-touch-icon.png">
+  <title>Mi cuenta | Umarti Origen</title>
+  <meta name="description" content="Ingresá o creá tu cuenta en Umarti Origen para guardar favoritos, seguir tus pedidos y usar la Cuponera.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/umarti.css?v=0429d3e5">
+  <link rel="stylesheet" href="../assets/css/blog.css?v=422de8ce">
+  <link rel="stylesheet" href="../assets/css/cuentas.css?v=ca1ee025">
+</head>
+<body data-cuenta="cliente" data-sb-url="https://tkrnwboyynvbellqnzle.supabase.co" data-sb-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRrcm53Ym95eW52YmVsbHFuemxlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI0MjE0NTYsImV4cCI6MjEwNzk5NzQ1Nn0.B1wq_8z8Gwd4L3ieavvpE2PKjQcj1-KVXDREmCL7wjA">
+
+  <header class="site-header" id="site-header">
+    <!-- Fila superior -->
+    <div class="wrap-wide topbar">
+      <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menú">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <a href="../" class="logo" aria-label="Umarti Origen, ir al inicio"><img class="logo-ico" src="../assets/img/marca/icono.png" alt="" width="259" height="236"><span class="logo-txt"><b>Umarti</b><b>Origen</b></span></a>
+      <form class="search" role="search" onsubmit="return false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" placeholder="Buscar productos, oportunidades o destinos" aria-label="Buscar">
+      </form>
+      <div class="user-actions">
+        <a href="../mi-cuenta/" class="icon-link" id="mi-cuenta-link" aria-label="Mi cuenta">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+          <span data-cuenta-txt>Mi cuenta</span>
+        </a>
+        <a href="../favoritos/" class="icon-link" aria-label="Favoritos">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>
+          <span>Favoritos</span>
+          <b class="badge" id="fav-count" hidden>0</b>
+        </a>
+        <a href="../carrito/" class="icon-link" aria-label="Carrito">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2"/><circle cx="10" cy="20.5" r="1.2"/><circle cx="17" cy="20.5" r="1.2"/></svg>
+          <span>Carrito</span>
+          <b class="badge" id="cart-count" hidden>0</b>
+        </a>
+      </div>
+    </div>
+
+    <!-- Módulos de navegación -->
+    <nav class="wrap-wide modules" id="main-nav" aria-label="Principal">
+
+      <!-- Módulo 1: Tienda -->
+      <div class="module m-shop">
+        <div class="module-label">
+          <span class="ml-pais"><a class="ml-link" href="../argentina/tienda/">Tienda</a>
+            <details class="pais-sel">
+              <summary aria-label="País de la tienda: Argentina. Cambiar"><i class="flag flag-ar" aria-hidden="true"></i>AR</summary>
+              <div class="ps-menu">
+                <span class="ps-tit">Elegí la tienda</span>
+                <a href="../argentina/tienda/" aria-current="true"><i class="flag flag-ar" aria-hidden="true"></i>Tienda Argentina</a>
+                <span class="ps-prox"><i class="flag flag-mx" aria-hidden="true"></i>Tienda México <small>Próximamente</small></span>
+                <a href="../international-shop/"><i class="flag flag-intl" aria-hidden="true"></i>International Shop <small>Envíos al mundo</small></a>
+              </div>
+            </details>
+          </span>
+          <a class="mi-link" href="../mi-tienda/">Mi tienda</a>
+        </div>
+        <ul class="module-items">
+          <li class="has-menu mega">
+            <button class="nav-btn" aria-expanded="false">Productos
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="dropdown mega-panel">
+              <div class="mega-grid">
+                <div><a class="cat" href="../argentina/tienda/cafe-te-y-mate/">Café, Té y Mate</a>
+                  <ul><li><a href="../argentina/tienda/cafe-te-y-mate/?sub=Mates%20y%20bombillas">Mates y bombillas</a></li><li><a href="../argentina/tienda/cafe-te-y-mate/?sub=Termos%20y%20pavas%20el%C3%A9ctricas">Termos y pavas eléctricas</a></li><li><a href="../argentina/tienda/cafe-te-y-mate/?sub=Caf%C3%A9">Café</a></li><li><a href="../argentina/tienda/cafe-te-y-mate/?sub=T%C3%A9">Té</a></li><li><a href="../argentina/tienda/cafe-te-y-mate/?sub=Chocolate">Chocolate</a></li></ul></div>
+                <div><a class="cat" href="../argentina/tienda/regalos-y-kits/">Regalos y Kits</a>
+                  <ul><li><a href="../argentina/tienda/regalos-y-kits/?sub=Kits%20de%20mate%20y%20caf%C3%A9">Kits de mate y café</a></li><li><a href="../argentina/tienda/regalos-y-kits/?sub=Regalos%20corporativos">Regalos corporativos</a></li><li><a href="../argentina/tienda/regalos-y-kits/?sub=Personalizados">Personalizados</a></li></ul></div>
+                <div><a class="cat" href="../argentina/tienda/articulos-regionales/">Artículos Regionales</a>
+                  <ul><li><a href="../argentina/tienda/articulos-regionales/?sub=Bolsos%20materos">Bolsos materos</a></li><li><a href="../argentina/tienda/articulos-regionales/?sub=Marroquiner%C3%ADa%20y%20ri%C3%B1oneras">Marroquinería y riñoneras</a></li><li><a href="../argentina/tienda/articulos-regionales/?sub=Juegos%20de%20asado">Juegos de asado</a></li><li><a href="../argentina/tienda/articulos-regionales/?sub=Portatermos%20y%20llaveros">Portatermos y llaveros</a></li></ul></div>
+                <div><a class="cat" href="../argentina/tienda/bebidas/">Bebidas</a>
+                  <ul><li><a href="../argentina/tienda/bebidas/?sub=Vinos">Vinos</a></li><li><a href="../argentina/tienda/bebidas/?sub=Cervezas%20y%20destilados">Cervezas y destilados</a></li><li><a href="../argentina/tienda/bebidas/?sub=Sin%20alcohol">Sin alcohol</a></li></ul></div>
+                <div><a class="cat" href="../argentina/tienda/alimentos/">Alimentos</a>
+                  <ul><li><a href="../argentina/tienda/alimentos/?sub=Alimentos%20congelados">Alimentos congelados</a></li><li><a href="../argentina/tienda/alimentos/?sub=Alimentos%20diet">Alimentos diet</a></li><li><a href="../argentina/tienda/alimentos/?sub=Golosinas">Golosinas</a></li><li><a href="../argentina/tienda/alimentos/?sub=Snacks">Snacks</a></li></ul></div>
+              </div>
+              <div class="mega-more"><span>Más categorías</span><a href="../argentina/tienda/salud-y-bienestar/">Salud y Bienestar</a><a href="../argentina/tienda/moda/">Moda</a><a href="../argentina/tienda/tecnologia/">Tecnología</a><a href="../argentina/tienda/herramientas-y-jardin/">Herramientas y Jardín</a><a href="../argentina/tienda/hogar-y-cocina/">Hogar y Cocina</a><a href="../argentina/tienda/limpieza-e-higiene/">Limpieza e Higiene</a><a href="../argentina/tienda/productos-para-viajes/">Productos para viajes</a><a href="../argentina/tienda/deportes-y-aire-libre/">Deportes y aire libre</a></div>
+              <div class="mega-foot">
+                <span>Productos con origen, elegidos en Argentina.</span>
+                <span><a href="../argentina/categorias/">Ver todos los productos →</a></span>
+              </div>
+            </div>
+          </li>
+          <li><a class="nav-btn" href="../international-shop/">International Shop</a></li>
+        </ul>
+      </div>
+
+      <!-- Módulo 2: Mercados Globales -->
+      <div class="module m-world">
+        <p class="module-label"><span>Mercados Globales</span><a class="mi-link" href="../mi-empresa/">Mi empresa</a></p>
+        <ul class="module-items">
+          <li>
+            <a class="nav-btn" href="../hub/">Hub de Oportunidades Globales</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Módulo 3: Viajes -->
+      <div class="module m-travel">
+        <p class="module-label"><a class="ml-link" href="../viajes/">Viajes</a></p>
+        <ul class="module-items">
+          <li><a class="nav-btn" href="../viajes/destinos/">Destinos</a></li>
+          <li><a class="nav-btn" href="../viajes/#organiza">Organizá tu viaje</a></li>
+        </ul>
+      </div>
+
+      <!-- Módulo 4: Herramientas -->
+      <div class="module m-tools">
+        <p class="module-label">Herramientas</p>
+        <ul class="module-items">
+          <li><a class="nav-btn" href="../blog/">Blog</a></li>
+          <li><a class="nav-btn" href="../recursos/">Recursos digitales</a></li>
+          <li><a class="nav-btn" href="../cupones/">Cupones</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap ac-wrap ac-sun">
+      <nav class="crumbs" aria-label="Ubicación"><ol><li><a href="../">Inicio</a></li><li aria-current="page">Mi cuenta</li></ol></nav>
+
+      <p class="mc-cargando" id="mc-cargando">Cargando tu cuenta…</p>
+
+      <!-- Sin sesión: ingresar o crear cuenta -->
+      <div class="ac-grid" id="mc-fuera" hidden>
+        <section class="ac-info">
+          <span class="eyebrow">Mi cuenta</span>
+          <h1>Tu cuenta en Umarti Origen</h1>
+          <p class="ac-lead">Para quienes compran en la Tienda y usan la Cuponera. Creá tu cuenta gratis con tu correo.</p>
+          <div class="ac-cans"><div class="ac-can"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><div><b>Tus favoritos en todos tus dispositivos</b><small>Guardá productos y encontralos en la compu o en el celular.</small></div></div><div class="ac-can"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l9-5 9 5v8l-9 5-9-5zM3 8l9 5 9-5M12 13v8"/></svg></span><div><b>Tus pedidos en un solo lugar</b><small>Seguí el estado de tus compras en la Tienda.</small></div></div><div class="ac-can"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><div><b>Cupones guardados</b><small>Guardá descuentos de la Cuponera para usarlos después.</small></div></div><div class="ac-can"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><b>Comprá más rápido</b><small>Tus datos de envío quedan listos para la próxima compra.</small></div></div></div>
+          <div class="mc-vende">
+            <b>¿Vendés o tenés una empresa?</b>
+            <span>Las cuentas para vender son otras: <a href="../mi-tienda/">Mi tienda</a> (productos y cupones) o <a href="../mi-empresa/">Mi empresa</a> (comercio exterior).</span>
+          </div>
+        </section>
+
+        <aside class="ac-card" id="acceso">
+          <p class="ac-aviso" id="mc-aviso" hidden></p>
+          <div class="ac-tabs" role="tablist">
+            <button type="button" role="tab" aria-selected="true" data-tab="in">Ingresar</button>
+            <button type="button" role="tab" aria-selected="false" data-tab="up">Crear cuenta</button>
+          </div>
+          <form class="ac-form" data-panel="in" novalidate>
+            <label class="ac-f">Correo<input name="email" type="email" required autocomplete="email"></label>
+            <label class="ac-f">Contraseña<input name="pass" type="password" required autocomplete="current-password"></label>
+            <button class="ac-btn" type="submit">Ingresar</button>
+            <button class="ac-link" type="button" data-ir="olvide">¿Olvidaste tu contraseña?</button>
+            <p class="mc-msg" role="status"></p>
+          </form>
+          <form class="ac-form" data-panel="up" hidden novalidate>
+            <label class="ac-f">Nombre<input name="nombre" required autocomplete="given-name" maxlength="60"></label>
+            <label class="ac-f">País<select name="pais" required><option value="">Elegí</option><option>Argentina</option><option>México</option><option>Chile</option><option>Uruguay</option><option>Colombia</option><option>Perú</option><option>Brasil</option><option>España</option><option>Estados Unidos</option><option>Otro</option></select></label>
+            <label class="ac-f">Correo<input name="email" type="email" required autocomplete="email"></label>
+            <label class="ac-f">Contraseña<input name="pass" type="password" required minlength="8" autocomplete="new-password"><small class="muted">Mínimo 8 caracteres.</small></label>
+            <label class="ac-chk"><input type="checkbox" name="novedades"> Quiero recibir novedades, ofertas y cupones nuevos.</label>
+            <label class="ac-chk"><input type="checkbox" required> Acepto los <a href="../legal/terminos/">términos</a> y la <a href="../legal/privacidad/">política de privacidad</a>.</label>
+            <button class="ac-btn" type="submit">Crear mi cuenta</button>
+            <p class="mc-msg" role="status"></p>
+          </form>
+          <form class="ac-form" data-panel="olvide" hidden novalidate>
+            <h2 class="mc-h">Recuperá tu contraseña</h2>
+            <p class="muted">Te mandamos un enlace a tu correo para elegir una nueva.</p>
+            <label class="ac-f">Correo<input name="email" type="email" required autocomplete="email"></label>
+            <button class="ac-btn" type="submit">Enviar enlace</button>
+            <button class="ac-link" type="button" data-ir="in">← Volver a ingresar</button>
+            <p class="mc-msg" role="status"></p>
+          </form>
+          <form class="ac-form" data-panel="nueva" hidden novalidate>
+            <h2 class="mc-h">Elegí tu nueva contraseña</h2>
+            <label class="ac-f">Nueva contraseña<input name="pass" type="password" required minlength="8" autocomplete="new-password"></label>
+            <button class="ac-btn" type="submit">Guardar contraseña</button>
+            <p class="mc-msg" role="status"></p>
+          </form>
+          <div class="ac-ok" data-panel="revisa" hidden>
+            <span class="ac-tick"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>
+            <h2>Revisá tu correo</h2>
+            <p>Te mandamos un enlace a <b data-mail></b> para confirmar tu cuenta. Si no lo ves, fijate en correo no deseado.</p>
+            <button class="ac-btn ghost" type="button" data-reenviar>Reenviar el correo</button>
+            <button class="ac-link" type="button" data-ir="in">Ya lo confirmé: ingresar</button>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Con sesión: panel del comprador -->
+      <div class="mc-panel" id="mc-dentro" hidden>
+        <aside class="mc-side">
+          <div class="mc-yo"><span class="mc-av" data-iniciales></span><div><b data-nombre></b><small data-mail></small></div></div>
+          <nav class="mc-nav" aria-label="Secciones de mi cuenta"><a href="#resumen" data-sec="resumen"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7M5 10v10h14V10"/></svg><span>Resumen</span></a><a href="#pedidos" data-sec="pedidos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l9-5 9 5v8l-9 5-9-5zM3 8l9 5 9-5M12 13v8"/></svg><span>Mis pedidos</span></a><a href="#favoritos" data-sec="favoritos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span>Favoritos</span></a><a href="#cupones" data-sec="cupones"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg><span>Mis cupones</span></a><a href="#datos" data-sec="datos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span>Mis datos</span></a><a href="#seguridad" data-sec="seguridad"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Seguridad</span></a></nav>
+          <button class="mc-salir" type="button" data-salir>Cerrar sesión</button>
+        </aside>
+        <div class="mc-main">
+          <section data-panel-sec="resumen">
+            <h1 class="mc-hola">Hola, <span data-nombre-corto></span></h1>
+            <p class="muted">Desde acá ves tus pedidos, favoritos y cupones, y cambiás tus datos.</p>
+            <div class="mc-tiles">
+              <a class="mc-tile" href="#pedidos"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l9-5 9 5v8l-9 5-9-5zM3 8l9 5 9-5M12 13v8"/></svg></span><b data-n="pedidos">0</b><small>Pedidos</small></a>
+              <a class="mc-tile" href="../favoritos/"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><b data-n="favoritos">0</b><small>Favoritos</small></a>
+              <a class="mc-tile" href="../carrito/"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2"/><circle cx="10" cy="20.5" r="1.2"/><circle cx="17" cy="20.5" r="1.2"/></svg></span><b data-n="carrito">0</b><small>En el carrito</small></a>
+              <a class="mc-tile" href="#cupones"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><b data-n="cupones">0</b><small>Cupones</small></a>
+            </div>
+            <div class="mc-completa" data-completa hidden>
+              <div><b>Completá tus datos de envío</b><small>Así la próxima compra es más rápida.</small></div>
+              <a class="ac-btn" href="#datos">Completar</a>
+            </div>
+            <div class="mc-atajos">
+              <a href="../argentina/tienda/"><b>Tienda Argentina</b><small>Productos con origen</small></a>
+              <a href="../international-shop/"><b>International Shop</b><small>Envíos al mundo</small></a>
+              <a href="../cupones/"><b>Cuponera</b><small>Descuentos de comercios</small></a>
+              <a href="../viajes/"><b>Viajes</b><small>Guías de destinos</small></a>
+            </div>
+          </section>
+
+          <section data-panel-sec="pedidos" hidden>
+            <h1>Mis pedidos</h1>
+            <div class="mc-vacio"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l9-5 9 5v8l-9 5-9-5zM3 8l9 5 9-5M12 13v8"/></svg><h2>Todavía no hiciste compras</h2><p>Cuando compres en la Tienda, vas a ver acá el estado de cada pedido y su seguimiento.</p><a class="ac-btn" href="../argentina/tienda/">Ir a la Tienda</a></div>
+          </section>
+
+          <section data-panel-sec="favoritos" hidden>
+            <h1>Favoritos</h1>
+            <p class="muted mc-fav-txt"></p>
+            <div class="mc-vacio" data-fav-vacio><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><h2>Todavía no guardaste favoritos</h2><p>Tocá el corazón en cualquier producto para guardarlo. Con tu cuenta, tus favoritos te siguen en todos tus dispositivos.</p><a class="ac-btn" href="../argentina/tienda/">Explorar la Tienda</a></div>
+            <a class="ac-btn" data-fav-ver href="../favoritos/" hidden>Ver mis favoritos</a>
+          </section>
+
+          <section data-panel-sec="cupones" hidden>
+            <h1>Mis cupones</h1>
+            <div class="mc-vacio"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg><h2>La Cuponera abre muy pronto</h2><p>Estamos sumando los primeros comercios. Cuando haya cupones, vas a poder guardarlos acá<span data-nov> y, como pediste recibir novedades, te avisamos por correo</span>.</p><a class="ac-btn ghost" href="../cupones/">Conocé la Cuponera</a></div>
+          </section>
+
+          <section data-panel-sec="datos" hidden>
+            <h1>Mis datos</h1>
+            <form class="mc-form" id="mc-datos" novalidate>
+              <fieldset><legend>Datos personales</legend>
+                <label class="ac-f">Nombre<input name="nombre" maxlength="60" autocomplete="given-name"></label>
+                <label class="ac-f">Apellido<input name="apellido" maxlength="60" autocomplete="family-name"></label>
+                <label class="ac-f">Teléfono<input name="telefono" type="tel" maxlength="30" autocomplete="tel" placeholder="+54 9 11 …"></label>
+                <label class="ac-f">País<select name="pais"><option value="">Elegí</option><option>Argentina</option><option>México</option><option>Chile</option><option>Uruguay</option><option>Colombia</option><option>Perú</option><option>Brasil</option><option>España</option><option>Estados Unidos</option><option>Otro</option></select></label>
+              </fieldset>
+              <fieldset><legend>Dirección de envío</legend>
+                <label class="ac-f full">Calle y número<input name="calle" maxlength="120" autocomplete="address-line1"></label>
+                <label class="ac-f">Piso / depto.<input name="depto" maxlength="40" autocomplete="address-line2"></label>
+                <label class="ac-f">Código postal<input name="cp" maxlength="12" autocomplete="postal-code"></label>
+                <label class="ac-f">Ciudad<input name="ciudad" maxlength="80" autocomplete="address-level2"></label>
+                <label class="ac-f">Provincia o estado<input name="provincia" maxlength="80" autocomplete="address-level1"></label>
+                <label class="ac-f full">Indicaciones para la entrega<input name="indicaciones" maxlength="160" placeholder="Ej.: timbre B, dejar en portería"></label>
+              </fieldset>
+              <fieldset><legend>Preferencias</legend>
+                <label class="ac-f">Tienda<select name="tienda"><option value="AR">Tienda Argentina</option><option value="MX" disabled>Tienda México (próximamente)</option></select></label>
+                <label class="ac-chk full"><input type="checkbox" name="novedades"> Quiero recibir novedades, ofertas y cupones nuevos.</label>
+              </fieldset>
+              <div class="mc-foot"><button class="ac-btn" type="submit">Guardar cambios</button><p class="mc-msg" role="status"></p></div>
+            </form>
+          </section>
+
+          <section data-panel-sec="seguridad" hidden>
+            <h1>Seguridad</h1>
+            <form class="mc-form" id="mc-clave" novalidate>
+              <fieldset><legend>Cambiar contraseña</legend>
+                <label class="ac-f">Nueva contraseña<input name="pass" type="password" minlength="8" required autocomplete="new-password"></label>
+                <label class="ac-f">Repetila<input name="pass2" type="password" minlength="8" required autocomplete="new-password"></label>
+              </fieldset>
+              <div class="mc-foot"><button class="ac-btn" type="submit">Cambiar contraseña</button><p class="mc-msg" role="status"></p></div>
+            </form>
+            <div class="mc-box"><b>Correo de la cuenta</b><span data-mail></span></div>
+            <div class="mc-box"><b>¿Querés dar de baja tu cuenta?</b><span>Escribinos desde el correo de tu cuenta y la eliminamos junto con tus datos.</span></div>
+            <button class="ac-btn ghost" type="button" data-salir>Cerrar sesión</button>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap foot foot-top">
+      <div class="foot-marca">
+        <a href="../" class="logo logo-foot" aria-label="Umarti Origen, ir al inicio"><img class="logo-ico" src="../assets/img/marca/icono.png" alt="" width="259" height="236"><span class="logo-txt"><b>Umarti</b><b>Origen</b></span></a>
+        <p>Tienda &amp; Mercados Globales</p>
+        <div class="foot-redes"><span>Seguinos</span>
+          <a href="https://www.facebook.com/umartiorigen" target="_blank" rel="noopener" aria-label="Umarti Origen en Facebook" title="Facebook"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.5h2.6l.4-3.1h-3v-2c0-.9.3-1.5 1.6-1.5h1.6V4.1c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H7.9v3.1h2.6V21h3z"/></svg>Facebook</a>
+        </div>
+      </div>
+      <div class="eco-band" aria-label="Ecosistema Umarti">
+        <span class="eco-tit">Ecosistema <b>Umarti</b></span>
+        <div class="eco-items"><a class="eco-item" href="https://www.umartidigital.com" target="_blank" rel="noopener"><img class="eco-av" src="../assets/img/ecosistema/avatar-digital.jpg" alt="" width="56" height="56"><span class="eco-txt"><span class="eco-name"><img class="eco-logo" src="../assets/img/ecosistema/logo-digital.png" alt="Umarti Digital" width="120" height="38"></span><small>Consultoría y evolución digital</small></span></a><a class="eco-item" href="https://profesionales.umartidigital.com/" target="_blank" rel="noopener"><img class="eco-av" src="../assets/img/ecosistema/avatar-digital.jpg" alt="" width="56" height="56"><span class="eco-txt"><span class="eco-name"><span class="eco-chip eco-chip-pro"><img src="../assets/img/ecosistema/logo-profesionales.png" alt="Umarti Digital Profesionales" width="149" height="36"></span></span><small>Red de profesionales</small></span></a><div class="eco-item"><img class="eco-av" src="../assets/img/ecosistema/avatar-motors.jpg" alt="" width="56" height="56"><span class="eco-txt"><span class="eco-name"><span class="eco-chip"><img src="../assets/img/ecosistema/logo-motors.png" alt="Umarti Motors" width="96" height="37"></span></span><small>Marketplace de movilidad</small><em>Próximamente</em></span></div><div class="eco-item"><img class="eco-av eco-av-origen" src="../assets/img/ecosistema/avatar-origen.jpg" alt="" width="56" height="56"><span class="eco-txt"><span class="eco-name"><span class="eco-chip eco-chip-origen"><img src="../assets/img/marca/icono.png" alt="" width="26" height="24"><span><b>Umarti</b><b>Origen</b></span></span></span><small>Tienda y Mercados Globales</small><em>Próximamente</em></span></div></div>
+      </div>
+    </div>
+    <div class="wrap foot-legal">
+      <nav aria-label="Información legal">
+        <a href="../legal/terminos/">Términos y Privacidad</a>
+        <a href="../legal/cookies/">Cookies</a>
+        <a href="../envios/">Envíos</a>
+        <span class="foot-copy">© 2026 Umarti · <a href="../publicidad/">Anunciá en Umarti</a></span>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/header.js?v=0b22f46a"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="../assets/js/mi-cuenta.js?v=6e189580"></script>
+</body>
+</html>

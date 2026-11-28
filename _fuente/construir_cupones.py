@@ -4,7 +4,7 @@
 Uso:  python3 _fuente/construir_cupones.py
 Genera cupones/ (portada) y cupones/<categoría>/, más assets/data/cupones-datos.js.
 """
-import datetime, html, json, os, sys
+import datetime, html, json, os, shutil, sys
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, AQUI)
@@ -35,6 +35,22 @@ CATS = [
     ("Digitales", "digitales", ("#7357a8", "#46337a"), "Suscripciones, apps y eSIM"),
 ]
 CAT = {c[0]: c for c in CATS}
+
+# Cupones de muestra para la demo a comercios (comercios ficticios; no son cupones reales ni se pueden usar)
+_VENCE_DEMO = (datetime.date.today() + datetime.timedelta(days=45)).isoformat()
+DEMO = [
+    dict(codigo="DEMO-1", titulo="15% en excursiones a bodegas", comercio="Ruta del Vino Tours", categoria="Viajes", tipo="Código", cupon="RUTA15",
+         descuento="15%", descripcion="Visitas guiadas con degustación en tres bodegas, con traslado incluido.",
+         condiciones="Válido de lunes a viernes. No acumulable con otras promociones.", pais="Argentina", ciudad="Mendoza"),
+    dict(codigo="DEMO-2", titulo="2x1 en empanadas los martes", comercio="La Salteña de Palermo", categoria="Gastronomía", tipo="Oferta", cupon="",
+         descuento="2x1", descripcion="Empanadas salteñas al horno de barro.", condiciones="Solo los martes, en el local. Mostrá el cupón al pedir.",
+         pais="Argentina", ciudad="Buenos Aires"),
+    dict(codigo="DEMO-3", titulo="20% en tu primer masaje", comercio="Spa Agua Termal", categoria="Belleza y Spa", tipo="Código", cupon="SPA20",
+         descuento="20%", descripcion="Masaje de 60 minutos con aceites esenciales y acceso al circuito de aguas.",
+         condiciones="Con reserva previa. De lunes a jueves.", pais="México", ciudad="Querétaro"),
+]
+for _c in DEMO:
+    _c.update(vence=_VENCE_DEMO, link="", destacado=False, exclusivo=_c["codigo"] == "DEMO-1", destino="", tema="", estado="Ejemplo", slug="")
 
 
 def rel(depth, path=""):
@@ -101,7 +117,7 @@ def card(c, cv):
     texto = esc(" ".join([c["titulo"], c["comercio"], c["categoria"], c["descripcion"], c.get("ciudad", ""), c["pais"]]).lower())
     exp = f'<span class="cu-exp soon">Quedan {d} días</span>' if soon else f'<span class="cu-exp">Vence {fecha(c["vence"])}</span>'
     ej = '<span class="cu-ej">Ejemplo</span>' if c["estado"] == "Ejemplo" else ""
-    return f'''        <article class="cupon{" hot" if soon and not c["exclusivo"] else ""}" id="{c['codigo'].lower()}" data-cat="{esc(c['categoria'])}" data-pais="{esc(c['pais'])}" data-texto="{texto}">
+    return f'''        <article class="cupon{" cu-demo" if c["codigo"].startswith("DEMO") else ""}{" hot" if soon and not c["exclusivo"] else ""}" id="{c['codigo'].lower()}" data-cat="{esc(c['categoria'])}" data-pais="{esc(c['pais'])}" data-texto="{texto}">
           {rib}{art(c, cv, True)}
           <div class="cu-body"><span class="cu-logo">{esc(iniciales(c['comercio']))}</span><div><h3>{esc(c['titulo'])}</h3><p class="cu-merchant">{esc(c['comercio'])} · {esc(lugar(c))}</p></div></div>
           <div class="cu-meta"><span class="cu-tag{" oferta" if c["tipo"] == "Oferta" else ""}">{esc(c['tipo'])}</span>{exp}{ej}</div>
@@ -123,9 +139,13 @@ def slide(c, cv):
           </div>'''
 
 
-def barra(depth, actual):
-    links = [f'<a href="{rel(depth, "cupones/")}"{" aria-current=\"page\"" if actual == "" else ""}>Destacados</a>']
-    links += [f'<a href="{rel(depth, "cupones/" + s + "/")}"{" aria-current=\"page\"" if actual == s else ""}>{n}</a>' for n, s, _, _ in CATS]
+def barra(depth, actual, cats=None):
+    cats = CATS if cats is None else cats
+    if cats:
+        links = [f'<a href="{rel(depth, "cupones/")}"{" aria-current=\"page\"" if actual == "" else ""}>Destacados</a>']
+        links += [f'<a href="{rel(depth, "cupones/" + s + "/")}"{" aria-current=\"page\"" if actual == s else ""}>{n}</a>' for n, s, _, _ in cats]
+    else:  # sin cupones publicados: la barra lleva a las partes de la página para comercios
+        links = ['<a href="#como-se-ve">Así se ve un cupón</a>', '<a href="#como-publicar">Cómo publicar</a>', '<a href="#donde-aparece">Dónde aparece</a>']
     return f'''    <div class="cu-bar">
       <div class="wrap-wide">
         <a class="cu-brand" href="{rel(depth, 'cupones/')}"><span class="tk">%</span><span>Cuponera<small>Umarti Origen</small></span></a>
@@ -185,7 +205,7 @@ def dialogos():
   </dialog>'''
 
 
-def page(depth, title, desc, actual, main):
+def page(depth, title, desc, actual, main, cats=None, noindex=True):
     pre = rel(depth)
     return f'''<!doctype html>
 <html lang="es">
@@ -194,8 +214,7 @@ def page(depth, title, desc, actual, main):
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{esc(title)}</title>
   <meta name="description" content="{esc(desc)}">
-  <!-- Cupones de ejemplo: quitar esta línea cuando haya cupones reales publicados -->
-  <meta name="robots" content="noindex">
+{'  <meta name="robots" content="noindex">' if noindex else ''}
   <meta property="og:type" content="website">
   <meta property="og:title" content="{esc(title)}">
   <meta property="og:description" content="{esc(desc)}">
@@ -209,7 +228,7 @@ def page(depth, title, desc, actual, main):
 <body data-prefix="{pre}">
 
 {comun.header(pre)}
-{barra(depth, actual)}
+{barra(depth, actual, cats)}
 
   <main>
 {main}
@@ -226,15 +245,15 @@ def page(depth, title, desc, actual, main):
 '''
 
 
-def cat_tiles(depth, cupones):
+def cat_tiles(depth, cupones, cats):
     out = []
-    for n, s, (c1, c2), sub in CATS:
+    for n, s, (c1, c2), sub in cats:
         k = sum(1 for c in cupones if c["categoria"] == n)
         out.append(f'<a class="cat-tile" href="{rel(depth, "cupones/" + s + "/")}" style="--c1:{c1};--c2:{c2}"><span class="ico">{icon(n)}</span><strong>{n}</strong><small>{k} cupones · {esc(sub)}</small></a>')
     return '<div class="cat-tiles">' + "".join(out) + "</div>"
 
 
-def portada(cupones, cv):
+def portada(cupones, cv, cats):
     d = 1
     dest = [c for c in cupones if c["destacado"]][:6]
     tienda = next((c for c in cupones if c["comercio"] == "Umarti Origen" and c["exclusivo"]), None)
@@ -252,7 +271,7 @@ def portada(cupones, cv):
 {banner}
       <section class="cu-sec" aria-labelledby="h-pop">
         <h2 id="h-pop">Cupones populares de hoy</h2>
-{tools([n for n, _, _, _ in CATS])}
+{tools([n for n, _, _, _ in cats])}
         <div class="cu-grid" id="cu-grid">
 {chr(10).join(card(c, cv) for c in cupones)}
           <p class="cu-empty" id="cu-empty">No encontramos cupones con esa búsqueda.</p>
@@ -260,15 +279,87 @@ def portada(cupones, cv):
       </section>
       <section class="cu-sec" aria-labelledby="h-cat">
         <h2 id="h-cat">Explorá por categoría</h2>
-        {cat_tiles(d, cupones)}
+        {cat_tiles(d, cupones, cats)}
       </section>
 {merchant_band(d)}
     </div>'''
     return page(d, "Cuponera Umarti: cupones de descuento en viajes, restaurantes, servicios y productos",
-                "Cupones y códigos de descuento en viajes, restaurantes, servicios, productos y suscripciones digitales en Argentina, México y en línea.", "", main)
+                "Cupones y códigos de descuento en viajes, restaurantes, servicios, productos y suscripciones digitales en Argentina, México y en línea.", "", main,
+                cats=cats, noindex=any(c["estado"] == "Ejemplo" for c in cupones))
 
 
-def pagina_cat(nombre, s, colores, sub, cupones, cv):
+def portada_vacia(cv):
+    d = 1
+    tiles = "".join(f'<div class="cat-tile" style="--c1:{c1};--c2:{c2}"><span class="ico">{icon(n)}</span><strong>{n}</strong><small>{esc(sub)}</small></div>'
+                    for n, s, (c1, c2), sub in CATS)
+    partes = [("1", "El descuento, bien grande", "15%, 2x1, envío gratis: lo primero que se ve."),
+              ("2", "Tu comercio y tu ciudad", "Con tus iniciales o logo, y dónde se usa el cupón."),
+              ("3", "Código u oferta", "Un código para usar en tu web o caja, o una oferta que se muestra en el local."),
+              ("4", "Vencimiento", "Cuando faltan pocos días, el cupón se marca como “Vence pronto”."),
+              ("5", "Ver código", "Al tocarlo, tu cliente ve el código y las condiciones. Vos ves cuántas personas lo abrieron.")]
+    anat = "".join(f'<li><b>{n}</b><span><strong>{esc(t)}</strong>{esc(x)}</span></li>' for n, t, x in partes)
+    pasos = [("Creá tu tienda", "Desde Mi tienda, con tus datos y la validación de identidad, para que cada cupón sea de un comercio real."),
+             ("Cargá tu cupón", "Descuento, código u oferta, condiciones, vencimiento y la ciudad o si es en línea."),
+             ("Lo revisamos y se publica", "Revisamos cada cupón antes de publicarlo. Después lo podés pausar o editar cuando quieras.")]
+    pasos_html = "".join(f'<li><span class="cv-n">{i}</span><h3>{esc(t)}</h3><p>{esc(x)}</p></li>' for i, (t, x) in enumerate(pasos, 1))
+    faqs = [("¿Qué tipo de descuentos puedo publicar?", "Un código de descuento (por ejemplo, 15% con el código RUTA15) o una oferta que tu cliente muestra en el local (por ejemplo, 2x1 los martes). Sirve para comercios con local, servicios, tiendas en línea y apps."),
+            ("¿Quiénes ven mi cupón?", "Las personas que entran a la Cuponera y, según la categoría, también quienes leen la guía de viaje de tu ciudad: los cupones de alojamientos, gastronomía y excursiones se muestran en los destinos."),
+            ("¿Puedo cambiarlo o pausarlo?", "Sí. Desde tu tienda podés editar las condiciones, cambiar el vencimiento o pausarlo cuando quieras."),
+            ("¿Cómo sé si funciona?", "Vas a ver cuántas personas abrieron tu código. Si el cupón lleva a tu web, conviene que el código sea exclusivo para la Cuponera, así medís las ventas que llegan desde acá.")]
+    faq_html = "".join(f'<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q, a in faqs)
+    main = f'''    <div class="wrap">
+      <section class="cv-hero" aria-labelledby="h-cv">
+        <div class="cv-hero-txt">
+          <span class="cv-pill"><i></i>Muy pronto: estamos sumando los primeros comercios</span>
+          <h1 id="h-cv">Descuentos de comercios de Argentina, México y en línea</h1>
+          <p>La Cuponera de Umarti reúne cupones de restaurantes, alojamientos, excursiones, spas, servicios y tiendas. Todavía no hay cupones publicados: si tenés un comercio, podés ser de los primeros.</p>
+          <div class="cv-acts">
+            <a class="cu-pub big" href="{rel(d, 'mi-tienda/')}?publicar=cupon">Publicá tu cupón</a>
+            <a class="cv-sec" href="{rel(d, 'mi-cuenta/')}?crear&desde=cupones">Creá tu cuenta y te avisamos</a>
+          </div>
+        </div>
+        <div class="cv-hero-art" aria-hidden="true">
+          <div class="cv-tk t1"><b>15%</b><span>Excursiones</span></div>
+          <div class="cv-tk t2"><b>2x1</b><span>Gastronomía</span></div>
+          <div class="cv-tk t3"><b>20%</b><span>Spa</span></div>
+        </div>
+      </section>
+
+      <section class="cu-sec" id="como-se-ve" aria-labelledby="h-demo">
+        <span class="eyebrow" style="color:var(--cu-dark)">Para comercios</span>
+        <h2 id="h-demo">Así se vería tu cupón</h2>
+        <p class="cv-lead">Estos son cupones de muestra, con comercios ficticios. Tocá <b>Ver código</b> para ver exactamente lo que ve tu cliente.</p>
+        <div class="cv-demo">
+          <div class="cu-grid cv-grid" id="cu-grid">
+{chr(10).join(card(c, cv) for c in DEMO)}
+          </div>
+          <ol class="cv-anat">{anat}</ol>
+        </div>
+      </section>
+
+      <section class="cu-sec" id="como-publicar" aria-labelledby="h-pasos">
+        <h2 id="h-pasos">Cómo publicar tu cupón</h2>
+        <ol class="cv-pasos">{pasos_html}</ol>
+        <div class="cv-cta-line"><a class="cu-pub big" href="{rel(d, 'mi-tienda/')}?publicar=cupon">Empezar ahora</a><small>Para publicar, creá tu tienda y validá tu identidad.</small></div>
+      </section>
+
+      <section class="cu-sec" id="donde-aparece" aria-labelledby="h-cats">
+        <h2 id="h-cats">Categorías donde podés publicar</h2>
+        <div class="cat-tiles cv-tiles">{tiles}</div>
+      </section>
+
+      <section class="cu-sec cv-faq" aria-labelledby="h-faq">
+        <h2 id="h-faq">Preguntas de comercios</h2>
+        {faq_html}
+      </section>
+{merchant_band(d)}
+    </div>'''
+    return page(d, "Cuponera Umarti: publicá los cupones de descuento de tu comercio",
+                "Publicá cupones y códigos de descuento de tu restaurante, alojamiento, excursión, spa, servicio o tienda en la Cuponera de Umarti Origen, para Argentina, México y en línea.",
+                "", main, cats=[], noindex=False)
+
+
+def pagina_cat(nombre, s, colores, sub, cupones, cv, cats):
     d = 2
     lista = [c for c in cupones if c["categoria"] == nombre]
     # Foto de la franja: assets/img/cupones/<categoría>.jpg (si existe)
@@ -284,11 +375,12 @@ def pagina_cat(nombre, s, colores, sub, cupones, cv):
       </div>
       <section class="cu-sec" style="padding-top:56px" aria-labelledby="h-otras">
         <h2 id="h-otras">Otras categorías</h2>
-        {cat_tiles(d, cupones)}
+        {cat_tiles(d, cupones, cats)}
       </section>
 {merchant_band(d)}
     </div>'''
-    return page(d, f"Cupones de descuento en {nombre.lower()} | Cuponera Umarti", f"Cupones y códigos de descuento en {nombre.lower()}: {sub.lower()}.", s, main)
+    return page(d, f"Cupones de descuento en {nombre.lower()} | Cuponera Umarti", f"Cupones y códigos de descuento en {nombre.lower()}: {sub.lower()}.", s, main,
+                cats=cats, noindex=any(c["estado"] == "Ejemplo" for c in lista))
 
 
 def comun_crumbs(depth, nombre):
@@ -316,10 +408,19 @@ def main():
         if c["categoria"] not in CAT:
             raise SystemExit(f"{c['codigo']}: categoría desconocida {c['categoria']}")
     cupones = [c for c in cupones if dias(c) >= 0]  # los vencidos no se publican
-    escribir("assets/data/cupones-datos.js", datos_js(cupones, cv))
-    escribir("cupones/index.html", portada(cupones, cv))
+    cats = [x for x in CATS if any(c["categoria"] == x[0] for c in cupones)]
+    if cupones:
+        escribir("assets/data/cupones-datos.js", datos_js(cupones, cv))
+        escribir("cupones/index.html", portada(cupones, cv, cats))
+    else:
+        escribir("assets/data/cupones-datos.js", datos_js(DEMO, cv))
+        escribir("cupones/index.html", portada_vacia(cv))
     for n, s, col, sub in CATS:
-        escribir(f"cupones/{s}/index.html", pagina_cat(n, s, col, sub, cupones, cv))
+        ruta = os.path.join(comun.RAIZ, "cupones", s)
+        if (n, s, col, sub) in cats:
+            escribir(f"cupones/{s}/index.html", pagina_cat(n, s, col, sub, cupones, cv, cats))
+        elif os.path.isdir(ruta):  # categoría sin cupones: no se publica una página vacía
+            shutil.rmtree(ruta)
 
 
 if __name__ == "__main__":
