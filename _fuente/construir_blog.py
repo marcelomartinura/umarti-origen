@@ -544,6 +544,7 @@ def portada_blog(notas):
 {columna_band(d, opin)}
       </section>
 
+{comun.banner_profesionales(rel(d), "blog")}
       <section class="blk" aria-labelledby="h-tags">
         <div class="blk-head"><div><h2 id="h-tags">Explorá por etiqueta</h2></div></div>
         <div class="tag-cloud">{cloud}</div>
@@ -709,6 +710,9 @@ def pagina_nota(n, notas):
           </div>
         </aside>
       </div>
+    </div>
+    <div class="wrap">
+{"" if n["borrador"] else comun.banner_profesionales(rel(d), "blog-nota", compacto=True)}
     </div>
     <section class="related">
       <div class="wrap">

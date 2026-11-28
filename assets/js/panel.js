@@ -117,7 +117,7 @@
       return api.esAdmin().then(function (si) {
         if (!si) { $('#noadmin-email').textContent = s.user.email; mostrar('#v-noadmin'); return; }
         window.PanelComun.listo = true;
-        abrirModulo(location.hash === '#viajes' ? 'viajes' : location.hash === '#cupones' ? 'cupones' : location.hash === '#afiliados' ? 'afiliados' : location.hash === '#blog' ? 'blog' : 'productos');
+        abrirModulo(location.hash === '#viajes' ? 'viajes' : location.hash === '#cupones' ? 'cupones' : location.hash === '#afiliados' ? 'afiliados' : location.hash === '#blog' ? 'blog' : location.hash === '#usuarios' ? 'usuarios' : 'productos');
       });
     });
   }
@@ -126,6 +126,7 @@
   function abrirModulo(m) {
     $$('.pn-mods .mod').forEach(function (b) { b.classList.toggle('on', b.dataset.mod === m); });
     if (m === 'afiliados') { if (!window.PanelAfiliados) { setTimeout(function () { abrirModulo('afiliados'); }, 50); return; } history.replaceState(null, '', '#afiliados'); window.PanelAfiliados.abrir(); return; }
+    if (m === 'usuarios') { if (!window.PanelUsuarios) { setTimeout(function () { abrirModulo('usuarios'); }, 50); return; } history.replaceState(null, '', '#usuarios'); window.PanelUsuarios.abrir(); return; }
     if (m === 'blog') { if (!window.PanelBlog) { setTimeout(function () { abrirModulo('blog'); }, 50); return; } history.replaceState(null, '', '#blog'); window.PanelBlog.abrir(); return; }
     if (m === 'cupones') { if (!window.PanelCupones) { setTimeout(function () { abrirModulo('cupones'); }, 50); return; } history.replaceState(null, '', '#cupones'); window.PanelCupones.abrir(); return; }
     if (m === 'viajes') { if (!window.PanelViajes) { setTimeout(function () { abrirModulo('viajes'); }, 50); return; } history.replaceState(null, '', '#viajes'); window.PanelViajes.abrir(); }

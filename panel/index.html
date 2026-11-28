@@ -11,12 +11,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/panel.css?v=156768b6">
+  <link rel="stylesheet" href="../assets/css/panel.css?v=8401ce12">
 </head>
 <body>
   <header class="pn-top">
     <a class="pn-logo" href="../"><img src="../assets/img/marca/icono-blanco.png" alt="" width="259" height="236"><span>Umarti <span>Origen</span></span><small>Panel</small></a>
-    <nav class="pn-mods" aria-label="Módulos"><button type="button" class="mod on" data-mod="productos">Productos</button><button type="button" class="mod" data-mod="afiliados">Afiliados</button><button type="button" class="mod" data-mod="publicidad" disabled>Publicidad<small>Pronto</small></button><button type="button" class="mod" data-mod="cupones">Cupones</button><button type="button" class="mod" data-mod="blog">Blog</button><button type="button" class="mod" data-mod="hub" disabled>HUB<small>Pronto</small></button><button type="button" class="mod" data-mod="viajes">Viajes</button></nav>
+    <nav class="pn-mods" aria-label="Módulos"><button type="button" class="mod on" data-mod="productos">Productos</button><button type="button" class="mod" data-mod="afiliados">Afiliados</button><button type="button" class="mod" data-mod="publicidad" disabled>Publicidad<small>Pronto</small></button><button type="button" class="mod" data-mod="cupones">Cupones</button><button type="button" class="mod" data-mod="blog">Blog</button><button type="button" class="mod" data-mod="usuarios">Usuarios</button><button type="button" class="mod" data-mod="hub" disabled>HUB<small>Pronto</small></button><button type="button" class="mod" data-mod="viajes">Viajes</button></nav>
     <div class="pn-user" id="pn-user" hidden>
       <span id="pn-email"></span>
       <a href="../" target="_blank" rel="noopener">Ver sitio ↗</a>
@@ -436,6 +436,28 @@
       </form>
     </section>
 
+    <!-- Usuarios registrados -->
+    <section id="v-usuarios" hidden>
+      <div class="pn-head">
+        <div><h1>Usuarios</h1><p class="muted" id="us-resumen"></p></div>
+        <button class="btn" type="button" id="us-csv">Descargar CSV</button>
+      </div>
+      <div class="us-kpis" id="us-kpis"></div>
+      <div class="us-tabs" role="tablist"><button type="button" class="on" data-tab="usuarios">Usuarios registrados</button><button type="button" data-tab="suscriptores">Suscriptores a novedades</button></div>
+      <div data-panel="usuarios">
+        <div class="pn-filtros">
+          <input type="search" id="us-q" placeholder="Buscar por nombre, correo o país" aria-label="Buscar">
+          <div class="chips" id="us-filtros" role="group" aria-label="Filtro"></div>
+        </div>
+        <div class="pn-tabla" id="us-tabla"></div>
+      </div>
+      <div data-panel="suscriptores" hidden>
+        <div class="pn-tabla" id="us-sus"></div>
+      </div>
+      <p class="pn-nota">Los datos vienen de las cuentas creadas en <b>Mi cuenta</b>. Las <b>compras</b> se van a registrar acá cuando se active el pago dentro del sitio; por ahora los pagos se hacen con links externos y no quedan asociados a la cuenta.</p>
+      <div class="us-det" id="us-det" hidden></div>
+    </section>
+
     <!-- Blog: lista -->
     <section id="v-blista" hidden>
       <div class="pn-head">
@@ -519,10 +541,11 @@
 
   <script>window.PANEL = {"supabase": {"url": "https://tkrnwboyynvbellqnzle.supabase.co", "key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRrcm53Ym95eW52YmVsbHFuemxlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI0MjE0NTYsImV4cCI6MjEwNzk5NzQ1Nn0.B1wq_8z8Gwd4L3ieavvpE2PKjQcj1-KVXDREmCL7wjA"}, "categorias": {"Café, Té y Mate": ["Mates y bombillas", "Termos y pavas eléctricas", "Café", "Té", "Chocolate"], "Regalos y Kits": ["Kits de mate y café", "Regalos corporativos", "Personalizados"], "Artículos Regionales": ["Bolsos materos", "Marroquinería y riñoneras", "Juegos de asado", "Portatermos y llaveros"], "Bebidas": ["Vinos", "Cervezas y destilados", "Sin alcohol"], "Alimentos": ["Alimentos congelados", "Alimentos diet", "Golosinas", "Snacks"], "Salud y Bienestar": ["Odontología", "Cuidado personal", "Cuidado del cabello", "Dispositivos médicos"], "Moda": ["Ropa de dama", "Zapatos", "Carteras", "Ropa de caballero"], "Tecnología": ["Accesorios", "Audio", "Hogar inteligente"], "Herramientas y Jardín": ["Herramientas", "Jardín", "Construcción"], "Hogar y Cocina": ["Bazar y cocina", "Organización", "Deco"], "Limpieza e Higiene": ["Productos de limpieza", "Productos de higiene personal"], "Productos para viajes": ["Mochilas, bolsos y valijas", "Organizadores de equipaje", "Adaptadores y tecnología", "Accesorios de viaje"], "Deportes y aire libre": ["Bicicletas", "Accesorios de ciclismo", "Camping", "Termos deportivos", "Mochilas de trekking"]}, "temas": [{"clave": "mate", "nombre": "Mate"}], "destinos": [{"slug": "buenos-aires", "nombre": "Buenos Aires", "pais": "Argentina"}, {"slug": "glaciar-perito-moreno", "nombre": "Glaciar Perito Moreno", "pais": "Argentina"}, {"slug": "rosario", "nombre": "Rosario", "pais": "Argentina"}, {"slug": "queretaro", "nombre": "Querétaro", "pais": "México"}, {"slug": "ciudad-de-mexico", "nombre": "Ciudad de México", "pais": "México"}, {"slug": "leon", "nombre": "León", "pais": "México"}, {"slug": "puerto-escondido", "nombre": "Puerto Escondido", "pais": "México"}, {"slug": "san-miguel-de-allende", "nombre": "San Miguel de Allende", "pais": "México"}, {"slug": "el-chalten", "nombre": "El Chaltén", "pais": "Argentina"}, {"slug": "pena-de-bernal", "nombre": "Peña de Bernal", "pais": "México"}, {"slug": "tequisquiapan", "nombre": "Tequisquiapan", "pais": "México"}, {"slug": "oaxaca", "nombre": "Oaxaca", "pais": "México"}, {"slug": "san-luis-potosi", "nombre": "San Luis Potosí", "pais": "México"}, {"slug": "guadalajara", "nombre": "Guadalajara", "pais": "México"}, {"slug": "ajijic-chapala", "nombre": "Ajijic (Chapala)", "pais": "México"}, {"slug": "san-joaquin", "nombre": "San Joaquín", "pais": "México"}, {"slug": "puebla-de-zaragoza", "nombre": "Puebla de Zaragoza", "pais": "México"}, {"slug": "val-quirico", "nombre": "Val'Quirico", "pais": "México"}, {"slug": "mazamitla", "nombre": "Mazamitla", "pais": "México"}, {"slug": "san-pedro-de-los-pozos-mineral-de-pozos", "nombre": "San Pedro de los Pozos (Mineral de Pozos)", "pais": "México"}, {"slug": "aculco", "nombre": "Aculco", "pais": "México"}, {"slug": "amealco", "nombre": "Amealco", "pais": "México"}, {"slug": "puerto-vallarta", "nombre": "Puerto Vallarta", "pais": "México"}, {"slug": "santa-maria-del-rio", "nombre": "Santa María del Río", "pais": "México"}, {"slug": "xilitla", "nombre": "Xilitla", "pais": "México"}, {"slug": "jalpan-de-serra", "nombre": "Jalpan de Serra", "pais": "México"}], "paises": ["Argentina", "México", "Uruguay", "Paraguay", "Chile", "Brasil", "Otro"], "viajes": {"tipos": ["Aventura", "Cultura", "Gastronomía", "Montaña", "Naturaleza", "Nieve", "Playa", "Shopping", "Urbano", "Vino"], "paises": ["Argentina", "México"], "notas": [{"slug": "como-curar-un-mate", "titulo": "Cómo curar un mate de calabaza o de madera antes de estrenarlo", "seccion": "productos"}, {"slug": "como-curar-un-mate-de-palo-santo", "titulo": "Cómo curar un mate de palo santo sin que se agriete", "seccion": "productos"}, {"slug": "como-limpiar-la-bombilla-del-mate", "titulo": "Cómo limpiar la bombilla del mate (y que no se tape)", "seccion": "productos"}, {"slug": "como-preparar-un-buen-mate", "titulo": "Cómo preparar un buen mate, paso a paso", "seccion": "productos"}, {"slug": "como-usar-la-mesa-de-negociacion", "titulo": "Cómo usar Oportunidades Globales para encontrar lo que buscás", "seccion": "negocios"}, {"slug": "incoterms-explicados-fob-cif-exw", "titulo": "Incoterms explicados: FOB, CIF, EXW y los más usados", "seccion": "negocios"}, {"slug": "primeros-pasos-para-exportar-de-argentina-a-mexico", "titulo": "Primeros pasos para exportar de Argentina a México", "seccion": "negocios"}, {"slug": "que-es-el-mate", "titulo": "Qué es el mate: origen, tradición y cómo se toma", "seccion": "productos"}, {"slug": "que-es-la-posicion-arancelaria", "titulo": "Qué es la posición arancelaria y cómo encontrar la de tu producto", "seccion": "negocios"}, {"slug": "molienda-de-cafe-segun-tu-cafetera", "titulo": "Qué molienda de café usar según tu cafetera", "seccion": "productos"}, {"slug": "tipos-de-mate", "titulo": "Tipos de mate: una tradición argentina en diferentes formas", "seccion": "productos"}, {"slug": "tips-para-una-mejor-higiene-bucal", "titulo": "Tips para una mejor higiene bucal: cómo cepillarse correctamente los dientes", "seccion": "productos"}], "presupuestos": ["Bajo", "Medio", "Alto"]}, "cupones": {"categorias": ["Viajes", "Alojamientos", "Gastronomía", "Belleza y Spa", "Servicios", "Productos", "Digitales"], "paises": ["Argentina", "México", "En línea", "Uruguay", "Chile", "España", "Estados Unidos", "Otro"]}, "blog": {"temas": ["Comercio exterior", "Mercados", "Ecommerce y ventas", "Cómo usar Umarti"], "temas_opinion": ["Negocios", "Experiencias"], "autores": {"marcelo-uranga": "Marcelo Uranga Martínez"}}, "paises_envio": ["Todos los países", "México", "Estados Unidos", "España", "Chile", "Uruguay", "Colombia", "Perú", "Canadá", "Brasil", "Italia", "Alemania"]};</script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-  <script src="../assets/js/panel.js?v=6e5290f5"></script>
+  <script src="../assets/js/panel.js?v=b5f5e12f"></script>
   <script src="../assets/js/panel-viajes.js?v=63abb90c"></script>
   <script src="../assets/js/panel-cupones.js?v=f7b01197"></script>
   <script src="../assets/js/panel-afiliados.js?v=c341b823"></script>
   <script src="../assets/js/panel-blog.js?v=e35c7dc0"></script>
+  <script src="../assets/js/panel-usuarios.js?v=e27c9302"></script>
 </body>
 </html>

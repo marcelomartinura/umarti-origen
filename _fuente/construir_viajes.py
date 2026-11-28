@@ -391,6 +391,7 @@ def pagina_todos():
 {chr(10).join(grupos)}
         </div>
       </section>
+{comun.banner_profesionales(rel(d), "destinos")}
     </div>'''
     return page(d, "Todos los destinos | Umarti Viajes", "Todas las guías de destinos de Umarti Viajes: buscá por nombre o filtrá por tipo de viaje.", main)
 

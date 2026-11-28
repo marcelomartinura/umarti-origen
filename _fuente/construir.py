@@ -842,6 +842,7 @@ def hub():
         </div>
       </section>
 
+{comun.banner_profesionales(pre, "comercio-exterior")}
       <section class="hub-ce" aria-labelledby="ce-title">
         <div class="ce-head">
           <span class="ce-eye">Todo para operar con el mundo</span>

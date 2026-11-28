@@ -446,7 +446,8 @@ def international(productos, cb, cv):
         <p class="shop-empty" id="shop-empty">No hay productos en ese rango de precio.</p>
       </div>
       <p class="shop-note">¿Comprás por volumen para revender o distribuir? Mirá los <a href="{rel(d, 'productos-de-exportacion/')}">Productos de exportación</a> del Hub de Oportunidades.</p>
-      <div style="height:88px"></div>
+{comun.banner_profesionales(rel(d), "international-shop")}
+      <div style="height:48px"></div>
     </div>'''
     main = barra_intl(d) + main
     return page(d, "International Shop: productos con origen y envío internacional | Umarti Origen",

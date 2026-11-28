@@ -42,7 +42,7 @@ DATOS = {
 
 opts_zonas = "".join(f'<optgroup label="{g}">' + "".join(f'<option value="{z}">{n}</option>' for n, z in xs) + "</optgroup>" for g, xs in cr.ZONAS)
 
-MODULOS = [("productos", "Productos", True), ("afiliados", "Afiliados", True), ("publicidad", "Publicidad", False), ("cupones", "Cupones", True), ("blog", "Blog", True),
+MODULOS = [("productos", "Productos", True), ("afiliados", "Afiliados", True), ("publicidad", "Publicidad", False), ("cupones", "Cupones", True), ("blog", "Blog", True), ("usuarios", "Usuarios", True),
            ("hub", "HUB", False), ("viajes", "Viajes", True)]
 
 botonera = "".join(
@@ -482,6 +482,28 @@ html = f'''<!doctype html>
       </form>
     </section>
 
+    <!-- Usuarios registrados -->
+    <section id="v-usuarios" hidden>
+      <div class="pn-head">
+        <div><h1>Usuarios</h1><p class="muted" id="us-resumen"></p></div>
+        <button class="btn" type="button" id="us-csv">Descargar CSV</button>
+      </div>
+      <div class="us-kpis" id="us-kpis"></div>
+      <div class="us-tabs" role="tablist"><button type="button" class="on" data-tab="usuarios">Usuarios registrados</button><button type="button" data-tab="suscriptores">Suscriptores a novedades</button></div>
+      <div data-panel="usuarios">
+        <div class="pn-filtros">
+          <input type="search" id="us-q" placeholder="Buscar por nombre, correo o país" aria-label="Buscar">
+          <div class="chips" id="us-filtros" role="group" aria-label="Filtro"></div>
+        </div>
+        <div class="pn-tabla" id="us-tabla"></div>
+      </div>
+      <div data-panel="suscriptores" hidden>
+        <div class="pn-tabla" id="us-sus"></div>
+      </div>
+      <p class="pn-nota">Los datos vienen de las cuentas creadas en <b>Mi cuenta</b>. Las <b>compras</b> se van a registrar acá cuando se active el pago dentro del sitio; por ahora los pagos se hacen con links externos y no quedan asociados a la cuenta.</p>
+      <div class="us-det" id="us-det" hidden></div>
+    </section>
+
     <!-- Blog: lista -->
     <section id="v-blista" hidden>
       <div class="pn-head">
@@ -570,6 +592,7 @@ html = f'''<!doctype html>
   <script src="../assets/js/panel-cupones.js"></script>
   <script src="../assets/js/panel-afiliados.js"></script>
   <script src="../assets/js/panel-blog.js"></script>
+  <script src="../assets/js/panel-usuarios.js"></script>
 </body>
 </html>
 '''

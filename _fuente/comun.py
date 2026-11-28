@@ -55,17 +55,46 @@ def ecosistema(prefijo):
          f'<span class="eco-chip eco-chip-pro"><img src="{img}ecosistema/logo-profesionales.svg" alt="Umarti Digital Profesionales" width="150" height="36"></span>', "Red de profesionales", ""),
         (None, f'<img class="eco-av" src="{img}ecosistema/avatar-motors.jpg" alt="" width="56" height="56">',
          f'<span class="eco-chip"><img src="{img}ecosistema/logo-motors.png" alt="Umarti Motors" width="96" height="37"></span>', "Marketplace de movilidad", "Próximamente"),
-        (None, f'<img class="eco-av eco-av-origen" src="{img}ecosistema/avatar-origen.jpg" alt="" width="56" height="56">',
-         f'<span class="eco-chip eco-chip-origen"><img src="{img}marca/icono.png" alt="" width="26" height="24"><span><b>Umarti</b><b>Origen</b></span></span>', "Tienda y Mercados Globales", "Próximamente"),
+        ("https://www.umartiorigen.com", f'<img class="eco-av eco-av-origen" src="{img}ecosistema/avatar-origen.jpg" alt="" width="56" height="56">',
+         f'<span class="eco-chip eco-chip-origen"><img src="{img}marca/icono.png" alt="" width="26" height="24"><span><b>Umarti</b><b>Origen</b></span></span>', "Tienda y Mercados Globales", ""),
     ]
     out = []
     for link, av, nombre, txt, pronto in items:
         cuerpo = f'{av}<span class="eco-txt"><span class="eco-name">{nombre}</span><small>{txt}</small>{f"<em>{pronto}</em>" if pronto else ""}</span>'
-        out.append(f'<a class="eco-item" href="{link}" target="_blank" rel="noopener">{cuerpo}</a>' if link else f'<div class="eco-item">{cuerpo}</div>')
+        propio = link and "umartiorigen.com" in link   # este mismo sitio: se abre en la misma pestaña
+        attrs = "" if propio else ' target="_blank" rel="noopener"'
+        out.append(f'<a class="eco-item" href="{link}"{attrs}>{cuerpo}</a>' if link else f'<div class="eco-item">{cuerpo}</div>')
     return f'''      <div class="eco-band" aria-label="Ecosistema Umarti">
         <span class="eco-tit">Ecosistema <b>Umarti</b></span>
         <div class="eco-items">{"".join(out)}</div>
       </div>'''
+
+
+PROFESIONALES_URL = "https://profesionales.umartidigital.com/"
+
+
+def banner_profesionales(prefijo, ubicacion, compacto=False):
+    """Banner de Umarti Digital Profesionales (sitios web para negocios). `ubicacion` va en el link para medir de dónde llegan."""
+    img = prefijo + "assets/img/"
+    url = f"{PROFESIONALES_URL}?utm_source=umartiorigen&utm_medium=banner&utm_campaign={ubicacion}"
+    chk = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+    feats = [(chk + '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>', "Diseño a medida"),
+             (chk + '<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c.8-3.4 3.2-5 6-5s5.2 1.6 6 5M15 15c2.4 0 4.4 1.2 5.5 4"/></svg>', "Acompañamiento total"),
+             (chk + '<path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>', "Rápido y accesible")]
+    feat = "".join(f'<li>{i}<span>{t}</span></li>' for i, t in feats)
+    return f'''      <aside class="bp{' bp-compacto' if compacto else ''}" aria-label="Umarti Digital Profesionales: sitios web para tu negocio">
+        <a class="bp-in" href="{url}" target="_blank" rel="noopener">
+          <span class="bp-txt">
+            <span class="bp-logos"><img src="{img}marca/icono-blanco.png" alt="" width="30" height="27"><b>Umarti<br>Origen</b><i></i><img class="bp-pro" src="{img}banners/logo-profesionales-blanco.svg" alt="Umarti Digital Profesionales" width="150" height="36"></span>
+            <strong>Tu <em>sitio web</em> como lo soñaste</strong>
+            <span class="bp-sub">Te lo armamos sin que te ocupes de nada y a <mark>muy bajo costo</mark>, para que tu negocio tenga presencia en internet.</span>
+            <ul class="bp-feat">{feat}</ul>
+            <span class="bp-cta">Conocé Umarti Profesionales <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </span>
+          <span class="bp-img"><img src="{img}banners/profesionales-laptop.jpg" alt="" loading="lazy" width="676" height="660"></span>
+        </a>
+        <span class="bp-tag">Ecosistema Umarti</span>
+      </aside>'''
 
 
 FACEBOOK = "https://www.facebook.com/umartiorigen"

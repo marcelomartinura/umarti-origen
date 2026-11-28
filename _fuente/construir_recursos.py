@@ -161,6 +161,7 @@ def pagina_herramienta(clave, cuerpo, faqs, relacionadas, aviso):
       <p class="rc-aviso">{aviso}</p>
       <div class="ad-fila">{avisos.espacio("herramienta-1", d, "herramientas para vender y exportar")}</div>
       <div class="rc-bottom">
+{comun.banner_profesionales(rel(d), "recursos-herramienta", compacto=True)}
         <section class="rc-faq" aria-labelledby="faq-h">
           <h2 id="faq-h">Preguntas frecuentes</h2>
           {faq_html}
@@ -212,6 +213,7 @@ def portada():
 {chr(10).join(bloques[:1])}
       <div class="ad-fila">{avisos.espacio("recursos-portada", d, "herramientas para vender y exportar")}</div>
 {chr(10).join(bloques[1:])}
+{comun.banner_profesionales(rel(d), "recursos")}
       <div class="viajes-note" style="margin-top:8px">
         <div><h2>¿Qué herramienta te falta?</h2><p>Si hay un cálculo que hacés todas las semanas para vender, exportar o trabajar, contanos. Lo sumamos a la lista.</p></div>
         <a href="{rel(d, 'oportunidades-globales/buscar/')}">Contanos</a>

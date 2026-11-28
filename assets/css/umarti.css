@@ -283,3 +283,39 @@ html.ver-en body { top: 0 !important; position: static !important; }
 .ps-prox { color: #a99b8b; cursor: default; }
 .ps-prox small { background: #f3ebdf; padding: 2px 8px; border-radius: 999px; }
 .ps-menu a, .ps-prox { white-space: nowrap; }
+
+/* ---------- Banner Umarti Digital Profesionales ---------- */
+.bp { position: relative; margin: 40px 0; }
+.bp-in { position: relative; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: stretch; min-height: 300px; border-radius: 26px; overflow: hidden; text-decoration: none; color: #fff;
+  background: radial-gradient(700px 300px at 110% -10%, rgba(25,201,207,.35), transparent 60%), radial-gradient(500px 240px at -10% 120%, rgba(25,201,207,.28), transparent 60%), linear-gradient(120deg, #0a1c2c 0%, #0d2a3e 55%, #0b2133 100%);
+  box-shadow: 0 24px 50px -30px rgba(6,30,48,.8); transition: transform .2s, box-shadow .2s; }
+.bp-in::before { content: ""; position: absolute; left: -10%; right: -10%; bottom: -120px; height: 170px; border-radius: 50%; border-top: 3px solid rgba(25,201,207,.55); pointer-events: none; }
+.bp-in:hover { transform: translateY(-3px); box-shadow: 0 30px 60px -30px rgba(6,30,48,.9); }
+.bp-txt { position: relative; z-index: 1; display: grid; align-content: center; gap: 12px; padding: 30px 8px 30px 38px; }
+.bp-logos { display: flex; align-items: center; gap: 10px; }
+.bp-logos b { font-family: "Fraunces", serif; font-size: 0.92rem; line-height: 1; font-weight: 700; }
+.bp-logos i { width: 2px; height: 28px; background: rgba(255,255,255,.35); margin: 0 4px; }
+.bp-pro { height: 30px; width: auto; }
+.bp-txt strong { font-family: "Inter", sans-serif; font-weight: 800; font-size: clamp(1.6rem, 2.8vw, 2.3rem); line-height: 1.05; letter-spacing: -0.02em; }
+.bp-txt strong em { font-style: normal; color: #5fe7ea; }
+.bp-sub { color: #c9dbe6; font-size: 1rem; max-width: 48ch; }
+.bp-sub mark { background: #19c9cf; color: #062638; font-weight: 700; padding: 0 6px; border-radius: 6px; }
+.bp-feat { list-style: none; margin: 2px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.bp-feat li { display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 600; padding: 6px 11px; border-radius: 999px; background: rgba(255,255,255,.08); border: 1px solid rgba(95,231,234,.3); }
+.bp-feat svg { color: #5fe7ea; }
+.bp-cta { justify-self: start; display: inline-flex; align-items: center; gap: 10px; margin-top: 4px; padding: 12px 22px; border-radius: 999px; background: linear-gradient(90deg, #2fe0e4, #14b5bb); color: #062638; font-weight: 800; font-size: 0.98rem; box-shadow: 0 12px 26px -12px rgba(25,201,207,.8); }
+.bp-in:hover .bp-cta svg { transform: translateX(3px); }
+.bp-cta svg { transition: transform .2s; }
+.bp-img { position: relative; overflow: hidden; }
+.bp-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 30% 55%;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 22%); mask-image: linear-gradient(90deg, transparent 0%, #000 22%); }
+.bp-tag { position: absolute; top: -10px; right: 22px; font-size: 0.66rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; background: #fff; color: #0d2a3e; padding: 4px 10px; border-radius: 999px; border: 1px solid #cfe6ea; }
+.bp-compacto .bp-in { min-height: 240px; }
+.bp-compacto .bp-feat { display: none; }
+@media (max-width: 820px) {
+  .bp-in { grid-template-columns: minmax(0, 1fr); }
+  .bp-img { order: -1; height: 190px; }
+  .bp-img img { -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent 100%); mask-image: linear-gradient(180deg, #000 60%, transparent 100%); object-position: 40% 45%; }
+  .bp-txt { padding: 6px 22px 26px; }
+  .bp-logos b { font-size: 0.8rem; } .bp-pro { height: 26px; }
+}
