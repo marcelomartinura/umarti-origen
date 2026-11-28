@@ -116,12 +116,16 @@
   }
 
   function pintar() {
-    var meta = usuario.user_metadata || {}, nombre = (perfil && perfil.nombre) || meta.nombre || '';
-    var completo = [nombre, perfil && perfil.apellido].filter(Boolean).join(' ') || usuario.email;
-    $$('[data-nombre]').forEach(function (x) { x.textContent = completo; });
-    $$('[data-nombre-corto]').forEach(function (x) { x.textContent = nombre || 'de nuevo'; });
-    $$('[data-mail]', dentro).forEach(function (x) { x.textContent = usuario.email; });
-    $('[data-iniciales]').textContent = (completo.split(/\s+/).map(function (p) { return p[0]; }).join('').slice(0, 2) || '?').toUpperCase();
+    var meta = usuario.user_metadata || {}, nombre = ((perfil && perfil.nombre) || meta.nombre || '').trim();
+    var completo = [nombre, perfil && perfil.apellido].filter(Boolean).join(' ');
+    $$('[data-nombre]').forEach(function (x) { x.textContent = completo || 'Tu cuenta'; });
+    $('[data-sin-nombre]').hidden = !!nombre;
+    $('[data-saludo]').innerHTML = nombre ? 'Hola, <span></span>' : '¡Hola!';
+    if (nombre) $('[data-saludo] span').textContent = nombre.split(' ')[0];
+    $$('[data-mail]', dentro).forEach(function (x) { x.textContent = usuario.email; x.title = usuario.email; });
+    $('[data-iniciales]').textContent = ((completo || usuario.email).split(/[\s@.]+/).filter(Boolean).map(function (p) { return p[0]; }).join('').slice(0, 2) || '?').toUpperCase();
+    var desde = usuario.created_at ? new Date(usuario.created_at) : null;
+    $('[data-desde]').textContent = desde ? 'En Umarti desde ' + desde.toLocaleDateString('es-AR', { month: 'long', year: 'numeric' }) : '';
     var nov = $('[data-nov]'); if (nov) nov.hidden = !(perfil && perfil.novedades);
     var env = (perfil && perfil.envio) || {};
     $('[data-completa]').hidden = !!(env.calle && env.ciudad);
@@ -131,7 +135,7 @@
       ['calle', 'depto', 'cp', 'ciudad', 'provincia', 'indicaciones'].forEach(function (k) { f[k].value = env[k] || ''; });
       f.novedades.checked = !!perfil.novedades;
     }
-    guardarLS('umarti-cuenta', { nombre: nombre || usuario.email.split('@')[0] });
+    guardarLS('umarti-cuenta', { nombre: nombre });
     document.dispatchEvent(new CustomEvent('umarti:cuenta'));
     contadores();
   }

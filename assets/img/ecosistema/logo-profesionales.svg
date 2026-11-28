@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 398 96" width="398" height="96" role="img" aria-label="Umarti Digital Profesionales">
+  <defs>
+    <linearGradient id="t" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16b8b2"/>
+      <stop offset="1" stop-color="#03908c"/>
+    </linearGradient>
+  </defs>
+  <!-- emblema: aro y U con tilde -->
+  <circle cx="44" cy="48" r="36" fill="none" stroke="url(#t)" stroke-width="7"/>
+  <path d="M27 31v19a17 17 0 0 0 34 0V31" fill="none" stroke="url(#t)" stroke-width="7.5" stroke-linecap="round"/>
+  <path d="M35 40l9 10 9-10" fill="none" stroke="url(#t)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- separador -->
+  <rect x="96" y="12" width="3" height="72" rx="1.5" fill="#03908c"/>
+  <!-- textos -->
+  <text x="112" y="50" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="44" font-weight="800" letter-spacing="1.5" fill="#043248">UMARTI</text>
+  <text x="113" y="84" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="25" font-weight="600" letter-spacing="2.2" fill="#04a19e">DIGITAL</text>
+  <rect x="238" y="62" width="156" height="27" rx="7" fill="#043248" transform="skewX(-10)" transform-origin="316 75"/>
+  <text x="316" y="81" text-anchor="middle" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="16" font-weight="800" font-style="italic" letter-spacing="0.8" fill="#ffffff">PROFESIONALES</text>
+</svg>

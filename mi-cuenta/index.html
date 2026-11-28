@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/umarti.css?v=0429d3e5">
   <link rel="stylesheet" href="../assets/css/blog.css?v=422de8ce">
-  <link rel="stylesheet" href="../assets/css/cuentas.css?v=ca1ee025">
+  <link rel="stylesheet" href="../assets/css/cuentas.css?v=706e067b">
 </head>
 <body data-cuenta="cliente" data-sb-url="https://tkrnwboyynvbellqnzle.supabase.co" data-sb-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRrcm53Ym95eW52YmVsbHFuemxlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI0MjE0NTYsImV4cCI6MjEwNzk5NzQ1Nn0.B1wq_8z8Gwd4L3ieavvpE2PKjQcj1-KVXDREmCL7wjA">
 
@@ -195,19 +195,30 @@
       <!-- Con sesión: panel del comprador -->
       <div class="mc-panel" id="mc-dentro" hidden>
         <aside class="mc-side">
-          <div class="mc-yo"><span class="mc-av" data-iniciales></span><div><b data-nombre></b><small data-mail></small></div></div>
+          <div class="mc-yo">
+            <span class="mc-av" data-iniciales></span>
+            <b data-nombre></b>
+            <small data-mail></small>
+            <a class="mc-poner-nombre" href="#datos" data-sin-nombre hidden>+ Agregá tu nombre</a>
+          </div>
           <nav class="mc-nav" aria-label="Secciones de mi cuenta"><a href="#resumen" data-sec="resumen"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7M5 10v10h14V10"/></svg><span>Resumen</span></a><a href="#pedidos" data-sec="pedidos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l9-5 9 5v8l-9 5-9-5zM3 8l9 5 9-5M12 13v8"/></svg><span>Mis pedidos</span></a><a href="#favoritos" data-sec="favoritos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span>Favoritos</span></a><a href="#cupones" data-sec="cupones"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg><span>Mis cupones</span></a><a href="#datos" data-sec="datos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span>Mis datos</span></a><a href="#seguridad" data-sec="seguridad"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Seguridad</span></a></nav>
-          <button class="mc-salir" type="button" data-salir>Cerrar sesión</button>
+          <button class="mc-salir" type="button" data-salir><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"/></svg>Cerrar sesión</button>
         </aside>
         <div class="mc-main">
           <section data-panel-sec="resumen">
-            <h1 class="mc-hola">Hola, <span data-nombre-corto></span></h1>
-            <p class="muted">Desde acá ves tus pedidos, favoritos y cupones, y cambiás tus datos.</p>
+            <div class="mc-bienvenida">
+              <div>
+                <span class="mc-bv-eyebrow">Mi cuenta</span>
+                <h1 class="mc-hola" data-saludo>¡Hola!</h1>
+                <p>Desde acá ves tus pedidos, favoritos y cupones, y cambiás tus datos.</p>
+              </div>
+              <span class="mc-bv-desde" data-desde></span>
+            </div>
             <div class="mc-tiles">
-              <a class="mc-tile" href="#pedidos"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l9-5 9 5v8l-9 5-9-5zM3 8l9 5 9-5M12 13v8"/></svg></span><b data-n="pedidos">0</b><small>Pedidos</small></a>
-              <a class="mc-tile" href="../favoritos/"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><b data-n="favoritos">0</b><small>Favoritos</small></a>
-              <a class="mc-tile" href="../carrito/"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2"/><circle cx="10" cy="20.5" r="1.2"/><circle cx="17" cy="20.5" r="1.2"/></svg></span><b data-n="carrito">0</b><small>En el carrito</small></a>
-              <a class="mc-tile" href="#cupones"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><b data-n="cupones">0</b><small>Cupones</small></a>
+              <a class="mc-tile t1" href="#pedidos"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l9-5 9 5v8l-9 5-9-5zM3 8l9 5 9-5M12 13v8"/></svg></span><b data-n="pedidos">0</b><small>Pedidos</small></a>
+              <a class="mc-tile t2" href="../favoritos/"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><b data-n="favoritos">0</b><small>Favoritos</small></a>
+              <a class="mc-tile t3" href="../carrito/"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2"/><circle cx="10" cy="20.5" r="1.2"/><circle cx="17" cy="20.5" r="1.2"/></svg></span><b data-n="carrito">0</b><small>En el carrito</small></a>
+              <a class="mc-tile t4" href="#cupones"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><b data-n="cupones">0</b><small>Cupones</small></a>
             </div>
             <div class="mc-completa" data-completa hidden>
               <div><b>Completá tus datos de envío</b><small>Así la próxima compra es más rápida.</small></div>
@@ -292,7 +303,7 @@
       </div>
       <div class="eco-band" aria-label="Ecosistema Umarti">
         <span class="eco-tit">Ecosistema <b>Umarti</b></span>
-        <div class="eco-items"><a class="eco-item" href="https://www.umartidigital.com" target="_blank" rel="noopener"><img class="eco-av" src="../assets/img/ecosistema/avatar-digital.jpg" alt="" width="56" height="56"><span class="eco-txt"><span class="eco-name"><img class="eco-logo" src="../assets/img/ecosistema/logo-digital.png" alt="Umarti Digital" width="120" height="38"></span><small>Consultoría y evolución digital</small></span></a><a class="eco-item" href="https://profesionales.umartidigital.com/" target="_blank" rel="noopener"><img class="eco-av" src="../assets/img/ecosistema/avatar-digital.jpg" alt="" width="56" height="56"><span class="eco-txt"><span class="eco-name"><span class="eco-chip eco-chip-pro"><img src="../assets/img/ecosistema/logo-profesionales.png" alt="Umarti Digital Profesionales" width="149" height="36"></span></span><small>Red de profesionales</small></span></a><div class="eco-item"><img class="eco-av" src="../assets/img/ecosistema/avatar-motors.jpg" alt="" width="56" height="56"><span class="eco-txt"><span class="eco-name"><span class="eco-chip"><img src="../assets/img/ecosistema/logo-motors.png" alt="Umarti Motors" width="96" height="37"></span></span><small>Marketplace de movilidad</small><em>Próximamente</em></span></div><div class="eco-item"><img class="eco-av eco-av-origen" src="../assets/img/ecosistema/avatar-origen.jpg" alt="" width="56" height="56"><span class="eco-txt"><span class="eco-name"><span class="eco-chip eco-chip-origen"><img src="../assets/img/marca/icono.png" alt="" width="26" height="24"><span><b>Umarti</b><b>Origen</b></span></span></span><small>Tienda y Mercados Globales</small><em>Próximamente</em></span></div></div>
+        <div class="eco-items"><a class="eco-item" href="https://www.umartidigital.com" target="_blank" rel="noopener"><img class="eco-av" src="../assets/img/ecosistema/avatar-digital.jpg" alt="" width="56" height="56"><span class="eco-txt"><span class="eco-name"><img class="eco-logo" src="../assets/img/ecosistema/logo-digital.png" alt="Umarti Digital" width="120" height="38"></span><small>Consultoría y evolución digital</small></span></a><a class="eco-item" href="https://profesionales.umartidigital.com/" target="_blank" rel="noopener"><img class="eco-av" src="../assets/img/ecosistema/avatar-digital.jpg" alt="" width="56" height="56"><span class="eco-txt"><span class="eco-name"><span class="eco-chip eco-chip-pro"><img src="../assets/img/ecosistema/logo-profesionales.svg" alt="Umarti Digital Profesionales" width="150" height="36"></span></span><small>Red de profesionales</small></span></a><div class="eco-item"><img class="eco-av" src="../assets/img/ecosistema/avatar-motors.jpg" alt="" width="56" height="56"><span class="eco-txt"><span class="eco-name"><span class="eco-chip"><img src="../assets/img/ecosistema/logo-motors.png" alt="Umarti Motors" width="96" height="37"></span></span><small>Marketplace de movilidad</small><em>Próximamente</em></span></div><div class="eco-item"><img class="eco-av eco-av-origen" src="../assets/img/ecosistema/avatar-origen.jpg" alt="" width="56" height="56"><span class="eco-txt"><span class="eco-name"><span class="eco-chip eco-chip-origen"><img src="../assets/img/marca/icono.png" alt="" width="26" height="24"><span><b>Umarti</b><b>Origen</b></span></span></span><small>Tienda y Mercados Globales</small><em>Próximamente</em></span></div></div>
       </div>
     </div>
     <div class="wrap foot-legal">
@@ -307,6 +318,6 @@
 
   <script src="../assets/js/header.js?v=d8871187"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-  <script src="../assets/js/mi-cuenta.js?v=7dc45b27"></script>
+  <script src="../assets/js/mi-cuenta.js?v=81872108"></script>
 </body>
 </html>

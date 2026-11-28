@@ -265,19 +265,30 @@ def pagina_cliente():
       <!-- Con sesión: panel del comprador -->
       <div class="mc-panel" id="mc-dentro" hidden>
         <aside class="mc-side">
-          <div class="mc-yo"><span class="mc-av" data-iniciales></span><div><b data-nombre></b><small data-mail></small></div></div>
+          <div class="mc-yo">
+            <span class="mc-av" data-iniciales></span>
+            <b data-nombre></b>
+            <small data-mail></small>
+            <a class="mc-poner-nombre" href="#datos" data-sin-nombre hidden>+ Agregá tu nombre</a>
+          </div>
           <nav class="mc-nav" aria-label="Secciones de mi cuenta">{nav}</nav>
-          <button class="mc-salir" type="button" data-salir>Cerrar sesión</button>
+          <button class="mc-salir" type="button" data-salir>{ic('<path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"/>', 18)}Cerrar sesión</button>
         </aside>
         <div class="mc-main">
           <section data-panel-sec="resumen">
-            <h1 class="mc-hola">Hola, <span data-nombre-corto></span></h1>
-            <p class="muted">Desde acá ves tus pedidos, favoritos y cupones, y cambiás tus datos.</p>
+            <div class="mc-bienvenida">
+              <div>
+                <span class="mc-bv-eyebrow">Mi cuenta</span>
+                <h1 class="mc-hola" data-saludo>¡Hola!</h1>
+                <p>Desde acá ves tus pedidos, favoritos y cupones, y cambiás tus datos.</p>
+              </div>
+              <span class="mc-bv-desde" data-desde></span>
+            </div>
             <div class="mc-tiles">
-              <a class="mc-tile" href="#pedidos"><span>{ic(I_BOX, 22)}</span><b data-n="pedidos">0</b><small>Pedidos</small></a>
-              <a class="mc-tile" href="{PRE}favoritos/"><span>{ic(I_HEART, 22)}</span><b data-n="favoritos">0</b><small>Favoritos</small></a>
-              <a class="mc-tile" href="{PRE}carrito/"><span>{ic(I_CART, 22)}</span><b data-n="carrito">0</b><small>En el carrito</small></a>
-              <a class="mc-tile" href="#cupones"><span>{ic(I_TAG, 22)}</span><b data-n="cupones">0</b><small>Cupones</small></a>
+              <a class="mc-tile t1" href="#pedidos"><span>{ic(I_BOX, 22)}</span><b data-n="pedidos">0</b><small>Pedidos</small></a>
+              <a class="mc-tile t2" href="{PRE}favoritos/"><span>{ic(I_HEART, 22)}</span><b data-n="favoritos">0</b><small>Favoritos</small></a>
+              <a class="mc-tile t3" href="{PRE}carrito/"><span>{ic(I_CART, 22)}</span><b data-n="carrito">0</b><small>En el carrito</small></a>
+              <a class="mc-tile t4" href="#cupones"><span>{ic(I_TAG, 22)}</span><b data-n="cupones">0</b><small>Cupones</small></a>
             </div>
             <div class="mc-completa" data-completa hidden>
               <div><b>Completá tus datos de envío</b><small>Así la próxima compra es más rápida.</small></div>
