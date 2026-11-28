@@ -102,7 +102,7 @@ def main_html():
         f'<a class="h-dest" href="{cv.p_dest(d)}"><img src="{esc(d["panel"]["foto"])}" alt="" loading="lazy" '
         f'style="object-position:{esc(d["panel"].get("foto_pos") or "center")}">'
         f'<span class="h-dest-txt"><small>{esc(cv.PAISES[d["pais"]]["nombre"])}</small><b>{esc(d["nombre"])}</b></span></a>' for d in dest)
-    ns = notas(4)
+    ns = notas(5)
     destacada, otras = (ns[0], ns[1:]) if ns else (None, [])
     blog_feat = ""
     if destacada:
@@ -115,6 +115,11 @@ def main_html():
         f'<a class="h-nota" href="{cb.p_nota(x)}">'
         + (f'<img src="{esc(img_nota(x))}" alt="" loading="lazy">' if x.get("imagen") else f'<span class="h-ph sm">{svg(I["blog"], 22)}</span>')
         + f'<span><small>{esc(seccion_de(x))}</small><b>{esc(x["titulo"])}</b></span></a>' for x in otras)
+    import construir_recursos as cr
+    from supabase_config import SUPABASE_URL, SUPABASE_KEY
+    elegidas = ["conversor-de-monedas", "calculadora-de-exportacion", "calculadora-de-precio-y-margen", "tabla-de-talles"]
+    hs = {h[0]: h for h in cr.HERRAMIENTAS}
+    recursos = "".join(f'<li><a href="{cr.url_herramienta(hs[k], 0)}"><span>{cr.icono(hs[k][4], 18)}</span>{esc(hs[k][1])}</a></li>' for k in elegidas if k in hs)
     # "collage" del blog: las portadas de las notas como fotos sueltas sobre la mesa
     fotos = [img_nota(x) for x in notas(8) if x.get("imagen")][:3]
     collage = "".join(f'<span class="h-polaroid p{i}"><img src="{esc(u)}" alt="" loading="lazy"></span>' for i, u in enumerate(fotos))
@@ -122,57 +127,51 @@ def main_html():
     return f'''  <main class="home">
     <!-- 1. Portada -->
     <section class="h-hero">
-      <div class="wrap h-hero-grid">
-        <div class="h-hero-txt">
-          <span class="h-eyebrow">Tienda · Comercio exterior · Viajes</span>
-          <h1>Productos con origen, <em>oportunidades globales</em> y destinos para descubrir.</h1>
-          <p>Umarti Origen une una tienda con productos de Argentina y del mundo, un hub para hacer negocios entre países y guías para conocer los lugares de donde viene cada cosa. Empezamos por Argentina y México, y vamos sumando países.</p>
-          <div class="h-ctas">
-            <a class="btn btn-primary" href="argentina/tienda/">Ir a la Tienda</a>
-            <a class="btn btn-ghost" href="hub/">Hub de Oportunidades</a>
+      <div class="wrap">
+        <span class="h-eyebrow">Tienda · Comercio exterior · Viajes</span>
+        <h1>Productos con origen, <em>oportunidades globales</em> y destinos para descubrir.</h1>
+        <div class="h-hero-grid">
+          <div class="h-hero-txt">
+            <p>Umarti Origen une una tienda con productos de distintos países, un hub para hacer negocios en mercados globales y guías para conocer los lugares de donde viene cada cosa. Un sitio para comprar, vender y viajar, abierto al mundo.</p>
+            <div class="h-ctas">
+              <a class="btn btn-primary" href="argentina/tienda/">Ir a la Tienda</a>
+              <a class="btn btn-ghost" href="hub/">Hub de Oportunidades</a>
+            </div>
           </div>
-          <nav class="h-atajos" aria-label="Accesos rápidos">
-            <a href="#h-tienda">{svg(I["tienda"], 18)}Tienda</a>
-            <a href="international-shop/">{svg(I["intl"], 18)}International Shop</a>
-            <a href="#h-comex">{svg(I["comex"], 18)}Comercio exterior</a>
-            <a href="#h-viajes">{svg(I["viajes"], 18)}Destinos</a>
-            <a href="#h-cupones">{svg(I["cupon"], 18)}Cupones</a>
-            <a href="#h-blog">{svg(I["blog"], 18)}Blog</a>
-          </nav>
+          <div class="h-hero-img">
+            <img src="assets/img/home/portada.jpg" alt="Umarti Origen: tienda, comercio exterior, viajes, blog, recursos digitales y cupones" width="1672" height="941">
+            <span class="h-sticker s2">{svg(I["intl"], 16)} Envíos al mundo</span>
+          </div>
         </div>
-        <div class="h-hero-img">
-          <img src="assets/img/home/portada.jpg" alt="Umarti Origen: tienda, comercio exterior, viajes, blog, recursos digitales y cupones" width="1672" height="941">
-          <span class="h-sticker s1">🇦🇷 Tienda Argentina</span>
-          <span class="h-sticker s2">{svg(I["intl"], 16)} Envíos al mundo</span>
-          <span class="h-sticker s3">{svg(I["pin"], 16)} Argentina · México</span>
-        </div>
+        <nav class="h-atajos" aria-label="Accesos rápidos">
+          <a href="#h-tienda">{svg(I["tienda"], 18)}Tienda</a>
+          <a href="international-shop/">{svg(I["intl"], 18)}International Shop</a>
+          <a href="#h-comex">{svg(I["comex"], 18)}Comercio exterior</a>
+          <a href="#h-viajes">{svg(I["viajes"], 18)}Destinos</a>
+          <a href="#h-cupones">{svg(I["cupon"], 18)}Cupones</a>
+          <a href="#h-blog">{svg(I["blog"], 18)}Blog</a>
+        </nav>
       </div>
     </section>
 
     <!-- 2. Tienda -->
-    <section class="h-sec" id="h-tienda" aria-labelledby="h-tienda-t">
+    <section class="h-tienda-sec" id="h-tienda" aria-labelledby="h-tienda-t">
+      <div class="h-toldo" aria-hidden="true"></div>
       <div class="wrap">
         <div class="h-tienda">
           <div class="h-tienda-foto">
             <img src="assets/img/home/tienda.jpg" alt="Mate, termo, café y una laptop con la tienda en línea" loading="lazy">
-            <span class="h-badge">{svg(I["tienda"], 18)} Tienda online</span>
           </div>
           <div class="h-tienda-txt">
-            <span class="h-eyebrow terra">Tienda</span>
-            <h2 id="h-tienda-t">Productos con origen, para tu día a día y tus viajes.</h2>
+            <span class="h-cartel" aria-hidden="true">Abierto</span>
+            <h2 id="h-tienda-t">Tienda</h2>
+            <p class="h-tienda-sub">Productos con origen, para tu día a día y tus viajes.</p>
             <form class="h-buscar" action="argentina/tienda/productos/" method="get" role="search">
               {svg(I["buscar"], 20, 2)}
               <input type="search" name="q" placeholder="Buscá mates, termos, vinos, regalos…" aria-label="Buscar en la Tienda">
               <button type="submit">Buscar</button>
             </form>
-            <div class="h-tienda-ctas">
-              <a class="btn btn-primary" href="argentina/tienda/">Ir a la Tienda {svg(I["flecha"], 18, 2)}</a>
-              <a class="h-intl" href="international-shop/">
-                <span class="h-intl-ic">{svg(I["intl"], 24)}</span>
-                <span><b>International Shop</b><small>Productos de distintos países con envío internacional · Shop in English</small></span>
-                {svg(I["flecha"], 18, 2)}
-              </a>
-            </div>
+            <a class="btn btn-primary h-entra" href="argentina/tienda/">Entrá a la tienda {svg(I["flecha"], 18, 2)}</a>
           </div>
         </div>
         <div class="h-cats">{"".join(tiles)}</div>
@@ -201,17 +200,17 @@ def main_html():
     </section>
 
     <!-- 4. Destinos -->
-    <section class="h-sec" id="h-viajes" aria-labelledby="h-viajes-t">
+    <section class="h-sec h-banda-viajes" id="h-viajes" aria-labelledby="h-viajes-t">
       <div class="wrap">
         <div class="h-head">
           <div><span class="h-eyebrow sun">Viajes</span><h2 id="h-viajes-t">Destinos para conocer el origen</h2>
-          <p>Guías de ciudades, pueblos mágicos y destinos naturales de Argentina y México: cuándo ir, qué comer, dónde dormir y cómo llegar.</p></div>
+          <p>Guías de ciudades, pueblos y destinos naturales de distintos países: cuándo ir, qué comer, dónde dormir y cómo llegar.</p></div>
           <a class="h-ver" href="viajes/destinos/">Ver todos los destinos {svg(I["flecha"], 16, 2)}</a>
         </div>
         <div class="h-viajes">
           <a class="h-viaje-big" href="viajes/destinos/">
             <img src="assets/img/home/viajes-avion.jpg" alt="Ala de avión sobre las nubes al atardecer" loading="lazy">
-            <span class="h-viaje-txt"><small>{svg(I["viajes"], 16)} Destinos</small><b>Elegí tu próximo viaje</b><span>Argentina, México y más países</span></span>
+            <span class="h-viaje-txt"><small>{svg(I["viajes"], 16)} Destinos</small><b>Elegí tu próximo viaje</b><span>Guías de destinos de todo el mundo</span></span>
           </a>
           <a class="h-viaje-alto" href="viajes/#organiza">
             <img src="assets/img/home/viajes-playa.jpg" alt="Atardecer en el mar con pelícanos" loading="lazy">
@@ -229,7 +228,7 @@ def main_html():
           <div class="h-cupones-txt">
             <span class="h-eyebrow sun">Cuponera</span>
             <h2 id="h-cupones-t">Descuentos de comercios, <em>muy pronto</em>.</h2>
-            <p>Restaurantes, alojamientos, excursiones, spas, servicios y tiendas de Argentina, México y en línea. Estamos sumando los primeros comercios.</p>
+            <p>Restaurantes, alojamientos, excursiones, spas, servicios y tiendas en línea. Estamos sumando los primeros comercios.</p>
             <div class="h-ctas">
               <a class="btn btn-primary" href="mi-tienda/?publicar=cupon">Publicá tu cupón</a>
               <a class="btn btn-ghost" href="cupones/">Conocé la Cuponera</a>
@@ -245,7 +244,7 @@ def main_html():
     </section>
 
     <!-- 6. Blog -->
-    <section class="h-sec h-sec-ult" id="h-blog" aria-labelledby="h-blog-t">
+    <section class="h-sec" id="h-blog" aria-labelledby="h-blog-t">
       <div class="wrap">
         <div class="h-blog-head">
           <div class="h-collage" aria-hidden="true">{collage}<span class="h-cinta"></span></div>
@@ -262,6 +261,29 @@ def main_html():
         </div>
       </div>
     </section>
+
+    <!-- 7. Novedades por correo y recursos -->
+    <section class="h-sec h-sec-ult" aria-label="Novedades y recursos">
+      <div class="wrap h-final">
+        <div class="h-suscribe">
+          <span class="h-eyebrow">Novedades</span>
+          <h2>Recibí lo nuevo de Umarti Origen</h2>
+          <p>Productos nuevos, destinos, oportunidades de negocio y los primeros cupones. Un correo de vez en cuando, sin spam.</p>
+          <form class="h-sus-form" id="h-sus" data-url="{SUPABASE_URL}" data-key="{SUPABASE_KEY}" novalidate>
+            <input type="email" name="correo" required placeholder="Tu correo electrónico" autocomplete="email" aria-label="Tu correo electrónico">
+            <button type="submit">Suscribirme</button>
+          </form>
+          <p class="h-sus-msg" role="status"></p>
+          <small>Podés darte de baja cuando quieras. <a href="legal/privacidad/">Privacidad</a>.</small>
+        </div>
+        <div class="h-recursos">
+          <span class="h-eyebrow sun">Recursos digitales</span>
+          <h3>Herramientas gratis</h3>
+          <ul>{recursos}</ul>
+          <a class="h-ver" href="recursos/">Ver todos los recursos {svg(I["flecha"], 16, 2)}</a>
+        </div>
+      </div>
+    </section>
   </main>'''
 
 
@@ -271,6 +293,8 @@ def main():
     s = s[:a] + main_html() + s[b:]
     if "assets/css/home.css" not in s:
         s = re.sub(r'(<link rel="stylesheet" href="assets/css/umarti\.css[^"]*">)', r'\1\n  <link rel="stylesheet" href="assets/css/home.css">', s, count=1)
+    if "assets/js/home.js" not in s:
+        s = re.sub(r'(<script src="assets/js/header\.js[^"]*"></script>)', r'\1\n  <script src="assets/js/home.js"></script>', s, count=1)
     open(INDEX, "w", encoding="utf-8").write(s)
     print("ok portada")
 

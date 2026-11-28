@@ -162,3 +162,77 @@
 @media (prefers-reduced-motion: reduce) { .h-sticker { animation: none; } }
 .h-hero h1 { font-size: clamp(2.1rem, 3.7vw, 3.1rem); }
 @media (min-width: 1180px) { .h-cats { grid-template-columns: repeat(7, 1fr); } .h-cat { padding: 14px; } .h-cat b { font-size: 0.9rem; } }
+
+/* ---- Ajustes: portada con título a todo el ancho ---- */
+.h-hero h1 { max-width: none; font-size: clamp(2.3rem, 4.8vw, 4rem); margin-bottom: 28px; }
+.h-hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 48px; }
+.h-hero-txt > p { margin-top: 0; font-size: 1.15rem; }
+.h-hero-img img { transform: rotate(0.8deg); }
+.h-atajos { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-top: 36px; }
+.h-atajos a { justify-content: center; padding: 12px 14px; font-size: 0.92rem; }
+
+/* Tienda con toldo celeste y blanco */
+.h-tienda-sec { position: relative; padding-bottom: 56px; margin-top: 24px;
+  background: linear-gradient(180deg, rgba(116,172,223,.22) 0%, rgba(116,172,223,.16) 24%, rgba(255,255,255,.55) 45%, rgba(255,255,255,.55) 70%, rgba(116,172,223,.14) 100%), var(--bg); }
+.h-toldo { height: 70px; position: relative; background: repeating-linear-gradient(90deg, #74acdf 0 64px, #fdfdfb 64px 128px); box-shadow: inset 0 -10px 18px -12px rgba(0,0,0,.25); }
+.h-toldo::after { content: ""; position: absolute; left: 0; right: 0; bottom: -30px; height: 30px;
+  background: radial-gradient(circle at 32px 0, #74acdf 31px, transparent 32px) 0 0 / 128px 30px repeat-x, radial-gradient(circle at 96px 0, #fdfdfb 31px, transparent 32px) 0 0 / 128px 30px repeat-x;
+  filter: drop-shadow(0 6px 6px rgba(0,0,0,.12)); }
+.h-tienda-sec .h-tienda { padding-top: 70px; }
+.h-tienda-txt { position: relative; }
+.h-tienda-txt h2 { font-size: clamp(2.8rem, 6vw, 4.4rem); line-height: 1; margin-bottom: 10px; }
+.h-tienda-sub { color: var(--muted); font-size: 1.15rem; margin-bottom: 22px; }
+.h-cartel { position: absolute; top: -58px; right: 12%; transform: rotate(-6deg); background: #fff; border: 2px solid #4f6b3a; color: #4f6b3a; font-family: "Fraunces", serif; font-weight: 700; font-size: 1.05rem; padding: 5px 16px; border-radius: 8px; box-shadow: 0 6px 14px -8px rgba(0,0,0,.35); animation: h-cartel 4s ease-in-out infinite; transform-origin: 50% -22px; }
+.h-cartel::before { content: ""; position: absolute; left: 50%; top: -22px; width: 34px; height: 22px; transform: translateX(-50%); border: 1.5px solid #a39684; border-bottom: 0; border-radius: 34px 34px 0 0; }
+@keyframes h-cartel { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(-2deg); } }
+.h-entra { margin-top: 18px; display: inline-flex; align-items: center; gap: 8px; }
+
+/* Destinos: banda de color propia */
+.h-banda-viajes { background: linear-gradient(180deg, #e3edf3 0%, #dce8ef 100%); margin: 40px 0 16px; padding: 64px 0; }
+.h-banda-viajes .h-eyebrow.sun { color: #b7741b; }
+
+/* Blog: una principal y cuatro al costado */
+.h-blog { align-items: stretch; }
+.h-nota-feat { grid-template-rows: 320px auto; }
+.h-notas { gap: 12px; }
+.h-nota { padding: 10px; grid-template-columns: 104px minmax(0, 1fr); }
+.h-nota img, .h-ph.sm { width: 104px; height: 84px; }
+.h-nota b { font-size: 0.98rem; }
+
+/* Novedades por correo + recursos */
+.h-final { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 18px; }
+.h-suscribe { padding: 40px 44px; border-radius: 28px; color: #fff; background: radial-gradient(500px 260px at 100% 0%, rgba(255,255,255,.14), transparent 60%), linear-gradient(130deg, #b4532a, #8f3f1d); position: relative; overflow: hidden; }
+.h-suscribe .h-eyebrow { color: #ffd9bf; }
+.h-suscribe h2 { color: #fff; }
+.h-suscribe > p { margin-top: 10px; color: #fbe5d6; max-width: 52ch; }
+.h-sus-form { display: flex; gap: 8px; margin-top: 22px; background: #fff; border-radius: 999px; padding: 6px; max-width: 520px; }
+.h-sus-form input { flex: 1; min-width: 0; border: 0; outline: none; font: inherit; font-size: 1rem; padding: 10px 16px; border-radius: 999px; color: var(--ink); }
+.h-sus-form button { border: 0; border-radius: 999px; background: var(--ink, #2b2118); color: #fff; font: inherit; font-weight: 700; padding: 11px 22px; cursor: pointer; }
+.h-sus-form button:disabled { opacity: .6; }
+.h-sus-msg { min-height: 1.3em; margin: 10px 0 4px; font-size: 0.92rem; font-weight: 600; }
+.h-sus-msg.ok { color: #fff; } .h-sus-msg.err { color: #ffd2c2; }
+.h-suscribe small { color: #f3cdb6; } .h-suscribe small a { color: #fff; }
+.h-recursos { padding: 30px; border-radius: 28px; background: var(--surface); border: 1px solid var(--line); }
+.h-recursos h3 { font-family: "Fraunces", serif; font-size: 1.5rem; margin-bottom: 12px; }
+.h-recursos ul { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 6px; }
+.h-recursos li a { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 12px; text-decoration: none; color: var(--ink); font-weight: 600; font-size: 0.94rem; }
+.h-recursos li a:hover { background: var(--sand, #f3ebdf); }
+.h-recursos li span { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: #fbefd5; color: #b97d16; flex: 0 0 auto; }
+
+@media (max-width: 1000px) {
+  .h-hero-grid, .h-final { grid-template-columns: minmax(0, 1fr); }
+  .h-atajos { grid-template-columns: repeat(3, 1fr); }
+  .h-cartel { right: 0; top: -40px; }
+}
+@media (max-width: 640px) {
+  .h-atajos { grid-template-columns: repeat(2, 1fr); }
+  .h-toldo { height: 46px; }
+  .h-tienda-sec .h-tienda { padding-top: 56px; }
+  .h-suscribe { padding: 30px 22px; }
+  .h-sus-form { flex-direction: column; border-radius: 18px; }
+  .h-sus-form button { padding: 12px; }
+  .h-banda-viajes { padding: 44px 0; }
+}
+.home .h-tienda-sec { padding-top: 0; margin-top: 8px; }
+.h-atajos a { white-space: nowrap; font-size: 0.88rem; padding: 12px 10px; }
+@media (max-width: 1180px) and (min-width: 1001px) { .h-atajos a { font-size: 0.82rem; } }
