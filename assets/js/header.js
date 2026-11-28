@@ -114,3 +114,29 @@
   window.addEventListener('storage', pintar);
   pintar();
 })();
+
+/* Sesión: favoritos y carrito son para personas que ingresaron con su cuenta.
+   Si no hay sesión, se lleva a Mi cuenta y, al ingresar, se vuelve a la página donde estaba. */
+(function () {
+  var CLAVE = 'sb-tkrnwboyynvbellqnzle-auth-token';
+  function activa() {
+    try { var s = JSON.parse(localStorage.getItem(CLAVE) || 'null'); return !!(s && (s.refresh_token || s.access_token)); } catch (e) { return false; }
+  }
+  var pre = document.body.dataset.prefix || (document.querySelector('link[href*="assets/css/umarti.css"]') || { getAttribute: function () { return 'assets/'; } }).getAttribute('href').split('assets/')[0];
+  function aCuenta(motivo, volver) {
+    location.href = pre + 'mi-cuenta/?motivo=' + motivo + '&volver=' + encodeURIComponent(volver || (location.pathname + location.search + location.hash));
+  }
+  window.UmartiSesion = { activa: activa, pedir: aCuenta };
+  // páginas de favoritos y carrito: sin sesión, primero ingresar
+  var ruta = location.pathname;
+  if (!activa() && /\/(favoritos|carrito)\/(index\.html)?$/.test(ruta)) { aCuenta(/favoritos/.test(ruta) ? 'favoritos' : 'carrito'); return; }
+  window.addEventListener('click', function (e) {
+    if (activa()) return;
+    var fav = e.target.closest('[data-fav]'), cart = e.target.closest('#cart-add');
+    var link = e.target.closest('a[href]');
+    var destino = link && /(^|\/)(favoritos|carrito)\/?$/.test(link.getAttribute('href')) ? (/favoritos/.test(link.getAttribute('href')) ? 'favoritos' : 'carrito') : '';
+    if (!fav && !cart && !destino) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    if (destino) aCuenta(destino, link.pathname); else aCuenta(fav ? 'favoritos' : 'carrito');
+  }, true);
+})();

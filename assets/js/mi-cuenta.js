@@ -6,6 +6,8 @@
   if (!window.supabase) { cargando.textContent = 'No se pudo conectar. Revisá tu conexión a internet y recargá la página.'; return; }
   var sb = window.supabase.createClient(B.dataset.sbUrl, B.dataset.sbKey);
   var AQUI = location.origin + location.pathname;
+  var VOLVER = new URLSearchParams(location.search).get('volver');
+  var AQUI_VOLVER = AQUI + (VOLVER ? '?volver=' + encodeURIComponent(VOLVER) : '');
   var usuario = null, perfil = null, recuperando = /type=recovery/.test(location.hash) || /nueva-clave/.test(location.search);
 
   function leerLS(k) { try { return JSON.parse(localStorage.getItem(k) || '[]'); } catch (e) { return []; } }
@@ -49,7 +51,7 @@
     ocupado(fUp, true); msg(fUp, 'Creando tu cuenta…');
     ultimoMail = fUp.email.value.trim();
     sb.auth.signUp({ email: ultimoMail, password: fUp.pass.value, options: {
-      emailRedirectTo: AQUI, data: { nombre: fUp.nombre.value.trim(), pais: fUp.pais.value, novedades: fUp.novedades.checked } } })
+      emailRedirectTo: AQUI_VOLVER, data: { nombre: fUp.nombre.value.trim(), pais: fUp.pais.value, novedades: fUp.novedades.checked } } })
       .then(function (r) {
         if (r.error) throw r.error;
         if (r.data && r.data.user && r.data.user.identities && !r.data.user.identities.length) throw new Error('User already registered');
@@ -134,7 +136,13 @@
     contadores();
   }
 
+  function volverSiCorresponde() {
+    var v = new URLSearchParams(location.search).get('volver');
+    if (v && /^\/[^\/]/.test(v)) { location.replace(v); return true; }
+    return false;
+  }
   function entrar(user) {
+    if (volverSiCorresponde()) return;
     usuario = user;
     cargando.hidden = true; fuera.hidden = true; dentro.hidden = false;
     secciones();
@@ -149,7 +157,8 @@
   }
   function salir() {
     sb.auth.signOut().then(function () {
-      try { localStorage.removeItem('umarti-cuenta'); } catch (e) { /* nada */ }
+      try { localStorage.removeItem('umarti-cuenta'); localStorage.removeItem('umarti-favoritos'); } catch (e) { /* nada */ }
+      document.dispatchEvent(new CustomEvent('umarti:favoritos'));
       document.dispatchEvent(new CustomEvent('umarti:cuenta'));
       usuario = perfil = null; history.replaceState(null, '', location.pathname); mostrarFuera('in');
     });
@@ -191,6 +200,8 @@
     var q = new URLSearchParams(location.search);
     if (/error_description=/.test(location.hash)) aviso('El enlace venció o ya se usó. Pedí uno nuevo.');
     else if (q.get('desde') === 'cupones') aviso('Creá tu cuenta y te avisamos cuando haya cupones.');
+    else if (q.get('motivo') === 'favoritos') aviso('Ingresá o creá tu cuenta gratis para guardar tus favoritos.');
+    else if (q.get('motivo') === 'carrito') aviso('Ingresá o creá tu cuenta gratis para usar el carrito.');
     mostrarFuera(q.has('crear') ? 'up' : 'in');
   });
 })();

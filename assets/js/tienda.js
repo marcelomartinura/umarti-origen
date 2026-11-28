@@ -108,12 +108,23 @@
     if (sep && primero) grid.insertBefore(sep, primero);
   }
 
+  // búsqueda por texto (?q=…), por ejemplo desde el buscador de la portada
+  function norm(t) { return String(t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+  var q = norm(p.get('q') || '').trim(), qWords = q ? q.split(/\s+/) : [];
+  if (q && grid) {
+    var qBox = document.createElement('div');
+    qBox.className = 'shop-q';
+    qBox.innerHTML = 'Resultados para <b></b> <a href="' + location.pathname + '">Ver todos</a>';
+    qBox.querySelector('b').textContent = '“' + p.get('q') + '”';
+    grid.parentNode.insertBefore(qBox, grid);
+  }
   function applyFilter() {
     if (!grid) return;
     var n = 0;
     cards.forEach(function (c) {
       var pr = num(c);
-      var ok = (!filtro || c.dataset.cat === filtro || c.dataset.sub === filtro || c.dataset.origen === filtro) &&
+      var txt = norm([c.dataset.nombre, c.dataset.cat, c.dataset.sub, c.dataset.origen].join(' '));
+      var ok = qWords.every(function (w) { return txt.indexOf(w) > -1; }) && (!filtro || c.dataset.cat === filtro || c.dataset.sub === filtro || c.dataset.origen === filtro) &&
         (pmin === null || (pr !== null && pr >= pmin)) && (pmax === null || (pr !== null && pr <= pmax));
       c.classList.toggle('is-hidden', !ok);
       if (ok) n++;
@@ -127,6 +138,7 @@
     if (empty) {
       empty.classList.toggle('show', n === 0);
       if (n === 0 && (pmin !== null || pmax !== null)) empty.textContent = 'No hay productos en ese rango de precio.';
+      else if (n === 0 && q) empty.textContent = 'No encontramos productos para esa búsqueda. Probá con otra palabra.';
     }
   }
   chips.forEach(function (b) { b.addEventListener('click', function () { filtro = b.dataset.filtro; applyFilter(); }); });

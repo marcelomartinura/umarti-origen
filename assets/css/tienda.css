@@ -528,3 +528,4 @@ dialog::backdrop { background: rgba(31, 26, 20, 0.55); }
 .af-sep { grid-column: 1 / -1; display: flex; align-items: center; gap: 14px; margin: 18px 0 2px; color: var(--muted); font-size: 0.78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 .af-sep::before, .af-sep::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 .af-sep[hidden] { display: none; }
+.shop-q { margin: 0 0 14px; font-size: .95rem; color: var(--muted); } .shop-q b { color: var(--ink); } .shop-q a { margin-left: 8px; color: var(--terra-dark, #8a3f1d); font-weight: 600; }
